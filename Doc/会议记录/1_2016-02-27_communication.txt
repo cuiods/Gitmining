@@ -1,0 +1,5 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+when:第一周
+what:评估风险，制定大作业迭代一计划，讨论用例，了解Java与Python语言的协作
+how long:2h
+arrived solutions:

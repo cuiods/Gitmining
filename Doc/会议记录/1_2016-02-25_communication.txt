@@ -1,0 +1,5 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+when:第一周
+what:交流大作业经验，确定选题，了解API的使用方法，启动项目
+how long:1.5h
+arrived solutions:确定选择Gitming题目，使用Java获取到网页的数据，形成项目启动文档。
