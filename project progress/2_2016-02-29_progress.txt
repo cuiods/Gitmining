@@ -1,0 +1,5 @@
+who:董本超
+when:第2周
+what:除开发包图和界面跳转图外，完成迭代一的体系结构设计文档
+problem:对某些接口的定义不确定，如获取仓库提交信息的接口:repobl.getRepoCommit(String [] owner_repoName)
+todo:和组员讨论接口定义的不确定因素，讨论并完成开发包图和界面跳转设计，并对体系结构设计文档进行评审
