@@ -1,0 +1,5 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+when:第2周
+what:评审需求规格文档和体系结构设计文档；
+how long:1h
+arrived solutions:对评审后的文档进行修改；启动项目maven工程；制定下一阶段的任务和分工
