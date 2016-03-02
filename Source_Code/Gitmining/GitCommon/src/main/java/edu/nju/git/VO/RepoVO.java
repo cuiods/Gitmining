@@ -1,4 +1,4 @@
-package edu.nju.git.PO;
+package edu.nju.git.VO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import edu.nju.git.type.OwnerType;
  * For example:<br>
  * <code>repo.addIssue(name)</code>;
  * @author cuihao
- * @date 2016-03-01 22:52:22
+ * @date 2016-03-02 12:25:14
  */
-public class RepoPO {
+public class RepoVO {
 	private String name;
 	/**
 	 * warning: can be enumerate
