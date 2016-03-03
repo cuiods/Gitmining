@@ -107,7 +107,7 @@ public class MainPanel extends JPanel {
 				 */
 				if (unit.getElement().attributeValue("type").equals("1")) {
 					Class<?> listenner = Class
-							.forName(packageName + "mouseListener." + unit.getElement().attributeValue("listenerName"));
+							.forName(packageName + "listener." + unit.getElement().attributeValue("listenerName"));
 					MouseListener mouseListener;
 					Constructor<?> ct = listenner.getConstructor(ArrayList.class, UIController.class,
 							java.awt.Component.class);
