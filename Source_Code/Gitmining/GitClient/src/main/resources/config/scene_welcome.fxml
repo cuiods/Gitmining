@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Gitmining" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <ToolBar layoutY="-6.0" prefHeight="40.0" prefWidth="600.0">
+              <items>
+                <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="290.0" text="User" />
+                  <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="290.0" text="Repository" />
+              </items>
+            </ToolBar>
+         </children></AnchorPane>
+  </content>
+</TitledPane>
