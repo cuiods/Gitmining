@@ -1,4 +1,4 @@
-package edu.nju.git.integration.service;
+package edu.nju.git.data.service;
 
 import java.util.List;
 
