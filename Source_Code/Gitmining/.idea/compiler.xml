@@ -17,21 +17,33 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+      <profile default="false" name="Annotation profile for GitIntegration" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="GitIntegration" />
+      </profile>
+      <profile default="false" name="Annotation profile for GitClient" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="GitClient" />
+      </profile>
+      <profile default="false" name="Annotation profile for GitCommon" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
         <module name="GitCommon" />
-        <module name="GitIntegration" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="GitClient" target="1.5" />
-      <module name="GitCommon" target="1.5" />
-      <module name="GitIntegration" target="1.5" />
-      <module name="Gitmining" target="1.5" />
+      <module name="GitClient" target="1.8" />
+      <module name="GitCommon" target="1.8" />
+      <module name="GitIntegration" target="1.8" />
+      <module name="Gitmining" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
