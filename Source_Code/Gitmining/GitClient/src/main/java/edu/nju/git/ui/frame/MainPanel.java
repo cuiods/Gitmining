@@ -49,7 +49,7 @@ public class MainPanel extends JPanel {
 	 */
 	private UIController controller;
 
-	public static final String packageName = "edu.nju.lms.presentation.";
+	public static final String packageName = "edu.nju.git.ui.";
 	private int x;
 	private int y;
 	private int h;
