@@ -16,7 +16,7 @@ public class Demo2_LoadFXML extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			/**
-			 * can only load file from the java file's directory.
+			 * can only load file from the java file's directory?
 			 */
 			Parent root = FXMLLoader.load(getClass().getResource("scene_welcome.fxml"));
 			Scene scene = new Scene(root);

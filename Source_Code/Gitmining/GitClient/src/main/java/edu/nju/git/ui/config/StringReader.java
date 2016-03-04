@@ -18,10 +18,10 @@ public class StringReader {
 	/**
 	 * There is at least one string we must know when initialize the reader
 	 */
-	private final String DEFAULT_STRING = "src/main/resources/string/";
+	private static final String DEFAULT_STRING = "src/main/resources/string/";
 	private static final String PATH_TAG = "path$";
 	private static final String STRING_TAG = "string$";
-	private SAXReader reader = new SAXReader();
+	private static SAXReader reader = new SAXReader();
 	/**
 	 * root element of path.
 	 */
@@ -39,8 +39,8 @@ public class StringReader {
 	/*
 	 * initialize when class loading. 
 	 */
- 	{
-		try {
+ 	private static void initialize() {
+ 		try {
 			pathRoot = reader.read(DEFAULT_STRING+"path.xml").getRootElement();
 			stringRoot = reader.read(DEFAULT_STRING+"string.xml").getRootElement();
 		} catch (DocumentException e) {
@@ -57,6 +57,9 @@ public class StringReader {
  	 * 			string of the path
  	 */
 	public static String readPath(String name){
+		if (pathRoot==null) {
+			initialize();
+		}
 		if (known.containsKey(PATH_TAG+name)) {
 			return known.get(PATH_TAG+name);
 		}else {
@@ -83,6 +86,9 @@ public class StringReader {
 	 * 			required string
 	 */
 	public static String readString(String name){
+		if (stringRoot==null) {
+			initialize();
+		}
 		if (known.containsKey(STRING_TAG+name)) {
 			return known.get(STRING_TAG+name);
 		} else {

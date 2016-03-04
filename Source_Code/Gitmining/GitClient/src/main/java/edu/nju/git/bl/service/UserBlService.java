@@ -15,7 +15,7 @@ import java.util.List;
  * @author benchaodong
  * @date 2016/03/03 
  */
-public interface UserBlService {
+public interface UserBlService extends BlService{
 
     /**
      * Get user list meeting demands of a search.

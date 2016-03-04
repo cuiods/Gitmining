@@ -21,7 +21,7 @@ import edu.nju.git.VO.UserVO;
  * @author cuihao
  * @date 2016-03-02 13:20:49
  */
-public interface RepoBlService {
+public interface RepoBlService extends BlService{
 	/**
 	 * Get repositorys meeting demands of a search.
 	 * @param keyword : 
