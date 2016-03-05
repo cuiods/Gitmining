@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <presentation>
 	<Frame name = "MainFrame" class = "MainFrame" width ="1080" height = "720">
-		<mainPanel name = "MainPanel" class = "MainPanel" x="0" y="0" w="1080" h="720">
+		<mainPanel name = "MainPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back1" class = "component" x="0" y="0" w="1080" h="686"/>
-			<unit name ="guide_repos" change = "MainPanel" class = "MainButton" x="10" y="30" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name ="guide_user" change = "MainPanel" class = "MainButton" x="160" y="30" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name ="repos" change = "ReposPanel" class = "MainButton" x="10" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name ="user" change = "UserPanel" class = "MainButton" x="160" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+		</mainPanel>
+		<mainPanel name = "ReposPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name = "guide_repos3" class = "MainButton" x="25" y="90" w="150" h="50" type="0"/>
+			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name = "search_text" class = "MyTextField" x="380" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="670" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
+		</mainPanel>
+		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>
+			<unit name = "guide_user3"  class = "MainButton" x="175" y="90" w="150" h="50" type ="0"/>
+			<unit name = "search_text" class = "MyTextField" x="380" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="670" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
 		</mainPanel>
 	</Frame>
 </presentation> 
