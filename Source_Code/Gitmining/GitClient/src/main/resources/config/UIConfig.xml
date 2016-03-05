@@ -3,8 +3,8 @@
 	<Frame name = "MainFrame" class = "MainFrame" width ="1080" height = "720">
 		<mainPanel name = "MainPanel" class = "MainPanel" x="0" y="0" w="1080" h="720">
 			<component name = "back1" class = "component" x="0" y="0" w="1080" h="686"/>
-			<unit name ="guide_repos" change = "MainPanel" class = "MainButton" x="10" y="60" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name ="guide_user" change = "MainPanel" class = "MainButton" x="160" y="60" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name ="guide_repos" change = "MainPanel" class = "MainButton" x="10" y="30" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name ="guide_user" change = "MainPanel" class = "MainButton" x="160" y="30" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 		</mainPanel>
 	</Frame>
 </presentation> 
