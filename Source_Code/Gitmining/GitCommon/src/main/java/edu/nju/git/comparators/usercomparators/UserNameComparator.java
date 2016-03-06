@@ -5,11 +5,11 @@ import edu.nju.git.VO.UserBriefVO;
 import java.util.Comparator;
 
 /**
- * Created by Harry on 2016/3/6.
+ * the comparator compare <tt>UserBriefVo</tt> by its login, namely the login id of the user.
  */
 public class UserNameComparator implements Comparator<UserBriefVO> {
     @Override
     public int compare(UserBriefVO o1, UserBriefVO o2) {
-        return 0;
+        return o1.getLogin().compareTo(o2.getLogin());
     }
 }
