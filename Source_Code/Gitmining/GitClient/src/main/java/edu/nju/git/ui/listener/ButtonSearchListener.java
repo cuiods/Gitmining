@@ -8,6 +8,7 @@ import edu.nju.git.ui.controller.UIController;
 /*
  * to show the result of search
  * @auther yyy
+ * to complete
  */
 public class ButtonSearchListener extends ButtonListener {
 

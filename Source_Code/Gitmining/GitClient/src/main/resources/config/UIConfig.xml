@@ -16,6 +16,12 @@
 			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 			<unit name = "search_text" class = "MyTextField" x="380" y="170" w="290" h="30" type ="0" textType = "null"/>
 			<unit name ="search" class = "MainButton" x="670" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
+			<unit name ="head_repos" class = "MainButton" x="80" y="230" w="160" h="35" type ="0"/>
+			<unit name ="head_repos_descrip" class = "MainButton" x="240" y="230" w="250" h="35" type ="0"/>
+			<unit name ="head_repos_update" class = "MainButton" x="490" y="230" w="150" h="35" type ="0"/>
+			<unit name ="head_repos_stars" class = "MainButton" x="640" y="230" w="100" h="35" type ="0"/>
+			<unit name ="head_repos_forks" class = "MainButton" x="740" y="230" w="100" h="35" type ="0"/>
+			<unit name ="head_repos_contributes" class = "MainButton" x="840" y="230" w="150" h="35" type ="0"/>
 		</mainPanel>
 		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
@@ -25,6 +31,10 @@
 			<unit name = "guide_user3"  class = "MainButton" x="175" y="90" w="150" h="50" type ="0"/>
 			<unit name = "search_text" class = "MyTextField" x="380" y="170" w="290" h="30" type ="0" textType = "null"/>
 			<unit name ="search" class = "MainButton" x="670" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
+			<unit name ="head_user_login" class = "MainButton" x="250" y="230" w="150" h="35" type ="0"/>
+			<unit name ="head_user_id" class = "MainButton" x="400" y="230" w="150" h="35" type ="0"/>
+			<unit name ="head_user_create" class = "MainButton" x="550" y="230" w="150" h="35" type ="0"/>
+			<unit name ="head_user_update" class = "MainButton" x="700" y="230" w="150" h="35" type ="0"/>
 		</mainPanel>
 	</Frame>
 </presentation> 
