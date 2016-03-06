@@ -1,5 +1,7 @@
 package edu.nju.git.PO;
 
+import java.io.Serializable;
+
 /**
  * This class is used in data layer to store <b>ALL</b> the indexes of repository information.
  * <p>In order to save network expenditure, we save all the repositories' <b>brief</b> information<br>
@@ -9,7 +11,8 @@ package edu.nju.git.PO;
  * @author benchaodong
  * @date 2016-03-04
  */
-public class RepoBriefPO {
+public class RepoBriefPO implements Serializable{
+	private static final long serialVersionUID = 3586985796146025910L;
 	private String ower;
     private String name;
     private String url;

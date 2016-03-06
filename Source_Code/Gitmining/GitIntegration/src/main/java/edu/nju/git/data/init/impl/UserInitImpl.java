@@ -1,14 +1,12 @@
 package edu.nju.git.data.init.impl;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.data.api.MyObjectWiter;
 import edu.nju.git.data.api.RepositoriesReader;
 import edu.nju.git.data.api.UserReader;
 import edu.nju.git.data.init.service.UserInitService;
@@ -42,17 +40,9 @@ public class UserInitImpl implements UserInitService {
 				pos.add(userReader.getBriefPO());
 			}
 		}
-		this.save();
+		
+		new MyObjectWiter(pos, "cache/userinfo.txt").excute();
 	}
 			
-	private boolean save()
-	{
-		try {
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(""));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}		
 
 }

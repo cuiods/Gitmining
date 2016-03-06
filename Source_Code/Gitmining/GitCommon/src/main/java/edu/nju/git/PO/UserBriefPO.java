@@ -12,14 +12,17 @@ import java.io.Serializable;
  * @date 2016-03-04
  */
 public class UserBriefPO implements Serializable{
-    private String id;
+	private static final long serialVersionUID = -8870871927755804266L;
+	private int id;
     private String login;
     private int followNum = 0;
     private int followingNum = 0;
-    public String getId() {
+    
+    
+    public int getId() {
         return id;
     }
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getLogin() {
@@ -40,4 +43,11 @@ public class UserBriefPO implements Serializable{
     public void setFollowingNum(int followingNum) {
         this.followingNum = followingNum;
     }
+	@Override
+	public String toString() {
+		return "UserBriefPO [id=" + id + ", login=" + login + ", followNum=" + followNum + ", followingNum="
+				+ followingNum + "]";
+	}
+    
+    
 }

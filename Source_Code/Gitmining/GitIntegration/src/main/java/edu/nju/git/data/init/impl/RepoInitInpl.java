@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.git.PO.RepoBriefPO;
+import edu.nju.git.data.api.MyObjectWiter;
 import edu.nju.git.data.api.RepoReader;
 import edu.nju.git.data.api.RepositoriesReader;
 import edu.nju.git.data.init.service.RepoInitService;
@@ -37,9 +38,10 @@ public class RepoInitInpl implements RepoInitService {
 		this.save();
 	}
 	
+	
 	private void save()
 	{
-		
+		new MyObjectWiter(pos, "cache/repoinfo.txt").excute();
 	}
 
 }
