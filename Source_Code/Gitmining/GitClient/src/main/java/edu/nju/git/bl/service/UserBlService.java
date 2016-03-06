@@ -4,6 +4,7 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.type.SortType;
 
 import java.util.List;
 
@@ -47,6 +48,14 @@ public interface UserBlService {
     public List<UserBriefVO> previousPage() throws PageOutOfBoundException;
 
     /**
+     * sort the list in specific aspect defined by <tt>sortType</tt>
+     * @param sortType in which way sort
+     * @param reverse if the order is reversed
+     * @return
+     */
+    public List<UserBriefVO> sort(SortType sortType, boolean reverse);
+
+    /**
      * Get the detailed information of a user who matched by the parameter userName
      * @param userName the name of a github user which you want to get his <b>DETAILED</b> information
      * @return a {@link UserVO}} instance that describe the user
@@ -80,4 +89,18 @@ public interface UserBlService {
      * @return a list of brief information of repositories that the user contributes 
      */
     public List<RepoBriefVO> getUserContributeRepos(String userName);
+
+    /**
+     * get the page number that is being viewed.
+     * @return page number
+     */
+    public int getCurrentPage();
+
+    /**
+     * get total page of the result list.
+     * <p>if in casual model, the totalPage is meaningless.
+     * @return page number
+     */
+    public int getTotalPage();
+
 }

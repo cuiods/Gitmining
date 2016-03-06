@@ -3,6 +3,7 @@ package edu.nju.git.bl.impl;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.bl.BrowseModel.impl.UserCasualModel;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
 import edu.nju.git.bl.factory.impl.CasualModelFactory;
 import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
@@ -12,6 +13,7 @@ import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
+import edu.nju.git.type.SortType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +108,11 @@ public class UserBlImpl implements UserBlService {
     }
 
     @Override
+    public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
+        return browseModelService.sort(sortType, reverse);
+    }
+
+    @Override
     public UserVO getUserInfo(String userName) {
         return userDataService.getUserInfo(userName);
     }
@@ -140,12 +147,18 @@ public class UserBlImpl implements UserBlService {
         }
     }
 
-    /**
-     * get the page that is displayed.
-     * @return page number
-     */
+    @Override
     public int getCurrentPage() {
         return CURRENT_PAGE;
+    }
+
+    @Override
+    public int getTotalPage(){
+        if (browseModelService instanceof UserCasualModel) {
+            return Integer.MAX_VALUE;
+        }
+        int elementNum = briefUserList.size();
+        return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
     }
 
     /**
@@ -156,5 +169,15 @@ public class UserBlImpl implements UserBlService {
         if (number>0) {
             CURRENT_PAGE = number;
         }
+    }
+
+    /**
+     * return the brief list.
+     * <p>this interface should only be used by {@link edu.nju.git.bl.BrowseModel.impl.UserSearchModel} or <br>
+     *    {@link UserCasualModel} for sort.
+     * @return brief user list.
+     */
+    public List<UserBriefVO> getBriefUserList() {
+        return briefUserList;
     }
 }

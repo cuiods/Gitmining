@@ -1,6 +1,7 @@
 package edu.nju.git.bl.impl;
 
 import edu.nju.git.VO.*;
+import edu.nju.git.bl.BrowseModel.impl.RepoCasualModel;
 import edu.nju.git.bl.BrowseModel.service.RepoBrowseModelService;
 import edu.nju.git.bl.factory.impl.CasualModelFactory;
 import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
@@ -10,6 +11,7 @@ import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
+import edu.nju.git.type.SortType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +107,11 @@ public class RepoBlImpl implements RepoBlService {
     }
 
     @Override
+    public List<RepoBriefVO> sort(SortType sortType, boolean reverse) {
+        return browseModelService.sort(sortType, reverse);
+    }
+
+    @Override
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
         return repoDataService.getRepoBasicInfo(owner, repoName);
     }
@@ -137,5 +144,39 @@ public class RepoBlImpl implements RepoBlService {
     @Override
     public List<IssueVO> getRepoIssue(String owner, String repoName) {
         return repoDataService.getRepoIssue(owner, repoName);
+    }
+
+    @Override
+    public int getCurrentPage() {
+        return CURRENT_PAGE;
+    }
+
+    @Override
+    public int getTotalPage() {
+        if (browseModelService instanceof RepoCasualModel) {
+            return Integer.MAX_VALUE;
+        }
+        int elementNum = briefRepoList.size();
+        return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
+    }
+
+    /**
+     * set the page number that is being viewed.
+     * @param number
+     */
+    public void setCurrentPage(int number) {
+        if (number>0) {
+            CURRENT_PAGE = number;
+        }
+    }
+
+    /**
+     * return the brief list.
+     * <p>this interface should only be used by {@link edu.nju.git.bl.BrowseModel.impl.RepoSearchModel} or <br>
+     *    {@link RepoCasualModel} for sort.
+     * @return brief repository list.
+     */
+    public List<RepoBriefVO> getBriefRepoList() {
+        return briefRepoList;
     }
 }
