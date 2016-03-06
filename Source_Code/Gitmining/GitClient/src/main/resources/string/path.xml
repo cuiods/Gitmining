@@ -3,4 +3,5 @@
 <url name="string" value="src/main/resources/string/"/>
 <url name="config" value="../../../../config/"/>
 <url name="css" value="../../../../css/"/>
+<url name="picture" value="../../../../pictures/"/>
 </path>

@@ -10,6 +10,7 @@ import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -59,7 +60,11 @@ public final class UIManager {
 	 */
 	public Parent initialize(Stage stage){
 		root = ConfigReader.readParentPanel("index");
+		root.getPanel().initPanel(null);
 		primaryStage = stage;
+		primaryStage.setTitle(StringReader.readString("title"));
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"icon.png");
+		primaryStage.getIcons().add(new Image(url.toString()));
 		return root.getRoot();
 	}
 	

@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.IndexPanel">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0">
+         <top>
+            <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="1080.0" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <BorderPane prefHeight="670.0" prefWidth="1080.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+      <ImageView fitHeight="720.0" fitWidth="1080.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <image>
+            <Image url="@../pictures/back1.png" />
+         </image>
+      </ImageView>
+   </children>
+</Group>

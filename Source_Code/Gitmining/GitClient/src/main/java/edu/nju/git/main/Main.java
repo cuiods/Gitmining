@@ -18,12 +18,10 @@ public class Main extends Application {
 		Parent root = UIManager.instance().initialize(primaryStage);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("title");
 		primaryStage.show();
 	}
 
 	public static void main(String[] args) {
 		launch(args);
-		UIManager.instance().changeCSS("default");
 	}
 }
