@@ -1,4 +1,4 @@
-package edu.nju.git.bl.service;
+package edu.nju.git.data.service;
 
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
@@ -7,17 +7,14 @@ import edu.nju.git.VO.UserVO;
 import java.util.List;
 
 /**
- * This interface define all the service the <b>userbusinesslogic</b> module should provide<br>
- * to presentation module.
- * <p>
- * The module get data from data module and analyze the data, then provide them<br>
- * to ui module.
- * @author benchaodong
- * @date 2016/03/03 
+ * This is an interface that dig and analyze data from Internet and provide it to the business logic<br>
+ * layer.
+ * <p>This module will invoke pytho program to help dig data
+ * @author benchaodong 
+ * @date 2016/03/03
  */
-public interface UserBlService {
-
-    /**
+public interface UserDataService {
+	/**
      * Get user list meeting demands of a search.
      * @param keyword the full or part of the name of the user
      * @return a List of {@link UserBriefVO}, which matches the search result

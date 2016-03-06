@@ -8,7 +8,6 @@ import edu.nju.git.VO.IssueVO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
-import edu.nju.git.VO.UserVO;
 
 /**
  * The {@code RepoBlService} defines all the service that Repo module must provide.
@@ -16,14 +15,14 @@ import edu.nju.git.VO.UserVO;
  * Repo business module gets data from Repo Integration module, and provide<br> 
  * view object for presentation.
  * <p>
- * {@code RepoBlService} can used to search repositorys, or search for <b>DETAILED</b><br>
+ * {@code RepoBlService} can used to search repositories, or search for <b>DETAILED</b><br>
  * information of a single repository.
  * @author cuihao
  * @date 2016-03-02 13:20:49
  */
-public interface RepoBlService extends BlService{
+public interface RepoBlService {
 	/**
-	 * Get repositorys meeting demands of a search.
+	 * Get repositories meeting demands of a search.
 	 * @param keyword : 
 	 * 			full name <b>or</b> part of the name of a repository
 	 * @return List of {@link RepoBriefVO}: 
@@ -32,7 +31,7 @@ public interface RepoBlService extends BlService{
 	public List<RepoBriefVO> getSearchResult(String keyword);
 	
 	/**
-	 * Get <b>detailed</b> info of a repositry.
+	 * Get <b>detailed</b> info of a repository.
 	 * @param owner 
 	 * 			name of owner of the repository
 	 * @param repoName 
@@ -41,17 +40,6 @@ public interface RepoBlService extends BlService{
 	 * 			detailed info of a repository
 	 */
 	public RepoVO getRepoBasicInfo(String owner, String repoName);
-	
-	/**
-	 * Get detailed info of the owner
-	 * @param repoName 
-	 * 			name of repository
-	 * @param ownerName 
-	 * 			name of owner
-	 * @return {@link UserVO} 
-	 * 			detailed info of a owner.
-	 */
-	public UserVO getRepoOwner (String repoName, String ownerName);
 	
 	/**
 	 * Get brief info of contributors.
