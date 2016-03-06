@@ -50,6 +50,7 @@ public class MyTableLabel extends JLabel  {
 	 * path of picture background (white default)
 	 */
 	private String picPath = "src/main/resources/pictures/white.png";
+	private String path=picPath;
 
 	/**
 	 * delete button of the label
@@ -106,10 +107,10 @@ public class MyTableLabel extends JLabel  {
 		/**
 		 * add check box
 		 */
-		MyCheckBox check = new MyCheckBox("");
+//		MyCheckBox check = new MyCheckBox("");
 		int checkWidth = column / 2;
-		check.setBounds((checkWidth-25)/2, (height-17)/2, 25, 17);
-		add(check);
+//		check.setBounds((checkWidth-25)/2, (height-17)/2, 25, 17);
+//		add(check);
 		/**
 		 * add data components
 		 */
@@ -124,17 +125,17 @@ public class MyTableLabel extends JLabel  {
 		/**
 		 * add delete button and edit button
 		 */
-		deleteButton = new MainButton("tabledelete");
-		deleteButton.setBounds(checkWidth + components.length * column+(checkWidth-height*3/8)/2, height*5/16+height/30, height*3/8,height*3/8);
-		deleteButton.setVisible(true);
-		add(deleteButton);
-		editButton = new MainButton("change");
-		editButton.setBounds(checkWidth + components.length * column + (checkWidth-height / 4)*3/2, height / 4, height / 2 ,
-				height / 2);
-		editButton.setVisible(true);
-		add(editButton);
-		editButton.addMouseListener(new TableEditListener(editButton));
-		deleteButton.addMouseListener(new tableDeleteListener(table, this, deleteButton));
+//		deleteButton = new MainButton("tabledelete");
+//		deleteButton.setBounds(checkWidth + components.length * column+(checkWidth-height*3/8)/2, height*5/16+height/30, height*3/8,height*3/8);
+//		deleteButton.setVisible(true);
+//		add(deleteButton);
+//		editButton = new MainButton("change");
+//		editButton.setBounds(checkWidth + components.length * column + (checkWidth-height / 4)*3/2, height / 4, height / 2 ,
+//				height / 2);
+//		editButton.setVisible(true);
+//		add(editButton);
+//		editButton.addMouseListener(new TableEditListener(editButton));
+//		deleteButton.addMouseListener(new tableDeleteListener(table, this, deleteButton));
 	}
 
 	@Override
@@ -178,13 +179,13 @@ public class MyTableLabel extends JLabel  {
 	}
 
 	public void changeGrey() {
-		picPath = "src/main/resources/pictures/addPath.png";
+		picPath = "src/main/resources/pictures/grey.png";
 	}
 
 	public void changeWhite() {
 		picPath = "src/main/resources/pictures/white.png";
 	}
-
+	
 	/**
 	 * delete button listener
 	 * 
@@ -282,5 +283,7 @@ public class MyTableLabel extends JLabel  {
 			}
 		}
 	}
+
+	
 
 }

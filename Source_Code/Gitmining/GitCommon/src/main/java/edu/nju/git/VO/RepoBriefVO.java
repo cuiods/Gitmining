@@ -13,6 +13,7 @@ public class RepoBriefVO {
 	private int num_stars = 0;
 	private int num_forks = 0;
 	private int num_contributors = 0;
+	private String lastUpdate;
 	public String getName() {
 		return name;
 	}
@@ -48,6 +49,12 @@ public class RepoBriefVO {
 	}
 	public void setNum_contributors(int num_contributors) {
 		this.num_contributors = num_contributors;
+	}
+	public String getLastUpdate(){
+		return this.lastUpdate;
+	}
+	public void setLastUpdate(String update){
+		this.lastUpdate = update;
 	}
 	
 	

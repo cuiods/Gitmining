@@ -10,11 +10,13 @@ public class UIController {
 	 * frame of client
 	 */
 	private MainFrame frame;
+	private ReposController repo;
 	
 	private String id;
 	
 	public UIController() {
 		initialize();
+		repo = new ReposController();
 		frame = new MainFrame();
 		ConfigReader r = new ConfigReader();
 		PanelConfig panelConfig = r.readPanel("MainPanel");
@@ -53,4 +55,9 @@ public class UIController {
 	public MainFrame getFrame() {
 		return frame;
 	}
+	
+	public ReposController getReposController(){
+		return this.repo;
+	}
+	
 }
