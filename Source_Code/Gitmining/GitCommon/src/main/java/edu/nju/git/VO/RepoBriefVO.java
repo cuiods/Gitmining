@@ -10,10 +10,22 @@ public class RepoBriefVO {
 	private String name;
 	private String url;
 	private String description;
-	private int num_stars = 0;
-	private int num_forks = 0;
-	private int num_contributors = 0;
+	private int num_stars;
+	private int num_forks;
+	private int num_contributors;
 	private String lastUpdate;
+
+	public RepoBriefVO(String description, String lastUpdate,
+					   String name, int num_contributors, int num_forks, int num_stars, String url) {
+		this.description = description;
+		this.lastUpdate = lastUpdate;
+		this.name = name;
+		this.num_contributors = num_contributors;
+		this.num_forks = num_forks;
+		this.num_stars = num_stars;
+		this.url = url;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -56,6 +68,6 @@ public class RepoBriefVO {
 	public void setLastUpdate(String update){
 		this.lastUpdate = update;
 	}
-	
-	
+
+
 }

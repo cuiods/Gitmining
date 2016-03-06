@@ -37,18 +37,29 @@ public class UserSearchModel implements UserBrowseModelService {
     @Override
     public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = userBl.getTotalPage();
+        if ((pageNum<1)||(pageNum>totalPage)){
+            throw new PageOutOfBoundException("the page is out of bound");
+        }
+        List<UserBriefVO> briefUserList = userBl.getBriefUserList();
+        int pageCapacity = userBl.getDEFAULT_PAGE_CAPACITY();
+        //don't forget to change the value of current page
+        userBl.setCurrentPage(pageNum);
 
-        return null;
+        if (pageNum == totalPage) {
+            return briefUserList.subList(pageNum*pageCapacity, briefUserList.size());
+        }
+
+        return briefUserList.subList(pageCapacity*(pageNum-1), pageCapacity*pageNum);
     }
 
     @Override
     public List<UserBriefVO> nextPage() throws PageOutOfBoundException {
-        return null;
+        return jumpToPage(userBl.getCurrentPage()+1);
     }
 
     @Override
     public List<UserBriefVO> previousPage() throws PageOutOfBoundException {
-        return null;
+        return jumpToPage(userBl.getCurrentPage()-1);
     }
 
     @Override

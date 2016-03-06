@@ -180,4 +180,12 @@ public class UserBlImpl implements UserBlService {
     public List<UserBriefVO> getBriefUserList() {
         return briefUserList;
     }
+
+    /**
+     * get the number of items a page shows one time.
+     * @return the capacity of a page
+     */
+    public int getDEFAULT_PAGE_CAPACITY(){
+        return DEFAULT_PAGE_CAPACITY;
+    }
 }
