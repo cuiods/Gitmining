@@ -37,7 +37,7 @@ public class UserSearchModel implements UserBrowseModelService {
     @Override
     public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = userBl.getTotalPage();
-        
+
         return null;
     }
 
