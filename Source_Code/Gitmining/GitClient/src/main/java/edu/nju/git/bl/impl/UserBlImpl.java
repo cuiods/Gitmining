@@ -3,16 +3,25 @@ package edu.nju.git.bl.impl;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
+import edu.nju.git.bl.factory.impl.CasualModelFactory;
+import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
 import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.UserDataService;
+import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.tools.RegexTranslator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Harry on 2016/3/4.
+ * This class get data from data layer, then it process the data and pass it to presentation layer<br>
+ * to display.
+ * <p>The class is designed to be a singleton.
+ * @author benchaodong
+ * @date 2016-03-04
  */
 public class UserBlImpl implements UserBlService {
 
@@ -25,6 +34,16 @@ public class UserBlImpl implements UserBlService {
      * default page capacity, namely how many items of search results one page can show.
      */
     private final int DEFAULT_PAGE_CAPACITY = 10;
+
+    /**
+     * current page displayed in ui module
+     */
+    private int CURRENT_PAGE = 1;
+
+    /**
+     * the strategy how to browse through the data
+     */
+    private UserBrowseModelService browseModelService;
 
     /**
      * the data service which this class uses to get data
@@ -57,36 +76,85 @@ public class UserBlImpl implements UserBlService {
     private UserBlImpl() {
         DataFactoryService dataFactoryService = DataFactory.instance();
         userDataService = dataFactoryService.getUserDataService();
+
+        //we use casual model in default
+        BrowseModelFactoryService browseModelFactory = CasualModelFactory.instance();
+        browseModelService = browseModelFactory.getUserBrowseModelService();
+
         briefUserList = new ArrayList<UserBriefVO>();
     }
 
     @Override
     public List<UserBriefVO> getSearchResult(String keyword) {
-        return null;
+        String regex = RegexTranslator.translate(keyword);
+        return browseModelService.getSearchResult(regex);
+    }
+
+    @Override
+    public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
+        return browseModelService.jumpToPage(pageNum);
+    }
+
+    @Override
+    public List<UserBriefVO> nextPage() throws PageOutOfBoundException {
+        return browseModelService.nextPage();
+    }
+
+    @Override
+    public List<UserBriefVO> previousPage() throws PageOutOfBoundException {
+        return browseModelService.previousPage();
     }
 
     @Override
     public UserVO getUserInfo(String userName) {
-        return null;
+        return userDataService.getUserInfo(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserOwnRepos(String userName) {
-        return null;
+        return userDataService.getUserOwnRepos(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserSubscribeRepos(String userName) {
-        return null;
+        return userDataService.getUserSubscribeRepos(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserCollaborateRepos(String userName) {
-        return null;
+        return userDataService.getUserCollaborateRepos(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserContributeRepos(String userName) {
-        return null;
+        return userDataService.getUserContributeRepos(userName);
+    }
+
+    /**
+     * set browse model, notify that the model can not be null
+     * @param browseModelService
+     */
+    public void setBrowseModelService(UserBrowseModelService browseModelService) {
+        if (browseModelService != null) {
+            this.browseModelService = browseModelService;
+        }
+    }
+
+    /**
+     * get the page that is displayed.
+     * @return page number
+     */
+    public int getCurrentPage() {
+        return CURRENT_PAGE;
+    }
+
+    /**
+     * set the page number that is being viewed.
+     * @param number
+     */
+    public void setCurrentPage(int number) {
+        if (number>0) {
+            CURRENT_PAGE = number;
+        }
     }
 }

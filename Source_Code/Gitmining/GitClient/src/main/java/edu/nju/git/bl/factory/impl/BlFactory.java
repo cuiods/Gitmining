@@ -1,6 +1,8 @@
 package edu.nju.git.bl.factory.impl;
 
 import edu.nju.git.bl.factory.service.BlFactoryService;
+import edu.nju.git.bl.impl.RepoBlImpl;
+import edu.nju.git.bl.impl.UserBlImpl;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.bl.service.UserBlService;
 
@@ -37,11 +39,11 @@ public class BlFactory implements BlFactoryService {
 
     @Override
     public RepoBlService getRepoBlService() {
-        return null;
+        return RepoBlImpl.instance();
     }
 
     @Override
     public UserBlService getUserBlService() {
-        return null;
+        return UserBlImpl.instance();
     }
 }
