@@ -9,7 +9,6 @@ import edu.nju.git.type.OwnerType;
  * @date 2016-03-01 23:01:49
  */
 public class UserPO {
-	private String id;
 	private String login;
 	private OwnerType type;
 	private String name;
@@ -18,19 +17,12 @@ public class UserPO {
 	private String location;
 	private String email;
 	private String bio;
-	private int followNum = 0;
+	private int followersNum = 0;
 	private int followingNum = 0;
 	private String create_at;
 	private String update_at;
-
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	private int public_repos;
+	private int public_gists;
 
 	public String getLogin() {
 		return login;
@@ -97,11 +89,11 @@ public class UserPO {
 	}
 
 	public int getFollowNum() {
-		return followNum;
+		return followersNum;
 	}
 
 	public void setFollowNum(int followNum) {
-		this.followNum = followNum;
+		this.followersNum = followNum;
 	}
 
 	public int getFollowingNum() {
@@ -126,6 +118,22 @@ public class UserPO {
 
 	public void setUpdate_at(String update_at) {
 		this.update_at = update_at;
+	}
+
+	public int getPublic_repos() {
+		return public_repos;
+	}
+
+	public void setPublic_repos(int public_repos) {
+		this.public_repos = public_repos;
+	}
+
+	public int getPublicGists() {
+		return public_gists;
+	}
+
+	public void setPublicGists(int public_gists) {
+		this.public_gists = public_gists;
 	}
 
 }

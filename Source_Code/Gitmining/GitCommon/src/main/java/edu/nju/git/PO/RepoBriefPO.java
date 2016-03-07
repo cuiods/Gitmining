@@ -13,34 +13,27 @@ import java.io.Serializable;
  */
 public class RepoBriefPO implements Serializable{
 	private static final long serialVersionUID = 3586985796146025910L;
-	private String ower;
-    private String name;
-    private String url;
-    private String description;
-    private int num_stars = 0;
-    private int num_forks = 0;
-    private int num_contributors = 0;
+	private String owner;
+	private String name;
+	private String description;
+	private int num_stars;
+	private int num_forks;
+	private int num_contributors;
+	private String lastUpdate;
     
     
     
-    
-	public String getOwer() {
-		return ower;
+	public String getOwner() {
+		return owner;
 	}
-	public void setOwer(String ower) {
-		this.ower = ower;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	public String getDescription() {
 		return description;

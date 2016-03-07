@@ -46,15 +46,13 @@ public class ReposTable extends MyTable {
 		descrip.setSize(200,30);
 		MyTextField update = new MyTextField(repo.getLastUpdate());
 		update.setSize(150,30);
-		MyTextField url = new MyTextField(repo.getUrl());
-		url.setSize(150,30);
 		MyTextField starNum = new MyTextField(""+repo.getNum_stars());
 		starNum.setSize(80,30);
 		MyTextField forkNum = new MyTextField(""+repo.getNum_forks());
 		forkNum.setSize(80,30);
 		MyTextField contributeNum = new MyTextField(""+repo.getNum_contributors());
 		contributeNum.setSize(150,30);
-		java.awt.Component components[] = {reposName,descrip,update,url,starNum,forkNum,contributeNum};
+		java.awt.Component components[] = {reposName,descrip,update,starNum,forkNum,contributeNum};
 		MyTableLabel label = new MyTableLabel(element,controller,35,components,this);
 		return label;
 	}

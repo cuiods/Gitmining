@@ -6,24 +6,23 @@ package edu.nju.git.VO;
  * @date 2016-03-02 12:10:49
  */
 public class RepoBriefVO {
-
+	private String owner;
 	private String name;
-	private String url;
 	private String description;
 	private int num_stars;
 	private int num_forks;
 	private int num_contributors;
 	private String lastUpdate;
 
-	public RepoBriefVO(String description, String lastUpdate,
-					   String name, int num_contributors, int num_forks, int num_stars, String url) {
+	public RepoBriefVO(String owner,String description, String lastUpdate,
+					   String name, int num_contributors, int num_forks, int num_stars) {
+		this.owner = owner;
 		this.description = description;
 		this.lastUpdate = lastUpdate;
 		this.name = name;
 		this.num_contributors = num_contributors;
 		this.num_forks = num_forks;
 		this.num_stars = num_stars;
-		this.url = url;
 	}
 
 	public String getName() {
@@ -31,12 +30,6 @@ public class RepoBriefVO {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	public String getDescription() {
 		return description;
@@ -67,6 +60,14 @@ public class RepoBriefVO {
 	}
 	public void setLastUpdate(String update){
 		this.lastUpdate = update;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 

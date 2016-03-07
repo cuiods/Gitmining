@@ -27,7 +27,7 @@ public class RepoPO {
 	private String update_at;
 	private int num_stars = 0;
 	private int num_forks = 0;
-	private int num_contributors = 0;
+	private int num_subscribers=0;
 	/**
 	 * same measure unit as api provided
 	 */
@@ -101,12 +101,6 @@ public class RepoPO {
 	public void setNum_forks(int num_forks) {
 		this.num_forks = num_forks;
 	}
-	public int getNum_contributors() {
-		return num_contributors;
-	}
-	public void setNum_contributors(int num_contributors) {
-		this.num_contributors = num_contributors;
-	}
 	public int getSize() {
 		return size;
 	}
@@ -148,6 +142,12 @@ public class RepoPO {
 	}
 	public void addIssue(String issue) {
 		info_issue.add(issue);
+	}
+	public int getNum_subscribers() {
+		return num_subscribers;
+	}
+	public void setNum_subscribers(int num_subscribers) {
+		this.num_subscribers = num_subscribers;
 	}
 	
 	
