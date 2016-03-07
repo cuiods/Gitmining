@@ -4,8 +4,11 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
 import edu.nju.git.bl.impl.UserBlImpl;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.tools.ComparatorFactory;
 import edu.nju.git.type.SortType;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -63,7 +66,21 @@ public class UserSearchModel implements UserBrowseModelService {
     }
 
     @Override
-    public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
-        return null;
+    public List<UserBriefVO> sort(SortType sortType, boolean reverse ) {
+        if (userBl.getTotalPage()<=0){
+            return userBl.getBriefUserList();
+        }
+        Comparator c = ComparatorFactory.getcComparator(sortType);
+        if (reverse){
+            c=c.reversed();
+        }
+        Collections.sort(userBl.getBriefUserList(), c);
+        List<UserBriefVO> theList = null;
+        try{
+            theList = jumpToPage(1);
+        } catch (PageOutOfBoundException e) {
+            e.printStackTrace();
+        }
+        return theList;
     }
 }

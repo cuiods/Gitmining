@@ -179,4 +179,12 @@ public class RepoBlImpl implements RepoBlService {
     public List<RepoBriefVO> getBriefRepoList() {
         return briefRepoList;
     }
+
+    /**
+     * get the amount of items show on one page
+     * @return the number
+     */
+    public int getDEFAULT_PAGE_CAPACITY(){
+        return DEFAULT_PAGE_CAPACITY;
+    }
 }

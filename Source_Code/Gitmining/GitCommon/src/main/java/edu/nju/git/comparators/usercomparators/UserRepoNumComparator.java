@@ -5,7 +5,10 @@ import edu.nju.git.VO.UserBriefVO;
 import java.util.Comparator;
 
 /**
- * Created by Harry on 2016/3/6.
+ * this class is a comparator for {@link UserBriefVO}. it compares the user by its repository number.<br>
+ * the user who has more repositories is larger than that with fewer repositories.
+ * @author benchaodong
+ * @date 2016-03-05
  */
 public class UserRepoNumComparator implements Comparator<UserBriefVO> {
     @Override

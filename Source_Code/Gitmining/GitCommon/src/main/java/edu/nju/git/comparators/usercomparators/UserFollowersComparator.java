@@ -5,7 +5,10 @@ import edu.nju.git.VO.UserBriefVO;
 import java.util.Comparator;
 
 /**
- * Created by Harry on 2016/3/6.
+ * this class is a comparator for {@link UserBriefVO}. it compares the user by its followers.<br>
+ * the user who has more followers is larger than that with fewer followers.
+ * @author benchaodong
+ * @date 2016-03-05
  */
 public class UserFollowersComparator implements Comparator<UserBriefVO> {
     @Override
