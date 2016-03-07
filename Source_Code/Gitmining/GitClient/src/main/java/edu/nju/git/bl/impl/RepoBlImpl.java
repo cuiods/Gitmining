@@ -80,7 +80,6 @@ public class RepoBlImpl implements RepoBlService {
         BrowseModelFactoryService modelFactoryService = CasualModelFactory.instance();
         browseModelService  = modelFactoryService.getRepoBrowseModelService();
 
-        briefRepoList = new ArrayList<RepoBriefVO>();
     }
 
 
@@ -153,10 +152,13 @@ public class RepoBlImpl implements RepoBlService {
 
     @Override
     public int getTotalPage() {
+        int elementNum;
         if (browseModelService instanceof RepoCasualModel) {
-            return Integer.MAX_VALUE;
+            elementNum = repoDataService.getTotalCount();
         }
-        int elementNum = briefRepoList.size();
+        else {
+            elementNum = briefRepoList.size();
+        }
         return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
     }
 

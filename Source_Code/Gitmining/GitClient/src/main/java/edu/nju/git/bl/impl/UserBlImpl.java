@@ -83,13 +83,22 @@ public class UserBlImpl implements UserBlService {
         BrowseModelFactoryService browseModelFactory = CasualModelFactory.instance();
         browseModelService = browseModelFactory.getUserBrowseModelService();
 
-        briefUserList = new ArrayList<UserBriefVO>();
     }
 
     @Override
     public List<UserBriefVO> getSearchResult(String keyword) {
+        if (keyword.isEmpty()) {
+            setBrowseModelService(UserCasualModel.instance());
+            try {
+                return briefUserList = jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                // TODO: 16-3-7  
+            }
+        }
         String regex = RegexTranslator.translate(keyword);
-        return browseModelService.getSearchResult(regex);
+        // TODO: 16-3-7
+        
+        return null;
     }
 
     @Override
@@ -154,10 +163,13 @@ public class UserBlImpl implements UserBlService {
 
     @Override
     public int getTotalPage(){
+        int elementNum;
         if (browseModelService instanceof UserCasualModel) {
-            return Integer.MAX_VALUE;
+            elementNum = userDataService.getTotalCount();
         }
-        int elementNum = briefUserList.size();
+        else {
+            elementNum = briefUserList.size();
+        }
         return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
     }
 

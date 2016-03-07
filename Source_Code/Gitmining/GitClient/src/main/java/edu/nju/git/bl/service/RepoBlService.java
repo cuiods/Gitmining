@@ -57,6 +57,15 @@ public interface RepoBlService {
 	/**
 	 * sort the list in specific aspect defined by <tt>sortType</tt>
 	 * @param sortType in which way sort
+	 * @return
+	 */
+	default List<RepoBriefVO> sort(SortType sortType) {
+		return sort(sortType, true);
+	}
+
+	/**
+	 * sort the list in specific aspect defined by <tt>sortType</tt>
+	 * @param sortType in which way sort
 	 * @param reverse if the order is reversed
 	 * @return
 	 */

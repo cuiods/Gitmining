@@ -5,6 +5,8 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.data.service.UserDataService;
+import edu.nju.git.datavisitors.uservisitors.UserVisitor;
+import edu.nju.git.type.SortType;
 
 import java.util.List;
 
@@ -45,6 +47,23 @@ public class UserDataImpl implements UserDataService {
     }
 
     /**
+     * These three list are the index for <b>ALL</b> {@link UserBriefPO} by name order, followers count<br>
+     * order and repository count order.
+     *
+     * <p>We user three list in order to save sort time. Whenever the client change the sort type, the class
+     * only change the list to be used, so that it can save much time, especially when there are a lot of <br>
+     * elements in the list.
+     *
+     * <p>Because the {@link UserBriefPO} only stores very small amount of information, so the list won't consume<br>
+     * too much space.
+     */
+    private List<UserBriefPO> nameOrderUsers;
+
+    private List<UserBriefPO> followerOrderUsers;
+
+    private List<UserBriefPO> repoNumOrderUsers;
+
+    /**
      * This method load the user index list {@code repoIndex} from disk.
      * <p>todo
      */
@@ -62,8 +81,28 @@ public class UserDataImpl implements UserDataService {
     }
 
     @Override
-    public List<UserBriefVO> getSearchResult(String keyword) {
+    public List<UserBriefVO> getSearchResult(String regex) {
         return null;
+    }
+
+    @Override
+    public int getTotalCount() {
+        return nameOrderUsers.size();
+    }
+
+    @Override
+    public List<UserBriefPO> getUserBriefPOs(SortType sortType) {
+        switch (sortType) {
+            case USER_NAME:return nameOrderUsers;
+            case FOLLOWER_NUM:return followerOrderUsers;
+            case REPO_NUM:return repoNumOrderUsers;
+            default:return null;
+        }
+    }
+
+    @Override
+    public List<UserBriefVO> acceptVisitor(UserVisitor visitor) {
+        return visitor.visit(this);
     }
 
     @Override

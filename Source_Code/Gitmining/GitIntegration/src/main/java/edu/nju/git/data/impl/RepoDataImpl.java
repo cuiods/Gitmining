@@ -3,6 +3,8 @@ package edu.nju.git.data.impl;
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.VO.*;
 import edu.nju.git.data.service.RepoDataService;
+import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
+import edu.nju.git.type.SortType;
 
 import java.util.List;
 
@@ -42,6 +44,16 @@ public class RepoDataImpl implements RepoDataService {
         loadRepoIndex();
     }
 
+    private List<RepoBriefPO> nameOrderPOs;
+
+    private List<RepoBriefPO> starOrderPOs;
+
+    private List<RepoBriefPO> forkOrderPOs;
+
+    private List<RepoBriefPO> contrOrderPOs;
+
+    private List<RepoBriefPO> updateOrderPOs;
+
     /**
      * This method load the repo index list {@code repoIndex} from disk.
      * <p>todo
@@ -60,8 +72,30 @@ public class RepoDataImpl implements RepoDataService {
     }
 
     @Override
-    public List<RepoBriefVO> getSearchResult(String keyword) {
+    public List<RepoBriefVO> getSearchResult(String regex) {
         return null;
+    }
+
+    @Override
+    public int getTotalCount() {
+        return nameOrderPOs.size();
+    }
+
+    @Override
+    public List<RepoBriefPO> getRepoBriefPOs(SortType sortType) {
+        switch (sortType) {
+            case REPO_NAME:return nameOrderPOs;
+            case STAR_NUM:return starOrderPOs;
+            case FORK_NUM:return forkOrderPOs;
+            case CONTRI_NUM:return contrOrderPOs;
+            case UPDATE_TIME:return updateOrderPOs;
+            default:return null;
+        }
+    }
+
+    @Override
+    public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor) {
+        return visitor.visit(this);
     }
 
     @Override

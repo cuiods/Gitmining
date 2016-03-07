@@ -59,6 +59,13 @@ public class RepoBriefPO implements Serializable{
 	public void setNum_contributors(int num_contributors) {
 		this.num_contributors = num_contributors;
 	}
-    
-    
+
+
+	public String getLastUpdate() {
+		return lastUpdate;
+	}
+
+	public void setLastUpdate(String lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 }
