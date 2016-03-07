@@ -19,10 +19,10 @@ public class RepositoriesReaderTest extends TestCase {
 	public void testFullNames() {
 		RepositoriesReader reader = new RepositoriesReader();
 		List<String> list = reader.getNames();
-		/*for (String string : list) {
+		for (String string : list) {
 			System.out.println(string);
-		}*/
-		Assert.assertTrue( list.size()>2000);
+		}
+		Assert.assertTrue( list.size()>1000);
 	}
 
 }
