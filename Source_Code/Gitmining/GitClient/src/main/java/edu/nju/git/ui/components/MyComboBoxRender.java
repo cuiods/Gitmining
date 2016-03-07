@@ -28,13 +28,13 @@ public class MyComboBoxRender<T> implements ListCellRenderer<T>{
 		JLabel renderer = (JLabel) render.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 		if (isSelected) {
 			renderer.setBackground(Color.LIGHT_GRAY);
-			renderer.setForeground(Color.WHITE);
+			renderer.setForeground(Color.white);
 		} else {
-			renderer.setBackground(Color.WHITE);
+			renderer.setBackground(Color.white);
 		}
 		list.setSelectionBackground(Color.LIGHT_GRAY);
 		list.setBorder(null);
-		renderer.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		renderer.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		renderer.setHorizontalAlignment(JLabel.CENTER);
 		return renderer;
 	}

@@ -44,6 +44,7 @@ public class MyComboBoxUI extends BasicComboBoxUI{
 	 */
 	private final String PIC_NORMAL = "src/main/resources/pictures/units/combobutton.png";
 	private final String PIC_INTO = "src/main/resources/pictures/units/combobutton1.png";
+//	private final String PIC_CLICKED = "src/main/resources/pictures/units/comboXbutton1.png";
 	public MyComboBoxUI() {
 		super();
 	}
@@ -54,10 +55,11 @@ public class MyComboBoxUI extends BasicComboBoxUI{
 	@Override
 	protected JButton createArrowButton(){
 		button = new JButton();
+		button.setSize(30,30);
 		button.setIcon(new ImageIcon(PIC_NORMAL));
 		button.setRolloverEnabled(true);
 		button.setRolloverIcon(new ImageIcon(PIC_INTO));
-		//button.setRolloverSelectedIcon(new ImageIcon(PIC_CLICKED));
+//		button.setRolloverSelectedIcon(new ImageIcon(PIC_CLICKED));
 		button.setBorder(null);
 		button.setContentAreaFilled(false);
 		button.setOpaque(false);
