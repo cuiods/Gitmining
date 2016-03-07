@@ -6,43 +6,30 @@ import java.awt.event.MouseListener;
 import edu.nju.git.ui.components.table.MyTableLabel;
 import edu.nju.git.ui.controller.UIController;
 /*
- * listener observed by label in the reposTable or userTable
+ * maybe no use
  * @auther yyy
- * @date 2016-03-06 17:55
+ * @date 2016-03-06 17:55; 03-07 10:54
+ * to complete
  */
-public class LabelRepoListener implements MouseListener{
-	
-	public LabelRepoListener(MyTableLabel label,UIController controller){
+public class LabelRepoListener extends LabelListener{
+
+	public LabelRepoListener(MyTableLabel label, UIController controller) {
+		super(label, controller);
 		
 	}
-	@Override
+	/*
+	 * (non-Javadoc)
+	 * @see edu.nju.git.ui.listener.LabelListener#mouseClicked(java.awt.event.MouseEvent)
+	 * to complete
+	 * 
+	 */
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		super.mouseClicked(e);
+		if (e.getClickCount()==2){
+			controller.changeTo(label.getElement().attributeValue("change"));
+		}
 		
 	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

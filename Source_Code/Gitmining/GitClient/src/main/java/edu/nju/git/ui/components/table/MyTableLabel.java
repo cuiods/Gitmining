@@ -50,7 +50,6 @@ public class MyTableLabel extends JLabel  {
 	 * path of picture background (white default)
 	 */
 	private String picPath = "src/main/resources/pictures/white.png";
-	private String path=picPath;
 
 	/**
 	 * delete button of the label
@@ -73,6 +72,10 @@ public class MyTableLabel extends JLabel  {
 	 * @warning table might be uninitialized
 	 */
 	private MyTable table;
+	/*
+	 * 
+	 */
+	protected Element element;
 
 	/**
 	 * @param element
@@ -93,6 +96,7 @@ public class MyTableLabel extends JLabel  {
 		this.components = components;
 		this.table = table;
 		this.controller = controller;
+		this.element = element;
 		setPreferredSize(new Dimension(width, height));
 		initializeComponents();
 		if(element.attributeValue("class").equals("table.ListTable"))
@@ -184,6 +188,18 @@ public class MyTableLabel extends JLabel  {
 
 	public void changeWhite() {
 		picPath = "src/main/resources/pictures/white.png";
+	}
+	
+	public String getPicPath(){
+		return this.picPath;
+	}
+	
+	public void setPicPath(String picPath){
+		this.picPath = picPath;
+	}
+	
+	public Element getElement(){
+		return this.element;
 	}
 	
 	/**

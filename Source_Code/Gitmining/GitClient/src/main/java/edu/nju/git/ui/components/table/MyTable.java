@@ -41,7 +41,7 @@ public abstract class MyTable extends MyScrollPane<MyTableLabel> implements Mous
 	public MyTable(Element element, UIController controller) {
 		super(element, controller);
 		addMouseListener(this);
-		getData();
+//		getData();
 		setView();
 		getVerticalScrollBar().setUI(new MyScrollPaneUI());
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

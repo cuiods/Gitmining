@@ -9,30 +9,57 @@ import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.frame.MainPanel;
 
 /**
- * @author tj
- * @date 2015年12月11日
+ * listener observed by label in the reposTable or userTable
+ * @author yyy
+ * @date 2016-03-08 10:35
  */
 public class LabelListener implements MouseListener {
-	private MyTableLabel label;
-	private UIController controller;
+	protected MyTableLabel label;
+	protected UIController controller;
+	private String picPath;
 	public LabelListener(MyTableLabel label, UIController controller) {
 		this.label = label;
 		this.controller = controller;
+		picPath = label.getPicPath();
 	}
-
+	/*
+	 * double clicked will start the new event 
+	 * (non-Javadoc)
+	 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
+	 */
+	@Override
 	public void mouseClicked(MouseEvent e) {
+		label.setPicPath("src/main/resources/pictures/label_clicked.png");
+		label.repaint();
+		if (e.getClickCount()==2){
+			controller.changeTo(label.getElement().attributeValue("change"));
+		}
 		
 	}
 
+	@Override
 	public void mousePressed(MouseEvent e) {
+		label.setPicPath("src/main/resources/pictures/label_clicked.png");
+		label.repaint();
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
+		label.setPicPath("src/main/resources/pictures/label_clicked.png");
+		label.repaint();
 	}
 
+	@Override
 	public void mouseEntered(MouseEvent e) {
+		label.setPicPath("src/main/resources/pictures/changeIn.png");
+		label.repaint();
+		
 	}
 
+	@Override
 	public void mouseExited(MouseEvent e) {
+		label.setPicPath(picPath);
+		label.repaint();
+		
 	}
 }
