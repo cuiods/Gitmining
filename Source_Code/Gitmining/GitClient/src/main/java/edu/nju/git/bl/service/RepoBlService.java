@@ -8,6 +8,8 @@ import edu.nju.git.VO.IssueVO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.type.SortType;
 
 /**
  * The {@code RepoBlService} defines all the service that Repo module must provide.
@@ -29,7 +31,37 @@ public interface RepoBlService {
 	 * 			brief info of a repository
 	 */
 	public List<RepoBriefVO> getSearchResult(String keyword);
-	
+
+	/**
+	 * jump to the specific page.
+	 * @param pageNum page number
+	 * @return the list in this page
+	 * @throws PageOutOfBoundException
+	 */
+	public List<RepoBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException;
+
+	/**
+	 * jump to next page of result list
+	 * @return list of repository brief information
+	 * @throws PageOutOfBoundException
+	 */
+	public List<RepoBriefVO> nextPage() throws PageOutOfBoundException;
+
+	/**
+	 * jump to the previous page
+	 * @return list of repository brief information
+	 * @throws PageOutOfBoundException
+	 */
+	public List<RepoBriefVO> previousPage() throws PageOutOfBoundException;
+
+	/**
+	 * sort the list in specific aspect defined by <tt>sortType</tt>
+	 * @param sortType in which way sort
+	 * @param reverse if the order is reversed
+	 * @return
+	 */
+	public List<RepoBriefVO> sort(SortType sortType, boolean reverse);
+
 	/**
 	 * Get <b>detailed</b> info of a repository.
 	 * @param owner 
@@ -106,4 +138,18 @@ public interface RepoBlService {
 	 * 			list of info of issues.
 	 */
 	public List<IssueVO> getRepoIssue(String owner, String repoName);
+
+	/**
+	 * get the page number that is being viewed.
+	 * @return page number
+	 */
+	public int getCurrentPage();
+
+	/**
+	 * get total page number of result list.
+	 * <p>Notify that in casual model the retrn value is meaningless.
+	 * @return total page number
+	 */
+	public int getTotalPage();
+
 }

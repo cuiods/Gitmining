@@ -3,6 +3,8 @@ package edu.nju.git.bl.service;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.type.SortType;
 
 import java.util.List;
 
@@ -23,6 +25,35 @@ public interface UserBlService {
      * @return a List of {@link UserBriefVO}, which matches the search result
      */
     public List<UserBriefVO> getSearchResult(String keyword);
+
+    /**
+     * jump to the specific page.
+     * @param pageNum page number
+     * @return the list in this page
+     */
+    public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException;
+
+    /**
+     * jump to next page of result list
+     * @return list of user brief information
+     * @throws PageOutOfBoundException
+     */
+    public List<UserBriefVO> nextPage() throws PageOutOfBoundException;
+
+    /**
+     * jump to the previous page
+     * @return list of user brief information
+     * @throws PageOutOfBoundException
+     */
+    public List<UserBriefVO> previousPage() throws PageOutOfBoundException;
+
+    /**
+     * sort the list in specific aspect defined by <tt>sortType</tt>
+     * @param sortType in which way sort
+     * @param reverse if the order is reversed
+     * @return
+     */
+    public List<UserBriefVO> sort(SortType sortType, boolean reverse);
 
     /**
      * Get the detailed information of a user who matched by the parameter userName
@@ -58,4 +89,18 @@ public interface UserBlService {
      * @return a list of brief information of repositories that the user contributes 
      */
     public List<RepoBriefVO> getUserContributeRepos(String userName);
+
+    /**
+     * get the page number that is being viewed.
+     * @return page number
+     */
+    public int getCurrentPage();
+
+    /**
+     * get total page of the result list.
+     * <p>if in casual model, the totalPage is meaningless.
+     * @return page number
+     */
+    public int getTotalPage();
+
 }
