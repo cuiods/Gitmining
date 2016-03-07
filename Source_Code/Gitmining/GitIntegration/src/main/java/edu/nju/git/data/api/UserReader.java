@@ -11,6 +11,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.PO.UserPO;
+import edu.nju.git.data.factory.impl.UserBriefPOfactory;
+import edu.nju.git.data.factory.impl.UserPOfactory;
 
 public class UserReader {
 
@@ -21,20 +23,12 @@ public class UserReader {
 	private final String url_location = "http://www.gitmining.net/api/user/";
 	public UserBriefPO getBriefPO()
 	{
-		Map<String, Object> map = getMap();
-		UserBriefPO userBriefPO = new UserBriefPO();
-		userBriefPO.setFollowingNum((Integer)map.get("following"));
-		userBriefPO.setFollowNum((Integer)map.get("followers"));
-		userBriefPO.setId((Integer)map.get("id"));
-		userBriefPO.setLogin(map.get("login").toString());
-		return userBriefPO;
+		return new UserBriefPOfactory().getPO(getMap());
 	}
 	
 	public UserPO getPO()
 	{
-		//TODO
-		//Map<String, Object> map = getMap();
-		return null;
+		return new UserPOfactory().getPO(getMap());
 	}
 	
 	

@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-
+/**
+ * @author daixinyan
+ * @date 2016-03-07
+ */
 public class MyObjectWiter {
 
 	private Object object;

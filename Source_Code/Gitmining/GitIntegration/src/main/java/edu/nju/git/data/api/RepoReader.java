@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.PO.RepoPO;
+import edu.nju.git.data.factory.impl.RepoBriefPOfactory;
 
 /**
  * read detail repository information by owner/repo_name pair
@@ -26,27 +27,7 @@ public class RepoReader {
 	 * @date 2016-03-06
 	 */
 	public RepoBriefPO getBriefPO(){
-		RepoBriefPO repoBriefPO = new RepoBriefPO();
-		Map<String, Object> map = this.getMap();
-		
-		int num_contributors = 0;
-		try {
-			NodeCounter nodeCounter = new NodeCounter(map.get("contributors_url").toString());
-			num_contributors = nodeCounter.count();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}repoBriefPO.setNum_contributors(num_contributors);
-		
-		repoBriefPO.setDescription(map.get("description").toString());
-		repoBriefPO.setName(map.get("name").toString());
-
-		repoBriefPO.setNum_forks((Integer)map.get("forks_count"));
-		repoBriefPO.setNum_stars((Integer)map.get("stargazers_count"));
-		repoBriefPO.setOwer(map.get("owner").toString());
-		repoBriefPO.setUrl(map.get("html_url").toString());
-		// "html_url": "https://github.com/huerlisi/CyDoc",
-		// "url": "https://api.github.com/repos/huerlisi/CyDoc",
-		return repoBriefPO;
+		return new RepoBriefPOfactory().getPO(getMap());
 	}
 	/**
 	 * <br/><b>precondition</b>：this.owner this.repo must be set
@@ -57,7 +38,6 @@ public class RepoReader {
 	public RepoPO getPO(){
 		return null;
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	protected Map<String, Object> getMap()
@@ -76,6 +56,7 @@ public class RepoReader {
 		}
 		return new HashMap<String, Object>();
 	}
+	
 	private final String url_location = "http://www.gitmining.net/api/repository/";
 	private String owner;
 	private String repo;
