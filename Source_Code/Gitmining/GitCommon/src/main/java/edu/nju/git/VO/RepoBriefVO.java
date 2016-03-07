@@ -11,7 +11,7 @@ public class RepoBriefVO {
 	private String description;
 	private int num_stars;
 	private int num_forks;
-	private int num_contributors;
+	private int num_subscribers;
 	private String lastUpdate;
 
 	public RepoBriefVO(String owner,String description, String lastUpdate,
@@ -20,7 +20,7 @@ public class RepoBriefVO {
 		this.description = description;
 		this.lastUpdate = lastUpdate;
 		this.name = name;
-		this.num_contributors = num_contributors;
+		this.num_subscribers = num_contributors;
 		this.num_forks = num_forks;
 		this.num_stars = num_stars;
 	}
@@ -50,10 +50,10 @@ public class RepoBriefVO {
 		this.num_forks = num_forks;
 	}
 	public int getNum_contributors() {
-		return num_contributors;
+		return num_subscribers;
 	}
 	public void setNum_contributors(int num_contributors) {
-		this.num_contributors = num_contributors;
+		this.num_subscribers = num_contributors;
 	}
 	public String getLastUpdate(){
 		return this.lastUpdate;

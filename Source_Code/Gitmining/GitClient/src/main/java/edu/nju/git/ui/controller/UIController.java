@@ -11,12 +11,14 @@ public class UIController {
 	 */
 	private MainFrame frame;
 	private ReposController repo;
+	private UserController user;
 	
 	private String id;
 	
 	public UIController() {
 		initialize();
 		repo = new ReposController();
+		user = new UserController();
 		frame = new MainFrame();
 		ConfigReader r = new ConfigReader();
 		PanelConfig panelConfig = r.readPanel("MainPanel");
@@ -58,6 +60,10 @@ public class UIController {
 	
 	public ReposController getReposController(){
 		return this.repo;
+	}
+	
+	public UserController getUserController(){
+		return this.user;
 	}
 	
 }

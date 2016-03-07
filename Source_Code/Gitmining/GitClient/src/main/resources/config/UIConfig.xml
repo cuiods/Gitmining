@@ -36,6 +36,7 @@
 			<unit name ="head_user_id" class = "MainButton" x="400" y="220" w="150" h="35" type ="0"/>
 			<unit name ="head_user_create" class = "MainButton" x="550" y="220" w="150" h="35" type ="0"/>
 			<unit name ="head_user_update" class = "MainButton" x="700" y="220" w="150" h="35" type ="0"/>
+			<unit name = "userList" class = "table.UserTable" x="260" y="255" w="540" h="350" type ="0"/>
 		</mainPanel>
 	</Frame>
 </presentation> 

@@ -25,13 +25,8 @@ import edu.nju.git.exception.PageOutOfBoundException;
  * to complete
  */
 public class ReposController {
-	private BrowseModelFactoryService bwFactory;
-	private BlFactoryService blFactory;
-	private RepoBrowseModelService repoBrow;
-	private RepoBlService repoBl;
+//	private RepoBlService repoBl;
 	public ReposController(){
-//		repoBrow =bwFactory.getRepoBrowseModelService();
-//		repoBl = blFactory.getRepoBlService();
 //		repoBl = RepoBlImpl.instance();
 	}
 	
@@ -65,13 +60,14 @@ public class ReposController {
 //		}
 //		
 //		return repoArray;
-//	}
+		return null;
+	}
 //	
 //	/*
 //	 * get detailed information of repo
 //	 * @param name "ownerName/repoName"
 //	 */
-//	public RepoVO getDetailedRepo(String name){
+	public RepoVO getDetailedRepo(String name){
 //		String[] ownRepo = new String[2];
 //		ownRepo = name.split("/");
 //		RepoVO repo = repoBl.getRepoBasicInfo(ownRepo[0], ownRepo[1]);
