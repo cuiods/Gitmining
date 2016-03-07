@@ -10,9 +10,9 @@ public class UserBriefPOfactory implements POfactory<UserBriefPO> {
 	@Override
 	public UserBriefPO getPO(Map<String, Object> map) {
 		UserBriefPO userBriefPO = new UserBriefPO();
-		userBriefPO.setFollowingNum((Integer)map.get("following"));
-		userBriefPO.setFollowNum((Integer)map.get("followers"));
-		userBriefPO.setId((Integer)map.get("id"));
+//		userBriefPO.setFollowingNum((Integer)map.get("following"));
+//		userBriefPO.setFollowNum((Integer)map.get("followers"));
+//		userBriefPO.setId((Integer)map.get("id"));
 		userBriefPO.setLogin(map.get("login").toString());
 		return userBriefPO;
 	}

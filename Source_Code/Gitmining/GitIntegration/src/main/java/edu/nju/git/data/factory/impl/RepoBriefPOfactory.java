@@ -26,8 +26,8 @@ public class RepoBriefPOfactory implements POfactory<RepoBriefPO> {
 
 		repoBriefPO.setNum_forks((Integer)map.get("forks_count"));
 		repoBriefPO.setNum_stars((Integer)map.get("stargazers_count"));
-		repoBriefPO.setOwer(map.get("owner").toString());
-		repoBriefPO.setUrl(map.get("html_url").toString());
+	//	repoBriefPO.setOwer(map.get("owner").toString());
+	//	repoBriefPO.setUrl(map.get("html_url").toString());
 		// "html_url": "https://github.com/huerlisi/CyDoc",
 		// "url": "https://api.github.com/repos/huerlisi/CyDoc",
 		return repoBriefPO;
