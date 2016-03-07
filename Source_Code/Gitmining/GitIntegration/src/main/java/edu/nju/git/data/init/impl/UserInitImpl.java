@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.data.api.MyObjectWiter;
 import edu.nju.git.data.api.RepositoriesReader;
-import edu.nju.git.data.api.UserReader;
+import edu.nju.git.data.api.centralization.UserMapReader;
 import edu.nju.git.data.init.service.UserInitService;
 
 public class UserInitImpl implements UserInitService {
@@ -27,7 +26,7 @@ public class UserInitImpl implements UserInitService {
 		List<String> repos = repositoriesReader.getNames();
 		//2. get details information,one by one
 		
-		UserReader userReader = new UserReader();
+		UserMapReader userReader = new UserMapReader();
 		pos = new ArrayList<UserBriefPO>();
 		
 		Set<String> stringSet = new HashSet<String>();

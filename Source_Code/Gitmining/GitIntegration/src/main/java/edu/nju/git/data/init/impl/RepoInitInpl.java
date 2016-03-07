@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.data.api.MyObjectWiter;
-import edu.nju.git.data.api.RepoReader;
 import edu.nju.git.data.api.RepositoriesReader;
+import edu.nju.git.data.api.centralization.RepoMapReader;
 import edu.nju.git.data.init.service.RepoInitService;
 
 public class RepoInitInpl implements RepoInitService {
@@ -29,7 +28,7 @@ public class RepoInitInpl implements RepoInitService {
 		List<String> repos = repositoriesReader.getNames();
 		//2. get details information,one by one
 		
-		RepoReader repoReader = new RepoReader();
+		RepoMapReader repoReader = new RepoMapReader();
 		pos = new ArrayList<RepoBriefPO>();
 		for (String string : repos) {
 			repoReader.setNames(string);

@@ -1,4 +1,4 @@
-package edu.nju.git.data.api;
+package edu.nju.git.data.api.centralization;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -11,10 +11,18 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.PO.UserPO;
-import edu.nju.git.data.factory.impl.UserBriefPOfactory;
-import edu.nju.git.data.factory.impl.UserPOfactory;
-
-public class UserReader {
+import edu.nju.git.data.api.JacksonConfig;
+import edu.nju.git.data.api.service.UserReaderService;
+import edu.nju.git.data.factory.impl.MapPO.MapUserBriefPOfactory;
+import edu.nju.git.data.factory.impl.MapPO.MapUserPOfactory;
+/**
+ * firstly,please set name's value
+ * reader userPO or UserBriefPO from a hashmap 
+ * by the api "http://www.gitmining.net/api/user/{name}"
+ * @author daixinyan
+ * @date 2016-03-07
+ */
+public class UserMapReader implements UserReaderService{
 
 	/**
 	 * user's login name
@@ -23,12 +31,11 @@ public class UserReader {
 	private final String url_location = "http://www.gitmining.net/api/user/";
 	public UserBriefPO getBriefPO()
 	{
-		return new UserBriefPOfactory().getPO(getMap());
+		return new MapUserBriefPOfactory().getPO(getMap());
 	}
-	
 	public UserPO getPO()
 	{
-		return new UserPOfactory().getPO(getMap());
+		return new MapUserPOfactory().getPO(getMap());
 	}
 	
 	
@@ -50,10 +57,10 @@ public class UserReader {
 		return new HashMap<String, Object>();
 	}
 	
-	public UserReader() {
+	public UserMapReader() {
 	}
 	
-	public UserReader(String name) {
+	public UserMapReader(String name) {
 		this.name = name;
 	}
 	

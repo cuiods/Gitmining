@@ -1,4 +1,4 @@
-package edu.nju.git.data.api;
+package edu.nju.git.data.api.centralization;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,6 +6,8 @@ import java.net.URL;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import edu.nju.git.data.api.JacksonConfig;
 /**
  * count the number of json's son node
  * @author daixinyan

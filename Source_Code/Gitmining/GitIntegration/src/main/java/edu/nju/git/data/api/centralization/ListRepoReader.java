@@ -1,4 +1,4 @@
-package edu.nju.git.data.api;
+package edu.nju.git.data.api.centralization;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,18 +7,10 @@ import java.util.Map;
 import edu.nju.git.PO.BranchPO;
 import edu.nju.git.PO.CommitPO;
 import edu.nju.git.PO.IssuePO;
-import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.PO.RepoPO;
-import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.PO.UserPO;
-import edu.nju.git.data.factory.impl.BranchPOfactory;
-import edu.nju.git.data.factory.impl.CommitPOfactory;
-import edu.nju.git.data.factory.impl.IssuePOfactory;
-import edu.nju.git.data.factory.impl.RepoBriefPOfactory;
-import edu.nju.git.data.factory.impl.RepoPOfactory;
-import edu.nju.git.data.factory.impl.UserBriefPOfactory;
-import edu.nju.git.data.factory.impl.UserPOfactory;
-import edu.nju.git.data.factory.service.POfactory;
+import edu.nju.git.data.factory.impl.MapPO.MapBranchPOfactory;
+import edu.nju.git.data.factory.impl.MapPO.MapCommitPOfactory;
+import edu.nju.git.data.factory.impl.MapPO.MapIssuePOfactory;
+import edu.nju.git.data.factory.service.MapPOfactory;
 /**
  * only usable for whose url looks like :
  *  "http://www.gitmining.net/api/repository/{owner}/{reponame}/{parameter}"
@@ -32,7 +24,7 @@ public class ListRepoReader<T>  {
 
 	private ListReader<T> listReader;
 	private static final String urlString = "http://www.gitmining.net/api/repository/";
-	private  static Map<Class<?>,POfactory<?>> factoryMap;
+	private  static Map<Class<?>,MapPOfactory<?>> factoryMap;
 	private static Map<Class<?>, String> urlMap ;
 	
 	private ListRepoReader()
@@ -54,14 +46,14 @@ public class ListRepoReader<T>  {
 	public ListRepoReader(Class<T> cla,String fullname)
 	{
 		this();
-		listReader = new ListReader<>((POfactory<T>)factoryMap.get(cla),urlString+fullname+"/"+urlMap.get(cla));
+		listReader = new ListReader<>((MapPOfactory<T>)factoryMap.get(cla),urlString+fullname+"/"+urlMap.get(cla));
 	}
 	
 	@SuppressWarnings("unchecked")
 	public ListRepoReader(Class<T> cla,String owner,String repoName)
 	{
 		this();
-		listReader = new ListReader<>((POfactory<T>)factoryMap.get(cla),urlString+owner+"/"+repoName+"/"+urlMap.get(cla));
+		listReader = new ListReader<>((MapPOfactory<T>)factoryMap.get(cla),urlString+owner+"/"+repoName+"/"+urlMap.get(cla));
 	}
 	
 	public  List<T> getPOList()
@@ -74,12 +66,12 @@ public class ListRepoReader<T>  {
 	{
 		if(factoryMap==null)
 		{
-			factoryMap=new HashMap<Class<?>, POfactory<?>>();
+			factoryMap=new HashMap<Class<?>, MapPOfactory<?>>();
 			//factoryMap.put(UserPO.class, new UserPOfactory());
 			//factoryMap.put(UserBriefPO.class, new UserBriefPOfactory());
-			factoryMap.put(BranchPO.class, new BranchPOfactory());
-			factoryMap.put(CommitPO.class, new CommitPOfactory());
-			factoryMap.put(IssuePO.class, new IssuePOfactory());
+			factoryMap.put(BranchPO.class, new MapBranchPOfactory());
+			factoryMap.put(CommitPO.class, new MapCommitPOfactory());
+			factoryMap.put(IssuePO.class, new MapIssuePOfactory());
 			//factoryMap.put(RepoBriefPO.class, new RepoBriefPOfactory());
 			//factoryMap.put(RepoPO.class, new RepoPOfactory());
 		}

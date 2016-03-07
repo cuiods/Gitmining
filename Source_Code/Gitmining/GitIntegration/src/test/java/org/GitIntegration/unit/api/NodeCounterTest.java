@@ -2,7 +2,7 @@ package org.GitIntegration.unit.api;
 
 import java.net.MalformedURLException;
 
-import edu.nju.git.data.api.NodeCounter;
+import edu.nju.git.data.api.centralization.NodeCounter;
 import junit.framework.TestCase;
 
 public class NodeCounterTest extends TestCase {

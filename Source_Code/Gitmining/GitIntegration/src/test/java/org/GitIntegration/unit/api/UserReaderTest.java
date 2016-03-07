@@ -1,16 +1,16 @@
 package org.GitIntegration.unit.api;
 
 import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.data.api.UserReader;
+import edu.nju.git.data.api.centralization.UserMapReader;
 import junit.framework.TestCase;
 
 public class UserReaderTest extends TestCase {
 
-	private UserReader reader ;
+	private UserMapReader reader ;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		reader = new UserReader("huerlisi");
+		reader = new UserMapReader("huerlisi");
 	}
 
 	protected void tearDown() throws Exception {

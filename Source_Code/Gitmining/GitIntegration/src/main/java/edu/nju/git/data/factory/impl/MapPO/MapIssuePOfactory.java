@@ -1,11 +1,11 @@
-package edu.nju.git.data.factory.impl;
+package edu.nju.git.data.factory.impl.MapPO;
 
 import java.util.Map;
 
 import edu.nju.git.PO.IssuePO;
-import edu.nju.git.data.factory.service.POfactory;
+import edu.nju.git.data.factory.service.MapPOfactory;
 
-public class IssuePOfactory implements POfactory<IssuePO> {
+public class MapIssuePOfactory implements MapPOfactory<IssuePO> {
 
 
 	@Override

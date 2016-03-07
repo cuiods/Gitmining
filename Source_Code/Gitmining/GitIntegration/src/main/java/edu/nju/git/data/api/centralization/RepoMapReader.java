@@ -1,4 +1,4 @@
-package edu.nju.git.data.api;
+package edu.nju.git.data.api.centralization;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -11,14 +11,15 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.PO.RepoPO;
-import edu.nju.git.data.factory.impl.RepoBriefPOfactory;
+import edu.nju.git.data.api.JacksonConfig;
+import edu.nju.git.data.factory.impl.MapPO.MapRepoBriefPOfactory;
 
 /**
  * read detail repository information by owner/repo_name pair
  * @author daixinyan
  * @date 2016-03-06
  */
-public class RepoReader {
+public class RepoMapReader {
 
 	/**
 	 * <br/><b>precondition</b>：this.owner this.repo must be set
@@ -27,7 +28,7 @@ public class RepoReader {
 	 * @date 2016-03-06
 	 */
 	public RepoBriefPO getBriefPO(){
-		return new RepoBriefPOfactory().getPO(getMap());
+		return new MapRepoBriefPOfactory().getPO(getMap());
 	}
 	/**
 	 * <br/><b>precondition</b>：this.owner this.repo must be set
@@ -61,9 +62,9 @@ public class RepoReader {
 	private String owner;
 	private String repo;
 	
-	public RepoReader(){}
+	public RepoMapReader(){}
 	
-	public RepoReader(String owner, String repo) {
+	public RepoMapReader(String owner, String repo) {
 		super();
 		this.owner = owner;
 		this.repo = repo;

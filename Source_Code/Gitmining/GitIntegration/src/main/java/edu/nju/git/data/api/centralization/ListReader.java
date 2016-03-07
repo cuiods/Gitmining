@@ -1,4 +1,4 @@
-package edu.nju.git.data.api;
+package edu.nju.git.data.api.centralization;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -10,20 +10,21 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import edu.nju.git.data.factory.service.POfactory;
+import edu.nju.git.data.api.JacksonConfig;
+import edu.nju.git.data.factory.service.MapPOfactory;
 
 /**
  * the father class of classed 
  * @author daixinyan
  * @date 2016-03-07
  */
-public class ListReader <T>{
+class ListReader <T>{
 
-	private POfactory<T> pofactory;
+	private MapPOfactory<T> pofactory;
 	private String url_location;
 	
 	
-	public ListReader(POfactory<T> pOfactory, String url_location) {
+	public ListReader(MapPOfactory<T> pOfactory, String url_location) {
 		super();
 		this.pofactory = pOfactory;
 		this.url_location = url_location;

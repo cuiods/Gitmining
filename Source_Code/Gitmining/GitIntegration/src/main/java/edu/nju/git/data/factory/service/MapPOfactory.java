@@ -7,7 +7,7 @@ import java.util.Map;
  * @date 2016-03-07
  * @param <T>
  */
-public interface POfactory<T> {
+public interface MapPOfactory<T> {
 	/**
 	 * 
 	 * keys in map,matches fields' name in T;

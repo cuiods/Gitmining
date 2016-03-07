@@ -1,13 +1,13 @@
-package edu.nju.git.data.factory.impl;
+package edu.nju.git.data.factory.impl.MapPO;
 
 import java.net.MalformedURLException;
 import java.util.Map;
 
 import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.data.api.NodeCounter;
-import edu.nju.git.data.factory.service.POfactory;
+import edu.nju.git.data.api.centralization.NodeCounter;
+import edu.nju.git.data.factory.service.MapPOfactory;
 
-public class RepoBriefPOfactory implements POfactory<RepoBriefPO> {
+public class MapRepoBriefPOfactory implements MapPOfactory<RepoBriefPO> {
 
 
 	@Override
