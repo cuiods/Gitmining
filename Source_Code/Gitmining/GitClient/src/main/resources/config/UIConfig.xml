@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <presentation>
-	<Frame name = "MainFrame" class = "MainFrame" width ="1080" height = "720">
+	<Frame name = "MainFrame" class = "MainFrame" width ="1080" height = "686">
 		<mainPanel name = "MainPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back1" class = "component" x="0" y="0" w="1080" h="686"/>
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
