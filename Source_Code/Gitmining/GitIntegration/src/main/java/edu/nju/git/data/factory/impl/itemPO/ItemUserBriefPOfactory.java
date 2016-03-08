@@ -8,12 +8,12 @@ public class ItemUserBriefPOfactory extends AbstractItemPO<UserBriefPO> {
 	public ItemUserBriefPOfactory(){}
 	public ItemUserBriefPOfactory(String name) 
 	{
-		this.itemService = new ItemUserPOReader(name);
+		this.basicItemService = new ItemUserPOReader(name);
 	}
 
 	public void setName(String name)
 	{
-		this.itemService = new ItemUserPOReader(name);
+		this.basicItemService = new ItemUserPOReader(name);
 	}
 	
 	
@@ -28,10 +28,9 @@ public class ItemUserBriefPOfactory extends AbstractItemPO<UserBriefPO> {
 	@Override
 	public UserBriefPO getPO() {
 		UserBriefPO po = new UserBriefPO();
-		po.setLogin(this.itemService.getItem("lgin").toString());
-//		po.setType(this.itemService.getItem("type").toString());
-		po.setPublic_repos((Integer)this.itemService.getItem("public_repos"));
-		po.setFollowers((Integer)this.itemService.getItem("followers"));
+		po.setLogin(this.basicItemService.getItem("login"));
+		po.setPublic_repos(this.getInteger("public_repos"));
+		po.setFollowers(this.getInteger("followers"));
 		return po;
 	}
 }

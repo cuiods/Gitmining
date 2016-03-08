@@ -3,7 +3,6 @@ package edu.nju.git.data.api.centralization;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -28,7 +27,7 @@ public class UserMapReader implements MapService{
 	
 	
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> getMap()
+	public Map<String, Object> getMap() 
 	{
 		try{
 			URL url = new URL(url_location+name);
@@ -41,8 +40,10 @@ public class UserMapReader implements MapService{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return new HashMap<String, Object>();
+		return null;
 	}
 	
 	public UserMapReader() {

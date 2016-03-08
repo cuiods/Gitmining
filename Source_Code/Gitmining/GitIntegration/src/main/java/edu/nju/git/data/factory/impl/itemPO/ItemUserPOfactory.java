@@ -1,6 +1,7 @@
 package edu.nju.git.data.factory.impl.itemPO;
 
 import edu.nju.git.PO.UserPO;
+import edu.nju.git.type.OwnerType;
 
 public class ItemUserPOfactory extends AbstractItemPO<UserPO>{
 
@@ -19,20 +20,20 @@ public class ItemUserPOfactory extends AbstractItemPO<UserPO>{
 	@Override
 	public UserPO getPO() {
 		UserPO po = new UserPO();
-		po.setLogin(this.itemService.getItem("login").toString());
-//		po.setType(this.itemService.getItem("type").toString());
-		po.setName(this.itemService.getItem("name").toString());
-		po.setCompany(this.itemService.getItem("company").toString());
-		po.setBlog(this.itemService.getItem("blog").toString());
-		po.setLocation(this.itemService.getItem("location").toString());
-		po.setEmail(this.itemService.getItem("email").toString());
-		po.setBio(this.itemService.getItem("bio").toString());
-		po.setPublic_repos((Integer)this.itemService.getItem("public_repos"));
-		po.setPublicGists((Integer)this.itemService.getItem("public_gists"));
-		po.setFollowNum((Integer)this.itemService.getItem("followers"));
-		po.setFollowingNum((Integer)this.itemService.getItem("following"));
-		po.setCreate_at(this.itemService.getItem("created_at").toString());
-		po.setUpdate_at(this.itemService.getItem("updated_at").toString());
+		po.setLogin(this.basicItemService.getItem("login"));
+		po.setType(OwnerType.getInstance(this.getString("type")));
+		po.setName(this.basicItemService.getItem("name"));
+		po.setCompany(this.basicItemService.getItem("company"));
+		po.setBlog(this.basicItemService.getItem("blog").toString());
+		po.setLocation(this.basicItemService.getItem("location").toString());
+		po.setEmail(this.basicItemService.getItem("email").toString());
+		po.setBio(this.basicItemService.getItem("bio").toString());
+		po.setPublic_repos(this.getInteger("public_repos"));
+		po.setPublicGists(this.getInteger("public_gists"));
+		po.setFollowNum(this.getInteger("followers"));
+		po.setFollowingNum(this.getInteger("following"));
+		po.setCreate_at(this.basicItemService.getItem("created_at"));
+		po.setUpdate_at(this.basicItemService.getItem("updated_at"));
 		return po;
 	}
 

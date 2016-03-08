@@ -26,17 +26,18 @@ public class RepoInitInpl implements RepoInitService {
 	public void init() {
 		//1. get all repositories' full names
 		List<String> repos = repositoriesReader.getNames();
-		System.out.println(repos.size());
-		for (String string : repos) {
-			System.out.println(string);
-		}
+//		System.out.println(repos.size());
+//		for (String string : repos) {
+//			System.out.println(string);
+//		}
 		//2. get details information,one by one
 		
-		MapRepoBriefPOfactory repoFactory = new MapRepoBriefPOfactory();
+		MapRepoBriefPOfactory repoBreifPOfactory = new MapRepoBriefPOfactory();
+		//ItemRepoBriefPOfactory repoBreifPOfactory = new ItemRepoBriefPOfactory();
 		pos = new ArrayList<RepoBriefPO>();
 		for (String string : repos) {
-			repoFactory.setNames(string);
-			pos.add(  repoFactory.getPO() );
+			repoBreifPOfactory.setNames(string);
+			pos.add(  repoBreifPOfactory.getPO() );
 		}
 		this.save();
 	}

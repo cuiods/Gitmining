@@ -1,9 +1,6 @@
 package edu.nju.git.data.api.decentralization;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import edu.nju.git.data.api.URLreader;
 import edu.nju.git.data.api.service.ItemService;
 
 public class ItemUserPOReader implements ItemService{
@@ -24,17 +21,10 @@ public class ItemUserPOReader implements ItemService{
      * </p>
 	 */
 	@Override
-	public Object getItem(String item)
+	public String getItem(String item)
 	{
-		try {
-			URL url = new URL("http://www.gitmining.net/api/user/"+this.name+"/item/"+item);
-			return url.getContent();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "";
+		String string = "http://www.gitmining.net/api/user/"+this.name+"/item/"+item;
+		return URLreader.getInstance().reader(string);
 	}
 	
 	public void setName(String name) {
