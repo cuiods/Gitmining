@@ -57,10 +57,10 @@ public class RepoBriefVO implements Serializable{
 	public void setNum_forks(int num_forks) {
 		this.num_forks = num_forks;
 	}
-	public int getNum_contributors() {
+	public int getNum_subscribers() {
 		return num_subscribers;
 	}
-	public void setNum_contributors(int num_contributors) {
+	public void setNum_subscribers(int num_contributors) {
 		this.num_subscribers = num_contributors;
 	}
 	public String getLastUpdate(){

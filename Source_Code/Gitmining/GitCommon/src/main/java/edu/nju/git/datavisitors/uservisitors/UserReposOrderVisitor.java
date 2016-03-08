@@ -11,10 +11,6 @@ import java.util.List;
  */
 public class UserReposOrderVisitor extends SimpleUserVisitor {
 
-    public UserReposOrderVisitor(int page) {
-        this(page, true);
-    }
-
     public UserReposOrderVisitor(int page, boolean reverse) {
         super(page, reverse);
     }

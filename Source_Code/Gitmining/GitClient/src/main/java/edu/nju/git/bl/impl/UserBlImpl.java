@@ -4,11 +4,14 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.BrowseModel.impl.UserCasualModel;
+import edu.nju.git.bl.BrowseModel.impl.UserSearchModel;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
 import edu.nju.git.bl.service.UserBlService;
+import edu.nju.git.constant.Consts;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.UserDataService;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
@@ -28,11 +31,6 @@ public class UserBlImpl implements UserBlService {
      * The reference pointed to the only instance of this class because this class is set to be a singleton.
      */
     private static UserBlImpl uniqueInstance = null;
-
-    /**
-     * default page capacity, namely how many items of search results one page can show.
-     */
-    private final int DEFAULT_PAGE_CAPACITY = 10;
 
     /**
      * current page displayed in ui module
@@ -82,19 +80,28 @@ public class UserBlImpl implements UserBlService {
     }
 
     @Override
-    public List<UserBriefVO> getSearchResult(String keyword) {
+    public List<UserBriefVO> getSearchResult(String keyword) throws NoSearchResultException {
         if (keyword.isEmpty()) {
             setBrowseModelService(new UserCasualModel(this));
             try {
-                return briefUserList = jumpToPage(1);
+                return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
-                // TODO: 16-3-7  
+                e.printStackTrace();
+                throw new NoSearchResultException("there is no result to show");
             }
         }
-        String regex = RegexTranslator.translate(keyword);
-        // TODO: 16-3-7
-        
-        return null;
+        else {
+            setBrowseModelService(new UserSearchModel(this));
+            String regex = RegexTranslator.translate(keyword);
+            briefUserList = userDataService.getSearchResult(regex);
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+                throw new NoSearchResultException("there is no result to show");
+            }
+        }
+
     }
 
     @Override
@@ -166,7 +173,7 @@ public class UserBlImpl implements UserBlService {
         else {
             elementNum = briefUserList.size();
         }
-        return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
+        return (elementNum % Consts.PAGE_CAPACITY)==0?elementNum/Consts.PAGE_CAPACITY:elementNum/Consts.PAGE_CAPACITY+1;
     }
 
     /**
@@ -194,6 +201,10 @@ public class UserBlImpl implements UserBlService {
      * @return the capacity of a page
      */
     public int getDEFAULT_PAGE_CAPACITY(){
-        return DEFAULT_PAGE_CAPACITY;
+        return Consts.PAGE_CAPACITY;
+    }
+
+    public UserDataService getUserDataService(){
+        return userDataService;
     }
 }

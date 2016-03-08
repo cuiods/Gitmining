@@ -29,6 +29,24 @@ public abstract class SimpleRepoVisitor implements RepoVisitor{
         this.reverse = reverse;
     }
 
+    public int getPage(){
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public boolean getReverse(){
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
+    }
+
+    public abstract List<RepoBriefVO> visit(final RepoDataService repoDataService);
+
     protected List<RepoBriefVO> visit(RepoDataService userDataService, SortType sortType) {
         List<RepoBriefPO> POList = userDataService.getRepoBriefPOs(sortType);
         List<RepoBriefVO> resultList = new ArrayList<>();

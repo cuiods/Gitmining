@@ -2,11 +2,14 @@ package edu.nju.git.bl.impl;
 
 import edu.nju.git.VO.*;
 import edu.nju.git.bl.BrowseModel.impl.RepoCasualModel;
+import edu.nju.git.bl.BrowseModel.impl.RepoSearchModel;
 import edu.nju.git.bl.BrowseModel.service.RepoBrowseModelService;
 import edu.nju.git.bl.service.RepoBlService;
+import edu.nju.git.constant.Consts;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.RepoDataService;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
@@ -25,11 +28,6 @@ public class RepoBlImpl implements RepoBlService {
      * The reference pointed to the only instance of this class because this class is set to be a singleton.
      */
     private static RepoBlImpl uniqueInstance = null;
-
-    /**
-     * default page capacity, namely how many items of search results one page can show.
-     */
-    private final int DEFAULT_PAGE_CAPACITY = 10;
 
     /**
      * the page is being viewed
@@ -81,9 +79,27 @@ public class RepoBlImpl implements RepoBlService {
 
 
     @Override
-    public List<RepoBriefVO> getSearchResult(String keyword) {
-        String regex = RegexTranslator.translate(keyword);
-        return browseModelService.getSearchResult(regex);
+    public List<RepoBriefVO> getSearchResult(String keyword) throws NoSearchResultException {
+        if (keyword.isEmpty()) {
+            setBrowseModelService(new RepoCasualModel(this));
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+                throw new NoSearchResultException("there is no result to show");
+            }
+        }
+        else {
+            setBrowseModelService(new RepoSearchModel(this));
+            String regex = RegexTranslator.translate(keyword);
+            briefRepoList = repoDataService.getSearchResult(regex);
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+                throw new NoSearchResultException("there is no result to show");
+            }
+        }
     }
 
     @Override
@@ -141,6 +157,16 @@ public class RepoBlImpl implements RepoBlService {
         return repoDataService.getRepoIssue(owner, repoName);
     }
 
+    /**
+     * set browse model, notify that the model can not be null
+     * @param browseModelService
+     */
+    public void setBrowseModelService(RepoBrowseModelService browseModelService) {
+        if (browseModelService != null) {
+            this.browseModelService = browseModelService;
+        }
+    }
+
     @Override
     public int getCurrentPage() {
         return CURRENT_PAGE;
@@ -155,7 +181,7 @@ public class RepoBlImpl implements RepoBlService {
         else {
             elementNum = briefRepoList.size();
         }
-        return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
+        return (elementNum% Consts.PAGE_CAPACITY)==0?elementNum/Consts.PAGE_CAPACITY:elementNum/Consts.PAGE_CAPACITY+1;
     }
 
     /**
@@ -183,6 +209,10 @@ public class RepoBlImpl implements RepoBlService {
      * @return the number
      */
     public int getDEFAULT_PAGE_CAPACITY(){
-        return DEFAULT_PAGE_CAPACITY;
+        return Consts.PAGE_CAPACITY;
+    }
+
+    public RepoDataService getRepoDataService() {
+        return repoDataService;
     }
 }

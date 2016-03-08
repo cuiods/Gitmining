@@ -11,11 +11,6 @@ import java.util.List;
  */
 public class UserNameOrderVisitor extends SimpleUserVisitor {
 
-    public UserNameOrderVisitor(int page) {
-        //in default the order is from high to low
-        this(page, true);
-    }
-
     public UserNameOrderVisitor(int page, boolean reverse) {
         super(page, reverse);
     }
@@ -24,4 +19,5 @@ public class UserNameOrderVisitor extends SimpleUserVisitor {
     public List<UserBriefVO> visit(UserDataService userDataService) {
         return super.visit(userDataService, SortType.USER_NAME);
     }
+
 }

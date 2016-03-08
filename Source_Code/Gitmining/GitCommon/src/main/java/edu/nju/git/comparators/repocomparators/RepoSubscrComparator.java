@@ -9,9 +9,9 @@ import java.util.Comparator;
  * @author benchaodong
  * @date 2016-03-06
  */
-public class RepoContriComparator implements Comparator<RepoBriefVO> {
+public class RepoSubscrComparator implements Comparator<RepoBriefVO> {
     @Override
     public int compare(RepoBriefVO o1, RepoBriefVO o2) {
-        return o1.getNum_contributors()-o2.getNum_contributors();
+        return o1.getNum_subscribers()-o2.getNum_subscribers();
     }
 }

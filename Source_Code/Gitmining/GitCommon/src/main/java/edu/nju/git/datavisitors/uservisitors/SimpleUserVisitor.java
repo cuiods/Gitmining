@@ -29,6 +29,24 @@ public abstract class SimpleUserVisitor implements UserVisitor {
         this.reverse = reverse;
     }
 
+    public int getPage(){
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public boolean getReverse(){
+        return reverse;
+    }
+
+    public void setReverse(boolean reverse) {
+        this.reverse = reverse;
+    }
+
+    public abstract List<UserBriefVO> visit(UserDataService userDataService);
+
     protected List<UserBriefVO> visit(UserDataService userDataService, SortType sortType) {
         List<UserBriefPO> POList = userDataService.getUserBriefPOs(sortType);
         List<UserBriefVO> resultList = new ArrayList<>();

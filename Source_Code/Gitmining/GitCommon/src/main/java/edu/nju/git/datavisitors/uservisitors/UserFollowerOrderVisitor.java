@@ -11,11 +11,6 @@ import java.util.List;
  */
 public class UserFollowerOrderVisitor extends SimpleUserVisitor {
 
-    public UserFollowerOrderVisitor(int page) {
-        //in default the order is from high to low
-        this(page, true);
-    }
-
     public UserFollowerOrderVisitor(int page, boolean reverse) {
         super(page, reverse);
     }

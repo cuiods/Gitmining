@@ -3,6 +3,7 @@ package edu.nju.git.bl.service;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
@@ -24,7 +25,7 @@ public interface UserBlService {
      * @param keyword the full or part of the name of the user
      * @return a List of {@link UserBriefVO}, which matches the search result
      */
-    public List<UserBriefVO> getSearchResult(String keyword);
+    public List<UserBriefVO> getSearchResult(String keyword) throws NoSearchResultException;
 
     /**
      * jump to the specific page.

@@ -9,14 +9,14 @@ import java.util.List;
 /**
  * Created by harry on 16-3-8.
  */
-public class RepoNameOrderVisitor extends SimpleRepoVisitor {
+public class RepoSubscrOrderVisitor extends SimpleRepoVisitor {
 
-    public RepoNameOrderVisitor(int page, boolean reverse) {
+    public RepoSubscrOrderVisitor(int page, boolean reverse) {
         super(page, reverse);
     }
 
     @Override
     public List<RepoBriefVO> visit(RepoDataService repoDataService) {
-        return super.visit(repoDataService, SortType.REPO_NAME);
+        return super.visit(repoDataService, SortType.SUBSCR_NUM);
     }
 }

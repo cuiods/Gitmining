@@ -8,6 +8,7 @@ import edu.nju.git.VO.IssueVO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
@@ -30,7 +31,7 @@ public interface RepoBlService {
 	 * @return List of {@link RepoBriefVO}: 
 	 * 			brief info of a repository
 	 */
-	public List<RepoBriefVO> getSearchResult(String keyword);
+	public List<RepoBriefVO> getSearchResult(String keyword) throws NoSearchResultException;
 
 	/**
 	 * jump to the specific page.
