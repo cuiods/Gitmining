@@ -25,6 +25,7 @@ public class MainButton extends JLabel{
 	private String name;
 	private boolean isIn;
 	private boolean isPressed;
+	private boolean isExit;
 	private Element element;
 	private String picPath;
 	public MainButton(Element button,UIController controller){
@@ -34,6 +35,7 @@ public class MainButton extends JLabel{
 		y = Integer.parseInt(button.attributeValue("y"));
 		name =button.attributeValue("name");
 		element = button;
+		picPath = "src/main/resources/pictures/buttons/"+name+".png";
 		setBounds(x,y,w,h);
 	}
 	
@@ -50,14 +52,37 @@ public class MainButton extends JLabel{
 			if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
 			picPath = "src/main/resources/pictures/buttons/"+str+"1.png";
 			/*
-			 * used for order button
+			 * used for sort button
 			 */
-			
+			if(name.contains("sort")&&path.contains("1"))
+				picPath = "src/main/resources/pictures/buttons/"+name+"2.png";
+			else if(name.contains("sort")&&path.contains("2"))
+				picPath = "src/main/resources/pictures/buttons/"+name+".png";
+			//end
 		}else if(isPressed){
 			if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
 			picPath = "src/main/resources/pictures/buttons/"+str+"2.png";
+			/*
+			 * used for sort button
+			 */
+			if(name.contains("sort")) {picPath = path;}
+			//end
+		}else if(isExit){
+			if(name.contains("sort")&&path.contains("1"))
+				picPath = "src/main/resources/pictures/buttons/"+name+".png";
+			else if(name.contains("sort")&&path.contains("2"))
+				picPath = "src/main/resources/pictures/buttons/"+name+"1.png";
+			else if(name.contains("sort"))
+				picPath = "src/main/resources/pictures/buttons/"+name+"2.png";
 		}else{
+		
 			picPath = "src/main/resources/pictures/buttons/"+str+".png";
+			/*
+			 * used for sort button
+			 */
+			if(name.contains("sort")){
+				picPath = path;
+			}
 		}
 		g2D.drawImage(new ImageIcon(picPath).getImage(), 0,0,this.getWidth(),this.getHeight(), this);
 	}
@@ -67,7 +92,12 @@ public class MainButton extends JLabel{
 	public void setPressed(boolean isPressed){
 		this.isPressed = isPressed;
 	}
-
+	public void setExit(boolean isExit){
+		this.isExit = isExit;
+	}
+	public boolean isPressed(){
+		return this.isPressed;
+	}
 	public Element getElement() {
 		return element;
 	}
@@ -75,5 +105,9 @@ public class MainButton extends JLabel{
 	public String getName(){
 		return name;
 	}
+	
+//	public static void main(String[] args){
+//		
+//	}
 
 }
