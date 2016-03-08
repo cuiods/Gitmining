@@ -10,6 +10,7 @@
 		</mainPanel>
 		<mainPanel name = "ReposPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="reposlist" class = "table.ReposTable" x="53" y="255" w="970" h="350" type="0" dataType="RepoBriefVO"/>
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name = "guide_repos3" class = "MainButton" x="25" y="90" w="150" h="50" type="0"/>
@@ -22,10 +23,11 @@
 			<unit name ="head_repos_stars" class = "MainButton" x="640" y="220" w="100" h="35" type ="0"/>
 			<unit name ="head_repos_forks" class = "MainButton" x="740" y="220" w="100" h="35" type ="0"/>
 			<unit name ="head_repos_contributes" class = "MainButton" x="840" y="220" w="150" h="35" type ="0"/>
-			<unit name ="reposlist" class = "table.ReposTable" x="53" y="255" w="970" h="350" type="0" dataType="RepoBriefVO"/>
+			
 		</mainPanel>
 		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name = "userList" class = "table.UserTable" x="260" y="255" w="540" h="350" type ="0"/>
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>
@@ -36,7 +38,7 @@
 			<unit name ="head_user_id" class = "MainButton" x="400" y="220" w="150" h="35" type ="0"/>
 			<unit name ="head_user_create" class = "MainButton" x="550" y="220" w="150" h="35" type ="0"/>
 			<unit name ="head_user_update" class = "MainButton" x="700" y="220" w="150" h="35" type ="0"/>
-			<unit name = "userList" class = "table.UserTable" x="260" y="255" w="540" h="350" type ="0"/>
+			
 		</mainPanel>
 	</Frame>
 </presentation> 

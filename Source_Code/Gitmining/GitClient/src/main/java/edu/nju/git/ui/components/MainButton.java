@@ -26,6 +26,7 @@ public class MainButton extends JLabel{
 	private boolean isIn;
 	private boolean isPressed;
 	private boolean isExit;
+	private boolean isClicked;//used for sort
 	private Element element;
 	private String picPath;
 	public MainButton(Element button,UIController controller){
@@ -67,7 +68,7 @@ public class MainButton extends JLabel{
 			 */
 			if(name.contains("sort")) {picPath = path;}
 			//end
-		}else if(isExit){
+		}else if(isExit&&!isClicked){
 			if(name.contains("sort")&&path.contains("1"))
 				picPath = "src/main/resources/pictures/buttons/"+name+".png";
 			else if(name.contains("sort")&&path.contains("2"))
@@ -95,15 +96,21 @@ public class MainButton extends JLabel{
 	public void setExit(boolean isExit){
 		this.isExit = isExit;
 	}
-	public boolean isPressed(){
-		return this.isPressed;
+	//used for sort
+	public void setClicked(boolean isClicked){
+		this.isClicked = isClicked;
 	}
+	//end
 	public Element getElement() {
 		return element;
 	}
 	
 	public String getName(){
 		return name;
+	}
+	
+	public String getPicPath(){
+		return this.picPath;
 	}
 	
 //	public static void main(String[] args){

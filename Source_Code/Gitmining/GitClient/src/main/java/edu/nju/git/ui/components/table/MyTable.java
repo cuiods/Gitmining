@@ -10,6 +10,7 @@ import javax.swing.ScrollPaneConstants;
 
 import org.dom4j.Element;
 
+import edu.nju.git.type.SortType;
 import edu.nju.git.ui.components.MyScrollPane;
 import edu.nju.git.ui.components.MyScrollPaneUI;
 import edu.nju.git.ui.controller.UIController;
@@ -41,7 +42,7 @@ public abstract class MyTable extends MyScrollPane<MyTableLabel> implements Mous
 	public MyTable(Element element, UIController controller) {
 		super(element, controller);
 		addMouseListener(this);
-//		getData();
+		getData();
 		setView();
 		getVerticalScrollBar().setUI(new MyScrollPaneUI());
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -84,7 +85,10 @@ public abstract class MyTable extends MyScrollPane<MyTableLabel> implements Mous
 	 * @see# addData
 	 */
 	protected abstract void getData();
-	
+//	/*
+//	 * sort the data in the table
+//	 */
+//	public abstract void sortTable(SortType type,boolean reverse);
 	/**
 	 * delete data using business logic methods.
 	 * @return ResultMessage
