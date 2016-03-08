@@ -22,6 +22,6 @@ public class UserNameOrderVisitor extends SimpleUserVisitor {
 
     @Override
     public List<UserBriefVO> visit(UserDataService userDataService) {
-        return super.visit(userDataService, SortType.FOLLOWER_NUM);
+        return super.visit(userDataService, SortType.USER_NAME);
     }
 }

@@ -50,7 +50,7 @@ public class RepoDataImpl implements RepoDataService {
 
     private List<RepoBriefPO> forkOrderPOs;
 
-    private List<RepoBriefPO> contrOrderPOs;
+    private List<RepoBriefPO> subscrOrderPOs;
 
     private List<RepoBriefPO> updateOrderPOs;
 
@@ -87,7 +87,7 @@ public class RepoDataImpl implements RepoDataService {
             case REPO_NAME:return nameOrderPOs;
             case STAR_NUM:return starOrderPOs;
             case FORK_NUM:return forkOrderPOs;
-            case CONTRI_NUM:return contrOrderPOs;
+            case SUBSCR_NUM:return subscrOrderPOs;
             case UPDATE_TIME:return updateOrderPOs;
             default:return null;
         }
