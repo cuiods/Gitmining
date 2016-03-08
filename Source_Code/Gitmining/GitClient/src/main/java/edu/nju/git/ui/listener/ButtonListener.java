@@ -26,6 +26,7 @@ public abstract class ButtonListener implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		button.setIn(false);
 		button.setPressed(true);
+		button.setExit(false);
 		controller.getFrame().repaint();
 	}
 
@@ -44,7 +45,7 @@ public abstract class ButtonListener implements MouseListener{
 
 	public void mouseExited(MouseEvent e) {
 		button.setIn(false);
-		button.setPressed(false);
+//		button.setPressed(false);
 		controller.getFrame().repaint();
 	}
 }

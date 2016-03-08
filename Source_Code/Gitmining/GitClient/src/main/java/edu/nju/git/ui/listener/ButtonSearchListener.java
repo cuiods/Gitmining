@@ -19,7 +19,8 @@ public class ButtonSearchListener extends ButtonListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		button.setPressed(true);
+		controller.getFrame().repaint();
 
 	}
 
