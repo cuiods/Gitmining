@@ -4,9 +4,15 @@ import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.VO.*;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
+import edu.nju.git.exception.NoSearchResultException;
+import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This is the implementation of {@link RepoDataService}, the class get data from outer api (but in <br>
@@ -72,8 +78,26 @@ public class RepoDataImpl implements RepoDataService {
     }
 
     @Override
-    public List<RepoBriefVO> getSearchResult(String regex) {
-        return null;
+    public List<RepoBriefVO> getSearchResult(String regex) throws NoSearchResultException {
+        List<RepoBriefVO> resultList = new ArrayList<RepoBriefVO>();
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
+        Iterator<RepoBriefPO> itr = nameOrderPOs.iterator();
+        while(itr.hasNext()){
+            RepoBriefPO po = itr.next();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(po.getOwner());
+            stringBuilder.append("/");
+            stringBuilder.append(po.getName());
+            matcher = pattern.matcher(stringBuilder.toString());
+            if (matcher.find()) {
+                resultList.add(POVOConverter.convert(po));
+            }
+        }
+        if (resultList.isEmpty()) {
+            throw new NoSearchResultException("there is no result to show");
+        }
+        return resultList;
     }
 
     @Override

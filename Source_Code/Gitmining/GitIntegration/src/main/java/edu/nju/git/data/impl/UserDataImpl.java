@@ -6,9 +6,15 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.datavisitors.uservisitors.UserVisitor;
+import edu.nju.git.exception.NoSearchResultException;
+import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * * This is the implementation of {@link UserDataService}, the class get data from outer api (but in <br>
@@ -81,8 +87,22 @@ public class UserDataImpl implements UserDataService {
     }
 
     @Override
-    public List<UserBriefVO> getSearchResult(String regex) {
-        return null;
+    public List<UserBriefVO> getSearchResult(String regex) throws NoSearchResultException {
+        List<UserBriefVO> resultList = new ArrayList<UserBriefVO>();
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
+        Iterator<UserBriefPO> itr = nameOrderUsers.iterator();
+        while(itr.hasNext()){
+            UserBriefPO po = itr.next();
+            matcher = pattern.matcher(po.getLogin());
+            if (matcher.find()) {
+                resultList.add(POVOConverter.convert(po));
+            }
+        }
+        if (resultList.isEmpty()) {
+            throw new NoSearchResultException("there is no result to show");
+        }
+        return resultList;
     }
 
     @Override

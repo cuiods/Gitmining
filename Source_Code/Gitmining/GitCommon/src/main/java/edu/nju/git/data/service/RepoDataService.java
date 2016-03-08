@@ -10,6 +10,7 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.type.SortType;
 
 /**
@@ -29,7 +30,7 @@ public interface RepoDataService {
      * @return List of {@link RepoBriefVO}:
      * 			brief info of a repository
      */
-    public List<RepoBriefVO> getSearchResult(String regex);
+    public List<RepoBriefVO> getSearchResult(String regex) throws NoSearchResultException;
 
     /**
      * get the total count of repositories.
