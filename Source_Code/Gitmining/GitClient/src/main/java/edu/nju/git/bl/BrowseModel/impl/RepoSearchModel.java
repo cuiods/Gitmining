@@ -23,18 +23,9 @@ import java.util.List;
  */
 public class RepoSearchModel implements RepoBrowseModelService {
 
-    private static RepoSearchModel uniqueInstance = null;
-
-    public static RepoSearchModel instance(){
-        if (uniqueInstance == null) {
-            uniqueInstance = new RepoSearchModel(RepoBlImpl.instance());
-        }
-        return uniqueInstance;
-    }
-
     private RepoBlImpl repoBl;
 
-    private RepoSearchModel(RepoBlImpl repoBl){
+    public RepoSearchModel(RepoBlImpl repoBl){
         this.repoBl = repoBl;
     }
 

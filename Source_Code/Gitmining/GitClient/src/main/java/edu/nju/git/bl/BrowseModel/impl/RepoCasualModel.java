@@ -13,18 +13,9 @@ import java.util.List;
  */
 public class RepoCasualModel implements RepoBrowseModelService {
 
-    private static RepoCasualModel uniqueInstance = null;
-
-    public static RepoCasualModel instance(){
-        if (uniqueInstance == null) {
-            uniqueInstance = new RepoCasualModel(RepoBlImpl.instance());
-        }
-        return uniqueInstance;
-    }
-
     private RepoBlImpl repoBl;
 
-    private RepoCasualModel(RepoBlImpl repoBl) {
+    public RepoCasualModel(RepoBlImpl repoBl) {
         this.repoBl = repoBl;
     }
 

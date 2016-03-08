@@ -5,8 +5,6 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.BrowseModel.impl.UserCasualModel;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
-import edu.nju.git.bl.factory.impl.CasualModelFactory;
-import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
 import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
@@ -15,7 +13,6 @@ import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -80,15 +77,14 @@ public class UserBlImpl implements UserBlService {
         userDataService = dataFactoryService.getUserDataService();
 
         //we use casual model in default
-        BrowseModelFactoryService browseModelFactory = CasualModelFactory.instance();
-        browseModelService = browseModelFactory.getUserBrowseModelService();
+        browseModelService = new UserCasualModel(this);
 
     }
 
     @Override
     public List<UserBriefVO> getSearchResult(String keyword) {
         if (keyword.isEmpty()) {
-            setBrowseModelService(UserCasualModel.instance());
+            setBrowseModelService(new UserCasualModel(this));
             try {
                 return briefUserList = jumpToPage(1);
             } catch (PageOutOfBoundException e) {

@@ -16,18 +16,9 @@ import java.util.List;
  */
 public class UserSearchModel implements UserBrowseModelService {
 
-    private static UserSearchModel uniqueInstance = null;
-
-    public static UserSearchModel instance(){
-        if (uniqueInstance == null) {
-            uniqueInstance = new UserSearchModel(UserBlImpl.instance());
-        }
-        return uniqueInstance;
-    }
-
     private UserBlImpl userBl;
 
-    private UserSearchModel(UserBlImpl userBl){
+    public UserSearchModel(UserBlImpl userBl){
         this.userBl = userBl;
     }
 

@@ -3,8 +3,6 @@ package edu.nju.git.bl.impl;
 import edu.nju.git.VO.*;
 import edu.nju.git.bl.BrowseModel.impl.RepoCasualModel;
 import edu.nju.git.bl.BrowseModel.service.RepoBrowseModelService;
-import edu.nju.git.bl.factory.impl.CasualModelFactory;
-import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
@@ -13,7 +11,6 @@ import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,8 +74,7 @@ public class RepoBlImpl implements RepoBlService {
         repoDataService = dataFactoryService.getRepoDataService();
 
         //we use casual model in default
-        BrowseModelFactoryService modelFactoryService = CasualModelFactory.instance();
-        browseModelService  = modelFactoryService.getRepoBrowseModelService();
+        browseModelService  = new RepoCasualModel(this);
 
     }
 

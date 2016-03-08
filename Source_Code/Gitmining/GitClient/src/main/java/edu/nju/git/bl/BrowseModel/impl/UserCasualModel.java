@@ -13,18 +13,9 @@ import java.util.List;
  */
 public class UserCasualModel implements UserBrowseModelService {
 
-    private static UserCasualModel uniqueInstance;
-
-    public static UserCasualModel instance(){
-        if (uniqueInstance == null) {
-            uniqueInstance = new UserCasualModel(UserBlImpl.instance());
-        }
-        return uniqueInstance;
-    }
-
     private UserBlImpl userBl;
 
-    private UserCasualModel(UserBlImpl userBl) {
+    public UserCasualModel(UserBlImpl userBl) {
         this.userBl = userBl;
     }
 
