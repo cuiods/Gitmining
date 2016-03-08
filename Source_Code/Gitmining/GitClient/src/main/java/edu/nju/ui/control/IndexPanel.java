@@ -8,9 +8,11 @@ import java.util.ResourceBundle;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import javafx.animation.FadeTransition;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,8 +36,9 @@ public class IndexPanel extends GitPanel{
 	@FXML ImageView image;
 	@FXML Button addButton;
 	@FXML Button taskButton;
+	@FXML Node addChildren;
+	private BorderPane childpane;
 	private List<ScreenShot> tasks = new ArrayList<>();
-	private int task = 1;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -43,11 +46,26 @@ public class IndexPanel extends GitPanel{
 
 			@Override
 			public void handle(MouseEvent event) {
+				RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
+				rotateTransition.setFromAngle(0);
+				rotateTransition.setToAngle(360);
+				rotateTransition.play();
+				
 				FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
 				fadeTransition.setFromValue(1.0f);
 				fadeTransition.setToValue(0f);
 				fadeTransition.play();
 				image.toBack();
+				
+				FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(3000),taskButton);
+				fadeTransition2.setFromValue(0f);
+				fadeTransition2.setToValue(0.5f);
+				fadeTransition2.play();
+				
+				FadeTransition fadeTransition3 = new FadeTransition(Duration.millis(3000),addButton);
+				fadeTransition3.setFromValue(0f);
+				fadeTransition3.setToValue(0.5f);
+				fadeTransition3.play();
 			}
 		});
 	}
@@ -55,15 +73,18 @@ public class IndexPanel extends GitPanel{
 	@Override
 	public void initPanel(Object[] bundle) {
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
-		pane = (BorderPane) shot.getRoot();
+		childpane = (BorderPane) shot.getRoot();
+		pane.getChildren().add(childpane);
 		tasks.add(shot);
 	}
 
 	@Override
 	public void setChildren(Region region) {
-		// haven't finished.
 		if (region instanceof BorderPane) {
-			pane = (BorderPane) region;
+			BorderPane cpane = (BorderPane) region;
+			pane.getChildren().remove(childpane);
+			pane.getChildren().add(cpane);
+			childpane = cpane;
 		}
 	}
 
@@ -74,15 +95,23 @@ public class IndexPanel extends GitPanel{
 	
 	@FXML
 	public void addTask(ActionEvent event) {
-		initPanel(null);
-		task+=1;
-		box.getChildren().remove(addButton);
+		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
+		tasks.add(shot);
+		box.getChildren().remove(addChildren);
 		Button button = new Button();
-		button.setText("Task"+task);
+		button.setText("Task"+tasks.size());
 		button.setPrefWidth(taskButton.getWidth());
 		button.setPrefHeight(taskButton.getHeight());
+		button.setOpacity(taskButton.getOpacity());
+		button.setFont(button.getFont());
+		button.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				showPanel(button);
+			}
+		});
 		box.getChildren().add(button);
-		box.getChildren().add(addButton);
+		box.getChildren().add(addChildren);
 	}
 	@FXML
 	public void setPanel(ActionEvent event){
@@ -93,7 +122,10 @@ public class IndexPanel extends GitPanel{
 	private void showPanel(Button button){
 		String text = button.getText();
 		text = text.substring(4, text.length());
-		pane = (BorderPane) tasks.get(Integer.parseInt(text)-1).getRoot();
+		BorderPane cpane = (BorderPane) tasks.get(Integer.parseInt(text)-1).getRoot();
+		pane.getChildren().remove(childpane);
+		pane.getChildren().add(cpane);
+		childpane = cpane;
 	}
 	/**
 	 * merge two task by their index in {@link #tasks}

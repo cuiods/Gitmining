@@ -4,6 +4,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import edu.nju.git.main.Main;
+import edu.nju.git.ui.config.ScreenShot;
+import edu.nju.git.ui.config.StringReader;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 
 /**
@@ -23,12 +32,49 @@ import javafx.scene.layout.Region;
  */
 public class TaskPanel extends GitPanel{
 	
-	private Stack<FunctionPanel> functions = new Stack<>();
+	@FXML ImageView img_home;
+	@FXML ImageView img_user;
+	@FXML ImageView img_repo;
+	private Stack<ScreenShot> functions = new Stack<>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		img_home.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				img_home.setImage(getNewImage("home_main_1"));
+			}
+		});
+		img_home.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				img_home.setImage(getNewImage("home_main"));
+			}
+		});
+		img_user.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				img_user.setImage(getNewImage("user_main_1"));
+			}
+		});
+		img_user.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				img_user.setImage(getNewImage("user_main"));
+			}
+		});
+		img_repo.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				img_repo.setImage(getNewImage("repository_main_1"));
+			}
+		});
+		img_repo.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				img_repo.setImage(getNewImage("repository_main"));
+			}
+		});
 	}
 
 	@Override
@@ -54,6 +100,11 @@ public class TaskPanel extends GitPanel{
 	 */
 	public void back(){
 		
+	}
+	
+	private Image getNewImage(String s){
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"button/"+s+".png");
+		return new Image(url.toString());
 	}
 
 }

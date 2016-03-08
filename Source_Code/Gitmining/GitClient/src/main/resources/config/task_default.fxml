@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
+<BorderPane prefHeight="670.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <Group>
+         <children>
+            <ImageView fitHeight="670.0" fitWidth="100.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../pictures/leftbar.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="670.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="img_home" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/button/home_main.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_user" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/button/user_main.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="img_repo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/button/repository_main.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </Group>
+   </left>
 </BorderPane>
-
