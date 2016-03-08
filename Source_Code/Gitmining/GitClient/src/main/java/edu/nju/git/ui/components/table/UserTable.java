@@ -31,7 +31,7 @@ public class UserTable extends MyTable {
 	@Override
 	protected void getData() {
 		userController = controller.getUserController();
-		users = userController.getUsers(1);
+		users = userController.getUsers(1,null);
 		for (int i=0;i<users.size();i++){
 			MyTableLabel label = createLabel(users.get(i));
 			addData(label);

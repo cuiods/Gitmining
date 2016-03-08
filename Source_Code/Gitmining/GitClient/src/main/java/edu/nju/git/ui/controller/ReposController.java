@@ -13,6 +13,7 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.bl.impl.RepoBlImpl;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.type.SortType;
 
 /*
  * use to get information of the repositories from the logic part
@@ -34,15 +35,15 @@ public class ReposController {
 	public ArrayList<RepoBriefVO> getRepos(int page,String keyword){
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> repolist =null;
-		
-		try {
-			repolist = repoBl.jumpToPage(page);
-		} catch (PageOutOfBoundException e1) {
-			// exception to deal with
-			e1.printStackTrace();
-		}
 		if ((page == 1)&&!(keyword.equals(null))){
 			repolist = repoBl.getSearchResult(keyword);
+		}else{
+			try {
+				repolist = repoBl.jumpToPage(page);
+			} catch (PageOutOfBoundException e1) {
+				// exception to deal with
+				e1.printStackTrace();
+			}
 		}
 		for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
 			repoArray.add(it.next());
@@ -128,5 +129,29 @@ public class ReposController {
 		}
 		return branches;
 	}
+	/*
+	 * get the current page number 
+	 */
+	public int getCurrentPage(){
+		int num = repoBl.getCurrentPage();
+		return num;
+	}
+	/*
+	 * get total page
+	 */
+	public int getTotalPage(){
+		return repoBl.getTotalPage();
+	}
+	/*
+	 * sort the table by {@link SortType} and {@link Reverse}
+	 */
 	
+	public ArrayList<RepoBriefVO> sort(SortType type,Boolean isReverse){
+		ArrayList<RepoBriefVO> newOrder = new ArrayList<RepoBriefVO>();
+		List<RepoBriefVO> orderList = repoBl.sort(type,isReverse);
+		for(Iterator<RepoBriefVO> it = orderList.listIterator();it.hasNext();){
+			newOrder.add(it.next());
+		}
+		return newOrder;
+	}
 }

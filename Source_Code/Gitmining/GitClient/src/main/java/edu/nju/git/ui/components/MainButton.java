@@ -26,6 +26,7 @@ public class MainButton extends JLabel{
 	private boolean isIn;
 	private boolean isPressed;
 	private Element element;
+	private String picPath;
 	public MainButton(Element button,UIController controller){
 		w = Integer.parseInt(button.attributeValue("w"));
 		h = Integer.parseInt(button.attributeValue("h"));
@@ -43,18 +44,22 @@ public class MainButton extends JLabel{
 	public void paintComponent(Graphics g){
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING , RenderingHints.VALUE_ANTIALIAS_ON);
-		String path = "";
+		String path = picPath;
 		String str = name;
 		if(isIn){
 			if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
-			path = "src/main/resources/pictures/buttons/"+str+"1.png";
+			picPath = "src/main/resources/pictures/buttons/"+str+"1.png";
+			/*
+			 * used for order button
+			 */
+			
 		}else if(isPressed){
 			if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
-			path = "src/main/resources/pictures/buttons/"+str+"2.png";
+			picPath = "src/main/resources/pictures/buttons/"+str+"2.png";
 		}else{
-			path = "src/main/resources/pictures/buttons/"+str+".png";
+			picPath = "src/main/resources/pictures/buttons/"+str+".png";
 		}
-		g2D.drawImage(new ImageIcon(path).getImage(), 0,0,this.getWidth(),this.getHeight(), this);
+		g2D.drawImage(new ImageIcon(picPath).getImage(), 0,0,this.getWidth(),this.getHeight(), this);
 	}
 	public void setIn(boolean isIn){
 		this.isIn = isIn;
