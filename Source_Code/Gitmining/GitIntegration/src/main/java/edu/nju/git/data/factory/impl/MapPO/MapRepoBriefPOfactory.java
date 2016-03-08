@@ -1,10 +1,6 @@
 package edu.nju.git.data.factory.impl.MapPO;
 
-import java.net.MalformedURLException;
-import java.util.Map;
-
 import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.data.api.centralization.NodeCounter;
 import edu.nju.git.data.api.centralization.RepoMapReader;
 
 public class MapRepoBriefPOfactory extends AbstractMapPO<RepoBriefPO> {
@@ -39,26 +35,27 @@ public class MapRepoBriefPOfactory extends AbstractMapPO<RepoBriefPO> {
 	 */
 	@Override
 	public RepoBriefPO getPO() {
-		Map<String, Object> map = this.mapService.getMap();
+		map = this.mapService.getMap();
 		RepoBriefPO repoBriefPO = new RepoBriefPO();
-		int num_contributors = 0;
-		try {
-			NodeCounter nodeCounter = new NodeCounter(map.get("contributors_url").toString());
-			num_contributors = nodeCounter.count();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		repoBriefPO.setNum_contributors(num_contributors);
-		repoBriefPO.setDescription(map.get("description").toString());
-		repoBriefPO.setName(map.get("name").toString());
-
-		repoBriefPO.setNum_forks((Integer)map.get("forks_count"));
+		
+		String fullname[] = map.get("full_name").toString().split("/");
+		repoBriefPO.setOwner(fullname[0]);
+		repoBriefPO.setName(fullname[1]);
+		
+		Object description = map.get("description");
+		repoBriefPO.setDescription(description==null? "" : description.toString());
+		
+		int num_subcribers = Integer.parseInt(map.get("subscribers_count").toString());
+		repoBriefPO.setNum_subscribers(num_subcribers);
+		
+ 		repoBriefPO.setNum_forks((Integer)map.get("forks_count"));
 		repoBriefPO.setNum_stars((Integer)map.get("stargazers_count"));
-	//	repoBriefPO.setOwer(map.get("owner").toString());
-	//	repoBriefPO.setUrl(map.get("html_url").toString());
-		// "html_url": "https://github.com/huerlisi/CyDoc",
-		// "url": "https://api.github.com/repos/huerlisi/CyDoc",
+		
+		repoBriefPO.setLastUpdate(map.get("updated_at").toString());
+
+		System.out.println(i++);
 		return repoBriefPO;
 	}
 
+	public static int i = 0;
 }

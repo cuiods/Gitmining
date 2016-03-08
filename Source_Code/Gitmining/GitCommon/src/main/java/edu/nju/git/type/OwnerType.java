@@ -6,5 +6,13 @@ package edu.nju.git.type;
  * @date 2016-03-01 23:06:14
  */
 public enum OwnerType {
-USER,ORIGANIZATION
+   USER,ORIGANIZATION;
+	
+   public static OwnerType getInstance(String string){
+	   if(string.toUpperCase().equals("ORIGANIZATION")){
+		   return OwnerType.ORIGANIZATION;
+	   }else{
+		   return OwnerType.USER;
+	   }
+   }
 }

@@ -9,5 +9,5 @@ public interface POfactory<T> {
 	 * @return a PO ,if not exsits, return null
 	 * @date 2016-03-08
 	 */
-	public T getPO();
+	public T getPO() ;
 }

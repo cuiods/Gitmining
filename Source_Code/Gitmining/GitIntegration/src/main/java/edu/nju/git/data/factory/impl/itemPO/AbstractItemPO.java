@@ -15,6 +15,16 @@ public abstract class AbstractItemPO<T> implements POfactory<T>{
 	/**
 	 * @see ItemService
 	 */
-	protected ItemService itemService;
+	protected ItemService basicItemService;
 	
+	
+	protected int getInteger(String string)
+	{
+		return Integer.parseInt(this.basicItemService.getItem(string));
+	}
+	
+	protected String getString(String item)
+	{
+		return this.basicItemService.getItem(item);
+	}
 }

@@ -14,7 +14,7 @@ public class Initial implements InitialService {
 	@Override
 	public void excute() {
 		repositoriesReader = new RepositoriesReader();
-		new RepoInitInpl(repositoriesReader).init();
+		//new RepoInitInpl(repositoriesReader).init();
 		new UserInitImpl(repositoriesReader).init();
 	}
 

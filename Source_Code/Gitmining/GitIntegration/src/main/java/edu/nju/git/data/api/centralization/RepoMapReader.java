@@ -3,7 +3,6 @@ package edu.nju.git.data.api.centralization;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -36,8 +35,10 @@ public class RepoMapReader implements MapService{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return new HashMap<String, Object>();
+		return null;
 	}
 	
 	private final String url_location = "http://www.gitmining.net/api/repository/";
