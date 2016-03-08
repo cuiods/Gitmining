@@ -19,6 +19,16 @@ public class UserBriefPO implements Serializable{
 	private String login;//user name when login in github
 	private int followers;//the number of people who follow this user
 	private int public_repos;//the number of repositories of this user
+
+	public UserBriefPO() {
+	}
+
+	public UserBriefPO(String login, int followers, int public_repos) {
+		this.login = login;
+		this.followers = followers;
+		this.public_repos = public_repos;
+	}
+
 	public String getLogin() {
 		return login;
 	}

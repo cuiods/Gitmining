@@ -1,15 +1,23 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
+
 /**
  * <b>breif</b> info of a user.<br>
  * used as OwnerVO, ContributorVO and CollaboratorVO, etc.
  * @author cuihao
  * @date 2016-03-02 13:00:54
  */
-public class UserBriefVO {
+public class UserBriefVO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private String login;//user name when login in github
 	private int followers;//the number of people who follow this user
 	private int public_repos;//the number of repositories of this user
+
+	public UserBriefVO() {
+	}
 
 	public UserBriefVO(String login, int followers, int public_repos) {
 		this.followers = followers;

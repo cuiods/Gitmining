@@ -19,7 +19,8 @@ public interface UserVisitor {
      * the method visit data in data layer and produce the data needed by its caller
      *
      * @param userDataService the interface to access data layer
-     * @return the list needed
+     * @return the list needed. If there no match result in specific page, the return list contains zero<br>
+     *     elements.
      */
-    public List<UserBriefVO> visit(final UserDataService userDataService);
+    public List<UserBriefVO> visit(UserDataService userDataService);
 }

@@ -1,11 +1,16 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
+
 /**
  * simple view info of a repository
  * @author cuihao
  * @date 2016-03-02 12:10:49
  */
-public class RepoBriefVO {
+public class RepoBriefVO implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	private String owner;
 	private String name;
 	private String description;
@@ -14,15 +19,18 @@ public class RepoBriefVO {
 	private int num_subscribers;
 	private String lastUpdate;
 
-	public RepoBriefVO(String owner,String description, String lastUpdate,
-					   String name, int num_contributors, int num_forks, int num_stars) {
+	public RepoBriefVO() {
+	}
+
+	public RepoBriefVO(String owner, String name, String description, int num_stars,
+					   int num_forks, int num_subscribers, String lastUpdate) {
 		this.owner = owner;
-		this.description = description;
-		this.lastUpdate = lastUpdate;
 		this.name = name;
-		this.num_subscribers = num_contributors;
-		this.num_forks = num_forks;
+		this.description = description;
 		this.num_stars = num_stars;
+		this.num_forks = num_forks;
+		this.num_subscribers = num_subscribers;
+		this.lastUpdate = lastUpdate;
 	}
 
 	public String getName() {

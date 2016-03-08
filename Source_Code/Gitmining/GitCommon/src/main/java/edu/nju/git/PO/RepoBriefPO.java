@@ -18,11 +18,24 @@ public class RepoBriefPO implements Serializable{
 	private String description;
 	private int num_stars;
 	private int num_forks;
-	private int num_contributors;
+	private int num_subscribers;
 	private String lastUpdate;
-    
-    
-    
+
+	public RepoBriefPO(){
+
+	}
+
+	public RepoBriefPO(String owner, String name, String description, int num_stars, int num_forks,
+					   int num_subscribers, String lastUpdate) {
+		this.owner = owner;
+		this.name = name;
+		this.description = description;
+		this.num_stars = num_stars;
+		this.num_forks = num_forks;
+		this.num_subscribers = num_subscribers;
+		this.lastUpdate = lastUpdate;
+	}
+
 	public String getOwner() {
 		return owner;
 	}
@@ -53,11 +66,12 @@ public class RepoBriefPO implements Serializable{
 	public void setNum_forks(int num_forks) {
 		this.num_forks = num_forks;
 	}
-	public int getNum_contributors() {
-		return num_contributors;
+	public int getNum_subscribers() {
+		return num_subscribers;
 	}
-	public void setNum_contributors(int num_contributors) {
-		this.num_contributors = num_contributors;
+
+	public void setNum_subscribers(int num_subscribers) {
+		this.num_subscribers = num_subscribers;
 	}
 
 
