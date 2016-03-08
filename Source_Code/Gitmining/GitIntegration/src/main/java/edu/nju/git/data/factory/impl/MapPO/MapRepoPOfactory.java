@@ -1,15 +1,20 @@
 package edu.nju.git.data.factory.impl.MapPO;
 
-import java.util.Map;
-
 import edu.nju.git.PO.RepoPO;
-import edu.nju.git.data.factory.service.MapPOfactory;
 
-public class MapRepoPOfactory implements MapPOfactory<RepoPO> {
+public class MapRepoPOfactory extends AbstractMapPO<RepoPO> {
 
 
+
+
+	/**
+	 * <br/><b>precondition</b>：this.owner this.repo must be set
+	 * <br/><b>postcondition</b>：return a PO
+	 * @return 
+	 * @date 2016-03-06
+	 */
 	@Override
-	public RepoPO getPO(Map<String, Object> map) {
+	public RepoPO getPO() {
 		// TODO Auto-generated method stub
 		return null;
 	}

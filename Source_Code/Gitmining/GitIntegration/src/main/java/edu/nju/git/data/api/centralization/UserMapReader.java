@@ -9,12 +9,8 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.PO.UserPO;
 import edu.nju.git.data.api.JacksonConfig;
-import edu.nju.git.data.api.service.UserReaderService;
-import edu.nju.git.data.factory.impl.MapPO.MapUserBriefPOfactory;
-import edu.nju.git.data.factory.impl.MapPO.MapUserPOfactory;
+import edu.nju.git.data.api.service.MapService;
 /**
  * firstly,please set name's value
  * reader userPO or UserBriefPO from a hashmap 
@@ -22,25 +18,17 @@ import edu.nju.git.data.factory.impl.MapPO.MapUserPOfactory;
  * @author daixinyan
  * @date 2016-03-07
  */
-public class UserMapReader implements UserReaderService{
+public class UserMapReader implements MapService{
 
 	/**
 	 * user's login name
 	 */
 	private String name;
 	private final String url_location = "http://www.gitmining.net/api/user/";
-	public UserBriefPO getBriefPO()
-	{
-		return new MapUserBriefPOfactory().getPO(getMap());
-	}
-	public UserPO getPO()
-	{
-		return new MapUserPOfactory().getPO(getMap());
-	}
 	
 	
 	@SuppressWarnings("unchecked")
-	protected Map<String, Object> getMap()
+	public Map<String, Object> getMap()
 	{
 		try{
 			URL url = new URL(url_location+name);

@@ -9,39 +9,21 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.PO.RepoPO;
 import edu.nju.git.data.api.JacksonConfig;
-import edu.nju.git.data.factory.impl.MapPO.MapRepoBriefPOfactory;
+import edu.nju.git.data.api.service.MapService;
 
 /**
  * read detail repository information by owner/repo_name pair
+ * by read a map
  * @author daixinyan
  * @date 2016-03-06
  */
-public class RepoMapReader {
+public class RepoMapReader implements MapService{
 
-	/**
-	 * <br/><b>precondition</b>：this.owner this.repo must be set
-	 * <br/><b>postcondition</b>：return a PO
-	 * @return 
-	 * @date 2016-03-06
-	 */
-	public RepoBriefPO getBriefPO(){
-		return new MapRepoBriefPOfactory().getPO(getMap());
-	}
-	/**
-	 * <br/><b>precondition</b>：this.owner this.repo must be set
-	 * <br/><b>postcondition</b>：return a PO
-	 * @return
-	 * @date 2016-03-06
-	 */
-	public RepoPO getPO(){
-		return null;
-	}
+	
 	
 	@SuppressWarnings("unchecked")
-	protected Map<String, Object> getMap()
+	public Map<String, Object> getMap()
 	{
 		try{
 			URL url = new URL(url_location+ owner +"/"+repo);

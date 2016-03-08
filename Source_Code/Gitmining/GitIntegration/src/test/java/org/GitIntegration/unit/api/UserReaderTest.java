@@ -1,16 +1,16 @@
 package org.GitIntegration.unit.api;
 
 import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.data.api.centralization.UserMapReader;
+import edu.nju.git.data.factory.impl.MapPO.MapUserBriefPOfactory;
 import junit.framework.TestCase;
 
 public class UserReaderTest extends TestCase {
 
-	private UserMapReader reader ;
+	private MapUserBriefPOfactory reader ;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		reader = new UserMapReader("huerlisi");
+		reader = new MapUserBriefPOfactory("huerlisi");
 	}
 
 	protected void tearDown() throws Exception {
@@ -19,7 +19,7 @@ public class UserReaderTest extends TestCase {
 
 	public void testGetUserBreifPO()
 	{
-		UserBriefPO po = reader.getBriefPO();
+		UserBriefPO po = reader.getPO();
 		assertTrue(po!=null);
 	//	System.out.println(po.toString());
 	}

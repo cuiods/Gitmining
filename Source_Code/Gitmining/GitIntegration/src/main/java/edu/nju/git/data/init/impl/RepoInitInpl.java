@@ -5,7 +5,7 @@ import java.util.List;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.data.api.RepositoriesReader;
-import edu.nju.git.data.api.centralization.RepoMapReader;
+import edu.nju.git.data.factory.impl.MapPO.MapRepoBriefPOfactory;
 import edu.nju.git.data.init.service.RepoInitService;
 
 public class RepoInitInpl implements RepoInitService {
@@ -26,13 +26,17 @@ public class RepoInitInpl implements RepoInitService {
 	public void init() {
 		//1. get all repositories' full names
 		List<String> repos = repositoriesReader.getNames();
+		System.out.println(repos.size());
+		for (String string : repos) {
+			System.out.println(string);
+		}
 		//2. get details information,one by one
 		
-		RepoMapReader repoReader = new RepoMapReader();
+		MapRepoBriefPOfactory repoFactory = new MapRepoBriefPOfactory();
 		pos = new ArrayList<RepoBriefPO>();
 		for (String string : repos) {
-			repoReader.setNames(string);
-			pos.add(  repoReader.getBriefPO() );
+			repoFactory.setNames(string);
+			pos.add(  repoFactory.getPO() );
 		}
 		this.save();
 	}

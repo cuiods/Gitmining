@@ -30,8 +30,9 @@ public class NodeCounter {
 			return ndoe.size();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return 0;
 		}
-		return 0;
+		
 	}
 
 	/**

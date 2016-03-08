@@ -25,13 +25,14 @@ public class RepositoriesReader {
 	/**
 	 * generate list<String> in initial function
 	 */
+	@SuppressWarnings("unchecked")
 	public RepositoriesReader()
 	{
 		try {
 			URL url = new URL(url_location);
-			@SuppressWarnings("unchecked")
 			List<String> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
 			names =  list;
+			return;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (JsonParseException e) {
