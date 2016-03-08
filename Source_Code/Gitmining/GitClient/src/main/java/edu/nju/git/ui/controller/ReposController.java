@@ -35,7 +35,7 @@ public class ReposController {
 	public ArrayList<RepoBriefVO> getRepos(int page,String keyword){
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> repolist =null;
-		if ((page == 1)&&!(keyword==(null))){
+		if ((page == 1)&&!(keyword.equals(""))){
 			repolist = repoBl.getSearchResult(keyword);
 		}else{
 			try {

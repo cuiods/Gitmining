@@ -27,6 +27,7 @@ public class MainButton extends JLabel{
 	private boolean isPressed;
 	private boolean isExit;
 	private boolean isClicked;//used for sort
+	private boolean isBack;//tableHead button was not choosed to sort,if isBack is true
 	private Element element;
 	private String picPath;
 	public MainButton(Element button,UIController controller){
@@ -49,40 +50,37 @@ public class MainButton extends JLabel{
 		g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING , RenderingHints.VALUE_ANTIALIAS_ON);
 		String path = picPath;
 		String str = name;
-		if(isIn){
-			if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
-			picPath = "src/main/resources/pictures/buttons/"+str+"1.png";
-			/*
-			 * used for sort button
-			 */
-			if(name.contains("sort")&&path.contains("1"))
-				picPath = "src/main/resources/pictures/buttons/"+name+"2.png";
-			else if(name.contains("sort")&&path.contains("2"))
-				picPath = "src/main/resources/pictures/buttons/"+name+".png";
-			//end
-		}else if(isPressed){
-			if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
-			picPath = "src/main/resources/pictures/buttons/"+str+"2.png";
-			/*
-			 * used for sort button
-			 */
-			if(name.contains("sort")) {picPath = path;}
-			//end
-		}else if(isExit&&!isClicked){
-			if(name.contains("sort")&&path.contains("1"))
-				picPath = "src/main/resources/pictures/buttons/"+name+".png";
-			else if(name.contains("sort")&&path.contains("2"))
-				picPath = "src/main/resources/pictures/buttons/"+name+"1.png";
-			else if(name.contains("sort"))
-				picPath = "src/main/resources/pictures/buttons/"+name+"2.png";
-		}else{
 		
-			picPath = "src/main/resources/pictures/buttons/"+str+".png";
-			/*
-			 * used for sort button
-			 */
-			if(name.contains("sort")){
-				picPath = path;
+		if(name.contains("sort")){//used for sort button
+			
+			if(isClicked){
+				if(path.contains("1")) picPath = "src/main/resources/pictures/buttons/"+name+"2.png";
+				else if(path.contains("2")) picPath = "src/main/resources/pictures/buttons/"+name+"1.png";
+				else picPath = "src/main/resources/pictures/buttons/"+name+"1.png";
+			}
+			if(isExit) picPath = path;
+			
+			if(isBack) picPath = "src/main/resources/pictures/buttons/"+name+".png";
+			
+		}else{
+			//used for normal button
+			if(isIn){
+				if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
+				picPath = "src/main/resources/pictures/buttons/"+str+"1.png";
+				
+			}else if(isPressed){
+				if(name.contains("guide")&&name.contains("3")) str = name.substring(0, name.length()-1);
+				picPath = "src/main/resources/pictures/buttons/"+str+"2.png";
+			
+			}else if(isExit&&!isClicked){
+				if(name.contains("sort")&&path.contains("1"))
+					picPath = "src/main/resources/pictures/buttons/"+name+"2.png";
+				else if(name.contains("sort")&&path.contains("2"))
+					picPath = "src/main/resources/pictures/buttons/"+name+"1.png";
+			}else{
+			
+				picPath = "src/main/resources/pictures/buttons/"+str+".png";
+				
 			}
 		}
 		g2D.drawImage(new ImageIcon(picPath).getImage(), 0,0,this.getWidth(),this.getHeight(), this);
@@ -100,7 +98,14 @@ public class MainButton extends JLabel{
 	public void setClicked(boolean isClicked){
 		this.isClicked = isClicked;
 	}
+	public void setPicPath(String picPath){
+		this.picPath = picPath;
+	}
+	public void setIsBack(boolean isBack){
+		this.isBack = isBack;
+	}
 	//end
+	
 	public Element getElement() {
 		return element;
 	}

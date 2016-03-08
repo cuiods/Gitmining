@@ -7,7 +7,7 @@
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name ="repos" change = "ReposPanel" class = "MainButton" x="10" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 			<unit name ="user" change = "UserPanel" class = "MainButton" x="160" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name ="sort_star" class = "MainButton" x="500" y="50" w="100" h="30" type = "1" listenerName ="ButtonSearchListener"/>
+			<unit name ="sort_star" class = "MainButton" x="500" y="50" w="100" h="30" type = "1" listenerName ="ButtonSortListener"/>
 		</mainPanel>
 	</Frame>
 </presentation> 

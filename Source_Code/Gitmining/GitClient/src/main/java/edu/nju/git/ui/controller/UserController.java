@@ -29,7 +29,7 @@ public class UserController {
 	public ArrayList<UserBriefVO> getUsers(int page,String keyword){
 		ArrayList<UserBriefVO> users = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> userList = null;
-		if((page == 1)&&(keyword != null)){
+		if((page == 1)&&(!keyword.equals(""))){
 			userList = userBl.getSearchResult(keyword);
 		}else{
 			try {

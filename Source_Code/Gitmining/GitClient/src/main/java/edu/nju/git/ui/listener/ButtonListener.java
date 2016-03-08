@@ -24,31 +24,42 @@ public abstract class ButtonListener implements MouseListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		button.setIn(false);
-		button.setPressed(true);
-		button.setExit(false);
+		if(button.getElement().attributeValue("name").contains("sort")){
+			button.setClicked(true);
+			button.setExit(false);
+		}else{
+			button.setIn(false);
+			button.setPressed(true);
+		}
 		controller.getFrame().repaint();
 	}
 
 	public void mousePressed(MouseEvent e) {
-		button.setIn(false);
-		button.setPressed(true);
-		button.setClicked(true);
-		controller.getFrame().repaint();
+		if(!button.getElement().attributeValue("name").contains("sort")){
+			button.setIn(false);
+			button.setPressed(true);
+			controller.getFrame().repaint();
+		}
 	}
 
 	abstract public void mouseReleased(MouseEvent e);
 
 	public void mouseEntered(MouseEvent e) {
-		button.setIn(true);
-		button.setClicked(false);
-		controller.getFrame().repaint();
+		if(!button.getElement().attributeValue("name").contains("sort")){
+			button.setIn(true);
+			controller.getFrame().repaint();
+		}
+			
 	}
 
 	public void mouseExited(MouseEvent e) {
-		button.setIn(false);
-		button.setPressed(false);
-		button.setExit(true);
+		if(!button.getElement().attributeValue("name").contains("sort")){
+			button.setIn(false);
+			button.setPressed(false);
+		}else{
+			button.setExit(true);
+			button.setClicked(false);
+		}
 		controller.getFrame().repaint();
 	}
 }
