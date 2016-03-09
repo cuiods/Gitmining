@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abc5bd27-5975-4b2e-a67f-2d0b96f73a46" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoForkComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoNameComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoStarComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoSubscrComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoUpdateComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserFollowersComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserNameComparator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserRepoNumComparator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Doc/迭代一/GitMining系统体系结构描述文档 .docx" afterPath="$PROJECT_DIR$/../../Doc/迭代一/GitMining系统体系结构描述文档 .docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Gitmining.iws" />
@@ -26,16 +35,13 @@
     <favorites_list name="Gitmining" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file leaf-file-name="UserBlImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/UserBlImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="154" column="7" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="7" />
-              <folding>
-                <element signature="e#6446#6447#0" expanded="true" />
-                <element signature="e#6484#6485#0" expanded="true" />
-              </folding>
+              <caret line="167" column="7" selection-start-line="167" selection-start-column="7" selection-end-line="167" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,11 +50,8 @@
         <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/RepoBlImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="94" column="43" selection-start-line="94" selection-start-column="43" selection-end-line="94" selection-end-column="43" />
-              <folding>
-                <element signature="e#6648#6649#0" expanded="true" />
-                <element signature="e#6691#6692#0" expanded="true" />
-              </folding>
+              <caret line="105" column="43" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,58 +60,73 @@
         <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/UserDataImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="26" selection-start-line="90" selection-start-column="8" selection-end-line="104" selection-end-column="26" />
+              <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
               <folding>
-                <element signature="e#2766#2779#0" expanded="true" />
-                <element signature="e#3391#3392#0" expanded="true" />
-                <element signature="e#3435#3436#0" expanded="true" />
+                <element signature="e#1546#1547#0" expanded="true" />
+                <element signature="e#1577#1578#0" expanded="true" />
+                <element signature="e#2814#2827#0" expanded="true" />
+                <element signature="e#3439#3440#0" expanded="true" />
+                <element signature="e#3483#3484#0" expanded="true" />
+                <element signature="e#3994#3995#0" expanded="true" />
+                <element signature="e#4036#4037#0" expanded="true" />
+                <element signature="e#4100#4101#0" expanded="true" />
+                <element signature="e#4150#4151#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RepoDataImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RepoDataImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/RepoDataImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0826771">
-              <caret line="97" column="62" selection-start-line="97" selection-start-column="62" selection-end-line="97" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="139" column="57" selection-start-line="139" selection-start-column="57" selection-end-line="139" selection-end-column="57" />
               <folding>
-                <element signature="e#2219#2232#0" expanded="true" />
-                <element signature="e#3578#3579#0" expanded="true" />
-                <element signature="e#3620#3621#0" expanded="true" />
+                <element signature="e#2267#2280#0" expanded="true" />
+                <element signature="e#4055#4068#0" expanded="true" />
+                <element signature="e#4864#4874#0" expanded="true" />
+                <element signature="e#5235#5248#0" expanded="true" />
+                <element signature="e#5597#5607#0" expanded="true" />
+                <element signature="e#5958#5967#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegexTranslator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/RegexTranslator.java">
+      <file leaf-file-name="POcreator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POcreator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserCasualModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/impl/UserCasualModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="58" selection-start-line="60" selection-start-column="8" selection-end-line="64" selection-end-column="58" />
+              <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3115#3116#0" expanded="true" />
+                <element signature="e#3164#3165#0" expanded="true" />
+                <element signature="e#4167#4168#0" expanded="true" />
+                <element signature="e#4218#4219#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RepoCasualModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/impl/RepoCasualModel.java">
+      <file leaf-file-name="RepoForkComparator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoForkComparator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4157044">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RepoBriefVO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/VO/RepoBriefVO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
-              <folding />
+              <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+              <folding>
+                <element signature="e#1357#1358#0" expanded="true" />
+                <element signature="e#1386#1387#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,14 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/usercomparators/UserFollowersComparator.java" />
-        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/usercomparators/UserRepoNumComparator.java" />
-        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/usercomparators/UserNameComparator.java" />
-        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoUpdateComparator.java" />
-        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoStarComparator.java" />
-        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoForkComparator.java" />
-        <option value="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/service/UserBrowseModelService.java" />
-        <option value="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/service/RepoBlService.java" />
         <option value="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/service/UserBlService.java" />
         <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/Visitor.java" />
         <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/UserVisitor.java" />
@@ -189,6 +199,14 @@
         <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/RegexTranslator.java" />
         <option value="$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/UserDataImpl.java" />
         <option value="$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/RepoDataImpl.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoForkComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoNameComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoStarComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoSubscrComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoUpdateComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserFollowersComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserNameComparator.java" />
+        <option value="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserRepoNumComparator.java" />
       </list>
     </option>
   </component>
@@ -199,11 +217,14 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
-    <option name="y" value="24" />
-    <option name="width" value="1305" />
-    <option name="height" value="744" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -226,10 +247,9 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -487,6 +507,10 @@
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="factory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -519,6 +543,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gitmining" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gitmining" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GitIntegration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="centralization" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -895,6 +957,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="git" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="comparators" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1346,9 +1412,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1356,8 +1421,13 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="D:/IntelliJ WorkSpace/ThinkingInJava" />
     <property name="SearchEverywhereHistoryKey" value="Patter&#9;FILE&#9;jar:///usr/lib/jvm/jdk1.8.0_60/src.zip!/java/util/regex/Pattern.java&#10;Array&#9;FILE&#9;jar:///usr/lib/jvm/jdk1.8.0_60/src.zip!/java/util/ArrayList.java&#10;Compara&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/Comparator.java&#10;Pattern&#9;PSI&#9;JAVA://java.util.regex.Pattern&#10;Collections&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/Collections.java&#10;Comparat&#9;PSI&#9;JAVA://java.util.Comparator&#10;array&#9;FILE&#9;jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/ArrayList.java" />
+    <property name="recentsLimit" value="5" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\SE_iii\GitMining\Source_Code\Gitmining\GitCommon\src\main\java\edu\nju\git\comparators\pocomparator\repopocomparator" />
+      <recent name="D:\SE_iii\GitMining\Source_Code\Gitmining\GitCommon\src\main\java\edu\nju\git\comparators\pocomparator\userpocomparator" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="edu.nju.git.data" />
     </key>
@@ -1376,25 +1446,28 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/type/OwnerType.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/cache/repoinfo.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/cache/userinfo.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/centralization/RepoMapReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/centralization/UserMapReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/decentralization/ItemUserPOReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/service/ItemService.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/MapPO/AbstractMapPO.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/MapPO/MapRepoBriefPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/MapPO/MapUserBriefPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/MapPO/MapUserPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/itemPO/AbstractItemPO.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/itemPO/ItemRepoBriefPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/itemPO/ItemUserBriefPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/itemPO/ItemUserPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/service/POfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/init/impl/Initial.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/ui/components/table/MyTable.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/config/UIConfig.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/exit.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/exit1.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/toMin.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/toMin1.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/URLreader.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/liststring/ListJsonReader.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POcreator.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/BranchPOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/CommitPOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/IssuePOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/RepoBriefPOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/RepoPOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/UserBriefPOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POfactory/UserPOfactory.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/RepoDataImpl.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/UserDataImpl.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/init/impl/RepoInitInpl.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/init/impl/UserInitImpl.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/unit/api/RepositoriesReaderTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/unit/api/UserReaderTest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1402,15 +1475,18 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/LocalReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/URLreader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/decentralization/ItemBranchPOreader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/decentralization/ItemCommitPOReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/decentralization/ItemIssuePOReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/decentralization/ItemRepoPOReader.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/itemPO/ItemIssuePOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/itemPO/ItemRepoPOfactory.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/unit/api/LocalReaderTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/ui/components/TextLabel.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/exith.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/lastPage.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/lastPage1.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/lastPage2.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/nextPage.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/nextPage1.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitClient/src/main/resources/pictures/buttons/nextPage2.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/driven/RepoDriven.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/unit/api/BranchTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/unit/api/IssueTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/unit/api/RepoReaderTest.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1544,15 +1620,6 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -1574,15 +1641,6 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -1645,70 +1703,8 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SCRATCH_FILE_ID" value="0" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="GitClient" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
       <envs />
       <method />
     </configuration>
@@ -1734,34 +1730,6 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
       <option name="OUTPUT_DIRECTORY" />
       <option name="ANNOTATION_TYPE" />
       <option name="ENV_VARIABLES" />
@@ -1832,7 +1800,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457442410214</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Merge branch 'master' of 114.55.35.12:131130137_cseiii_Gitmining/GitMining&#10;&#10;# 请输入一个提交信息以解释此合并的必要性，尤其是将一个更新后的上游分支&#10;# 合并到主题分支。&#10;#&#10;# 以 '#' 开头的行将被忽略，而且空提交说明将会终止提交。&#10;">
+      <created>1457449182188</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1457449182188</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1845,32 +1819,32 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="24" width="1305" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3697348" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.55382216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32761312" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25896415" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2520064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25842696" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761312" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25869894" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3697348" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2520064" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1906,18 +1880,25 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/RepositoriesReader.java">
+    <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/impl/UserCasualModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38172042">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#2166#2167#0" expanded="false" />
+            <marker date="1457442350553" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/DataFactory.java">
+    <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/impl/RepoCasualModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.71859294">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2166#2167#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1925,7 +1906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35967302">
           <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1949,14 +1929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/constant/Consts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26600984">
-          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -2001,32 +1973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/jdk1.8.0_60/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.029213483">
-          <caret line="807" column="27" selection-start-line="807" selection-start-column="27" selection-end-line="807" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/jdk1.8.0_60/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09213483">
-          <caret line="669" column="20" selection-start-line="669" selection-start-column="20" selection-end-line="669" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/POVOConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63595504">
-          <caret line="24" column="80" selection-start-line="24" selection-start-column="80" selection-end-line="24" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/type/SortType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36404493">
@@ -2039,7 +1985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0921348">
           <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2050,114 +1995,6 @@
           <folding>
             <element signature="e#955#956#0" expanded="false" />
             <element signature="e#991#992#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/uservisitors/UserFollowerOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43370786">
-          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/uservisitors/UserReposOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39325842">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/RepoForkOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72808987">
-          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#388#389#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/RepoSubscrOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72808987">
-          <caret line="19" column="65" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#392#393#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/RepoUpdateOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72808987">
-          <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#392#393#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/RepoStarOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48539326">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#388#389#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/RepoNameOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35280898">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/uservisitors/UserVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6764045">
-          <caret line="24" column="29" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/RepoVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75730336">
-          <caret line="23" column="74" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/repovisitors/SimpleRepoVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6764045">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2178,81 +2015,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/VO/RepoBriefVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33258426">
-          <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
-          <folding>
-            <element signature="e#1357#1358#0" expanded="false" />
-            <element signature="e#1386#1387#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoSubscrComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36404493">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/type/OwnerType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28314605">
           <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/ComparatorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28314605">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/VisitorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5955056">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/exception/NoSearchResultException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20224719">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-          <folding>
-            <element signature="e#301#302#0" expanded="false" />
-            <element signature="e#339#340#0" expanded="false" />
-            <element signature="e#372#373#0" expanded="false" />
-            <element signature="e#402#403#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/uservisitors/UserNameOrderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6764045">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/datavisitors/uservisitors/SimpleUserVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65842694">
-          <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2267,37 +2034,22 @@
     <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/impl/RepoCasualModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
-          <folding />
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2166#2167#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/BrowseModel/impl/UserCasualModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="58" selection-start-line="60" selection-start-column="8" selection-end-line="64" selection-end-column="58" />
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2166#2167#0" expanded="false" />
+            <marker date="1457442350553" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/RepoBlImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="94" column="43" selection-start-line="94" selection-start-column="43" selection-end-line="94" selection-end-column="43" />
-          <folding>
-            <element signature="e#6648#6649#0" expanded="true" />
-            <element signature="e#6691#6692#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/jdk1.8.0_60/src.zip!/java/util/regex/Pattern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33252427">
-          <caret line="1134" column="24" selection-start-line="1134" selection-start-column="17" selection-end-line="1134" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2313,7 +2065,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2321,9 +2072,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#181#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2331,9 +2079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#223#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2341,42 +2086,244 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5662921">
           <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.5568628">
+          <caret line="1834" column="0" selection-start-line="1834" selection-start-column="0" selection-end-line="1834" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/UserBlImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="154" column="7" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="7" />
+          <caret line="167" column="7" selection-start-line="167" selection-start-column="7" selection-end-line="167" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/VO/RepoBriefVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
           <folding>
-            <element signature="e#6446#6447#0" expanded="true" />
-            <element signature="e#6484#6485#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1386#1387#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitIntegration/src/test/java/org/GitIntegration/driven/UserDataTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/decentralization/BranchItemreader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3856813">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/centralization/BrancheMapReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.06235566">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/RepoBlImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="105" column="43" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/ComparatorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33256352">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/usercomparators/UserFollowersComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46189377">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoUpdateComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46189377">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/tools/POVOConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6004619">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/DataFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4157044">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/api/centralization/UserMapReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35334873">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/UserDataImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="26" selection-start-line="90" selection-start-column="8" selection-end-line="104" selection-end-column="26" />
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
           <folding>
-            <element signature="e#2766#2779#0" expanded="true" />
-            <element signature="e#3391#3392#0" expanded="true" />
-            <element signature="e#3435#3436#0" expanded="true" />
+            <element signature="e#1546#1547#0" expanded="true" />
+            <element signature="e#1577#1578#0" expanded="true" />
+            <element signature="e#2814#2827#0" expanded="true" />
+            <element signature="e#3439#3440#0" expanded="true" />
+            <element signature="e#3483#3484#0" expanded="true" />
+            <element signature="e#3994#3995#0" expanded="true" />
+            <element signature="e#4036#4037#0" expanded="true" />
+            <element signature="e#4100#4101#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/RepoDataImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0826771">
-          <caret line="97" column="62" selection-start-line="97" selection-start-column="62" selection-end-line="97" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="139" column="57" selection-start-line="139" selection-start-column="57" selection-end-line="139" selection-end-column="57" />
           <folding>
-            <element signature="e#2219#2232#0" expanded="true" />
-            <element signature="e#3578#3579#0" expanded="true" />
-            <element signature="e#3620#3621#0" expanded="true" />
+            <element signature="e#2267#2280#0" expanded="true" />
+            <element signature="e#4055#4068#0" expanded="true" />
+            <element signature="e#4864#4874#0" expanded="true" />
+            <element signature="e#5235#5248#0" expanded="true" />
+            <element signature="e#5597#5607#0" expanded="true" />
+            <element signature="e#5958#5967#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/factory/impl/POcreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
+          <folding>
+            <element signature="e#3115#3116#0" expanded="true" />
+            <element signature="e#3164#3165#0" expanded="true" />
+            <element signature="e#4167#4168#0" expanded="true" />
+            <element signature="e#4218#4219#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_60/src.zip!/java/util/Comparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1916859">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="17" selection-end-line="108" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoForkComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50808316">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoNameComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50808316">
+          <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoStarComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09237875">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoSubscrComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09237875">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/repopocomparator/RepoUpdateComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.087759815">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserFollowersComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08314088">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserNameComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32332563">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/pocomparator/userpocomparator/UserRepoNumComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09237875">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/comparators/repocomparators/RepoForkComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4157044">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
