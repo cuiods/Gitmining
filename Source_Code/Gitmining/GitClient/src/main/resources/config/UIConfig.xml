@@ -18,13 +18,13 @@
 			<unit name ="sort_REPOS_update" class = "MainButton" x="490" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
          		<unit name ="head_REPOS_owner" class = "MainButton" x="650" y="220" w="150" h="35" type = "0"/>
 			<unit name ="head_REPOS_descrip" class = "MainButton" x="800" y="220" w="220" h="35" type ="0"/>
-
+			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name = "guide_repos3" class = "MainButton" x="25" y="90" w="150" h="50" type="0"/>
 			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
-			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
+			
 			
 		</mainPanel>
 		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
@@ -33,7 +33,8 @@
 			<unit name ="sort_USER_name" class = "MainButton" x="280" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_USER_follower" class = "MainButton" x="440" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_USER_repo" class = "MainButton" x="600" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
-
+			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchRepoListener"/> 
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>

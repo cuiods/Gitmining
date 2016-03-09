@@ -111,4 +111,19 @@ public class UserController {
 	public int getTotalPage(){
 		return userBl.getTotalPage();
 	}
+	
+	public ArrayList<UserBriefVO> jumpPage(int pageNum){
+		ArrayList<UserBriefVO> users = new ArrayList<UserBriefVO>();
+		List<UserBriefVO> userList = null;
+		try {
+			userList = userBl.jumpToPage(pageNum);
+		} catch (PageOutOfBoundException e) {
+			// exception to deal with
+			e.printStackTrace();
+		}
+		for(Iterator<UserBriefVO> it = userList.listIterator();it.hasNext();){
+			users.add(it.next());
+		}
+		return users;
+	}
 }

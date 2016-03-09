@@ -152,6 +152,21 @@ public class ReposController {
 	public int getTotalPage(){
 		return repoBl.getTotalPage();
 	}
+	
+	public ArrayList<RepoBriefVO> jumpPage(int pageNum){
+		ArrayList<RepoBriefVO> repos = new ArrayList<RepoBriefVO>();
+		List<RepoBriefVO> repoList = null;
+		try {
+			repoList = repoBl.jumpToPage(pageNum);
+		} catch (PageOutOfBoundException e) {
+			// exception to deal with
+			e.printStackTrace();
+		}
+		for(Iterator<RepoBriefVO> it = repoList.listIterator();it.hasNext();){
+			repos.add(it.next());
+		}
+		return repos;
+	}
 	/*
 	 * sort the table by {@link SortType} and {@link Reverse}
 	 */

@@ -58,5 +58,14 @@ public class ReposTable extends MyTable {
 		MyTableLabel label = new MyTableLabel(element,controller,35,components,this);
 		return label;
 	}
+	
+	public ArrayList<MyTableLabel> getNewData(ArrayList<RepoBriefVO> repos){
+		ArrayList<MyTableLabel> labelList = new ArrayList<MyTableLabel>();
+		for(int i=0;i<repos.size();i++){
+			MyTableLabel label = createLabel(repos.get(i));
+			labelList.add(label);
+		}
+		return labelList;
+	}
 
 }

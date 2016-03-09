@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.dom4j.Element;
 
+import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.ui.components.MyTextField;
 import edu.nju.git.ui.controller.UIController;
@@ -49,6 +50,15 @@ public class UserTable extends MyTable {
 		java.awt.Component[] components = {login,followers,publicRepos};
 		MyTableLabel label = new MyTableLabel(element, controller, 35, components, this);
 		return label;
+	}
+	
+	public ArrayList<MyTableLabel> getNewData(ArrayList<UserBriefVO> users){
+		ArrayList<MyTableLabel> labelList = new ArrayList<MyTableLabel>();
+		for(int i=0;i<users.size();i++){
+			MyTableLabel label = createLabel(users.get(i));
+			labelList.add(label);
+		}
+		return labelList;
 	}
 
 }
