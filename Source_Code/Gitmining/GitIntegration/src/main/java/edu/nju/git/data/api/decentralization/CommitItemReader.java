@@ -3,21 +3,21 @@ package edu.nju.git.data.api.decentralization;
 import edu.nju.git.data.api.URLreader;
 import edu.nju.git.data.api.service.ItemService;
 
-public class ItemCommitPOReader implements ItemService{
+public class CommitItemReader implements ItemService{
 
-	public ItemCommitPOReader() {
+	public CommitItemReader() {
 		// TODO Auto-generated constructor stub
 	}
 
 	private String url_string;
-	public ItemCommitPOReader(String fullname,String sha) {
+	public CommitItemReader(String fullname,String sha) {
 		this.setNames(fullname,sha);
 	}
 
 	public void setNames(String fullname,String sha){
 		this.url_string  = "http://www.gitmining.net/api/repository/"+fullname+"/commit/"+sha+"/item/";
 	}
-	public ItemCommitPOReader(String owner,String name,String sha) {
+	public CommitItemReader(String owner,String name,String sha) {
 		this.setNames(owner+"/"+name,sha);
 	}
 

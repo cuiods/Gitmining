@@ -3,10 +3,10 @@ package edu.nju.git.data.api.decentralization;
 import edu.nju.git.data.api.URLreader;
 import edu.nju.git.data.api.service.ItemService;
 
-public class ItemUserPOReader implements ItemService{
+public class UserItemReader implements ItemService{
 
 	private String name;
-	public ItemUserPOReader(String name) {
+	public UserItemReader(String name) {
 		this.name = name;
 	}
 

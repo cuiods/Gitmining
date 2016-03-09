@@ -3,17 +3,17 @@ package edu.nju.git.data.api.decentralization;
 import edu.nju.git.data.api.URLreader;
 import edu.nju.git.data.api.service.ItemService;
 
-public class ItemRepoPOReader implements ItemService {
+public class RepoItemReader implements ItemService {
 
 	private String url_string;
-	public ItemRepoPOReader(String fullname) {
+	public RepoItemReader(String fullname) {
 		this.setNames(fullname);
 	}
 
 	public void setNames(String fullname){
 		this.url_string  = "http://www.gitmining.net/api/repository/"+fullname+"/item/";
 	}
-	public ItemRepoPOReader(String owner,String name) {
+	public RepoItemReader(String owner,String name) {
 		this.setNames(owner+"/"+name);
 	}
 

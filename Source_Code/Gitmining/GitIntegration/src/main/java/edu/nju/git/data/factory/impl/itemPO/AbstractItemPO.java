@@ -1,6 +1,7 @@
 package edu.nju.git.data.factory.impl.itemPO;
 
 import edu.nju.git.data.api.service.ItemService;
+import edu.nju.git.data.factory.impl.POfactory.AbstractPOfactory;
 import edu.nju.git.data.factory.service.POfactory;
 
 /**
@@ -10,7 +11,7 @@ import edu.nju.git.data.factory.service.POfactory;
  * @date 2016-03-08
  * @param <T>
  */
-public abstract class AbstractItemPO<T> implements POfactory<T>{
+public abstract class AbstractItemPO<T> extends AbstractPOfactory{
 
 	/**
 	 * @see ItemService
@@ -20,11 +21,22 @@ public abstract class AbstractItemPO<T> implements POfactory<T>{
 	
 	protected int getInteger(String string)
 	{
-		return Integer.parseInt(this.basicItemService.getItem(string));
+		try{
+			return Integer.parseInt(this.basicItemService.getItem(string));
+		}catch(NumberFormatException exception){
+			exception.printStackTrace();
+			return 0;
+		}
+		
 	}
 	
 	protected String getString(String item)
 	{
 		return this.basicItemService.getItem(item);
+	}
+	
+	protected boolean getBoolean(String item)
+	{
+		return Boolean.parseBoolean(this.basicItemService.getItem(item));
 	}
 }

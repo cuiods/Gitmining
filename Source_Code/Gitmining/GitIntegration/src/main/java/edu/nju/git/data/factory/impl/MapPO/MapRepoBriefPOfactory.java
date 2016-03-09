@@ -27,35 +27,6 @@ public class MapRepoBriefPOfactory extends AbstractMapPO<RepoBriefPO> {
 		this.mapService = (new RepoMapReader(names[0],names[1]));
 	}
 
-	/**
-	 * <br/><b>precondition</b>：this.owner this.repo (map)must be set
-	 * <br/><b>postcondition</b>：return a PO
-	 * @return 
-	 * @date 2016-03-06
-	 */
-	@Override
-	public RepoBriefPO getPO() {
-		map = this.mapService.getMap();
-		RepoBriefPO repoBriefPO = new RepoBriefPO();
-		
-		String fullname[] = map.get("full_name").toString().split("/");
-		repoBriefPO.setOwner(fullname[0]);
-		repoBriefPO.setName(fullname[1]);
-		
-		Object description = map.get("description");
-		repoBriefPO.setDescription(description==null? "" : description.toString());
-		
-		int num_subcribers = Integer.parseInt(map.get("subscribers_count").toString());
-		repoBriefPO.setNum_subscribers(num_subcribers);
-		
- 		repoBriefPO.setNum_forks((Integer)map.get("forks_count"));
-		repoBriefPO.setNum_stars((Integer)map.get("stargazers_count"));
-		
-		repoBriefPO.setLastUpdate(map.get("updated_at").toString());
+	
 
-		System.out.println(i++);
-		return repoBriefPO;
-	}
-
-	public static int i = 0;
 }

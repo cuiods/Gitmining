@@ -7,10 +7,5 @@ public class MapCommitPOfactory extends AbstractMapPO<CommitPO> {
 
 
 
-	@Override
-	public CommitPO getPO() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

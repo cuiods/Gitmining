@@ -6,6 +6,8 @@ import java.util.List;
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.data.api.RepositoriesReader;
 import edu.nju.git.data.factory.impl.MapPO.MapRepoBriefPOfactory;
+import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
+import edu.nju.git.data.factory.service.POfactory;
 import edu.nju.git.data.init.service.RepoInitService;
 
 public class RepoInitInpl implements RepoInitService {
@@ -32,7 +34,7 @@ public class RepoInitInpl implements RepoInitService {
 //		}
 		//2. get details information,one by one
 		
-		MapRepoBriefPOfactory repoBreifPOfactory = new MapRepoBriefPOfactory();
+		RepoBriefPOfactory repoBreifPOfactory = new RepoBriefPOfactory();
 		//ItemRepoBriefPOfactory repoBreifPOfactory = new ItemRepoBriefPOfactory();
 		pos = new ArrayList<RepoBriefPO>();
 		for (String string : repos) {

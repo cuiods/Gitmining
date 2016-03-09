@@ -1,6 +1,7 @@
 package edu.nju.git.data.factory.impl.MapPO;
 
 import edu.nju.git.PO.RepoPO;
+import edu.nju.git.data.api.centralization.RepoMapReader;
 
 public class MapRepoPOfactory extends AbstractMapPO<RepoPO> {
 
@@ -8,15 +9,24 @@ public class MapRepoPOfactory extends AbstractMapPO<RepoPO> {
 
 
 	/**
-	 * <br/><b>precondition</b>：this.owner this.repo must be set
-	 * <br/><b>postcondition</b>：return a PO
-	 * @return 
-	 * @date 2016-03-06
+	 * need set owner and name or full name
 	 */
-	@Override
-	public RepoPO getPO() {
-		// TODO Auto-generated method stub
-		return null;
+	public MapRepoPOfactory() {
+	}
+	public MapRepoPOfactory(String owner,String name) {
+		this.mapService = (new RepoMapReader(owner,name));
+	}
+	public MapRepoPOfactory(String fullname) {
+		String[] names = fullname.split("/");
+		this.mapService = (new RepoMapReader(names[0],names[1]));
+	}
+	public void setNames(String owner,String name)
+	{
+		this.mapService = new RepoMapReader(owner,name);
+	}
+	public void setNames(String fullname) {
+		String[] names = fullname.split("/");
+		this.mapService = (new RepoMapReader(names[0],names[1]));
 	}
 
 }

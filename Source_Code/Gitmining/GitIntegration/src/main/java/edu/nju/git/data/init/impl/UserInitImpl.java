@@ -8,6 +8,7 @@ import java.util.Set;
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.data.api.RepositoriesReader;
 import edu.nju.git.data.factory.impl.MapPO.MapUserBriefPOfactory;
+import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
 import edu.nju.git.data.init.service.UserInitService;
 
 public class UserInitImpl implements UserInitService {
@@ -30,7 +31,7 @@ public class UserInitImpl implements UserInitService {
 		
 		Set<String> stringSet = new HashSet<String>();
 		//ItemUserBriefPOfactory userBriefPOfactory = new ItemUserBriefPOfactory();
-		MapUserBriefPOfactory userBriefPOfactory = new MapUserBriefPOfactory();
+		UserBriefPOfactory userBriefPOfactory = new UserBriefPOfactory();
 		int i = 0,y=0;;
 		for (String string : repos) {
 			String tempString = string.split("/")[0];

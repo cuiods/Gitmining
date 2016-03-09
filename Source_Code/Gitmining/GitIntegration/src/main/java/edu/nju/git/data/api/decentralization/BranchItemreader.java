@@ -3,20 +3,20 @@ package edu.nju.git.data.api.decentralization;
 import edu.nju.git.data.api.URLreader;
 import edu.nju.git.data.api.service.ItemService;
 
-public class ItemBranchPOreader implements ItemService{
+public class BranchItemreader implements ItemService{
 
-	public ItemBranchPOreader() {
+	public BranchItemreader() {
 	}
 
 	private String url_string;
-	public ItemBranchPOreader(String fullname,String sha) {
+	public BranchItemreader(String fullname,String sha) {
 		this.setNames(fullname,sha);
 	}
 
 	public void setNames(String fullname,String sha){
 		this.url_string  = "http://www.gitmining.net/api/repository/"+fullname+"/branch/"+sha+"/item/";
 	}
-	public ItemBranchPOreader(String owner,String name,String sha) {
+	public BranchItemreader(String owner,String name,String sha) {
 		this.setNames(owner+"/"+name,sha);
 	}
 
