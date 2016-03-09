@@ -16,8 +16,11 @@ public class BranchPOfactory implements POfactory<BranchPO>{
 
 	@Override
 	public BranchPO getPO() {
-		// TODO Auto-generated method stub
-		return null;
+		BranchPO po = new BranchPO();
+		po.setId(itemHelper.getString("name"));
+		po.setName(itemHelper.getString("fn"));
+		po.setSHA(itemHelper.getString("commit"));
+		return po;
 	}
 
 }

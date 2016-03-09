@@ -23,7 +23,7 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
     protected int getInteger(String key)
     {
     	try{
-    		return Integer.parseInt(map.get(key).toString());
+    		return (Integer)(map.get(key));
     	}catch(NumberFormatException e){
     		e.printStackTrace();
     		return 0;
@@ -38,7 +38,12 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
     @Override
     protected boolean getBoolean(String item)
     {
-    	return Boolean.parseBoolean(this.getString(item));
+    	try {
+    		return (Boolean)map.get(item);
+		} catch (Exception e) {
+			return false;
+		}
+    	
     }
     
     protected abstract String getUrl();
