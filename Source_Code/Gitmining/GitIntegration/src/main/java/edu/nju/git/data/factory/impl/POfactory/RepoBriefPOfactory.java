@@ -1,9 +1,9 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
-import edu.nju.git.PO.RepoBriefPO;
+import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class RepoBriefPOfactory implements POfactory<RepoBriefPO> {
+public class RepoBriefPOfactory implements POfactory<RepoBriefVO> {
 
 	private AbstractFieldsGetter itemHelper;
 	public RepoBriefPOfactory(){}
@@ -19,9 +19,9 @@ public class RepoBriefPOfactory implements POfactory<RepoBriefPO> {
 	 * @date 2016-03-06
 	 */
 	@Override
-	public RepoBriefPO getPO() {
+	public RepoBriefVO getPO() {
 
-		RepoBriefPO repoBriefPO = new RepoBriefPO();
+		RepoBriefVO repoBriefPO = new RepoBriefVO();
 		
 		String fullname[] = itemHelper.getString("full_name").split("/");
 		repoBriefPO.setOwner(fullname[0]);

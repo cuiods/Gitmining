@@ -1,10 +1,10 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
-import edu.nju.git.PO.UserPO;
+import edu.nju.git.VO.UserVO;
 import edu.nju.git.data.factory.service.POfactory;
 import edu.nju.git.type.OwnerType;
 
-public class UserPOfactory implements POfactory<UserPO> {
+public class UserPOfactory implements POfactory<UserVO> {
 
 	private AbstractFieldsGetter itemHelper;
 	public UserPOfactory(AbstractFieldsGetter getter) {
@@ -20,30 +20,30 @@ public class UserPOfactory implements POfactory<UserPO> {
      * <br/> login is loginname, name is full personal name
 	 */
 	@Override
-	public UserPO getPO() {
+	public UserVO getPO() {
 
-		UserPO po = new UserPO();
+		UserVO user = new UserVO();
 		
-		po.setBio(itemHelper.getString("bio"));
-		po.setBlog(itemHelper.getString("blog"));
-		po.setCompany(itemHelper.getString("company"));
-		po.setCreate_at(itemHelper.getString("created_at"));
-		po.setEmail(itemHelper.getString("email"));
+		user.setBio(itemHelper.getString("bio"));
+		user.setBlog(itemHelper.getString("blog"));
+		user.setCompany(itemHelper.getString("company"));
+		user.setCreate_at(itemHelper.getString("created_at"));
+		user.setEmail(itemHelper.getString("email"));
 		
-		po.setFollowingNum(itemHelper.getInteger("following"));
-		po.setFollowNum(itemHelper.getInteger("followers"));
+		user.setFollowingNum(itemHelper.getInteger("following"));
+		user.setFollowNum(itemHelper.getInteger("followers"));
 		
-		po.setLocation(itemHelper.getString("location"));
-		po.setLogin(itemHelper.getString("login"));
-		po.setName(itemHelper.getString("name"));
+		user.setLocation(itemHelper.getString("location"));
+		user.setLogin(itemHelper.getString("login"));
+		user.setName(itemHelper.getString("name"));
 		
-		po.setPublic_repos(itemHelper.getInteger("public_repos"));
-		po.setPublicGists(itemHelper.getInteger("public_gists"));
+		user.setPublic_repos(itemHelper.getInteger("public_repos"));
+		user.setPublic_gists(itemHelper.getInteger("public_gists"));
 		
-		po.setType(OwnerType.getInstance(itemHelper.getString("type")));
-		po.setUpdate_at(itemHelper.getString("updated_at"));
+		user.setType(OwnerType.getInstance(itemHelper.getString("type")));
+		user.setUpdate_at(itemHelper.getString("updated_at"));
 		
-		return po;
+		return user;
 	}
 
 }

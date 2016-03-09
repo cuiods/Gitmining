@@ -13,7 +13,7 @@ import edu.nju.git.data.api.JacksonConfig;
 
 public class ListJsonReader {
 
-	private List<String> names;
+	private List<Object> names;
 	/**
 	 * generate list<String> in initial function
 	 */
@@ -21,7 +21,7 @@ public class ListJsonReader {
 	public ListJsonReader(String url_location) {
 		try {
 			URL url = new URL(url_location);
-			List<String> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
+			List<Object> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
 			names =  list;
 			return;
 		} catch (MalformedURLException e) {
@@ -33,10 +33,10 @@ public class ListJsonReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		names =  new ArrayList<String>();
+		names =  new ArrayList<Object>();
 	}
 
-	public List<String> getNames(){
+	public List<Object> getNames(){
 		return this.names;
 	}
 }

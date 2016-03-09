@@ -1,9 +1,9 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
-import edu.nju.git.PO.IssuePO;
+import edu.nju.git.VO.IssueVO;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class IssuePOfactory implements POfactory<IssuePO> {
+public class IssuePOfactory implements POfactory<IssueVO> {
 
 	private AbstractFieldsGetter itemHelper;
 	private String sha;
@@ -15,6 +15,15 @@ public class IssuePOfactory implements POfactory<IssuePO> {
 		this.sha = sha;
 	}
 
+	public IssuePOfactory(){}
+	
+	public void setItemHelper(AbstractFieldsGetter itemHelper) {
+		this.itemHelper = itemHelper;
+	}
+
+	public void setSHA(String sha) {
+		this.sha = sha;
+	}
 
 	/**
 	 *  <p>http://www.gitmining.net/api/repository/{owner}/{reponame}/issue/{number}/item/{item}
@@ -26,19 +35,19 @@ public class IssuePOfactory implements POfactory<IssuePO> {
      * </p>
 	 */
 	@Override
-	public IssuePO getPO() {
-		IssuePO po = new IssuePO();
-		po.setId(sha);
-		po.setState(itemHelper.getString("state"));
-		po.setLocked(itemHelper.getBoolean("locked"));
-		po.setTitle(itemHelper.getString("title"));
-		po.setBody(itemHelper.getString("body"));
-		po.setUserName(itemHelper.getString("user"));
-		po.setCreate_at(itemHelper.getString("created_at"));
-		po.setUpdate_at(itemHelper.getString("updates_at"));
-		po.setMerged_at(itemHelper.getString("merged_at"));
-		po.setClosed_at(itemHelper.getString("closed_at"));
-		return po;
+	public IssueVO getPO() {
+		IssueVO issue = new IssueVO();
+		issue.setId(sha);
+		issue.setState(itemHelper.getString("state"));
+		issue.setLocked(itemHelper.getBoolean("locked"));
+		issue.setTitle(itemHelper.getString("title"));
+		issue.setBody(itemHelper.getString("body"));
+		issue.setUserName(itemHelper.getString("user"));
+		issue.setCreate_at(itemHelper.getString("created_at"));
+		issue.setUpdate_at(itemHelper.getString("updates_at"));
+		issue.setMerged_at(itemHelper.getString("merged_at"));
+		issue.setClosed_at(itemHelper.getString("closed_at"));
+		return issue;
 	}
 
 }

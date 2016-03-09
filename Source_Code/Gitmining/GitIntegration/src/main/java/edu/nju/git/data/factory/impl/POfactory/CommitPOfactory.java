@@ -1,9 +1,9 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
-import edu.nju.git.PO.CommitPO;
+import edu.nju.git.VO.CommitVO;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class CommitPOfactory implements POfactory<CommitPO> {
+public class CommitPOfactory implements POfactory<CommitVO> {
 
 	private AbstractFieldsGetter itemHelper;
 	private String sha;
@@ -28,26 +28,28 @@ public class CommitPOfactory implements POfactory<CommitPO> {
      * committer,committer_email,Date,message
      * filenumber 更改文件数,additions 添加代码行数,deletions 删除代码行数,total 总共影响行数
 	 */
+    
 	@Override
-	public CommitPO getPO() {
-		CommitPO po = new CommitPO();
+	public CommitVO getPO() {
+		CommitVO commit = new CommitVO();
 		
-		po.setId(sha);
+		commit.setId(sha);
 		
 //		po.setContents(itemHelper.getString(""));
-		po.setDate(itemHelper.getString("Date"));
+		commit.setDate(itemHelper.getString("Date"));
 //		po.setId(itemHelper.getString(""));
-		po.setMessage(itemHelper.getString("message"));
+		commit.setMessage(itemHelper.getString("message"));
 		
-		po.setNum_addition(itemHelper.getInteger("additions"));
-		po.setNum_deletion(itemHelper.getInteger("deletions"));
-		po.setNum_file(itemHelper.getInteger("filenumber"));
-		po.setNum_total(itemHelper.getInteger("total"));
+		commit.setNum_addition(itemHelper.getInteger("additions"));
+		commit.setNum_deletion(itemHelper.getInteger("deletions"));
+//		commit.setNum_file(itemHelper.getInteger("filenumber"));
+		commit.setNum_file(0);
+		commit.setNum_total(itemHelper.getInteger("total"));
 		
-		po.setUserName(itemHelper.getString("committer"));
+//		commit.setUserName(itemHelper.getString("committer"));
+		commit.setUserName("committer");
 		
-		
-		return po;
+		return commit;
 	}
 
 }

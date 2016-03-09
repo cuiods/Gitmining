@@ -4,6 +4,7 @@ import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.data.factory.impl.POcreator;
 import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.datavisitors.uservisitors.UserVisitor;
 import edu.nju.git.exception.NoSearchResultException;
@@ -120,6 +121,10 @@ public class UserDataImpl implements UserDataService {
         }
     }
 
+    /**
+     * a creator to create po/vo object
+     */
+    private POcreator creator = POcreator.getInstance();
     @Override
     public List<UserBriefVO> acceptVisitor(UserVisitor visitor) {
         return visitor.visit(this);
@@ -127,7 +132,7 @@ public class UserDataImpl implements UserDataService {
 
     @Override
     public UserVO getUserInfo(String userName) {
-        return null;
+        return creator.getUserPO(userName);
     }
 
     @Override

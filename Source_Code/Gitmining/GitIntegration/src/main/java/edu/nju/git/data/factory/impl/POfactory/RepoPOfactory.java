@@ -1,9 +1,9 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
-import edu.nju.git.PO.RepoPO;
+import edu.nju.git.VO.RepoVO;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class RepoPOfactory implements POfactory<RepoPO> {
+public class RepoPOfactory implements POfactory<RepoVO> {
 
 	private AbstractFieldsGetter itemHelper;
 	
@@ -34,25 +34,25 @@ public class RepoPOfactory implements POfactory<RepoPO> {
      * <br/>subscribers_count:关注者数量
 	 */
 	@Override
-	public RepoPO getPO() {
-		RepoPO repoBriefPO = new RepoPO();
+	public RepoVO getPO() {
+		RepoVO repo = new RepoVO();
 		
 		String fullname[] = itemHelper.getString("full_name").split("/");
-		repoBriefPO.setOwnerName(fullname[0]);
-		repoBriefPO.setName(fullname[1]);
+		repo.setOwnerName(fullname[0]);
+		repo.setName(fullname[1]);
 		
 		Object description = itemHelper.getString("description");
-		repoBriefPO.setDescription(description==null? "" : description.toString());
+		repo.setDescription(description==null? "" : description.toString());
 		
 		int num_subcribers = itemHelper.getInteger("subscribers_count");
-		repoBriefPO.setNum_subscribers(num_subcribers);
+		repo.setNum_subscribers(num_subcribers);
 		
- 		repoBriefPO.setNum_forks(itemHelper.getInteger("forks_count"));
-		repoBriefPO.setNum_stars(itemHelper.getInteger("stargazers_count"));
+ 		repo.setNum_forks(itemHelper.getInteger("forks_count"));
+		repo.setNum_stars(itemHelper.getInteger("stargazers_count"));
 		
-		repoBriefPO.setUpdate_at(itemHelper.getString("updated_at"));
+		repo.setUpdate_at(itemHelper.getString("updated_at"));
 
-		return repoBriefPO;
+		return repo;
 	}
 
 }

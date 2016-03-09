@@ -41,7 +41,7 @@ public class URLreader {
 			String result;
 			try {
 				result = stringBuffer.substring(0, stringBuffer.length()-1);
-			} catch (Exception e) {
+			} catch (StringIndexOutOfBoundsException e) {
 				result ="";
 			}
 			//System.out.println(result+"/");

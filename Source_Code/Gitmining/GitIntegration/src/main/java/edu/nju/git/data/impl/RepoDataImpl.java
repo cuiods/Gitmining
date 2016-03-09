@@ -2,6 +2,7 @@ package edu.nju.git.data.impl;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.VO.*;
+import edu.nju.git.data.factory.impl.POcreator;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.exception.NoSearchResultException;
@@ -122,38 +123,74 @@ public class RepoDataImpl implements RepoDataService {
         return visitor.visit(this);
     }
 
+    /**
+     * a creator to create po/vo object
+     */
+
+
+    private POcreator creator = POcreator.getInstance();
     @Override
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
-        return null;
+        return creator.getRepoPO(owner, repoName);
     }
 
+    private List<UserBriefVO> convertObjectToUserBreif(List<Object> objects){
+    	List<UserBriefVO> userBriefVOs = new ArrayList<UserBriefVO>();
+    	for (Object object : objects) {
+			userBriefVOs.add(creator.getUserBriefPO(object.toString()));
+		}
+    	return userBriefVOs;
+    }
+    
     @Override
     public List<UserBriefVO> getRepoContributor(String owner, String repoName) {
-        return null;
+    	List<Object> objects = creator.getContributors(owner, repoName);
+        return convertObjectToUserBreif(objects);
     }
 
     @Override
     public List<UserBriefVO> getRepoCollaborator(String owner, String repoName) {
-        return null;
+    	List<Object> objects = creator.getCollaborators(owner, repoName);
+        return convertObjectToUserBreif(objects);
     }
 
     @Override
     public List<BranchVO> getRepoBranch(String owner, String repoName) {
-        return null;
+        List<Object> objects = creator.getBranches(owner, repoName);
+        List<BranchVO> branchVOs = new ArrayList<BranchVO>();
+        for (Object object : objects) {
+			branchVOs.add(creator.getBranchPO(owner, repoName, object.toString()));
+		}
+    	return branchVOs;
     }
 
     @Override
     public List<RepoBriefVO> getRepoFork(String owner, String repoName) {
-        return null;
+        List<Object> objects = creator.getForks(owner, repoName);
+        List<RepoBriefVO> repoBriefVOs = new ArrayList<RepoBriefVO>();
+        for (Object object : objects) {
+			repoBriefVOs.add(creator.getRepoBriefPO(object.toString()) );
+		}
+    	return repoBriefVOs;
     }
 
     @Override
     public List<CommitVO> getRepoCommit(String owner, String repoName) {
-        return null;
+        List<Object> objects = creator.getCommits(owner, repoName);
+        List<CommitVO> commitVOs = new ArrayList<CommitVO>();
+        for (Object object : objects) {
+			commitVOs.add(creator.getCommitPO(owner, repoName, object.toString()));
+		}
+    	return commitVOs;
     }
 
     @Override
     public List<IssueVO> getRepoIssue(String owner, String repoName) {
-        return null;
+        List<Object> objects = creator.getIssues(owner, repoName);
+        List<IssueVO> issueVOs = new ArrayList<IssueVO>();
+        for (Object object : objects) {
+			issueVOs.add(creator.getIssue(owner, repoName, object.toString()));
+		}
+    	return issueVOs;
     }
 }
