@@ -3,7 +3,8 @@ package org.GitIntegration.unit.api;
 import java.util.List;
 
 import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.data.api.LocalReader;
+import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.data.impl.LocalReader;
 import junit.framework.TestCase;
 
 public class LocalReaderTest extends TestCase {
@@ -23,6 +24,13 @@ public class LocalReaderTest extends TestCase {
 			System.out.println(repoBriefPO.getNum_forks());
 		}
 		assertEquals(list.size(), 3216);
+		
+		List<UserBriefPO> users = reader.readUsers();
+		for (UserBriefPO userBriefPO : users) {
+			System.out.println(userBriefPO.getLogin());
+		}
+		System.out.println(users.size());
+		assertEquals(2404, users.size());
 	}
 
 }

@@ -66,7 +66,7 @@ public class RepoDataImpl implements RepoDataService {
      * <p>todo
      */
     private void loadRepoIndex() {
-
+    	List<RepoBriefPO> origin = new LocalReader().readRepos();
     }
 
     /**

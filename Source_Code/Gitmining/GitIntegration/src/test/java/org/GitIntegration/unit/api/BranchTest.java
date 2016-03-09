@@ -5,6 +5,7 @@ import java.util.List;
 import edu.nju.git.VO.BranchVO;
 import edu.nju.git.data.api.decentralization.BranchItemreader;
 import edu.nju.git.data.api.liststring.BranchesListReader;
+import edu.nju.git.data.factory.impl.ListCreator;
 import edu.nju.git.data.factory.impl.POfactory.BranchPOfactory;
 import junit.framework.TestCase;
 
@@ -30,4 +31,14 @@ public class BranchTest extends TestCase {
 		
 	}
 
+	public void test2(){
+		ListCreator creator = new ListCreator();
+		List<BranchVO> branchVOs = creator.getBranches("vrpn", "vrpn");
+		for (BranchVO branchVO : branchVOs) {
+			System.out.println(branchVO.getSHA());
+			System.out.println(branchVO.getId());
+			System.out.println(branchVO.getName());
+		}
+		System.out.println(branchVOs.size());
+	}
 }

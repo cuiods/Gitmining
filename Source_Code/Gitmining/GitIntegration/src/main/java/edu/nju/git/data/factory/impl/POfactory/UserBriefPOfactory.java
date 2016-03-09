@@ -1,9 +1,10 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
+import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class UserBriefPOfactory implements POfactory<UserBriefVO> {
+public class UserBriefPOfactory implements POfactory<UserBriefPO> {
 
 	private AbstractFieldsGetter itemHelper;
 	public UserBriefPOfactory() {
@@ -28,8 +29,8 @@ public class UserBriefPOfactory implements POfactory<UserBriefVO> {
      * <br/> login is loginname, name is full personal name
 	 */
 	@Override
-	public UserBriefVO getPO() {
-		UserBriefVO userBriefPO = new UserBriefVO();
+	public UserBriefPO getPO() {
+		UserBriefPO userBriefPO = new UserBriefPO();
 //		userBriefPO.setFollowingNum((Integer)map.get("following"));
 //		userBriefPO.setFollowNum((Integer)map.get("followers"));
 //		userBriefPO.setId((Integer)map.get("id"));

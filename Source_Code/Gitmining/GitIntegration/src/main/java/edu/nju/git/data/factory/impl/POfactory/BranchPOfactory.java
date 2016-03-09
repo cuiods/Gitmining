@@ -19,7 +19,7 @@ public class BranchPOfactory implements POfactory<BranchVO>{
 		BranchVO branch = new BranchVO();
 		branch.setId(itemHelper.getString("name"));
 		branch.setName(itemHelper.getString("fn"));
-		branch.setSHA(itemHelper.getString("commit"));
+		branch.setSHA(itemHelper.getString("sha"));
 		return branch;
 	}
 

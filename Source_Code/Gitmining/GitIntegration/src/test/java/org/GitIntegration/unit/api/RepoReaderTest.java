@@ -1,6 +1,6 @@
 package org.GitIntegration.unit.api;
 
-import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.data.api.centralization.RepoMapReader;
 import edu.nju.git.data.api.decentralization.RepoItemReader;
 import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
@@ -21,8 +21,8 @@ public class RepoReaderTest extends TestCase{
 		String repo = "vrpn";
 		RepoBriefPOfactory repoBriefPOfactory = new RepoBriefPOfactory(new RepoMapReader(owner, repo));
 		RepoBriefPOfactory repoBriefPOfactory2 = new RepoBriefPOfactory(new RepoItemReader(owner, repo));
-		RepoBriefVO po1 = repoBriefPOfactory.getPO();
-		RepoBriefVO po2 = repoBriefPOfactory2.getPO(); 
+		RepoBriefPO po1 = repoBriefPOfactory.getPO();
+		RepoBriefPO po2 = repoBriefPOfactory2.getPO(); 
 		assertEquals(po1.getDescription(),po2.getDescription());
 		assertEquals(po1.getNum_subscribers(),po2.getNum_subscribers());
 	}

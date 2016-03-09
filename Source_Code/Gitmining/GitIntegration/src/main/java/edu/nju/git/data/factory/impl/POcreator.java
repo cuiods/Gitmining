@@ -31,6 +31,7 @@ import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
 import edu.nju.git.data.factory.impl.POfactory.RepoPOfactory;
 import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
 import edu.nju.git.data.factory.impl.POfactory.UserPOfactory;
+import edu.nju.git.tools.POVOConverter;
 
 /**
  * the encapsulated class to creat po/vo object.
@@ -71,7 +72,7 @@ public class POcreator {
 		AbstractFieldsGetter getter = new UserMapReader(name);
 //		AbstractFieldsGetter getter = new UserItemReader(name);
 		UserBriefPOfactory pofactory = new UserBriefPOfactory(getter);
-		return pofactory.getPO();
+		return POVOConverter.convert(pofactory.getPO());
 	}
 	
 	
@@ -79,7 +80,7 @@ public class POcreator {
 		AbstractFieldsGetter getter = new RepoMapReader(fullname);
 //		AbstractFieldsGetter getter = new RepoItemReader(fullname);
 		RepoBriefPOfactory pOfactory = new RepoBriefPOfactory(getter);
-		return pOfactory.getPO();
+		return POVOConverter.convert( pOfactory.getPO() );
 		
 	}
 	

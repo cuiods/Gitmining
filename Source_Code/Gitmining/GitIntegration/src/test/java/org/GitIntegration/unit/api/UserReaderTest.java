@@ -1,6 +1,6 @@
 package org.GitIntegration.unit.api;
 
-import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.data.api.centralization.UserMapReader;
 import edu.nju.git.data.api.decentralization.UserItemReader;
 import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
@@ -23,7 +23,7 @@ public class UserReaderTest extends TestCase {
 	{
 		reader = new UserBriefPOfactory(new UserMapReader("huerlisi"));
 		
-		UserBriefVO po = reader.getPO();
+		UserBriefPO po = reader.getPO();
 		assertTrue(po!=null);
 		int foller = po.getFollowers();
 		assertEquals(foller, 47);
@@ -37,7 +37,7 @@ public class UserReaderTest extends TestCase {
 	
 	public void test2(){
 		reader2 = new UserBriefPOfactory(new UserItemReader("huerlisi"));
-		UserBriefVO po = reader2.getPO();
+		UserBriefPO po = reader2.getPO();
 		assertTrue(po!=null);
 		assertEquals(47, po.getFollowers());
 		assertEquals("huerlisi", po.getLogin());

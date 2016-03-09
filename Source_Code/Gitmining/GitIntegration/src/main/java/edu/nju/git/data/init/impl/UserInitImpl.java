@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.data.api.centralization.UserMapReader;
 import edu.nju.git.data.api.liststring.RepositoriesListReader;
 import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
@@ -14,7 +14,7 @@ import edu.nju.git.data.init.service.UserInitService;
 public class UserInitImpl implements UserInitService {
 
 	private RepositoriesListReader repositoriesReader;
-	private List<UserBriefVO> pos ;
+	private List<UserBriefPO> pos ;
 	
 	public UserInitImpl(RepositoriesListReader reader) {
 		this.repositoriesReader = 
@@ -27,7 +27,7 @@ public class UserInitImpl implements UserInitService {
 		List<Object> repos = repositoriesReader.getNames();
 		//2. get details information,one by one
 		
-		pos = new ArrayList<UserBriefVO>();
+		pos = new ArrayList<UserBriefPO>();
 		
 		Set<String> stringSet = new HashSet<String>();
 		
@@ -40,7 +40,7 @@ public class UserInitImpl implements UserInitService {
 			{
 				stringSet.add(tempString);
 				getter.setName(tempString);
-				UserBriefVO po = userBriefPOfactory.getPO();
+				UserBriefPO po = userBriefPOfactory.getPO();
 				if(po!=null){
 					pos.add(po);
 				}
