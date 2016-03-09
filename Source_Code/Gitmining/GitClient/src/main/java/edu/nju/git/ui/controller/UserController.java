@@ -11,6 +11,7 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.impl.UserBlImpl;
 import edu.nju.git.bl.service.UserBlService;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 /*
@@ -30,7 +31,12 @@ public class UserController {
 		ArrayList<UserBriefVO> users = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> userList = null;
 		if((page == 1)&&(!keyword.equals(""))){
-			userList = userBl.getSearchResult(keyword);
+			try {
+				userList = userBl.getSearchResult(keyword);
+			} catch (NoSearchResultException e) {
+				// exception to deal with
+				e.printStackTrace();
+			}
 		}else{
 			try {
 				userList = userBl.jumpToPage(page);

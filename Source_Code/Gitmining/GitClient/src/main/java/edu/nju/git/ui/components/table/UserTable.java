@@ -41,11 +41,11 @@ public class UserTable extends MyTable {
 	
 	public MyTableLabel createLabel(UserBriefVO user){
 		MyTextField login = new MyTextField(user.getLogin());
-		login.setSize(180,30);
+		login.setSize(160,30);
 		MyTextField followers = new MyTextField(""+user.getFollowers());
-		followers.setSize(180,30);
+		followers.setSize(160,30);
 		MyTextField publicRepos = new MyTextField(""+user.getPublic_repos());
-		publicRepos.setSize(180,30);
+		publicRepos.setSize(160,30);
 		java.awt.Component[] components = {login,followers,publicRepos};
 		MyTableLabel label = new MyTableLabel(element, controller, 35, components, this);
 		return label;

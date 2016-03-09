@@ -10,14 +10,14 @@
 		</mainPanel>
 		<mainPanel name = "ReposPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
-			<unit name ="reposlist" class = "table.ReposTable" x="53" y="255" w="970" h="350" type="0" dataType="RepoBriefVO"/>
-			<unit name ="sort_REPOS_name" class = "MainButton" x="80" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
-			<unit name ="sort_REPOS_star" class = "MainButton" x="240" y="220" w="250" h="35" type ="1" listenerName="ButtonSortListener"/>
-			<unit name ="sort_REPOS_fork" class = "MainButton" x="490" y="220" w="150" h="35" type ="1" listenerName="ButtonSortListener"/>
-			<unit name ="sort_REPOS_subscr" class = "MainButton" x="640" y="220" w="100" h="35" type ="1" listenerName="ButtonSortListener"/>
-			<unit name ="sort_REPOS_update" class = "MainButton" x="740" y="220" w="100" h="35" type ="1" listenerName="ButtonSortListener"/>
-         		<unit name ="head_repos_owner" class = "MainButton" x="800" y="220" w="100" h="35" type = "0"/>
-			<unit name ="head_repos_discrip" class = "MainButton" x="840" y="220" w="150" h="35" type ="0"/>
+			<unit name ="reposlist" class = "table.ReposTable" x="50" y="255" w="970" h="350" type="0" dataType="RepoBriefVO"/>
+			<unit name ="sort_REPOS_name" class = "MainButton" x="50" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_star" class = "MainButton" x="210" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_fork" class = "MainButton" x="300" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_subscr" class = "MainButton" x="390" y="220" w="100" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_update" class = "MainButton" x="490" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+         		<unit name ="head_REPOS_owner" class = "MainButton" x="650" y="220" w="150" h="35" type = "0"/>
+			<unit name ="head_REPOS_descrip" class = "MainButton" x="800" y="220" w="220" h="35" type ="0"/>
 
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>
@@ -29,10 +29,10 @@
 		</mainPanel>
 		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
-			<unit name = "userList" class = "table.UserTable" x="260" y="255" w="540" h="350" type ="0"/>
-			<unit name ="sort_USER_name" class = "MainButton" x="250" y="220" w="150" h="35" type ="0"/>
-			<unit name ="sort_USER_follower" class = "MainButton" x="400" y="220" w="150" h="35" type ="0"/>
-			<unit name ="sort_USER_repo" class = "MainButton" x="550" y="220" w="150" h="35" type ="0"/>
+			<unit name = "userList" class = "table.UserTable" x="280" y="255" w="480" h="350" type ="0"/>
+			<unit name ="sort_USER_name" class = "MainButton" x="280" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_USER_follower" class = "MainButton" x="440" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_USER_repo" class = "MainButton" x="600" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 
 			<unit name ="exit" class = "MainButton" x="1010" y="0" w="70" h="70" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="960" y="0" w="70" h="70" type = "1" listenerName = "ButtonMinListener"/>

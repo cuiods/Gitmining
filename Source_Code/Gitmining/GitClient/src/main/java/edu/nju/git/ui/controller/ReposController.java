@@ -12,6 +12,7 @@ import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.bl.impl.RepoBlImpl;
 import edu.nju.git.bl.service.RepoBlService;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
@@ -36,7 +37,12 @@ public class ReposController {
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> repolist =null;
 		if ((page == 1)&&!(keyword.equals(""))){
-			repolist = repoBl.getSearchResult(keyword);
+			try {
+				repolist = repoBl.getSearchResult(keyword);
+			} catch (NoSearchResultException e) {
+				// exception to deal with
+				e.printStackTrace();
+			}
 		}else{
 			try {
 				repolist = repoBl.jumpToPage(page);
@@ -109,8 +115,12 @@ public class ReposController {
 	 */
 	public ArrayList<UserBriefVO> getSubscriber(String owner,String repoName){
 		ArrayList<UserBriefVO> subscribers = new ArrayList<UserBriefVO>();
+		List<UserBriefVO> subList = repoBl.getRepoContributor(owner, repoName);
+		for(Iterator<UserBriefVO> it = subList.listIterator();it.hasNext();){
+			subscribers.add(it.next());
+		}
 		
-		return null;
+		return subscribers;
 	}
 	/*
 	 * get the brief information of the laudator of repo
