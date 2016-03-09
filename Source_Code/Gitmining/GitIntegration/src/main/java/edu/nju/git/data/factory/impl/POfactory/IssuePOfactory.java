@@ -1,17 +1,20 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.PO.IssuePO;
-import edu.nju.git.data.factory.impl.itemPO.ItemIssuePOfactory;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class IssuePOfactory implements POfactory<IssuePO> {
 
-	private AbstractPOfactory itemHelper;
+	private AbstractFieldsGetter itemHelper;
 	private String sha;
-	public IssuePOfactory(String owner,String name,String id) {
-		this.sha =id;
-		itemHelper = new ItemIssuePOfactory(owner, name, id);
+	
+
+	public IssuePOfactory(AbstractFieldsGetter itemHelper, String sha) {
+		super();
+		this.itemHelper = itemHelper;
+		this.sha = sha;
 	}
+
 
 	/**
 	 *  <p>http://www.gitmining.net/api/repository/{owner}/{reponame}/issue/{number}/item/{item}

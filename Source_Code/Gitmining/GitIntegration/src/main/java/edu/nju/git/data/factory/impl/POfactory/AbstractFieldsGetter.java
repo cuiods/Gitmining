@@ -1,6 +1,6 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
-public abstract class AbstractPOfactory{
+public abstract class AbstractFieldsGetter{
 
 	protected abstract int getInteger(String string);
 	

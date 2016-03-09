@@ -1,15 +1,6 @@
 package edu.nju.git.data.api.centralization;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import edu.nju.git.data.api.JacksonConfig;
-import edu.nju.git.data.api.service.MapService;
+import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
 
 /**
  * read detail repository information by owner/repo_name pair
@@ -17,64 +8,38 @@ import edu.nju.git.data.api.service.MapService;
  * @author daixinyan
  * @date 2016-03-06
  */
-public class RepoMapReader implements MapService{
+public class RepoMapReader extends AbstractMapGetter {
 
-	
-	
-	@SuppressWarnings("unchecked")
-	public Map<String, Object> getMap()
-	{
-		try{
-			URL url = new URL(url_location+ owner +"/"+repo);
-			return JacksonConfig.getObjectMapper().readValue(url.openStream(), Map.class);
-		}catch(MalformedURLException e){
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	@Override
+	protected String getUrl() {
+		return url_location+ fullname;
 	}
 	
-	private final String url_location = "http://www.gitmining.net/api/repository/";
-	private String owner;
-	private String repo;
 	
+	private final String url_location = "http://www.gitmining.net/api/repository/";
+	
+	private String fullname ;
 	public RepoMapReader(){}
 	
 	public RepoMapReader(String owner, String repo) {
 		super();
-		this.owner = owner;
-		this.repo = repo;
+		this.set(owner, repo);
 	}
 
-
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void set(String owner, String repo) {
+		this.fullname = owner +"/"+repo;
+		this.init();
+	}
+	public RepoMapReader(String fullname) {
+		super();
+		this.set(fullname);
 	}
 
-
-	public void setRepo(String repo) {
-		this.repo = repo;
-	}
-
-    /**
-     * <br/><b>precondition</b>：str's formatter must be right
-     * <br/><b>postcondition</b>：set fields of ReoReader
-     * @param str must be like that "{owner}/{repository}" 
-     * @date 2016-03-06
-     */
-	public void setNames(String str)
-	{
-		String[] names = str.split("/");
-		owner = names[0];
-		repo = names[1];
+	public void set(String fullname) {
+		this.fullname = fullname;
+		this.init();
 	}
 	
 
+	
 }

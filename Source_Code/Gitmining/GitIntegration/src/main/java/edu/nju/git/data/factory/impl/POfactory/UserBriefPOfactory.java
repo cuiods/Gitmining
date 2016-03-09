@@ -5,13 +5,20 @@ import edu.nju.git.data.factory.service.POfactory;
 
 public class UserBriefPOfactory implements POfactory<UserBriefPO> {
 
-	private AbstractPOfactory itemHelper;
+	private AbstractFieldsGetter itemHelper;
 	public UserBriefPOfactory() {
 	}
-	public UserBriefPOfactory(String name) {
-	}
-	public void setName(String name){  }
 	
+	public UserBriefPOfactory(AbstractFieldsGetter itemHelper) {
+		super();
+		this.itemHelper = itemHelper;
+	}
+	
+	
+	public void setItemHelper(AbstractFieldsGetter itemHelper) {
+		this.itemHelper = itemHelper;
+	}
+
 	/**
 	 * <b>config</b>
      * <br/>id,login,type,name

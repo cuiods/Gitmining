@@ -6,9 +6,9 @@ import edu.nju.git.type.OwnerType;
 
 public class UserPOfactory implements POfactory<UserPO> {
 
-	private AbstractPOfactory itemHelper;
-	public UserPOfactory() {
-		// TODO Auto-generated constructor stub
+	private AbstractFieldsGetter itemHelper;
+	public UserPOfactory(AbstractFieldsGetter getter) {
+		this.itemHelper = getter;
 	}
 
 	/**

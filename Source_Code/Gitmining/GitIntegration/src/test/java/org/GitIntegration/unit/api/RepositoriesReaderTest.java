@@ -2,7 +2,7 @@ package org.GitIntegration.unit.api;
 
 import java.util.List;
 
-import edu.nju.git.data.api.RepositoriesReader;
+import edu.nju.git.data.api.liststring.RepositoriesListReader;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -17,7 +17,7 @@ public class RepositoriesReaderTest extends TestCase {
 	}
 
 	public void testFullNames() {
-		RepositoriesReader reader = new RepositoriesReader();
+		RepositoriesListReader reader = new RepositoriesListReader();
 		List<String> list = reader.getNames();
 		for (String string : list) {
 			System.out.println(string);

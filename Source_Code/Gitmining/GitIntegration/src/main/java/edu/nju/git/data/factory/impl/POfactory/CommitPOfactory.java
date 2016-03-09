@@ -5,10 +5,17 @@ import edu.nju.git.data.factory.service.POfactory;
 
 public class CommitPOfactory implements POfactory<CommitPO> {
 
-	private AbstractPOfactory itemHelper;
+	private AbstractFieldsGetter itemHelper;
 	public CommitPOfactory() {
-		// TODO Auto-generated constructor stub
 	}
+	public CommitPOfactory(AbstractFieldsGetter itemHelper) {
+		super();
+		this.itemHelper = itemHelper;
+	}
+    public void setFiledsGetter(AbstractFieldsGetter itemHelper) {
+		this.itemHelper = itemHelper;
+    }
+
 
 	@Override
 	public CommitPO getPO() {

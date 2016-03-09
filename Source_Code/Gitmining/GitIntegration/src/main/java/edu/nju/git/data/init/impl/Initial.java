@@ -1,11 +1,11 @@
 package edu.nju.git.data.init.impl;
 
-import edu.nju.git.data.api.RepositoriesReader;
+import edu.nju.git.data.api.liststring.RepositoriesListReader;
 import edu.nju.git.data.init.service.InitialService;
 
 public class Initial implements InitialService {
 
-	private RepositoriesReader repositoriesReader;
+	private RepositoriesListReader repositoriesReader;
 	
 	public Initial() {
 		
@@ -13,7 +13,7 @@ public class Initial implements InitialService {
 
 	@Override
 	public void excute() {
-		repositoriesReader = new RepositoriesReader();
+		repositoriesReader = new RepositoriesListReader();
 		//new RepoInitInpl(repositoriesReader).init();
 		new UserInitImpl(repositoriesReader).init();
 	}

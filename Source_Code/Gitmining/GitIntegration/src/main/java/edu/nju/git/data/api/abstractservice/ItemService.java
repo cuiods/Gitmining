@@ -1,4 +1,4 @@
-package edu.nju.git.data.api.service;
+package edu.nju.git.data.api.abstractservice;
 
 public interface ItemService {
 

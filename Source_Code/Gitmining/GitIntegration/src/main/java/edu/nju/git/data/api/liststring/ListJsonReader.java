@@ -1,4 +1,4 @@
-package edu.nju.git.data.api;
+package edu.nju.git.data.api.liststring;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,26 +8,17 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-/**
- * unit testing pass
- * get all repositories full name.
- * @author daixinyan
- * @date 2016-03-06
- */
-public class RepositoriesReader {
 
-	private final String url_location = "http://www.gitmining.net/api/repository/names";
-	/**
-	 * full name of repositories 
-	 */
+import edu.nju.git.data.api.JacksonConfig;
+
+public class ListJsonReader {
+
 	private List<String> names;
-	
 	/**
 	 * generate list<String> in initial function
 	 */
 	@SuppressWarnings("unchecked")
-	public RepositoriesReader()
-	{
+	public ListJsonReader(String url_location) {
 		try {
 			URL url = new URL(url_location);
 			List<String> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
@@ -44,9 +35,8 @@ public class RepositoriesReader {
 		}
 		names =  new ArrayList<String>();
 	}
-	
+
 	public List<String> getNames(){
 		return this.names;
 	}
-
 }

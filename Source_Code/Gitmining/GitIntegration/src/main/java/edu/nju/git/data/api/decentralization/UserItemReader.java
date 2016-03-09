@@ -1,9 +1,10 @@
 package edu.nju.git.data.api.decentralization;
 
 import edu.nju.git.data.api.URLreader;
-import edu.nju.git.data.api.service.ItemService;
+import edu.nju.git.data.api.abstractservice.AbstractItemGetter;
+import edu.nju.git.data.api.abstractservice.ItemService;
 
-public class UserItemReader implements ItemService{
+public class UserItemReader extends AbstractItemGetter implements ItemService{
 
 	private String name;
 	public UserItemReader(String name) {

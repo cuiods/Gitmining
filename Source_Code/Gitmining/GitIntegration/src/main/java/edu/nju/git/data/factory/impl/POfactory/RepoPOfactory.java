@@ -1,17 +1,18 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.PO.RepoPO;
-import edu.nju.git.data.factory.impl.MapPO.MapRepoPOfactory;
-import edu.nju.git.data.factory.impl.itemPO.ItemRepoPOfactory;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class RepoPOfactory implements POfactory<RepoPO> {
 
-	private AbstractPOfactory itemHelper;
-	public RepoPOfactory(String owner,String name) {
-		itemHelper = new MapRepoPOfactory(owner,name);
-		itemHelper = new ItemRepoPOfactory(owner,name);
+	private AbstractFieldsGetter itemHelper;
+	
+
+	public RepoPOfactory(AbstractFieldsGetter itemHelper) {
+		super();
+		this.itemHelper = itemHelper;
 	}
+
 
 	/**
 	 * <p/>http://www.gitmining.net/api/api/repository/{owner}/{reponame}/item/{item}

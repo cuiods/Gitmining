@@ -1,15 +1,6 @@
 package edu.nju.git.data.api.centralization;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-import edu.nju.git.data.api.JacksonConfig;
-import edu.nju.git.data.api.service.MapService;
+import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
 /**
  * firstly,please set name's value
  * reader userPO or UserBriefPO from a hashmap 
@@ -17,8 +8,13 @@ import edu.nju.git.data.api.service.MapService;
  * @author daixinyan
  * @date 2016-03-07
  */
-public class UserMapReader implements MapService{
+public class UserMapReader extends AbstractMapGetter{
 
+	
+	@Override
+	protected String getUrl() {
+		return url_location+name;
+	}
 	/**
 	 * user's login name
 	 */
@@ -26,35 +22,16 @@ public class UserMapReader implements MapService{
 	private final String url_location = "http://www.gitmining.net/api/user/";
 	
 	
-	@SuppressWarnings("unchecked")
-	public Map<String, Object> getMap() 
-	{
-		try{
-			URL url = new URL(url_location+name);
-			return JacksonConfig.getObjectMapper().readValue(url.openStream(), Map.class);
-		}catch(MalformedURLException e){
-			e.printStackTrace();
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 	
-	public UserMapReader() {
-	}
-	
+	public UserMapReader(){}
 	public UserMapReader(String name) {
-		this.name = name;
+		this.setName(name);
 	}
-	
 	public void setName(String name) {
 		this.name = name;
+		this.init();
 	}
 
+
+	
 }

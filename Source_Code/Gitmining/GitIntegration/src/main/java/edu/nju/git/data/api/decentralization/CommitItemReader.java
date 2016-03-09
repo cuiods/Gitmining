@@ -1,9 +1,10 @@
 package edu.nju.git.data.api.decentralization;
 
 import edu.nju.git.data.api.URLreader;
-import edu.nju.git.data.api.service.ItemService;
+import edu.nju.git.data.api.abstractservice.AbstractItemGetter;
+import edu.nju.git.data.api.abstractservice.ItemService;
 
-public class CommitItemReader implements ItemService{
+public class CommitItemReader extends AbstractItemGetter implements ItemService{
 
 	public CommitItemReader() {
 		// TODO Auto-generated constructor stub
