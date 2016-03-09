@@ -46,6 +46,7 @@ public class TextLabel extends JLabel {
 		}else{
 			pageNum =""+controller.getReposController().getCurrentPage();
 		}
+		text.setText(pageNum);
 		text.setHorizontalAlignment(JTextField.CENTER);
 		text.setFont(new Font("微软雅黑",Font.PLAIN,16));
 		text.setBounds(0, 0, w, h);

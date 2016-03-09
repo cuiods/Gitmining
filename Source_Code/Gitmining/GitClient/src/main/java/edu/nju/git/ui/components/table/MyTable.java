@@ -66,11 +66,15 @@ public abstract class MyTable extends MyScrollPane<MyTableLabel> implements Mous
 		int height = 0;
 		for (int i = 0; i < data.size(); i++) {
 			MyTableLabel label = data.get(i);
+//			MyTableLabel.pathBit =0;
 			width = label.getWidth();
 			height = label.getHeight();
 			label.setBounds(0, i * height, width, height);
-			if (i % 2 != 0)
-				label.changeGrey();
+			if (i % 2 != 0){
+//				MyTableLabel.pathBit = 1;
+				label.setPicPath("src/main/resources/pictures/grey.png");
+				label.repaint();
+			}
 			data.set(i, label);
 			list.add(label);
 		}

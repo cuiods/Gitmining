@@ -35,25 +35,43 @@ public class ReposController {
 	 */
 	public ArrayList<RepoBriefVO> getRepos(int page,String keyword){
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
-		List<RepoBriefVO> repolist =null;
-		if ((page == 1)&&!(keyword.equals(""))){
-			try {
-				repolist = repoBl.getSearchResult(keyword);
-			} catch (NoSearchResultException e) {
-				// exception to deal with
-				e.printStackTrace();
-			}
-		}else{
-			try {
-				repolist = repoBl.jumpToPage(page);
-			} catch (PageOutOfBoundException e1) {
-				// exception to deal with
-				e1.printStackTrace();
-			}
-		}
-		for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
-			repoArray.add(it.next());
-		}
+//		List<RepoBriefVO> repolist =null;
+//		if ((page == 1)&&!(keyword.equals(""))){
+//			try {
+//				repolist = repoBl.getSearchResult(keyword);
+//			} catch (NoSearchResultException e) {
+//				// exception to deal with
+//				e.printStackTrace();
+//			}
+//		}else{
+//			try {
+//				repolist = repoBl.jumpToPage(page);
+//			} catch (PageOutOfBoundException e1) {
+//				// exception to deal with
+//				e1.printStackTrace();
+//			}
+//		}
+//		for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
+//			repoArray.add(it.next());
+//		}
+//		RepoBriefVO vo = new RepoBriefVO();
+//		vo.setOwner("aaa");
+//		vo.setName("gitming");
+//		vo.setDescription("a very good project");
+//		vo.setNum_stars(10000);
+//		vo.setNum_forks(100);
+//		vo.setNum_subscribers(8000);
+//		vo.setLastUpdate("2016-0-09");
+//		repoArray.add(vo);
+//		RepoBriefVO vo1 = new RepoBriefVO();
+//		vo1.setOwner("hhh");
+//		vo1.setName("gitming");
+//		vo1.setDescription("a very good project");
+//		vo1.setNum_stars(10000);
+//		vo1.setNum_forks(100);
+//		vo1.setNum_subscribers(8000);
+//		vo1.setLastUpdate("2016-0-09");
+//		repoArray.add(vo1);
 		
 		return repoArray;
 	}
@@ -145,6 +163,7 @@ public class ReposController {
 	public int getCurrentPage(){
 		int num = repoBl.getCurrentPage();
 		return num;
+//		return 5;
 	}
 	/*
 	 * get total page

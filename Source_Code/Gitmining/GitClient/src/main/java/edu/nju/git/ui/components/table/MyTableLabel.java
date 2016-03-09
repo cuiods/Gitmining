@@ -75,6 +75,7 @@ public class MyTableLabel extends JLabel  {
 	/*
 	 * 
 	 */
+//	public static int pathBit=0;
 	protected Element element;
 
 	/**
@@ -99,7 +100,8 @@ public class MyTableLabel extends JLabel  {
 		this.element = element;
 		setPreferredSize(new Dimension(width, height));
 		initializeComponents();
-		if(element.attributeValue("class").equals("table.ListTable"))
+		requestFocus();
+//		if(element.attributeValue("class").equals("table.ListTable"))
 		this.addMouseListener(new LabelListener(this,controller));
 	}
 
@@ -119,11 +121,13 @@ public class MyTableLabel extends JLabel  {
 		 * add data components
 		 */
 		int before = checkWidth;
+		before = 0;
 		for (int i = 0; i < components.length; i++) {
 			java.awt.Component component = components[i];
 			component.setFont(new Font("微软雅黑",Font.PLAIN,15));
 			component.setBounds(before, (height-component.getHeight())/2, component.getWidth() , component.getHeight());
-			before+=component.getWidth()+10;
+//			before+=component.getWidth()+10;
+			before+= component.getWidth();
 			add(component);
 		}
 		/**
@@ -183,11 +187,11 @@ public class MyTableLabel extends JLabel  {
 	}
 
 	public void changeGrey() {
-		picPath = "src/main/resources/pictures/grey.png";
+		this.picPath = "src/main/resources/pictures/grey.png";
 	}
 
 	public void changeWhite() {
-		picPath = "src/main/resources/pictures/white.png";
+		this.picPath = "src/main/resources/pictures/white.png";
 	}
 	
 	public String getPicPath(){

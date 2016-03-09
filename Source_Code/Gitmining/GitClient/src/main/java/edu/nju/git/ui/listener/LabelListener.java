@@ -58,6 +58,10 @@ public class LabelListener implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+//		if(MyTableLabel.pathBit==1)
+//			label.setPicPath("src/main/resources/pictures/grey.png");
+//		else
+//			label.setPicPath("src/main/resources/pictures/white.png");
 		label.setPicPath(picPath);
 		label.repaint();
 		

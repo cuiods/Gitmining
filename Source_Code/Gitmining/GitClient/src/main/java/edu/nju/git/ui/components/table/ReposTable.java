@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.dom4j.Element;
 
 import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.ui.components.InfoLabel;
 import edu.nju.git.ui.components.MyTextField;
 import edu.nju.git.ui.controller.ReposController;
 import edu.nju.git.ui.controller.UIController;
@@ -40,21 +41,22 @@ public class ReposTable extends MyTable {
 	}
 	
 	public MyTableLabel createLabel(RepoBriefVO repo){
-		MyTextField reposName = new MyTextField(repo.getName());
+		InfoLabel reposName = new InfoLabel(repo.getName());
 		reposName.setSize(160,30);
-		MyTextField descrip = new MyTextField(repo.getDescription());
-		descrip.setSize(220,30);
-		MyTextField owner = new MyTextField(repo.getOwner());
-		owner.setSize(150,30);
-		MyTextField update = new MyTextField(repo.getLastUpdate());
-		update.setSize(160,30);
-		MyTextField starNum = new MyTextField(""+repo.getNum_stars());
+//		reposName.setOpaque(true);
+		InfoLabel starNum = new InfoLabel(""+repo.getNum_stars());
 		starNum.setSize(90,30);
-		MyTextField forkNum = new MyTextField(""+repo.getNum_forks());
+		InfoLabel forkNum = new InfoLabel(""+repo.getNum_forks());
 		forkNum.setSize(90,30);
-		MyTextField subscribeNum = new MyTextField(""+repo.getNum_subscribers());
+		InfoLabel subscribeNum = new InfoLabel(""+repo.getNum_subscribers());
 		subscribeNum.setSize(100,30);
-		java.awt.Component components[] = {reposName,descrip,update,starNum,forkNum,subscribeNum};
+		InfoLabel update = new InfoLabel(repo.getLastUpdate());
+		update.setSize(160,30);
+		InfoLabel owner = new InfoLabel(repo.getOwner());
+		owner.setSize(150,30);
+		InfoLabel descrip = new InfoLabel(repo.getDescription());
+		descrip.setSize(220,30);
+		java.awt.Component components[] = {reposName,starNum,forkNum,subscribeNum,update,owner,descrip};
 		MyTableLabel label = new MyTableLabel(element,controller,35,components,this);
 		return label;
 	}
