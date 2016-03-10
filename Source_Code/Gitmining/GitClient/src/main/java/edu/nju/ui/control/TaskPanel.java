@@ -7,9 +7,7 @@ import java.util.Stack;
 import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,46 +33,25 @@ public class TaskPanel extends GitPanel{
 	@FXML ImageView img_home;
 	@FXML ImageView img_user;
 	@FXML ImageView img_repo;
+	@FXML ImageView img_back;
+	@FXML ImageView img_forward;
 	private Stack<ScreenShot> functions = new Stack<>();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		img_home.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				img_home.setImage(getNewImage("home_main_1"));
-			}
-		});
-		img_home.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				img_home.setImage(getNewImage("home_main"));
-			}
-		});
-		img_user.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				img_user.setImage(getNewImage("user_main_1"));
-			}
-		});
-		img_user.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				img_user.setImage(getNewImage("user_main"));
-			}
-		});
-		img_repo.setOnMouseEntered(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				img_repo.setImage(getNewImage("repository_main_1"));
-			}
-		});
-		img_repo.setOnMouseExited(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				img_repo.setImage(getNewImage("repository_main"));
-			}
-		});
+		img_home.setOnMouseEntered(new ChangePictureHandler<MouseEvent>("home_main_1", img_home));
+		img_home.setOnMouseExited(new ChangePictureHandler<>("home_main", img_home));
+		img_home.setOnMousePressed(new ChangePictureHandler<>("home_main_2", img_home));
+		img_user.setOnMouseEntered(new ChangePictureHandler<>("user_main_1", img_user));
+		img_user.setOnMouseExited(new ChangePictureHandler<>("user_main", img_user));
+		img_user.setOnMousePressed(new ChangePictureHandler<>("user_main_2", img_user));
+		img_repo.setOnMouseEntered(new ChangePictureHandler<>("repository_main_1", img_repo));
+		img_repo.setOnMouseExited(new ChangePictureHandler<>("repository_main", img_repo));
+		img_repo.setOnMousePressed(new ChangePictureHandler<>("repository_main_2", img_repo));
+		img_back.setOnMouseEntered(new ChangePictureHandler<>("back_1", img_back));
+		img_back.setOnMouseExited(new ChangePictureHandler<>("back", img_back));
+		img_forward.setOnMouseEntered(new ChangePictureHandler<>("front_1", img_forward));
+		img_forward.setOnMouseExited(new ChangePictureHandler<>("front", img_forward));
 	}
 
 	@Override

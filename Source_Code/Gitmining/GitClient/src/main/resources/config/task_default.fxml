@@ -7,19 +7,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="670.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
+<BorderPane prefHeight="690.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
    <left>
       <Group>
          <children>
-            <ImageView fitHeight="670.0" fitWidth="100.0" pickOnBounds="true">
+            <ImageView fitHeight="690.0" fitWidth="100.0" pickOnBounds="true">
                <image>
                   <Image url="@../pictures/leftbar.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="670.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="690.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="img_home" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,4 +38,47 @@
          </children>
       </Group>
    </left>
+   <center>
+      <BorderPane prefHeight="690.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+         <top>
+            <BorderPane prefHeight="50.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+               <left>
+                  <HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fx:id="img_back" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../pictures/topbar/back.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="img_forward" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../pictures/topbar/front.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </left>
+               <right>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../pictures/topbar/set.png" />
+                     </image>
+                  </ImageView>
+               </right>
+               <center>
+                  <Group>
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="830.0" pickOnBounds="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../pictures/topbar/middle.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="50.0" prefWidth="830.0" text="        您现在的位置：" textFill="#f8f7f7" />
+                     </children>
+                  </Group>
+               </center>
+            </BorderPane>
+         </top>
+      </BorderPane>
+   </center>
 </BorderPane>
