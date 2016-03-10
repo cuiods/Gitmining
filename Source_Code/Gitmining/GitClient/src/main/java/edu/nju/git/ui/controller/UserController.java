@@ -31,12 +31,7 @@ public class UserController {
 		ArrayList<UserBriefVO> users = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> userList = null;
 		if((page == 1)&&(!keyword.equals(""))){
-			try {
-				userList = userBl.getSearchResult(keyword);
-			} catch (NoSearchResultException e) {
-				// exception to deal with
-				e.printStackTrace();
-			}
+			userList = userBl.getSearchResult(keyword);
 		}else{
 			try {
 				userList = userBl.jumpToPage(page);

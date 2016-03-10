@@ -37,12 +37,7 @@ public class ReposController {
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> repolist =null;
 		if ((page == 1)){
-			try {
-				repolist = repoBl.getSearchResult(keyword);
-			} catch (NoSearchResultException e) {
-				// exception to deal with
-				e.printStackTrace();
-			}
+			repolist = repoBl.getSearchResult(keyword);
 		}else{
 			try {
 				repolist = repoBl.jumpToPage(page);

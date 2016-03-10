@@ -34,6 +34,8 @@ public class RepoInfoText extends Text {
 		
 		ReposController repoControl = controller.getReposController();
 		RepoVO repo = repoControl.getDetailedRepo(owner, repoName);
+		String info = "";
+	
 		return null;
 	}
 
