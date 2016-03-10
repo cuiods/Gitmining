@@ -12,12 +12,6 @@ import java.util.Comparator;
 public class RepoNameComparator implements Comparator<RepoBriefVO> {
     @Override
     public int compare(RepoBriefVO o1, RepoBriefVO o2) {
-        int com = o1.getOwner().compareTo(o2.getOwner());
-        if (com==0){
-            return o1.getName().compareTo(o2.getName());
-        }
-        else {
-            return com;
-        }
+        return o1.getName().compareTo(o2.getName());
     }
 }
