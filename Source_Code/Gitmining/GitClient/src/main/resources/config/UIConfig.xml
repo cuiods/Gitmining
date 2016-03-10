@@ -41,7 +41,7 @@
 			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>
 			<unit name = "guide_user3"  class = "MainButton" x="175" y="90" w="150" h="50" type ="0"/>
 			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
-			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchListener"/> 
+			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchUserListener"/> 
 	
 		</mainPanel>
 	</Frame>
