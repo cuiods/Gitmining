@@ -23,7 +23,7 @@ public interface UserDataService {
      * @param regex the regex representation of the keyword being searched
      * @return a List of {@link UserBriefVO}, which matches the search result
      */
-    public List<UserBriefVO> getSearchResult(String regex) throws NoSearchResultException;
+    public List<UserBriefVO> getSearchResult(String regex);
 
     /**
      * get the total count of user.

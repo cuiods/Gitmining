@@ -1,15 +1,18 @@
 package edu.nju.git.ui.listener;
 
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
+import edu.nju.git.ui.components.InfoLabel;
 import edu.nju.git.ui.components.table.MyTableLabel;
 import edu.nju.git.ui.controller.UIController;
 /*
  * maybe no use
  * @auther yyy
- * @date 2016-03-06 17:55; 03-07 10:54
- * to complete
+ * @date 2016-03-06 17:55; 03-07 10:54; 03-10 18:31
+ * 
  */
 public class LabelRepoListener extends LabelListener{
 
@@ -26,6 +29,15 @@ public class LabelRepoListener extends LabelListener{
 	public void mouseClicked(MouseEvent e) {
 		super.mouseClicked(e);
 		if (e.getClickCount()==2){
+			String owner = ((InfoLabel)label.getComponent(5)).getText();
+			String repoName = ((InfoLabel)label.getComponent(0)).getText();
+			try {
+				BufferedWriter bw = new BufferedWriter(new FileWriter("repo.git"));
+				bw.write(owner+"\n"+repoName);
+				bw.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			controller.changeTo(label.getElement().attributeValue("change"));
 		}
 		

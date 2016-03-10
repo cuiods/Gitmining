@@ -85,14 +85,13 @@ public class UserBlImpl implements UserBlService {
     }
 
     @Override
-    public List<UserBriefVO> getSearchResult(String keyword) throws NoSearchResultException {
+    public List<UserBriefVO> getSearchResult(String keyword) {
         if (keyword.isEmpty()) {
             setBrowseModelService(new UserCasualModel(this));
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
                 e.printStackTrace();
-                throw new NoSearchResultException("there is no result to show");
             }
         }
         else {
@@ -103,10 +102,9 @@ public class UserBlImpl implements UserBlService {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
                 e.printStackTrace();
-                throw new NoSearchResultException("there is no result to show");
             }
         }
-
+        return null;
     }
 
     @Override

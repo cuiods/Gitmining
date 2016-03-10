@@ -31,18 +31,13 @@ public class ReposController {
 	/*
 	 * get the brief information of the default repositories
 	 * @param page :the number of the page now
-	 * @param keyword:the keyword used to search, if keyword=null ,show the defualt order;else show the search result
+	 * @param keyword:the keyword used to search, if keyword="" ,show the defualt order;else show the search result
 	 */
 	public ArrayList<RepoBriefVO> getRepos(int page,String keyword){
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> repolist =null;
-		if ((page == 1)&&!(keyword.equals(""))){
-			try {
-				repolist = repoBl.getSearchResult(keyword);
-			} catch (NoSearchResultException e) {
-				// exception to deal with
-				e.printStackTrace();
-			}
+		if ((page == 1)){
+			repolist = repoBl.getSearchResult(keyword);
 		}else{
 			try {
 				repolist = repoBl.jumpToPage(page);

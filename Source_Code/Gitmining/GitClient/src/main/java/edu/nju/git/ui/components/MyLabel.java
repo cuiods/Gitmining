@@ -22,6 +22,7 @@ public class MyLabel extends JLabel {
 	private int w;
 	public MyLabel(String text){
 		this.setText(text);
+		setFont(new Font("微软雅黑", Font.PLAIN, 20));
 	}
 	public MyLabel(Element text, UIController controller){
 		w = Integer.parseInt(text.attributeValue("w"));

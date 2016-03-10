@@ -3,6 +3,7 @@ package edu.nju.git.ui.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import edu.nju.git.ui.components.InfoLabel;
 import edu.nju.git.ui.components.MyLabel;
 import edu.nju.git.ui.components.table.MyTableLabel;
 import edu.nju.git.ui.controller.UIController;
@@ -34,10 +35,6 @@ public class LabelListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		label.setPicPath("src/main/resources/pictures/label_clicked.png");
 		label.repaint();
-		if (e.getClickCount()==2){
-			controller.changeTo(label.getElement().attributeValue("change"));
-		}
-		
 	}
 
 	@Override

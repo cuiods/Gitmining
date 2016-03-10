@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.ui.components.MyTextField;
+import edu.nju.git.ui.components.TextLabel;
 import edu.nju.git.ui.components.table.ReposTable;
 import edu.nju.git.ui.controller.ReposController;
 import edu.nju.git.ui.controller.UIController;
@@ -30,6 +31,8 @@ public class ButtonSearchRepoListener extends ButtonListener {
 		ArrayList<RepoBriefVO> list = repoControl.getRepos(1, keyword);
 		table.setDataList(table.getNewData(list));
 		//may have to do someting else
+		TextLabel page = (TextLabel) units.get(10);
+		page.setPage(repoControl.getCurrentPage());
 		controller.getFrame().repaint();
 
 	}
