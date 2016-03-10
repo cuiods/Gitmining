@@ -1,21 +1,12 @@
 package org.GitIntegration.driven;
 
-import java.util.List;
-
-import edu.nju.git.PO.RepoPO;
-import edu.nju.git.VO.BranchVO;
-import edu.nju.git.VO.CommitVO;
-import edu.nju.git.VO.IssueVO;
-import edu.nju.git.VO.RepoBriefVO;
-import edu.nju.git.VO.RepoVO;
-import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.data.impl.RepoDataImpl;
 import edu.nju.git.data.service.RepoDataService;
 import junit.framework.TestCase;
 
 public class RepoDriven extends TestCase {
 
-	private RepoDataService repoDataService = RepoDataImpl.instance();
+	public RepoDataService repoDataService = RepoDataImpl.instance();
 	protected void setUp() throws Exception {
 		super.setUp();
 	}

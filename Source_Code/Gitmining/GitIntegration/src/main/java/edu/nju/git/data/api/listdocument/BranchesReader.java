@@ -1,16 +1,16 @@
 package edu.nju.git.data.api.listdocument;
 
-public class BranchesListReader extends ListDocumentReader {
+public class BranchesReader extends ListDocumentReader {
 
-	public BranchesListReader() {
+	public BranchesReader() {
 	}
 	private String url_string;
-	public BranchesListReader(String fullname) {
+	public BranchesReader(String fullname) {
 		this.setNames(fullname);
 	}
 
 	
-	public BranchesListReader(String owner,String name) {
+	public BranchesReader(String owner,String name) {
 		this.setNames(owner+"/"+name);
 	}
 

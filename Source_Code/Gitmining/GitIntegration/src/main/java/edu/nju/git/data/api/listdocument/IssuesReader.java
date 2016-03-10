@@ -1,16 +1,16 @@
 package edu.nju.git.data.api.listdocument;
 
-public class IssuesListReader extends ListDocumentReader {
+public class IssuesReader extends ListDocumentReader {
 
-	public IssuesListReader() {
+	public IssuesReader() {
 	}
 	private String url_string;
-	public IssuesListReader(String fullname) {
+	public IssuesReader(String fullname) {
 		this.setNames(fullname);
 	}
 
 	
-	public IssuesListReader(String owner,String name) {
+	public IssuesReader(String owner,String name) {
 		this.setNames(owner+"/"+name);
 	}
 

@@ -1,16 +1,16 @@
 package edu.nju.git.data.api.listdocument;
 
-public class CommitsListReader extends ListDocumentReader {
+public class ForksReader extends ListDocumentReader {
 
-	public CommitsListReader() {
+	public ForksReader() {
 	}
 	private String url_string;
-	public CommitsListReader(String fullname) {
+	public ForksReader(String fullname) {
 		this.setNames(fullname);
 	}
 
 	
-	public CommitsListReader(String owner,String name) {
+	public ForksReader(String owner,String name) {
 		this.setNames(owner+"/"+name);
 	}
 
@@ -18,7 +18,7 @@ public class CommitsListReader extends ListDocumentReader {
 		this.setNames(owner, name);
 	}
 	public void setNames(String fullname){
-		this.url_string  = "http://www.gitmining.net/api/repository/"+fullname+"/commits";
+		this.url_string  = "http://www.gitmining.net/api/repository/"+fullname+"/forks";
 		init(url_string);
 	}
 

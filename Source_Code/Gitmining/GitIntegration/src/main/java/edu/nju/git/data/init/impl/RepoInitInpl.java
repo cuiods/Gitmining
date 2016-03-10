@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.git.PO.RepoBriefPO;
+import edu.nju.git.comparators.pocomparator.repopocomparator.RepoForkComparator;
+import edu.nju.git.comparators.pocomparator.repopocomparator.RepoNameComparator;
+import edu.nju.git.comparators.pocomparator.repopocomparator.RepoStarComparator;
+import edu.nju.git.comparators.pocomparator.repopocomparator.RepoSubscrComparator;
+import edu.nju.git.comparators.pocomparator.repopocomparator.RepoUpdateComparator;
 import edu.nju.git.data.api.centralization.RepoMapReader;
 import edu.nju.git.data.api.liststring.RepositoriesListReader;
 import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
@@ -46,7 +51,24 @@ public class RepoInitInpl implements RepoInitService {
 	
 	private void save()
 	{
-		new MyObjectWiter(pos, "cache/repoinfo.txt").excute();
+		
+		MyObjectWiter wrter = new MyObjectWiter(pos, "cache/repoinfo.txt");
+		wrter.excute();
+		this.pos.sort(new RepoForkComparator());
+		wrter.set(pos, "cache/repo/fork.txt");
+		
+		this.pos.sort(new RepoNameComparator());
+		wrter.set(pos, "cache/repo/name.txt");
+		
+		this.pos.sort(new RepoStarComparator());
+		wrter.set(pos, "cache/repo/star.txt");
+		
+		this.pos.sort(new RepoSubscrComparator());
+		wrter.set(pos, "cache/repo/subsriber.txt");
+		
+		this.pos.sort(new RepoUpdateComparator());
+		wrter.set(pos, "cache/repo/update.txt");
 	}
 
+	
 }

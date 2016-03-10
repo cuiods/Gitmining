@@ -2,6 +2,7 @@ package edu.nju.git.data.impl;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.VO.*;
+import edu.nju.git.data.factory.impl.ListCreator;
 import edu.nju.git.data.factory.impl.POcreator;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
@@ -66,7 +67,12 @@ public class RepoDataImpl implements RepoDataService {
      * <p>todo
      */
     private void loadRepoIndex() {
-    	List<RepoBriefPO> origin = new LocalReader().readRepos();
+    	RepoLocalReader reader = new RepoLocalReader();
+    	this.nameOrderPOs = reader.readNameSort();
+    	this.starOrderPOs = reader.readStarSort();
+    	this.forkOrderPOs = reader.readForkSort();
+    	this.updateOrderPOs = reader.readUpdate();
+    	this.subscrOrderPOs = reader.readSubscr();
     }
 
     /**
@@ -75,7 +81,8 @@ public class RepoDataImpl implements RepoDataService {
      * todo
      */
     private void saveRepoIndex() {
-
+    	List<RepoBriefPO> origin = new LocalReader().readRepos();
+    	
     }
 
     @Override
@@ -129,6 +136,7 @@ public class RepoDataImpl implements RepoDataService {
 
 
     private POcreator creator = POcreator.getInstance();
+    private ListCreator listCreator = new ListCreator();
     @Override
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
         return creator.getRepoPO(owner, repoName);
@@ -156,12 +164,13 @@ public class RepoDataImpl implements RepoDataService {
 
     @Override
     public List<BranchVO> getRepoBranch(String owner, String repoName) {
-        List<Object> objects = creator.getBranches(owner, repoName);
+        /*List<Object> objects = creator.getBranches(owner, repoName);
         List<BranchVO> branchVOs = new ArrayList<BranchVO>();
         for (Object object : objects) {
 			branchVOs.add(creator.getBranchPO(owner, repoName, object.toString()));
 		}
-    	return branchVOs;
+    	return branchVOs;*/
+    	return listCreator.getBranches(owner, repoName);
     }
 
     @Override
@@ -176,21 +185,23 @@ public class RepoDataImpl implements RepoDataService {
 
     @Override
     public List<CommitVO> getRepoCommit(String owner, String repoName) {
-        List<Object> objects = creator.getCommits(owner, repoName);
+        /*List<Object> objects = creator.getCommits(owner, repoName);
         List<CommitVO> commitVOs = new ArrayList<CommitVO>();
         for (Object object : objects) {
 			commitVOs.add(creator.getCommitPO(owner, repoName, object.toString()));
 		}
-    	return commitVOs;
+    	return commitVOs;*/
+    	return listCreator.getCommitVO(owner, repoName);
     }
 
     @Override
     public List<IssueVO> getRepoIssue(String owner, String repoName) {
-        List<Object> objects = creator.getIssues(owner, repoName);
+        /*List<Object> objects = creator.getIssues(owner, repoName);
         List<IssueVO> issueVOs = new ArrayList<IssueVO>();
         for (Object object : objects) {
 			issueVOs.add(creator.getIssue(owner, repoName, object.toString()));
 		}
-    	return issueVOs;
+    	return issueVOs;*/
+    	return listCreator.getIssueVO(owner, repoName);
     }
 }

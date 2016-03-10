@@ -1,16 +1,16 @@
 package edu.nju.git.data.api.listdocument;
 
-public class ContributorsListReader extends ListDocumentReader {
+public class ContributorsReader extends ListDocumentReader {
 
-	public ContributorsListReader() {
+	public ContributorsReader() {
 	}
 	private String url_string;
-	public ContributorsListReader(String fullname) {
+	public ContributorsReader(String fullname) {
 		this.setNames(fullname);
 	}
 
 	
-	public ContributorsListReader(String owner,String name) {
+	public ContributorsReader(String owner,String name) {
 		this.setNames(owner+"/"+name);
 	}
 

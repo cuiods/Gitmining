@@ -20,6 +20,10 @@ public class MyObjectWiter {
 		this.path = path;
 	}
 
+	public void set(Object object, String path) {
+		this.object = object;
+		this.path = path;
+	}
 
 	public boolean excute()
 	{

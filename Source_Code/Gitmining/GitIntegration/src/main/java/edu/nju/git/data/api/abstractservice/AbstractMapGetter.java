@@ -3,17 +3,17 @@ package edu.nju.git.data.api.abstractservice;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import edu.nju.git.data.api.JacksonConfig;
 import edu.nju.git.data.factory.impl.POfactory.AbstractFieldsGetter;
 
 public abstract class AbstractMapGetter extends AbstractFieldsGetter{
 
-    protected Map<String, Object> map;
+    protected JsonNode map;
     
     public AbstractMapGetter() {
 	}
@@ -23,8 +23,8 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
     protected int getInteger(String key)
     {
     	try{
-    		return (Integer)(map.get(key));
-    	}catch(NumberFormatException e){
+    		return (map.findValue(key).asInt());
+    	}catch(Exception e){
     		e.printStackTrace();
     		return 0;
     	}
@@ -39,7 +39,7 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
     protected boolean getBoolean(String item)
     {
     	try {
-    		return (Boolean)map.get(item);
+    		return map.get(item).asBoolean();
 		} catch (Exception e) {
 			return false;
 		}
@@ -48,11 +48,10 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
     
     protected abstract String getUrl();
     
-    @SuppressWarnings("unchecked")
 	protected void init(){
 		try{
 			URL url = new URL(getUrl());
-			this.map = JacksonConfig.getObjectMapper().readValue(url.openStream(), Map.class);
+			this.map = JacksonConfig.getObjectMapper().readTree(url);
 		}catch(MalformedURLException e){
 			e.printStackTrace();
 		} catch (JsonParseException e) {

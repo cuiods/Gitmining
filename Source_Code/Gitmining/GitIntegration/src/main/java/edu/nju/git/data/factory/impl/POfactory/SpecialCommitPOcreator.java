@@ -3,23 +3,12 @@ package edu.nju.git.data.factory.impl.POfactory;
 import edu.nju.git.VO.CommitVO;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class CommitPOfactory implements POfactory<CommitVO> {
+public class SpecialCommitPOcreator implements POfactory<CommitVO> {
 
 	private AbstractFieldsGetter itemHelper;
-	private String sha;
 	
-	public CommitPOfactory(AbstractFieldsGetter itemHelper) {
+	public SpecialCommitPOcreator(AbstractFieldsGetter itemHelper) {
 		this.itemHelper = itemHelper;
-    }
-
-	public CommitPOfactory(AbstractFieldsGetter itemHelper,String sha) {
-		super();
-		this.itemHelper = itemHelper;
-		this.sha = sha;
-	}
-    public void setFiledsGetter(AbstractFieldsGetter itemHelper,String sha) {
-		this.itemHelper = itemHelper;
-		this.sha = sha;
     }
 
 
@@ -34,7 +23,7 @@ public class CommitPOfactory implements POfactory<CommitVO> {
 	@Override
 	public CommitVO getPO() {
 		CommitVO commit = new CommitVO();
-		commit.setId(sha);
+		commit.setId(itemHelper.getString("sha"));
 //		po.setContents(itemHelper.getString(""));
 		commit.setDate(itemHelper.getString("Date"));
 //		po.setId(itemHelper.getString(""));
@@ -48,8 +37,9 @@ public class CommitPOfactory implements POfactory<CommitVO> {
 		
 //		commit.setUserName(itemHelper.getString("committer"));
 		commit.setUserName("committer");
-		
+//		commit.setComments(comments);
 		return commit;
 	}
 
 }
+
