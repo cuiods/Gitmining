@@ -2,9 +2,8 @@ package org.GitIntegration.unit.api;
 
 import java.util.List;
 
-import edu.nju.git.data.api.decentralization.IssueItemReader;
-import edu.nju.git.data.api.liststring.IssuesListReader;
-import edu.nju.git.data.factory.impl.POfactory.IssuePOfactory;
+import edu.nju.git.VO.IssueVO;
+import edu.nju.git.data.factory.impl.ListCreator;
 import junit.framework.TestCase;
 
 public class IssueTest extends TestCase {
@@ -18,7 +17,7 @@ public class IssueTest extends TestCase {
 	}
 
 	public void testIssueReader(){
-		String fullname = "vrpn/vrpn";
+		/*String fullname = "vrpn/vrpn";
 		
 		List<Object> issues = new IssuesListReader(fullname).getNames();
 		for (Object object : issues) {
@@ -35,6 +34,12 @@ public class IssueTest extends TestCase {
 		}else{
 			System.out.println("null");
 		}
-		
+		*/
+	}
+	
+	public void test2(){
+		ListCreator listCreator = ListCreator.getInstance();
+		List<IssueVO> issueVOs = listCreator.getIssueVO("vrpn", "vrpn");
+		assertEquals(30, issueVOs.size());
 	}
 }

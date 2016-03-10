@@ -11,7 +11,7 @@ import edu.nju.git.comparators.pocomparator.repopocomparator.RepoSubscrComparato
 import edu.nju.git.comparators.pocomparator.repopocomparator.RepoUpdateComparator;
 import edu.nju.git.data.api.centralization.RepoMapReader;
 import edu.nju.git.data.api.liststring.RepositoriesListReader;
-import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.RepoBriefPOfactory;
 import edu.nju.git.data.impl.LocalReader;
 import edu.nju.git.data.init.service.RepoInitService;
 

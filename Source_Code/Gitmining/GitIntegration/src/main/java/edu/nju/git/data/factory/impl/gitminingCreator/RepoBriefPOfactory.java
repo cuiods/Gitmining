@@ -1,4 +1,4 @@
-package edu.nju.git.data.factory.impl.POfactory;
+package edu.nju.git.data.factory.impl.gitminingCreator;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.data.api.abstractservice.FieldsGetterService;

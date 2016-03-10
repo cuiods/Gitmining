@@ -1,6 +1,5 @@
 package edu.nju.git.data.factory.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.git.VO.BranchVO;
@@ -25,13 +24,13 @@ import edu.nju.git.data.api.liststring.IssuesListReader;
 import edu.nju.git.data.api.liststring.RepositoriesListReader;
 import edu.nju.git.data.api.liststring.StargazersListReader;
 import edu.nju.git.data.api.liststring.SubscribersListReader;
-import edu.nju.git.data.factory.impl.POfactory.BranchPOfactory;
-import edu.nju.git.data.factory.impl.POfactory.CommitPOfactory;
-import edu.nju.git.data.factory.impl.POfactory.IssuePOfactory;
-import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
-import edu.nju.git.data.factory.impl.POfactory.RepoPOfactory;
-import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
-import edu.nju.git.data.factory.impl.POfactory.UserPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.BranchPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.CommitPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.IssuePOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.RepoBriefPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.RepoPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.UserBriefPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.UserPOfactory;
 import edu.nju.git.tools.POVOConverter;
 
 /**
@@ -62,13 +61,6 @@ public class POcreator {
 		return instance;
 	}
 	
-	private List<String> convertObjectToString(List<Object> objects){
-		List<String> strings = new ArrayList<String>();
-		for (Object object : objects) {
-			strings.add(object.toString());
-		}
-		return strings;
-	}
 	
 	public UserVO getUserPO(String name){
 		FieldsGetterService getter = new UserMapReader(name);
@@ -105,12 +97,13 @@ public class POcreator {
 		RepoPOfactory pOfactory = new RepoPOfactory(getter);
 		RepoVO repoVO = pOfactory.getPO();
 		
-		repoVO.setInfo_branch(this.convertObjectToString(this.getBranches(fullname)));
-		repoVO.setInfo_collaborator(this.convertObjectToString(this.getCollaborators(fullname)));
-//		repoVO.setInfo_commit(this.convertObjectToString(this.getCommits(fullname)));
-		repoVO.setInfo_contributor(this.convertObjectToString(this.getContributors(fullname)));
-//		repoVO.setInfo_fork(this.convertObjectToString(this.getForks(fullname)));
-//		repoVO.setInfo_issue(this.convertObjectToString(this.getIssues(fullname)));
+		ListCreator listCreator = ListCreator.getInstance();
+		repoVO.setInfo_branch((listCreator.getBranches(fullname)));
+		repoVO.setInfo_collaborator((listCreator.getCollaborators(fullname)));
+		repoVO.setInfo_commit((listCreator.getCommitVO(fullname)));
+		repoVO.setInfo_contributor((listCreator.getContributors(fullname)));
+		repoVO.setInfo_fork(listCreator.getForks(fullname));
+		repoVO.setInfo_issue((listCreator.getIssueVO(fullname)));
 		return repoVO;
 	}
 	

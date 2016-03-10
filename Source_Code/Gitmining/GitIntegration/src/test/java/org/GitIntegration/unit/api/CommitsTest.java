@@ -17,20 +17,8 @@ public class CommitsTest extends TestCase {
 	}
 
 	public void test1(){
-		ListCreator creator = new ListCreator();
+		ListCreator creator =  ListCreator.getInstance();
 		List<CommitVO> branchVOs = creator.getCommitVO("vrpn", "vrpn");
-		for (CommitVO branchVO : branchVOs) {
-			System.out.println(branchVO.getNum_addition());
-			System.out.println(branchVO.getUserName());
-			System.out.println(branchVO.getId());
-			System.out.println(branchVO.getDate());
-			System.out.println(branchVO.getMessage());
-			System.out.println(branchVO.getNum_deletion());
-			
-			System.out.println(branchVO.getNum_file());
-			System.out.println(branchVO.getNum_total());
-			System.out.println(branchVO.getComments());
-		}
-		System.out.println(branchVOs.size());
+		assertEquals(30, (branchVOs.size()));
 	}
 }

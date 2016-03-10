@@ -1,7 +1,18 @@
 package edu.nju.git.data.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.VO.*;
+import edu.nju.git.VO.BranchVO;
+import edu.nju.git.VO.CommitVO;
+import edu.nju.git.VO.IssueVO;
+import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.VO.RepoVO;
+import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.data.factory.impl.ListCreator;
 import edu.nju.git.data.factory.impl.POcreator;
 import edu.nju.git.data.service.RepoDataService;
@@ -9,12 +20,6 @@ import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * This is the implementation of {@link RepoDataService}, the class get data from outer api (but in <br>
@@ -136,7 +141,7 @@ public class RepoDataImpl implements RepoDataService {
 
 
     private POcreator creator = POcreator.getInstance();
-    private ListCreator listCreator = new ListCreator();
+    private ListCreator listCreator =  ListCreator.getInstance();
     @Override
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
         return creator.getRepoPO(owner, repoName);

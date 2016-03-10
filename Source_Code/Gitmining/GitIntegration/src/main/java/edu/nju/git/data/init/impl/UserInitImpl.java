@@ -8,7 +8,7 @@ import java.util.Set;
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.data.api.centralization.UserMapReader;
 import edu.nju.git.data.api.liststring.RepositoriesListReader;
-import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.UserBriefPOfactory;
 import edu.nju.git.data.init.service.UserInitService;
 
 public class UserInitImpl implements UserInitService {

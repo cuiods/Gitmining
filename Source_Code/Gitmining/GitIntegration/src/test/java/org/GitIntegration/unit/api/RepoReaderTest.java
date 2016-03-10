@@ -3,7 +3,7 @@ package org.GitIntegration.unit.api;
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.data.api.centralization.RepoMapReader;
 import edu.nju.git.data.api.decentralization.RepoItemReader;
-import edu.nju.git.data.factory.impl.POfactory.RepoBriefPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.RepoBriefPOfactory;
 import junit.framework.TestCase;
 
 public class RepoReaderTest extends TestCase{

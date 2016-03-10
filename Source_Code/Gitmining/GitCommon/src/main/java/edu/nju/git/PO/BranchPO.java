@@ -7,15 +7,11 @@ package edu.nju.git.PO;
  */
 public class BranchPO {
 	/**
-	 * full name of a project
+	 * name of a branch
 	 */
 	private String name;
 	/**
-	 * id of a branch
-	 */
-	private String id;
-	/**
-	 * value of SHA
+	 * value of commit sha
 	 */
 	private String SHA;
 	/**
@@ -28,15 +24,6 @@ public class BranchPO {
 		this.name = name;
 	}
 	/**
-	 * @return {@link #id}
-	 */
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	/**
 	 * @return {@link #SHA}
 	 */
 	public String getSHA() {
@@ -45,6 +32,5 @@ public class BranchPO {
 	public void setSHA(String sHA) {
 		SHA = sHA;
 	}
-	
 	
 }

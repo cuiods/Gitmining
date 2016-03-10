@@ -1,4 +1,4 @@
-package edu.nju.git.data.api.listdocument;
+package edu.nju.git.data.api.githubapi;
 
 import java.io.IOException;
 import java.net.URL;

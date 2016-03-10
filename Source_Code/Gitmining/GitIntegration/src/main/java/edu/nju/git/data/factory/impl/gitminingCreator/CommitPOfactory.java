@@ -1,15 +1,26 @@
-package edu.nju.git.data.factory.impl.POfactory;
+package edu.nju.git.data.factory.impl.gitminingCreator;
 
 import edu.nju.git.VO.CommitVO;
 import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class SpecialCommitPOcreator implements POfactory<CommitVO> {
+public class CommitPOfactory implements POfactory<CommitVO> {
 
 	private FieldsGetterService itemHelper;
+	private String sha;
 	
-	public SpecialCommitPOcreator(FieldsGetterService itemHelper) {
+	public CommitPOfactory(FieldsGetterService itemHelper) {
 		this.itemHelper = itemHelper;
+    }
+
+	public CommitPOfactory(FieldsGetterService itemHelper,String sha) {
+		super();
+		this.itemHelper = itemHelper;
+		this.sha = sha;
+	}
+    public void setFiledsGetter(FieldsGetterService itemHelper,String sha) {
+		this.itemHelper = itemHelper;
+		this.sha = sha;
     }
 
 
@@ -24,23 +35,21 @@ public class SpecialCommitPOcreator implements POfactory<CommitVO> {
 	@Override
 	public CommitVO getPO() {
 		CommitVO commit = new CommitVO();
-		commit.setId(itemHelper.getString("sha"));
+		commit.setId(sha);
 //		po.setContents(itemHelper.getString(""));
 		commit.setDate(itemHelper.getString("Date"));
 //		po.setId(itemHelper.getString(""));
 		commit.setMessage(itemHelper.getString("message"));
 		
-		commit.setNum_addition(itemHelper.getInteger("additions"));
-		commit.setNum_deletion(itemHelper.getInteger("deletions"));
+//		commit.setNum_addition(itemHelper.getInteger("additions"));
+//		commit.setNum_deletion(itemHelper.getInteger("deletions"));
 //		commit.setNum_file(itemHelper.getInteger("filenumber"));
-		commit.setNum_file(0);
-		commit.setNum_total(itemHelper.getInteger("total"));
+//		commit.setNum_total(itemHelper.getInteger("total"));
 		
 //		commit.setUserName(itemHelper.getString("committer"));
 		commit.setUserName("committer");
-//		commit.setComments(comments);
+		
 		return commit;
 	}
 
 }
-

@@ -1,4 +1,4 @@
-package edu.nju.git.data.api.listdocument;
+package edu.nju.git.data.api.githubapi;
 
 public class CommitsReader extends ListDocumentReader {
 
@@ -18,7 +18,7 @@ public class CommitsReader extends ListDocumentReader {
 		this.setNames(owner, name);
 	}
 	public void setNames(String fullname){
-		this.url_string  = "http://www.gitmining.net/api/repository/"+fullname+"/commits";
+		this.url_string  = "https://api.github.com/repos/"+fullname+"/commits";
 		init(url_string);
 	}
 

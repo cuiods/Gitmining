@@ -1,30 +1,19 @@
-package edu.nju.git.data.factory.impl.POfactory;
+package edu.nju.git.data.factory.impl.githubCreator;
 
 import edu.nju.git.VO.IssueVO;
 import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
-public class IssuePOfactory implements POfactory<IssueVO> {
+public class GithubIssuePOcreator implements POfactory<IssueVO> {
 
 	private FieldsGetterService itemHelper;
-	private String sha;
 	
 
-	public IssuePOfactory(FieldsGetterService itemHelper, String sha) {
+	public GithubIssuePOcreator(FieldsGetterService itemHelper) {
 		super();
 		this.itemHelper = itemHelper;
-		this.sha = sha;
 	}
 
-	public IssuePOfactory(){}
-	
-	public void setItemHelper(FieldsGetterService itemHelper) {
-		this.itemHelper = itemHelper;
-	}
-
-	public void setSHA(String sha) {
-		this.sha = sha;
-	}
 
 	/**
 	 *  <p>http://www.gitmining.net/api/repository/{owner}/{reponame}/issue/{number}/item/{item}
@@ -38,17 +27,16 @@ public class IssuePOfactory implements POfactory<IssueVO> {
 	@Override
 	public IssueVO getPO() {
 		IssueVO issue = new IssueVO();
-		issue.setId(sha);
+		issue.setId(itemHelper.getString("id"));
 		issue.setState(itemHelper.getString("state"));
 		issue.setLocked(itemHelper.getBoolean("locked"));
 		issue.setTitle(itemHelper.getString("title"));
 		issue.setBody(itemHelper.getString("body"));
-		issue.setUserName(itemHelper.getString("user"));
+		issue.setUserName(itemHelper.getString("login"));
 		issue.setCreate_at(itemHelper.getString("created_at"));
 		issue.setUpdate_at(itemHelper.getString("updates_at"));
-		issue.setMerged_at(itemHelper.getString("merged_at"));
-		issue.setClosed_at(itemHelper.getString("closed_at"));
 		return issue;
 	}
 
 }
+

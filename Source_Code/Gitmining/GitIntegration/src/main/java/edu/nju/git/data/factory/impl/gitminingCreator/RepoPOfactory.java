@@ -1,4 +1,4 @@
-package edu.nju.git.data.factory.impl.POfactory;
+package edu.nju.git.data.factory.impl.gitminingCreator;
 
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.data.api.abstractservice.FieldsGetterService;
@@ -42,15 +42,14 @@ public class RepoPOfactory implements POfactory<RepoVO> {
 		repo.setOwnerName(fullname[0]);
 		repo.setName(fullname[1]);
 		
-		Object description = itemHelper.getString("description");
-		repo.setDescription(description==null? "" : description.toString());
+		repo.setUrl(itemHelper.getString("url"));
+
+		repo.setDescription(itemHelper.getString("description"));
 		
-		int num_subcribers = itemHelper.getInteger("subscribers_count");
-		repo.setNum_subscribers(num_subcribers);
-		
+		repo.setNum_subscribers(itemHelper.getInteger("subscribers_count"));
  		repo.setNum_forks(itemHelper.getInteger("forks_count"));
 		repo.setNum_stars(itemHelper.getInteger("stargazers_count"));
-		
+
 		repo.setUpdate_at(itemHelper.getString("updated_at"));
 		
 		return repo;

@@ -3,7 +3,7 @@ package org.GitIntegration.unit.api;
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.data.api.centralization.UserMapReader;
 import edu.nju.git.data.api.decentralization.UserItemReader;
-import edu.nju.git.data.factory.impl.POfactory.UserBriefPOfactory;
+import edu.nju.git.data.factory.impl.gitminingCreator.UserBriefPOfactory;
 import junit.framework.TestCase;
 
 public class UserReaderTest extends TestCase {
