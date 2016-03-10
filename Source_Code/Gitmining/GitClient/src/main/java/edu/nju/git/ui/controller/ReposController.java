@@ -1,5 +1,9 @@
 package edu.nju.git.ui.controller;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -192,5 +196,24 @@ public class ReposController {
 			newOrder.add(it.next());
 		}
 		return newOrder;
+	}
+	
+	public String getOwnerRepo(){
+		String owner ="";
+		String repoName ="";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("repo.git"));
+			try {
+				owner = br.readLine();
+				repoName = br.readLine();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return owner+" "+repoName;
 	}
 }
