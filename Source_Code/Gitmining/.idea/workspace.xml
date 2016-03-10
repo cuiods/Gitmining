@@ -2,24 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54ad74fd-2ebf-4dac-8c06-26c34168cc21" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\SE_iii\GitMining\Source_Code\Gitmining\.idea\uiDesigner.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitClient/GitClient.iml" afterPath="$PROJECT_DIR$/GitClient/GitClient.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitCommon/GitCommon.iml" afterPath="$PROJECT_DIR$/GitCommon/GitCommon.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitIntegration/GitIntegration.iml" afterPath="$PROJECT_DIR$/GitIntegration/GitIntegration.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gitmining.iml" afterPath="$PROJECT_DIR$/Gitmining.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/RepoBlImpl.java" afterPath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/RepoBlImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/service/RepoBlService.java" afterPath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/service/RepoBlService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/RepoDataImpl.java" afterPath="$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/RepoDataImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/data/service/RepoDataService.java" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/data/service/RepoDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/UserBlImpl.java" afterPath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/impl/UserBlImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/service/UserBlService.java" afterPath="$PROJECT_DIR$/GitClient/src/main/java/edu/nju/git/bl/service/UserBlService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/UserDataImpl.java" afterPath="$PROJECT_DIR$/GitIntegration/src/main/java/edu/nju/git/data/impl/UserDataImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/data/service/UserDataService.java" afterPath="$PROJECT_DIR$/GitCommon/src/main/java/edu/nju/git/data/service/UserDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Gitmining.iws" />
@@ -771,6 +753,19 @@
       <option name="number" value="Default" />
       <updated>1457599788517</updated>
     </task>
+    <task id="LOCAL-00001" summary="Fix bug:delete NoSearchResultException">
+      <created>1457606517108</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1457606517108</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix bug:delete NoSearchResultException">
+      <created>1457606566586</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1457606566586</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -804,6 +799,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix bug:delete NoSearchResultException" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug:delete NoSearchResultException" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
