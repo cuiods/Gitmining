@@ -43,7 +43,7 @@ public class RepoCasualModel implements RepoBrowseModelService {
         }
         visitor.setPage(pageNum);
         repoBl.setCurrentPage(pageNum);
-        return visitor.visit(repoBl.getRepoDataService());
+        return repoBl.getRepoDataService().acceptVisitor(visitor);
     }
 
     @Override
@@ -62,6 +62,6 @@ public class RepoCasualModel implements RepoBrowseModelService {
         visitor = (SimpleRepoVisitor) VisitorFactory.getRepoVisitor(sortType);
         visitor.setPage(current_page);
         visitor.setReverse(reverse);
-        return visitor.visit(repoBl.getRepoDataService());
+        return repoBl.getRepoDataService().acceptVisitor(visitor);
     }
 }

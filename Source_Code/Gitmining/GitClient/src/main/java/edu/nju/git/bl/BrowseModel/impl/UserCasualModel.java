@@ -43,7 +43,7 @@ public class UserCasualModel implements UserBrowseModelService {
         }
         visitor.setPage(pageNum);
         userBl.setCurrentPage(pageNum);
-        return visitor.visit(userBl.getUserDataService());
+        return userBl.getUserDataService().acceptVisitor(visitor);
     }
 
     @Override
@@ -62,6 +62,6 @@ public class UserCasualModel implements UserBrowseModelService {
         visitor = (SimpleUserVisitor) VisitorFactory.getUserVisitor(sortType);
         visitor.setPage(current_page);
         visitor.setReverse(reverse);
-        return visitor.visit(userBl.getUserDataService());
+        return userBl.getUserDataService().acceptVisitor(visitor);
     }
 }
