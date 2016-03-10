@@ -56,8 +56,10 @@ public class UserController {
 	public ArrayList<RepoBriefVO> getOwnRepos(String userName){
 		ArrayList<RepoBriefVO> owns = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> ownList = userBl.getUserOwnRepos(userName);
-		for(Iterator<RepoBriefVO> it = ownList.listIterator();it.hasNext();){
-			owns.add(it.next());
+		if (ownList!=null) {
+			for(Iterator<RepoBriefVO> it = ownList.listIterator();it.hasNext();){
+				owns.add(it.next());
+			}
 		}
 		return owns;
 	}
@@ -65,8 +67,10 @@ public class UserController {
 	public ArrayList<RepoBriefVO> getContributeRepos(String userName){
 		ArrayList<RepoBriefVO> contri = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> contriList = userBl.getUserContributeRepos(userName);
-		for(Iterator<RepoBriefVO> it = contriList.listIterator();it.hasNext();){
-			contri.add(it.next());
+		if (contriList!=null) {
+			for(Iterator<RepoBriefVO> it = contriList.listIterator();it.hasNext();){
+				contri.add(it.next());
+			}
 		}
 		return contri;
 	}

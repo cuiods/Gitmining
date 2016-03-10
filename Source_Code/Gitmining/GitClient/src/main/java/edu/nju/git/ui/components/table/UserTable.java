@@ -9,6 +9,7 @@ import edu.nju.git.ui.components.InfoLabel;
 import edu.nju.git.ui.components.MyTextField;
 import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.controller.UserController;
+import edu.nju.git.ui.listener.LabelUserListener;
 /*
  * the table of the simple user' information
  * @auther yyy
@@ -49,6 +50,7 @@ public class UserTable extends MyTable {
 		publicRepos.setSize(160,30);
 		java.awt.Component[] components = {login,followers,publicRepos};
 		MyTableLabel label = new MyTableLabel(element, controller, 34, components, this);
+		label.addMouseListener(new LabelUserListener(label, controller));
 		return label;
 	}
 	

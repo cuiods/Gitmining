@@ -63,6 +63,8 @@
 			<unit name = "repos" change ="ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 			<unit name = "detail" class="UserPanel" x="40" y="150" w="1000" h="495" type="0"/>
+			<unit name = "repos" class="table.RepoListTable" x="780" y="180" w="250" h="200" type="0"/>
+			<unit name = "contris" class="table.RepoListTable" x="780" y="420" w="250" h="200" type="0"/>
 		</mainPanel>
 	</Frame>
 </presentation> 
