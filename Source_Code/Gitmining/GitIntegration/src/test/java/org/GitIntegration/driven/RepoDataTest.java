@@ -1,9 +1,15 @@
 package org.GitIntegration.driven;
 
+import java.util.List;
+
+import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.data.impl.RepoDataImpl;
+import edu.nju.git.exception.NoSearchResultException;
 import junit.framework.TestCase;
 
 public class RepoDataTest extends TestCase {
 
+	public RepoDataImpl repoDataImpl = RepoDataImpl.instance();
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -12,15 +18,21 @@ public class RepoDataTest extends TestCase {
 		super.tearDown();
 	}
 
-	public void testInstance() {
-		fail("Not yet implemented");
-	}
 
 	public void testGetSearchResult() {
-		fail("Not yet implemented");
+		try {
+			List<RepoBriefVO> list = repoDataImpl.getSearchResult("*");
+			for (RepoBriefVO repoBriefVO : list) {
+				System.out.println(repoBriefVO.getName());
+			}
+			System.out.println(list.size());
+		} catch (NoSearchResultException e) {
+			System.out.println("null");
+			e.printStackTrace();
+		}
 	}
 
-	public void testGetRepoBasicInfo() {
+	/*public void testGetRepoBasicInfo() {
 		fail("Not yet implemented");
 	}
 
@@ -47,5 +59,5 @@ public class RepoDataTest extends TestCase {
 	public void testGetRepoIssue() {
 		fail("Not yet implemented");
 	}
-
+*/
 }

@@ -70,5 +70,30 @@ public class RepoInitInpl implements RepoInitService {
 		wrter.set(pos, "cache/repo/update.txt");
 	}
 
-	
+	/*public static void main(String[] args){
+		
+			List<RepoBriefPO> pos = new LocalReader().readRepos();
+			
+			MyObjectWiter wrter = new MyObjectWiter(pos, "cache/userinfo.txt");
+			
+			pos.sort(new USer());
+			wrter.set(pos, "cache/repo/fork.txt");
+			wrter.excute();
+			
+			pos.sort(new RepoNameComparator());
+			wrter.set(pos, "cache/repo/name.txt");
+			wrter.excute();
+			
+			pos.sort(new RepoStarComparator());
+			wrter.set(pos, "cache/repo/star.txt");
+			wrter.excute();
+			
+			pos.sort(new RepoSubscrComparator());
+			wrter.set(pos, "cache/repo/subsriber.txt");
+			wrter.excute();;
+			pos.sort(new RepoUpdateComparator());
+			wrter.set(pos, "cache/repo/update.txt");
+			wrter.excute();
+		
+	}*/
 }

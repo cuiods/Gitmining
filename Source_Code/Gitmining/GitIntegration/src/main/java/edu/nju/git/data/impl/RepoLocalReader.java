@@ -11,7 +11,7 @@ import edu.nju.git.PO.RepoBriefPO;
 public class RepoLocalReader {
 
 
-	private String repo = "cache/repoinfo.txt";
+	//private String repo = "cache/repoinfo.txt";
 	
 	@SuppressWarnings("unchecked")
 	public List<RepoBriefPO> readRepos(String path){

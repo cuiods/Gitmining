@@ -1,5 +1,11 @@
 package edu.nju.git.data.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
@@ -10,12 +16,6 @@ import edu.nju.git.datavisitors.uservisitors.UserVisitor;
 import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * * This is the implementation of {@link UserDataService}, the class get data from outer api (but in <br>
@@ -75,7 +75,10 @@ public class UserDataImpl implements UserDataService {
      * <p>todo
      */
     private void loadUserIndex() {
-
+    	UserLocalReader reader = new UserLocalReader();
+    	nameOrderUsers = reader.readNameSort();
+    	followerOrderUsers = reader.readFollowerSort();
+    	repoNumOrderUsers = reader.readReposSort();
     }
 
     /**

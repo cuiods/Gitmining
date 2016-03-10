@@ -1,7 +1,6 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class RepoBriefPOfactory implements POfactory<RepoBriefPO> {

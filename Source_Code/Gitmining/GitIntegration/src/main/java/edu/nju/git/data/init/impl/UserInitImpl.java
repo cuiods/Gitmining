@@ -54,28 +54,23 @@ public class UserInitImpl implements UserInitService {
 			
 
 
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		
-	/*	List<UserBriefPO> pos = new LocalReader().readUsers();
+		List<UserBriefPO> pos = new LocalReader().readUsers();
 		
 		MyObjectWiter wrter = new MyObjectWiter(pos, "cache/userinfo.txt");
 		
-		pos.sort(new USer());
-		wrter.set(pos, "cache/repo/fork.txt");
+		pos.sort(new UserFollowersComparator());
+		wrter.set(pos, "cache/user/follower.txt");
 		wrter.excute();
 		
-		pos.sort(new RepoNameComparator());
-		wrter.set(pos, "cache/repo/name.txt");
+		pos.sort(new UserNameComparator());
+		wrter.set(pos, "cache/user/name.txt");
 		wrter.excute();
 		
-		pos.sort(new RepoStarComparator());
-		wrter.set(pos, "cache/repo/star.txt");
+		pos.sort(new UserRepoNumComparator());
+		wrter.set(pos, "cache/user/userrepos.txt");
 		wrter.excute();
 		
-		pos.sort(new RepoSubscrComparator());
-		wrter.set(pos, "cache/repo/subsriber.txt");
-		wrter.excute();
-		pos.sort(new RepoUpdateComparator());
-		wrter.set(pos, "cache/repo/update.txt");*/
-	}
+	}*/
 }
