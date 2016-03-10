@@ -79,6 +79,9 @@
                </center>
             </BorderPane>
          </top>
+         <center>
+            <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="830.0" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </center>
 </BorderPane>

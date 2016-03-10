@@ -6,7 +6,6 @@ import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.StringReader;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

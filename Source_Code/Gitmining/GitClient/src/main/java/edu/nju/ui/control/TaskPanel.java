@@ -1,17 +1,16 @@
 package edu.nju.ui.control;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
-import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.config.StringReader;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.BorderPane;
 
 /**
  * <h1>Present a task user started.</h1>
@@ -35,10 +34,13 @@ public class TaskPanel extends GitPanel{
 	@FXML ImageView img_repo;
 	@FXML ImageView img_back;
 	@FXML ImageView img_forward;
-	private Stack<ScreenShot> functions = new Stack<>();
+	@FXML BorderPane childPanel;
+	private ArrayList<ScreenShot> functions = new ArrayList<>(20);
+	private int index = 0;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		//set listener T T no other way?
 		img_home.setOnMouseEntered(new ChangePictureHandler<MouseEvent>("home_main_1", img_home));
 		img_home.setOnMouseExited(new ChangePictureHandler<>("home_main", img_home));
 		img_home.setOnMousePressed(new ChangePictureHandler<>("home_main_2", img_home));
@@ -56,32 +58,39 @@ public class TaskPanel extends GitPanel{
 
 	@Override
 	public void initPanel(Object[] bundle) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setChildren(Region region) {
-		// TODO Auto-generated method stub
+	public void setChildren(Parent region) {
 		
 	}
 
 	@Override
 	public void removeChild() {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	/**
 	 * get back to lask function.
 	 */
-	public void back(){
-		
+	public void back(ActionEvent e){
+		if (functions.size() >= 2 && index >=1) {
+			index--;
+			setChildren(functions.get(index).getRoot());
+		}
 	}
 	
-	private Image getNewImage(String s){
-		URL url = Main.class.getResource(StringReader.readPath("picture")+"button/"+s+".png");
-		return new Image(url.toString());
+	/**
+	 * to the panel just closed.
+	 * @param e
+	 */
+	public void forward(ActionEvent e){
+		if (functions.size() > index + 1) {
+			index ++;
+			setChildren(functions.get(index).getRoot());
+		}
 	}
+	
 
 }

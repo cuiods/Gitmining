@@ -2,6 +2,7 @@ package edu.nju.ui.control;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.layout.Region;
 
 /**
@@ -29,7 +30,7 @@ public abstract class GitPanel implements Initializable{
 	 * set it.
 	 * @param region
 	 */
-	public abstract void setChildren(Region region);
+	public abstract void setChildren(Parent region);
 	/**
 	 * remove the panel's <b>main</b> child node.
 	 */

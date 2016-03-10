@@ -3,7 +3,7 @@ package edu.nju.ui.control;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.scene.layout.Region;
+import javafx.scene.Parent;
 
 /**
  * <p>A Function panel controls one serive's logic</p>
@@ -29,7 +29,7 @@ public class FunctionPanel extends GitPanel{
 	}
 
 	@Override
-	public void setChildren(Region region) {
+	public void setChildren(Parent region) {
 		// TODO Auto-generated method stub
 		
 	}

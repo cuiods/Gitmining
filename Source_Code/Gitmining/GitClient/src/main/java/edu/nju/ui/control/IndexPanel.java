@@ -13,12 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
 /**
@@ -79,7 +79,7 @@ public class IndexPanel extends GitPanel{
 	}
 
 	@Override
-	public void setChildren(Region region) {
+	public void setChildren(Parent region) {
 		if (region instanceof BorderPane) {
 			BorderPane cpane = (BorderPane) region;
 			pane.getChildren().remove(childpane);
