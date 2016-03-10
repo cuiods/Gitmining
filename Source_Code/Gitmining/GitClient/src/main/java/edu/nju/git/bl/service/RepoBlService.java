@@ -31,7 +31,7 @@ public interface RepoBlService {
 	 * @return List of {@link RepoBriefVO}: 
 	 * 			brief info of a repository
 	 */
-	public List<RepoBriefVO> getSearchResult(String keyword) throws NoSearchResultException;
+	public List<RepoBriefVO> getSearchResult(String keyword);
 
 	/**
 	 * jump to the specific page.

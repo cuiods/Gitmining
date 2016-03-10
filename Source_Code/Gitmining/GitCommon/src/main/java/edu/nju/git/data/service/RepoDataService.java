@@ -30,7 +30,7 @@ public interface RepoDataService {
      * @return List of {@link RepoBriefVO}:
      * 			brief info of a repository
      */
-    public List<RepoBriefVO> getSearchResult(String regex) throws NoSearchResultException;
+    public List<RepoBriefVO> getSearchResult(String regex);
 
     /**
      * get the total count of repositories.
