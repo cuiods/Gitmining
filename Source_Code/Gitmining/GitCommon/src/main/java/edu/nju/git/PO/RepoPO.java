@@ -150,5 +150,19 @@ public class RepoPO {
 		this.num_subscribers = num_subscribers;
 	}
 	
-	
+	public void setInfo_collaborator(List<String> info_collaborator) {
+		this.info_collaborator = info_collaborator;
+	}
+	public void setInfo_branch(List<String> info_branch) {
+		this.info_branch = info_branch;
+	}
+	public void setInfo_fork(List<String> info_fork) {
+		this.info_fork = info_fork;
+	}
+	public void setInfo_commit(List<String> info_commit) {
+		this.info_commit = info_commit;
+	}
+	public void setInfo_issue(List<String> info_issue) {
+		this.info_issue = info_issue;
+	}
 }

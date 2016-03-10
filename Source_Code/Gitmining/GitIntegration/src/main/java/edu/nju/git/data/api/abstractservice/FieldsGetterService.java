@@ -1,10 +1,10 @@
-package edu.nju.git.data.factory.impl.POfactory;
+package edu.nju.git.data.api.abstractservice;
 
-public abstract class AbstractFieldsGetter{
+public interface FieldsGetterService{
 
-	protected abstract int getInteger(String string);
+	public  int getInteger(String string);
 	
-	protected abstract String getString(String item);
+	public  String getString(String item);
 	
-	protected abstract boolean getBoolean(String item);
+	public  boolean getBoolean(String item);
 }

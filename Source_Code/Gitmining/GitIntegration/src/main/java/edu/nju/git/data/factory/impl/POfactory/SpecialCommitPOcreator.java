@@ -1,13 +1,14 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.VO.CommitVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class SpecialCommitPOcreator implements POfactory<CommitVO> {
 
-	private AbstractFieldsGetter itemHelper;
+	private FieldsGetterService itemHelper;
 	
-	public SpecialCommitPOcreator(AbstractFieldsGetter itemHelper) {
+	public SpecialCommitPOcreator(FieldsGetterService itemHelper) {
 		this.itemHelper = itemHelper;
     }
 

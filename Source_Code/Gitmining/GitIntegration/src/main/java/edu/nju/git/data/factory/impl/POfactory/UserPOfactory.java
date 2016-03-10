@@ -1,13 +1,14 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 import edu.nju.git.type.OwnerType;
 
 public class UserPOfactory implements POfactory<UserVO> {
 
-	private AbstractFieldsGetter itemHelper;
-	public UserPOfactory(AbstractFieldsGetter getter) {
+	private FieldsGetterService itemHelper;
+	public UserPOfactory(FieldsGetterService getter) {
 		this.itemHelper = getter;
 	}
 

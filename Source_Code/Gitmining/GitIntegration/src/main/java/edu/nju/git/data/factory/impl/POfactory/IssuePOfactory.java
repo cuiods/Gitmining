@@ -1,15 +1,16 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.VO.IssueVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class IssuePOfactory implements POfactory<IssueVO> {
 
-	private AbstractFieldsGetter itemHelper;
+	private FieldsGetterService itemHelper;
 	private String sha;
 	
 
-	public IssuePOfactory(AbstractFieldsGetter itemHelper, String sha) {
+	public IssuePOfactory(FieldsGetterService itemHelper, String sha) {
 		super();
 		this.itemHelper = itemHelper;
 		this.sha = sha;
@@ -17,7 +18,7 @@ public class IssuePOfactory implements POfactory<IssueVO> {
 
 	public IssuePOfactory(){}
 	
-	public void setItemHelper(AbstractFieldsGetter itemHelper) {
+	public void setItemHelper(FieldsGetterService itemHelper) {
 		this.itemHelper = itemHelper;
 	}
 

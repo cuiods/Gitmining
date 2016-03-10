@@ -1,23 +1,24 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.VO.CommitVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class CommitPOfactory implements POfactory<CommitVO> {
 
-	private AbstractFieldsGetter itemHelper;
+	private FieldsGetterService itemHelper;
 	private String sha;
 	
-	public CommitPOfactory(AbstractFieldsGetter itemHelper) {
+	public CommitPOfactory(FieldsGetterService itemHelper) {
 		this.itemHelper = itemHelper;
     }
 
-	public CommitPOfactory(AbstractFieldsGetter itemHelper,String sha) {
+	public CommitPOfactory(FieldsGetterService itemHelper,String sha) {
 		super();
 		this.itemHelper = itemHelper;
 		this.sha = sha;
 	}
-    public void setFiledsGetter(AbstractFieldsGetter itemHelper,String sha) {
+    public void setFiledsGetter(FieldsGetterService itemHelper,String sha) {
 		this.itemHelper = itemHelper;
 		this.sha = sha;
     }

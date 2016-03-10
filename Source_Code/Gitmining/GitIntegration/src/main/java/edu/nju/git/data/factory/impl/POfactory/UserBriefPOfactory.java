@@ -1,21 +1,22 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class UserBriefPOfactory implements POfactory<UserBriefPO> {
 
-	private AbstractFieldsGetter itemHelper;
+	private FieldsGetterService itemHelper;
 	public UserBriefPOfactory() {
 	}
 	
-	public UserBriefPOfactory(AbstractFieldsGetter itemHelper) {
+	public UserBriefPOfactory(FieldsGetterService itemHelper) {
 		super();
 		this.itemHelper = itemHelper;
 	}
 	
 	
-	public void setItemHelper(AbstractFieldsGetter itemHelper) {
+	public void setItemHelper(FieldsGetterService itemHelper) {
 		this.itemHelper = itemHelper;
 	}
 
