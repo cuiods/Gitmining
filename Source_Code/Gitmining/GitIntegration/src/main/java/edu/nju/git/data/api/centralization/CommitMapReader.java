@@ -5,7 +5,6 @@ import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
  *  
  * @author daixinyan
  * @date 2016-03-09
- * @deprecated
  */
 public class CommitMapReader extends AbstractMapGetter {
 
@@ -27,7 +26,8 @@ public class CommitMapReader extends AbstractMapGetter {
 	
 	@Override
 	protected String getUrl() {
-		return "http://www.gitmining.net/api/repository/"+fullname+"/commit/"+commit_sha;
+		return "https://api.github.com/repos"+fullname+"/commit/"+commit_sha;
+	//	return "http://www.gitmining.net/api/repository/"+fullname+"/commit/"+commit_sha;
 	}
 	/**
 	 * exmaple:

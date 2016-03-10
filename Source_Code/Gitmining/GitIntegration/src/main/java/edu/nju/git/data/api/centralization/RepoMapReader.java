@@ -16,7 +16,7 @@ public class RepoMapReader extends AbstractMapGetter {
 	}
 	
 	
-	private final String url_location = "http://www.gitmining.net/api/repository/";
+	private final String url_location = "https://api.github.com/repos/";
 	
 	private String fullname ;
 	public RepoMapReader(){}

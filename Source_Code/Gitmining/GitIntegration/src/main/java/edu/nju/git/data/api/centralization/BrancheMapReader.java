@@ -9,7 +9,6 @@ import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
  * <br/>  "url": "https://api.github.com/repos/huerlisi/CyDoc/commits/c8ef2a534a6b535ceef02f259a6123d8821e70c7"
  * <br/>},
  * <br/>"fn": "huerlisi/CyDoc"
- * @deprecated
  * @author daixinyan
  * @date 2016-03-09
  */
@@ -30,7 +29,8 @@ public class BrancheMapReader extends AbstractMapGetter {
 	
 	@Override
 	protected String getUrl() {
-		return "http://www.gitmining.net/api/repository/"+fullname+"/branch/"+branchname;
+		return "https://api.github.com/repos"+fullname+"/branch/"+branchname;
+//		return "http://www.gitmining.net/api/repository/"+fullname+"/branch/"+branchname;
 	}
 
 }

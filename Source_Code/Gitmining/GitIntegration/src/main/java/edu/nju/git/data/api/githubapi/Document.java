@@ -14,12 +14,8 @@ public class Document implements FieldsGetterService{
 	
 	@Override
 	public int getInteger(String string) {
-		try{
-			return (this.getItem(string).asInt(0));
-		}catch(Exception exception){
-			exception.printStackTrace();
-			return 0;
-		}
+		JsonNode jsonNode = this.getItem(string);
+		return jsonNode==null ? 0:jsonNode.asInt(0);
 	}
 
 	public  JsonNode getItem(String item){

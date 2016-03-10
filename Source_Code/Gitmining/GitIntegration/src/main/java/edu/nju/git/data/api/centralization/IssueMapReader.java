@@ -3,7 +3,6 @@ package edu.nju.git.data.api.centralization;
 import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
 /**
  * no enough item.
- * @deprecated
  * @author daixinyan
  * @date 2016-03-09
  */
@@ -27,7 +26,8 @@ public class IssueMapReader extends AbstractMapGetter {
 	
 	@Override
 	protected String getUrl() {
-		return "http://www.gitmining.net/api/repository/"+fullname+"/issue/"+issue;
+		return "https://api.github.com/repos"+fullname+"/issue/"+issue;
+	//	return "http://www.gitmining.net/api/repository/"+fullname+"/issue/"+issue;
 	}
 /**
  * json example:
