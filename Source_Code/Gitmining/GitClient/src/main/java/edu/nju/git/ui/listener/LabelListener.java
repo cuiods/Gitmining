@@ -34,9 +34,9 @@ public class LabelListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		label.setPicPath("src/main/resources/pictures/label_clicked.png");
 		label.repaint();
-		if (e.getClickCount()==2){
-			controller.changeTo(label.getElement().attributeValue("change"));
-		}
+//		if (e.getClickCount()==2){
+//			controller.changeTo(label.getElement().attributeValue("change"));
+//		}
 		
 	}
 

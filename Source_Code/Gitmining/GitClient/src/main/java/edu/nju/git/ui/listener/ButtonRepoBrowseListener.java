@@ -17,18 +17,16 @@ public class ButtonRepoBrowseListener extends ButtonListener {
 
 	public ButtonRepoBrowseListener(ArrayList<Component> units, UIController controller, Component button) {
 		super(units, controller, button);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		ReposTable table= (ReposTable)units.get(0);
 		ReposController repoControl = controller.getReposController();
-		ArrayList<RepoBriefVO> dataList = repoControl.getRepos(1, "");
+		ArrayList<RepoBriefVO> dataList = repoControl.getRepos(1, "");//communicate with dbc
 		table.setDataList(table.getNewData(dataList));
 		controller.changeTo(button.getElement().attributeValue("change"));
 		controller.getFrame().repaint();
-
 	}
 
 }

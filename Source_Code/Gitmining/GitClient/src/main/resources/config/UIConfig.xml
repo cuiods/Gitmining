@@ -40,7 +40,7 @@
 			<unit name = "USER_page" class ="TextLabel" x="898" y="608" w="44" h="24" type = "0"/>
 			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
-			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>
+			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonUserBrowseListener"/>
 			<unit name = "guide_user3"  class = "MainButton" x="175" y="90" w="150" h="50" type ="0"/>
 			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
 			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchUserListener"/> 

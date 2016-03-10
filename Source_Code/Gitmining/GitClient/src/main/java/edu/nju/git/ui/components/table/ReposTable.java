@@ -6,9 +6,9 @@ import org.dom4j.Element;
 
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.ui.components.InfoLabel;
-import edu.nju.git.ui.components.MyTextField;
 import edu.nju.git.ui.controller.ReposController;
 import edu.nju.git.ui.controller.UIController;
+import edu.nju.git.ui.listener.LabelRepoListener;
 /*
  * the table of  simple repositories' information
  * @auther yyy
@@ -58,6 +58,7 @@ public class ReposTable extends MyTable {
 		descrip.setSize(200,30);
 		java.awt.Component components[] = {reposName,starNum,forkNum,subscribeNum,update,owner,descrip};
 		MyTableLabel label = new MyTableLabel(element,controller,34,components,this);
+		label.addMouseListener(new LabelRepoListener(label,controller));
 		return label;
 	}
 	
