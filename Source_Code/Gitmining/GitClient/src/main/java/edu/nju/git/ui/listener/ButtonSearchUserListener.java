@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.ui.components.MyTextField;
+import edu.nju.git.ui.components.TextLabel;
 import edu.nju.git.ui.components.table.UserTable;
 import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.controller.UserController;
@@ -28,6 +29,8 @@ public class ButtonSearchUserListener extends ButtonListener {
 		ArrayList<UserBriefVO> list = userControl.getUsers(1, keyword);
 		table.setDataList(table.getNewData(list));
 		//may need to do something else
+		TextLabel page = (TextLabel)units.get(6);
+		page.setPage(userControl.getCurrentPage());
 		controller.getFrame().repaint();
 
 	}

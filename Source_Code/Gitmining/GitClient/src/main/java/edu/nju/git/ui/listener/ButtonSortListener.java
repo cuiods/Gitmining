@@ -37,18 +37,18 @@ public class ButtonSortListener extends ButtonListener {
 			ArrayList<UserBriefVO> userList = new ArrayList<UserBriefVO>();
 			ArrayList<MyTableLabel> labelList = new ArrayList<MyTableLabel>();
 			UserController userControl = controller.getUserController();
-			if(path.contains("name")&&!path.contains("2")){
-				userList = userControl.sort(SortType.USER_NAME, true);
-			}else if(path.contains("name2")){
+			if(path.contains("name")&&!path.contains("1")){
 				userList = userControl.sort(SortType.USER_NAME, false);
-			}else if(path.contains("follower")&&!path.contains("2")){
-				userList = userControl.sort(SortType.FOLLOWER_NUM, true);
-			}else if(path.contains("follower2")){
+			}else if(path.contains("name1")){
+				userList = userControl.sort(SortType.USER_NAME, true);
+			}else if(path.contains("follower")&&!path.contains("1")){
 				userList = userControl.sort(SortType.FOLLOWER_NUM, false);
-			}else if(path.contains("repo")&&!path.contains("2")){
-				userList = userControl.sort(SortType.REPO_NUM, true);
-			}else if(path.contains("repo2")){
+			}else if(path.contains("follower1")){
+				userList = userControl.sort(SortType.FOLLOWER_NUM, true);
+			}else if(path.contains("repo")&&!path.contains("1")){
 				userList = userControl.sort(SortType.REPO_NUM, false);
+			}else if(path.contains("repo1")){
+				userList = userControl.sort(SortType.REPO_NUM, true);
 			}
 			for (int i=0;i<userList.size();i++){
 				MyTableLabel label = userTable.createLabel(userList.get(i));
@@ -69,27 +69,27 @@ public class ButtonSortListener extends ButtonListener {
 			ArrayList<RepoBriefVO> repoList = new ArrayList<RepoBriefVO>();
 			ArrayList<MyTableLabel> labelList = new ArrayList<MyTableLabel>();
 			ReposController repoController = controller.getReposController();
-			boolean another = !path.contains("2");
+			boolean another = !path.contains("1");
 			if(path.contains("name")&&another){
-				repoList = repoController.sort(SortType.REPO_NAME, true);
-			}else if(path.contains("name2")){
 				repoList = repoController.sort(SortType.REPO_NAME, false);
+			}else if(path.contains("name1")){
+				repoList = repoController.sort(SortType.REPO_NAME, true);
 			}else if(path.contains("star")&&another){
-				repoList = repoController.sort(SortType.STAR_NUM, true);
-			}else if(path.contains("star2")){
 				repoList = repoController.sort(SortType.STAR_NUM, false);
+			}else if(path.contains("star1")){
+				repoList = repoController.sort(SortType.STAR_NUM, true);
 			}else if(path.contains("fork")&&another){
-				repoList = repoController.sort(SortType.FORK_NUM, true);
-			}else if(path.contains("fork2")){
 				repoList = repoController.sort(SortType.FORK_NUM, false);
+			}else if(path.contains("fork1")){
+				repoList = repoController.sort(SortType.FORK_NUM, true);
 			}else if(path.contains("subscr")&&another){
-				repoList = repoController.sort(SortType.SUBSCR_NUM, true);
-			}else if(path.contains("subscr2")){
 				repoList = repoController.sort(SortType.SUBSCR_NUM, false);
+			}else if(path.contains("subscr1")){
+				repoList = repoController.sort(SortType.SUBSCR_NUM, true);
 			}else if(path.contains("update")&&another){
-				repoList = repoController.sort(SortType.UPDATE_TIME, true);
-			}else if(path.contains("update2")){
 				repoList = repoController.sort(SortType.UPDATE_TIME, false);
+			}else if(path.contains("update1")){
+				repoList = repoController.sort(SortType.UPDATE_TIME, true);
 			}
 
 			for(int i=0;i<repoList.size();i++){
