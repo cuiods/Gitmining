@@ -9,9 +9,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import edu.nju.git.data.api.JacksonConfig;
-import edu.nju.git.data.factory.impl.POfactory.AbstractFieldsGetter;
 
-public abstract class AbstractMapGetter extends AbstractFieldsGetter{
+public abstract class AbstractMapGetter implements FieldsGetterService{
 
     protected JsonNode map;
     
@@ -20,7 +19,7 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
 
     
     @Override
-    protected int getInteger(String key)
+    public int getInteger(String key)
     {
     	try{
     		return (map.findValue(key).asInt());
@@ -30,13 +29,13 @@ public abstract class AbstractMapGetter extends AbstractFieldsGetter{
     	}
     }
     @Override
-    protected String getString(String key)
+    public String getString(String key)
     {
     	Object value= map.get(key);
     	return value==null? "" : value.toString();
     }
     @Override
-    protected boolean getBoolean(String item)
+    public boolean getBoolean(String item)
     {
     	try {
     		return map.get(item).asBoolean();

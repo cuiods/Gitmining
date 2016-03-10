@@ -2,9 +2,9 @@ package edu.nju.git.data.api.listdocument;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import edu.nju.git.data.factory.impl.POfactory.AbstractFieldsGetter;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 
-public class Document extends AbstractFieldsGetter{
+public class Document implements FieldsGetterService{
 
 	protected JsonNode fatherJsonNode;
 	public Document() {	}
@@ -13,7 +13,7 @@ public class Document extends AbstractFieldsGetter{
 	}
 	
 	@Override
-	protected int getInteger(String string) {
+	public int getInteger(String string) {
 		try{
 			return (this.getItem(string).asInt(0));
 		}catch(Exception exception){
@@ -34,14 +34,14 @@ public class Document extends AbstractFieldsGetter{
 	}
 	
 	@Override
-	protected String getString(String item) {
+	public String getString(String item) {
 		JsonNode node =  this.getItem(item);
 		String re= node==null? "":node.textValue();
 		return re==null?"":re;
 	}
 
 	@Override
-	protected boolean getBoolean(String item) {
+	public boolean getBoolean(String item) {
 		JsonNode node =  this.getItem(item);
 		return node==null? false:node.asBoolean();
 	}

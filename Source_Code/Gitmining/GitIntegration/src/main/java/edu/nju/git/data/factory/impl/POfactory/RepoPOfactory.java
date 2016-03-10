@@ -1,14 +1,15 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.VO.RepoVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class RepoPOfactory implements POfactory<RepoVO> {
 
-	private AbstractFieldsGetter itemHelper;
+	private FieldsGetterService itemHelper;
 	
 
-	public RepoPOfactory(AbstractFieldsGetter itemHelper) {
+	public RepoPOfactory(FieldsGetterService itemHelper) {
 		super();
 		this.itemHelper = itemHelper;
 	}

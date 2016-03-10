@@ -1,7 +1,5 @@
 package edu.nju.git.data.api.abstractservice;
 
-import edu.nju.git.data.factory.impl.POfactory.AbstractFieldsGetter;
-
 /**
  * the parent class of pofactories ,who read a po by single api.
  * ( we only get one value by one such api)
@@ -9,7 +7,7 @@ import edu.nju.git.data.factory.impl.POfactory.AbstractFieldsGetter;
  * @date 2016-03-08
  * @param <T>
  */
-public abstract class AbstractItemGetter extends AbstractFieldsGetter{
+public abstract class AbstractItemGetter implements FieldsGetterService{
 
 	/**
 	 * @see ItemService
@@ -18,7 +16,7 @@ public abstract class AbstractItemGetter extends AbstractFieldsGetter{
 	
 	public AbstractItemGetter(){}
 	
-	protected int getInteger(String string)
+	public int getInteger(String string)
 	{
 		try{
 			return Integer.parseInt(this.getItem(string));
@@ -29,12 +27,12 @@ public abstract class AbstractItemGetter extends AbstractFieldsGetter{
 		
 	}
 	
-	protected String getString(String item)
+	public String getString(String item)
 	{
 		return this.getItem(item);
 	}
 	
-	protected boolean getBoolean(String item)
+	public boolean getBoolean(String item)
 	{
 		return Boolean.parseBoolean(this.getItem(item));
 	}

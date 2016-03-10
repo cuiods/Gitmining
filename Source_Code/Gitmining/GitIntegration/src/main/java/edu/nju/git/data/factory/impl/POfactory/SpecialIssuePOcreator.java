@@ -1,14 +1,15 @@
 package edu.nju.git.data.factory.impl.POfactory;
 
 import edu.nju.git.VO.IssueVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
 
 public class SpecialIssuePOcreator implements POfactory<IssueVO> {
 
-	private AbstractFieldsGetter itemHelper;
+	private FieldsGetterService itemHelper;
 	
 
-	public SpecialIssuePOcreator(AbstractFieldsGetter itemHelper) {
+	public SpecialIssuePOcreator(FieldsGetterService itemHelper) {
 		super();
 		this.itemHelper = itemHelper;
 	}

@@ -1,5 +1,6 @@
 package edu.nju.git.data.factory.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.git.VO.BranchVO;
@@ -9,6 +10,7 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.api.centralization.RepoMapReader;
 import edu.nju.git.data.api.centralization.UserMapReader;
 import edu.nju.git.data.api.decentralization.BranchItemreader;
@@ -23,7 +25,6 @@ import edu.nju.git.data.api.liststring.IssuesListReader;
 import edu.nju.git.data.api.liststring.RepositoriesListReader;
 import edu.nju.git.data.api.liststring.StargazersListReader;
 import edu.nju.git.data.api.liststring.SubscribersListReader;
-import edu.nju.git.data.factory.impl.POfactory.AbstractFieldsGetter;
 import edu.nju.git.data.factory.impl.POfactory.BranchPOfactory;
 import edu.nju.git.data.factory.impl.POfactory.CommitPOfactory;
 import edu.nju.git.data.factory.impl.POfactory.IssuePOfactory;
@@ -61,15 +62,23 @@ public class POcreator {
 		return instance;
 	}
 	
+	private List<String> convertObjectToString(List<Object> objects){
+		List<String> strings = new ArrayList<String>();
+		for (Object object : objects) {
+			strings.add(object.toString());
+		}
+		return strings;
+	}
+	
 	public UserVO getUserPO(String name){
-		AbstractFieldsGetter getter = new UserMapReader(name);
+		FieldsGetterService getter = new UserMapReader(name);
 //		AbstractFieldsGetter getter = new UserItemReader(name);
 		UserPOfactory pofactory = new UserPOfactory(getter);
 		return pofactory.getPO();
 	}
 
 	public UserBriefVO getUserBriefPO(String name){
-		AbstractFieldsGetter getter = new UserMapReader(name);
+		FieldsGetterService getter = new UserMapReader(name);
 //		AbstractFieldsGetter getter = new UserItemReader(name);
 		UserBriefPOfactory pofactory = new UserBriefPOfactory(getter);
 		return POVOConverter.convert(pofactory.getPO());
@@ -77,7 +86,7 @@ public class POcreator {
 	
 	
 	public RepoBriefVO getRepoBriefPO(String fullname){
-		AbstractFieldsGetter getter = new RepoMapReader(fullname);
+		FieldsGetterService getter = new RepoMapReader(fullname);
 //		AbstractFieldsGetter getter = new RepoItemReader(fullname);
 		RepoBriefPOfactory pOfactory = new RepoBriefPOfactory(getter);
 		return POVOConverter.convert( pOfactory.getPO() );
@@ -91,10 +100,18 @@ public class POcreator {
 	
 	
 	public RepoVO getRepoPO(String fullname){
-		AbstractFieldsGetter getter = new RepoMapReader(fullname);
+		FieldsGetterService getter = new RepoMapReader(fullname);
 //		AbstractFieldsGetter getter = new RepoItemReader(fullname);
 		RepoPOfactory pOfactory = new RepoPOfactory(getter);
-		return pOfactory.getPO();
+		RepoVO repoVO = pOfactory.getPO();
+		
+		repoVO.setInfo_branch(this.convertObjectToString(this.getBranches(fullname)));
+		repoVO.setInfo_collaborator(this.convertObjectToString(this.getCollaborators(fullname)));
+//		repoVO.setInfo_commit(this.convertObjectToString(this.getCommits(fullname)));
+		repoVO.setInfo_contributor(this.convertObjectToString(this.getContributors(fullname)));
+//		repoVO.setInfo_fork(this.convertObjectToString(this.getForks(fullname)));
+//		repoVO.setInfo_issue(this.convertObjectToString(this.getIssues(fullname)));
+		return repoVO;
 	}
 	
 	
@@ -104,7 +121,7 @@ public class POcreator {
 	
 	
 	public IssueVO getIssue(String fullname,String sha){
-		AbstractFieldsGetter getter = new IssueItemReader(fullname, sha);
+		FieldsGetterService getter = new IssueItemReader(fullname, sha);
 		IssuePOfactory issuePOfactory = new IssuePOfactory(getter, sha);
 		return issuePOfactory.getPO();
 	}
@@ -114,7 +131,7 @@ public class POcreator {
 	}
 	
 	public CommitVO getCommitPO(String fullname,String sha){
-		AbstractFieldsGetter getter = new CommitItemReader(fullname, sha);
+		FieldsGetterService getter = new CommitItemReader(fullname, sha);
 		CommitPOfactory commitPOfactory = new CommitPOfactory(getter,sha);
 		return commitPOfactory.getPO();
 	}
@@ -124,7 +141,7 @@ public class POcreator {
 	}
 	
 	public BranchVO getBranchPO(String fullname, String sha){
-		AbstractFieldsGetter getter = new BranchItemreader(fullname, sha);
+		FieldsGetterService getter = new BranchItemreader(fullname, sha);
 		BranchPOfactory branchPOfactory = new BranchPOfactory(getter);
 		return branchPOfactory.getPO();
 	}
