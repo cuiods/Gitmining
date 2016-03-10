@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.data.impl.LocalReader;
+import edu.nju.git.data.init.impl.LocalReader;
 import junit.framework.TestCase;
 
 public class LocalReaderTest extends TestCase {

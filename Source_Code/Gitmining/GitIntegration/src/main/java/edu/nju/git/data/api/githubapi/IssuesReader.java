@@ -18,7 +18,11 @@ public class IssuesReader extends ListDocumentReader {
 		this.setNames(owner, name);
 	}
 	public void setNames(String fullname){
-		this.url_string  = "https://api.github.com/repos/"+fullname+"/issues";
+		if(APIconfig.isGithub){
+			this.url_string  = "https://api.github.com/repos/"+fullname+"/issues";
+		}else{
+			this.url_string = "http://www.gitmining.net/api/repository/"+fullname+"/issues";
+		}
 		init(url_string);
 	}
 

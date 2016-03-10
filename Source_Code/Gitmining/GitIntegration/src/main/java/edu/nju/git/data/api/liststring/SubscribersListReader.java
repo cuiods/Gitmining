@@ -6,7 +6,7 @@ public class SubscribersListReader extends ListJsonReader {
 	 * @param fullname "{owner}/{reponame}"
 	 */
 	public SubscribersListReader(String fullname) {
-		super("http://www.gitmining.net//api/user/"+fullname+"/subscribers/names");
+		super("http://www.gitmining.net/api/user/"+fullname+"/subscribers/names");
 	}
 	
 	public SubscribersListReader(String owner,String name) {
@@ -14,7 +14,7 @@ public class SubscribersListReader extends ListJsonReader {
 	}
 	
 	public SubscribersListReader(String fullname,int page) {
-		super("http://www.gitmining.net//api/user/"+fullname+"/subscribers/names?page="+page);
+		super("http://www.gitmining.net/api/user/"+fullname+"/subscribers/names?page="+page);
 	}
 	
 	public SubscribersListReader(String owner,String name,int page) {

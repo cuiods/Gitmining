@@ -1,4 +1,4 @@
-package edu.nju.git.data.impl;
+package edu.nju.git.data.init.impl;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -2,6 +2,9 @@ package edu.nju.git.PO;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class is used in data layer to store <b>ALL</b> the indexes of repository information.
  * <p>In order to save network expenditure, we save all the repositories' <b>brief</b> information<br>
@@ -11,14 +14,22 @@ import java.io.Serializable;
  * @author benchaodong
  * @date 2016-03-04
  */
+@JsonAutoDetect
 public class RepoBriefPO implements Serializable{
 	private static final long serialVersionUID = 3586985796146025910L;
+	@JsonProperty("owner")
 	private String owner;
+	@JsonProperty("name")
 	private String name;
+	@JsonProperty("description")
 	private String description;
+	@JsonProperty("num_stars")
 	private int num_stars;
+	@JsonProperty("num_forks")
 	private int num_forks;
+	@JsonProperty("num_subscribers")
 	private int num_subscribers;
+	@JsonProperty("lastUpdate")
 	private String lastUpdate;
 
 	public RepoBriefPO(){

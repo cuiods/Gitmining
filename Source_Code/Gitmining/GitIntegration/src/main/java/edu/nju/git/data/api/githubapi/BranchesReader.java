@@ -18,7 +18,11 @@ public class BranchesReader extends ListDocumentReader {
 		this.setNames(owner, name);
 	}
 	public void setNames(String fullname){
-		this.url_string  = "https://api.github.com/repos/"+fullname+"/branches";
+		if(APIconfig.isGithub){
+			this.url_string  = "https://api.github.com/repos/"+fullname+"/branches";
+		}else{
+			this.url_string = "http://www.gitmining.net/api/repository/"+fullname+"/branches";
+		}
 		init(url_string);
 	}
 
