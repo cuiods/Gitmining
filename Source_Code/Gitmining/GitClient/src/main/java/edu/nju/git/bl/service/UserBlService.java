@@ -101,6 +101,13 @@ public interface UserBlService {
     public List<RepoBriefVO> getUserContributeRepos(String userName);
 
     /**
+     * return the brief list.
+     *
+     * @return brief user list.
+     */
+    public List<UserBriefVO> getShownUserList();
+
+    /**
      * get the page number that is being viewed.
      * @return page number
      */

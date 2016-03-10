@@ -54,6 +54,11 @@ public class UserBlImpl implements UserBlService {
     private List<UserBriefVO> briefUserList;
 
     /**
+     * This list stores references to vos that is being shown on presentation layer.
+     */
+    private List<UserBriefVO> shownUserList;
+
+    /**
      * This static method returns the reference to the only instance of this class.<p>
      * Other class can get an instance of this class only by this method.
      * @return the instance of this class.
@@ -147,6 +152,11 @@ public class UserBlImpl implements UserBlService {
     @Override
     public List<RepoBriefVO> getUserContributeRepos(String userName) {
         return userDataService.getUserContributeRepos(userName);
+    }
+
+    @Override
+    public List<UserBriefVO> getShownUserList() {
+        return shownUserList;
     }
 
     /**

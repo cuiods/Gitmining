@@ -51,6 +51,11 @@ public class RepoBlImpl implements RepoBlService {
     private List<RepoBriefVO> briefRepoList;
 
     /**
+     * This list stores references to the brief vos that is being shown on the presentatuin layer
+     */
+    private List<RepoBriefVO> shownRepoList;
+
+    /**
      * This static method returns the reference to the only instance of this class.<p>
      * Other class can get an instance of this class only by this method.
      * @return the instance of this class.
@@ -104,22 +109,22 @@ public class RepoBlImpl implements RepoBlService {
 
     @Override
     public List<RepoBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException{
-        return browseModelService.jumpToPage(pageNum);
+        return shownRepoList = browseModelService.jumpToPage(pageNum);
     }
 
     @Override
     public List<RepoBriefVO> nextPage() throws PageOutOfBoundException {
-        return browseModelService.nextPage();
+        return shownRepoList = browseModelService.nextPage();
     }
 
     @Override
     public List<RepoBriefVO> previousPage() throws PageOutOfBoundException {
-        return browseModelService.previousPage();
+        return shownRepoList = browseModelService.previousPage();
     }
 
     @Override
     public List<RepoBriefVO> sort(SortType sortType, boolean reverse) {
-        return browseModelService.sort(sortType, reverse);
+        return shownRepoList = browseModelService.sort(sortType, reverse);
     }
 
     @Override
@@ -155,6 +160,11 @@ public class RepoBlImpl implements RepoBlService {
     @Override
     public List<IssueVO> getRepoIssue(String owner, String repoName) {
         return repoDataService.getRepoIssue(owner, repoName);
+    }
+
+    @Override
+    public List<RepoBriefVO> getShownRepoList() {
+        return shownRepoList;
     }
 
     /**

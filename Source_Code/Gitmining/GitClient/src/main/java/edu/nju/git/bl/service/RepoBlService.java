@@ -150,6 +150,13 @@ public interface RepoBlService {
 	public List<IssueVO> getRepoIssue(String owner, String repoName);
 
 	/**
+	 * return the brief list.
+	 *
+	 * @return brief repository list.
+	 */
+	public List<RepoBriefVO> getShownRepoList();
+
+	/**
 	 * get the page number that is being viewed.
 	 * @return page number
 	 */
