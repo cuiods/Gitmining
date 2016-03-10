@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import org.dom4j.Element;
 
-import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.ui.components.InfoLabel;
 import edu.nju.git.ui.components.MyTextField;
 import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.controller.UserController;
@@ -41,11 +41,11 @@ public class UserTable extends MyTable {
 	}
 	
 	public MyTableLabel createLabel(UserBriefVO user){
-		MyTextField login = new MyTextField(user.getLogin());
+		InfoLabel login = new InfoLabel(user.getLogin());
 		login.setSize(160,30);
-		MyTextField followers = new MyTextField(""+user.getFollowers());
+		InfoLabel followers = new InfoLabel(""+user.getFollowers());
 		followers.setSize(160,30);
-		MyTextField publicRepos = new MyTextField(""+user.getPublic_repos());
+		InfoLabel publicRepos = new InfoLabel(""+user.getPublic_repos());
 		publicRepos.setSize(160,30);
 		java.awt.Component[] components = {login,followers,publicRepos};
 		MyTableLabel label = new MyTableLabel(element, controller, 35, components, this);

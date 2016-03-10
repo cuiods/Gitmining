@@ -35,25 +35,25 @@ public class ReposController {
 	 */
 	public ArrayList<RepoBriefVO> getRepos(int page,String keyword){
 		ArrayList<RepoBriefVO> repoArray = new ArrayList<RepoBriefVO>();
-//		List<RepoBriefVO> repolist =null;
-//		if ((page == 1)&&!(keyword.equals(""))){
-//			try {
-//				repolist = repoBl.getSearchResult(keyword);
-//			} catch (NoSearchResultException e) {
-//				// exception to deal with
-//				e.printStackTrace();
-//			}
-//		}else{
-//			try {
-//				repolist = repoBl.jumpToPage(page);
-//			} catch (PageOutOfBoundException e1) {
-//				// exception to deal with
-//				e1.printStackTrace();
-//			}
-//		}
-//		for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
-//			repoArray.add(it.next());
-//		}
+		List<RepoBriefVO> repolist =null;
+		if ((page == 1)&&!(keyword.equals(""))){
+			try {
+				repolist = repoBl.getSearchResult(keyword);
+			} catch (NoSearchResultException e) {
+				// exception to deal with
+				e.printStackTrace();
+			}
+		}else{
+			try {
+				repolist = repoBl.jumpToPage(page);
+			} catch (PageOutOfBoundException e1) {
+				// exception to deal with
+				e1.printStackTrace();
+			}
+		}
+		for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
+			repoArray.add(it.next());
+		}
 //		RepoBriefVO vo = new RepoBriefVO();
 //		vo.setOwner("aaa");
 //		vo.setName("gitming");

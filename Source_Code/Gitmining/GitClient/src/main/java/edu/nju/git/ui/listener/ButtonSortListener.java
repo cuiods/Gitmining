@@ -31,21 +31,21 @@ public class ButtonSortListener extends ButtonListener {
 	public void mouseReleased(MouseEvent e) {
 		//according to different requirement ,change the order in table
 		String path = button.getPicPath();
-		
+//		System.out.println(path);
 		if(path.contains("USER")){
 			UserTable userTable =(UserTable)(units.get(0));
 			ArrayList<UserBriefVO> userList = new ArrayList<UserBriefVO>();
 			ArrayList<MyTableLabel> labelList = new ArrayList<MyTableLabel>();
 			UserController userControl = controller.getUserController();
-			if(path.contains("name1")){
+			if(path.contains("name")&&!path.contains("2")){
 				userList = userControl.sort(SortType.USER_NAME, true);
 			}else if(path.contains("name2")){
 				userList = userControl.sort(SortType.USER_NAME, false);
-			}else if(path.contains("follower1")){
+			}else if(path.contains("follower")&&!path.contains("2")){
 				userList = userControl.sort(SortType.FOLLOWER_NUM, true);
 			}else if(path.contains("follower2")){
 				userList = userControl.sort(SortType.FOLLOWER_NUM, false);
-			}else if(path.contains("repo1")){
+			}else if(path.contains("repo")&&!path.contains("2")){
 				userList = userControl.sort(SortType.REPO_NUM, true);
 			}else if(path.contains("repo2")){
 				userList = userControl.sort(SortType.REPO_NUM, false);
@@ -69,30 +69,33 @@ public class ButtonSortListener extends ButtonListener {
 			ArrayList<RepoBriefVO> repoList = new ArrayList<RepoBriefVO>();
 			ArrayList<MyTableLabel> labelList = new ArrayList<MyTableLabel>();
 			ReposController repoController = controller.getReposController();
-			if(path.contains("name1")){
+			boolean another = !path.contains("2");
+			if(path.contains("name")&&another){
 				repoList = repoController.sort(SortType.REPO_NAME, true);
 			}else if(path.contains("name2")){
 				repoList = repoController.sort(SortType.REPO_NAME, false);
-			}else if(path.contains("star1")){
+			}else if(path.contains("star")&&another){
 				repoList = repoController.sort(SortType.STAR_NUM, true);
 			}else if(path.contains("star2")){
 				repoList = repoController.sort(SortType.STAR_NUM, false);
-			}else if(path.contains("fork1")){
+			}else if(path.contains("fork")&&another){
 				repoList = repoController.sort(SortType.FORK_NUM, true);
 			}else if(path.contains("fork2")){
 				repoList = repoController.sort(SortType.FORK_NUM, false);
-			}else if(path.contains("subscr1")){
+			}else if(path.contains("subscr")&&another){
 				repoList = repoController.sort(SortType.SUBSCR_NUM, true);
 			}else if(path.contains("subscr2")){
 				repoList = repoController.sort(SortType.SUBSCR_NUM, false);
-			}else if(path.contains("update1")){
+			}else if(path.contains("update")&&another){
 				repoList = repoController.sort(SortType.UPDATE_TIME, true);
 			}else if(path.contains("update2")){
 				repoList = repoController.sort(SortType.UPDATE_TIME, false);
 			}
+
 			for(int i=0;i<repoList.size();i++){
 				MyTableLabel label = repoTable.createLabel(repoList.get(i));
 				labelList.add(label);
+		
 			}
 			repoTable.setDataList(labelList);
 			for(int i=1;i<=5;i++){

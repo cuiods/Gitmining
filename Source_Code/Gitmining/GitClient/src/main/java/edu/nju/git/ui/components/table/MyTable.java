@@ -14,6 +14,7 @@ import edu.nju.git.type.SortType;
 import edu.nju.git.ui.components.MyScrollPane;
 import edu.nju.git.ui.components.MyScrollPaneUI;
 import edu.nju.git.ui.controller.UIController;
+import edu.nju.git.ui.listener.LabelListener;
 
 /**
  * When create a table, you need to override two methods to initialize data For<br>
@@ -73,6 +74,9 @@ public abstract class MyTable extends MyScrollPane<MyTableLabel> implements Mous
 			if (i % 2 != 0){
 //				MyTableLabel.pathBit = 1;
 				label.setPicPath("src/main/resources/pictures/grey.png");
+				MouseListener listener[] = label.getMouseListeners();
+				LabelListener labelLis =(LabelListener) listener[0];
+				labelLis.setPicPath("src/main/resources/pictures/grey.png");
 				label.repaint();
 			}
 			data.set(i, label);

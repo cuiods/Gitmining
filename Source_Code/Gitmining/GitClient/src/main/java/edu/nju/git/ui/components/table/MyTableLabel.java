@@ -77,6 +77,7 @@ public class MyTableLabel extends JLabel  {
 	 */
 //	public static int pathBit=0;
 	protected Element element;
+	private LabelListener listener;
 
 	/**
 	 * @param element
@@ -101,7 +102,7 @@ public class MyTableLabel extends JLabel  {
 		setPreferredSize(new Dimension(width, height));
 		initializeComponents();
 		requestFocus();
-//		if(element.attributeValue("class").equals("table.ListTable"))
+//		if(element.attributeValue("class").equals("table.ListTable")
 		this.addMouseListener(new LabelListener(this,controller));
 	}
 

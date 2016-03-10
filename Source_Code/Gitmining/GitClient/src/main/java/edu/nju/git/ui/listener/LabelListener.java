@@ -22,6 +22,9 @@ public class LabelListener implements MouseListener {
 		this.controller = controller;
 		picPath = label.getPicPath();
 	}
+	public void setPicPath(String picPath){
+		this.picPath = picPath;
+	}
 	/*
 	 * double clicked will start the new event 
 	 * (non-Javadoc)

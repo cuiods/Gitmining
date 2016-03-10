@@ -47,7 +47,7 @@ public class RepoSearchModel implements RepoBrowseModelService {
         repoBl.setCurrentPage(pageNum);
 
         if (pageNum == totalPage) {
-            return briefUserList.subList(pageNum*pageCapacity, briefUserList.size());
+            return briefUserList.subList((pageNum-1)*pageCapacity, briefUserList.size());
         }
 
         return briefUserList.subList(pageCapacity*(pageNum-1), pageCapacity*pageNum);
