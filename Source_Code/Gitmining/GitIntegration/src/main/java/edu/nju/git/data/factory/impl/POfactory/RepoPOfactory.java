@@ -51,7 +51,7 @@ public class RepoPOfactory implements POfactory<RepoVO> {
 		repo.setNum_stars(itemHelper.getInteger("stargazers_count"));
 		
 		repo.setUpdate_at(itemHelper.getString("updated_at"));
-
+		
 		return repo;
 	}
 
