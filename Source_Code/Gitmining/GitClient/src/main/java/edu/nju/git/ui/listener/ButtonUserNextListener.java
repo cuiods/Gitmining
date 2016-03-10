@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.ui.components.TextLabel;
 import edu.nju.git.ui.components.table.UserTable;
 import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.controller.UserController;
@@ -23,8 +24,14 @@ public class ButtonUserNextListener extends ButtonListener {
 		UserTable table = (UserTable)units.get(0);
 		UserController userControl = controller.getUserController();
 		int nowPage = userControl.getCurrentPage();
-		ArrayList<UserBriefVO> lastPage = userControl.jumpPage(nowPage+1);
-		table.setDataList(table.getNewData(lastPage));
+		if(nowPage<userControl.getTotalPage()){
+			ArrayList<UserBriefVO> lastPage = userControl.jumpPage(nowPage+1);
+			table.setDataList(table.getNewData(lastPage));
+			TextLabel pageNum = (TextLabel)units.get(6);
+			pageNum.setPage(nowPage+1);
+		}else{
+			button.setEnabled(false);
+		}
 		controller.getFrame().repaint();
 	}
 

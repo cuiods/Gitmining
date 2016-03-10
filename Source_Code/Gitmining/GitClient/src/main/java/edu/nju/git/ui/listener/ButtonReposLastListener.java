@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.ui.components.TextLabel;
 import edu.nju.git.ui.components.table.ReposTable;
 import edu.nju.git.ui.controller.ReposController;
 import edu.nju.git.ui.controller.UIController;
@@ -25,10 +26,13 @@ public class ButtonReposLastListener extends ButtonListener {
 		if(nowPage>1){
 			ArrayList<RepoBriefVO> lastPage = repoControl.jumpPage(nowPage-1);
 			table.setDataList(table.getNewData(lastPage));
+			TextLabel pageNum = (TextLabel)units.get(10);
+			pageNum.setPage(nowPage-1);
 		}
 		if(nowPage==2){
 			button.setEnabled(false);//to deal with
 		}
+		
 		controller.getFrame().repaint();
 
 

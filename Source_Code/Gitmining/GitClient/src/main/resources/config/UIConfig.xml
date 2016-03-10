@@ -10,7 +10,7 @@
 		</mainPanel>
 		<mainPanel name = "ReposPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
-			<unit name ="reposlist" class = "table.ReposTable" x="50" y="255" w="970" h="350" type="0" dataType="RepoBriefVO"/>
+			<unit name ="reposlist" change = "RepoDetailPanel" class = "table.ReposTable" x="50" y="255" w="970" h="344" type="0" dataType="RepoBriefVO"/>
 			<unit name ="sort_REPOS_name" class = "MainButton" x="50" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_REPOS_star" class = "MainButton" x="210" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_REPOS_fork" class = "MainButton" x="300" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
@@ -20,29 +20,46 @@
 			<unit name ="head_REPOS_descrip" class = "MainButton" x="800" y="220" w="220" h="35" type ="0"/>
 			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
 			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchRepoListener"/> 
+			<unit name = "REPOS_page" class ="TextLabel" x="898" y="608" w="44" h="24" type = "0"/>
 			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name = "guide_repos3" class = "MainButton" x="25" y="90" w="150" h="50" type="0"/>
 			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name = "lastPage" class ="MainButton" x="820" y="615" w="78" h="24" type = "1" listenerName="ButtonReposLastListener"/>
-			<unit name = "nextPage" class ="MainButton" x="942" y="615" w="78" h="24" type = "1" listenerName="ButtonReposNextListener"/>
-			<unit name = "REPOS_page" class ="TextLabel" x="898" y="615" w="44" h="24" type = "0"/>
+			<unit name = "lastPage" class ="MainButton" x="820" y="608" w="78" h="24" type = "1" listenerName="ButtonReposLastListener"/>
+			<unit name = "nextPage" class ="MainButton" x="942" y="608" w="78" h="24" type = "1" listenerName="ButtonReposNextListener"/>
+			
 		</mainPanel>
 		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
-			<unit name = "userList" class = "table.UserTable" x="280" y="255" w="480" h="350" type ="0"/>
+			<unit name = "userList" change = "UserDetailPanel" class = "table.UserTable" x="280" y="255" w="480" h="344" type ="0"/>
 			<unit name ="sort_USER_name" class = "MainButton" x="280" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_USER_follower" class = "MainButton" x="440" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_USER_repo" class = "MainButton" x="600" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
 			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchUserListener"/> 
+			<unit name = "USER_page" class ="TextLabel" x="898" y="608" w="44" h="24" type = "0"/>
 			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
 			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>
 			<unit name = "guide_user3"  class = "MainButton" x="175" y="90" w="150" h="50" type ="0"/>
 			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
 			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchUserListener"/> 
-	
+			<unit name = "lastPage" class ="MainButton" x="820" y="608" w="78" h="24" type = "1" listenerName="ButtonUserLastListener"/>
+			<unit name = "nextPage" class ="MainButton" x="942" y="608" w="78" h="24" type = "1" listenerName="ButtonUserNextListener"/>
+		</mainPanel>
+		<mainPanel name = "RepoDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name = "repos" change ="ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+		</mainPanel>
+		<mainPanel name = "UserDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name = "repos" change ="ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 		</mainPanel>
 	</Frame>
 </presentation> 

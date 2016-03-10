@@ -55,9 +55,9 @@ public class ReposTable extends MyTable {
 		InfoLabel owner = new InfoLabel(repo.getOwner());
 		owner.setSize(150,30);
 		InfoLabel descrip = new InfoLabel(repo.getDescription());
-		descrip.setSize(220,30);
+		descrip.setSize(200,30);
 		java.awt.Component components[] = {reposName,starNum,forkNum,subscribeNum,update,owner,descrip};
-		MyTableLabel label = new MyTableLabel(element,controller,35,components,this);
+		MyTableLabel label = new MyTableLabel(element,controller,34,components,this);
 		return label;
 	}
 	

@@ -48,7 +48,7 @@ public class UserTable extends MyTable {
 		InfoLabel publicRepos = new InfoLabel(""+user.getPublic_repos());
 		publicRepos.setSize(160,30);
 		java.awt.Component[] components = {login,followers,publicRepos};
-		MyTableLabel label = new MyTableLabel(element, controller, 35, components, this);
+		MyTableLabel label = new MyTableLabel(element, controller, 34, components, this);
 		return label;
 	}
 	

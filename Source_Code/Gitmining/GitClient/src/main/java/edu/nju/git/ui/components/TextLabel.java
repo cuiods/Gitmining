@@ -25,7 +25,7 @@ public class TextLabel extends JLabel {
 	private int h;
 	private int x;
 	private int y;
-	
+	private JTextField text = new JTextField();
 	public TextLabel(Element element,UIController controller){
 		this.element = element;
 		this.controller = controller;
@@ -35,11 +35,14 @@ public class TextLabel extends JLabel {
 		x = Integer.parseInt(element.attributeValue("x"));
 		y = Integer.parseInt(element.attributeValue("y"));
 		setBounds(x, y, w, h);
+		text.setHorizontalAlignment(JTextField.CENTER);
+		text.setFont(new Font("微软雅黑",Font.PLAIN,16));
+		text.setBounds(0, 0, w, h);
+		text.setEditable(false);
 		getPageNum();
 	}
 	
 	public void getPageNum(){
-		JTextField text = new JTextField();
 		String pageNum = "";
 		if(element.attributeValue("name").contains("USER")){
 			pageNum = ""+controller.getUserController().getCurrentPage();
@@ -47,13 +50,14 @@ public class TextLabel extends JLabel {
 			pageNum =""+controller.getReposController().getCurrentPage();
 		}
 		text.setText(pageNum);
-		text.setHorizontalAlignment(JTextField.CENTER);
-		text.setFont(new Font("微软雅黑",Font.PLAIN,16));
-		text.setBounds(0, 0, w, h);
-		text.setEditable(false);
 		add(text);
 		
 	
+	}
+	
+	public void setPage(int pageNum){
+		text.setText(pageNum+"");
+		add(text);
 	}
 	
 }
