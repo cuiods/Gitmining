@@ -20,16 +20,11 @@ public class RepoDataTest extends TestCase {
 
 
 	public void testGetSearchResult() {
-		try {
-			List<RepoBriefVO> list = repoDataImpl.getSearchResult("*");
-			for (RepoBriefVO repoBriefVO : list) {
-				System.out.println(repoBriefVO.getName());
-			}
-			System.out.println(list.size());
-		} catch (NoSearchResultException e) {
-			System.out.println("null");
-			e.printStackTrace();
+		List<RepoBriefVO> list = repoDataImpl.getSearchResult("*");
+		for (RepoBriefVO repoBriefVO : list) {
+			System.out.println(repoBriefVO.getName());
 		}
+		System.out.println(list.size());
 	}
 
 	/*public void testGetRepoBasicInfo() {

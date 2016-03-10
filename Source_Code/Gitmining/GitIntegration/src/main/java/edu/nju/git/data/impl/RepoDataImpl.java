@@ -144,24 +144,22 @@ public class RepoDataImpl implements RepoDataService {
         return creator.getRepoPO(owner, repoName);
     }
 
-    private List<UserBriefVO> convertObjectToUserBreif(List<Object> objects){
+    /*private List<UserBriefVO> convertObjectToUserBreif(List<Object> objects){
     	List<UserBriefVO> userBriefVOs = new ArrayList<UserBriefVO>();
     	for (Object object : objects) {
 			userBriefVOs.add(creator.getUserBriefPO(object.toString()));
 		}
     	return userBriefVOs;
-    }
+    }*/
     
     @Override
     public List<UserBriefVO> getRepoContributor(String owner, String repoName) {
-    	List<Object> objects = creator.getContributors(owner, repoName);
-        return convertObjectToUserBreif(objects);
+        return listCreator.getContributors(owner, repoName);
     }
 
     @Override
     public List<UserBriefVO> getRepoCollaborator(String owner, String repoName) {
-    	List<Object> objects = creator.getCollaborators(owner, repoName);
-        return convertObjectToUserBreif(objects);
+        return this.listCreator.getCollaborators(owner, repoName);
     }
 
     @Override
@@ -177,12 +175,13 @@ public class RepoDataImpl implements RepoDataService {
 
     @Override
     public List<RepoBriefVO> getRepoFork(String owner, String repoName) {
-        List<Object> objects = creator.getForks(owner, repoName);
+        /*List<Object> objects = creator.getForks(owner, repoName);
         List<RepoBriefVO> repoBriefVOs = new ArrayList<RepoBriefVO>();
         for (Object object : objects) {
 			repoBriefVOs.add(creator.getRepoBriefPO(object.toString()) );
 		}
-    	return repoBriefVOs;
+    	return repoBriefVOs;*/
+    	return listCreator.getForks(owner, repoName);
     }
 
     @Override
