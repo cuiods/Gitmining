@@ -103,7 +103,7 @@ public class MyTableLabel extends JLabel  {
 		initializeComponents();
 		requestFocus();
 //		if(element.attributeValue("class").equals("table.ListTable")
-		this.addMouseListener(new LabelListener(this,controller));
+//		this.addMouseListener(new LabelListener(this,controller));
 	}
 
 	/**

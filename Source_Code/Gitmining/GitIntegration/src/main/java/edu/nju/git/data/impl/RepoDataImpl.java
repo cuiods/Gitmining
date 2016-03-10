@@ -86,7 +86,7 @@ public class RepoDataImpl implements RepoDataService {
     }
 
     @Override
-    public List<RepoBriefVO> getSearchResult(String regex) throws NoSearchResultException {
+    public List<RepoBriefVO> getSearchResult(String regex){
         List<RepoBriefVO> resultList = new ArrayList<RepoBriefVO>();
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher;
@@ -101,9 +101,6 @@ public class RepoDataImpl implements RepoDataService {
             if (matcher.find()) {
                 resultList.add(POVOConverter.convert(po));
             }
-        }
-        if (resultList.isEmpty()) {
-            throw new NoSearchResultException("there is no result to show");
         }
         return resultList;
     }

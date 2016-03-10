@@ -84,14 +84,13 @@ public class RepoBlImpl implements RepoBlService {
 
 
     @Override
-    public List<RepoBriefVO> getSearchResult(String keyword) throws NoSearchResultException {
+    public List<RepoBriefVO> getSearchResult(String keyword){
         if (keyword.isEmpty()) {
             setBrowseModelService(new RepoCasualModel(this));
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
                 e.printStackTrace();
-                throw new NoSearchResultException("there is no result to show");
             }
         }
         else {
@@ -102,9 +101,9 @@ public class RepoBlImpl implements RepoBlService {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
                 e.printStackTrace();
-                throw new NoSearchResultException("there is no result to show");
             }
         }
+        return null;
     }
 
     @Override

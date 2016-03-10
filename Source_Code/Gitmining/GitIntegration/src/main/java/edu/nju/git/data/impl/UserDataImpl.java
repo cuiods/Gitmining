@@ -91,7 +91,7 @@ public class UserDataImpl implements UserDataService {
     }
 
     @Override
-    public List<UserBriefVO> getSearchResult(String regex) throws NoSearchResultException {
+    public List<UserBriefVO> getSearchResult(String regex){
         List<UserBriefVO> resultList = new ArrayList<UserBriefVO>();
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher;
@@ -102,9 +102,6 @@ public class UserDataImpl implements UserDataService {
             if (matcher.find()) {
                 resultList.add(POVOConverter.convert(po));
             }
-        }
-        if (resultList.isEmpty()) {
-            throw new NoSearchResultException("there is no result to show");
         }
         return resultList;
     }

@@ -25,7 +25,7 @@ public interface UserBlService {
      * @param keyword the full or part of the name of the user
      * @return a List of {@link UserBriefVO}, which matches the search result
      */
-    public List<UserBriefVO> getSearchResult(String keyword) throws NoSearchResultException;
+    public List<UserBriefVO> getSearchResult(String keyword);
 
     /**
      * jump to the specific page.
