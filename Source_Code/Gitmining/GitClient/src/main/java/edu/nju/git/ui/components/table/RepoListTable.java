@@ -9,7 +9,7 @@ import edu.nju.git.ui.components.InfoLabel;
 import edu.nju.git.ui.controller.ReposController;
 import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.controller.UserController;
-import edu.nju.git.ui.listener.LabelRepoListener;
+import edu.nju.git.ui.listener.LabelListener;
 
 public class RepoListTable extends MyTable{
 
@@ -45,7 +45,7 @@ public class RepoListTable extends MyTable{
 		name.setSize(250,30);
 		java.awt.Component[] components = {name};
 		MyTableLabel label = new MyTableLabel(element, controller, 30, components, this);
-		label.addMouseListener(new LabelRepoListener(label, controller));
+		label.addMouseListener(new LabelListener(label, controller));
 		return label;
 	}
 

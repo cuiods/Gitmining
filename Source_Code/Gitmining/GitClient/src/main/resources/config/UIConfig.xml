@@ -9,7 +9,7 @@
 			<unit name ="user" change = "UserPanel" class = "MainButton" x="160" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 		</mainPanel>
 		<mainPanel name = "ReposPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
-			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
 			<unit name ="reposlist" change = "RepoDetailPanel" class = "table.ReposTable" x="50" y="255" w="970" h="344" type="0" dataType="RepoBriefVO"/>
 			<unit name ="sort_REPOS_name" class = "MainButton" x="50" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_REPOS_star" class = "MainButton" x="210" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
@@ -30,7 +30,7 @@
 			
 		</mainPanel>
 		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
-			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
 			<unit name = "userList" change = "UserDetailPanel" class = "table.UserTable" x="280" y="255" w="480" h="344" type ="0"/>
 			<unit name ="sort_USER_name" class = "MainButton" x="280" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
 			<unit name ="sort_USER_follower" class = "MainButton" x="440" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
@@ -48,11 +48,11 @@
 			<unit name = "nextPage" class ="MainButton" x="942" y="608" w="78" h="24" type = "1" listenerName="ButtonUserNextListener"/>
 		</mainPanel>
 		<mainPanel name = "RepoDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
-			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
 			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
-			<unit name = "repos" change ="ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<component name = "repos"  class = "component" x="25" y="100" w="150" h="50" />
+		
 			<unit name = "goBack" change="ReposPanel" class = "MainButton" x="950" y="651" w="90" h="30" type ="1" listenerName = "ButtonBackListener"/>
 			<unit name = "repoBasicInfo" class = "MyTextArea" x="50" y="165" w="250" h="400" type = "0" textType ="RepoInfoText"/> 
 			<unit name ="branch" class = "table.BranchTable" x="305" y="190" w="240" h="110" type = "0"/>
@@ -99,12 +99,12 @@
 			<component name ="pubRepo" class ="component" x="945" y="490" w="70" h="20"/>
 		</mainPanel>
 		<mainPanel name = "UserDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
-			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
 			<component name = "userdetail" class ="component" x="40" y="150" w="1000" h="495"/>
 			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
 			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
-			<unit name = "repos" change ="ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
-			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+		
+			<component name = "user"  class = "component" x="25" y="100" w="150" h="50" />
 			<unit name = "detail" class="UserPanel" x="40" y="150" w="1000" h="495" type="0"/>
 			<unit name = "repos" class="table.RepoListTable" x="780" y="180" w="250" h="200" type="0"/>
 			<unit name = "contris" class="table.RepoListTable" x="780" y="420" w="250" h="200" type="0"/>
