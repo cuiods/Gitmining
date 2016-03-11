@@ -40,6 +40,8 @@ public class IssueTest extends TestCase {
 	public void test2(){
 		ListCreator listCreator = ListCreator.getInstance();
 		List<IssueVO> issueVOs = listCreator.getIssueVO("vrpn", "vrpn");
+//		System.out.println(issueVOs.get(0).getUpdate_at());
+//		System.out.println(issueVOs.get(0).getId());
 		assertEquals(30, issueVOs.size());
 	}
 }
