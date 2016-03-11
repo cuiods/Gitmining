@@ -50,8 +50,10 @@ public class ReposController {
 				e1.printStackTrace();
 			}
 		}
-		for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
-			repoArray.add(it.next());
+		if(repolist!=null){
+			for (Iterator<RepoBriefVO> it = repolist.listIterator();it.hasNext();){
+				repoArray.add(it.next());
+			}
 		}
 //		RepoBriefVO vo = new RepoBriefVO();
 //		vo.setOwner("aaa");
@@ -96,8 +98,10 @@ public class ReposController {
 	public ArrayList<CommitVO> getCommits(String owner,String repoName){
 		ArrayList<CommitVO> commits = new ArrayList<CommitVO>();
 		List<CommitVO> commitList = repoBl.getRepoCommit(owner, repoName);
-		for(Iterator<CommitVO> it = commitList.listIterator();it.hasNext();){
-			commits.add(it.next());
+		if(commitList!=null){
+			for(Iterator<CommitVO> it = commitList.listIterator();it.hasNext();){
+				commits.add(it.next());
+			}
 		}
 		return commits;
 	}
@@ -107,8 +111,10 @@ public class ReposController {
 	public ArrayList<IssueVO> getIssues(String owner,String repoName){
 		ArrayList<IssueVO> issues = new ArrayList<IssueVO>();
 		List<IssueVO> issuelist = repoBl.getRepoIssue(owner, repoName);
-		for (Iterator<IssueVO> it = issuelist.listIterator();it.hasNext();){
-			issues.add(it.next());
+		if(issuelist!=null){
+			for (Iterator<IssueVO> it = issuelist.listIterator();it.hasNext();){
+				issues.add(it.next());
+			}
 		}
 		return issues;
 	}
@@ -118,8 +124,10 @@ public class ReposController {
 	public ArrayList<RepoBriefVO> getFork(String owner,String repoName){
 		ArrayList<RepoBriefVO> forks = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> forkList = repoBl.getRepoFork(owner, repoName);
-		for(Iterator<RepoBriefVO> it = forkList.listIterator();it.hasNext();){
-			forks.add(it.next());
+		if(forkList!=null){
+			for(Iterator<RepoBriefVO> it = forkList.listIterator();it.hasNext();){
+				forks.add(it.next());
+			}
 		}
 		return forks;
 	}
@@ -129,8 +137,10 @@ public class ReposController {
 	public ArrayList<UserBriefVO> getCollaborators(String owner,String repoName){
 		ArrayList<UserBriefVO> collaborators = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> collaList = repoBl.getRepoCollaborator(owner, repoName);
-		for(Iterator<UserBriefVO> it = collaList.listIterator();it.hasNext();){
-			collaborators.add(it.next());
+		if(collaList!=null){
+			for(Iterator<UserBriefVO> it = collaList.listIterator();it.hasNext();){
+				collaborators.add(it.next());
+			}
 		}
 		return collaborators;
 	}
@@ -140,8 +150,10 @@ public class ReposController {
 	public ArrayList<UserBriefVO> getSubscriber(String owner,String repoName){
 		ArrayList<UserBriefVO> subscribers = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> subList = repoBl.getRepoContributor(owner, repoName);
-		for(Iterator<UserBriefVO> it = subList.listIterator();it.hasNext();){
-			subscribers.add(it.next());
+		if(subList!=null){
+			for(Iterator<UserBriefVO> it = subList.listIterator();it.hasNext();){
+				subscribers.add(it.next());
+			}
 		}
 		
 		return subscribers;
@@ -158,8 +170,10 @@ public class ReposController {
 	public ArrayList<BranchVO> getBranch(String owner,String repoName){
 		ArrayList<BranchVO> branches = new ArrayList<BranchVO>();
 		List<BranchVO> branchList = repoBl.getRepoBranch(owner, repoName);
-		for(Iterator<BranchVO> it = branchList.listIterator();it.hasNext();){
-			branches.add(it.next());
+		if(branchList!=null){
+			for(Iterator<BranchVO> it = branchList.listIterator();it.hasNext();){
+				branches.add(it.next());
+			}
 		}
 		return branches;
 	}
@@ -187,8 +201,10 @@ public class ReposController {
 			// exception to deal with
 			e.printStackTrace();
 		}
-		for(Iterator<RepoBriefVO> it = repoList.listIterator();it.hasNext();){
-			repos.add(it.next());
+		if(repoList!=null){
+			for(Iterator<RepoBriefVO> it = repoList.listIterator();it.hasNext();){
+				repos.add(it.next());
+			}
 		}
 		return repos;
 	}
@@ -199,8 +215,10 @@ public class ReposController {
 	public ArrayList<RepoBriefVO> sort(SortType type,Boolean isReverse){
 		ArrayList<RepoBriefVO> newOrder = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> orderList = repoBl.sort(type,isReverse);
-		for(Iterator<RepoBriefVO> it = orderList.listIterator();it.hasNext();){
-			newOrder.add(it.next());
+		if(orderList!=null){
+			for(Iterator<RepoBriefVO> it = orderList.listIterator();it.hasNext();){
+				newOrder.add(it.next());
+			}
 		}
 		return newOrder;
 	}

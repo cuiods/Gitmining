@@ -40,8 +40,10 @@ public class UserController {
 				e.printStackTrace();
 			}
 		}
-		for (Iterator<UserBriefVO> it = userList.listIterator();it.hasNext();){
-			users.add(it.next());
+		if(userList!=null){
+			for (Iterator<UserBriefVO> it = userList.listIterator();it.hasNext();){
+				users.add(it.next());
+			}
 		}
 		return users;
 	}
@@ -50,6 +52,7 @@ public class UserController {
 	 */
 	public UserVO getDetailedUser(String userName){
 		UserVO user = userBl.getUserInfo(userName);
+		if(user==null) System.out.println("no data1!");
 		return user;
 	}
 	
@@ -78,8 +81,10 @@ public class UserController {
 	public ArrayList<RepoBriefVO> getSubscribeRepos(String userName){
 		ArrayList<RepoBriefVO> subscri = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> subscriList = userBl.getUserSubscribeRepos(userName);
-		for(Iterator<RepoBriefVO> it = subscriList.listIterator();it.hasNext();){
-			subscri.add(it.next());
+		if(subscriList!=null){
+			for(Iterator<RepoBriefVO> it = subscriList.listIterator();it.hasNext();){
+				subscri.add(it.next());
+			}
 		}
 		return subscri;
 	}
@@ -87,8 +92,10 @@ public class UserController {
 	public ArrayList<RepoBriefVO> getCollaborateRepos(String userName){
 		ArrayList<RepoBriefVO> collab = new ArrayList<RepoBriefVO>();
 		List<RepoBriefVO> collabList = userBl.getUserCollaborateRepos(userName);
-		for(Iterator<RepoBriefVO> it = collabList.listIterator();it.hasNext();){
-			collab.add(it.next());
+		if(collabList!=null){
+			for(Iterator<RepoBriefVO> it = collabList.listIterator();it.hasNext();){
+				collab.add(it.next());
+			}
 		}
 				
 		return collab;
@@ -97,8 +104,10 @@ public class UserController {
 	public ArrayList<UserBriefVO> sort(SortType type,Boolean isReverse){
 		ArrayList<UserBriefVO> newOrder = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> orderList = userBl.sort(type, isReverse);
-		for(Iterator<UserBriefVO> it = orderList.listIterator();it.hasNext();){
-			newOrder.add(it.next());
+		if(orderList!=null){
+			for(Iterator<UserBriefVO> it = orderList.listIterator();it.hasNext();){
+				newOrder.add(it.next());
+			}
 		}
 		return newOrder;
 	}
@@ -120,8 +129,10 @@ public class UserController {
 			// exception to deal with
 			e.printStackTrace();
 		}
-		for(Iterator<UserBriefVO> it = userList.listIterator();it.hasNext();){
-			users.add(it.next());
+		if(userList!=null){
+			for(Iterator<UserBriefVO> it = userList.listIterator();it.hasNext();){
+				users.add(it.next());
+			}
 		}
 		return users;
 	}
