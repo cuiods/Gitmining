@@ -135,7 +135,7 @@ public class MapInit {
 			}
 		}
 		this.save("cache/map/userToOwnerRepo.txt", userToOwnerRepo);
-		userToOwnerRepo = null;
+		//userToOwnerRepo = null;
 	}
 	private void init(){
 		LocalReader reader = new LocalReader();
@@ -150,7 +150,7 @@ public class MapInit {
 		File aFile =  new File("cache/map/nameToRepo.txt");
 		if(!aFile.exists()){aFile.createNewFile();}
 		JacksonConfig.getObjectMapper().writeValue(aFile, nameToRepo);
-		nameToRepo = null;
+		//nameToRepo = null;
 		
 		
 		for (UserBriefPO userBriefPO : userBriefPOs) {
@@ -159,7 +159,7 @@ public class MapInit {
 		File bFile = new File("cache/map/nameToUser.txt");
 		if(!bFile.exists()){aFile.createNewFile();}
 		JacksonConfig.getObjectMapper().writeValue(bFile, nameToUser);
-		nameToUser = null;
+		//nameToUser = null;
 	}
 	
 	public List<String> covertToString(List<Object> objects){
