@@ -10,10 +10,11 @@ import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.data.factory.impl.BriefCreator;
 import edu.nju.git.data.factory.impl.POcreator;
+import edu.nju.git.data.localDataReader.UserLocalReader;
 import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.datavisitors.uservisitors.UserVisitor;
-import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 
@@ -135,23 +136,28 @@ public class UserDataImpl implements UserDataService {
         return creator.getUserPO(userName);
     }
 
+    /**
+     * load the load map resources
+     */
+    private BriefCreator briefListCreator = BriefCreator.getInstance();
+   
     @Override
     public List<RepoBriefVO> getUserOwnRepos(String userName) {
-        return null;
+    	return briefListCreator.getUserOwnRepos(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserSubscribeRepos(String userName) {
-        return null;
+    	return briefListCreator.getUserSubscribeRepos(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserCollaborateRepos(String userName) {
-        return null;
+    	return briefListCreator.getUserCollaborateRepos(userName);
     }
 
     @Override
     public List<RepoBriefVO> getUserContributeRepos(String userName) {
-        return null;
+    	return briefListCreator.getUserContributeRepos(userName);
     }
 }

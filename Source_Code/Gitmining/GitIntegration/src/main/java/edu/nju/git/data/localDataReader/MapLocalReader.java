@@ -1,4 +1,4 @@
-package edu.nju.git.data.impl;
+package edu.nju.git.data.localDataReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +10,22 @@ import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.data.api.JacksonConfig;
 
-public class LoadData {
+public class MapLocalReader {
 
+	private MapLocalReader(){}
+	private static MapLocalReader instance;
+	private static synchronized void create(){
+		if(instance==null){
+			instance = new MapLocalReader();
+		}
+	}
+	public static MapLocalReader getInstance(){
+		if(instance==null){
+			create();
+		}
+		return instance;
+	}
+	
 	private Map<String, RepoBriefPO>  nameToRepo ;
 	private Map<String, UserBriefPO>  nameToUser ;
 	private Map<String, List<String>> userToOwnerRepo ;
