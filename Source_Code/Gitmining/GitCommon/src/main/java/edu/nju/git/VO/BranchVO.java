@@ -7,15 +7,11 @@ package edu.nju.git.VO;
  */
 public class BranchVO {
 	/**
-	 * full name of a project
+	 * name of a branch
 	 */
 	private String name;
 	/**
-	 * id of a branch
-	 */
-	private String id;
-	/**
-	 * value of SHA
+	 * value of commit sha
 	 */
 	private String SHA;
 	/**
@@ -26,15 +22,6 @@ public class BranchVO {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	/**
-	 * @return {@link #id}
-	 */
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	/**
 	 * @return {@link #SHA}

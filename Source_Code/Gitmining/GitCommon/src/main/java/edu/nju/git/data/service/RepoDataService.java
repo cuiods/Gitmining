@@ -2,12 +2,16 @@ package edu.nju.git.data.service;
 
 import java.util.List;
 
+import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.VO.BranchVO;
 import edu.nju.git.VO.CommitVO;
 import edu.nju.git.VO.IssueVO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
+import edu.nju.git.exception.NoSearchResultException;
+import edu.nju.git.type.SortType;
 
 /**
  * The interface defines all the service that RepoData module must provide.
@@ -21,12 +25,33 @@ import edu.nju.git.VO.UserBriefVO;
 public interface RepoDataService {
     /**
      * Get repositories meeting demands of a search.
-     * @param keyword :
-     * 			full name <b>or</b> part of the name of a repository
+     * @param regex :
+     * 			the regex representation of the keyword you search
      * @return List of {@link RepoBriefVO}:
      * 			brief info of a repository
      */
-    public List<RepoBriefVO> getSearchResult(String keyword);
+    public List<RepoBriefVO> getSearchResult(String regex);
+
+    /**
+     * get the total count of repositories.
+     * @return the number of repositories
+     */
+    public int getTotalCount();
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     * @param sortType which type of list to get
+     * @return the reference to the list
+     */
+    public List<RepoBriefPO> getRepoBriefPOs(SortType sortType);
+
+    /**
+     * use a visitor to access the data and return the wanted value.
+     * @see RepoVisitor
+     * @param visitor the visitor
+     * @return list of repo vo
+     */
+    public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor);
 
     /**
      * Get <b>detailed</b> info of a repository.

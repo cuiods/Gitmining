@@ -2,18 +2,18 @@ package edu.nju.git.bl.impl;
 
 import edu.nju.git.VO.*;
 import edu.nju.git.bl.BrowseModel.impl.RepoCasualModel;
+import edu.nju.git.bl.BrowseModel.impl.RepoSearchModel;
 import edu.nju.git.bl.BrowseModel.service.RepoBrowseModelService;
-import edu.nju.git.bl.factory.impl.CasualModelFactory;
-import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
 import edu.nju.git.bl.service.RepoBlService;
+import edu.nju.git.constant.Consts;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.RepoDataService;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,11 +28,6 @@ public class RepoBlImpl implements RepoBlService {
      * The reference pointed to the only instance of this class because this class is set to be a singleton.
      */
     private static RepoBlImpl uniqueInstance = null;
-
-    /**
-     * default page capacity, namely how many items of search results one page can show.
-     */
-    private final int DEFAULT_PAGE_CAPACITY = 10;
 
     /**
      * the page is being viewed
@@ -56,6 +51,11 @@ public class RepoBlImpl implements RepoBlService {
     private List<RepoBriefVO> briefRepoList;
 
     /**
+     * This list stores references to the brief vos that is being shown on the presentatuin layer
+     */
+    private List<RepoBriefVO> shownRepoList;
+
+    /**
      * This static method returns the reference to the only instance of this class.<p>
      * Other class can get an instance of this class only by this method.
      * @return the instance of this class.
@@ -77,38 +77,53 @@ public class RepoBlImpl implements RepoBlService {
         repoDataService = dataFactoryService.getRepoDataService();
 
         //we use casual model in default
-        BrowseModelFactoryService modelFactoryService = CasualModelFactory.instance();
-        browseModelService  = modelFactoryService.getRepoBrowseModelService();
+        browseModelService  = new RepoCasualModel(this);
 
-        briefRepoList = new ArrayList<RepoBriefVO>();
     }
 
 
 
     @Override
-    public List<RepoBriefVO> getSearchResult(String keyword) {
-        String regex = RegexTranslator.translate(keyword);
-        return browseModelService.getSearchResult(regex);
+    public List<RepoBriefVO> getSearchResult(String keyword){
+        if (keyword.isEmpty()) {
+            setBrowseModelService(new RepoCasualModel(this));
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            setBrowseModelService(new RepoSearchModel(this));
+            String regex = RegexTranslator.translate(keyword);
+            briefRepoList = repoDataService.getSearchResult(regex);
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     @Override
     public List<RepoBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException{
-        return browseModelService.jumpToPage(pageNum);
+        return shownRepoList = browseModelService.jumpToPage(pageNum);
     }
 
     @Override
     public List<RepoBriefVO> nextPage() throws PageOutOfBoundException {
-        return browseModelService.nextPage();
+        return shownRepoList = browseModelService.nextPage();
     }
 
     @Override
     public List<RepoBriefVO> previousPage() throws PageOutOfBoundException {
-        return browseModelService.previousPage();
+        return shownRepoList = browseModelService.previousPage();
     }
 
     @Override
     public List<RepoBriefVO> sort(SortType sortType, boolean reverse) {
-        return browseModelService.sort(sortType, reverse);
+        return shownRepoList = browseModelService.sort(sortType, reverse);
     }
 
     @Override
@@ -147,17 +162,35 @@ public class RepoBlImpl implements RepoBlService {
     }
 
     @Override
+    public List<RepoBriefVO> getShownRepoList() {
+        return shownRepoList;
+    }
+
+    /**
+     * set browse model, notify that the model can not be null
+     * @param browseModelService
+     */
+    public void setBrowseModelService(RepoBrowseModelService browseModelService) {
+        if (browseModelService != null) {
+            this.browseModelService = browseModelService;
+        }
+    }
+
+    @Override
     public int getCurrentPage() {
         return CURRENT_PAGE;
     }
 
     @Override
     public int getTotalPage() {
+        int elementNum;
         if (browseModelService instanceof RepoCasualModel) {
-            return Integer.MAX_VALUE;
+            elementNum = repoDataService.getTotalCount();
         }
-        int elementNum = briefRepoList.size();
-        return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
+        else {
+            elementNum = briefRepoList.size();
+        }
+        return (elementNum% Consts.PAGE_CAPACITY)==0?elementNum/Consts.PAGE_CAPACITY:elementNum/Consts.PAGE_CAPACITY+1;
     }
 
     /**
@@ -178,5 +211,17 @@ public class RepoBlImpl implements RepoBlService {
      */
     public List<RepoBriefVO> getBriefRepoList() {
         return briefRepoList;
+    }
+
+    /**
+     * get the amount of items show on one page
+     * @return the number
+     */
+    public int getDEFAULT_PAGE_CAPACITY(){
+        return Consts.PAGE_CAPACITY;
+    }
+
+    public RepoDataService getRepoDataService() {
+        return repoDataService;
     }
 }

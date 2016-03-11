@@ -1,6 +1,5 @@
 package edu.nju.git.VO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.nju.git.type.OwnerType;
@@ -27,19 +26,19 @@ public class RepoVO {
 	private String update_at;
 	private int num_stars = 0;
 	private int num_forks = 0;
-	private int num_contributors = 0;
+	private int num_subscribers = 0;
 	/**
 	 * same measure unit as api provided
 	 */
 	private int size;
 	
 	//lists of info
-	private List<String> info_contributor = new ArrayList<String>();
-	private List<String> info_collaborator = new ArrayList<String>();
-	private List<String> info_branch = new ArrayList<String>();
-	private List<String> info_fork = new ArrayList<String>();
-	private List<String> info_commit = new ArrayList<String>();
-	private List<String> info_issue = new ArrayList<String>();
+	private List<UserBriefVO> info_contributor ;
+	private List<UserBriefVO> info_collaborator ;
+	private List<BranchVO> info_branch ;
+	private List<RepoBriefVO> info_fork ;
+	private List<CommitVO> info_commit ;
+	private List<IssueVO> info_issue ;
 	
 	public String getName() {
 		return name;
@@ -47,6 +46,7 @@ public class RepoVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getLanguage() {
 		return language;
 	}
@@ -101,54 +101,55 @@ public class RepoVO {
 	public void setNum_forks(int num_forks) {
 		this.num_forks = num_forks;
 	}
-	public int getNum_contributors() {
-		return num_contributors;
-	}
-	public void setNum_contributors(int num_contributors) {
-		this.num_contributors = num_contributors;
-	}
 	public int getSize() {
 		return size;
 	}
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public List<String> getInfo_contributor() {
+	public int getNum_subscribers() {
+		return num_subscribers;
+	}
+	public void setNum_subscribers(int num_subscribers) {
+		this.num_subscribers = num_subscribers;
+	}
+	public List<UserBriefVO> getInfo_contributor() {
 		return info_contributor;
 	}
-	public void addContributor(String contributor) {
-		info_contributor.add(contributor);
+	public void setInfo_contributor(List<UserBriefVO> info_contributor) {
+		this.info_contributor = info_contributor;
 	}
-	public List<String> getInfo_collaborator() {
+	public List<UserBriefVO> getInfo_collaborator() {
 		return info_collaborator;
 	}
-	public void addCollaborator(String collaborator) {
-		info_collaborator.add(collaborator);
+	public void setInfo_collaborator(List<UserBriefVO> info_collaborator) {
+		this.info_collaborator = info_collaborator;
 	}
-	public List<String> getInfo_branch() {
+	public List<BranchVO> getInfo_branch() {
 		return info_branch;
 	}
-	public void addBranch(String branch) {
-		info_branch.add(branch);
+	public void setInfo_branch(List<BranchVO> info_branch) {
+		this.info_branch = info_branch;
 	}
-	public List<String> getInfo_fork() {
+	public List<RepoBriefVO> getInfo_fork() {
 		return info_fork;
 	}
-	public void addFork(String fork){
-		info_fork.add(fork);
+	public void setInfo_fork(List<RepoBriefVO> info_fork) {
+		this.info_fork = info_fork;
 	}
-	public List<String> getInfo_commit() {
+	public List<CommitVO> getInfo_commit() {
 		return info_commit;
 	}
-	public void addCommit(String commit){
-		info_commit.add(commit);
+	public void setInfo_commit(List<CommitVO> info_commit) {
+		this.info_commit = info_commit;
 	}
-	public List<String> getInfo_issue() {
+	public List<IssueVO> getInfo_issue() {
 		return info_issue;
 	}
-	public void addIssue(String issue) {
-		info_issue.add(issue);
+	public void setInfo_issue(List<IssueVO> info_issue) {
+		this.info_issue = info_issue;
 	}
+	
 	
 	
 }

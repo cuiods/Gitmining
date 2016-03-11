@@ -4,8 +4,11 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
 import edu.nju.git.bl.impl.UserBlImpl;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.tools.ComparatorFactory;
 import edu.nju.git.type.SortType;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -13,18 +16,9 @@ import java.util.List;
  */
 public class UserSearchModel implements UserBrowseModelService {
 
-    private static UserSearchModel uniqueInstance = null;
-
-    public static UserSearchModel instance(){
-        if (uniqueInstance == null) {
-            uniqueInstance = new UserSearchModel(UserBlImpl.instance());
-        }
-        return uniqueInstance;
-    }
-
     private UserBlImpl userBl;
 
-    private UserSearchModel(UserBlImpl userBl){
+    public UserSearchModel(UserBlImpl userBl){
         this.userBl = userBl;
     }
 
@@ -37,22 +31,47 @@ public class UserSearchModel implements UserBrowseModelService {
     @Override
     public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = userBl.getTotalPage();
+        if ((pageNum<1)||(pageNum>totalPage)){
+            throw new PageOutOfBoundException("the page is out of bound");
+        }
+        List<UserBriefVO> briefUserList = userBl.getBriefUserList();
+        int pageCapacity = userBl.getDEFAULT_PAGE_CAPACITY();
+        //don't forget to change the value of current page
+        userBl.setCurrentPage(pageNum);
 
-        return null;
+        if (pageNum == totalPage) {
+            return briefUserList.subList((pageNum-1)*pageCapacity, briefUserList.size());
+        }
+
+        return briefUserList.subList(pageCapacity*(pageNum-1), pageCapacity*pageNum);
     }
 
     @Override
     public List<UserBriefVO> nextPage() throws PageOutOfBoundException {
-        return null;
+        return jumpToPage(userBl.getCurrentPage()+1);
     }
 
     @Override
     public List<UserBriefVO> previousPage() throws PageOutOfBoundException {
-        return null;
+        return jumpToPage(userBl.getCurrentPage()-1);
     }
 
     @Override
-    public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
-        return null;
+    public List<UserBriefVO> sort(SortType sortType, boolean reverse ) {
+        if (userBl.getTotalPage()<=0){
+            return userBl.getBriefUserList();
+        }
+        Comparator c = ComparatorFactory.getcComparator(sortType);
+        if (reverse){
+            c=c.reversed();
+        }
+        Collections.sort(userBl.getBriefUserList(), c);
+        List<UserBriefVO> theList = null;
+        try{
+            theList = jumpToPage(1);
+        } catch (PageOutOfBoundException e) {
+            e.printStackTrace();
+        }
+        return theList;
     }
 }

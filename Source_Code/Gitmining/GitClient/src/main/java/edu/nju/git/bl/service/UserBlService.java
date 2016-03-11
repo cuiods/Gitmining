@@ -3,6 +3,7 @@ package edu.nju.git.bl.service;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
@@ -50,6 +51,15 @@ public interface UserBlService {
     /**
      * sort the list in specific aspect defined by <tt>sortType</tt>
      * @param sortType in which way sort
+     * @return
+     */
+    default List<UserBriefVO> sort(SortType sortType) {
+        return sort(sortType, true);
+    }
+
+    /**
+     * sort the list in specific aspect defined by <tt>sortType</tt>
+     * @param sortType in which way sort
      * @param reverse if the order is reversed
      * @return
      */
@@ -89,6 +99,13 @@ public interface UserBlService {
      * @return a list of brief information of repositories that the user contributes 
      */
     public List<RepoBriefVO> getUserContributeRepos(String userName);
+
+    /**
+     * return the brief list.
+     *
+     * @return brief user list.
+     */
+    public List<UserBriefVO> getShownUserList();
 
     /**
      * get the page number that is being viewed.

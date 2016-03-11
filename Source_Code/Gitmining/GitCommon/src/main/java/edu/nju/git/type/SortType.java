@@ -7,5 +7,5 @@ package edu.nju.git.type;
  * @date 2016-03-05
  */
 public enum SortType {
-    CHAR, STAR_NUM, FORK_NUM
+    USER_NAME, FOLLOWER_NUM, REPO_NUM, REPO_NAME, STAR_NUM, FORK_NUM, SUBSCR_NUM, UPDATE_TIME
 }

@@ -4,18 +4,18 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.BrowseModel.impl.UserCasualModel;
+import edu.nju.git.bl.BrowseModel.impl.UserSearchModel;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
-import edu.nju.git.bl.factory.impl.CasualModelFactory;
-import edu.nju.git.bl.factory.service.BrowseModelFactoryService;
 import edu.nju.git.bl.service.UserBlService;
+import edu.nju.git.constant.Consts;
 import edu.nju.git.data.factory.impl.DataFactory;
 import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.UserDataService;
+import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,11 +31,6 @@ public class UserBlImpl implements UserBlService {
      * The reference pointed to the only instance of this class because this class is set to be a singleton.
      */
     private static UserBlImpl uniqueInstance = null;
-
-    /**
-     * default page capacity, namely how many items of search results one page can show.
-     */
-    private final int DEFAULT_PAGE_CAPACITY = 10;
 
     /**
      * current page displayed in ui module
@@ -59,6 +54,11 @@ public class UserBlImpl implements UserBlService {
     private List<UserBriefVO> briefUserList;
 
     /**
+     * This list stores references to vos that is being shown on presentation layer.
+     */
+    private List<UserBriefVO> shownUserList;
+
+    /**
      * This static method returns the reference to the only instance of this class.<p>
      * Other class can get an instance of this class only by this method.
      * @return the instance of this class.
@@ -80,16 +80,31 @@ public class UserBlImpl implements UserBlService {
         userDataService = dataFactoryService.getUserDataService();
 
         //we use casual model in default
-        BrowseModelFactoryService browseModelFactory = CasualModelFactory.instance();
-        browseModelService = browseModelFactory.getUserBrowseModelService();
+        browseModelService = new UserCasualModel(this);
 
-        briefUserList = new ArrayList<UserBriefVO>();
     }
 
     @Override
     public List<UserBriefVO> getSearchResult(String keyword) {
-        String regex = RegexTranslator.translate(keyword);
-        return browseModelService.getSearchResult(regex);
+        if (keyword.isEmpty()) {
+            setBrowseModelService(new UserCasualModel(this));
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            setBrowseModelService(new UserSearchModel(this));
+            String regex = RegexTranslator.translate(keyword);
+            briefUserList = userDataService.getSearchResult(regex);
+            try {
+                return jumpToPage(1);
+            } catch (PageOutOfBoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -137,6 +152,11 @@ public class UserBlImpl implements UserBlService {
         return userDataService.getUserContributeRepos(userName);
     }
 
+    @Override
+    public List<UserBriefVO> getShownUserList() {
+        return shownUserList;
+    }
+
     /**
      * set browse model, notify that the model can not be null
      * @param browseModelService
@@ -154,11 +174,14 @@ public class UserBlImpl implements UserBlService {
 
     @Override
     public int getTotalPage(){
+        int elementNum;
         if (browseModelService instanceof UserCasualModel) {
-            return Integer.MAX_VALUE;
+            elementNum = userDataService.getTotalCount();
         }
-        int elementNum = briefUserList.size();
-        return (elementNum%DEFAULT_PAGE_CAPACITY)==0?elementNum/DEFAULT_PAGE_CAPACITY:elementNum/DEFAULT_PAGE_CAPACITY+1;
+        else {
+            elementNum = briefUserList.size();
+        }
+        return (elementNum % Consts.PAGE_CAPACITY)==0?elementNum/Consts.PAGE_CAPACITY:elementNum/Consts.PAGE_CAPACITY+1;
     }
 
     /**
@@ -179,5 +202,17 @@ public class UserBlImpl implements UserBlService {
      */
     public List<UserBriefVO> getBriefUserList() {
         return briefUserList;
+    }
+
+    /**
+     * get the number of items a page shows one time.
+     * @return the capacity of a page
+     */
+    public int getDEFAULT_PAGE_CAPACITY(){
+        return Consts.PAGE_CAPACITY;
+    }
+
+    public UserDataService getUserDataService(){
+        return userDataService;
     }
 }

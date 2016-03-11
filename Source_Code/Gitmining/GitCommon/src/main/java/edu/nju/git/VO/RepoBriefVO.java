@@ -1,30 +1,43 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
+
 /**
  * simple view info of a repository
  * @author cuihao
  * @date 2016-03-02 12:10:49
  */
-public class RepoBriefVO {
+public class RepoBriefVO implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+
+	private String owner;
 	private String name;
-	private String url;
 	private String description;
-	private int num_stars = 0;
-	private int num_forks = 0;
-	private int num_contributors = 0;
+	private int num_stars;
+	private int num_forks;
+	private int num_subscribers;
 	private String lastUpdate;
+
+	public RepoBriefVO() {
+	}
+
+	public RepoBriefVO(String owner, String name, String description, int num_stars,
+					   int num_forks, int num_subscribers, String lastUpdate) {
+		this.owner = owner;
+		this.name = name;
+		this.description = description;
+		this.num_stars = num_stars;
+		this.num_forks = num_forks;
+		this.num_subscribers = num_subscribers;
+		this.lastUpdate = lastUpdate;
+	}
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	public String getDescription() {
 		return description;
@@ -44,11 +57,11 @@ public class RepoBriefVO {
 	public void setNum_forks(int num_forks) {
 		this.num_forks = num_forks;
 	}
-	public int getNum_contributors() {
-		return num_contributors;
+	public int getNum_subscribers() {
+		return num_subscribers;
 	}
-	public void setNum_contributors(int num_contributors) {
-		this.num_contributors = num_contributors;
+	public void setNum_subscribers(int num_contributors) {
+		this.num_subscribers = num_contributors;
 	}
 	public String getLastUpdate(){
 		return this.lastUpdate;
@@ -56,6 +69,14 @@ public class RepoBriefVO {
 	public void setLastUpdate(String update){
 		this.lastUpdate = update;
 	}
-	
-	
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+
 }
