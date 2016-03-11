@@ -19,7 +19,7 @@ public class CollaboratorsReader extends ListDocumentReader {
 	}
 	public void setNames(String fullname){
 		if(APIconfig.isGithub){
-			this.url_string  = "https://api.github.com/repos/"+fullname+"/collaborators";
+			this.url_string  = "https://api.github.com/repos/"+fullname+"/collaborators"+APIconfig.getClientidandsecret();
 		}
 		else {
 			this.url_string = "http://www.gitmining.net/api/repository/"+fullname+"/collaborators";

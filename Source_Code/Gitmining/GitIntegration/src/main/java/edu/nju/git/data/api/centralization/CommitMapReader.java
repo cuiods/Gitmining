@@ -1,6 +1,7 @@
 package edu.nju.git.data.api.centralization;
 
 import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
+import edu.nju.git.data.api.githubapi.APIconfig;
 /**
  *  
  * @author daixinyan
@@ -26,8 +27,10 @@ public class CommitMapReader extends AbstractMapGetter {
 	
 	@Override
 	protected String getUrl() {
-		return "https://api.github.com/repos"+fullname+"/commit/"+commit_sha;
-	//	return "http://www.gitmining.net/api/repository/"+fullname+"/commit/"+commit_sha;
+		if(APIconfig.isGithub){
+			return "https://api.github.com/repos"+fullname+"/commit/"+commit_sha+APIconfig.getClientidandsecret();
+		}
+		return "http://www.gitmining.net/api/repository/"+fullname+"/commit/"+commit_sha;
 	}
 	/**
 	 * exmaple:

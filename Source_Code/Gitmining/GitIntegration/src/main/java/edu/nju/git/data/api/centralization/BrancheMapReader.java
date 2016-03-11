@@ -1,6 +1,7 @@
 package edu.nju.git.data.api.centralization;
 
 import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
+import edu.nju.git.data.api.githubapi.APIconfig;
 /**
  * json example:
  * <br/>"name": "staging",
@@ -29,8 +30,11 @@ public class BrancheMapReader extends AbstractMapGetter {
 	
 	@Override
 	protected String getUrl() {
-		return "https://api.github.com/repos"+fullname+"/branch/"+branchname;
-//		return "http://www.gitmining.net/api/repository/"+fullname+"/branch/"+branchname;
+		if(APIconfig.isGithub){
+			return "https://api.github.com/repos"+fullname+"/branch/"+branchname+APIconfig.getClientidandsecret();
+		}else{
+			return "http://www.gitmining.net/api/repository/"+fullname+"/branch/"+branchname;
+		}
 	}
 
 }

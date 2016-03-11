@@ -19,7 +19,7 @@ public class CommitsReader extends ListDocumentReader {
 	}
 	public void setNames(String fullname){
 		if(APIconfig.isGithub){
-			this.url_string  = "https://api.github.com/repos/"+fullname+"/commits";
+			this.url_string  = "https://api.github.com/repos/"+fullname+"/commits"+APIconfig.getClientidandsecret();
 		}else {
 			this.url_string = "http://www.gitmining.net/api/repository/"+fullname+"/commits";
 		}

@@ -1,6 +1,7 @@
 package edu.nju.git.data.api.centralization;
 
 import edu.nju.git.data.api.abstractservice.AbstractMapGetter;
+import edu.nju.git.data.api.githubapi.APIconfig;
 /**
  * no enough item.
  * @author daixinyan
@@ -26,8 +27,10 @@ public class IssueMapReader extends AbstractMapGetter {
 	
 	@Override
 	protected String getUrl() {
-		return "https://api.github.com/repos"+fullname+"/issue/"+issue;
-	//	return "http://www.gitmining.net/api/repository/"+fullname+"/issue/"+issue;
+		if(APIconfig.isGithub){
+			return "https://api.github.com/repos"+fullname+"/issue/"+issue+APIconfig.getClientidandsecret();
+		}
+		return "http://www.gitmining.net/api/repository/"+fullname+"/issue/"+issue;
 	}
 /**
  * json example:

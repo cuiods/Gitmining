@@ -13,12 +13,15 @@ public class RepoMapReader extends AbstractMapGetter {
 
 	@Override
 	protected String getUrl() {
+		if(APIconfig.isGithub){
+			return url_location+ fullname+APIconfig.getClientidandsecret();
+		}
 		return url_location+ fullname;
 	}
 	
 	
 	private final String url_location = APIconfig.isGithub?
-			"https://api.github.com/repos/":"http://www.gitmining.net/api/repository/";
+			"https://api.github.com/repos/" : "http://www.gitmining.net/api/repository/";
 	
 	private String fullname ;
 	public RepoMapReader(){}
