@@ -74,9 +74,11 @@ public class UserPanel extends JPanel{
 		gistnum.setFont(font);
 		gistnum.setBounds(45,275,60,30);add(gistnum);
 		MyLabel create = new MyLabel(userVO.getCreate_at());
-		bio.setBounds(130,380,200,30);add(create);
-		MyLabel update = new MyLabel(userVO.getBio());
-		update.setBounds(130,425,200,30);add(update);
+		create.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		create.setBounds(115,376,200,30);add(create);
+		MyLabel update = new MyLabel(userVO.getUpdate_at());
+		update.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		update.setBounds(120,420,200,30);add(update);
 		/**
 		 * set listener
 		 */
