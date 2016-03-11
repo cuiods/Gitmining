@@ -3,6 +3,7 @@ package edu.nju.git.data.factory.impl.gitminingCreator;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.data.api.abstractservice.FieldsGetterService;
 import edu.nju.git.data.factory.service.POfactory;
+import edu.nju.git.type.OwnerType;
 
 public class RepoPOfactory implements POfactory<RepoVO> {
 
@@ -50,6 +51,11 @@ public class RepoPOfactory implements POfactory<RepoVO> {
  		repo.setNum_forks(itemHelper.getInteger("forks_count"));
 		repo.setNum_stars(itemHelper.getInteger("stargazers_count"));
 
+
+		repo.setType(OwnerType.getInstance( (itemHelper.getString("owner_type"))));
+		repo.setLanguage(itemHelper.getString("language"));
+		
+		repo.setCreate_at(itemHelper.getString("created_at"));
 		repo.setUpdate_at(itemHelper.getString("updated_at"));
 		
 		return repo;

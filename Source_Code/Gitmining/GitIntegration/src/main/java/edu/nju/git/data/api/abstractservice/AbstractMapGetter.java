@@ -32,7 +32,7 @@ public abstract class AbstractMapGetter implements FieldsGetterService{
     public String getString(String key)
     {
     	Object value= map.get(key);
-    	return value==null? "" : value.toString();
+    	return value==null? "" : value.toString().replace("\"", "");
     }
     @Override
     public boolean getBoolean(String item)
