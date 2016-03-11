@@ -224,8 +224,19 @@ public class ReposController {
 		return newOrder;
 	}
 	
-//	public String getOwnerRepo(){
-//		
-//		return controller.;
-//	}
+	/*
+	 * used to get the before UI
+	 */
+	public ArrayList<RepoBriefVO> getShownList(){
+		ArrayList<RepoBriefVO> repo = new ArrayList<RepoBriefVO>();
+		List<RepoBriefVO> list = repoBl.getShownRepoList();
+		if(list!=null){
+			for(Iterator<RepoBriefVO> it = list.listIterator();it.hasNext();){
+				repo.add(it.next());
+			}
+		}
+		return repo;
+	}
+	
+	
 }

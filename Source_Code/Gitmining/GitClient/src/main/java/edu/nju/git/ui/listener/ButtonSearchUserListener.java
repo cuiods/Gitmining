@@ -31,6 +31,7 @@ public class ButtonSearchUserListener extends ButtonListener {
 		//may need to do something else
 		TextLabel page = (TextLabel)units.get(6);
 		page.setPage(userControl.getCurrentPage());
+		controller.setBeforeKeywords(keyword);//used for back
 		controller.getFrame().repaint();
 
 	}

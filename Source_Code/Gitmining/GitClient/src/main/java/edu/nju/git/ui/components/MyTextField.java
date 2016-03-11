@@ -51,6 +51,9 @@ public class MyTextField extends JTextField {
 		//setInitial();
 		MySetText settext = new MySetText(text, controller);
 		setText(settext.getText());
+		if(controller.isBefore()){
+			setText(controller.getBeforeKeywords());
+		}
 		this.addFocusListener(new TextFieldListener(this));
 	}
 

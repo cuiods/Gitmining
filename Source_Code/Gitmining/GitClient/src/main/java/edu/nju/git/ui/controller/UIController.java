@@ -14,6 +14,8 @@ public class UIController {
 	private UserController user;
 	
 	private String id;
+	private boolean before;
+	private String beforeKeyword="";
 	
 	public UIController() {
 		initialize();
@@ -72,6 +74,24 @@ public class UIController {
 	
 	public String getID(){
 		return id;
+	}
+	/*
+	 * to judge if need to go back the before view
+	 */
+	public boolean isBefore(){
+		return this.before;
+	}
+	
+	public void setBefore(boolean isBefore){
+		this.before = isBefore;
+	}
+	
+	public void setBeforeKeywords(String keywords){
+		this.beforeKeyword = keywords;
+	}
+	
+	public String getBeforeKeywords(){
+		return this.beforeKeyword;
 	}
 	
 }

@@ -32,6 +32,7 @@ public class LabelRepoListener extends LabelListener{
 			String owner = ((InfoLabel)label.getComponent(5)).getText();
 			String repoName = ((InfoLabel)label.getComponent(0)).getText();
 			controller.setID(owner+" "+repoName);
+			controller.setBefore(true);
 			controller.changeTo(label.getElement().attributeValue("change"));
 		}
 		

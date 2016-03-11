@@ -33,7 +33,11 @@ public class UserTable extends MyTable {
 	@Override
 	protected void getData() {
 		userController = controller.getUserController();
-		users = userController.getUsers(1,"");
+		if(!controller.isBefore()){
+			users = userController.getUsers(1,"");
+		}else{
+			users =userController.getBeforeList();
+		}
 		for (int i=0;i<users.size();i++){
 			MyTableLabel label = createLabel(users.get(i));
 			addData(label);

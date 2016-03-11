@@ -33,6 +33,7 @@ public class ButtonSearchRepoListener extends ButtonListener {
 		//may have to do someting else
 		TextLabel page = (TextLabel) units.get(10);
 		page.setPage(repoControl.getCurrentPage());
+		controller.setBeforeKeywords(keyword);//use for back
 		controller.getFrame().repaint();
 
 	}

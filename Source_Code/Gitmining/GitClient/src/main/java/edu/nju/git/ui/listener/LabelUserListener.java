@@ -14,6 +14,7 @@ public class LabelUserListener extends LabelListener{
 	
 	public void mouseClicked(MouseEvent e){
 		controller.setID(((InfoLabel)label.getComponents(0)).getText());
+		controller.setBefore(true);
 		controller.changeTo(label.getElement().attributeValue("change"));
 	}
 

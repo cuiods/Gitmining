@@ -32,7 +32,11 @@ public class ReposTable extends MyTable {
 	@Override
 	protected void getData() {
 		repoController = controller.getReposController();
-		repos = repoController.getRepos(1, "");//get repos with default order
+		if(!controller.isBefore()){
+			repos = repoController.getRepos(1, "");//get repos with default order
+		}else{
+			repos = repoController.getShownList();
+		}
 		for (int i=0; i<repos.size();i++){
 			MyTableLabel label = createLabel(repos.get(i));
 			addData(label);

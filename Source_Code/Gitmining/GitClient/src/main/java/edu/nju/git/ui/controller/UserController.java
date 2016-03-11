@@ -30,7 +30,7 @@ public class UserController {
 	public ArrayList<UserBriefVO> getUsers(int page,String keyword){
 		ArrayList<UserBriefVO> users = new ArrayList<UserBriefVO>();
 		List<UserBriefVO> userList = null;
-		if((page == 1)&&(!keyword.equals(""))){
+		if((page == 1)){
 			userList = userBl.getSearchResult(keyword);
 		}else{
 			try {
@@ -135,5 +135,18 @@ public class UserController {
 			}
 		}
 		return users;
+	}
+	/*
+	 * get the before UI table
+	 */
+	public ArrayList<UserBriefVO> getBeforeList(){
+		ArrayList<UserBriefVO> user = new ArrayList<UserBriefVO>();
+		List<UserBriefVO> list = userBl.getShownUserList();
+		if(list!=null){
+			for(Iterator<UserBriefVO> it = list.listIterator();it.hasNext();){
+				user.add(it.next());
+			}
+		}else System.out.println("wrong!");
+		return user;
 	}
 }
