@@ -19,7 +19,6 @@ import edu.nju.git.data.init.impl.LocalReader;
 import edu.nju.git.data.localDataReader.RepoLocalReader;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
-import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 

@@ -6,8 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.jws.Oneway;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.data.api.JacksonConfig;
 
 public class MapLocalReader {
@@ -90,12 +97,17 @@ public class MapLocalReader {
 	}
 
 
-	@SuppressWarnings("unchecked")
 	private synchronized void setNameToRepo()  {
 		if(nameToRepo==null){
 			try {
-				this.nameToRepo = 
-						JacksonConfig.getObjectMapper().readValue(new File("cache/map/nameToRepo.txt"), Map.class);
+				JsonNode jsonNode = 
+						JacksonConfig.getObjectMapper().readTree(new File("cache/map/nameToRepo.txt"));
+				this.nameToRepo = new HashMap<String,RepoBriefPO>();
+				for (JsonNode sonNode : jsonNode) {
+					RepoBriefPO repoBriefPO = 
+							JacksonConfig.getObjectMapper().readValue(sonNode.toString(), RepoBriefPO.class);
+					nameToRepo.put(repoBriefPO.getOwner()+"/"+repoBriefPO.getName(), repoBriefPO);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -106,8 +118,14 @@ public class MapLocalReader {
 	private synchronized void setNameToUser()  {
 		if(this.nameToUser==null){
 			try {
-				this.nameToUser = 
-						JacksonConfig.getObjectMapper().readValue(new File("cache/map/nameToUser.txt"), Map.class);
+				JsonNode jsonNode = 
+						JacksonConfig.getObjectMapper().readTree(new File("cache/map/nameToUser.txt"));
+				this.nameToUser = new HashMap<String,UserBriefPO>();
+				for (JsonNode sonNode : jsonNode) {
+					UserBriefPO userBriefPO = 
+							JacksonConfig.getObjectMapper().readValue(sonNode.toString(), UserBriefPO.class);
+					nameToUser.put(userBriefPO.getLogin(), userBriefPO);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			};
@@ -157,6 +175,7 @@ public class MapLocalReader {
 	@SuppressWarnings("unchecked")
 	private Map<String, List<String>> getMapString(String path){
 		try {
+		//	System.out.println(JacksonConfig.getObjectMapper().readValue(new File(path), Map.class)==null);
 			return JacksonConfig.getObjectMapper().readValue(new File(path), Map.class);
 		} catch (IOException e) {
 			e.printStackTrace();

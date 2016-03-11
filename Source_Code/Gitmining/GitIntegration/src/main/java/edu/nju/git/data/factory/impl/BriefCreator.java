@@ -37,10 +37,14 @@ public class BriefCreator {
      * @date 2016-03-11
      */
     private List<RepoBriefVO> convertNamesToRepos(List<String> repos){
+    	if(repos==null){
+    		return new ArrayList<RepoBriefVO>();
+    	}
     	Map<String, RepoBriefPO> nameToRepo = loader.getNameToRepo();
     	List<RepoBriefVO> repoBriefVOs = new ArrayList<RepoBriefVO>();
     	for (String repoName : repos) {
     		RepoBriefPO repoBriefPO = nameToRepo.get(repoName);
+    		if(repoBriefPO==null) continue;
     		RepoBriefVO briefVO = POVOConverter.convert(repoBriefPO);
     		repoBriefVOs.add(briefVO);
 		}
@@ -61,6 +65,7 @@ public class BriefCreator {
 
     public List<RepoBriefVO> getUserCollaborateRepos(String userName) {
     	List<String> repos = loader.getUserToCollabRepo().get(userName);
+    	
     	return convertNamesToRepos(repos);
     }
 

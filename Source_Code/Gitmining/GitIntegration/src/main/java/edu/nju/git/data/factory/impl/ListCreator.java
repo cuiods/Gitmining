@@ -155,6 +155,7 @@ public class ListCreator {
     	List<UserBriefVO> userBriefVOs = new ArrayList<UserBriefVO>();
     	for (String userName : usernames) {
     		UserBriefPO userBriefPO = nameToRepo.get(userName);
+    		if(userBriefPO==null) continue;
     		UserBriefVO briefVO = POVOConverter.convert(userBriefPO);
     		userBriefVOs.add(briefVO);
 		}
