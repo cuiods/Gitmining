@@ -18,23 +18,14 @@ public class RepoInfoText extends Text {
 
 	@Override
 	public String get(UIController controller) {
-		String owner ="";
-		String repoName ="";
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("repo.git"));
-			try {
-				owner = br.readLine();
-				repoName = br.readLine();
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		
+		String[] or = controller.getID().split(" ");
+		
 		
 		ReposController repoControl = controller.getReposController();
-		RepoVO repo = repoControl.getDetailedRepo(owner, repoName);
+		
+		RepoVO repo = repoControl.getDetailedRepo(or[0], or[1]);
+		
 		String info = "";
 		
 		info = "Name:   "+repo.getName()+"\n"

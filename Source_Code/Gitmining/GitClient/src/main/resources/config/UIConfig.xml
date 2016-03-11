@@ -54,7 +54,14 @@
 			<unit name = "repos" change ="ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
 			<unit name = "goBack" change="ReposPanel" class = "MainButton" x="950" y="651" w="90" h="30" type ="1" listenerName = "ButtonChangeListener"/>
+			<unit name = "repoBasicInfo" class = "MyTextArea" x="50" y="165" w="250" h="400" type = "0" textType ="RepoInfoText"/> 
+			<unit name ="branch" class = "table.BranchTable" x="305" y="180" w="240" h="120" type = "0"/>
+			<unit name = "commitTable" class = "table.CommitTable" x="555" y="180" w="480" h="120" type ="0"/>
+			<unit name = "issueTable" class = "table.IssueTable" x="305" y="340" w="730" h="120" type="0"/>
 			
+			<unit name = "subscriber" class ="table.UserListTable" x="545" y="500" w="230" h="120" type="0"/>
+			<unit name = "collaborator" class ="table.UserListTable" x="785" y="500" w="230" h="120" type="0"/>
+			<unit name = "forkTable" class ="table.RepoListTable" x="305" y="500" w="230" h="120" type="0"/>
 		</mainPanel>
 		<mainPanel name = "UserDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
 			<component name = "back22" class ="component" x="0" y="0" w="1080" h="686"/>

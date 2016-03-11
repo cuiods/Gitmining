@@ -80,8 +80,15 @@ public class ReposController {
 	 * @param name "ownerName/repoName"
 	 */
 	public RepoVO getDetailedRepo(String owner,String repoName){
-		RepoVO repo = repoBl.getRepoBasicInfo(owner, repoName);
-		return repo;
+		RepoVO repo = new RepoVO();
+		repo = repoBl.getRepoBasicInfo(owner, repoName);
+		if(repo!=null)
+			return repo;
+		else{
+			System.out.println("NoData");
+			return repo;
+		}
+			
 	}
 	/*
 	 * get the commits information of repo
@@ -198,22 +205,8 @@ public class ReposController {
 		return newOrder;
 	}
 	
-	public String getOwnerRepo(){
-		String owner ="";
-		String repoName ="";
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("repo.git"));
-			try {
-				owner = br.readLine();
-				repoName = br.readLine();
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		return owner+" "+repoName;
-	}
+//	public String getOwnerRepo(){
+//		
+//		return controller.;
+//	}
 }

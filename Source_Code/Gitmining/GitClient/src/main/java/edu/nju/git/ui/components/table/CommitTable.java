@@ -27,7 +27,7 @@ public class CommitTable extends MyTable {
 	@Override
 	protected void getData() {
 		repoController=controller.getReposController();
-		String[] or = repoController.getOwnerRepo().split(" ");
+		String[] or = controller.getID().split(" ");
 		commits = repoController.getCommits(or[0], or[1]);
 		for(int i=0;i<commits.size();i++){
 			MyTableLabel label = createLabel(commits.get(i));
@@ -38,13 +38,13 @@ public class CommitTable extends MyTable {
 	
 	public MyTableLabel createLabel(CommitVO comm){
 		InfoLabel id = new InfoLabel(comm.getId());
-		id.setSize(110,25);
+		id.setSize(100,25);
 		InfoLabel userName = new InfoLabel(comm.getUserName());
-		userName.setSize(120,25);
+		userName.setSize(100,25);
 		InfoLabel date = new InfoLabel(comm.getDate());
-		date.setSize(150,25);
+		date.setSize(130,25);
 		InfoLabel message = new InfoLabel(comm.getMessage());
-		message.setSize(150,30);
+		message.setSize(140,30);
 ;		java.awt.Component components[] ={id,userName,date,message};
 		MyTableLabel label = new MyTableLabel(element, controller, 25, components, this);
 		label.addMouseListener(new LabelListener(label, controller));

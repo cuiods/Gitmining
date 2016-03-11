@@ -31,13 +31,7 @@ public class LabelRepoListener extends LabelListener{
 		if (e.getClickCount()==2){
 			String owner = ((InfoLabel)label.getComponent(5)).getText();
 			String repoName = ((InfoLabel)label.getComponent(0)).getText();
-			try {
-				BufferedWriter bw = new BufferedWriter(new FileWriter("repo.git"));
-				bw.write(owner+"\n"+repoName);
-				bw.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			controller.setID(owner+" "+repoName);
 			controller.changeTo(label.getElement().attributeValue("change"));
 		}
 		

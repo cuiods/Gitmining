@@ -29,7 +29,7 @@ public class RepoListTable extends MyTable{
 			lists = userController.getOwnRepos(controller.getID());
 		}else if(element.attributeValue("name").contains("fork")){
 			repoController = controller.getReposController();
-			String[] or = repoController.getOwnerRepo().split(" ");
+			String[] or = controller.getID().split(" ");
 			lists = repoController.getFork(or[0], or[1]);
 		}else {
 			lists = userController.getContributeRepos(controller.getID());

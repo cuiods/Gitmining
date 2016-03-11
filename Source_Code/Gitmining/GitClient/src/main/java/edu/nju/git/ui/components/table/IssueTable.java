@@ -31,7 +31,7 @@ public class IssueTable extends MyTable {
 	@Override
 	protected void getData() {
 		repoController = controller.getReposController();
-		String[] or = repoController.getOwnerRepo().split(" ");
+		String[] or = controller.getID().split(" ");
 		issues = repoController.getIssues(or[0], or[1]);
 		for(int i=0;i<issues.size();i++){
 			MyTableLabel label = createLabel(issues.get(i));
@@ -41,21 +41,21 @@ public class IssueTable extends MyTable {
 	
 	public MyTableLabel createLabel(IssueVO iss){
 		InfoLabel id = new InfoLabel(iss.getId());
-		id.setSize(100,25);
+		id.setSize(80,25);
 		InfoLabel state = new InfoLabel(iss.getState());
-		state.setSize(100,25);
+		state.setSize(50,25);
 		InfoLabel lock = new InfoLabel((iss.isLocked())+"");
-		lock.setSize(60,25);
+		lock.setSize(50,25);
 		InfoLabel title = new InfoLabel(iss.getTitle());
 		title.setSize(100,25);
 		InfoLabel body = new InfoLabel(iss.getBody());
-		body.setSize(120,25);
+		body.setSize(130,25);
 		InfoLabel userName = new InfoLabel(iss.getUserName());
 		userName.setSize(100,25);
 		InfoLabel create = new InfoLabel(iss.getCreate_at());
-		create.setSize(120,25);
+		create.setSize(105,25);
 		InfoLabel update = new InfoLabel(iss.getUpdate_at());
-		update.setSize(120,25);
+		update.setSize(105,25);
 		java.awt.Component[] components = {id,state,lock,title,body,userName,create,update};
 		MyTableLabel label = new MyTableLabel(element, controller, 25, components, this);
 		label.addMouseListener(new LabelListener(label,controller));

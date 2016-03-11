@@ -25,7 +25,7 @@ public class UserListTable extends MyTable {
 	@Override
 	protected void getData() {
 		repoControl = controller.getReposController();
-		String[] or = repoControl.getOwnerRepo().split(" ");
+		String[] or = controller.getID().split(" ");
 		String name = element.attributeValue("name");
 		if(name.contains("collaborator")){
 			userList = repoControl.getCollaborators(or[0], or[1]);
@@ -43,11 +43,11 @@ public class UserListTable extends MyTable {
 	
 	public MyTableLabel createLabel(UserBriefVO user){
 		InfoLabel login = new InfoLabel(user.getLogin());
-		login.setSize(160,30);
+		login.setSize(100,30);
 		InfoLabel followers = new InfoLabel(""+user.getFollowers());
-		followers.setSize(160,30);
+		followers.setSize(60,30);
 		InfoLabel publicRepos = new InfoLabel(""+user.getPublic_repos());
-		publicRepos.setSize(160,30);
+		publicRepos.setSize(60,30);
 		java.awt.Component[] components = {login,followers,publicRepos};
 		MyTableLabel label = new MyTableLabel(element, controller, 34, components, this);
 		label.addMouseListener(new LabelUserListener(label, controller));
