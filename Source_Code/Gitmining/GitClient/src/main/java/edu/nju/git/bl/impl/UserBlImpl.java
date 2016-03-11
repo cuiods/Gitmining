@@ -109,22 +109,22 @@ public class UserBlImpl implements UserBlService {
 
     @Override
     public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
-        return browseModelService.jumpToPage(pageNum);
+        return shownUserList = browseModelService.jumpToPage(pageNum);
     }
 
     @Override
     public List<UserBriefVO> nextPage() throws PageOutOfBoundException {
-        return browseModelService.nextPage();
+        return shownUserList = browseModelService.nextPage();
     }
 
     @Override
     public List<UserBriefVO> previousPage() throws PageOutOfBoundException {
-        return browseModelService.previousPage();
+        return shownUserList = browseModelService.previousPage();
     }
 
     @Override
     public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
-        return browseModelService.sort(sortType, reverse);
+        return shownUserList = browseModelService.sort(sortType, reverse);
     }
 
     @Override
