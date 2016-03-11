@@ -15,6 +15,8 @@ public class BranchTable extends MyTable {
 	private ReposController repoController;
 	public BranchTable(Element element, UIController controller) {
 		super(element, controller);
+		branches = new ArrayList<BranchVO>();
+		repoController = controller.getReposController();
 	}
 
 	@Override
@@ -32,12 +34,10 @@ public class BranchTable extends MyTable {
 	
 	public MyTableLabel createLabel(BranchVO bran){
 		InfoLabel name = new InfoLabel(bran.getName());
-		name.setSize(110,30);
-		InfoLabel id =new InfoLabel(bran.getId());
-		id.setSize(100,30);
+		name.setSize(120,30);
 		InfoLabel sha = new InfoLabel(bran.getSHA());
-		sha.setSize(150,30);
-		java.awt.Component components[] ={name,id,sha};
+		sha.setSize(160,30);
+		java.awt.Component components[] ={name,sha};
 		MyTableLabel label = new MyTableLabel(element, controller, 25, components, this);
 		label.addMouseListener(new LabelListener(label, controller));
 		return label;

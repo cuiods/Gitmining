@@ -6,6 +6,7 @@ import org.dom4j.Element;
 
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.ui.components.InfoLabel;
+import edu.nju.git.ui.controller.ReposController;
 import edu.nju.git.ui.controller.UIController;
 import edu.nju.git.ui.controller.UserController;
 import edu.nju.git.ui.listener.LabelRepoListener;
@@ -15,9 +16,10 @@ public class RepoListTable extends MyTable{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<RepoBriefVO> lists;
 	private UserController userController;
-
+	private ReposController repoController;
 	public RepoListTable(Element element, UIController controller) {
 		super(element, controller);
+		lists = new ArrayList<RepoBriefVO>();
 	}
 
 	@Override
@@ -25,7 +27,11 @@ public class RepoListTable extends MyTable{
 		userController = controller.getUserController();
 		if (element.attributeValue("name").contains("repos")) {
 			lists = userController.getOwnRepos(controller.getID());
-		} else {
+		}else if(element.attributeValue("name").contains("fork")){
+			repoController = controller.getReposController();
+			String[] or = repoController.getOwnerRepo().split(" ");
+			lists = repoController.getFork(or[0], or[1]);
+		}else {
 			lists = userController.getContributeRepos(controller.getID());
 		}
 		for (int i=0;i<lists.size();i++){
