@@ -1,5 +1,9 @@
-who:崔浩，董本超，袁阳阳，戴新颜
+﻿who:崔浩，董本超，袁阳阳，戴新颜
+
 when:第3周
+
 what:数据层对外部api请求方式得修改
+
 how long:2h
+
 arrived solutions:将部分gitmining的速度非常慢得接口改到使用github得接口,对于github访问次数得限制决定采用小组成员每人申请一个github开发者口令轮流使用已增加访问次数,并且决定从迭代二开始将所有需要的网上的数据全部扒下来存到本地,是的项目可以在运行时脱离github或gitmining得api;
