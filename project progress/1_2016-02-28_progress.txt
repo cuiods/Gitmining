@@ -18,6 +18,6 @@ todo:无
 
 who:袁阳阳
 when:第1周
-what:制定风险分析和解决文档（部分），制定（部分）需求规格说明文档
+what:无
 problem:无
-todo:待定
+todo:无
