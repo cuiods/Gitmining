@@ -7,8 +7,8 @@ todo:ºÍ×éÔ±ÌÖÂÛ½Ó¿Ú¶¨ÒåµÄ²»È·¶¨ÒòËØ£¬ÌÖÂÛ²¢Íê³É¿ª·¢°üÍ¼ºÍ½çÃæÌø×ªÉè¼Æ£¬²¢¶ÔÌåÏµ½
 who:´÷ÐÂÑÕ
 when:µÚ2ÖÜ
 what:µü´úÒ»ÓÃÀýÎÄµµ³õ²½Éè¼ÆÓëÐÞ¸ÄÍê³É£» Éè¼ÆÎÄµµ°üÍ¼£»
-problem:¼Ü¹¹Éè¼ÆµÄÎÊÌâ£ºËÑË÷µÄÊµÏÖÊÇÔÚÊý¾Ý²ãÊµÏÖ£¬»¹ÊÇÂß¼­²ã£» 
-todo:Éè¼Æ²âÊÔÓÃÀý£»½øÒ»²½ÏêÏ¸µÄÐèÇó·ÖÎö¡£
+problem:¼Ü¹¹Éè¼ÆµÄÎÊÌâ£ºËÑË÷µÄÊµÏÖÊÇÔÚÊý¾Ý²ãÊµÏÖ£¬»¹ÊÇÂß¼­²ã£»Éè¼Æ²âÊÔÓÃÀý£» 
+todo:½øÒ»²½ÏêÏ¸µÄÐèÇó·ÖÎö¡£
 
 who:´ÞºÆ
 when:µÚ2ÖÜ
