@@ -6,15 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.jws.Oneway;
-
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import edu.nju.git.PO.RepoBriefPO;
 import edu.nju.git.PO.UserBriefPO;
-import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.data.api.JacksonConfig;
 
 public class MapLocalReader {
@@ -114,7 +109,6 @@ public class MapLocalReader {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private synchronized void setNameToUser()  {
 		if(this.nameToUser==null){
 			try {

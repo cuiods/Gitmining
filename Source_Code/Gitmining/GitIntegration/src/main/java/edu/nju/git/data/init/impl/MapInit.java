@@ -128,10 +128,10 @@ public class MapInit {
 			boolean isContain = userToOwnerRepo.containsKey(repoBriefPO.getOwner());
 			if(!isContain){
 				List<String> reposnames = new ArrayList<String>();
-				reposnames.add(repoBriefPO.getName());
+				reposnames.add(repoBriefPO.getOwner()+"/"+repoBriefPO.getName());
 				userToOwnerRepo.put(repoBriefPO.getOwner(), reposnames);
 			}else{
-				userToOwnerRepo.get(repoBriefPO.getOwner()).add(repoBriefPO.getName());
+				userToOwnerRepo.get(repoBriefPO.getOwner()).add(repoBriefPO.getOwner()+"/"+repoBriefPO.getName());
 			}
 		}
 		this.save("cache/map/userToOwnerRepo.txt", userToOwnerRepo);
@@ -177,13 +177,13 @@ public class MapInit {
 			MapInit init = new MapInit();
 			//easy
 			init.initUserToOwnerRepo();
-			init.initNameToUser();
-			init.initUserToOwnerRepo();
-			
-			//will cost mush time
-			init.initCollabRepo();
-			init.initContribute();
-			init.initSubscribe();
+//			init.initNameToUser();
+//			init.initUserToOwnerRepo();
+//			
+//			//will cost mush time
+//			init.initCollabRepo();
+//			init.initContribute();
+//			init.initSubscribe();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
