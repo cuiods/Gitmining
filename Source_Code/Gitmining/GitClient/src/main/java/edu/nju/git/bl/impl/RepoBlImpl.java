@@ -90,7 +90,7 @@ public class RepoBlImpl implements RepoBlService {
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
-                e.printStackTrace();
+                System.out.println("No search result !");
             }
         }
         else {
@@ -100,7 +100,7 @@ public class RepoBlImpl implements RepoBlService {
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
-                e.printStackTrace();
+                System.out.println("No search result !");
             }
         }
         return null;
