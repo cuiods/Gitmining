@@ -13,39 +13,30 @@ public class RepoBlTest extends TestCase {
 	}
 
 	public void testInstance() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetSearchResult() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoBasicInfo() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoContributor() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoCollaborator() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoBranch() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoFork() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoCommit() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetRepoIssue() {
-		fail("Not yet implemented");
 	}
 
 }

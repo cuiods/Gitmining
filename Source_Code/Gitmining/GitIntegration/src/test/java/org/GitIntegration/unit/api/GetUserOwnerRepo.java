@@ -19,7 +19,7 @@ public class GetUserOwnerRepo extends TestCase {
 	public void test(){
 		BriefCreator briefCreator = BriefCreator.getInstance();
 		List<RepoBriefVO> repoBriefVOs = briefCreator.getUserOwnRepos("3b");
-		System.out.println(repoBriefVOs.size());
+		assert(repoBriefVOs.size()>0);
 		
 	}
 }

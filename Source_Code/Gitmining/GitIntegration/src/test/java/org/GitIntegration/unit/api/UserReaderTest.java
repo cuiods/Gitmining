@@ -32,7 +32,6 @@ public class UserReaderTest extends TestCase {
 		
 		
 		
-	//	System.out.println(po.toString());
 	}
 	
 	public void test2(){

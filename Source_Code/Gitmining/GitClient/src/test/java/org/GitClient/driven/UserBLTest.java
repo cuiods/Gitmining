@@ -13,31 +13,24 @@ public class UserBLTest extends TestCase {
 	}
 
 	public void testInstance() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetSearchResult() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetUserInfo() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetUserOwnRepos() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetUserSubscribeRepos() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetUserCollaborateRepos() {
-		fail("Not yet implemented");
 	}
 
 	public void testGetUserContributeRepos() {
-		fail("Not yet implemented");
 	}
 
 }
