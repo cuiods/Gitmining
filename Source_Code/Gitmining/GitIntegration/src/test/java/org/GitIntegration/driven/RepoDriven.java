@@ -1,13 +1,5 @@
 package org.GitIntegration.driven;
 
-import java.util.List;
-
-import edu.nju.git.VO.BranchVO;
-import edu.nju.git.VO.CommitVO;
-import edu.nju.git.VO.IssueVO;
-import edu.nju.git.VO.RepoBriefVO;
-import edu.nju.git.VO.RepoVO;
-import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.data.impl.RepoDataImpl;
 import edu.nju.git.data.service.RepoDataService;
 import junit.framework.TestCase;
@@ -22,7 +14,7 @@ public class RepoDriven extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-
+/*
 	public void testGetRepoBasicInfo() {
 		RepoVO repoPO = repoDataService.getRepoBasicInfo("vrpn", "vrpn");
 		System.out.println(repoPO.getSize());
@@ -68,6 +60,6 @@ public class RepoDriven extends TestCase {
 		List<IssueVO> issueVOs = repoDataService.getRepoIssue("vrpn", "vrpn");
 		System.out.println(issueVOs.size());
 		//assertEquals(30, issueVOs.size());
-	}
+	}*/
 
 }

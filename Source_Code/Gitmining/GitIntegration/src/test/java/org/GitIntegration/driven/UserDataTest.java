@@ -23,24 +23,5 @@ public class UserDataTest extends TestCase {
 		assertEquals(2404,  userDataImpl.getTotalCount());
 	}
 
-	/*public void testGetUserInfo() {
-		fail("Not yet implemented");
-	}
-
-	public void testGetUserOwnRepos() {
-		fail("Not yet implemented");
-	}
-
-	public void testGetUserSubscribeRepos() {
-		fail("Not yet implemented");
-	}
-
-	public void testGetUserCollaborateRepos() {
-		fail("Not yet implemented");
-	}
-
-	public void testGetUserContributeRepos() {
-		fail("Not yet implemented");
-	}*/
 
 }
