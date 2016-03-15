@@ -41,7 +41,7 @@
    <center>
       <BorderPane prefHeight="690.0" prefWidth="980.0" BorderPane.alignment="CENTER">
          <top>
-            <BorderPane prefHeight="50.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+            <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="980.0" BorderPane.alignment="CENTER">
                <left>
                   <HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <children>

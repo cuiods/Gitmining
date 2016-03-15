@@ -18,7 +18,6 @@ public class FunctionPanel extends GitPanel{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		
 	}
 
