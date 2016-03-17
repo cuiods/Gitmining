@@ -59,7 +59,7 @@ public class TaskPanel extends GitPanel {
 	ImageView nav_repo;
 	@FXML
 	VBox leftbar;
-	
+
 	private ImageView subview_user1;
 	private ImageView subview_user2;
 	private ImageView subview_repo1;
@@ -76,7 +76,20 @@ public class TaskPanel extends GitPanel {
 	@Override
 	public void initPanel(Object[] bundle) {
 		ScreenShot shot = ConfigReader.readParentPanel("function_default");
-		Parent child = (BorderPane) shot.getRoot();
+		functions.add(shot);
+		Parent child = shot.getRoot();
+		childPanel.getChildren().add(child);
+	}
+
+	private void initUser() {
+		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
+		Parent child = shot.getRoot();
+		childPanel.getChildren().add(child);
+	}
+
+	private void initRepo() {
+		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
+		Parent child = shot.getRoot();
 		childPanel.getChildren().add(child);
 	}
 
@@ -154,30 +167,43 @@ public class TaskPanel extends GitPanel {
 	public void clearFunction() {
 		functions.clear();
 	}
-	
-	private void setListener(){
-		URL url = Main.class.getResource(StringReader.readPath("picture")+"button/button.png");
+
+	private void setListener() {
+		URL url = Main.class.getResource(StringReader.readPath("picture") + "button/button.png");
 		img_back.setOnMouseEntered(new ChangePictureHandler<>("back_1", img_back));
 		img_back.setOnMouseExited(new ChangePictureHandler<>("back", img_back));
 		img_forward.setOnMouseEntered(new ChangePictureHandler<>("front_1", img_forward));
 		img_forward.setOnMouseExited(new ChangePictureHandler<>("front", img_forward));
+		nav_home.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				ScreenShot shot = functions.get(0);
+				setChildren(shot.getRoot());
+			}
+		});
 		nav_user.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if(subview_user1==null){
+				if (subview_user1 == null) {
 					subview_user1 = new ImageView();
 					subview_user1.setFitWidth(150);
 					subview_user1.setFitHeight(50);
 					subview_user1.setImage(new Image(url.toString()));
+					subview_user1.setOnMouseReleased(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							initUser();
+						}
+					});
 					subview_user2 = new ImageView();
 					subview_user2.setFitWidth(150);
 					subview_user2.setFitHeight(50);
 					subview_user2.setImage(new Image(url.toString()));
 					leftbar.getChildren().remove(nav_repo);
-					leftbar.getChildren().add( subview_user1);
+					leftbar.getChildren().add(subview_user1);
 					leftbar.getChildren().add(subview_user2);
 					leftbar.getChildren().add(nav_repo);
-				}else{
+				} else {
 					leftbar.getChildren().remove(subview_user1);
 					leftbar.getChildren().remove(subview_user2);
 					subview_user1 = subview_user2 = null;
@@ -187,18 +213,24 @@ public class TaskPanel extends GitPanel {
 		nav_repo.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				if(subview_repo1==null){
+				if (subview_repo1 == null) {
 					subview_repo1 = new ImageView();
 					subview_repo1.setFitWidth(150);
 					subview_repo1.setFitHeight(50);
 					subview_repo1.setImage(new Image(url.toString()));
+					subview_repo1.setOnMouseReleased(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							initRepo();
+						}
+					});
 					subview_repo2 = new ImageView();
 					subview_repo2.setFitWidth(150);
 					subview_repo2.setFitHeight(50);
 					subview_repo2.setImage(new Image(url.toString()));
 					leftbar.getChildren().add(subview_repo1);
 					leftbar.getChildren().add(subview_repo2);
-				}else{
+				} else {
 					leftbar.getChildren().remove(subview_repo1);
 					leftbar.getChildren().remove(subview_repo2);
 					subview_repo1 = subview_repo2 = null;

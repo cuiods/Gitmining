@@ -74,6 +74,7 @@ public class IndexPanel extends GitPanel{
 	public void initPanel(Object[] bundle) {
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
 		childpane = (BorderPane) shot.getRoot();
+		shot.getPanel().initPanel(null);
 		pane.getChildren().add(childpane);
 		tasks.add(shot);
 	}
