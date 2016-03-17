@@ -6,8 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Demo2_LoadFXML extends Application {

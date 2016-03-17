@@ -1,87 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="690.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
-   <left>
-      <Group>
-         <children>
-            <ImageView fitHeight="690.0" fitWidth="100.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../pictures/leftbar.png" />
-               </image>
+<BorderPane prefHeight="690.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.ui.control.TaskPanel">
+  <center>
+    <BorderPane prefHeight="690.0" prefWidth="930.0" BorderPane.alignment="CENTER">
+      <center>
+        <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="930.0" BorderPane.alignment="CENTER" />
+      </center>
+      <top>
+        <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="930.0" BorderPane.alignment="CENTER">
+          <center>
+            <Group>
+              <children>
+                <ImageView fitHeight="50.0" fitWidth="780.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../pictures/topbar/middle.png" />
+                  </image>
+                </ImageView>
+                <Label prefHeight="50.0" prefWidth="780.0" text="        您现在的位置：" textFill="#f8f7f7" />
+              </children>
+            </Group>
+          </center>
+          <left>
+            <HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+              <children>
+                <ImageView fx:id="img_back" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../pictures/topbar/back.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="img_forward" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
+                  <image>
+                    <Image url="@../pictures/topbar/front.png" />
+                  </image>
+                </ImageView>
+              </children>
+            </HBox>
+          </left>
+          <right>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+              <image>
+                <Image url="@../pictures/topbar/set.png" />
+              </image>
             </ImageView>
-            <VBox prefHeight="690.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fx:id="img_home" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/button/home_main.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="img_user" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/button/user_main.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="img_repo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../pictures/button/repository_main.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-         </children>
-      </Group>
-   </left>
-   <center>
-      <BorderPane prefHeight="690.0" prefWidth="980.0" BorderPane.alignment="CENTER">
-         <top>
-            <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="980.0" BorderPane.alignment="CENTER">
-               <left>
-                  <HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <ImageView fx:id="img_back" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../pictures/topbar/back.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="img_forward" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../pictures/topbar/front.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-               </left>
-               <right>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                     <image>
-                        <Image url="@../pictures/topbar/set.png" />
-                     </image>
-                  </ImageView>
-               </right>
-               <center>
-                  <Group>
-                     <children>
-                        <ImageView fitHeight="50.0" fitWidth="830.0" pickOnBounds="true" BorderPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../pictures/topbar/middle.png" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="50.0" prefWidth="830.0" text="        您现在的位置：" textFill="#f8f7f7" />
-                     </children>
-                  </Group>
-               </center>
-            </BorderPane>
-         </top>
-         <center>
-            <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="830.0" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-   </center>
+          </right>
+        </BorderPane>
+      </top>
+    </BorderPane>
+  </center>
+  <left>
+    <VBox fx:id="leftbar" prefHeight="690.0" prefWidth="150.0">
+      <children>
+        <ImageView fx:id="nav_home"  fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
+          <Image url="@../pictures/button/button.png" />
+        </ImageView>
+        <ImageView fx:id="nav_user" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
+          <Image url="@../pictures/button/button.png" />
+        </ImageView>
+        <ImageView fx:id="nav_repo" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
+          <Image url="@../pictures/button/button.png" />
+        </ImageView>
+      </children>
+    </VBox>
+  </left>
 </BorderPane>

@@ -7,7 +7,6 @@ import edu.nju.git.main.Main;
 import edu.nju.ui.control.GitPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.TitledPane;
 
 /**
  * <h1>CAN ONLY WORK WHEN JAVAFX IS STARTED!</h1>

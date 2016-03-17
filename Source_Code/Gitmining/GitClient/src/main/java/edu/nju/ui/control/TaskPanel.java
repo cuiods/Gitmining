@@ -4,19 +4,22 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
+import edu.nju.git.ui.config.StringReader;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 /**
@@ -41,12 +44,6 @@ import javafx.util.Duration;
 public class TaskPanel extends GitPanel {
 
 	@FXML
-	ImageView img_home;
-	@FXML
-	ImageView img_user;
-	@FXML
-	ImageView img_repo;
-	@FXML
 	ImageView img_back;
 	@FXML
 	ImageView img_forward;
@@ -54,31 +51,31 @@ public class TaskPanel extends GitPanel {
 	BorderPane childPanel;
 	@FXML
 	BorderPane topbar;
+	@FXML
+	ImageView nav_home;
+	@FXML
+	ImageView nav_user;
+	@FXML
+	ImageView nav_repo;
+	@FXML
+	VBox leftbar;
+	
+	private ImageView subview_user1;
+	private ImageView subview_user2;
+	private ImageView subview_repo1;
+	private ImageView subview_repo2;
 	private ArrayList<ScreenShot> functions = new ArrayList<>(20);
 	private int index = 0;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// set listener T T no other way?
-		img_home.setOnMouseEntered(new ChangePictureHandler<MouseEvent>("home_main_1", img_home));
-		img_home.setOnMouseExited(new ChangePictureHandler<>("home_main", img_home));
-		img_home.setOnMousePressed(new ChangePictureHandler<>("home_main_2", img_home));
-		img_user.setOnMouseEntered(new ChangePictureHandler<>("user_main_1", img_user));
-		img_user.setOnMouseExited(new ChangePictureHandler<>("user_main", img_user));
-		img_user.setOnMousePressed(new ChangePictureHandler<>("user_main_2", img_user));
-		img_repo.setOnMouseEntered(new ChangePictureHandler<>("repository_main_1", img_repo));
-		img_repo.setOnMouseExited(new ChangePictureHandler<>("repository_main", img_repo));
-		img_repo.setOnMousePressed(new ChangePictureHandler<>("repository_main_2", img_repo));
-		img_back.setOnMouseEntered(new ChangePictureHandler<>("back_1", img_back));
-		img_back.setOnMouseExited(new ChangePictureHandler<>("back", img_back));
-		img_forward.setOnMouseEntered(new ChangePictureHandler<>("front_1", img_forward));
-		img_forward.setOnMouseExited(new ChangePictureHandler<>("front", img_forward));
-
+		setListener();
 	}
 
 	@Override
 	public void initPanel(Object[] bundle) {
-		ScreenShot shot =  ConfigReader.readParentPanel("function_default");
+		ScreenShot shot = ConfigReader.readParentPanel("function_default");
 		Parent child = (BorderPane) shot.getRoot();
 		childPanel.getChildren().add(child);
 	}
@@ -141,20 +138,73 @@ public class TaskPanel extends GitPanel {
 			setChildren(functions.get(index).getRoot());
 		}
 	}
-	
+
 	/**
 	 * add a function to list
+	 * 
 	 * @param shot
 	 */
-	public void appendFunction(ScreenShot shot){
+	public void appendFunction(ScreenShot shot) {
 		functions.add(shot);
 	}
-	
+
 	/**
 	 * clear list
 	 */
-	public void clearFunction(){
+	public void clearFunction() {
 		functions.clear();
+	}
+	
+	private void setListener(){
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"button/button.png");
+		img_back.setOnMouseEntered(new ChangePictureHandler<>("back_1", img_back));
+		img_back.setOnMouseExited(new ChangePictureHandler<>("back", img_back));
+		img_forward.setOnMouseEntered(new ChangePictureHandler<>("front_1", img_forward));
+		img_forward.setOnMouseExited(new ChangePictureHandler<>("front", img_forward));
+		nav_user.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(subview_user1==null){
+					subview_user1 = new ImageView();
+					subview_user1.setFitWidth(150);
+					subview_user1.setFitHeight(50);
+					subview_user1.setImage(new Image(url.toString()));
+					subview_user2 = new ImageView();
+					subview_user2.setFitWidth(150);
+					subview_user2.setFitHeight(50);
+					subview_user2.setImage(new Image(url.toString()));
+					leftbar.getChildren().remove(nav_repo);
+					leftbar.getChildren().add( subview_user1);
+					leftbar.getChildren().add(subview_user2);
+					leftbar.getChildren().add(nav_repo);
+				}else{
+					leftbar.getChildren().remove(subview_user1);
+					leftbar.getChildren().remove(subview_user2);
+					subview_user1 = subview_user2 = null;
+				}
+			}
+		});
+		nav_repo.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(subview_repo1==null){
+					subview_repo1 = new ImageView();
+					subview_repo1.setFitWidth(150);
+					subview_repo1.setFitHeight(50);
+					subview_repo1.setImage(new Image(url.toString()));
+					subview_repo2 = new ImageView();
+					subview_repo2.setFitWidth(150);
+					subview_repo2.setFitHeight(50);
+					subview_repo2.setImage(new Image(url.toString()));
+					leftbar.getChildren().add(subview_repo1);
+					leftbar.getChildren().add(subview_repo2);
+				}else{
+					leftbar.getChildren().remove(subview_repo1);
+					leftbar.getChildren().remove(subview_repo2);
+					subview_repo1 = subview_repo2 = null;
+				}
+			}
+		});
 	}
 
 }
