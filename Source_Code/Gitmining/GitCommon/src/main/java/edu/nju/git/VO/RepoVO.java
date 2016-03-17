@@ -33,11 +33,31 @@ public class RepoVO {
 	private int size;
 	
 	//lists of info
+	/**
+	 * @deprecated
+	 * size
+	 */
 	private List<UserBriefVO> info_contributor ;
+	/**
+	 * @deprecated
+	 */
 	private List<UserBriefVO> info_collaborator ;
+	/**
+	 * @deprecated
+	 */
 	private List<BranchVO> info_branch ;
+	/**
+	 * fullname
+	 * @deprecated
+	 */
 	private List<RepoBriefVO> info_fork ;
+	/**
+	 * @deprecated
+	 */
 	private List<CommitVO> info_commit ;
+	/**
+	 * @deprecated
+	 */
 	private List<IssueVO> info_issue ;
 	
 	public String getName() {
