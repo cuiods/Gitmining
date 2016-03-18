@@ -32,6 +32,43 @@ public class RepoVO {
 	 */
 	private int size;
 	
+	
+	private float famousInRadar;
+	private float matureInRadar;
+	private float popularInRadar;
+	private float hotInRadar;
+	private float sizeInRadar;
+	
+	public float getFamousInRadar() {
+		return famousInRadar;
+	}
+	public void setFamousInRadar(float famousInRadar) {
+		this.famousInRadar = famousInRadar;
+	}
+	public float getMatureInRadar() {
+		return matureInRadar;
+	}
+	public void setMatureInRadar(float matureInRadar) {
+		this.matureInRadar = matureInRadar;
+	}
+	public float getPopularInRadar() {
+		return popularInRadar;
+	}
+	public void setPopularInRadar(float popularInRadar) {
+		this.popularInRadar = popularInRadar;
+	}
+	public float getHotInRadar() {
+		return hotInRadar;
+	}
+	public void setHotInRadar(float hotInRadar) {
+		this.hotInRadar = hotInRadar;
+	}
+	public float getSizeInRadar() {
+		return sizeInRadar;
+	}
+	public void setSizeInRadar(float sizeInRadar) {
+		this.sizeInRadar = sizeInRadar;
+	}
 	//lists of info
 	/**
 	 * @deprecated
