@@ -61,6 +61,8 @@ public final class UIManager {
 	public Parent initialize(Stage stage){
 		root = ConfigReader.readParentPanel("index");
 		root.getPanel().initPanel(null);
+		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"index.css");
+		root.getRoot().getStylesheets().add(urlcss.toString());
 		primaryStage = stage;
 		primaryStage.setTitle(StringReader.readString("title"));
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"icon.png");

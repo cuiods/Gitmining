@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Start application here.
@@ -18,6 +19,7 @@ public class Main extends Application {
 		Parent root = UIManager.instance().initialize(primaryStage);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 	}
 
