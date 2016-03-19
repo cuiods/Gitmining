@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
+import edu.nju.git.ui.config.StringReader;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -61,6 +63,8 @@ public class IndexPanel extends GitPanel{
 	public void initPanel(Object[] bundle) {
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
 		childpane = (BorderPane) shot.getRoot();
+		URL url = Main.class.getResource(StringReader.readPath("css")+"task.css");
+		shot.getRoot().getStylesheets().add(url.toString());
 		shot.getPanel().initPanel(null);
 		pane.getChildren().add(childpane);
 		tasks.add(shot);
@@ -69,12 +73,12 @@ public class IndexPanel extends GitPanel{
 
 	@Override
 	public void setChildren(Parent region) {
-		if (region instanceof BorderPane) {
-			BorderPane cpane = (BorderPane) region;
-			pane.getChildren().remove(childpane);
-			pane.getChildren().add(cpane);
-			childpane = cpane;
-		}
+//		if (region instanceof BorderPane) {
+//			BorderPane cpane = (BorderPane) region;
+//			pane.getChildren().remove(childpane);
+//			pane.getChildren().add(cpane);
+//			childpane = cpane;
+//		}
 	}
 
 	@Override

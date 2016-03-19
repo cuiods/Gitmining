@@ -1,3 +1,6 @@
 #box{
-	-fx-background-image:#000000;
+	-fx-background-image:url("../pictures/bar.png");
+	-fx-fill-height:true;
+	-fx-alignment:top-right;
+	-fx-background-color:#ffffff;
 }
