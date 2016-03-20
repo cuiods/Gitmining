@@ -16,7 +16,14 @@
         <BorderPane fx:id="pane" prefHeight="630.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
       </center>
          <top>
-            <HBox id="box" fx:id="box" prefHeight="40.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
+            <HBox id="box" fx:id="box" alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="1020.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="exit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pictures/button/exit.png" />
+                     </image>
+                  </ImageView>
+               </children></HBox>
          </top>
     </BorderPane>
     <ImageView fx:id="image" fitHeight="720.0" fitWidth="1080.0" pickOnBounds="true" visible="false">

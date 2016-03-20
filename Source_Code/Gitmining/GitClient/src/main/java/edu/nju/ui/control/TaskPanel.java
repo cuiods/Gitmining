@@ -69,7 +69,7 @@ public class TaskPanel extends GitPanel {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// set listener T T no other way?
+		//set listener T T no other way?
 		setListener();
 	}
 
@@ -169,7 +169,6 @@ public class TaskPanel extends GitPanel {
 	}
 
 	private void setListener() {
-		URL url = Main.class.getResource(StringReader.readPath("picture") + "button/button.png");
 		img_back.setOnMouseEntered(new ChangePictureHandler<>("back_1", img_back));
 		img_back.setOnMouseExited(new ChangePictureHandler<>("back", img_back));
 		img_forward.setOnMouseEntered(new ChangePictureHandler<>("front_1", img_forward));
@@ -188,6 +187,7 @@ public class TaskPanel extends GitPanel {
 					subview_user1 = new ImageView();
 					subview_user1.setFitWidth(150);
 					subview_user1.setFitHeight(50);
+					URL url = Main.class.getResource(StringReader.readPath("picture") + "button/user_info.png");
 					subview_user1.setImage(new Image(url.toString()));
 					subview_user1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
@@ -198,7 +198,8 @@ public class TaskPanel extends GitPanel {
 					subview_user2 = new ImageView();
 					subview_user2.setFitWidth(150);
 					subview_user2.setFitHeight(50);
-					subview_user2.setImage(new Image(url.toString()));
+					URL url2 = Main.class.getResource(StringReader.readPath("picture") + "button/statistic.png");
+					subview_user2.setImage(new Image(url2.toString()));
 					leftbar.getChildren().remove(nav_repo);
 					leftbar.getChildren().add(subview_user1);
 					leftbar.getChildren().add(subview_user2);
@@ -217,6 +218,7 @@ public class TaskPanel extends GitPanel {
 					subview_repo1 = new ImageView();
 					subview_repo1.setFitWidth(150);
 					subview_repo1.setFitHeight(50);
+					URL url = Main.class.getResource(StringReader.readPath("picture") + "button/repo_info.png");
 					subview_repo1.setImage(new Image(url.toString()));
 					subview_repo1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
@@ -227,7 +229,8 @@ public class TaskPanel extends GitPanel {
 					subview_repo2 = new ImageView();
 					subview_repo2.setFitWidth(150);
 					subview_repo2.setFitHeight(50);
-					subview_repo2.setImage(new Image(url.toString()));
+					URL url2 = Main.class.getResource(StringReader.readPath("picture") + "button/statistic.png");
+					subview_repo2.setImage(new Image(url2.toString()));
 					leftbar.getChildren().add(subview_repo1);
 					leftbar.getChildren().add(subview_repo2);
 				} else {

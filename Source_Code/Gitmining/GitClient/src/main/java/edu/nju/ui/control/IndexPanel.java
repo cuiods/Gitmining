@@ -35,6 +35,7 @@ public class IndexPanel extends GitPanel{
 	@FXML HBox box;
 	@FXML BorderPane pane;
 	@FXML ImageView image;
+	@FXML ImageView exit;
 	private BorderPane childpane;
 	private List<ScreenShot> tasks = new ArrayList<>();
 
@@ -57,6 +58,13 @@ public class IndexPanel extends GitPanel{
 				
 			}
 		});
+		
+		exit.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				System.exit(0);
+			}
+		});
 	}
 
 	@Override
@@ -64,7 +72,7 @@ public class IndexPanel extends GitPanel{
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
 		childpane = (BorderPane) shot.getRoot();
 		URL url = Main.class.getResource(StringReader.readPath("css")+"task.css");
-		shot.getRoot().getStylesheets().add(url.toString());
+		childpane.getStylesheets().add(url.toString());
 		shot.getPanel().initPanel(null);
 		pane.getChildren().add(childpane);
 		tasks.add(shot);

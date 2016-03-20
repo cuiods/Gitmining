@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="690.0" prefWidth="1080.0" stylesheets="@../css/task.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
+<BorderPane prefHeight="690.0" prefWidth="1020.0" stylesheets="@../css/task.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.TaskPanel">
   <center>
-    <BorderPane prefHeight="690.0" prefWidth="930.0" BorderPane.alignment="CENTER">
+    <BorderPane prefHeight="690.0" prefWidth="870.0" BorderPane.alignment="CENTER">
       <center>
-        <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="930.0" BorderPane.alignment="CENTER" />
+        <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
       </center>
       <top>
-        <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="930.0" BorderPane.alignment="CENTER">
+        <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="870.0" BorderPane.alignment="CENTER">
           <center>
             <Group>
               <children>
-                <ImageView fitHeight="50.0" fitWidth="780.0" pickOnBounds="true">
+                <ImageView fitHeight="50.0" fitWidth="720.0" pickOnBounds="true">
                   <image>
                     <Image url="@../pictures/topbar/middle.png" />
                   </image>
                 </ImageView>
-                <Label prefHeight="50.0" prefWidth="780.0" text="        您现在的位置：" textFill="#f8f7f7" />
+                <Label prefHeight="50.0" prefWidth="720.0" text="        您现在的位置：" textFill="#f8f7f7" />
               </children>
             </Group>
           </center>
@@ -55,21 +55,21 @@
     </BorderPane>
   </center>
   <left>
-    <VBox id="left" fx:id="leftbar" prefHeight="690.0" prefWidth="150.0" stylesheets="@../css/task.css">
+    <VBox id="leftbar" fx:id="leftbar" minHeight="690.0" prefHeight="690.0" prefWidth="150.0" stylesheets="@../css/task.css">
       <children>
         <ImageView fx:id="nav_home" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
            <image>
-             <Image url="@../pictures/button/button.png" />
+             <Image url="@../pictures/button/home_main.png" />
            </image>
         </ImageView>
         <ImageView fx:id="nav_user" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
            <image>
-             <Image url="@../pictures/button/button.png" />
+             <Image url="@../pictures/button/user_main.png" />
            </image>
         </ImageView>
         <ImageView fx:id="nav_repo" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
            <image>
-             <Image url="@../pictures/button/button.png" />
+             <Image url="@../pictures/button/repository_main.png" />
            </image>
         </ImageView>
       </children>
