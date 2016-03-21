@@ -1,10 +1,7 @@
 package edu.nju.git.ui.control;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
-import edu.nju.git.bl.service.BlService;
 import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
@@ -37,7 +34,7 @@ public final class UIManager {
 	/**
 	 * key-value pair of all the services.
 	 */
-	private Map<String, BlService> services = new HashMap<>();
+//	private Map<String, BlService> services = new HashMap<>();
 	/**
 	 * current stage
 	 */
@@ -76,12 +73,12 @@ public final class UIManager {
 		return root.getRoot();
 	}
 	
-	public void addService(String key, BlService service){
-		services.put(key, service);
-	}
-	public BlService getService(String key) {
-		return services.get(key);
-	}
+//	public void addService(String key, BlService service){
+//		services.put(key, service);
+//	}
+//	public BlService getService(String key) {
+//		return services.get(key);
+//	}
 
 	public CSSFactory getCssFactory() {
 		return cssFactory;
