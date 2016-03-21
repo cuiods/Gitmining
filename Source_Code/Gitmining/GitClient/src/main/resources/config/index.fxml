@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.*?>
 
-<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.ui.control.IndexPanel">
+<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.IndexPanel">
   <children>
     <BorderPane prefHeight="670.0" prefWidth="1020.0">
       <center>
@@ -20,7 +20,7 @@
                <children>
                   <ImageView fx:id="exit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../pictures/button/exit.png" />
+                        <Image url="@button/exit.png" />
                      </image>
                   </ImageView>
                </children></HBox>
@@ -28,7 +28,7 @@
     </BorderPane>
     <ImageView fx:id="image" fitHeight="720.0" fitWidth="1020.0" pickOnBounds="true">
       <image>
-        <Image url="@../pictures/back1.png" />
+        <Image url="@back1.png" />
       </image>
     </ImageView>
   </children>

@@ -1,5 +1,5 @@
 #leftbar{
-	-fx-background-image:url("../pictures/leftbar.png");
+	-fx-background-image:url("../leftbar.png");
 	-fx-background-repeat:repeat;
 	-fx-fill-height:true;
 	-fx-background-color:#000000;

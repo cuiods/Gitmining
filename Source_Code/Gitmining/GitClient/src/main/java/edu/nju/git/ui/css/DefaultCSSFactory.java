@@ -14,13 +14,13 @@ public class DefaultCSSFactory extends CSSFactory{
 
 	@Override
 	public String getTaskCSS() {
-		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"task_default.css");
+		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"task.css");
 		return urlcss.toString();
 	}
 
 	@Override
 	public String getFunctionHome() {
-		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"function_default.css");
+		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"function.css");
 		return urlcss.toString();
 	}
 
