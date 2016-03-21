@@ -1,6 +1,6 @@
 package edu.nju.git.ui.config;
 
-import edu.nju.ui.control.GitPanel;
+import edu.nju.git.ui.control.GitPanel;
 import javafx.scene.Parent;
 
 /**

@@ -1,4 +1,4 @@
-package edu.nju.ui.control;
+package edu.nju.git.ui.control;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -69,6 +69,7 @@ public class TaskPanel extends GitPanel {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		setCssFactory(UIManager.instance().getCssFactory());
 		//set listener T T no other way?
 		setListener();
 	}

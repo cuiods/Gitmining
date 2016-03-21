@@ -1,4 +1,4 @@
-package edu.nju.ui.control;
+package edu.nju.git.ui.control;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -9,6 +9,8 @@ import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
+import edu.nju.git.ui.css.CSSFactory;
+import edu.nju.git.ui.css.DefaultCSSFactory;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -40,6 +42,10 @@ public final class UIManager {
 	 * current stage
 	 */
 	private Stage primaryStage;
+	/**
+	 * css factory
+	 */
+	private CSSFactory cssFactory;
 	
 	private UIManager(){};
 	
@@ -59,10 +65,10 @@ public final class UIManager {
 	 * @return
 	 */
 	public Parent initialize(Stage stage){
+		cssFactory = new DefaultCSSFactory();
 		root = ConfigReader.readParentPanel("index");
 		root.getPanel().initPanel(null);
-		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"index.css");
-		root.getRoot().getStylesheets().add(urlcss.toString());
+		root.getRoot().getStylesheets().add(cssFactory.getIndexCSS());
 		primaryStage = stage;
 		primaryStage.setTitle(StringReader.readString("title"));
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"icon.png");
@@ -70,24 +76,19 @@ public final class UIManager {
 		return root.getRoot();
 	}
 	
-	/**
-	 * Change the scene's css style.
-	 * @param name
-	 * 		name of the style.
-	 */
-	public void changeCSS(String name) {
-		if (primaryStage != null) {
-			URL url = Main.class.getResource(StringReader.readPath("css")+name+".css");
-			primaryStage.getScene().getStylesheets().add(url.toString());
-		} else {
-			System.out.println("Error:primaryStage is null");
-		}
-	}
 	public void addService(String key, BlService service){
 		services.put(key, service);
 	}
 	public BlService getService(String key) {
 		return services.get(key);
+	}
+
+	public CSSFactory getCssFactory() {
+		return cssFactory;
+	}
+
+	public void setCssFactory(CSSFactory cssFactory) {
+		this.cssFactory = cssFactory;
 	}
 	
 }

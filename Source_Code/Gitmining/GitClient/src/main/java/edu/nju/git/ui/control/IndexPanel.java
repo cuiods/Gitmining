@@ -1,4 +1,4 @@
-package edu.nju.ui.control;
+package edu.nju.git.ui.control;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
+import edu.nju.git.ui.css.CSSFactory;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
@@ -41,6 +42,7 @@ public class IndexPanel extends GitPanel{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		setCssFactory(UIManager.instance().getCssFactory());
 		image.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -71,8 +73,7 @@ public class IndexPanel extends GitPanel{
 	public void initPanel(Object[] bundle) {
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
 		childpane = (BorderPane) shot.getRoot();
-		URL url = Main.class.getResource(StringReader.readPath("css")+"task.css");
-		childpane.getStylesheets().add(url.toString());
+		childpane.getStylesheets().add(getCssFactory().getTaskCSS());
 		shot.getPanel().initPanel(null);
 		pane.getChildren().add(childpane);
 		tasks.add(shot);

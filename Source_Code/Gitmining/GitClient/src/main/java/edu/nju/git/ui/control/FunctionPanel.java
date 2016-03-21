@@ -1,4 +1,4 @@
-package edu.nju.ui.control;
+package edu.nju.git.ui.control;
 
 import java.net.URL;
 import java.util.ResourceBundle;

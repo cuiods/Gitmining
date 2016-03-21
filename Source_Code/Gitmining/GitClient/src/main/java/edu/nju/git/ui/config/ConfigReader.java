@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import edu.nju.git.main.Main;
-import edu.nju.ui.control.GitPanel;
+import edu.nju.git.ui.control.GitPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 

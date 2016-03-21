@@ -1,5 +1,6 @@
-package edu.nju.ui.control;
+package edu.nju.git.ui.control;
 
+import edu.nju.git.ui.css.CSSFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Region;
  * @date 2016-03-04 20:27:51
  */
 public abstract class GitPanel implements Initializable{
+	private CSSFactory cssFactory;
 	/**
 	 * In this method, you need to play animation of the panel and <br>
 	 * use data from last panel.
@@ -35,4 +37,10 @@ public abstract class GitPanel implements Initializable{
 	 * remove the panel's <b>main</b> child node.
 	 */
 	public abstract void removeChild();
+	public CSSFactory getCssFactory() {
+		return cssFactory;
+	}
+	public void setCssFactory(CSSFactory cssFactory) {
+		this.cssFactory = cssFactory;
+	}
 }
