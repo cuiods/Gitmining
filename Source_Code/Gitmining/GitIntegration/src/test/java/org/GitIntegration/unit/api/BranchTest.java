@@ -31,10 +31,6 @@ public class BranchTest extends TestCase {
 	public void test2(){
 		ListCreator creator =  ListCreator.getInstance();
 		List<BranchVO> branchVOs = creator.getBranches("vrpn", "vrpn");
-//		for (BranchVO branchVO : branchVOs) {
-//			System.out.println(branchVO.getSHA());
-//			System.out.println(branchVO.getName());
-//		}
 		assertEquals(13, branchVOs.size());
 	}
 }

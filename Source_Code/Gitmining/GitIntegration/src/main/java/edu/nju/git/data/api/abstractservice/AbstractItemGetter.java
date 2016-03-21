@@ -29,7 +29,7 @@ public abstract class AbstractItemGetter implements FieldsGetterService{
 	
 	public String getString(String item)
 	{
-		return this.getItem(item);
+		return this.getItem(item).replace("\"", "");
 	}
 	
 	public boolean getBoolean(String item)

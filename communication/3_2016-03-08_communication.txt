@@ -1,0 +1,5 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+when:第3周
+what:vo和po得修改
+how long:1h
+arrived solutions:删除userbriefvo中的id,following,添加public_repos;删除repobriefvo中得contriNum,添加subscrNum和owner;etc

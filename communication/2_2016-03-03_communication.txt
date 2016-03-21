@@ -1,0 +1,6 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+when:第2周
+what:架构设计的改善
+how long:1.5h
+arrived solutions:
+1.对搜索结果的处理，data层(后期将移至服务器端)预先存储并载入所有repository和user的name数组，为string格式；客户端本地存储search结果的name的string数组、star的int数组，fork的int数组等，用于排序；客户端默认将第一页的具体search结果展示出来，此时需要将客户端的name数组的前k个string拿出来从数据层拿briefVO，点进去后再拿具体VO；blImpl对象和dataImpl对象都是单件；

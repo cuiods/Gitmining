@@ -32,7 +32,7 @@ public class Document implements FieldsGetterService{
 	@Override
 	public String getString(String item) {
 		JsonNode node =  this.getItem(item);
-		String re= node==null? "":node.textValue();
+		String re= node==null? "":node.toString();
 		return re==null?"":re;
 	}
 

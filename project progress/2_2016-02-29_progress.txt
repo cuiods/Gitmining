@@ -7,5 +7,17 @@ todo:ºÍ×éÔ±ÌÖÂÛ½Ó¿Ú¶¨ÒåµÄ²»È·¶¨ÒòËØ£¬ÌÖÂÛ²¢Íê³É¿ª·¢°üÍ¼ºÍ½çÃæÌø×ªÉè¼Æ£¬²¢¶ÔÌåÏµ½
 who:´÷ÐÂÑÕ
 when:µÚ2ÖÜ
 what:µü´úÒ»ÓÃÀýÎÄµµ³õ²½Éè¼ÆÓëÐÞ¸ÄÍê³É£» Éè¼ÆÎÄµµ°üÍ¼£»
-problem:¼Ü¹¹Éè¼ÆµÄÎÊÌâ£ºËÑË÷µÄÊµÏÖÊÇÔÚÊý¾Ý²ãÊµÏÖ£¬»¹ÊÇÂß¼­²ã£» 
-todo:Éè¼Æ²âÊÔÓÃÀý£»½øÒ»²½ÏêÏ¸µÄÐèÇó·ÖÎö¡£
+problem:¼Ü¹¹Éè¼ÆµÄÎÊÌâ£ºËÑË÷µÄÊµÏÖÊÇÔÚÊý¾Ý²ãÊµÏÖ£¬»¹ÊÇÂß¼­²ã£»Éè¼Æ²âÊÔÓÃÀý£» 
+todo:½øÒ»²½ÏêÏ¸µÄÐèÇó·ÖÎö¡£
+
+who:´ÞºÆ
+when:µÚ2ÖÜ
+what:´´½¨mavenÏîÄ¿£¬ÅäÖÃJenkins¼¯³É²âÊÔ£¬±àÐ´½Ó¿Ú£¬´î½¨½çÃæ·´Éä+ÅäÖÃÎÄ¼þµÄ¼Ü¹¹
+problem:¸Ã½çÃæ¼Ü¹¹²»ÊÊºÏÕâ´Î´ó×÷ÒµµÄ¿ª·¢
+todo£ºÔÚÁíÒ»·ÖÖ§ÉÏÑ§Ï°²¢³¢ÊÔÊ¹ÓÃJavafx¿ª·¢½çÃæ
+
+who:Ô¬ÑôÑô
+when:µÚ2ÖÜ
+what:Ñ§Ï°ºÍÊìÏ¤Ê¹ÓÃxmlÅäÖÃÎÄ¼þºÍ·´ÉäÔËÓÃ
+problem:ÄÚÈÝÏà¶Ô½ÏÐÂ£¬Ñ§Ï°½ÏÎªÀ§ÄÑ
+todo:½øÒ»²½Ñ§Ï°ºÍÊìÏ¤£¬¿ªÊ¼µü´úÒ»½çÃæ²ãÊéÐ´

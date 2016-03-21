@@ -27,14 +27,15 @@ public class GithubIssuePOcreator implements POfactory<IssueVO> {
 	@Override
 	public IssueVO getPO() {
 		IssueVO issue = new IssueVO();
-		issue.setId(itemHelper.getString("id"));
+		issue.setId(itemHelper.getString("number"));
 		issue.setState(itemHelper.getString("state"));
 		issue.setLocked(itemHelper.getBoolean("locked"));
 		issue.setTitle(itemHelper.getString("title"));
 		issue.setBody(itemHelper.getString("body"));
 		issue.setUserName(itemHelper.getString("login"));
 		issue.setCreate_at(itemHelper.getString("created_at"));
-		issue.setUpdate_at(itemHelper.getString("updates_at"));
+		issue.setUpdate_at(itemHelper.getString("updated_at"));
+		
 		return issue;
 	}
 

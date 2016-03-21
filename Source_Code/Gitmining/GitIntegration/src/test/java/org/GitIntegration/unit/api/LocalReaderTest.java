@@ -20,16 +20,9 @@ public class LocalReaderTest extends TestCase {
 	public void testRead() {
 		LocalReader reader = new LocalReader();
 		List<RepoBriefPO> list = reader.readRepos();
-		for (RepoBriefPO repoBriefPO : list) {
-			System.out.println(repoBriefPO.getNum_forks());
-		}
 		assertEquals(list.size(), 3216);
 		
 		List<UserBriefPO> users = reader.readUsers();
-		for (UserBriefPO userBriefPO : users) {
-			System.out.println(userBriefPO.getLogin());
-		}
-		System.out.println(users.size());
 		assertEquals(2404, users.size());
 	}
 

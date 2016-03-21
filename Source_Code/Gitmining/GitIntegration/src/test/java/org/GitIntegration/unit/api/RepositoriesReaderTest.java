@@ -19,9 +19,6 @@ public class RepositoriesReaderTest extends TestCase {
 	public void testFullNames() {
 		RepositoriesListReader reader = new RepositoriesListReader();
 		List<Object> list = reader.getNames();
-//		for (String string : list) {
-//			System.out.println(string);
-//		}
 		Assert.assertTrue( list.size()>=3216);
 	}
 
