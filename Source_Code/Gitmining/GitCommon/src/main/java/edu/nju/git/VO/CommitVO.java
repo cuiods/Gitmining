@@ -1,11 +1,14 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
+
 /**
  * info of a commit
  * @author cuihao
  * @date 2016-03-01 23:53:02
  */
-public class CommitVO {
+public class CommitVO implements Serializable{
+	private static final long serialVersionUID = -3912151972882753629L;
 	/**
 	 * sha
 	 */

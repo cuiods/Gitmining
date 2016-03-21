@@ -1,5 +1,7 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
+
 import edu.nju.git.type.OwnerType;
 
 /**
@@ -7,7 +9,9 @@ import edu.nju.git.type.OwnerType;
  * @author cuihao
  *
  */
-public class UserVO {
+public class UserVO implements Serializable{
+	
+	private static final long serialVersionUID = -2312532160677357247L;
 	private String login;
 	private OwnerType type;
 	private String name;
@@ -24,6 +28,23 @@ public class UserVO {
 	private int public_gists;
 	
 	private String avatar_url;
+	
+	/**
+	 * the count of star/fork/subscriber of'''''''repos belongs or contriobuted or conllaborated by this user
+	 */
+	private float radar_value;//star subs
+	private float radar_gist;
+	private float radar_follower;
+	private float radar_ownrepos;
+    private float radar_enthusiasm;  //calculated by num of contributor\collabrator and subscriber.	
+	private int num_subscriber;
+	private int num_contributors;
+	private int num_collabrator;
+	
+	
+	
+	
+	
 	public String getAvatar_url() {
 		return avatar_url;
 	}
@@ -113,6 +134,54 @@ public class UserVO {
 	}
 	public void setPublic_repos(int public_repos) {
 		this.public_repos = public_repos;
+	}
+	public float getRadar_value() {
+		return radar_value;
+	}
+	public void setRadar_value(float radar_value) {
+		this.radar_value = radar_value;
+	}
+	public float getRadar_gist() {
+		return radar_gist;
+	}
+	public void setRadar_gist(float radar_gist) {
+		this.radar_gist = radar_gist;
+	}
+	public float getRadar_follower() {
+		return radar_follower;
+	}
+	public void setRadar_follower(float radar_follower) {
+		this.radar_follower = radar_follower;
+	}
+	public float getRadar_ownrepos() {
+		return radar_ownrepos;
+	}
+	public void setRadar_ownrepos(float radar_ownrepos) {
+		this.radar_ownrepos = radar_ownrepos;
+	}
+	public float getRadar_enthusiasm() {
+		return radar_enthusiasm;
+	}
+	public void setRadar_enthusiasm(float radar_enthusiasm) {
+		this.radar_enthusiasm = radar_enthusiasm;
+	}
+	public int getNum_subscriber() {
+		return num_subscriber;
+	}
+	public void setNum_subscriber(int num_subscriber) {
+		this.num_subscriber = num_subscriber;
+	}
+	public int getNum_contributors() {
+		return num_contributors;
+	}
+	public void setNum_contributors(int num_contributors) {
+		this.num_contributors = num_contributors;
+	}
+	public int getNum_collabrator() {
+		return num_collabrator;
+	}
+	public void setNum_collabrator(int num_collabrator) {
+		this.num_collabrator = num_collabrator;
 	}
 	
 	

@@ -96,14 +96,6 @@ public class POcreator {
 //		AbstractFieldsGetter getter = new RepoItemReader(fullname);
 		RepoPOfactory pOfactory = new RepoPOfactory(getter);
 		RepoVO repoVO = pOfactory.getPO();
-		
-		ListCreator listCreator = ListCreator.getInstance();
-		repoVO.setInfo_branch((listCreator.getBranches(fullname)));
-		repoVO.setInfo_collaborator((listCreator.getCollaborators(fullname)));
-		repoVO.setInfo_commit((listCreator.getCommitVO(fullname)));
-		repoVO.setInfo_contributor((listCreator.getContributors(fullname)));
-		repoVO.setInfo_fork(listCreator.getForks(fullname));
-		repoVO.setInfo_issue((listCreator.getIssueVO(fullname)));
 		return repoVO;
 	}
 	

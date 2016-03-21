@@ -1,11 +1,15 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
+
 /**
  * simple view of a branch
  * @author cuihao
  * @date 2016-03-01 23:23:36
  */
-public class BranchVO {
+public class BranchVO implements Serializable{
+
+	private static final long serialVersionUID = 3989800800837698004L;
 	/**
 	 * name of a branch
 	 */

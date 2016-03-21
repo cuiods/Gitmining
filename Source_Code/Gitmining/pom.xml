@@ -26,6 +26,7 @@
 		<module>GitClient</module>
 		<module>GitCommon</module>
 		<module>GitIntegration</module>
+		<module>GitServer</module>
 	</modules>
 
 	<build>
