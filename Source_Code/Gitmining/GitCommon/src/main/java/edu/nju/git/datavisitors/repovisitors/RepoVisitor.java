@@ -3,6 +3,7 @@ package edu.nju.git.datavisitors.repovisitors;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.data.service.RepoDataService;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author benchaodong
  * @date 2016-03-07
  */
-public interface RepoVisitor {
+public interface RepoVisitor extends Serializable{
     /**
      * the method visit data in data layer and produce the data needed by its caller
      *

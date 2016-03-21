@@ -1,4 +1,4 @@
-package edu.nju.git.data.rmiservice;
+package edu.nju.git.data.service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -11,7 +11,7 @@ import edu.nju.git.VO.MyChartVO;
  * @author daixinyan
  * @date 2016-03-20
  */
-public interface RepostatDataRMIService extends Remote{
+public interface RepoChartDataService extends Remote{
 	/**
 	 * 
 	 * <br/><b>precondition</b>：null

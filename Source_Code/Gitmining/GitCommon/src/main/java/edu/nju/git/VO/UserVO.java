@@ -27,6 +27,9 @@ public class UserVO implements Serializable{
 	private String update_at;
 	private int public_repos;
 	private int public_gists;
+	private int num_subscriber;
+	private int num_contributors;
+	private int num_collabrator;
 	
 	private String avatar_url;
 	
@@ -38,9 +41,7 @@ public class UserVO implements Serializable{
 	private float radar_follower;
 	private float radar_ownrepos;
     private float radar_enthusiasm;  //calculated by num of contributor\collabrator and subscriber.	
-	private int num_subscriber;
-	private int num_contributors;
-	private int num_collabrator;
+
 	
 	
 	public String getAvatar_url() {

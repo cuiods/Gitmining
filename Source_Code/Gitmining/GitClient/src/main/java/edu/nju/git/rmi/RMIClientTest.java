@@ -13,7 +13,7 @@ public class RMIClientTest {
 		try{
 		    long a = System.currentTimeMillis();
 			//调用远程对象，注意RMI路径与接口必须与服务器配置一致
-			RepoDataRMIService personService=(RepoDataRMIService)Naming.lookup("rmi://127.0.0.1:6600/RepoDataRMIService");
+			RepoDataRMIService personService=(RepoDataRMIService)Naming.lookup("rmi://:1099/RepoDataRMIService");
 			List<RepoBriefPO> list = personService.getRepoBriefPOs(SortType.FOLLOWER_NUM);
 		
 			for (RepoBriefPO repoBriefPO : list) {

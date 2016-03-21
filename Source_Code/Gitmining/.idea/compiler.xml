@@ -25,6 +25,7 @@
         <module name="GitClient" />
         <module name="GitCommon" />
         <module name="GitIntegration" />
+        <module name="GitServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,7 @@
       <module name="GitCommon" target="1.8" />
       <module name="GitIntegration" target="1.8" />
       <module name="Gitmining" target="1.8" />
+      <module name="GitServer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
