@@ -1,5 +1,6 @@
 package edu.nju.git.VO;
 
+import java.io.Serializable;
 /**
  * Info of an issue
  * <br>
@@ -7,7 +8,8 @@ package edu.nju.git.VO;
  * @author cuihao
  * @date 2016-03-01 23:45:22
  */
-public class IssueVO {
+public class IssueVO implements Serializable{
+	private static final long serialVersionUID = -3270955094902228129L;
 	private String id;
 	//WARNING:unkown
 	private String state;

@@ -1,18 +1,17 @@
 package edu.nju.git.VO;
 
-import java.util.List;
+import java.io.Serializable;
 
 import edu.nju.git.type.OwnerType;
 
 /**
  * info of repository<br>
- * <b>Note:</b><br>Lists don't have a set method, use add method.<br>
- * For example:<br>
- * <code>repo.addIssue(name)</code>;
+ * the basic infomation about the repository, no list thing.
  * @author cuihao
  * @date 2016-03-02 12:25:14
  */
-public class RepoVO {
+public class RepoVO implements Serializable{
+	private static final long serialVersionUID = 8951738005334507950L;
 	private String name;
 	/**
 	 * warning: can be enumerate
@@ -24,6 +23,8 @@ public class RepoVO {
 	private String description;
 	private String create_at;
 	private String update_at;
+	
+	
 	private int num_stars = 0;
 	private int num_forks = 0;
 	private int num_subscribers = 0;
@@ -33,70 +34,21 @@ public class RepoVO {
 	private int size;
 	
 	
-	private float famousInRadar;
-	private float matureInRadar;
-	private float popularInRadar;
-	private float hotInRadar;
-	private float sizeInRadar;
+	private float radar_popular;//calculated by num of subscriber and star
+	private float radar_forks; 
+	private float radar_size;
+	private float radar_complexity; //calculated by num of contributor\collabrator
+	private float radar_activity;  //calculated by num of  commit and issue and pull.	
 	
-	public float getFamousInRadar() {
-		return famousInRadar;
-	}
-	public void setFamousInRadar(float famousInRadar) {
-		this.famousInRadar = famousInRadar;
-	}
-	public float getMatureInRadar() {
-		return matureInRadar;
-	}
-	public void setMatureInRadar(float matureInRadar) {
-		this.matureInRadar = matureInRadar;
-	}
-	public float getPopularInRadar() {
-		return popularInRadar;
-	}
-	public void setPopularInRadar(float popularInRadar) {
-		this.popularInRadar = popularInRadar;
-	}
-	public float getHotInRadar() {
-		return hotInRadar;
-	}
-	public void setHotInRadar(float hotInRadar) {
-		this.hotInRadar = hotInRadar;
-	}
-	public float getSizeInRadar() {
-		return sizeInRadar;
-	}
-	public void setSizeInRadar(float sizeInRadar) {
-		this.sizeInRadar = sizeInRadar;
-	}
+	private int num_ontributors;
+	private int num_collaboration;
+    private int num_commit;
+    private int num_issue;
+    private int num_pull;
+    
+	
+	
 	//lists of info
-	/**
-	 * @deprecated
-	 * size
-	 */
-	private List<UserBriefVO> info_contributor ;
-	/**
-	 * @deprecated
-	 */
-	private List<UserBriefVO> info_collaborator ;
-	/**
-	 * @deprecated
-	 */
-	private List<BranchVO> info_branch ;
-	/**
-	 * fullname
-	 * @deprecated
-	 */
-	private List<RepoBriefVO> info_fork ;
-	/**
-	 * @deprecated
-	 */
-	private List<CommitVO> info_commit ;
-	/**
-	 * @deprecated
-	 */
-	private List<IssueVO> info_issue ;
-	
 	public String getName() {
 		return name;
 	}
@@ -170,42 +122,67 @@ public class RepoVO {
 	public void setNum_subscribers(int num_subscribers) {
 		this.num_subscribers = num_subscribers;
 	}
-	public List<UserBriefVO> getInfo_contributor() {
-		return info_contributor;
+	public float getRadar_popular() {
+		return radar_popular;
 	}
-	public void setInfo_contributor(List<UserBriefVO> info_contributor) {
-		this.info_contributor = info_contributor;
+	public void setRadar_popular(float radar_popular) {
+		this.radar_popular = radar_popular;
 	}
-	public List<UserBriefVO> getInfo_collaborator() {
-		return info_collaborator;
+	public float getRadar_forks() {
+		return radar_forks;
 	}
-	public void setInfo_collaborator(List<UserBriefVO> info_collaborator) {
-		this.info_collaborator = info_collaborator;
+	public void setRadar_forks(float radar_forks) {
+		this.radar_forks = radar_forks;
 	}
-	public List<BranchVO> getInfo_branch() {
-		return info_branch;
+	public float getRadar_size() {
+		return radar_size;
 	}
-	public void setInfo_branch(List<BranchVO> info_branch) {
-		this.info_branch = info_branch;
+	public void setRadar_size(float radar_size) {
+		this.radar_size = radar_size;
 	}
-	public List<RepoBriefVO> getInfo_fork() {
-		return info_fork;
+	public float getRadar_complexity() {
+		return radar_complexity;
 	}
-	public void setInfo_fork(List<RepoBriefVO> info_fork) {
-		this.info_fork = info_fork;
+	public void setRadar_complexity(float radar_complexity) {
+		this.radar_complexity = radar_complexity;
 	}
-	public List<CommitVO> getInfo_commit() {
-		return info_commit;
+	public float getRadar_activity() {
+		return radar_activity;
 	}
-	public void setInfo_commit(List<CommitVO> info_commit) {
-		this.info_commit = info_commit;
+	public void setRadar_activity(float radar_activity) {
+		this.radar_activity = radar_activity;
 	}
-	public List<IssueVO> getInfo_issue() {
-		return info_issue;
+	public int getNum_ontributors() {
+		return num_ontributors;
 	}
-	public void setInfo_issue(List<IssueVO> info_issue) {
-		this.info_issue = info_issue;
+	public void setNum_ontributors(int num_ontributors) {
+		this.num_ontributors = num_ontributors;
 	}
+	public int getNum_collaboration() {
+		return num_collaboration;
+	}
+	public void setNum_collaboration(int num_collaboration) {
+		this.num_collaboration = num_collaboration;
+	}
+	public int getNum_commit() {
+		return num_commit;
+	}
+	public void setNum_commit(int num_commit) {
+		this.num_commit = num_commit;
+	}
+	public int getNum_issue() {
+		return num_issue;
+	}
+	public void setNum_issue(int num_issue) {
+		this.num_issue = num_issue;
+	}
+	public int getNum_pull() {
+		return num_pull;
+	}
+	public void setNum_pull(int num_pull) {
+		this.num_pull = num_pull;
+	}
+	
 	
 	
 	

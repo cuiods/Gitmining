@@ -40,11 +40,37 @@ public interface RepoStatBlService {
 	public MyChartVO statConllabrators();
 	
 	/**
-	 * <br/><b>precondition</b>：
+	 * <br/><b>precondition</b>： connect to the internet
 	 * <br/><b>postcondition</b>：calculate all repo's size, return the repo's numnber 
 	 *       in a range of size. 
 	 * @return
 	 * @date 2016-03-18
 	 */
 	public MyChartVO statSize();
+	/**
+	 * <br/><b>precondition</b>： connect to the internet
+	 * <br/><b>postcondition</b>：calculate all repo's subscribers, return the subscriber's number by group 
+	 * @return
+	 * @throws RemoteException
+	 * @date 2016-03-21
+	 */
+	public MyChartVO statSubscriber() ;
+	
+	/**
+	 * <br/><b>precondition</b>： connect to the internet
+	 * <br/><b>postcondition</b>：calculate all repo's forked times, return the forked time
+	 * @return
+	 * @throws RemoteException
+	 * @date 2016-03-21
+	 */
+	public MyChartVO statForks() ;
+	
+	/**
+	 * <br/><b>precondition</b>：null
+	 * <br/><b>postcondition</b>：calculate all repo's stars number, return the stars number in mychartVO
+	 * @return
+	 * @throws RemoteException
+	 * @date 2016-03-21
+	 */
+	public MyChartVO statStars() ;
 }

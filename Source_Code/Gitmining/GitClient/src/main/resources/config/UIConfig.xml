@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<presentation>
+	<Frame name = "MainFrame" class = "MainFrame" width ="1080" height = "686">
+		<mainPanel name = "MainPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back1" class = "component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name ="repos" change = "ReposPanel" class = "MainButton" x="10" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name ="user" change = "UserPanel" class = "MainButton" x="160" y="50" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+		</mainPanel>
+		<mainPanel name = "ReposPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="reposlist" change = "RepoDetailPanel" class = "table.ReposTable" x="50" y="255" w="970" h="344" type="0" dataType="RepoBriefVO"/>
+			<unit name ="sort_REPOS_name" class = "MainButton" x="50" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_star" class = "MainButton" x="210" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_fork" class = "MainButton" x="300" y="220" w="90" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_subscr" class = "MainButton" x="390" y="220" w="100" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_REPOS_update" class = "MainButton" x="490" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+         	<unit name ="head_REPOS_owner" class = "MainButton" x="650" y="220" w="150" h="35" type = "0"/>
+			<unit name ="head_REPOS_descrip" class = "MainButton" x="800" y="220" w="220" h="35" type ="0"/>
+			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchRepoListener"/> 
+			<unit name = "REPOS_page" class ="TextLabel" x="898" y="608" w="44" h="24" type = "0"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name = "guide_repos3" class = "MainButton" x="25" y="90" w="150" h="50" type="0"/>
+			<unit name = "user" change="UserPanel" class = "MainButton" x="175" y="90" w="150" h="50" type ="1" listenerName="ButtonChangeListener"/>
+			<unit name = "lastPage" class ="MainButton" x="820" y="608" w="78" h="24" type = "1" listenerName="ButtonReposLastListener"/>
+			<unit name = "nextPage" class ="MainButton" x="942" y="608" w="78" h="24" type = "1" listenerName="ButtonReposNextListener"/>
+			
+		</mainPanel>
+		<mainPanel name = "UserPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name = "userList" change = "UserDetailPanel" class = "table.UserTable" x="280" y="255" w="480" h="344" type ="0"/>
+			<unit name ="sort_USER_name" class = "MainButton" x="280" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_USER_follower" class = "MainButton" x="440" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name ="sort_USER_repo" class = "MainButton" x="600" y="220" w="160" h="35" type ="1" listenerName="ButtonSortListener"/>
+			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchUserListener"/> 
+			<unit name = "USER_page" class ="TextLabel" x="898" y="608" w="44" h="24" type = "0"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+			<unit name = "repos" change = "ReposPanel" class = "MainButton" x="25" y="90" w="150" h="50" type="1" listenerName = "ButtonChangeListener"/>
+			<unit name = "guide_user3"  class = "MainButton" x="175" y="90" w="150" h="50" type ="0"/>
+			<unit name = "search_text" class = "MyTextField" x="375" y="170" w="290" h="30" type ="0" textType = "null"/>
+			<unit name ="search" class = "MainButton" x="665" y="170" w="30" h="30" type = "1" listenerName ="ButtonSearchUserListener"/> 
+			<unit name = "lastPage" class ="MainButton" x="820" y="608" w="78" h="24" type = "1" listenerName="ButtonUserLastListener"/>
+			<unit name = "nextPage" class ="MainButton" x="942" y="608" w="78" h="24" type = "1" listenerName="ButtonUserNextListener"/>
+		</mainPanel>
+		<mainPanel name = "RepoDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+			<component name = "repos"  class = "component" x="25" y="100" w="150" h="50" />
+		
+			<unit name = "goBack" change="ReposPanel" class = "MainButton" x="950" y="651" w="90" h="30" type ="1" listenerName = "ButtonBackListener"/>
+			<unit name = "repoBasicInfo" class = "MyTextArea" x="50" y="165" w="250" h="400" type = "0" textType ="RepoInfoText"/> 
+			<unit name ="branch" class = "table.BranchTable" x="305" y="190" w="240" h="110" type = "0"/>
+			<unit name = "commitTable" class = "table.CommitTable" x="555" y="190" w="480" h="110" type ="0"/>
+			
+			<unit name = "issueTable" class = "table.IssueTable" x="305" y="350" w="730" h="110" type="0"/>
+			
+			<unit name = "forkTable" class ="table.RepoListTable" x="305" y="510" w="230" h="110" type="0"/>
+			<unit name = "subscriber" class ="table.UserListTable" x="545" y="510" w="230" h="110" type="0"/>
+			<unit name = "collaborator" class ="table.UserListTable" x="785" y="510" w="230" h="110" type="0"/>
+			
+			<unit name = "Branches" class = "MainButton" x="305" y="140" w="150" h="30" type = "0"/>
+			<unit name = "Commits" class = "MainButton" x="555" y="140" w="150" h="30" type="0"/>
+			<unit name = "issues" class="MainButton" x="305" y="300" w="150" h="30" type="0"/>
+			<unit name = "Forks" class ="MainButton" x="305" y="460" w="150" h="30" type="0"/>
+			<unit name ="Subscribers" class ="MainButton" x="545" y="460" w="150" h="30" type="0"/>
+			<unit name ="Collaborators" class ="MainButton" x="785" y="460" w="150" h="30" type="0"/>
+			
+			<component name ="bran_name" class="component" x="305" y="170" w="100"  h="20"/>
+			<component name ="bran_sha" class="component" x="405" y="170" w="140" h="20"/>
+			
+			<component name ="com_id" class="component" x="555" y="170" w="100" h="20"/>
+			<component name ="com_user" class="component" x="655" y="170" w="100" h="20"/>
+			<component name ="com_date" class="component" x="755" y="170" w="130" h="20"/>
+			<component name ="com_message" class="component" x="885" y="170" w="150" h="20"/>
+			
+			<component name ="iss_id" class="component" x="305" y="330" w="80" h="20"/>
+			<component name ="iss_state" class="component" x="385" y="330" w="50" h="20"/>
+			<component name ="iss_lock" class="component" x="435" y="330" w="50" h="20"/>
+			<component name ="iss_title" class="component" x="485" y="330" w="100" h="20"/>
+			<component name ="iss_body" class="component" x="585" y="330" w="130" h="20"/>
+			<component name ="com_user" class="component" x="715" y="330" w="100" h="20"/>
+			<component name ="iss_create" class="component" x="815" y="330" w="105" h="20"/>
+			<component name ="iss_update" class="component" x="920" y="330" w="115" h="20"/>
+			
+			<component name ="repoName" class="component" x="305" y="490" w="230" h="20"/>
+			
+			<component name ="bran_name" class="component" x="545" y="490" w="100" h="20"/>
+			<component name ="follow" class ="component" x="645" y="490" w="60" h="20"/>
+			<component name ="pubRepo" class ="component" x="705" y="490" w="70" h="20"/>
+			
+			<component name ="bran_name" class="component" x="785" y="490" w="100" h="20"/>
+			<component name ="follow" class ="component" x="885" y="490" w="60" h="20"/>
+			<component name ="pubRepo" class ="component" x="945" y="490" w="70" h="20"/>
+		</mainPanel>
+		<mainPanel name = "UserDetailPanel" class = "MainPanel" x="0" y="0" w="1080" h="686">
+			<component name = "back5" class ="component" x="0" y="0" w="1080" h="686"/>
+			<component name = "userdetail" class ="component" x="40" y="150" w="1000" h="495"/>
+			<unit name ="exit" class = "MainButton" x="1030" y="0" w="50" h="50" type ="1" listenerName ="ButtonExitListener"/>
+			<unit name ="toMin" class = "MainButton" x="980" y="0" w="50" h="50" type = "1" listenerName = "ButtonMinListener"/>
+		
+			<component name = "user"  class = "component" x="25" y="100" w="150" h="50" />
+			<unit name = "detail" class="UserPanel" x="40" y="150" w="1000" h="495" type="0"/>
+			<unit name = "repos" class="table.RepoListTable" x="780" y="180" w="250" h="200" type="0"/>
+			<unit name = "contris" class="table.RepoListTable" x="780" y="420" w="250" h="200" type="0"/>
+			<unit name = "goBack" change="UserPanel" class = "MainButton" x="950" y="651" w="90" h="30" type ="1" listenerName = "ButtonBackListener"/>
+		</mainPanel>
+	</Frame>
+</presentation> 

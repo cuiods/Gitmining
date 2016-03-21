@@ -121,18 +121,6 @@ public class ListCreator {
 
 	
 	public List<UserBriefVO> getCollaborators(String fullname) {
-		/*List<UserBriefVO> userBriefVOs = new ArrayList<UserBriefVO>();
-		
-		CollaboratorsReader collaboratorsReader = new CollaboratorsReader(fullname);
-		JsonNode jsonNode = collaboratorsReader.getNode();
-		Document document = new Document();
-		UserBriefPOfactory userBriefPOfactory = new UserBriefPOfactory(document);
-		for (JsonNode jsonNode2 : jsonNode) {
-			document.setJsonNode(jsonNode2);
-			UserBriefPO userBriefPO = userBriefPOfactory.getPO();
-			userBriefVOs.add(POVOConverter.convert(userBriefPO));
-		}
-		return userBriefVOs;*/
 		List<String> usernames = loader.getRepoToCollab().get(fullname);
     	return convertToUserBriefVOList(usernames);
 	}

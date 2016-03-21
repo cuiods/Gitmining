@@ -1,0 +1,4 @@
+map -> [user-> [colla, contri, ownrepo , subrepo]]
+       [repo -> contri, colla, subscrepo]
+       [username -> userPO]
+       [reponame -> repoPO] 

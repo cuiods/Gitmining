@@ -26,7 +26,7 @@
                </children></HBox>
          </top>
     </BorderPane>
-    <ImageView fx:id="image" fitHeight="720.0" fitWidth="1080.0" pickOnBounds="true" visible="false">
+    <ImageView fx:id="image" fitHeight="720.0" fitWidth="1020.0" pickOnBounds="true">
       <image>
         <Image url="@../pictures/back1.png" />
       </image>

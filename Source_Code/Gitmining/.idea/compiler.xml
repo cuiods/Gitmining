@@ -28,10 +28,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="GitClient" target="1.5" />
-      <module name="GitCommon" target="1.5" />
-      <module name="GitIntegration" target="1.5" />
-      <module name="Gitmining" target="1.5" />
+      <module name="GitClient" target="1.8" />
+      <module name="GitCommon" target="1.8" />
+      <module name="GitIntegration" target="1.8" />
+      <module name="Gitmining" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
