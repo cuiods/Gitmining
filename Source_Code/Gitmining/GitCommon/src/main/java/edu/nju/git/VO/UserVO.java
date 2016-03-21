@@ -8,7 +8,6 @@ import edu.nju.git.type.OwnerType;
  *
  */
 public class UserVO {
-	private String id;
 	private String login;
 	private OwnerType type;
 	private String name;
@@ -21,11 +20,15 @@ public class UserVO {
 	private int followingNum = 0;
 	private String create_at;
 	private String update_at;
-	public String getId() {
-		return id;
+	private int public_repos;
+	private int public_gists;
+	
+	private String avatar_url;
+	public String getAvatar_url() {
+		return avatar_url;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setAvatar_url(String avatar_url) {
+		this.avatar_url = avatar_url;
 	}
 	public String getLogin() {
 		return login;
@@ -98,6 +101,18 @@ public class UserVO {
 	}
 	public void setUpdate_at(String update_at) {
 		this.update_at = update_at;
+	}
+	public int getPublic_gists() {
+		return public_gists;
+	}
+	public void setPublic_gists(int public_gists) {
+		this.public_gists = public_gists;
+	}
+	public int getPublic_repos() {
+		return public_repos;
+	}
+	public void setPublic_repos(int public_repos) {
+		this.public_repos = public_repos;
 	}
 	
 	

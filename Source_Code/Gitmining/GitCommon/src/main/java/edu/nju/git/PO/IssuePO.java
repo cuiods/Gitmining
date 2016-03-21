@@ -1,7 +1,5 @@
 package edu.nju.git.PO;
 
-import java.util.Map;
-
 /**
  * Info of an issue
  * <br>
@@ -18,13 +16,8 @@ public class IssuePO {
 	private String body;
 	private String userName;
 	private String create_at;
-	private String closed_at;
 	private String update_at;
-	private String merged_at;
-	/**
-	 * map? userName:String = coment:String
-	 */
-	private Map<String, String> comments;
+
 	public String getId() {
 		return id;
 	}
@@ -67,38 +60,10 @@ public class IssuePO {
 	public void setCreate_at(String create_at) {
 		this.create_at = create_at;
 	}
-	public String getClosed_at() {
-		return closed_at;
-	}
-	public void setClosed_at(String closed_at) {
-		this.closed_at = closed_at;
-	}
 	public String getUpdate_at() {
 		return update_at;
 	}
 	public void setUpdate_at(String update_at) {
 		this.update_at = update_at;
 	}
-	public String getMerged_at() {
-		return merged_at;
-	}
-	public void setMerged_at(String merged_at) {
-		this.merged_at = merged_at;
-	}
-	/**
-	 * get map of comments
-	 * @return map of {@link #comments}
-	 */
-	public Map<String, String> getComments() {
-		return comments;
-	}
-	/**
-	 * set map of comments
-	 * @param map of {@link #comments}
-	 */
-	public void setComments(Map<String, String> comments) {
-		this.comments = comments;
-	}
-	
-	
 }

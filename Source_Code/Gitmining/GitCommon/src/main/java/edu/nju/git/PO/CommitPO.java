@@ -1,43 +1,37 @@
 package edu.nju.git.PO;
 
-import java.util.Map;
-
 /**
  * info of a commit
  * @author cuihao
  * @date 2016-03-01 23:53:02
  */
 public class CommitPO {
+	/**
+	 * sha
+	 */
 	private String id;
-	private String contents;
 	private String userName;
 	private String date;
 	private String message;
 	/**
 	 * number of files changed
 	 */
-	private int num_file;
-	/**
+	/*private int num_file;
+	*//**
 	 * total lines of code changed
-	 */
+	 *//*
 	private int num_total;
 	private int num_addition;
-	private int num_deletion;
+	private int num_deletion;*/
 	/**
 	 * user:String = comment:String
 	 */
-	private Map<String,String> comments;
+//	private Map<String,String> comments;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getContents() {
-		return contents;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
 	}
 	public String getUserName() {
 		return userName;
@@ -57,7 +51,7 @@ public class CommitPO {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public int getNum_file() {
+/*	public int getNum_file() {
 		return num_file;
 	}
 	public void setNum_file(int num_file) {
@@ -83,14 +77,14 @@ public class CommitPO {
 	}
 	public Map<String, String> getComments() {
 		return comments;
-	}
+	}*/
 	/**
 	 * comment: {@link #comments}
 	 * @param comments
 	 */
-	public void setComments(Map<String, String> comments) {
+/*	public void setComments(Map<String, String> comments) {
 		this.comments = comments;
-	}
+	}*/
 	
 	
 
