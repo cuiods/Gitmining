@@ -13,26 +13,23 @@ import edu.nju.git.type.OwnerType;
 public class RepoVO implements Serializable{
 	private static final long serialVersionUID = 8951738005334507950L;
 	private String name;
-	/**
-	 * warning: can be enumerate
-	 */
-	private String language;
 	private String ownerName;
-	private OwnerType type;
+	private int size;
+	private String language;
+	//	private OwnerType type;
 	private String url;
 	private String description;
 	private String create_at;
 	private String update_at;
-	
-	
-	private int num_stars = 0;
-	private int num_forks = 0;
-	private int num_subscribers = 0;
-	/**
-	 * same measure unit as api provided
-	 */
-	private int size;
-	
+
+	private int num_stars;
+	private int num_forks;
+	private int num_subscribers;
+	private int num_contributors;
+	private int num_collaborators;
+	private int num_commit;
+	private int num_issue;
+	private int num_pull;
 	
 	private float radar_popular;//calculated by num of subscriber and star
 	private float radar_forks; 
@@ -40,11 +37,7 @@ public class RepoVO implements Serializable{
 	private float radar_complexity; //calculated by num of contributor\collabrator
 	private float radar_activity;  //calculated by num of  commit and issue and pull.	
 	
-	private int num_ontributors;
-	private int num_collaboration;
-    private int num_commit;
-    private int num_issue;
-    private int num_pull;
+
     
 	
 	
@@ -67,12 +60,6 @@ public class RepoVO implements Serializable{
 	}
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
-	}
-	public OwnerType getType() {
-		return type;
-	}
-	public void setType(OwnerType type) {
-		this.type = type;
 	}
 	public String getUrl() {
 		return url;
@@ -153,16 +140,16 @@ public class RepoVO implements Serializable{
 		this.radar_activity = radar_activity;
 	}
 	public int getNum_ontributors() {
-		return num_ontributors;
+		return num_contributors;
 	}
 	public void setNum_ontributors(int num_ontributors) {
-		this.num_ontributors = num_ontributors;
+		this.num_contributors = num_ontributors;
 	}
 	public int getNum_collaboration() {
-		return num_collaboration;
+		return num_collaborators;
 	}
 	public void setNum_collaboration(int num_collaboration) {
-		this.num_collaboration = num_collaboration;
+		this.num_collaborators = num_collaboration;
 	}
 	public int getNum_commit() {
 		return num_commit;
