@@ -8,6 +8,7 @@ import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
+import edu.nju.git.ui.handler.ChangePictureHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -29,9 +30,7 @@ import javafx.util.Duration;
  * IF a task<br>
  * is created, services can be used. A task panel can set function panel:
  * {@link FunctionPanel}<br>
- * A task can hold many function panels at a time, but only one will present to
- * <br>
- * users.
+ * A task can hold many function panels at a time, but only one will present to users.
  * </p>
  * <p>
  * Function panels can be memorized and can go back.
@@ -90,8 +89,7 @@ public class TaskPanel extends GitPanel {
 
 	private void initRepo() {
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
-		Parent child = shot.getRoot();
-		childPanel.getChildren().add(child);
+		setChildren(shot.getRoot());
 	}
 
 	@Override
@@ -114,7 +112,7 @@ public class TaskPanel extends GitPanel {
 				return;
 			}
 			new Timeline(
-					new KeyFrame(Duration.seconds(0.15), new KeyValue(childPanel.translateXProperty(), -600),
+					new KeyFrame(Duration.seconds(0.15), new KeyValue(childPanel.translateXProperty(), -870),
 							new KeyValue(childPanel.opacityProperty(), 0)),
 					new KeyFrame(Duration.seconds(0.16), eh),
 					new KeyFrame(Duration.seconds(0.3), new KeyValue(childPanel.translateXProperty(), 0),

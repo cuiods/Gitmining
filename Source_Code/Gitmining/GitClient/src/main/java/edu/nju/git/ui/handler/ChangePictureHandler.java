@@ -1,4 +1,4 @@
-package edu.nju.git.ui.control;
+package edu.nju.git.ui.handler;
 
 import java.net.URL;
 
