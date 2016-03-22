@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import edu.nju.git.VO.RepoBriefVO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 
@@ -14,7 +15,7 @@ import javafx.scene.control.Label;
  * @author cuihao
  * @date 2016-03-22 19:09:13
  */
-public class RepoTableLabel implements Initializable{
+public class RepoTableLabel extends GitPanel{
 	private RepoBriefVO repoBriefVO;
 	@FXML private Hyperlink name;
 	@FXML private Label description;
@@ -46,5 +47,14 @@ public class RepoTableLabel implements Initializable{
 			fork.setText(repoBriefVO.getNum_forks()+"");
 			contributor.setText(repoBriefVO.getNum_subscribers()+"");
 		}
+	}
+	@Override
+	public void initPanel(Object[] bundle) {
+	}
+	@Override
+	public void setChildren(Parent region) {
+	}
+	@Override
+	public void removeChild() {
 	}
 }
