@@ -1,10 +1,11 @@
 package org.GitServer.dataread;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.PO.RepoPO;
+import edu.nju.git.PO.UserPO;
 import edu.nju.git.VO.MyChartVO;
 
 /**
@@ -23,18 +24,18 @@ public class ReaderAndCount {
 		return uniqueInstance;
 	}
 
-	private List<RepoBriefPO> nameOrderRepoPOs;
-    private List<RepoBriefPO> starOrderRepoPOs;
-    private List<RepoBriefPO> forkOrderRepoPOs;
-    private List<RepoBriefPO> subscrOrderRepoPOs;
-    private List<RepoBriefPO> updateOrderRepoPOs;
+	private List<RepoPO> nameOrderRepoPOs;
+    private List<RepoPO> starOrderRepoPOs;
+    private List<RepoPO> forkOrderRepoPOs;
+    private List<RepoPO> subscrOrderRepoPOs;
+    private List<RepoPO> updateOrderRepoPOs;
     
-    private List<UserBriefPO> nameOrderUsers;
-    private List<UserBriefPO> followerOrderUsers;
-    private List<UserBriefPO> repoNumOrderUsers;
+    private List<UserPO> nameOrderUsers;
+    private List<UserPO> followerOrderUsers;
+    private List<UserPO> repoNumOrderUsers;
 	
-	private Map<String, RepoBriefPO>  nameToRepo ;
-	private Map<String, UserBriefPO>  nameToUser ;
+	private Map<String, RepoPO>  nameToRepo ;
+	private Map<String, UserPO>  nameToUser ;
 	
 	private Map<String, List<String>> userToOwnerRepo ;
 	private Map<String, List<String>> userToCollabRepo ;
@@ -45,6 +46,10 @@ public class ReaderAndCount {
 	private Map<String, List<String>> repoToCollab ;
 	private Map<String, List<String>> repoToSubscriber;
 
+	private Map<String, List<Date>> repoToCommit;
+	private Map<String, List<Date>> repoToIssue;
+	private Map<String, List<Date>> repoToPull;
+	
 	private MyChartVO createTime;	//for create time bar chart
 	private MyChartVO forkCount;	//for fork times of a repo bar chart
 	private MyChartVO starCount;	//for star number of a repo bar chart
@@ -53,58 +58,51 @@ public class ReaderAndCount {
 	private MyChartVO statUserType;  //for user type pie chart
 	private MyChartVO statUserCreateTime;	//for user create time  line chart
 	private MyChartVO statUserCollaborateRepo;//for the number of user collaborate repos bar chart
+	private MyChartVO statUserContributorRepo;
+	private MyChartVO statUserSubscriberRepo;
 	private MyChartVO statUserOwnRepo;	//for the number of user owns repos bar chart
 	private MyChartVO statCompanyUser;	//for how many users a company has bar chart
 
-	private MyChartVO contributors;
-	private MyChartVO collabrators;
-	private MyChartVO size;
+	private MyChartVO repoContributors;//number of repo's contributors
+	private MyChartVO repoCollabrators;//
+	private MyChartVO repoSize;
 
-	private MyChartVO statUserBlog;
-	private MyChartVO statUserLocation;
 
 	private MyChartVO statUserEmail;
 	private MyChartVO statUserGist;
 	private MyChartVO statUserFolllowers;
-	
-	private MyChartVO statOrganizationUser;
-	private MyChartVO statOrganizationRepo;
-	
-	private ReaderAndCount(){
-		this.nameOrderRepoPOs = new RepoBriefReader().readRepos();
-		this.nameOrderUsers = new UserBriefReader().readUsers();
-		// TODO: 2016/3/21 init all data needed
+
+	public static ReaderAndCount getUniqueInstance() {
+		return uniqueInstance;
 	}
-	
-	
-	public List<RepoBriefPO> getNameOrderRepoPOs() {
+	public List<RepoPO> getNameOrderRepoPOs() {
 		return nameOrderRepoPOs;
 	}
-	public List<RepoBriefPO> getStarOrderRepoPOs() {
+	public List<RepoPO> getStarOrderRepoPOs() {
 		return starOrderRepoPOs;
 	}
-	public List<RepoBriefPO> getForkOrderRepoPOs() {
+	public List<RepoPO> getForkOrderRepoPOs() {
 		return forkOrderRepoPOs;
 	}
-	public List<RepoBriefPO> getSubscrOrderRepoPOs() {
+	public List<RepoPO> getSubscrOrderRepoPOs() {
 		return subscrOrderRepoPOs;
 	}
-	public List<RepoBriefPO> getUpdateOrderRepoPOs() {
+	public List<RepoPO> getUpdateOrderRepoPOs() {
 		return updateOrderRepoPOs;
 	}
-	public List<UserBriefPO> getNameOrderUsers() {
+	public List<UserPO> getNameOrderUsers() {
 		return nameOrderUsers;
 	}
-	public List<UserBriefPO> getFollowerOrderUsers() {
+	public List<UserPO> getFollowerOrderUsers() {
 		return followerOrderUsers;
 	}
-	public List<UserBriefPO> getRepoNumOrderUsers() {
+	public List<UserPO> getRepoNumOrderUsers() {
 		return repoNumOrderUsers;
 	}
-	public Map<String, RepoBriefPO> getNameToRepo() {
+	public Map<String, RepoPO> getNameToRepo() {
 		return nameToRepo;
 	}
-	public Map<String, UserBriefPO> getNameToUser() {
+	public Map<String, UserPO> getNameToUser() {
 		return nameToUser;
 	}
 	public Map<String, List<String>> getUserToOwnerRepo() {
@@ -128,41 +126,59 @@ public class ReaderAndCount {
 	public Map<String, List<String>> getRepoToSubscriber() {
 		return repoToSubscriber;
 	}
-	public MyChartVO getLanguage() {
-		return language;
+	public Map<String, List<Date>> getRepoToCommit() {
+		return repoToCommit;
+	}
+	public Map<String, List<Date>> getRepoToIssue() {
+		return repoToIssue;
+	}
+	public Map<String, List<Date>> getRepoToPull() {
+		return repoToPull;
 	}
 	public MyChartVO getCreateTime() {
 		return createTime;
 	}
-	public MyChartVO getContributors() {
-		return contributors;
+	public MyChartVO getForkCount() {
+		return forkCount;
 	}
-	public MyChartVO getCollabrators() {
-		return collabrators;
+	public MyChartVO getStarCount() {
+		return starCount;
 	}
-	public MyChartVO getSize() {
-		return size;
+	public MyChartVO getLanguage() {
+		return language;
 	}
 	public MyChartVO getStatUserType() {
 		return statUserType;
 	}
-	public MyChartVO getStatCompanyUser() {
-		return statCompanyUser;
-	}
-	public MyChartVO getStatUserBlog() {
-		return statUserBlog;
-	}
-	public MyChartVO getStatUserLocation() {
-		return statUserLocation;
-	}
-	public MyChartVO getStatUserEmail() {
-		return statUserEmail;
-	}
 	public MyChartVO getStatUserCreateTime() {
 		return statUserCreateTime;
 	}
+	public MyChartVO getStatUserCollaborateRepo() {
+		return statUserCollaborateRepo;
+	}
+	public MyChartVO getStatUserContributorRepo() {
+		return statUserContributorRepo;
+	}
+	public MyChartVO getStatUserSubscriberRepo() {
+		return statUserSubscriberRepo;
+	}
 	public MyChartVO getStatUserOwnRepo() {
 		return statUserOwnRepo;
+	}
+	public MyChartVO getStatCompanyUser() {
+		return statCompanyUser;
+	}
+	public MyChartVO getRepoContributors() {
+		return repoContributors;
+	}
+	public MyChartVO getRepoCollabrators() {
+		return repoCollabrators;
+	}
+	public MyChartVO getRepoSize() {
+		return repoSize;
+	}
+	public MyChartVO getStatUserEmail() {
+		return statUserEmail;
 	}
 	public MyChartVO getStatUserGist() {
 		return statUserGist;
@@ -170,12 +186,10 @@ public class ReaderAndCount {
 	public MyChartVO getStatUserFolllowers() {
 		return statUserFolllowers;
 	}
-	public MyChartVO getStatOrganizationUser() {
-		return statOrganizationUser;
-	}
-	public MyChartVO getStatOrganizationRepo() {
-		return statOrganizationRepo;
-	}
+	
+
+	
+	
 
 	
 }
