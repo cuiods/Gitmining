@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/GitCommon/GitCommon.iml" filepath="$PROJECT_DIR$/GitCommon/GitCommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/GitIntegration/GitIntegration.iml" filepath="$PROJECT_DIR$/GitIntegration/GitIntegration.iml" />
       <module fileurl="file://$PROJECT_DIR$/GitServer/GitServer.iml" filepath="$PROJECT_DIR$/GitServer/GitServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Gitmining.iml" filepath="$PROJECT_DIR$/Gitmining.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Gitmining.iml" filepath="$PROJECT_DIR$/.idea/Gitmining.iml" />
     </modules>
   </component>
 </project>

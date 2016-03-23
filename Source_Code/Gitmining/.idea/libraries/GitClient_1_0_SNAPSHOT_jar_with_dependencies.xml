@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="GitClient-1.0-SNAPSHOT-jar-with-dependencies">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/GitClient/GitClient-1.0-SNAPSHOT-jar-with-dependencies.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

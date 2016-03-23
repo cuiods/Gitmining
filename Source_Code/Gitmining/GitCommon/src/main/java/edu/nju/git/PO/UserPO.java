@@ -11,21 +11,25 @@ import edu.nju.git.type.OwnerType;
 public class UserPO {
 	private String login;
 	private OwnerType type;
-	//private String name;	//nonsense, do not store
+	private String name;
 	private String company;
 	private String blog;
 	private String location;
 	private String email;
 	private String bio;
+
 	private int followNum;
 	private int followingNum;
 	private String create_at;
 	private String update_at;
+
 	private int public_repos;
 	private int public_gists;
+
 	private int num_subscribe;
 	private int num_contribute;
 	private int num_collaborate;
+
 	private String avatar_url;
 
 	private double userValue;	//this field is compute by outer class and set to this class
@@ -171,5 +175,13 @@ public class UserPO {
 
 	public void setNum_collaborate(int num_collaborate) {
 		this.num_collaborate = num_collaborate;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -32,20 +32,20 @@ public interface RepoDataService extends Remote{
      * @return List of {@link RepoBriefVO}:
      * 			brief info of a repository
      */
-    public List<RepoBriefVO> getSearchResult(String regex) throws RemoteException;
+    public List<RepoBriefVO> getSearchResult(String regex);
 
     /**
      * get the total count of repositories.
      * @return the number of repositories
      */
-    public int getTotalCount()throws RemoteException;
+    public int getTotalCount();
 
     /**
      * get the user po list in the order specified by parameter <tt>sortType</tt>
      * @param sortType which type of list to get
      * @return the reference to the list
      */
-    public List<RepoBriefPO> getRepoBriefPOs(SortType sortType)throws RemoteException;
+    public List<RepoBriefPO> getRepoBriefPOs(SortType sortType);
 
     /**
      * use a visitor to access the data and return the wanted value.
@@ -53,7 +53,7 @@ public interface RepoDataService extends Remote{
      * @param visitor the visitor
      * @return list of repo vo
      */
-    public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor)throws RemoteException;
+    public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor);
 
     /**
      * Get <b>detailed</b> info of a repository.
@@ -64,7 +64,7 @@ public interface RepoDataService extends Remote{
      * @return {@link RepoVO}:
      * 			detailed info of a repository
      */
-    public RepoVO getRepoBasicInfo(String owner, String repoName)throws RemoteException;
+    public RepoVO getRepoBasicInfo(String owner, String repoName);
 
     /**
      * Get brief info of contributors.
@@ -75,7 +75,7 @@ public interface RepoDataService extends Remote{
      * @return list of {@link UserBriefVO}
      * 			list of brief info of contributors.
      */
-    public List<UserBriefVO> getRepoContributor(String owner, String repoName)throws RemoteException;
+    public List<UserBriefVO> getRepoContributor(String owner, String repoName);
 
     /**
      * Get brief info of collaborators.
@@ -86,7 +86,7 @@ public interface RepoDataService extends Remote{
      * @return list of {@link UserBriefVO}
      * 			list of brief info of collaborators.
      */
-    public List<UserBriefVO> getRepoCollaborator(String owner, String repoName)throws RemoteException;
+    public List<UserBriefVO> getRepoCollaborator(String owner, String repoName);
 
     /**
      * Get {@code List} of info of branches.
@@ -97,7 +97,7 @@ public interface RepoDataService extends Remote{
      * @return list of {@link BranchVO}
      * 			list of info of branches.
      */
-    public List<BranchVO> getRepoBranch(String owner, String repoName)throws RemoteException;
+    public List<BranchVO> getRepoBranch(String owner, String repoName);
 
     /**
      * Get {@code List} of repositories which fork the project.
@@ -108,7 +108,7 @@ public interface RepoDataService extends Remote{
      * @return list of {@link RepoBriefVO}
      * 			list of brief info of repositories.
      */
-    public List<RepoBriefVO> getRepoFork(String owner, String repoName)throws RemoteException;
+    public List<RepoBriefVO> getRepoFork(String owner, String repoName);
 
     /**
      * Get {@code List} of commit info of the repository.
@@ -119,7 +119,7 @@ public interface RepoDataService extends Remote{
      * @return list of {@link CommitVO}
      * 			list of info of commits.
      */
-    public List<CommitVO> getRepoCommit(String owner, String repoName)throws RemoteException;
+    public List<CommitVO> getRepoCommit(String owner, String repoName);
 
     /**
      * Get {@code List} of issues of the repository.
@@ -130,5 +130,5 @@ public interface RepoDataService extends Remote{
      * @return list of {@link IssueVO}
      * 			list of info of issues.
      */
-    public List<IssueVO> getRepoIssue(String owner, String repoName)throws RemoteException;
+    public List<IssueVO> getRepoIssue(String owner, String repoName);
 }
