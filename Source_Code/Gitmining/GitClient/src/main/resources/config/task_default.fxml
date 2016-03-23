@@ -56,23 +56,11 @@
   </center>
   <left>
     <VBox id="leftbar" fx:id="leftbar" minHeight="690.0" prefHeight="690.0" prefWidth="150.0">
-      <children>
-        <ImageView fx:id="nav_home" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
-           <image>
-             <Image url="@button/home_main.png" />
-           </image>
-        </ImageView>
-        <ImageView fx:id="nav_user" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
-           <image>
-             <Image url="@button/user_main.png" />
-           </image>
-        </ImageView>
-        <ImageView fx:id="nav_repo" fitHeight="50.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="false">
-           <image>
-             <Image url="@button/repository_main.png" />
-           </image>
-        </ImageView>
-      </children>
+         <children>
+            <Button fx:id="nav_home" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Home" />
+            <Button fx:id="nav_user" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="User" />
+            <Button fx:id="nav_repo" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repository" />
+         </children>
     </VBox>
   </left>
 </BorderPane>

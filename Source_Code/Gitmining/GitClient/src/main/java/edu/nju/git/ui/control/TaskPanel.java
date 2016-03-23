@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -44,21 +45,21 @@ import javafx.util.Duration;
 public class TaskPanel extends GitPanel {
 
 	@FXML
-	ImageView img_back;
+	private ImageView img_back;
 	@FXML
-	ImageView img_forward;
+	private ImageView img_forward;
 	@FXML
-	BorderPane childPanel;
+	private BorderPane childPanel;
 	@FXML
-	BorderPane topbar;
+	private BorderPane topbar;
 	@FXML
-	ImageView nav_home;
+	private Button nav_home;
 	@FXML
-	ImageView nav_user;
+	private Button nav_user;
 	@FXML
-	ImageView nav_repo;
+	private Button nav_repo;
 	@FXML
-	VBox leftbar;
+	private VBox leftbar;
 
 	private ImageView subview_user1;
 	private ImageView subview_user2;
@@ -201,9 +202,17 @@ public class TaskPanel extends GitPanel {
 					URL url2 = Main.class.getResource(StringReader.readPath("picture") + "button/statistic.png");
 					subview_user2.setImage(new Image(url2.toString()));
 					leftbar.getChildren().remove(nav_repo);
+					if (subview_repo1!=null) {
+						leftbar.getChildren().remove(subview_repo1);
+						leftbar.getChildren().remove(subview_repo2);
+					}
 					leftbar.getChildren().add(subview_user1);
 					leftbar.getChildren().add(subview_user2);
 					leftbar.getChildren().add(nav_repo);
+					if (subview_repo1!=null) {
+						leftbar.getChildren().add(subview_repo1);
+						leftbar.getChildren().add(subview_repo2);
+					}
 				} else {
 					leftbar.getChildren().remove(subview_user1);
 					leftbar.getChildren().remove(subview_user2);
