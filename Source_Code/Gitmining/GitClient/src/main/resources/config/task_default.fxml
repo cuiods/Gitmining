@@ -11,7 +11,7 @@
   <center>
     <BorderPane prefHeight="690.0" prefWidth="870.0" BorderPane.alignment="CENTER">
       <center>
-        <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
+         <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
       </center>
       <top>
         <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="870.0" BorderPane.alignment="CENTER">

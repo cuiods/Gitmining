@@ -8,19 +8,19 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoListFunction">
    <children>
       <Label id="label" layoutX="21.0" layoutY="32.0" prefHeight="37.0" prefWidth="120.0" text="Overview" />
-      <TextField layoutX="592.0" layoutY="35.0" prefHeight="23.0" prefWidth="187.0" />
-      <Button layoutX="779.0" layoutY="35.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="66.0" text="Search" />
-      <ScrollPane layoutX="42.0" layoutY="112.0" prefHeight="426.0" prefWidth="830.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <TextField fx:id="search" layoutX="592.0" layoutY="35.0" prefHeight="23.0" prefWidth="187.0" />
+      <Button onAction="#search" layoutX="779.0" layoutY="35.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="66.0" text="Search" />
+      <ScrollPane id="scroll" fx:id="scroll" hbarPolicy="NEVER" layoutX="20.0" layoutY="124.0" minWidth="830.0" prefHeight="426.0" prefWidth="830.0">
          <content>
             <VBox fx:id="listBox" prefWidth="828.0" />
          </content>
       </ScrollPane>
-      <Button layoutX="20.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="General" />
-      <Button layoutX="120.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Stars" />
-      <Button layoutX="220.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Forks" />
-      <Button layoutX="320.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Contributors" />
-      <Button layoutX="779.0" layoutY="573.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="38.0" text="▶" />
-      <Button layoutX="710.0" layoutY="573.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="38.0" text="◀" />
-      <TextField layoutX="748.0" layoutY="572.0" prefHeight="32.0" prefWidth="32.0" />
+      <Button onAction="#sortGenerous" layoutX="20.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="General" />
+      <Button fx:id="btn_star" onAction="#sortStar" layoutX="120.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Stars" />
+      <Button fx:id="btn_fork" onAction="#sortFork" layoutX="220.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Forks" />
+      <Button fx:id="btn_contri" onAction="#sortContributor" layoutX="320.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Contributors" />
+      <Button onAction="#next" layoutX="779.0" layoutY="573.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="38.0" text="▶" />
+      <Button onAction="#previous" layoutX="710.0" layoutY="573.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="38.0" text="◀" />
+      <TextField fx:id="page" layoutX="748.0" layoutY="572.0" prefHeight="32.0" prefWidth="32.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,9 @@
+#pane{
+	-fx-border-color: #00ffff;
+	-fx-background-color:#f0ffff;
+}
+
+#pane:hover{
+	-fx-border-color: #8fbc8f;
+	-fx-background-color:#f8f8ff;
+}
