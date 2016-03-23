@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import edu.nju.git.data.rmiservice.RepoDataRMIService;
 import edu.nju.git.data.service.RepoDataService;
 import org.GitServer.dataread.ReaderAndCount;
 
@@ -22,7 +23,7 @@ import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 
-public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService {
+public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIService {
 
 	private static final long serialVersionUID = -1928059689118751499L;
 
@@ -83,7 +84,8 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 
 	@Override
 	public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor) throws RemoteException {
-		return visitor.visit(this);
+		//return visitor.visit(this);
+		return null;
 	}
 
 	@Override

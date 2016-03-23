@@ -52,7 +52,7 @@ public class RepoPOfactory implements POfactory<RepoVO> {
 		repo.setNum_stars(itemHelper.getInteger("stargazers_count"));
 
 
-		repo.setType(OwnerType.getInstance( (itemHelper.getString("owner_type"))));
+		//repo.setType(OwnerType.getInstance( (itemHelper.getString("owner_type"))));
 		repo.setLanguage(itemHelper.getString("language"));
 		
 		repo.setCreate_at(itemHelper.getString("created_at"));

@@ -15,7 +15,7 @@ public class RMItest {
 	public static void main(String[] args)
 	{
 		try {
-			RepoDataRMIService repoDataRMIService = new RepoDataImpl();
+			RepoDataRMIService repoDataRMIService = RepoDataImpl.instance();
 			//注册通讯端口
 			LocateRegistry.createRegistry(1099);
 			//注册通讯路径
