@@ -97,7 +97,11 @@ public class UserBlImpl implements UserBlService {
         else {
             setBrowseModelService(new UserSearchModel(this));
             String regex = RegexTranslator.translate(keyword);
-            briefUserList = userDataService.getSearchResult(regex);
+            try {
+				briefUserList = userDataService.getSearchResult(regex);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
