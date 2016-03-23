@@ -4,12 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.config.StringReader;
-import edu.nju.git.ui.css.CSSFactory;
-import edu.nju.git.ui.handler.ChangePictureHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -18,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -61,17 +56,16 @@ public class TaskPanel extends GitPanel {
 	@FXML
 	private VBox leftbar;
 
-	private ImageView subview_user1;
-	private ImageView subview_user2;
-	private ImageView subview_repo1;
-	private ImageView subview_repo2;
+	private Button subview_user1;
+	private Button subview_user2;
+	private Button subview_repo1;
+	private Button subview_repo2;
 	private ArrayList<ScreenShot> functions = new ArrayList<>(20);
 	private int index = 0;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setCssFactory(UIManager.instance().getCssFactory());
-		//set listener T T no other way?
 		setListener();
 	}
 
@@ -170,10 +164,6 @@ public class TaskPanel extends GitPanel {
 	}
 
 	private void setListener() {
-		img_back.setOnMouseEntered(new ChangePictureHandler<>("back_1", img_back));
-		img_back.setOnMouseExited(new ChangePictureHandler<>("back", img_back));
-		img_forward.setOnMouseEntered(new ChangePictureHandler<>("front_1", img_forward));
-		img_forward.setOnMouseExited(new ChangePictureHandler<>("front", img_forward));
 		nav_home.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -185,22 +175,18 @@ public class TaskPanel extends GitPanel {
 			@Override
 			public void handle(MouseEvent event) {
 				if (subview_user1 == null) {
-					subview_user1 = new ImageView();
-					subview_user1.setFitWidth(150);
-					subview_user1.setFitHeight(50);
-					URL url = Main.class.getResource(StringReader.readPath("picture") + "button/user_info.png");
-					subview_user1.setImage(new Image(url.toString()));
+					subview_user1 = new Button("UserInfo");
+					subview_user1.setPrefSize(150, 40);
+					subview_user1.getStyleClass().add("sub_button");
 					subview_user1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							initUser();
 						}
 					});
-					subview_user2 = new ImageView();
-					subview_user2.setFitWidth(150);
-					subview_user2.setFitHeight(50);
-					URL url2 = Main.class.getResource(StringReader.readPath("picture") + "button/statistic.png");
-					subview_user2.setImage(new Image(url2.toString()));
+					subview_user2 = new Button("UserStatistic");
+					subview_user2.setPrefSize(150, 40);
+					subview_user2.getStyleClass().add("sub_button");
 					leftbar.getChildren().remove(nav_repo);
 					if (subview_repo1!=null) {
 						leftbar.getChildren().remove(subview_repo1);
@@ -224,22 +210,18 @@ public class TaskPanel extends GitPanel {
 			@Override
 			public void handle(MouseEvent event) {
 				if (subview_repo1 == null) {
-					subview_repo1 = new ImageView();
-					subview_repo1.setFitWidth(150);
-					subview_repo1.setFitHeight(50);
-					URL url = Main.class.getResource(StringReader.readPath("picture") + "button/repo_info.png");
-					subview_repo1.setImage(new Image(url.toString()));
+					subview_repo1 = new Button("RepoInfo");
+					subview_repo1.setPrefSize(150, 40);
+					subview_repo1.getStyleClass().add("sub_button");
 					subview_repo1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							initRepo();
 						}
 					});
-					subview_repo2 = new ImageView();
-					subview_repo2.setFitWidth(150);
-					subview_repo2.setFitHeight(50);
-					URL url2 = Main.class.getResource(StringReader.readPath("picture") + "button/statistic.png");
-					subview_repo2.setImage(new Image(url2.toString()));
+					subview_repo2 = new Button("RepoStatistic");
+					subview_repo2.setPrefSize(150, 40);
+					subview_repo2.getStyleClass().add("sub_button");
 					leftbar.getChildren().add(subview_repo1);
 					leftbar.getChildren().add(subview_repo2);
 				} else {

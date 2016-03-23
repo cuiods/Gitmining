@@ -10,4 +10,5 @@ public abstract class CSSFactory {
 	public abstract String getTaskCSS();
 	public abstract String getFunctionHome();
 	public abstract String getFunctionRepoList();
+	public abstract String getFunctionRepoTableLabel();
 }
