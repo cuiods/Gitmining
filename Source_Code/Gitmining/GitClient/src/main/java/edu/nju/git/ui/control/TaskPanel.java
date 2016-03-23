@@ -8,6 +8,7 @@ import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
+import edu.nju.git.ui.css.CSSFactory;
 import edu.nju.git.ui.handler.ChangePictureHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -83,12 +84,12 @@ public class TaskPanel extends GitPanel {
 
 	private void initUser() {
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
-		Parent child = shot.getRoot();
-		childPanel.getChildren().add(child);
+		setChildren(shot.getRoot());
 	}
 
 	private void initRepo() {
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
 	}
 

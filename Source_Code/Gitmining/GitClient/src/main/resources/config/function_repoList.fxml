@@ -5,11 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoListFunction">
    <children>
-      <Label layoutX="46.0" layoutY="32.0" prefHeight="37.0" prefWidth="95.0" text="Overview" AnchorPane.bottomAnchor="585.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="710.0" AnchorPane.topAnchor="25.0" />
-      <TextField layoutX="488.0" layoutY="44.0" prefHeight="23.0" prefWidth="187.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="35.0" />
+      <Label id="label" layoutX="21.0" layoutY="32.0" prefHeight="37.0" prefWidth="120.0" text="Overview" />
+      <TextField layoutX="592.0" layoutY="35.0" prefHeight="23.0" prefWidth="187.0" />
       <Button layoutX="779.0" layoutY="35.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="66.0" text="Search" />
       <ScrollPane layoutX="42.0" layoutY="112.0" prefHeight="426.0" prefWidth="830.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <content>

@@ -1,0 +1,11 @@
+#label{
+	-fx-font-size:25px; 
+}
+
+.button{
+	-fx-text-fill:#ffffff;
+	-fx-font-size:12;
+	-fx-background-color:#48d1cc;
+    -fx-border-radius: 5;
+    -fx-effect:dropshadow(gaussian,#ffffff,5,0.5,2,2);
+}
