@@ -6,10 +6,14 @@ import java.util.Map;
 
 import edu.nju.git.PO.RepoPO;
 import edu.nju.git.PO.UserPO;
-
+/**
+ * Encapsulated all data in local cache.
+ * @author daixinyan
+ * @date 2016-03-23
+ */
 public class DataEncapsulation {
 	public List<RepoPO> nameOrderRepoPOs;
-	public List<UserPO> nameOrderUsers;
+	public List<UserPO> nameOrderUserPOs;
 	
 	public Map<String, List<String>> userToOwnerRepo ;
 	public Map<String, List<String>> userToCollabRepo ;

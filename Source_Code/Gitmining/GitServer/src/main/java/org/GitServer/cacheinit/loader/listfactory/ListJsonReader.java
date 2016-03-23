@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public class ListJsonReader {
 
-	private List<Object> names;
+	private List<String> names;
 	/**
 	 * generate list<String> in initial function
 	 */
@@ -22,7 +22,7 @@ public class ListJsonReader {
 	public ListJsonReader(String url_location) {
 		try {
 			URL url = new URL(url_location);
-			List<Object> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
+			List<String> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
 			names =  list;
 			return;
 		} catch (MalformedURLException e) {
@@ -34,10 +34,10 @@ public class ListJsonReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		names =  new ArrayList<Object>();
+		names =  new ArrayList<String>();
 	}
 
-	public List<Object> getNames(){
+	public List<String> getNames(){
 		return this.names;
 	}
 }

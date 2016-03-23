@@ -1,6 +1,5 @@
 package org.GitServer.dataread;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,9 +45,9 @@ public class ReaderAndCount {
 	private Map<String, List<String>> repoToCollab ;
 	private Map<String, List<String>> repoToSubscriber;
 
-	private Map<String, List<Date>> repoToCommit;
-	private Map<String, List<Date>> repoToIssue;
-	private Map<String, List<Date>> repoToPull;
+	private Map<String, List<String>> repoToCommit;
+	private Map<String, List<String>> repoToIssue;
+	private Map<String, List<String>> repoToPull;
 	
 	private MyChartVO repoCreateTime;	//for create time bar chart
 	private MyChartVO repoSize;
@@ -126,13 +125,13 @@ public class ReaderAndCount {
 	public Map<String, List<String>> getRepoToSubscriber() {
 		return repoToSubscriber;
 	}
-	public Map<String, List<Date>> getRepoToCommit() {
+	public Map<String, List<String>> getRepoToCommit() {
 		return repoToCommit;
 	}
-	public Map<String, List<Date>> getRepoToIssue() {
+	public Map<String, List<String>> getRepoToIssue() {
 		return repoToIssue;
 	}
-	public Map<String, List<Date>> getRepoToPull() {
+	public Map<String, List<String>> getRepoToPull() {
 		return repoToPull;
 	}
 	public MyChartVO getRepoCreateTime() {

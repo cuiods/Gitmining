@@ -1,14 +1,11 @@
 package org.GitServer.dataread;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Field;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 import org.GitServer.cacheinit.DataEncapsulation;
-
-import edu.nju.git.PO.RepoPO;
-import edu.nju.git.PO.UserPO;
 
 /**
  * this class  just read local data as fields without any operation,
@@ -21,6 +18,7 @@ import edu.nju.git.PO.UserPO;
 @SuppressWarnings("unused")
 public class Reader {
 
+	private final String dir = "cache/";
 	/**
 	 * before initial we should install server and load data from cloud to local cache
 	 * @see org.GitServer.cacheinit.Install 
@@ -28,10 +26,15 @@ public class Reader {
 	public Reader(){}
 	private DataEncapsulation dataEncapsulation;
 	public void excute(){
+		dataEncapsulation = new DataEncapsulation();
 		try {
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
-				
+				String path = field.getName()+".txt";
+				ObjectInputStream readerStream 
+					= new ObjectInputStream(new FileInputStream(new File(path)));
+				field.set(field, readerStream.readObject());
+				readerStream.close();
 			}
 		} catch (Exception e) {
 		}

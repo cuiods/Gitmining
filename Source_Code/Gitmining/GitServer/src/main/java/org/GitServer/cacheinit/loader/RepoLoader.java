@@ -21,6 +21,7 @@ public class RepoLoader {
 	 */
 	public RepoLoader(Iterable<String> reader){
 		this.repoNames =  reader;
+		init();
 	}
 
 	
@@ -29,7 +30,7 @@ public class RepoLoader {
 	 * <br/><b>postcondition</b>：
 	 * @date 2016-03-23
 	 */
-	public void init() {
+	private void init() {
 		// create a po factory
 		RepoPOfactory repoBreifPOfactory = new RepoPOfactory();
 		
@@ -43,7 +44,7 @@ public class RepoLoader {
 
     
 	/**
-	 * <br/><b>precondition</b>：the object has been created at the environment with network.
+	 * <br/><b>precondition</b>：the object has been created (has been init)at the environment with network.
 	 * <br/><b>postcondition</b>：return the intial not null list.
 	 * @return
 	 * @date 2016-03-23
