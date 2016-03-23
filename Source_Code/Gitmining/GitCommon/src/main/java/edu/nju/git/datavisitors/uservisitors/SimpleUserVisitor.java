@@ -1,15 +1,15 @@
 package edu.nju.git.datavisitors.uservisitors;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 import edu.nju.git.PO.UserBriefPO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.constant.Consts;
 import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Created by harry on 16-3-8.
@@ -48,9 +48,20 @@ public abstract class SimpleUserVisitor implements UserVisitor {
     public abstract List<UserBriefVO> visit(UserDataService userDataService);
 
     protected List<UserBriefVO> visit(UserDataService userDataService, SortType sortType) {
-        List<UserBriefPO> POList = userDataService.getUserBriefPOs(sortType);
+        List<UserBriefPO> POList = null;
+		try {
+			POList = userDataService.getUserBriefPOs(sortType);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         List<UserBriefVO> resultList = new ArrayList<>();
-        int totalItem = userDataService.getTotalCount();
+        int totalItem = 0;
+		try {
+			totalItem = userDataService.getTotalCount();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         if ((page-1)* Consts.PAGE_CAPACITY < totalItem) {
             if (reverse) {
                 ListIterator<UserBriefPO> itr = POList.listIterator(totalItem - (page-1)*Consts.PAGE_CAPACITY);

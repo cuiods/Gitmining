@@ -12,6 +12,7 @@ import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.control.GitPanel;
 import edu.nju.git.ui.control.RepoTableLabel;
+import edu.nju.git.ui.control.UIManager;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
@@ -22,7 +23,7 @@ public class RepoListFunction extends GitPanel{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		setCssFactory(UIManager.instance().getCssFactory());
 		RepoBlService service = BlFactory.instance().getRepoBlService();
 		List<RepoBriefVO> list = service.getShownRepoList();
 		if (list==null) {

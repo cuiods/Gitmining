@@ -96,7 +96,11 @@ public class RepoBlImpl implements RepoBlService {
         else {
             setBrowseModelService(new RepoSearchModel(this));
             String regex = RegexTranslator.translate(keyword);
-            briefRepoList = repoDataService.getSearchResult(regex);
+            try {
+				briefRepoList = repoDataService.getSearchResult(regex);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {

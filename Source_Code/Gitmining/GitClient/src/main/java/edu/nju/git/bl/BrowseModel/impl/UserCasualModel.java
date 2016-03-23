@@ -43,7 +43,12 @@ public class UserCasualModel implements UserBrowseModelService {
         }
         visitor.setPage(pageNum);
         userBl.setCurrentPage(pageNum);
-        return userBl.getUserDataService().acceptVisitor(visitor);
+        try {
+			return userBl.getUserDataService().acceptVisitor(visitor);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return null;
     }
 
     @Override

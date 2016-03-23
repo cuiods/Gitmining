@@ -43,7 +43,12 @@ public class RepoCasualModel implements RepoBrowseModelService {
         }
         visitor.setPage(pageNum);
         repoBl.setCurrentPage(pageNum);
-        return repoBl.getRepoDataService().acceptVisitor(visitor);
+        try {
+			return repoBl.getRepoDataService().acceptVisitor(visitor);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return null;
     }
 
     @Override

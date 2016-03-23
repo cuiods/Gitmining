@@ -1,0 +1,20 @@
+#label{
+	-fx-font-size:25px; 
+}
+
+.button:hover{
+	-fx-text-fill:#ffffff;
+	-fx-font-size:12;
+	-fx-background-color:#48d1cc;
+    -fx-border-radius: 5;
+    -fx-effect:dropshadow(gaussian,#ffffff,5,0.5,2,2);
+}
+
+.button{
+	-fx-text-fill:#000000;
+	-fx-font-size:12;
+	-fx-background-color:#ffffff;
+    -fx-border-radius: 5;
+    -fx-border-color:#48d1cc;
+    -fx-effect:dropshadow(gaussian,#ffffff,5,0.5,2,2);
+}
