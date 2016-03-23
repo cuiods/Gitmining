@@ -1,0 +1,29 @@
+package org.GitServer.cacheinit;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import edu.nju.git.PO.RepoPO;
+import edu.nju.git.PO.UserPO;
+
+public class DataEncapsulation {
+	public List<RepoPO> nameOrderRepoPOs;
+	public List<UserPO> nameOrderUsers;
+	
+	public Map<String, List<String>> userToOwnerRepo ;
+	public Map<String, List<String>> userToCollabRepo ;
+	public Map<String, List<String>> userToContribute ;
+	public Map<String, List<String>> userToSubscribeRepo ;
+	
+	public Map<String, List<String>> repoToContributor ;
+	public Map<String, List<String>> repoToCollab ;
+	public Map<String, List<String>> repoToSubscriber;
+
+	/**repo's name to commit time*/
+	public Map<String, List<Date>> repoToCommit;
+	/**repo's name to issue created time*/
+	public Map<String, List<Date>> repoToIssue;
+	/**repo's name to pullcreated time*/
+	public Map<String, List<Date>> repoToPull;
+}
