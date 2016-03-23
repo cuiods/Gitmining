@@ -38,14 +38,33 @@ public class UserPO {
 
 	}
 
+	//for radar chart to use
 	public double getUserActivity() {
 		//the formula can be changed
 		return num_collaborate*0.5 + num_contribute*0.2 + num_subscribe*0.3;
 	}
 
+	//for radar chart to use
 	public double getUserValue() {
 		return userValue;
 	}
+
+	//for radar chart to use
+	public int getPublic_repos() {
+		return public_repos;
+	}
+
+	//for radar chart to use
+	public int getPublic_gists() {
+		return public_gists;
+	}
+
+	//for radar chart to use
+	public int getFollowNum() {
+		return followNum;
+	}
+
+
 
 	public void setUserValue(double userValue) {
 		this.userValue = userValue;
@@ -116,10 +135,6 @@ public class UserPO {
 		this.bio = bio;
 	}
 
-	public int getFollowNum() {
-		return followNum;
-	}
-
 	public void setFollowNum(int followNum) {
 		this.followNum = followNum;
 	}
@@ -148,16 +163,8 @@ public class UserPO {
 		this.update_at = update_at;
 	}
 
-	public int getPublic_gists() {
-		return public_gists;
-	}
-
 	public void setPublic_gists(int public_gists) {
 		this.public_gists = public_gists;
-	}
-
-	public int getPublic_repos() {
-		return public_repos;
 	}
 
 	public void setPublic_repos(int public_repos) {

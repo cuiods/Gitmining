@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.PO.UserPO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
@@ -37,7 +38,7 @@ public interface UserDataRMIService extends Remote{
      * @param sortType which type of list to get
      * @return the reference to the list
      */
-    public List<UserBriefPO> getUserBriefPOs(SortType sortType)throws RemoteException;
+    public List<UserPO> getPOs(SortType sortType)throws RemoteException;
 
     /**
      * use a visitor to access the data and return the wanted value.
@@ -59,26 +60,26 @@ public interface UserDataRMIService extends Remote{
      * @param userName name of the user you want to search
      * @return a list of brief information of repositories that the user owns 
      */
-    public List<RepoBriefVO> getUserOwnRepos (String userName)throws RemoteException;
+    public List<String> getUserOwnRepos (String userName)throws RemoteException;
     
     /**
      * Get a list of repositories that the specific user subscribes
      * @param userName name of the user you want to search
      * @return a list of brief information of repositories that the user subscribes 
      */
-    public List<RepoBriefVO> getUserSubscribeRepos (String userName)throws RemoteException;
+    public List<String> getUserSubscribeRepos (String userName)throws RemoteException;
 
     /**
      * Get a list of repositories that the specific user collaborates
      * @param userName name of the user you want to search
      * @return a list of brief information of repositories that the user collaborates 
      */
-    public List<RepoBriefVO> getUserCollaborateRepos(String userName)throws RemoteException;
+    public List<String> getUserCollaborateRepos(String userName)throws RemoteException;
 
     /**
      * Get a list of repositories that the specific user contributes
      * @param userName name of the user you want to search
      * @return a list of brief information of repositories that the user contributes 
      */
-    public List<RepoBriefVO> getUserContributeRepos(String userName)throws RemoteException;
+    public List<String> getUserContributeRepos(String userName)throws RemoteException;
 }

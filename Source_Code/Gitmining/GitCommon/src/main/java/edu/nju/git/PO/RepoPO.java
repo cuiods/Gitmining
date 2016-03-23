@@ -26,8 +26,8 @@ public class RepoPO {
 	private int num_collaborators;
 
 	private int num_commits;
-	private int num_issues;
 	private int num_pulls;
+	private int num_issues;
 
 	public RepoPO() {
 
@@ -46,6 +46,16 @@ public class RepoPO {
 	//for radar chart to use
 	public double getComplexity() {
 		return num_contributors*0.3 + num_collaborators*0.7;
+	}
+
+	//for radar to use
+	public int getNum_forks() {
+		return num_forks;
+	}
+
+	//for radar to use
+	public int getSize() {
+		return size;
 	}
 
 	public int getNum_contrbutors() {
@@ -128,16 +138,8 @@ public class RepoPO {
 		this.num_stars = num_stars;
 	}
 
-	public int getNum_forks() {
-		return num_forks;
-	}
-
 	public void setNum_forks(int num_forks) {
 		this.num_forks = num_forks;
-	}
-
-	public int getSize() {
-		return size;
 	}
 
 	public void setSize(int size) {

@@ -27,24 +27,7 @@ public interface UserChartDataService extends Remote{
 	 * @date 2016-03-18
 	 */
 	public MyChartVO statCompanyUser()throws RemoteException;
-	
-	/**
-	 * <br/><b>precondition</b>：null
-	 * <br/><b>postcondition</b>：count all blogs user have , 
-	 *         and return the corresponding Quantities of user.
-	 * @return
-	 * @date 2016-03-18
-	 */
-	public MyChartVO statUserBlog()throws RemoteException;
-	/**
-	 * <br/><b>precondition</b>：null
-	 * <br/><b>postcondition</b>：count all locations users have written, 
-	 *         and return the corresponding Quantities of user.
-	 * @return
-	 * @date 2016-03-18
-	 */
-	public MyChartVO statUserLocation()throws RemoteException;
-	
+
 	/**
 	 * <br/><b>precondition</b>：null
 	 * <br/><b>postcondition</b>：count all email type users have written, 
@@ -79,6 +62,24 @@ public interface UserChartDataService extends Remote{
 	 * @date 2016-03-18
 	 */
 	public MyChartVO statUserGist();
+
+	/**
+	 *
+	 * @return
+     */
+	public MyChartVO statUserCollabRepo();
+
+	/**
+	 *
+	 * @return
+     */
+	public MyChartVO statUserContriRepo();
+
+	/**
+	 *
+	 * @return
+     */
+	public MyChartVO statUserSubscrRepo();
 	
 	/**
 	 * <br/><b>precondition</b>：can connect to the internet
@@ -88,20 +89,6 @@ public interface UserChartDataService extends Remote{
 	 * @date 2016-03-18
 	 */
 	public MyChartVO statUserFolllowers();
-	/**
-	 * <br/><b>precondition</b>：can connect to the internet
-	 * <br/><b>postcondition</b>：count names of Organization that every user belongs to, 
-	 *         and return the corresponding Quantities of user in every company .
-	 * @return
-	 * @date 2016-03-18
-	 */
-	public MyChartVO statOrganizationUser();
-	/**
-	 * <br/><b>precondition</b>：can connect to the internet
-	 * <br/><b>postcondition</b>：count names of Organization that every user belongs to, 
-	 *         and return the corresponding Quantities of Repo in every company .
-	 * @return
-	 * @date 2016-03-18
-	 */
-	public MyChartVO statOrganizationRepo();
+
+
 }

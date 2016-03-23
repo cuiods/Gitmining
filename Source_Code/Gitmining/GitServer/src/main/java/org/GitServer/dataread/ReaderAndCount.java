@@ -50,26 +50,26 @@ public class ReaderAndCount {
 	private Map<String, List<Date>> repoToIssue;
 	private Map<String, List<Date>> repoToPull;
 	
-	private MyChartVO createTime;	//for create time bar chart
+	private MyChartVO repoCreateTime;	//for create time bar chart
+	private MyChartVO repoSize;
 	private MyChartVO forkCount;	//for fork times of a repo bar chart
 	private MyChartVO starCount;	//for star number of a repo bar chart
+	private MyChartVO repoContributors;//number of repo's contributors
+	private MyChartVO repoCollabrators;//
+
+
+	private MyChartVO repoSubscribers;
 	private MyChartVO language;		//for language pie chart
 
 	private MyChartVO statUserType;  //for user type pie chart
 	private MyChartVO statUserCreateTime;	//for user create time  line chart
+	private MyChartVO statUserOwnRepo;	//for the number of user owns repos bar chart
 	private MyChartVO statUserCollaborateRepo;//for the number of user collaborate repos bar chart
 	private MyChartVO statUserContributorRepo;
 	private MyChartVO statUserSubscriberRepo;
-	private MyChartVO statUserOwnRepo;	//for the number of user owns repos bar chart
-	private MyChartVO statCompanyUser;	//for how many users a company has bar chart
-
-	private MyChartVO repoContributors;//number of repo's contributors
-	private MyChartVO repoCollabrators;//
-	private MyChartVO repoSize;
-
-
-	private MyChartVO statUserEmail;
 	private MyChartVO statUserGist;
+	private MyChartVO statCompanyUser;	//for how many users a company has bar chart
+	private MyChartVO statUserEmail;
 	private MyChartVO statUserFolllowers;
 
 	public static ReaderAndCount getUniqueInstance() {
@@ -135,9 +135,14 @@ public class ReaderAndCount {
 	public Map<String, List<Date>> getRepoToPull() {
 		return repoToPull;
 	}
-	public MyChartVO getCreateTime() {
-		return createTime;
+	public MyChartVO getRepoCreateTime() {
+		return repoCreateTime;
 	}
+
+	public MyChartVO getRepoSubscribers() {
+		return repoSubscribers;
+	}
+
 	public MyChartVO getForkCount() {
 		return forkCount;
 	}

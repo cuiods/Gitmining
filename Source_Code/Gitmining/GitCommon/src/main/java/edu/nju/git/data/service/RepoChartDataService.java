@@ -45,7 +45,7 @@ public interface RepoChartDataService extends Remote{
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statConllabrators()throws RemoteException;
+	public MyChartVO statCollaborators()throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>：null

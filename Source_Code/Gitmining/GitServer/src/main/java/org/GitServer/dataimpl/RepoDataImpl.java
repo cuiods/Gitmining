@@ -8,17 +8,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import edu.nju.git.PO.RepoPO;
 import edu.nju.git.data.rmiservice.RepoDataRMIService;
-import edu.nju.git.data.service.RepoDataService;
 import org.GitServer.dataread.ReaderAndCount;
-
-import edu.nju.git.PO.RepoBriefPO;
-import edu.nju.git.VO.BranchVO;
-import edu.nju.git.VO.CommitVO;
-import edu.nju.git.VO.IssueVO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
-import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
@@ -54,12 +48,13 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 		List<RepoBriefVO> resultList = new ArrayList<RepoBriefVO>();
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher;
-		Iterator<RepoBriefPO> itr = readerAndCount.getNameOrderRepoPOs().iterator();
+		Iterator<RepoPO> itr = readerAndCount.getNameOrderRepoPOs().iterator();
+		// TODO: 2016/3/23 we can improve the performance here by not search to end!
 		while(itr.hasNext()){
-			RepoBriefPO po = itr.next();
+			RepoPO po = itr.next();
 			matcher = pattern.matcher(po.getName());
 			if (matcher.find()) {
-				resultList.add(POVOConverter.convert(po));
+				resultList.add(POVOConverter.convertToBriefVO(po));
 			}
 		}
 		return resultList;
@@ -71,7 +66,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 	}
 
 	@Override
-	public List<RepoBriefPO> getRepoBriefPOs(SortType sortType) throws RemoteException {
+	public List<RepoPO> getRepoBriefPOs(SortType sortType) throws RemoteException {
 		switch (sortType) {
 			case REPO_NAME:return readerAndCount.getNameOrderRepoPOs();
 			case STAR_NUM:return readerAndCount.getStarOrderRepoPOs();
@@ -90,44 +85,51 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 
 	@Override
 	public RepoVO getRepoBasicInfo(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		RepoPO po = readerAndCount.getNameToRepo().get(owner+"/"+repoName);
+		if (po!=null) {
+			RepoVO vo = POVOConverter.convertToVO(po);
+			// TODO: 2016/3/23 set the double value for radar chart to use
+
+			return null;
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override
-	public List<UserBriefVO> getRepoContributor(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getRepoContributor(String owner, String repoName) throws RemoteException {
+		return readerAndCount.getRepoToContributor().get(owner+"/"+repoName);
 	}
 
 	@Override
-	public List<UserBriefVO> getRepoCollaborator(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getRepoCollaborator(String owner, String repoName) throws RemoteException {
+		return readerAndCount.getRepoToCollab().get(owner+"/"+repoName);
 	}
 
+	@Override
+	public List<String> getRepoSubscriber(String owner, String repoName) throws RemoteException {
+		return readerAndCount.getRepoToSubscriber().get(owner+"/"+repoName);
+	}
+/*
 	@Override
 	public List<BranchVO> getRepoBranch(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<RepoBriefVO> getRepoFork(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<CommitVO> getRepoCommit(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<IssueVO> getRepoIssue(String owner, String repoName) throws RemoteException {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 }

@@ -4,7 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import edu.nju.git.PO.RepoBriefPO;
+import edu.nju.git.PO.RepoPO;
 import edu.nju.git.VO.BranchVO;
 import edu.nju.git.VO.CommitVO;
 import edu.nju.git.VO.IssueVO;
@@ -44,7 +44,7 @@ public interface RepoDataRMIService extends Remote{
      * @param sortType which type of list to get
      * @return the reference to the list
      */
-    public List<RepoBriefPO> getRepoBriefPOs(SortType sortType)throws RemoteException;
+    public List<RepoPO> getRepoBriefPOs(SortType sortType)throws RemoteException;
 
     /**
      * use a visitor to access the data and return the wanted value.
@@ -71,10 +71,11 @@ public interface RepoDataRMIService extends Remote{
      * 			name of the owner of the repository
      * @param repoName
      * 			name of the repository
-     * @return list of {@link UserBriefVO}
-     * 			list of brief info of contributors.
+     * @return list of {@link String}
+     * 			list of name of contributors.
+     * 			The return value will be null if the is no such repository.
      */
-    public List<UserBriefVO> getRepoContributor(String owner, String repoName)throws RemoteException;
+    public List<String> getRepoContributor(String owner, String repoName)throws RemoteException;
 
     /**
      * Get brief info of collaborators.
@@ -85,10 +86,20 @@ public interface RepoDataRMIService extends Remote{
      * @return list of {@link UserBriefVO}
      * 			list of brief info of collaborators.
      */
-    public List<UserBriefVO> getRepoCollaborator(String owner, String repoName)throws RemoteException;
+    public List<String> getRepoCollaborator(String owner, String repoName)throws RemoteException;
 
     /**
+     * get all subscribers' names of the given repo
+     * @param owner
+     * @param repoName
+     * @return
+     * @throws RemoteException
+     */
+    public List<String> getRepoSubscriber(String owner, String repoName) throws RemoteException;
+
+    /*
      * Get {@code List} of info of branches.
+     *
      * @param owner
      * 			name of the owner of the repository
      * @param repoName
@@ -96,9 +107,9 @@ public interface RepoDataRMIService extends Remote{
      * @return list of {@link BranchVO}
      * 			list of info of branches.
      */
-    public List<BranchVO> getRepoBranch(String owner, String repoName)throws RemoteException;
+//    public List<BranchVO> getRepoBranch(String owner, String repoName)throws RemoteException;
 
-    /**
+    /*
      * Get {@code List} of repositories which fork the project.
      * @param owner
      * 			name of the owner of the repository
@@ -107,9 +118,9 @@ public interface RepoDataRMIService extends Remote{
      * @return list of {@link RepoBriefVO}
      * 			list of brief info of repositories.
      */
-    public List<RepoBriefVO> getRepoFork(String owner, String repoName)throws RemoteException;
+//    public List<RepoBriefVO> getRepoFork(String owner, String repoName)throws RemoteException;
 
-    /**
+    /*
      * Get {@code List} of commit info of the repository.
      * @param owner
      * 			name of the owner of the repository
@@ -118,9 +129,9 @@ public interface RepoDataRMIService extends Remote{
      * @return list of {@link CommitVO}
      * 			list of info of commits.
      */
-    public List<CommitVO> getRepoCommit(String owner, String repoName)throws RemoteException;
+//    public List<CommitVO> getRepoCommit(String owner, String repoName)throws RemoteException;
 
-    /**
+    /*
      * Get {@code List} of issues of the repository.
      * @param owner
      * 			name of the owner of the repository
@@ -129,5 +140,5 @@ public interface RepoDataRMIService extends Remote{
      * @return list of {@link IssueVO}
      * 			list of info of issues.
      */
-    public List<IssueVO> getRepoIssue(String owner, String repoName)throws RemoteException;
+//    public List<IssueVO> getRepoIssue(String owner, String repoName)throws RemoteException;
 }

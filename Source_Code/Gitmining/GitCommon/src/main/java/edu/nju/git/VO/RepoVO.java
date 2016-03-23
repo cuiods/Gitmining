@@ -38,9 +38,31 @@ public class RepoVO implements Serializable{
 	private float radar_activity;  //calculated by num of  commit and issue and pull.	
 	
 
-    
-	
-	
+    public RepoVO () {
+
+	}
+
+	public RepoVO(String name, String ownerName, int size, String language, String url, String description,
+				  String create_at, String update_at, int num_stars, int num_forks, int num_subscribers,
+				  int num_contributors, int num_collaborators, int num_commit, int num_issue, int num_pull) {
+		this.name = name;
+		this.ownerName = ownerName;
+		this.size = size;
+		this.language = language;
+		this.url = url;
+		this.description = description;
+		this.create_at = create_at;
+		this.update_at = update_at;
+		this.num_stars = num_stars;
+		this.num_forks = num_forks;
+		this.num_subscribers = num_subscribers;
+		this.num_contributors = num_contributors;
+		this.num_collaborators = num_collaborators;
+		this.num_commit = num_commit;
+		this.num_issue = num_issue;
+		this.num_pull = num_pull;
+	}
+
 	//lists of info
 	public String getName() {
 		return name;
