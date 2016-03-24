@@ -35,10 +35,11 @@ public class ReposLoader {
 		RepoPOfactory repoBreifPOfactory = new RepoPOfactory();
 		
 		//initial list,and add into list one by one
-		pos = new ArrayList<RepoPO>();
+		pos = new ArrayList<RepoPO>(3300);
 		for (String string : repoNames) {
 			repoBreifPOfactory.setNames(string);
 			pos.add(  repoBreifPOfactory.getPO() );
+			System.out.println("reading out of repo: "+string);
 		}
 	}
 

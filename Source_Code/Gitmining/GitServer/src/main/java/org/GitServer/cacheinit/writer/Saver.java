@@ -38,4 +38,24 @@ public class Saver {
 		}
 		
 	}
+	
+	public void excute(Field field){
+		try {
+				File file = new File(rootPath+"/"+field.getName()+".txt");
+				if(!file.exists()){
+					file.createNewFile();
+				}
+				ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+				outputStream.writeObject(field.get(dataEncapsulation));
+				outputStream.flush();
+				outputStream.close();
+				
+		} catch (IllegalArgumentException  e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
