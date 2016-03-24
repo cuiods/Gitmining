@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
+import edu.nju.git.ui.control.function.HomeFunction;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -99,6 +100,7 @@ public class TaskPanel extends GitPanel {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setCssFactory(UIManager.instance().getCssFactory());
+		initHome();
 		setListener();
 	}
 
@@ -113,9 +115,10 @@ public class TaskPanel extends GitPanel {
 	
 	private void initHome() {
 		clearFunction();
-		ScreenShot shot = ConfigReader.readParentPanel("function_home");
-		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
-		setChildren(shot.getRoot());
+//		ScreenShot shot = ConfigReader.readParentPanel("function_home");
+//		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
+		Parent display = HomeFunction.createContent();
+		setChildren(display);
 	}
 	
 	private void initUser() {
@@ -210,7 +213,7 @@ public class TaskPanel extends GitPanel {
 		nav_home.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				initPanel(null);
+				initHome();
 			}
 		});
 		nav_user.setOnMouseReleased(new EventHandler<MouseEvent>() {
