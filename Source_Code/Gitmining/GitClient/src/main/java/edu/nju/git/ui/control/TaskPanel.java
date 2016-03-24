@@ -40,9 +40,9 @@ import javafx.util.Duration;
 public class TaskPanel extends GitPanel {
 
 	@FXML
-	private ImageView img_back;
+	private Button back;
 	@FXML
-	private ImageView img_forward;
+	private Button forward;
 	@FXML
 	private BorderPane childPanel;
 	@FXML

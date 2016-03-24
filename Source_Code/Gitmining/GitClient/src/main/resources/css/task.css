@@ -51,3 +51,41 @@
 	-fx-background-color:#f0ffff;
     -fx-font-style:normal;
 }
+
+#top_label{
+	-fx-background-image:url("../topbar/middle.png");
+	-fx-text-fill:#ffffff;
+}
+
+#back{
+	-fx-background-image:url("../topbar/back.png");
+	-fx-background-color:transparent;
+    -fx-border-radius: 2;
+    -fx-border-color:transparent;
+}
+
+#back:hover{
+	-fx-background-image:url("../topbar/back_1.png");
+}
+
+#forward{
+	-fx-background-image:url("../topbar/front.png");
+	-fx-background-color:transparent;
+    -fx-border-radius: 2;
+    -fx-border-color:transparent;
+}
+
+#forward:hover{
+	-fx-background-image:url("../topbar/front_1.png");
+}
+
+#setting{
+	-fx-background-image:url("../topbar/set.png");
+	-fx-background-color:transparent;
+    -fx-border-radius: 2;
+    -fx-border-color:transparent;
+}
+
+#setting:hover{
+	-fx-background-image:url("../topbar/set1.png");
+}

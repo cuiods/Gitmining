@@ -8,59 +8,38 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane prefHeight="690.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.TaskPanel">
-  <center>
-    <BorderPane prefHeight="690.0" prefWidth="870.0" BorderPane.alignment="CENTER">
-      <center>
-         <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
-      </center>
-      <top>
-        <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="870.0" BorderPane.alignment="CENTER">
-          <center>
-            <Group>
-              <children>
-                <ImageView fitHeight="50.0" fitWidth="720.0" pickOnBounds="true">
-                  <image>
-                    <Image url="@topbar/middle.png" />
-                  </image>
-                </ImageView>
-                <Label prefHeight="50.0" prefWidth="720.0" text="        您现在的位置：" textFill="#f8f7f7" />
-              </children>
-            </Group>
-          </center>
-          <left>
-            <HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-              <children>
-                <ImageView fx:id="img_back" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
-                  <image>
-                    <Image url="@topbar/back.png" />
-                  </image>
-                </ImageView>
-                <ImageView fx:id="img_forward" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true">
-                  <image>
-                    <Image url="@topbar/front.png" />
-                  </image>
-                </ImageView>
-              </children>
-            </HBox>
-          </left>
-          <right>
-            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-              <image>
-                <Image url="@topbar/set.png" />
-              </image>
-            </ImageView>
-          </right>
-        </BorderPane>
-      </top>
-    </BorderPane>
-  </center>
-  <left>
-    <VBox id="leftbar" fx:id="leftbar" minHeight="690.0" prefHeight="690.0" prefWidth="150.0">
-         <children>
-            <Button fx:id="nav_home" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Home" />
-            <Button fx:id="nav_user" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="User" />
-            <Button fx:id="nav_repo" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repository" />
-         </children>
-    </VBox>
-  </left>
+	<center>
+		<BorderPane prefHeight="690.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+			<center>
+				<BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
+			</center>
+			<top>
+				<BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+					<left>
+						<HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+							<children>
+								<Button id="back" fx:id="back" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+								<Button id="forward" fx:id="forward" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+							</children>
+						</HBox>
+					</left>
+					<center>
+						<Label id="top_label" minWidth="720.0" prefHeight="50.0" prefWidth="720.0" text="    Your position:" BorderPane.alignment="CENTER" />
+					</center>
+					<right>
+						<Button id="setting" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+					</right>
+				</BorderPane>
+			</top>
+		</BorderPane>
+	</center>
+	<left>
+		<VBox id="leftbar" fx:id="leftbar" minHeight="690.0" prefHeight="690.0" prefWidth="150.0">
+			<children>
+				<Button fx:id="nav_home" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Home" />
+				<Button fx:id="nav_user" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="User" />
+				<Button fx:id="nav_repo" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repository" />
+			</children>
+		</VBox>
+	</left>
 </BorderPane>

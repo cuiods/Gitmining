@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.VO.UserBriefVO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
