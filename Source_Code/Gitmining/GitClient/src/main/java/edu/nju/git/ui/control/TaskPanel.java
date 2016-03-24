@@ -79,6 +79,7 @@ public class TaskPanel extends GitPanel {
 
 	private void initUser() {
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
 	}
 

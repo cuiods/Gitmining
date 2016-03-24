@@ -41,4 +41,10 @@ public class DefaultCSSFactory extends CSSFactory{
 		return urlcss.toString();
 	}
 
+	@Override
+	public String getFunctionUserTableLabel() {
+		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"RepotableLabel.css");
+		return urlcss.toString();
+	}
+
 }

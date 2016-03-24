@@ -15,7 +15,6 @@ import edu.nju.git.type.SortType;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.control.GitPanel;
-import edu.nju.git.ui.control.RepoTableLabel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -145,44 +144,44 @@ public class UserListFunction extends GitPanel{
 	 * @param list
 	 */
 	private void updateList(List<UserBriefVO> list){
-//		if (list==null) {
-//			return;
-//		}
-//		listBox.getChildren().clear();
-//		for(Iterator<UserBriefVO> iterator = list.iterator(); iterator.hasNext();){
-//			UserBriefVO UserBriefVO = iterator.next();
-//			ScreenShot pane = ConfigReader.readParentPanel("RepotableLabel");
-//			pane.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoTableLabel());
-//			RepoTableLabel label = (RepoTableLabel) pane.getPanel();
-//			label.setUserBriefVO(UserBriefVO);
-//			listBox.getChildren().add(pane.getRoot());
-//		}
+		if (list==null) {
+			return;
+		}
+		listBox.getChildren().clear();
+		for(Iterator<UserBriefVO> iterator = list.iterator(); iterator.hasNext();){
+			UserBriefVO UserBriefVO = iterator.next();
+			ScreenShot pane = ConfigReader.readParentPanel("UserTableLabel");
+			pane.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoTableLabel());
+			UserTableLabel label = (UserTableLabel) pane.getPanel();
+			label.setUserBriefVO(UserBriefVO);
+			listBox.getChildren().add(pane.getRoot());
+		}
 	}
 	
 	/**
 	 * initilaize at the beginning
 	 */
 	private void initialGeneral(){
-//		datalist = service.getSearchResult("");
-//		if (service.getTotalPage()>=1) {
-//			try {
-//				datalist = service.jumpToPage(1);
-//			} catch (PageOutOfBoundException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		if (datalist==null) {
-//			return;
-//		}
-//		for(Iterator<UserBriefVO> iterator = datalist.iterator(); iterator.hasNext();){
-//			UserBriefVO UserBriefVO = iterator.next();
-//			ScreenShot pane = ConfigReader.readParentPanel("RepotableLabel");
-//			pane.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoTableLabel());
-//			RepoTableLabel label = (RepoTableLabel) pane.getPanel();
-//			label.setUserBriefVO(UserBriefVO);
-//			listBox.getChildren().add(pane.getRoot());
-//		}
-//		page.setText("1");
+		datalist = service.getSearchResult("");
+		if (service.getTotalPage()>=1) {
+			try {
+				datalist = service.jumpToPage(1);
+			} catch (PageOutOfBoundException e) {
+				e.printStackTrace();
+			}
+		}
+		if (datalist==null) {
+			return;
+		}
+		for(Iterator<UserBriefVO> iterator = datalist.iterator(); iterator.hasNext();){
+			UserBriefVO UserBriefVO = iterator.next();
+			ScreenShot pane = ConfigReader.readParentPanel("UsertableLabel");
+			pane.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoTableLabel());
+			UserTableLabel label = (UserTableLabel) pane.getPanel();
+			label.setUserBriefVO(UserBriefVO);
+			listBox.getChildren().add(pane.getRoot());
+		}
+		page.setText("1");
 	}
 	
 	

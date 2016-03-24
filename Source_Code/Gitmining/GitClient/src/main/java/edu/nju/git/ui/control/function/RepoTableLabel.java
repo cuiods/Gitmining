@@ -1,12 +1,11 @@
-package edu.nju.git.ui.control;
+package edu.nju.git.ui.control.function;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoBriefVO;
-import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.ui.control.GitPanel;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;

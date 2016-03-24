@@ -13,7 +13,6 @@ import edu.nju.git.type.SortType;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.control.GitPanel;
-import edu.nju.git.ui.control.RepoTableLabel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
