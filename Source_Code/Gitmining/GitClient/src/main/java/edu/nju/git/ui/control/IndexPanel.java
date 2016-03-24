@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -34,12 +35,15 @@ import javafx.util.Duration;
  *
  */
 public class IndexPanel extends GitPanel{
-	@FXML HBox box;
-	@FXML BorderPane pane;
-	@FXML ImageView image;
-	@FXML Button exit;
+	@FXML private HBox box;
+	@FXML private BorderPane pane;
+	@FXML private ImageView image;
+	@FXML private Button exit;
 	private BorderPane childpane;
+	private Stage primaryStage;
 	private List<ScreenShot> tasks = new ArrayList<>();
+	private double initialX;
+	private double initialY;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -48,7 +52,7 @@ public class IndexPanel extends GitPanel{
 
 			@Override
 			public void handle(MouseEvent event) {
-				FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
+				FadeTransition fadeTransition = new FadeTransition(Duration.millis(800), image);
 				fadeTransition.setFromValue(1.0f);
 				fadeTransition.setToValue(0f);
 				fadeTransition.play();
@@ -56,6 +60,22 @@ public class IndexPanel extends GitPanel{
 				TranslateTransition transition = new TranslateTransition(Duration.millis(800), image);
 				transition.setToY(-870);
 				transition.play();
+			}
+		});
+
+		box.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				initialX = primaryStage.getX() - event.getScreenX();
+				initialY = primaryStage.getY() - event.getScreenY();
+			}
+		});
+
+		box.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				primaryStage.setX(event.getScreenX() + initialX);
+				primaryStage.setY(event.getScreenY() + initialY);
 			}
 		});
 		
@@ -69,13 +89,13 @@ public class IndexPanel extends GitPanel{
 
 	@Override
 	public void initPanel(Object[] bundle) {
+		primaryStage = (Stage) bundle[0];
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
 		childpane = (BorderPane) shot.getRoot();
 		childpane.getStylesheets().add(getCssFactory().getTaskCSS());
 		shot.getPanel().initPanel(null);
 		pane.getChildren().add(childpane);
 		tasks.add(shot);
-		
 	}
 
 	@Override

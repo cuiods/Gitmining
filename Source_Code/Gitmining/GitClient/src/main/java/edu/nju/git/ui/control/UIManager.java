@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 /**
  * <h1>Singleton manager of presentation</h1>
  * <ul>
- * 	<li>Get {@link BlService} by key. (name)</li>
  * 	<li>Get root panel.</li>
  * 	<li>Change Cascading Style Sheets.</li>
  * </ul>
@@ -64,7 +63,7 @@ public final class UIManager {
 	public Parent initialize(Stage stage){
 		cssFactory = new DefaultCSSFactory();
 		root = ConfigReader.readParentPanel("index");
-		root.getPanel().initPanel(null);
+		root.getPanel().initPanel(new Object[]{stage});
 		root.getRoot().getStylesheets().add(cssFactory.getIndexCSS());
 		primaryStage = stage;
 		primaryStage.setTitle(StringReader.readString("title"));

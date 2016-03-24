@@ -13,7 +13,6 @@ import javafx.scene.layout.Region;
  * {@code abstract class} and implements these {@code methods} below.</p>
  * @author cuihao
  * @see #initPanel(Object[])
- * @see #setChildren(Region)
  * @see #removeChild()
  * @date 2016-03-04 20:27:51
  */
@@ -40,6 +39,11 @@ public abstract class GitPanel implements Initializable{
 	public CSSFactory getCssFactory() {
 		return cssFactory;
 	}
+
+	/**
+	 * set CSS module
+	 * @param cssFactory
+     */
 	public void setCssFactory(CSSFactory cssFactory) {
 		this.cssFactory = cssFactory;
 	}
