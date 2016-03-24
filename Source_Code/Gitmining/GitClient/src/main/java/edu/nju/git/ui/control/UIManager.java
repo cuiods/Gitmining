@@ -79,10 +79,11 @@ public final class UIManager {
 	 * @param bundle
 	 * 			data to the next panel
 	 */
-	public void changeFunction(Parent funtion, Object[] bundle) {
+	public void changeFunction(String name, Object[] bundle) {
+		ScreenShot function = ConfigReader.readParentPanel(name);
 		GitPanel panel = root.getPanel();
-		panel.setChildren(funtion);
-		panel.initPanel(bundle);
+		panel.setChildren(function.getRoot());
+		function.getPanel().initPanel(bundle);
 	}
 
 	/**

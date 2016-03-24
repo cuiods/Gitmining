@@ -5,10 +5,13 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.ui.control.GitPanel;
+import edu.nju.git.ui.control.UIManager;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * One single item in the repository table.<br>
@@ -39,6 +42,13 @@ public class RepoTableLabel extends GitPanel{
 	private void initialize(){
 		if (repoBriefVO!=null) {
 			name.setText(repoBriefVO.getOwner()+"/"+repoBriefVO.getOwner());
+			name.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					String[] temp = name.getText().split("/");
+					UIManager.instance().changeFunction("function_repoDetail",new Object[]{temp[0],temp[1]});
+				}
+			});
 			description.setText(repoBriefVO.getDescription());
 			//WARNING:TO BE COMPLETED
 			create.setText("create:");
