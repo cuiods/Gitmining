@@ -25,13 +25,12 @@ public class UserPO {
 
 	private int public_repos;
 	private int public_gists;
+	private String avatar_url;
+
 
 	private int num_subscribe;
 	private int num_contribute;
 	private int num_collaborate;
-
-	private String avatar_url;
-
 	private double userValue;	//this field is compute by outer class and set to this class
 
 	public UserPO() {

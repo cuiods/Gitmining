@@ -1,7 +1,9 @@
 package edu.nju.git.tools;
 
-import edu.nju.git.comparators.repocomparators.*;
-import edu.nju.git.comparators.usercomparators.*;
+import edu.nju.git.comparators.repocomparators.briefvo.*;
+import edu.nju.git.comparators.usercomparators.briefvo.UserBriefVOFollowersComparator;
+import edu.nju.git.comparators.usercomparators.briefvo.UserBriefVONameComparator;
+import edu.nju.git.comparators.usercomparators.briefvo.UserBriefVORepoNumComparator;
 import edu.nju.git.type.SortType;
 
 import java.util.Comparator;
@@ -14,14 +16,14 @@ import java.util.Comparator;
 public class ComparatorFactory {
     public static Comparator getcComparator(SortType type){
         switch (type) {
-            case USER_NAME: return new UserNameComparator();
-            case FOLLOWER_NUM:return new UserFollowersComparator();
-            case REPO_NUM:return new UserRepoNumComparator();
-            case REPO_NAME:return new RepoNameComparator();
-            case STAR_NUM:return new RepoStarComparator();
-            case FORK_NUM:return new RepoForkComparator();
-            case SUBSCR_NUM:return new RepoSubscrComparator();
-            case UPDATE_TIME:return new RepoUpdateComparator();
+            case USER_NAME: return new UserBriefVONameComparator();
+            case FOLLOWER_NUM:return new UserBriefVOFollowersComparator();
+            case REPO_NUM:return new UserBriefVORepoNumComparator();
+            case REPO_NAME:return new RepoBriefVONameComparator();
+            case STAR_NUM:return new RepoBriefVOStarComparator();
+            case FORK_NUM:return new RepoBriefVOForkComparator();
+            case SUBSCR_NUM:return new RepoBriefVOSubscrComparator();
+            case UPDATE_TIME:return new RepoBriefVOUpdateComparator();
 
             default:return null;
         }

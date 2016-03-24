@@ -1,4 +1,4 @@
-package edu.nju.git.comparators.usercomparators;
+package edu.nju.git.comparators.usercomparators.briefvo;
 
 import edu.nju.git.VO.UserBriefVO;
 
@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @author benchaodong
  * @date 2016-03-05
  */
-public class UserRepoNumComparator implements Comparator<UserBriefVO> {
+public class UserBriefVORepoNumComparator implements Comparator<UserBriefVO> {
     @Override
     public int compare(UserBriefVO o1, UserBriefVO o2) {
         return o1.getPublic_repos() - o2.getPublic_repos();

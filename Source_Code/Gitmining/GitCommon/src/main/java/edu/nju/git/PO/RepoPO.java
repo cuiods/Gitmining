@@ -22,6 +22,8 @@ public class RepoPO {
 	private int num_stars;
 	private int num_forks;
 	private int num_subscribers;
+
+
 	private int num_contributors;
 	private int num_collaborators;
 

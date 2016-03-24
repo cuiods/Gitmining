@@ -60,15 +60,15 @@ public class UserInitImpl implements UserInitService {
 		
 		MyObjectWiter wrter = new MyObjectWiter(pos, "cache/userinfo.txt");
 		
-		pos.sort(new UserFollowersComparator());
+		pos.sort(new UserBriefVOFollowersComparator());
 		wrter.set(pos, "cache/user/follower.txt");
 		wrter.excute();
 		
-		pos.sort(new UserNameComparator());
+		pos.sort(new UserBriefVONameComparator());
 		wrter.set(pos, "cache/user/name.txt");
 		wrter.excute();
 		
-		pos.sort(new UserRepoNumComparator());
+		pos.sort(new UserBriefVORepoNumComparator());
 		wrter.set(pos, "cache/user/userrepos.txt");
 		wrter.excute();
 		

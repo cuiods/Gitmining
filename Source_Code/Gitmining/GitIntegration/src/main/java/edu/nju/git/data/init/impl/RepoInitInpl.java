@@ -76,7 +76,7 @@ public class RepoInitInpl implements RepoInitService {
 			
 			MyObjectWiter wrter = new MyObjectWiter(pos, "cache/userinfo.txt");
 			
-			/*pos.sort(new RepoForkComparator());
+			/*pos.sort(new RepoBriefVOForkComparator());
 			wrter.set(pos, "cache/repo/fork.txt");
 			wrter.excute();*/
 			
@@ -84,14 +84,14 @@ public class RepoInitInpl implements RepoInitService {
 			wrter.set(pos, "cache/repo/name.txt");
 			wrter.excute();
 			
-			/*pos.sort(new RepoStarComparator());
+			/*pos.sort(new RepoBriefVOStarComparator());
 			wrter.set(pos, "cache/repo/star.txt");
 			wrter.excute();
 			
-			pos.sort(new RepoSubscrComparator());
+			pos.sort(new RepoBriefVOSubscrComparator());
 			wrter.set(pos, "cache/repo/subsriber.txt");
 			wrter.excute();;
-			pos.sort(new RepoUpdateComparator());
+			pos.sort(new RepoBriefVOUpdateComparator());
 			wrter.set(pos, "cache/repo/update.txt");
 			wrter.excute();*/
 		

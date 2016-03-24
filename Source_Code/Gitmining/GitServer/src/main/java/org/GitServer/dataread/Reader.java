@@ -27,10 +27,10 @@ public class Reader {
 		try {
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
-				String path = field.getName()+".txt";  //file path: "cache/nameOrderRepoPOs.txt"
+				String path = dir+field.getName()+".txt";  //file path: "cache/nameOrderRepoPOs.txt"
 				ObjectInputStream readerStream 
 					= new ObjectInputStream(new FileInputStream(new File(path)));
-				field.set(field, readerStream.readObject());
+				field.set(dataEncapsulation, readerStream.readObject());
 				readerStream.close();
 			}
 		} catch (IllegalAccessException e) {
