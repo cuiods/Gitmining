@@ -18,11 +18,7 @@
          <top>
             <HBox id="box" fx:id="box" alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="1020.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="exit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@button/exit.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="exit" id="exit" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
                </children></HBox>
          </top>
     </BorderPane>

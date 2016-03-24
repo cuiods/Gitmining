@@ -12,6 +12,7 @@ import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.css.CSSFactory;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class IndexPanel extends GitPanel{
 	@FXML HBox box;
 	@FXML BorderPane pane;
 	@FXML ImageView image;
-	@FXML ImageView exit;
+	@FXML Button exit;
 	private BorderPane childpane;
 	private List<ScreenShot> tasks = new ArrayList<>();
 
@@ -47,17 +48,14 @@ public class IndexPanel extends GitPanel{
 
 			@Override
 			public void handle(MouseEvent event) {
-				RotateTransition rotateTransition = new RotateTransition(Duration.millis(1000), image);
-				rotateTransition.setFromAngle(0);
-				rotateTransition.setToAngle(360);
-				rotateTransition.play();
-				
 				FadeTransition fadeTransition = new FadeTransition(Duration.millis(1000), image);
 				fadeTransition.setFromValue(1.0f);
 				fadeTransition.setToValue(0f);
 				fadeTransition.play();
-				image.toBack();
 				
+				TranslateTransition transition = new TranslateTransition(Duration.millis(800), image);
+				transition.setToY(-870);
+				transition.play();
 			}
 		});
 		
@@ -88,6 +86,10 @@ public class IndexPanel extends GitPanel{
 //			pane.getChildren().add(cpane);
 //			childpane = cpane;
 //		}
+	}
+	
+	public void startBusy(){
+		
 	}
 
 	@Override
