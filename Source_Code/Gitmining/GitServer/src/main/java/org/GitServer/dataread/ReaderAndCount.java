@@ -23,43 +23,42 @@ public class ReaderAndCount {
 		return uniqueInstance;
 	}
 
+	private ReaderAndCount() {}
+
 	private List<RepoPO> nameOrderRepoPOs;
-    private List<RepoPO> starOrderRepoPOs;
-    private List<RepoPO> forkOrderRepoPOs;
-    private List<RepoPO> subscrOrderRepoPOs;
+	private List<RepoPO> starOrderRepoPOs;
+	private List<RepoPO> forkOrderRepoPOs;
+	private List<RepoPO> subscrOrderRepoPOs;
     private List<RepoPO> updateOrderRepoPOs;
-    
-    private List<UserPO> nameOrderUsers;
-    private List<UserPO> followerOrderUsers;
+
+	private List<UserPO> nameOrderUsers;
+	private List<UserPO> followerOrderUsers;
     private List<UserPO> repoNumOrderUsers;
-	
+
 	private Map<String, RepoPO>  nameToRepo ;
 	private Map<String, UserPO>  nameToUser ;
-	
+
 	private Map<String, List<String>> userToOwnerRepo ;
 	private Map<String, List<String>> userToCollabRepo ;
 	private Map<String, List<String>> userToContribute ;
 	private Map<String, List<String>> userToSubscribeRepo ;
-	
+
 	private Map<String, List<String>> repoToContributor ;
 	private Map<String, List<String>> repoToCollab ;
 	private Map<String, List<String>> repoToSubscriber;
-
 	private Map<String, List<String>> repoToCommit;
 	private Map<String, List<String>> repoToIssue;
 	private Map<String, List<String>> repoToPull;
-	
+
 	private MyChartVO repoCreateTime;	//for create time bar chart
 	private MyChartVO repoSize;
 	private MyChartVO forkCount;	//for fork times of a repo bar chart
 	private MyChartVO starCount;	//for star number of a repo bar chart
 	private MyChartVO repoContributors;//number of repo's contributors
 	private MyChartVO repoCollabrators;//
-
-
 	private MyChartVO repoSubscribers;
-	private MyChartVO language;		//for language pie chart
 
+	private MyChartVO language;		//for language pie chart
 	private MyChartVO statUserType;  //for user type pie chart
 	private MyChartVO statUserCreateTime;	//for user create time  line chart
 	private MyChartVO statUserOwnRepo;	//for the number of user owns repos bar chart
@@ -71,9 +70,6 @@ public class ReaderAndCount {
 	private MyChartVO statUserEmail;
 	private MyChartVO statUserFolllowers;
 
-	public static ReaderAndCount getUniqueInstance() {
-		return uniqueInstance;
-	}
 	public List<RepoPO> getNameOrderRepoPOs() {
 		return nameOrderRepoPOs;
 	}

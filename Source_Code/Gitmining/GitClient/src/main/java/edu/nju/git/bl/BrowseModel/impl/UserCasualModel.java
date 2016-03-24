@@ -63,9 +63,7 @@ public class UserCasualModel implements UserBrowseModelService {
 
     @Override
     public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
-        int current_page = visitor.getPage();
         visitor = (SimpleUserVisitor) VisitorFactory.getUserVisitor(sortType);
-        visitor.setPage(current_page);
         visitor.setReverse(reverse);
         return userBl.getUserDataService().acceptVisitor(visitor);
     }

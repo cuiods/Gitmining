@@ -1,8 +1,6 @@
 package org.GitServer.dataread;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.lang.reflect.Field;
 
 import org.GitServer.cacheinit.DataEncapsulation;
@@ -35,7 +33,14 @@ public class Reader {
 				field.set(field, readerStream.readObject());
 				readerStream.close();
 			}
-		} catch (Exception e) {
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 		return dataEncapsulation;
 	}

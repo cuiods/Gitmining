@@ -63,9 +63,7 @@ public class RepoCasualModel implements RepoBrowseModelService {
 
     @Override
     public List<RepoBriefVO> sort(SortType sortType, boolean reverse) {
-        int current_page = visitor.getPage();
         visitor = (SimpleRepoVisitor) VisitorFactory.getRepoVisitor(sortType);
-        visitor.setPage(current_page);
         visitor.setReverse(reverse);
         return repoBl.getRepoDataService().acceptVisitor(visitor);
     }
