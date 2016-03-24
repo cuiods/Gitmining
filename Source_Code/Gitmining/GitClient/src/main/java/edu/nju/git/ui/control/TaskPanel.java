@@ -110,7 +110,14 @@ public class TaskPanel extends GitPanel {
 		setChildren(child);
 		functions.add(shot.getRoot());
 	}
-
+	
+	private void initHome() {
+		clearFunction();
+		ScreenShot shot = ConfigReader.readParentPanel("function_home");
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
+		setChildren(shot.getRoot());
+	}
+	
 	private void initUser() {
 		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
