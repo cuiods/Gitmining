@@ -130,7 +130,7 @@ public class UserListFunction extends GitPanel{
 		btn_following.setText("Following");
 		btn_followed.setText("Followed"+(isContributor?"↑":"↓"));
 		btn_repo.setText("Repositorys");
-		List<UserBriefVO> list = service.sort(SortType.SUBSCR_NUM,isContributor=!isContributor);
+		List<UserBriefVO> list = service.sort(SortType.FOLLOWER_NUM,isContributor=!isContributor);
 		list = service.getShownUserList();
 		if (list!=null) {
 			datalist = list;
