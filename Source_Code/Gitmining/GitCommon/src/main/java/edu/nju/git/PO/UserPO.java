@@ -1,5 +1,7 @@
 package edu.nju.git.PO;
 
+import java.io.Serializable;
+
 import edu.nju.git.type.OwnerType;
 
 /**
@@ -8,7 +10,9 @@ import edu.nju.git.type.OwnerType;
  * @author cuihao
  * @date 2016-03-01 23:01:49
  */
-public class UserPO {
+public class UserPO implements Serializable{
+	
+	private static final long serialVersionUID = 7463396944443246306L;
 	private String login;
 	private OwnerType type;
 	private String name;

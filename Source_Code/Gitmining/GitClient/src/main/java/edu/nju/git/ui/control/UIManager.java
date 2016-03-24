@@ -73,13 +73,23 @@ public final class UIManager {
 		return root.getRoot();
 	}
 	
-//	public void addService(String key, BlService service){
-//		services.put(key, service);
-//	}
-//	public BlService getService(String key) {
-//		return services.get(key);
-//	}
+	/**
+	 * Change to a new Function Panel.
+	 * @param funtion
+	 * 			next funtion panel to change
+	 * @param bundle
+	 * 			data to the next panel
+	 */
+	public void changeFunction(Parent funtion, Object[] bundle) {
+		GitPanel panel = root.getPanel();
+		panel.setChildren(funtion);
+		panel.initPanel(bundle);
+	}
 
+	/**
+	 * get current css factory
+	 * @return {@link CSSFactory}
+	 */
 	public CSSFactory getCssFactory() {
 		return cssFactory;
 	}

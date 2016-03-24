@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="pane" maxHeight="100.0" maxWidth="815.0" prefHeight="100.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.RepoTableLabel">
+<AnchorPane id="pane" maxHeight="100.0" maxWidth="815.0" prefHeight="100.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoTableLabel">
    <children>
       <Hyperlink fx:id="name" layoutX="9.0" layoutY="6.0" prefHeight="30.0" prefWidth="300.0" text="Hyperlink" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
       <Label fx:id="description" layoutX="14.0" layoutY="33.0" prefHeight="50.0" prefWidth="360.0" text="description" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="35.0" />

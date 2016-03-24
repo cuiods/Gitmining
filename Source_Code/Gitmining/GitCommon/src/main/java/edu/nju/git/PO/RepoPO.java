@@ -1,5 +1,6 @@
 package edu.nju.git.PO;
 
+import java.io.Serializable;
 
 /**
  * info of repository<br>
@@ -9,7 +10,11 @@ package edu.nju.git.PO;
  * @author cuihao
  * @date 2016-03-01 22:52:22
  */
-public class RepoPO {
+public class RepoPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8733186214627773302L;
 	private String name;
 	private String ownerName;
 	private int size;

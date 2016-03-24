@@ -15,20 +15,23 @@ public class UsersLoader {
 	
 	public UsersLoader(Iterable<String> reader) {
 		this.repofullName = reader;
+		init();
 	}
 	
-	public void init() {
+	private void init() {
 		// get details information,one by one
-		pos = new ArrayList<UserPO>();
+		pos = new ArrayList<UserPO>(3000);
 		Set<String> stringSet = new HashSet<String>();
 		
-		UserPOfactory userBriefPOfactory = new UserPOfactory();
+		UserPOfactory userPOfactory = new UserPOfactory();
 		for (String string : repofullName) {
 			String tempString = string.split("/")[0];
 			if(!stringSet.contains(tempString))
 			{
 				stringSet.add(tempString);
-				UserPO po = userBriefPOfactory.getPO();
+				userPOfactory.setName(tempString);
+				UserPO po = userPOfactory.getPO();
+				System.out.println("done withing reading user: "+tempString);
 				if(po!=null){
 					pos.add(po);
 				}

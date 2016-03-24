@@ -14,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -39,29 +38,63 @@ import javafx.util.Duration;
  */
 public class TaskPanel extends GitPanel {
 
+	/**
+	 * To the last panel
+	 */
 	@FXML
-	private ImageView img_back;
+	private Button back;
+	/**
+	 * To the next panel
+	 */
 	@FXML
-	private ImageView img_forward;
+	private Button forward;
+	/**
+	 * Panel to show function.
+	 */
 	@FXML
 	private BorderPane childPanel;
+	/**
+	 * top bar including {@link #back} {@link #forward}, etc.
+	 */
 	@FXML
 	private BorderPane topbar;
+	/**
+	 * button to home page ({@code Function})
+	 */
 	@FXML
 	private Button nav_home;
+	/**
+	 * button to user list page
+	 */
 	@FXML
 	private Button nav_user;
+	/**
+	 * button to repository list page
+	 */
 	@FXML
 	private Button nav_repo;
+	/**
+	 * left bar including {@link #nav_home}, {@link #nav_repo} and {@link #nav_user}
+	 */
 	@FXML
 	private VBox leftbar;
 
+	/**
+	 * sub button of {@link #nav_user}
+	 */
 	private Button subview_user1;
 	private Button subview_user2;
+	/**
+	 * sub button of repository
+	 */
 	private Button subview_repo1;
 	private Button subview_repo2;
-	private ArrayList<ScreenShot> functions = new ArrayList<>(20);
+	/**
+	 * a list to store past pages.
+	 */
+	private ArrayList<Parent> functions = new ArrayList<>(20);
 	private int index = 0;
+	private boolean isBack = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -71,18 +104,29 @@ public class TaskPanel extends GitPanel {
 
 	@Override
 	public void initPanel(Object[] bundle) {
+		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_default");
-		functions.add(shot);
 		Parent child = shot.getRoot();
-		childPanel.getChildren().add(child);
+		setChildren(child);
+		functions.add(shot.getRoot());
 	}
-
+	
+	private void initHome() {
+		clearFunction();
+		ScreenShot shot = ConfigReader.readParentPanel("function_home");
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
+		setChildren(shot.getRoot());
+	}
+	
 	private void initUser() {
+		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
 	}
 
 	private void initRepo() {
+		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
@@ -93,30 +137,28 @@ public class TaskPanel extends GitPanel {
 		EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				try {
-					childPanel.getChildren().clear();
-					childPanel.getChildren().add(panel);
-					topbar.toFront();
-				} catch (Exception e) {
-					System.out.println(e.getLocalizedMessage());
-				}
+				childPanel.getChildren().clear();
+				childPanel.getChildren().add(panel);
 			}
 		};
 
-		if (childPanel.getChildren().size() > 0) {
-			if (childPanel.getChildren().get(0) == panel) {
-				return;
-			}
+		if (functions.size() == 0) {
 			new Timeline(
-					new KeyFrame(Duration.seconds(0.15), new KeyValue(childPanel.translateXProperty(), -870),
+					new KeyFrame(Duration.seconds(0.20), new KeyValue(childPanel.translateYProperty(), -720),
 							new KeyValue(childPanel.opacityProperty(), 0)),
-					new KeyFrame(Duration.seconds(0.16), eh),
-					new KeyFrame(Duration.seconds(0.3), new KeyValue(childPanel.translateXProperty(), 0),
+					new KeyFrame(Duration.seconds(0.20), eh),
+					new KeyFrame(Duration.seconds(0.40), new KeyValue(childPanel.translateYProperty(), 0),
 							new KeyValue(childPanel.opacityProperty(), 1))).play();
 		} else {
-			new Timeline(new KeyFrame(Duration.seconds(0.45), new KeyValue(childPanel.opacityProperty(), 0)),
-					new KeyFrame(Duration.seconds(0.46), eh),
-					new KeyFrame(Duration.seconds(0.6), new KeyValue(childPanel.opacityProperty(), 1))).play();
+//			new Timeline(new KeyFrame(Duration.seconds(0.25), new KeyValue(childPanel.opacityProperty(), 0)),
+//					new KeyFrame(Duration.seconds(0.45), eh),
+//					new KeyFrame(Duration.seconds(0.6), new KeyValue(childPanel.opacityProperty(), 1))).play();
+			new Timeline(
+					new KeyFrame(Duration.seconds(0.40), new KeyValue(childPanel.getChildren().get(0).translateXProperty(), -870)
+							,new KeyValue(childPanel.opacityProperty(), 0)),
+					new KeyFrame(Duration.seconds(0.42), eh),
+					new KeyFrame(Duration.seconds(0.45),new KeyValue(childPanel.opacityProperty(), 1))
+					).play();
 		}
 	}
 
@@ -131,7 +173,8 @@ public class TaskPanel extends GitPanel {
 	public void back(ActionEvent e) {
 		if (functions.size() >= 2 && index >= 1) {
 			index--;
-			setChildren(functions.get(index).getRoot());
+			setChildren(functions.get(index));
+			isBack = true;
 		}
 	}
 
@@ -143,7 +186,7 @@ public class TaskPanel extends GitPanel {
 	public void forward(ActionEvent e) {
 		if (functions.size() > index + 1) {
 			index++;
-			setChildren(functions.get(index).getRoot());
+			setChildren(functions.get(index));
 		}
 	}
 
@@ -153,7 +196,7 @@ public class TaskPanel extends GitPanel {
 	 * @param shot
 	 */
 	public void appendFunction(ScreenShot shot) {
-		functions.add(shot);
+		functions.add(shot.getRoot());
 	}
 
 	/**
@@ -167,8 +210,7 @@ public class TaskPanel extends GitPanel {
 		nav_home.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				ScreenShot shot = functions.get(0);
-				setChildren(shot.getRoot());
+				initPanel(null);
 			}
 		});
 		nav_user.setOnMouseReleased(new EventHandler<MouseEvent>() {
