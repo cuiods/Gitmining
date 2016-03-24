@@ -1,0 +1,25 @@
+#displayshelf {
+
+    -fx-background-color: linear-gradient(to bottom, black 60, #141414 60.1%, black 100%);
+
+}
+
+ 
+
+#display-scrollbar {
+
+    -fx-base: #202020; 
+
+    -fx-background: #4f4747; 
+
+    -fx-border-color: #707576;
+
+}
+
+ 
+
+#display-scrollbar .thumb {
+
+    -fx-background-color: #707576;
+
+}
