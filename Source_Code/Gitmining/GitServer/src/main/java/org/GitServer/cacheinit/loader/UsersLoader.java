@@ -9,11 +9,11 @@ import org.GitServer.cacheinit.loader.POfactory.UserPOfactory;
 
 import edu.nju.git.PO.UserPO;
 
-public class UserLoader {
+public class UsersLoader {
 	private Iterable<String> repofullName;
 	private List<UserPO> pos ;
 	
-	public UserLoader(Iterable<String> reader) {
+	public UsersLoader(Iterable<String> reader) {
 		this.repofullName = reader;
 	}
 	

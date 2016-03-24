@@ -1,6 +1,5 @@
 package org.GitServer.cacheinit;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +24,9 @@ public class DataEncapsulation {
 	public Map<String, List<String>> repoToSubscriber;
 
 	/**repo's name to commit time*/
-	public Map<String, List<Date>> repoToCommit;
+	public Map<String, List<String>> repoToCommit;
 	/**repo's name to issue created time*/
-	public Map<String, List<Date>> repoToIssue;
+	public Map<String, List<String>> repoToIssue;
 	/**repo's name to pullcreated time*/
-	public Map<String, List<Date>> repoToPull;
+	public Map<String, List<String>> repoToPull;
 }

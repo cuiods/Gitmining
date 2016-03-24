@@ -14,13 +14,17 @@ public class UserMapReader extends AbstractMapGetter{
 	
 	@Override
 	protected String getUrl() {
+		if(APIconfig.isGithub){
+			return url_location+name+APIconfig.getClientidandsecret();
+		}
 		return url_location+name;
 	}
 	/**
 	 * user's login name
 	 */
 	private String name;
-	private final String url_location = "http://www.gitmining.net/api/user/";
+	private final String url_location = APIconfig.isGithub?
+			"https://api.github.com/users/":"http://www.gitmining.net/api/user/";
 	
 	
 	

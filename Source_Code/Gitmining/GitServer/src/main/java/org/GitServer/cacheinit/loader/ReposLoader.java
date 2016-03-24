@@ -11,7 +11,7 @@ import edu.nju.git.PO.RepoPO;
  * @author daixinyan
  * @date 2016-03-23
  */
-public class RepoLoader {
+public class ReposLoader {
 	
 	private Iterable<String> repoNames;
 	private List<RepoPO> pos ;
@@ -19,7 +19,7 @@ public class RepoLoader {
 	/**
 	 * @param reader can not be null
 	 */
-	public RepoLoader(Iterable<String> reader){
+	public ReposLoader(Iterable<String> reader){
 		this.repoNames =  reader;
 		init();
 	}

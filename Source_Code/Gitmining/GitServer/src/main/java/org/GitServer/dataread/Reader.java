@@ -20,7 +20,7 @@ public class Reader {
 
 	private final String dir = "cache/";
 	/**
-	 * before initial we should install server and load data from cloud to local cache
+	 * before initial we should have already load data from cloud to local cache
 	 * @see org.GitServer.cacheinit.Install 
 	 */
 	public Reader(){}
@@ -30,7 +30,7 @@ public class Reader {
 		try {
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
-				String path = field.getName()+".txt";
+				String path = field.getName()+".txt";  //file path: "cache/nameOrderRepoPOs.txt"
 				ObjectInputStream readerStream 
 					= new ObjectInputStream(new FileInputStream(new File(path)));
 				field.set(field, readerStream.readObject());

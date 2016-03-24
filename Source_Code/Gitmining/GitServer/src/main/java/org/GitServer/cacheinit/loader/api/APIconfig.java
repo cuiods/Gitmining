@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 
 public final class APIconfig {
 
-	public static final boolean isGithub = true;
+	public static final boolean isGithub = false;
 	private  static final String[] clientidAndsecret = {
 			"?client_id=c0ac13f51484e1dcdad6&client_secret=73c20d744d1fce8be5ce5d2a791774f79b7f648a",
 			"?client_id=664f63808c14fd653d40&client_secret=d3f2b14218fbf526beca11f608d2cc1c7027c6d3",
@@ -12,8 +12,10 @@ public final class APIconfig {
 	}; 
 	
 	
+	private static int index = -1;
 	public static synchronized String getClientidandsecret() {
-		return clientidAndsecret[(int) (clientidAndsecret.length*Math.random())];
+		if(++index>=clientidAndsecret.length){ index = 0;}
+		return clientidAndsecret[index];
 	}
 
 
