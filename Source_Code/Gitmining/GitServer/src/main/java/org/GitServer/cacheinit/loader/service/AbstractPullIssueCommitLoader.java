@@ -49,8 +49,16 @@ public abstract class AbstractPullIssueCommitLoader {
 		List<String> listPerPage = new ArrayList<String>();
 		try {
 			JsonNode jsonNode = JacksonConfig.getObjectMapper().readTree(new URL(this.getURL(page)));
-		    for (JsonNode jsonNode2 : jsonNode) {
-				listPerPage.add(jsonNode2.get("").asText());
+
+			for (JsonNode jsonNode2 : jsonNode) {
+				JsonNode node = jsonNode2.findValue(key);
+				System.out.println();
+				if(node!=null){
+					listPerPage.add(node.toString());
+					System.out.println();
+					
+				}
+				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

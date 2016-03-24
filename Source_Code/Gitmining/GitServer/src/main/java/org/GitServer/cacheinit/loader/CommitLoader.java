@@ -4,7 +4,7 @@ import org.GitServer.cacheinit.loader.service.AbstractPullIssueCommitLoader;
 
 public class CommitLoader extends AbstractPullIssueCommitLoader{
 	public CommitLoader(){
-		super("Date");
+		super("date");
 	}
 
 	@Override

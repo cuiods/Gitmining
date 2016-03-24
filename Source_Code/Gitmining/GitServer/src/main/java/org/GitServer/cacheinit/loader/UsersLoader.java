@@ -15,9 +15,10 @@ public class UsersLoader {
 	
 	public UsersLoader(Iterable<String> reader) {
 		this.repofullName = reader;
+		init();
 	}
 	
-	public void init() {
+	private void init() {
 		// get details information,one by one
 		pos = new ArrayList<UserPO>(3000);
 		Set<String> stringSet = new HashSet<String>();
@@ -28,6 +29,7 @@ public class UsersLoader {
 			if(!stringSet.contains(tempString))
 			{
 				stringSet.add(tempString);
+				userPOfactory.setName(tempString);
 				UserPO po = userPOfactory.getPO();
 				System.out.println("done withing reading user: "+tempString);
 				if(po!=null){

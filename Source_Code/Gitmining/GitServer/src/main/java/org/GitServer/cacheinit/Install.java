@@ -1,6 +1,10 @@
 package org.GitServer.cacheinit;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,44 +68,42 @@ public class Install {
 	 */
 
 	private DataEncapsulation dataEncapsulation = new DataEncapsulation();
-	private List<String> repos;
+	private Saver saver;
 	
 	public Install(String rootpath) throws 
          JsonGenerationException, JsonMappingException, 
          IOException, NoSuchFieldException, SecurityException{
 		
 		init();
-		Saver saver = new Saver(dataEncapsulation, rootpath);
+		saver = new Saver(dataEncapsulation, rootpath);
 		
-		repos = new RepositoriesListReader().getNames();
-		System.out.println("done with reading "+repos.size()+"repos' names");
+		readReposAndUsers();
+		System.out.println("done with repos and users");
 		
-		dataEncapsulation.nameOrderRepoPOs = new ReposLoader(repos).getPos();
-		System.out.println("done with reading repos");
-		saver.excute(dataEncapsulation.getClass().getField("nameOrderRepoPOs"));
-		System.out.println("done with saving last loading object.");
-		
-		
-		dataEncapsulation.nameOrderUserPOs = new UsersLoader(repos).getPos();
-		System.out.println("done whith reading users");
-		saver.excute(dataEncapsulation.getClass().getField("nameOrderUserPOs"));
-		System.out.println("done with saving last loading object.");
-		
-		initSubscribe();
-		System.out.println("done with initSubscribe");
-		saver.excute(dataEncapsulation.getClass().getField("userToSubscribeRepo"));
-		System.out.println("done with saving last loading object.");
+//		initUserToOwnerRepo();
+//		System.out.println("done with initUserToOwnerRepo");
+//		saver.excute(dataEncapsulation.getClass().getField("userToOwnerRepo"));
+//		System.out.println("done with saving initUserToOwnerRepo");
 		
 		
-		initCollabRepo();
-		System.out.println("done with initCollabRepo");
-		saver.excute(dataEncapsulation.getClass().getField("userToCollabRepo"));
-		System.out.println("done with saving last loading object.");
+//		initSubscribe();
+//		System.out.println("done with initSubscribe");
+//		saver.excute(dataEncapsulation.getClass().getField("userToSubscribeRepo"));
+//		saver.excute(dataEncapsulation.getClass().getField("repoToSubscriber"));
+//		System.out.println("done with saving last loading object.");
 		
-		initContribute();
-		System.out.println("done with initContribute");
-		saver.excute(dataEncapsulation.getClass().getField("userToContribute"));
-		System.out.println("done with saving last loading object.");
+		
+//		initCollabRepo();
+//		System.out.println("done with initCollabRepo");
+//		saver.excute(dataEncapsulation.getClass().getField("userToCollabRepo"));
+//		saver.excute(dataEncapsulation.getClass().getField("repoToCollab"));
+//		System.out.println("done with saving last loading object.");
+		
+//		initContribute();
+//		System.out.println("done with initContribute");
+//		saver.excute(dataEncapsulation.getClass().getField("userToContribute"));
+//		saver.excute(dataEncapsulation.getClass().getField("repoToContributor"));
+//		System.out.println("done with saving last loading object.");
 		
 		initCommit();
 		System.out.println("done with initCommit");
@@ -241,6 +243,61 @@ public class Install {
 	}
 	
 
+	/**
+	 * 
+	 */
+	private void downloadReposAndUsers() throws NoSuchFieldException, SecurityException{
+		List<String>  repos = new RepositoriesListReader().getNames();
+		System.out.println("done with reading "+repos.size()+"repos' names");
+		
+		dataEncapsulation.nameOrderRepoPOs = new ReposLoader(repos).getPos();
+		System.out.println("done with reading repos");
+		saver.excute(dataEncapsulation.getClass().getField("nameOrderRepoPOs"));
+		System.out.println("done with saving last loading object.");
+		
+		
+		dataEncapsulation.nameOrderUserPOs = new UsersLoader(repos).getPos();
+		System.out.println("done whith reading users");
+		saver.excute(dataEncapsulation.getClass().getField("nameOrderUserPOs"));
+		System.out.println("done with saving last loading object.");
+	}
+	/**
+	 * 
+	 */
+	private void readReposAndUsers(){
+		try {
+			this.read(dataEncapsulation.getClass().getField("nameOrderRepoPOs"));
+			this.read(dataEncapsulation.getClass().getField( "nameOrderUserPOs" ));
+		} catch (NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+
+	private void read(Field field){
+		String path = "cache/"+field.getName()+".txt";  //file path: "cache/nameOrderRepoPOs.txt"
+		
+		try {
+			ObjectInputStream readerStream 
+				= new ObjectInputStream(new FileInputStream(new File(path)));
+		    field.set(dataEncapsulation, readerStream.readObject());
+			readerStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
 	private final int REPO_HASHSIZE = (int)(3300/0.75);
 	private final int USER_HASHSIZE = (int)(3000/0.75);
 	private void init(){
