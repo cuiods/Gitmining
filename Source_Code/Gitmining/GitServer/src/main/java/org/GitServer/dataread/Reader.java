@@ -24,9 +24,8 @@ public class Reader {
 	 * @see org.GitServer.cacheinit.Install 
 	 */
 	public Reader(){}
-	private DataEncapsulation dataEncapsulation;
-	public void excute(){
-		dataEncapsulation = new DataEncapsulation();
+	public DataEncapsulation excute(){
+		DataEncapsulation dataEncapsulation = new DataEncapsulation();
 		try {
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
@@ -38,5 +37,6 @@ public class Reader {
 			}
 		} catch (Exception e) {
 		}
+		return dataEncapsulation;
 	}
 }

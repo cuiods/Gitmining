@@ -28,25 +28,25 @@ public class UserPOfactory {
 
 		UserPO user = new UserPO();
 		
-		user.setBio(itemHelper.getString("bio"));
-		user.setBlog(itemHelper.getString("blog"));
+		
+		user.setLogin(itemHelper.getString("login"));
+		user.setType(OwnerType.getInstance(itemHelper.getString("type")));
 		user.setCompany(itemHelper.getString("company"));
-		user.setCreate_at(itemHelper.getString("created_at"));
+		user.setBlog(itemHelper.getString("blog"));
+		user.setLocation(itemHelper.getString("location"));
 		user.setEmail(itemHelper.getString("email"));
+		user.setBio(itemHelper.getString("bio"));
 		
 		user.setFollowingNum(itemHelper.getInteger("following"));
 		user.setFollowNum(itemHelper.getInteger("followers"));
 		
-		user.setLocation(itemHelper.getString("location"));
-		user.setLogin(itemHelper.getString("login"));
-//		user.setName(itemHelper.getString("name"));
+		user.setCreate_at(itemHelper.getString("created_at"));
+		user.setUpdate_at(itemHelper.getString("updated_at"));
 		
 		user.setPublic_repos(itemHelper.getInteger("public_repos"));
 		user.setPublic_gists(itemHelper.getInteger("public_gists"));
 		
-		user.setType(OwnerType.getInstance(itemHelper.getString("type")));
-		user.setUpdate_at(itemHelper.getString("updated_at"));
-		
+		user.setAvatar_url(itemHelper.getString("avatar_url"));
 		return user;
 	}
 }

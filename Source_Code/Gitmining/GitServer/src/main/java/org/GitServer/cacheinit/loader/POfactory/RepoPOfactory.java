@@ -53,6 +53,7 @@ public class RepoPOfactory {
 		repo.setOwnerName(fullname[0]);
 		repo.setName(fullname[1]);
 		
+		repo.setSize(itemHelper.getInteger("size"));
 		repo.setUrl(itemHelper.getString("url"));
 
 		repo.setDescription(itemHelper.getString("description"));
