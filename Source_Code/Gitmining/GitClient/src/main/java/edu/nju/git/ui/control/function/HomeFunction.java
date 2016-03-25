@@ -1,53 +1,72 @@
 package edu.nju.git.ui.control.function;
+/* ....Show License.... */
+
+ 
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.main.Main;
-import edu.nju.git.ui.config.ConfigReader;
-import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.GitPanel;
-import edu.nju.git.ui.control.UIManager;
 import javafx.animation.Timeline;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 
-public class HomeFunction extends GitPanel{
-	private static final double WIDTH = 450, HEIGHT = 480;
+ 
+
+/**
+
+ * A display shelf of images using the PerspectiveTransform effect.
+
+ */
+
+public class HomeFunction extends GitPanel {
+	
+	@FXML AnchorPane anchorPane;
+    private static final double WIDTH = 600, HEIGHT = 480;
 
     private Timeline animation;
-    
+
+ 
+
+    public Parent createContent() {
+
+         // load images
+
+        Image[] images = new Image[10];
+        for(int i=0;i<images.length;i++){
+        	images[i] = new Image( Main.class.getResource(StringReader.readPath("picture")+"git"+(i+1)+".png").toString());
+        }
+       
+        // create display shelf
+
+        DisplayShelf displayShelf = new DisplayShelf(images);
+
+        displayShelf.setPrefSize(WIDTH, HEIGHT);
+
+         
+//        System.out.println(getCssFactory().getDisplayShelf());
+//        String displayShelfCss = getCssFactory().getDisplayShelf();
+//
+//        displayShelf.getStylesheets().add(displayShelfCss);       
+
+        return displayShelf;
+
+    }
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		setCssFactory(UIManager.instance().getCssFactory());
-		createContent();
+		Parent display = createContent();
+		anchorPane.getChildren().addAll(display);
+		
 		
 	}
-	
-	public Parent createContent(){
-		Image[] images = new Image[10];
-	    
-		//get the images
-		for(int i=0;i<images.length;i++){
-			images[i] = new Image(Main.class.getResource(StringReader.readPath("picture")+"git"+(i+1)+".png").toExternalForm(),false);
-		}
-	        // create display shelf
-			ScreenShot pane = ConfigReader.readParentPanel("DisplayShelf");
-			pane.getRoot().getStyleClass().add(getCssFactory().getDisplayShelf());
-			DisplayShelf display = (DisplayShelf)pane.getPanel();
-			display.initialize(images);
 
-	        display.setPrefSize(WIDTH, HEIGHT);
 
-	        String displayShelfCss = Main.class.getResource(StringReader.readPath("css")+"DisplayShelf.css").toExternalForm();
-
-	        display.getStylesheets().add(displayShelfCss); 
-	        
-	        
-
-	        return display;
-	}
 
 	@Override
 	public void initPanel(Object[] bundle) {
@@ -55,11 +74,15 @@ public class HomeFunction extends GitPanel{
 		
 	}
 
+
+
 	@Override
 	public void setChildren(Parent region) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 	@Override
 	public void removeChild() {

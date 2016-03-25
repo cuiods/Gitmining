@@ -16,7 +16,7 @@ import javafx.scene.layout.Region;
  * @see #removeChild()
  * @date 2016-03-04 20:27:51
  */
-public abstract class GitPanel extends Region implements Initializable{
+public abstract class GitPanel implements Initializable{
 	private CSSFactory cssFactory;
 	/**
 	 * In this method, you need to play animation of the panel and <br>

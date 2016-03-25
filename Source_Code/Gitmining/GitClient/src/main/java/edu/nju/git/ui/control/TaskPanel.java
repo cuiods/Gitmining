@@ -101,8 +101,8 @@ public class TaskPanel extends GitPanel {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setCssFactory(UIManager.instance().getCssFactory());
-//		initHome();
 		setListener();
+		initHome();
 	}
 
 	@Override
@@ -112,9 +112,10 @@ public class TaskPanel extends GitPanel {
 		Parent child = shot.getRoot();
 		setChildren(child);
 		functions.add(shot.getRoot());
+		initHome();
 	}
 	
-	private void initHome() {
+	public void initHome() {
 		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_home");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
