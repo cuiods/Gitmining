@@ -41,7 +41,7 @@ public class RepoTableLabel extends GitPanel{
 	}
 	private void initialize(){
 		if (repoBriefVO!=null) {
-			name.setText(repoBriefVO.getOwner()+"/"+repoBriefVO.getOwner());
+			name.setText(repoBriefVO.getOwner()+"/"+repoBriefVO.getName());
 			name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
