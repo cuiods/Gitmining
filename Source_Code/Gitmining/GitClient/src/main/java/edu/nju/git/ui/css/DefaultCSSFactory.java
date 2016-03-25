@@ -47,6 +47,12 @@ public class DefaultCSSFactory extends CSSFactory{
 		return urlcss.toString();
 	}
 
+	@Override
+	public String getDisplayShelf() {
+		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"DisplayShelf.css");
+		return urlcss.toString();
+	}
+
 	
 
 }

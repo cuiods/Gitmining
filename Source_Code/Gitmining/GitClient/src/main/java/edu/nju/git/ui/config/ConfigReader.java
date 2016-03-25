@@ -45,5 +45,6 @@ public class ConfigReader {
 	private static String getRootPath(){
 		return StringReader.readPath("config");
 	}
+	
 
 }
