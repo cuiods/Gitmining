@@ -81,8 +81,7 @@ public final class UIManager {
 	 */
 	public void changeFunction(String name, Object[] bundle) {
 		ScreenShot function = ConfigReader.readParentPanel(name);
-		GitPanel panel = root.getPanel();
-		panel.setChildren(function.getRoot());
+		root.getPanel().setChildren(function.getRoot());
 		function.getPanel().initPanel(bundle);
 	}
 

@@ -5,15 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.config.StringReader;
-import edu.nju.git.ui.css.CSSFactory;
 import javafx.animation.FadeTransition;
-import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -40,6 +35,7 @@ public class IndexPanel extends GitPanel{
 	@FXML private ImageView image;
 	@FXML private Button exit;
 	private BorderPane childpane;
+	private GitPanel childcontroller;
 	private Stage primaryStage;
 	private List<ScreenShot> tasks = new ArrayList<>();
 	private double initialX;
@@ -93,6 +89,7 @@ public class IndexPanel extends GitPanel{
 		ScreenShot shot =  ConfigReader.readParentPanel("task_default");
 		childpane = (BorderPane) shot.getRoot();
 		childpane.getStylesheets().add(getCssFactory().getTaskCSS());
+		childcontroller = shot.getPanel();
 		shot.getPanel().initPanel(null);
 		pane.getChildren().add(childpane);
 		tasks.add(shot);
@@ -106,6 +103,7 @@ public class IndexPanel extends GitPanel{
 //			pane.getChildren().add(cpane);
 //			childpane = cpane;
 //		}
+		childcontroller.setChildren(region);
 	}
 	
 	public void startBusy(){

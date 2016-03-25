@@ -126,6 +126,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
+		functions.add(shot.getRoot());
 	}
 
 	private void initRepo() {
@@ -133,6 +134,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
+		functions.add(shot.getRoot());
 	}
 
 	@Override
@@ -157,10 +159,11 @@ public class TaskPanel extends GitPanel {
 //					new KeyFrame(Duration.seconds(0.45), eh),
 //					new KeyFrame(Duration.seconds(0.6), new KeyValue(childPanel.opacityProperty(), 1))).play();
 			new Timeline(
-					new KeyFrame(Duration.seconds(0.40), new KeyValue(childPanel.getChildren().get(0).translateXProperty(), -870)
+					new KeyFrame(Duration.seconds(0.40), new KeyValue(childPanel.translateXProperty(), -870)
 							,new KeyValue(childPanel.opacityProperty(), 0)),
 					new KeyFrame(Duration.seconds(0.42), eh),
-					new KeyFrame(Duration.seconds(0.45),new KeyValue(childPanel.opacityProperty(), 1))
+					new KeyFrame(Duration.seconds(0.45),new KeyValue(childPanel.opacityProperty(), 1)
+							,new KeyValue(childPanel.translateXProperty(), 0))
 					).play();
 		}
 	}
