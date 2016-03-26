@@ -19,4 +19,12 @@ public class RepoSubscChartVO extends MyChartVO{
             values[i] = 0;
         }
     }
+
+    public void increase (int subscrCount) {
+        subscrCount /= 10;
+        if (subscrCount > 5) {
+            subscrCount =5;
+        }
+        values[subscrCount] ++;
+    }
 }

@@ -1,12 +1,13 @@
 package org.GitServer.dataread;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import edu.nju.git.PO.RepoPO;
 import edu.nju.git.PO.UserPO;
-import edu.nju.git.VO.chartvo.MyChartVO;
+import edu.nju.git.VO.chartvo.*;
 import edu.nju.git.comparators.repocomparators.po.*;
 import edu.nju.git.comparators.usercomparators.po.UserPOFollowerComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPONameComparator;
@@ -61,25 +62,28 @@ public class ReaderAndCount {
 	private Map<String, List<String>> repoToIssue;
 	private Map<String, List<String>> repoToPull;
 
-	private MyChartVO repoCreateTime;	//for create time bar chart
-	private MyChartVO repoSize;
-	private MyChartVO forkCount;	//for fork times of a repo bar chart
-	private MyChartVO starCount;	//for star number of a repo bar chart
-	private MyChartVO repoContributors;//number of repo's contributors
-	private MyChartVO repoCollabrators;//
-	private MyChartVO repoSubscribers;
+	private RepoCreateTimeChartVO repoCreateTime;	//for create time bar chart
+	private RepoSizeChartVO repoSize;
+	private RepoForkChartVO forkCount;	//for fork times of a repo bar chart
+	private RepoStarChartVO starCount;	//for star number of a repo bar chart
+	private RepoContriChartVO repoContributors;//number of repo's contributors
+	private RepoCollaChartVO repoCollabrators;//
+	private RepoSubscChartVO repoSubscribers;
+	private RepoLanguChartVO language;		//for language pie chart
 
-	private MyChartVO language;		//for language pie chart
-	private MyChartVO statUserType;  //for user type pie chart
-	private MyChartVO statUserCreateTime;	//for user create time  line chart
-	private MyChartVO statUserOwnRepo;	//for the number of user owns repos bar chart
-	private MyChartVO statUserCollaborateRepo;//for the number of user collaborate repos bar chart
-	private MyChartVO statUserContributorRepo;
-	private MyChartVO statUserSubscriberRepo;
-	private MyChartVO statUserGist;
-	private MyChartVO statCompanyUser;	//for how many users a company has bar chart
-	private MyChartVO statUserEmail;
-	private MyChartVO statUserFolllowers;
+	private UserTypeChartVO statUserType;  //for user type pie chart
+	private UserCreateTimeChartVO statUserCreateTime;	//for user create time  line chart
+	private UserOwnRepoChartVO statUserOwnRepo;	//for the number of user owns repos bar chart
+	private UserCollaRepoChartVO statUserCollaborateRepo;//for the number of user collaborate repos bar chart
+	private UserContriRepoChartVO statUserContributorRepo;
+	private UserSubscrRepoChartVO statUserSubscriberRepo;
+	private UserGistChartVO statUserGist;
+
+	//the following two charts must user there
+	private UserCompanyChartVO statCompanyUser;	//for how many users a company has bar chart
+	private UserEmailChartVO statUserEmail;
+
+	private UserFollowerChartVO statUserFolllowers;
 
 	/**
 	 * this method load all data from disk.
@@ -124,6 +128,7 @@ public class ReaderAndCount {
 
 		setUserValue();
 
+		initChart();
 
 	}
 
@@ -131,7 +136,7 @@ public class ReaderAndCount {
 	 * this method traverse all repo and user to generate the bar chart, pie chart and so on
 	 */
 	private void initChart() {
-
+		// TODO: 2016/3/26
 	}
 
 	/**
@@ -294,6 +299,9 @@ public class ReaderAndCount {
 	 * this method generate map from existing list
 	 */
 	private void generateMap(){
+		nameToRepo = new HashMap<>();
+		nameToUser = new HashMap<>();
+
 		StringBuilder builder = new StringBuilder();
 		for (RepoPO repoPO: nameOrderRepoPOs) {
 			builder.append(repoPO.getOwnerName());
