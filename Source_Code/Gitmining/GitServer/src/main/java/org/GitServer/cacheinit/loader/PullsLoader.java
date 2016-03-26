@@ -15,7 +15,8 @@ public class PullsLoader extends AbstractPullIssueCommitLoader{
 
 	@Override
 	protected String getURL(int page) {
-		return "http://gitmining.net/api/repository/"+fullname+"/issues?page="+page;
+		//return "https://api.github.com/repos/"+fullname+"/pulls"+APIconfig.getClientidandsecret()+"&page="+page;
+		return "http://gitmining.net/api/repository/"+fullname+"/pulls?page="+page;
 	}
 
 	

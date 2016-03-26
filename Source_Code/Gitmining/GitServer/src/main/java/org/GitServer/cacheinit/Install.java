@@ -105,32 +105,36 @@ public class Install {
 //		saver.excute(dataEncapsulation.getClass().getField("repoToContributor"));
 //		System.out.println("done with saving last loading object.");
 		
+//		initPull();
+//		System.out.println("done with initPull");
+//		saver.excute(dataEncapsulation.getClass().getField("repoToPull"));
+//		System.out.println("done with saving last loading object.");
+		
+//		initIssue();
+//		System.out.println("done with initIssue");
+//		saver.excute(dataEncapsulation.getClass().getField("repoToIssue"));
+//		System.out.println("done with saving last loading object.");
+		
+		
 		initCommit();
 		System.out.println("done with initCommit");
 		saver.excute(dataEncapsulation.getClass().getField("repoToCommit"));
 		System.out.println("done with saving last loading object.");
 		
-		initIssue();
-		System.out.println("done with initIssue");
-		saver.excute(dataEncapsulation.getClass().getField("repoToIssue"));
-		System.out.println("done with saving last loading object.");
 		
-		initPull();
-		System.out.println("done with initPull");
-		saver.excute(dataEncapsulation.getClass().getField("repoToPull"));
-		System.out.println("done with saving last loading object.");
+		
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs  must be set
 	 */
 	private void initCommit()throws JsonGenerationException, JsonMappingException, IOException{
-		dataEncapsulation.repoToCommit = new HashMap<String, List<String>>();
 		AbstractPullIssueCommitLoader loader = new CommitLoader();
+		int i = 1;
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			String fullname  = repoPO.getOwnerName()+"/"+repoPO.getName();
 			loader.setName(fullname);
 			dataEncapsulation.repoToCommit.put(fullname, loader.read());
-			System.out.println("done with reading out commits of : "+fullname);
+			System.out.println("done with reading out commits of : "+fullname+" " + (i++));
 		}
 		
 	}
@@ -138,26 +142,26 @@ public class Install {
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs a must be set
 	 */
 	private void initIssue()throws JsonGenerationException, JsonMappingException, IOException{
-		dataEncapsulation.repoToIssue = new HashMap<String, List<String>>();
 		AbstractPullIssueCommitLoader loader = new IssueLoader();
+		int i = 1;
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			String fullname  = repoPO.getOwnerName()+"/"+repoPO.getName();
 			loader.setName(fullname);
 			dataEncapsulation.repoToIssue.put(fullname, loader.read());
-			System.out.println("done with reading out issues of : "+fullname);
+			System.out.println("done with reading out issues of : "+fullname+" " + (i++));
 		}
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs  must be set
 	 */
 	private void initPull()throws JsonGenerationException, JsonMappingException, IOException{
-		dataEncapsulation.repoToPull = new HashMap<String, List<String>>();
 		AbstractPullIssueCommitLoader loader = new PullsLoader();
+		int i = 1;
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			String fullname  = repoPO.getOwnerName()+"/"+repoPO.getName();
 			loader.setName(fullname);
 			dataEncapsulation.repoToPull.put(fullname, loader.read());
-			System.out.println("done with reading out pulls of : "+fullname);
+			System.out.println("done with reading out pulls of : "+fullname+" " + (i++));
 		}
 	}
 	/**
@@ -301,16 +305,16 @@ public class Install {
 	private final int REPO_HASHSIZE = (int)(3300/0.75);
 	private final int USER_HASHSIZE = (int)(3000/0.75);
 	private void init(){
-		dataEncapsulation.userToOwnerRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
-		dataEncapsulation.userToCollabRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
-		dataEncapsulation.userToContribute = new HashMap<String, List<String>>(USER_HASHSIZE);
-		dataEncapsulation.userToSubscribeRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
-		
-		
-		dataEncapsulation.repoToContributor = new HashMap<String, List<String>>(REPO_HASHSIZE);
-		dataEncapsulation.repoToCollab = new HashMap<String, List<String>>(REPO_HASHSIZE);
-		dataEncapsulation.repoToSubscriber = new HashMap<String, List<String>>(REPO_HASHSIZE);
-		
+//		dataEncapsulation.userToOwnerRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
+//		dataEncapsulation.userToCollabRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
+//		dataEncapsulation.userToContribute = new HashMap<String, List<String>>(USER_HASHSIZE);
+//		dataEncapsulation.userToSubscribeRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
+//		
+//		
+//		dataEncapsulation.repoToContributor = new HashMap<String, List<String>>(REPO_HASHSIZE);
+//		dataEncapsulation.repoToCollab = new HashMap<String, List<String>>(REPO_HASHSIZE);
+//		dataEncapsulation.repoToSubscriber = new HashMap<String, List<String>>(REPO_HASHSIZE);
+
 		dataEncapsulation.repoToCommit = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		dataEncapsulation.repoToIssue = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		dataEncapsulation.repoToPull = new HashMap<String, List<String>>(REPO_HASHSIZE);
