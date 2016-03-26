@@ -26,7 +26,7 @@ import javafx.scene.layout.AnchorPane;
 public class HomeFunction extends GitPanel {
 	
 	@FXML AnchorPane anchorPane;
-    private static final double WIDTH = 600, HEIGHT = 480;
+    private static final double WIDTH = 800, HEIGHT = 480;
 
     private Timeline animation;
 
@@ -48,10 +48,10 @@ public class HomeFunction extends GitPanel {
         displayShelf.setPrefSize(WIDTH, HEIGHT);
 
          
-//        System.out.println(getCssFactory().getDisplayShelf());
-//        String displayShelfCss = getCssFactory().getDisplayShelf();
-//
-//        displayShelf.getStylesheets().add(displayShelfCss);       
+        System.out.println(getCssFactory().getDisplayShelf());
+        String displayShelfCss = getCssFactory().getDisplayShelf();
+
+        displayShelf.getStylesheets().add(displayShelfCss);       
 
         return displayShelf;
 
