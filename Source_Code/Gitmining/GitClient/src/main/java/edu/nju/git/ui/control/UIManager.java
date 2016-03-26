@@ -84,6 +84,10 @@ public final class UIManager {
 		root.getPanel().setChildren(function.getRoot());
 		function.getPanel().initPanel(bundle);
 	}
+	
+	public void changeFunction(Parent node) {
+		root.getPanel().setChildren(node);
+	}
 
 	/**
 	 * get current css factory

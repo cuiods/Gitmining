@@ -160,10 +160,10 @@ public class TaskPanel extends GitPanel {
 //					new KeyFrame(Duration.seconds(0.45), eh),
 //					new KeyFrame(Duration.seconds(0.6), new KeyValue(childPanel.opacityProperty(), 1))).play();
 			new Timeline(
-					new KeyFrame(Duration.seconds(0.40), new KeyValue(childPanel.translateXProperty(), -870)
+					new KeyFrame(Duration.seconds(1.00), new KeyValue(childPanel.translateXProperty(), -870)
 							,new KeyValue(childPanel.opacityProperty(), 0)),
-					new KeyFrame(Duration.seconds(0.42), eh),
-					new KeyFrame(Duration.seconds(0.45),new KeyValue(childPanel.opacityProperty(), 1)
+					new KeyFrame(Duration.seconds(1.00), eh),
+					new KeyFrame(Duration.seconds(2.00),new KeyValue(childPanel.opacityProperty(), 1)
 							,new KeyValue(childPanel.translateXProperty(), 0))
 					).play();
 		}

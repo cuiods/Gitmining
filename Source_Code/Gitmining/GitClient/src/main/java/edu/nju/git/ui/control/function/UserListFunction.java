@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.UserBriefVO;
-import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
-import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;

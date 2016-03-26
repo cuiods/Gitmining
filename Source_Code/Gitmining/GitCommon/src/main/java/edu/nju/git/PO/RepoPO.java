@@ -189,4 +189,17 @@ public class RepoPO implements Serializable{
 	public double getRepoValue() {
 		return num_stars*0.4 + num_forks*0.3 + num_subscribers*0.3;
 	}
+
+	@Override
+	public String toString() {
+		return "RepoPO [name=" + name + ", ownerName=" + ownerName + ", size=" + size + ", language=" + language
+				+ ", url=" + url + ", description=" + description + ", create_at=" + create_at + ", update_at="
+				+ update_at + ", num_stars=" + num_stars + ", num_forks=" + num_forks + ", num_subscribers="
+				+ num_subscribers + ", num_contributors=" + num_contributors + ", num_collaborators="
+				+ num_collaborators + ", num_commits=" + num_commits + ", num_pulls=" + num_pulls + ", num_issues="
+				+ num_issues + "]";
+	}
+	
+	
+	
 }
