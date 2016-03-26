@@ -84,10 +84,14 @@ public class DisplayShelf extends Region {
     private boolean localChange = false;
 
     private Rectangle clip = new Rectangle();
+    
+//    private boolean isFirst;
 
  
 
     public DisplayShelf(Image[] images) {
+    	
+//    	isFirst = true;
 
         // set clip
 
@@ -114,6 +118,7 @@ public class DisplayShelf extends Region {
             
 
             item.setOnMouseClicked((MouseEvent me) -> {
+//            	isFirst = false;
 
                 localChange = true;
 
@@ -126,6 +131,7 @@ public class DisplayShelf extends Region {
             });
 
         }
+        //initialize
 
         // setup scroll bar
 
@@ -184,7 +190,6 @@ public class DisplayShelf extends Region {
         });
 
         // update
-
         update();
 
     }
@@ -220,6 +225,11 @@ public class DisplayShelf extends Region {
  
 
     private void update() {
+    	
+//    	if(isFirst){
+//    		scrollBar.setValue(items.length/2);
+//    		shiftToCenter(items[items.length/2]);
+//    	}
 
         // move items to new homes in groups
 
