@@ -34,9 +34,9 @@ public class PerspectiveImage extends Parent {
 
      
 
-    public static final double WIDTH = 300;
+    public static final double WIDTH = 600;
 
-    public static final double HEIGHT = WIDTH + (WIDTH * REFLECTION_SIZE);
+    public static final double HEIGHT = WIDTH - (WIDTH * REFLECTION_SIZE);
 
      
 
