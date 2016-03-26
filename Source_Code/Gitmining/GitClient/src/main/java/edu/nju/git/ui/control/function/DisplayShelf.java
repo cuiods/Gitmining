@@ -102,14 +102,16 @@ public class DisplayShelf extends Region {
         // create items
 
         items = new PerspectiveImage[images.length];
-
+        
+        
         for (int i = 0; i < images.length; i++) {
 
             final PerspectiveImage item =
 
-                    items[i] = new PerspectiveImage(images[i]);
-
+                    items[i] = new PerspectiveImage(images[i]);          
+           
             final double index = i;
+            
 
             item.setOnMouseClicked((MouseEvent me) -> {
 
@@ -197,7 +199,7 @@ public class DisplayShelf extends Region {
 
         clip.setWidth(getWidth());
 
-        clip.setHeight(getHeight());
+        clip.setHeight(getHeight()+20);
 
         // keep centered centered
 

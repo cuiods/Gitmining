@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.GitPanel;
+import edu.nju.git.ui.control.UIManager;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -26,7 +27,7 @@ import javafx.scene.layout.AnchorPane;
 public class HomeFunction extends GitPanel {
 	
 	@FXML AnchorPane anchorPane;
-    private static final double WIDTH = 800, HEIGHT = 480;
+    private static final double WIDTH = 870, HEIGHT = 640;
 
     private Timeline animation;
 
@@ -47,8 +48,8 @@ public class HomeFunction extends GitPanel {
 
         displayShelf.setPrefSize(WIDTH, HEIGHT);
 
-         
-        System.out.println(getCssFactory().getDisplayShelf());
+        this.setCssFactory(UIManager.instance().getCssFactory());
+//        System.out.println(getCssFactory().getDisplayShelf());
         String displayShelfCss = getCssFactory().getDisplayShelf();
 
         displayShelf.getStylesheets().add(displayShelfCss);       
