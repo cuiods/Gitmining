@@ -1,18 +1,30 @@
 package edu.nju.git.ui.control.function;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.ui.control.GitPanel;
+import edu.nju.git.ui.control.UIManager;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 /**
  * RepoDetail controller
@@ -50,6 +62,7 @@ public class RepoDetailFunction extends GitPanel{
             @Override
             protected Void call() throws Exception {
                 initData(bundle);
+                initLink();
                 return null;
             }
         };
@@ -70,6 +83,16 @@ public class RepoDetailFunction extends GitPanel{
     public void initialize(URL location, ResourceBundle resources) {
         service = BlFactory.instance().getRepoBlService();
     }
+    
+    private void initLink() {
+		url.setOnMouseReleased(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_webView",new Object[]{url.toString().split("'")[1]});
+			}
+		});
+	}
     
     private void initData(Object[] bundle){
     	repoVO = service.getRepoBasicInfo((String)bundle[0],(String)bundle[1]);
