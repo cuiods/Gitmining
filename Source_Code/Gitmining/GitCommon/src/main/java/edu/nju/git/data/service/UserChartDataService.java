@@ -3,7 +3,7 @@ package edu.nju.git.data.service;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import edu.nju.git.VO.MyChartVO;
+import edu.nju.git.VO.chartvo.MyChartVO;
 /**
  * @author daixinyan
  * @date 2016-03-20

@@ -1,6 +1,6 @@
 package edu.nju.git.bl.service;
 
-import edu.nju.git.VO.MyChartVO;
+import edu.nju.git.VO.chartvo.MyChartVO;
 
 public interface RepoStatBlService {
 

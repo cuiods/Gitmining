@@ -6,7 +6,7 @@ import java.util.Map;
 
 import edu.nju.git.PO.RepoPO;
 import edu.nju.git.PO.UserPO;
-import edu.nju.git.VO.MyChartVO;
+import edu.nju.git.VO.chartvo.MyChartVO;
 import edu.nju.git.comparators.repocomparators.po.*;
 import edu.nju.git.comparators.usercomparators.po.UserPOFollowerComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPONameComparator;
@@ -115,15 +115,72 @@ public class ReaderAndCount {
 		this.repoToPull = allData.repoToPull;
 		this.repoToIssue = allData.repoToIssue;
 
+		//the 4 methods below can not reverse!!!!!!
 		setCounts();
 
 		sortList();
 
 		generateMap();
 
+		setUserValue();
 
 
+	}
 
+	/**
+	 * this method traverse all repo and user to generate the bar chart, pie chart and so on
+	 */
+	private void initChart() {
+
+	}
+
+	/**
+	 * this method set user value by traverse all user to his own and collaborate repos' value
+	 */
+	private void setUserValue() {
+		// need traverse all user to his own and collaborate repos' value
+		for (UserPO userPO : nameOrderUsers) {
+			double value = 0;
+			int repoCount = 0;
+			List<String> userOwnRepos = userToOwnerRepo.get(userPO.getName());
+			if (userOwnRepos != null) {
+				for (String repoName : userOwnRepos) {
+
+					RepoPO repo = nameToRepo.get(repoName);
+					if (repo != null) {
+						value += repo.getRepoValue();
+						repoCount ++;
+					}
+					else {
+						System.out.println("impossible!! no repo for "+repoName);
+					}
+				}
+			}
+			else {
+				System.out.println("no own repos map for user "+userPO.getName());
+			}
+
+			List<String> userCollaRepos = userToCollabRepo.get(userPO.getName());
+			if (userCollaRepos != null) {
+				for (String repoName : userCollaRepos) {
+
+					RepoPO repo = nameToRepo.get(repoName);
+					if (repo != null) {
+						value += repo.getRepoValue();
+						repoCount ++;
+					}
+					else {
+						System.out.println("impossible!! no repo for "+repoName);
+					}
+				}
+			}
+			else {
+				System.out.println("no collaborate repos map for user "+userPO.getName());
+			}
+
+			//set the mean of all repo value to user value
+			userPO.setUserValue(value/repoCount);
+		}
 	}
 
 	/**
@@ -134,6 +191,7 @@ public class ReaderAndCount {
 	 * </p>
 	 */
 	private void setCounts() {
+		// count repo
 		for (RepoPO repoPO : nameOrderRepoPOs) {
 			String repoID = repoPO.getOwnerName()+"/"+repoPO.getName();
 
@@ -142,7 +200,7 @@ public class ReaderAndCount {
 				repoPO.setNum_contrbutors(repoToContriList.size());
 			}
 			else { 		//there is no such repo in the map
-				System.out.println("no element for "+repoID);
+				System.out.println("no element in repo to contributor map for "+repoID);
 			}
 
 			List<String> repoToCollaList = repoToCollab.get(repoID);
@@ -150,12 +208,63 @@ public class ReaderAndCount {
 				repoPO.setNum_collaborators(repoToCollaList.size());
 			}
 			else {
-				System.out.println("no element for "+repoID);
+				System.out.println("no element for in repo to colla map for "+repoID);
 			}
 
-//			List<String> repoTo
-			// TODO: 2016/3/24
-		}
+			List<String> repoToCommitList = repoToCommit.get(repoID);
+			if (repoToCommitList != null) {
+				repoPO.setNum_commits(repoToCommitList.size());
+			}
+			else {
+				System.out.println("no element for in repo to commit map for "+repoID);
+			}
+
+			List<String> repoToIssueList = repoToIssue.get(repoID);
+			if (repoToIssueList != null) {
+				repoPO.setNum_commits(repoToIssueList.size());
+			}
+			else {
+				System.out.println("no element for in repo to issue map for "+repoID);
+			}
+
+			List<String> repoToPullList = repoToPull.get(repoID);
+			if (repoToPullList != null) {
+				repoPO.setNum_commits(repoToPullList.size());
+			}
+			else {
+				System.out.println("no element for in repo to pull map for "+repoID);
+			}
+		}	//end count repo
+
+		//count user
+		for (UserPO userPO : nameOrderUsers) {
+			String userID = userPO.getName();
+
+			List<String> userToSubscrList = userToSubscribeRepo.get(userID);
+			if (userToSubscrList != null) {
+				userPO.setNum_subscribe(userToSubscrList.size());
+			}
+			else {
+				System.out.println("no element for in user to subscri map for "+userID);
+			}
+
+			List<String> userToContriList = userToContribute.get(userID);
+			if (userToContriList != null) {
+				userPO.setNum_contribute(userToContriList.size());
+			}
+			else {
+				System.out.println("no element for in user to contribute map for "+userID);
+			}
+
+			List<String> userToCollaList = userToCollabRepo.get(userID);
+			if (userToCollaList != null) {
+				userPO.setNum_contribute(userToCollaList.size());
+			}
+			else {
+				System.out.println("no element for in user to collab map for "+userID);
+			}
+
+		}	//end count user
 	}
 
 	/**

@@ -1,6 +1,6 @@
 package org.GitServer.dataimpl;
 
-import edu.nju.git.VO.MyChartVO;
+import edu.nju.git.VO.chartvo.MyChartVO;
 import edu.nju.git.data.service.UserChartDataService;
 import org.GitServer.dataread.ReaderAndCount;
 

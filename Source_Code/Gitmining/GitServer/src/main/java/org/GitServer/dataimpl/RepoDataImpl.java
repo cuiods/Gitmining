@@ -92,7 +92,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 
 			return null;
 		}
-		else {
+		else {	//no repo matches given name
 			return null;
 		}
 	}
