@@ -65,8 +65,8 @@ public abstract class AbstractPullIssueCommitLoader {
 		List<String> listPerPage = new ArrayList<String>();
 		try {
 			URLConnection urlConnection =new URL(getURL(page)).openConnection();
-			urlConnection.setConnectTimeout(10000);
-			urlConnection.setReadTimeout(10000);
+			urlConnection.setConnectTimeout(5000);
+			urlConnection.setReadTimeout(50000);
 			JsonNode jsonNode = 
 					JacksonConfig.getObjectMapper().readTree(urlConnection.getInputStream());
 			for (JsonNode jsonNode2 : jsonNode) {
@@ -77,6 +77,9 @@ public abstract class AbstractPullIssueCommitLoader {
 				
 			}
 		}catch (SocketTimeoutException e) {
+			
+//			Install.errorCommitsReponame.add(fullname);
+			System.out.println("add one to error set  :"+fullname+"at page"+page);
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();

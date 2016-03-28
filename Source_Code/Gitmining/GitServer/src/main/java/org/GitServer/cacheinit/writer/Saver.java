@@ -58,4 +58,23 @@ public class Saver {
 			e.printStackTrace();
 		}
 	}
+	
+	public void excute(String fullpath,Object object){
+		
+		
+			try {
+				File file = new File(fullpath);
+				if(!file.exists()){
+					file.createNewFile();
+				}
+				ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+				outputStream.writeObject(object);
+				outputStream.flush();
+				outputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+		
+	}
 }

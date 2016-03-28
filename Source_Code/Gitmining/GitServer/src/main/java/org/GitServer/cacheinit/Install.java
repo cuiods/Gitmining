@@ -7,8 +7,10 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.GitServer.cacheinit.loader.CommitLoader;
 import org.GitServer.cacheinit.loader.IssueLoader;
@@ -69,6 +71,7 @@ public class Install {
 
 	private DataEncapsulation dataEncapsulation = new DataEncapsulation();
 	private Saver saver;
+//	public static Set<String> errorCommitsReponame ;
 	
 	public Install(String rootpath) throws 
          JsonGenerationException, JsonMappingException, 
@@ -115,12 +118,12 @@ public class Install {
 //		saver.excute(dataEncapsulation.getClass().getField("repoToIssue"));
 //		System.out.println("done with saving last loading object.");
 		
-		
+//		errorCommitsReponame = new HashSet<String>(50);
 		initCommit();
 		System.out.println("done with initCommit");
 		saver.excute(dataEncapsulation.getClass().getField("repoToCommit"));
 		System.out.println("done with saving last loading object.");
-		
+//		saver.excute("error/error.txt", errorCommitsReponame);
 		
 		
 	}
