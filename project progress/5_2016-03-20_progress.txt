@@ -1,0 +1,23 @@
+who:董本超
+when:第4周
+what:
+problem:
+todo:
+
+who：崔浩
+when：第4周
+what：
+problem：
+todo：
+
+who：戴新颜
+when：第4周
+what：完成了网上数据的读取，以及本地缓存的读取。
+problem：数据的显示方式的不确定性。
+todo：分析与实现统计数据显示策略。
+
+who: 袁阳阳
+when:第4周
+what：
+problem:
+todo:

@@ -1,0 +1,9 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+
+when:第5周
+
+what: 对项目规划的调整， 项目各层的协调。 github的API的数据不完整。
+
+how long:3h
+
+arrived solutions: 应当在这一周完成数据层基本逻辑与数据初始化，并提供给以上层调用测试。决定重新使用gitmingAPI初始化数据。
