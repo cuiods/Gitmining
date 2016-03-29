@@ -79,6 +79,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 
 	@Override
 	public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor) throws RemoteException {
+		// TODO: 2016/3/29
 		//return visitor.visit(this);
 		return null;
 	}
@@ -111,25 +112,5 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 	public List<String> getRepoSubscriber(String owner, String repoName) throws RemoteException {
 		return readerAndCount.getRepoToSubscriber().get(owner+"/"+repoName);
 	}
-/*
-	@Override
-	public List<BranchVO> getRepoBranch(String owner, String repoName) throws RemoteException {
-		return null;
-	}
 
-	@Override
-	public List<RepoBriefVO> getRepoFork(String owner, String repoName) throws RemoteException {
-		return null;
-	}
-
-	@Override
-	public List<CommitVO> getRepoCommit(String owner, String repoName) throws RemoteException {
-		return null;
-	}
-
-	@Override
-	public List<IssueVO> getRepoIssue(String owner, String repoName) throws RemoteException {
-		return null;
-	}
-*/
 }

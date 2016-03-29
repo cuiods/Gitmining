@@ -7,13 +7,13 @@ import java.util.Map;
  */
 public interface UserRadarService {
 
-    public double calRepoCount(int repoCount, Map allUser);
+    public double calRepoCount(int repoCount);
 
-    public double calGistCount(int gistCount, Map allUser);
+    public double calGistCount(int gistCount);
 
-    public double calFollower(int follower, Map allUser);
+    public double calFollower(int follower);
 
-    public double calActivity(double activity, Map allUser);
+    public double calActivity(double activity);
 
-    public double calUserValue(double userValue, Map allUser);
+    public double calUserValue(double userValue);
 }

@@ -8,13 +8,13 @@ import java.util.Map;
  */
 public interface RepoRadarService {
 
-    public double calSize(int sizeValue, Map allSize);
+    public double calSize(int sizeValue);
 
-    public double calFork(int forkValue, Map allFork);
+    public double calFork(int forkValue);
 
-    public double calPopular(double popularValue, Map allPopular);
+    public double calPopular(double popularValue);
 
-    public double calComplexity(double complexityValue, Map allComplexity);
+    public double calComplexity(double complexityValue);
 
-    public double calActivity(double activityValue, Map allActivity);
+    public double calActivity(double activityValue);
 }
