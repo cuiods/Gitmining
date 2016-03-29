@@ -106,6 +106,11 @@ public class IndexPanel extends GitPanel{
 		childcontroller.setChildren(region);
 	}
 	
+	public void appendFunction(ScreenShot parent) {
+		TaskPanel panel = (TaskPanel) childcontroller;
+		panel.appendFunction(parent);
+	}
+	
 	public void startBusy(){
 		
 	}

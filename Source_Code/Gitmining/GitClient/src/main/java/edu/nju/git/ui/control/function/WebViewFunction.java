@@ -3,6 +3,7 @@ package edu.nju.git.ui.control.function;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.GitPanel;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -15,7 +16,7 @@ import javafx.scene.web.WebView;
  * @author cuihao
  * @date 2016-03-26 16:04:05
  */
-public class WebViewFunction extends GitPanel{
+public class WebViewFunction extends FunctionPanel{
 
 	@FXML private VBox vbox;
 	private String url = "";
