@@ -1,0 +1,23 @@
+who:董本超
+when:第4周
+what:
+problem:
+todo:
+
+who：崔浩
+when：第4周
+what：
+problem：
+todo：
+
+who：戴新颜
+when：第4周
+what：完成迭代二体系结构设计与文档编写
+problem：项目架构过于单一， 设计难以切入实际， 给后期造成麻烦
+todo：数据层数据初始化模块结构设计与代码编写
+
+who: 袁阳阳
+when:第4周
+what：
+problem:
+todo:
