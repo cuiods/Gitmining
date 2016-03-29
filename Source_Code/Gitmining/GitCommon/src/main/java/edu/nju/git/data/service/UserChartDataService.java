@@ -35,7 +35,7 @@ public interface UserChartDataService extends Remote{
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statUserEmail();
+	public MyChartVO statUserEmail()throws RemoteException;
 	/**
 	 * <br/><b>precondition</b>：null
 	 * <br/><b>postcondition</b>：count all user's register time, 
@@ -43,7 +43,7 @@ public interface UserChartDataService extends Remote{
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statUserCreateTime();
+	public MyChartVO statUserCreateTime()throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>：null
@@ -52,7 +52,7 @@ public interface UserChartDataService extends Remote{
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statUserOwnRepo();
+	public MyChartVO statUserOwnRepo()throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>：can connect to the internet
@@ -61,25 +61,25 @@ public interface UserChartDataService extends Remote{
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statUserGist();
+	public MyChartVO statUserGist()throws RemoteException;
 
 	/**
 	 *
 	 * @return
      */
-	public MyChartVO statUserCollabRepo();
+	public MyChartVO statUserCollabRepo()throws RemoteException;
 
 	/**
 	 *
 	 * @return
      */
-	public MyChartVO statUserContriRepo();
+	public MyChartVO statUserContriRepo()throws RemoteException;
 
 	/**
 	 *
 	 * @return
      */
-	public MyChartVO statUserSubscrRepo();
+	public MyChartVO statUserSubscrRepo()throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>：can connect to the internet
@@ -88,7 +88,7 @@ public interface UserChartDataService extends Remote{
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statUserFolllowers();
+	public MyChartVO statUserFolllowers()throws RemoteException;
 
 
 }
