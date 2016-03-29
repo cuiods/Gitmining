@@ -18,8 +18,12 @@
 .specialButton:hover{
 	-fx-background-image:url("../imageIn.png");
 	-fx-border-radius:0;
+	-fx-border-width:0;
 }
 
 .specialButton{
+	
+	
 	-fx-border-radius:0;
+	-fx-border-width:0;
 }

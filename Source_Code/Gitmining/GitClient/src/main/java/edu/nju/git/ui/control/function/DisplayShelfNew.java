@@ -28,8 +28,8 @@ public class DisplayShelfNew extends Region{
     private final Interpolator INTERPOLATOR = Interpolator.EASE_BOTH;//动画的变化率
     
     private final double SPACING = 50;
-    private final double LEFT_OFFSET = -110;
-    private final double RIGHT_OFFSET = 110;
+    private final double LEFT_OFFSET = -200;
+    private final double RIGHT_OFFSET = 300;
     private final double SCALE_SMALL = 0.7;
     
     private PerspectiveImage[] items;
@@ -94,7 +94,6 @@ public class DisplayShelfNew extends Region{
     				//to jump ,has to finish aftertime
     			}else{
     				shiftToCenter(item);
-    				item.setCenter(true);
 //    				for(int j=0;j<images.length;j++){
 //    					if(buttons[j].getIndex()==buttonIndex){
 //    						buttons[j].setBackground(back_in);
@@ -254,11 +253,13 @@ public class DisplayShelfNew extends Region{
     }
     
     private void shiftToCenter(PerspectiveImage item){
+    	item.setCenter(true);
     	for(int i=0;i<items.length;i++){
     		if(buttons[i].getIndex()==buttonIndex){
     			buttons[i].setBackground(back_in);
     		}else{
     			buttons[i].setBackground(back_out);
+    			items[i].setCenter(false);
     		}
     	}
     	for (int i = 0; i < left.getChildren().size(); i++) {

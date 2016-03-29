@@ -1,6 +1,6 @@
 #displayshelf {
 
-    -fx-background-color: linear-gradient(to bottom, white 60, #FFFFFF 60.1%, white 100%);
+    -fx-background-color: linear-gradient(to bottom, white 60, #FFFFFF 30.1%, white 100%);
 
 }
 
@@ -12,29 +12,7 @@
 .button{
 	-fx-border-radius:0;
 	-fx-border-width:0;
-	-fx-background-image:url("../imageIn.png");
+	
 }
 
 
-#display-scrollbar {
-
-    -fx-base: #202020; 
-
-    -fx-background: rgba(255,255,255,0); 
-
-    -fx-border-color: rgba(255,255,255,0);
-
-}
-
-
-#display-scrollbar .track{
-	-fx-background-color: rgba(255,255,255,0);
-}
-
- 
-
-#display-scrollbar .thumb {
-
-    -fx-background-color: #707576;
-
-}

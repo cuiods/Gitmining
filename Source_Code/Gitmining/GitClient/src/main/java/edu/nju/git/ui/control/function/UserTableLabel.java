@@ -5,10 +5,13 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.ui.control.GitPanel;
+import edu.nju.git.ui.control.UIManager;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * One single item in the user table
@@ -41,6 +44,14 @@ public class UserTableLabel extends GitPanel{
 	private void initialize(){
 		if (userBriefVO != null) {
 			name.setText(userBriefVO.getLogin());
+			name.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent event) {
+					UIManager.instance().changeFunction("function_userDetail", new Object[]{name.getText()});					
+				}
+				
+			});
 			company.setText(userBriefVO.getCompany());
 			create.setText(userBriefVO.getCreate_at());
 			update.setText(userBriefVO.getUpdate_at());
