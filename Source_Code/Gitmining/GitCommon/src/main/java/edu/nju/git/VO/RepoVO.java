@@ -87,6 +87,7 @@ public class RepoVO implements Serializable{
 		StringBuilder builder = new StringBuilder();
 		builder.append("https://github.com/");
 		builder.append(ownerName);
+		builder.append("/");
 		builder.append(name);
 		return builder.toString();
 	}
