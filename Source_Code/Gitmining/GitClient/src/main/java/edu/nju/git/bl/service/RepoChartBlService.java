@@ -2,7 +2,9 @@ package edu.nju.git.bl.service;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
 
-public interface RepoStatBlService {
+import java.rmi.RemoteException;
+
+public interface RepoChartBlService {
 
 	/**
 	 * 
@@ -11,7 +13,7 @@ public interface RepoStatBlService {
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statLanguage();
+	public MyChartVO statLanguage() throws RemoteException;
 	/**
 	 * 
 	 * <br/><b>precondition</b>：can connect to the internet
@@ -19,7 +21,7 @@ public interface RepoStatBlService {
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statCreateTime();
+	public MyChartVO statCreateTime() throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>： can connect to the internet
@@ -28,7 +30,7 @@ public interface RepoStatBlService {
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statContributors();
+	public MyChartVO statContributors() throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>： can connect to the internet
@@ -37,7 +39,7 @@ public interface RepoStatBlService {
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statConllabrators();
+	public MyChartVO statCollaborators() throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>： connect to the internet
@@ -46,7 +48,7 @@ public interface RepoStatBlService {
 	 * @return
 	 * @date 2016-03-18
 	 */
-	public MyChartVO statSize();
+	public MyChartVO statSize() throws RemoteException;
 	/**
 	 * <br/><b>precondition</b>： connect to the internet
 	 * <br/><b>postcondition</b>：calculate all repo's subscribers, return the subscriber's number by group 
@@ -54,7 +56,7 @@ public interface RepoStatBlService {
 	 * @throws RemoteException
 	 * @date 2016-03-21
 	 */
-	public MyChartVO statSubscriber() ;
+	public MyChartVO statSubscriber() throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>： connect to the internet
@@ -63,7 +65,7 @@ public interface RepoStatBlService {
 	 * @throws RemoteException
 	 * @date 2016-03-21
 	 */
-	public MyChartVO statForks() ;
+	public MyChartVO statForks() throws RemoteException;
 	
 	/**
 	 * <br/><b>precondition</b>：null
@@ -72,5 +74,5 @@ public interface RepoStatBlService {
 	 * @throws RemoteException
 	 * @date 2016-03-21
 	 */
-	public MyChartVO statStars() ;
+	public MyChartVO statStars() throws RemoteException;
 }
