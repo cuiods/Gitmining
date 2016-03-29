@@ -30,8 +30,6 @@ public class UserPO implements Serializable{
 	private int public_repos;
 	private int public_gists;
 	private String avatar_url;
-
-
 	private int num_subscribe;
 	private int num_contribute;
 	private int num_collaborate;
@@ -185,6 +183,18 @@ public class UserPO implements Serializable{
 
 	public void setNum_collaborate(int num_collaborate) {
 		this.num_collaborate = num_collaborate;
+	}
+
+	public int getNum_collaborate() {
+		return num_collaborate;
+	}
+
+	public int getNum_contribute() {
+		return num_contribute;
+	}
+
+	public int getNum_subscribe() {
+		return num_subscribe;
 	}
 
 	public String getName() {
