@@ -4,7 +4,17 @@
 
 }
 
- 
+.button:hover{
+	-fx-border-radius:0;
+	-fx-border-width:0;
+}
+
+.button{
+	-fx-border-radius:0;
+	-fx-border-width:0;
+	-fx-background-image:url("../imageIn.png");
+}
+
 
 #display-scrollbar {
 

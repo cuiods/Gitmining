@@ -14,3 +14,12 @@
 	-fx-background-image:url("../button/exit1.png");
 	-fx-background-color:transparent;
 }
+
+.specialButton:hover{
+	-fx-background-image:url("../imageIn.png");
+	-fx-border-radius:0;
+}
+
+.specialButton{
+	-fx-border-radius:0;
+}

@@ -73,8 +73,10 @@ public class DisplayShelfNew extends Region{
     		final PerspectiveImage item = items[i] = new PerspectiveImage(images[i]);
     		final double index = i;
     		buttons[i] = new SpecialButton();
-    		buttons[i].setIndex(i);
     		buttons[i].setBackground(back_out);
+    		buttons[i].getStyleClass().add("specialButton");
+    		buttons[i].setIndex(i);
+    		
     		
     		item.setOnMouseClicked((MouseEvent me) ->{
     			//to do
@@ -109,11 +111,12 @@ public class DisplayShelfNew extends Region{
     		SpecialButton butt = buttons[i];
     		buttons[i].setOnMouseEntered((MouseEvent me) ->{
     			if (!localChange) {
-    				butt.setBackground(back_in);
+    				buttonIndex = butt.getIndex();
                     shiftToCenter(items[(int) Math.round(butt.getIndex())]);
-                    buttonIndex = butt.getIndex();
+                    
                 }
     		});
+    		
    
     	}
     	

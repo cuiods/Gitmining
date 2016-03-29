@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.StringReader;
-import edu.nju.git.ui.control.GitPanel;
+import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -24,10 +24,10 @@ import javafx.scene.layout.AnchorPane;
 
  */
 
-public class HomeFunction extends GitPanel {
+public class HomeFunction extends FunctionPanel {
 	
 	@FXML AnchorPane anchorPane;
-    private static final double WIDTH = 870, HEIGHT = 640;
+    private static final double WIDTH = 820, HEIGHT = 450;
 
     private Timeline animation;
 

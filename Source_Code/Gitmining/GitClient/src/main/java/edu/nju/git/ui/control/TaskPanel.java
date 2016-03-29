@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.control.function.DisplayShelf;
+
 import edu.nju.git.ui.control.function.HomeFunction;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
