@@ -6,11 +6,8 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-<<<<<<< HEAD
 
 import edu.nju.git.ui.control.function.HomeFunction;
-=======
->>>>>>> 75fcbb067419229342a535e82e8397b077a754f8
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
