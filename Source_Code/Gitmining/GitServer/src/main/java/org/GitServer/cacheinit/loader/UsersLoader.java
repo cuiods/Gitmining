@@ -33,6 +33,7 @@ public class UsersLoader {
 				UserPO po = userPOfactory.getPO();
 				System.out.println("done withing reading user: "+tempString);
 				if(po!=null){
+					System.out.println(po.toString());
 					pos.add(po);
 				}
 			}

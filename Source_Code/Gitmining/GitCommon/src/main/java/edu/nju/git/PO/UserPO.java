@@ -194,4 +194,15 @@ public class UserPO implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "UserPO [login=" + login + ", type=" + type + ", name=" + name + ", company=" + company + ", blog="
+				+ blog + ", location=" + location + ", email=" + email + ", bio=" + bio + ", followNum=" + followNum
+				+ ", followingNum=" + followingNum + ", create_at=" + create_at + ", update_at=" + update_at
+				+ ", public_repos=" + public_repos + ", public_gists=" + public_gists + ", avatar_url=" + avatar_url
+				+ ", num_subscribe=" + num_subscribe + ", num_contribute=" + num_contribute + ", num_collaborate="
+				+ num_collaborate + ", userValue=" + userValue + "]";
+	}
+	
 }

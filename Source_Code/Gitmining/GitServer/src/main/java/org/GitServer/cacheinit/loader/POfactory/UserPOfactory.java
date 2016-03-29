@@ -7,13 +7,16 @@ import edu.nju.git.type.OwnerType;
 
 public class UserPOfactory {
 	private UserMapReader itemHelper;
+	private String name;
 	public UserPOfactory() {
 		itemHelper = new UserMapReader();
 	}
 	public UserPOfactory(String name) {
+		this.name = name;
 		itemHelper = new UserMapReader(name);
 	}
 	public void setName(String name){
+		this.name = name;
 		itemHelper.setName(name);
 	}
 	/**
@@ -28,7 +31,7 @@ public class UserPOfactory {
 
 		UserPO user = new UserPO();
 		
-		
+		user.setName(name);
 		user.setLogin(itemHelper.getString("login"));
 		user.setType(OwnerType.getInstance(itemHelper.getString("type")));
 		user.setCompany(itemHelper.getString("company"));

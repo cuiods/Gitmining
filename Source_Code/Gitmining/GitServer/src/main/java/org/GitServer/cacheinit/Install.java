@@ -80,8 +80,13 @@ public class Install {
 		init();
 		saver = new Saver(dataEncapsulation, rootpath);
 		
-		readReposAndUsers();
-		System.out.println("done with repos and users");
+		List<String>  repos = new RepositoriesListReader().getNames();
+		System.out.println("done with reading "+repos.size()+"repos' names");
+		downloadUsers(repos);
+//		downloadRepos(repos);
+//		this.downloadReposAndUsers();
+//		readReposAndUsers();
+//		System.out.println("done with repos and users");
 		
 //		initUserToOwnerRepo();
 //		System.out.println("done with initUserToOwnerRepo");
@@ -119,10 +124,10 @@ public class Install {
 //		System.out.println("done with saving last loading object.");
 		
 //		errorCommitsReponame = new HashSet<String>(50);
-		initCommit();
-		System.out.println("done with initCommit");
-		saver.excute(dataEncapsulation.getClass().getField("repoToCommit"));
-		System.out.println("done with saving last loading object.");
+//		initCommit();
+//		System.out.println("done with initCommit");
+//		saver.excute(dataEncapsulation.getClass().getField("repoToCommit"));
+//		System.out.println("done with saving last loading object.");
 //		saver.excute("error/error.txt", errorCommitsReponame);
 		
 		
@@ -250,19 +255,16 @@ public class Install {
 	}
 	
 
-	/**
-	 * 
-	 */
-	private void downloadReposAndUsers() throws NoSuchFieldException, SecurityException{
-		List<String>  repos = new RepositoriesListReader().getNames();
-		System.out.println("done with reading "+repos.size()+"repos' names");
-		
+	
+	
+	private void downloadRepos(List<String>  repos ) throws NoSuchFieldException, SecurityException{
 		dataEncapsulation.nameOrderRepoPOs = new ReposLoader(repos).getPos();
 		System.out.println("done with reading repos");
 		saver.excute(dataEncapsulation.getClass().getField("nameOrderRepoPOs"));
 		System.out.println("done with saving last loading object.");
-		
-		
+	}
+	
+	private void downloadUsers(List<String>  repos ) throws NoSuchFieldException, SecurityException{
 		dataEncapsulation.nameOrderUserPOs = new UsersLoader(repos).getPos();
 		System.out.println("done whith reading users");
 		saver.excute(dataEncapsulation.getClass().getField("nameOrderUserPOs"));
