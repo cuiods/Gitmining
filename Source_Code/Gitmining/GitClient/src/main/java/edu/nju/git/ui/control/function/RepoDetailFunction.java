@@ -7,26 +7,17 @@ import edu.nju.git.VO.RepoVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.ui.control.FunctionPanel;
-import edu.nju.git.ui.control.GitPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 
 /**
  * RepoDetail controller
@@ -61,6 +52,7 @@ public class RepoDetailFunction extends FunctionPanel{
     private RepoVO repoVO;
     @Override
     public void initPanel(Object[] bundle) {
+    	repoVO = service.getRepoBasicInfo((String)bundle[0],(String)bundle[1]);
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -98,7 +90,6 @@ public class RepoDetailFunction extends FunctionPanel{
 	}
     
     private void initData(Object[] bundle){
-    	repoVO = service.getRepoBasicInfo((String)bundle[0],(String)bundle[1]);
         if (repoVO == null) return;
         
         generalName.setText(repoVO.getName());
@@ -116,5 +107,10 @@ public class RepoDetailFunction extends FunctionPanel{
         subcri.setText(repoVO.getNum_subscribers()+"");
         collab.setText(repoVO.getNum_collaboration()+"");
     }
+
+	@Override
+	public String getLocationName() {
+		return repoVO.getName();
+	}
 
 }

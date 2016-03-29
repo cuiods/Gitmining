@@ -7,39 +7,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="690.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.TaskPanel">
-	<center>
-		<BorderPane prefHeight="690.0" prefWidth="870.0" BorderPane.alignment="CENTER">
-			<center>
-				<BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
-			</center>
-			<top>
-				<BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="870.0" BorderPane.alignment="CENTER">
-					<left>
-						<HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-							<children>
-								<Button id="back" fx:id="back" onAction="#back" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-								<Button id="forward" fx:id="forward" onAction="#forward" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-							</children>
-						</HBox>
-					</left>
-					<center>
-						<Label id="top_label" minWidth="720.0" prefHeight="50.0" prefWidth="720.0" text="    Your position:" BorderPane.alignment="CENTER" />
-					</center>
-					<right>
-						<Button id="setting" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
-					</right>
-				</BorderPane>
-			</top>
-		</BorderPane>
-	</center>
-	<left>
-		<VBox id="leftbar" fx:id="leftbar" minHeight="690.0" prefHeight="690.0" prefWidth="150.0">
-			<children>
-				<Button fx:id="nav_home" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Home" />
-				<Button fx:id="nav_user" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="User" />
-				<Button fx:id="nav_repo" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repository" />
-			</children>
-		</VBox>
-	</left>
+<BorderPane prefHeight="690.0" prefWidth="1020.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.TaskPanel">
+  <center>
+    <BorderPane prefHeight="690.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+      <center>
+        <BorderPane fx:id="childPanel" prefHeight="640.0" prefWidth="870.0" BorderPane.alignment="CENTER" />
+      </center>
+      <top>
+        <BorderPane fx:id="topbar" prefHeight="50.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+          <center>
+            <Label id="top_label" fx:id="location" minWidth="620.0" prefHeight="50.0" prefWidth="620.0" text="" BorderPane.alignment="CENTER" />
+          </center>
+          <left>
+            <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <children>
+                <Button fx:id="back" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="50.0" />
+                <Button fx:id="forward" mnemonicParsing="false" onAction="#forward" prefHeight="50.0" prefWidth="50.0" />
+                <Label id="left_label" alignment="CENTER" prefHeight="50.0" prefWidth="100.0" text="Your position:" />
+              </children>
+            </HBox>
+          </left>
+          <right>
+            <Button id="setting" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+          </right>
+        </BorderPane>
+      </top>
+    </BorderPane>
+  </center>
+  <left>
+    <VBox fx:id="leftbar" minHeight="690.0" prefHeight="690.0" prefWidth="150.0">
+      <children>
+        <Button fx:id="nav_home" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Home" />
+        <Button fx:id="nav_user" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="User" />
+        <Button fx:id="nav_repo" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Repository" />
+      </children>
+    </VBox>
+  </left>
 </BorderPane>

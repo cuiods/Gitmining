@@ -109,10 +109,7 @@ public class IndexPanel extends GitPanel{
 	public void appendFunction(ScreenShot parent) {
 		TaskPanel panel = (TaskPanel) childcontroller;
 		panel.appendFunction(parent);
-	}
-	
-	public void startBusy(){
-		
+		panel.updateLocation();
 	}
 
 	@Override

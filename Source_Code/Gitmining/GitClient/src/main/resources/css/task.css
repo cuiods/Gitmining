@@ -57,6 +57,11 @@
 	-fx-text-fill:#ffffff;
 }
 
+#left_label{
+	-fx-background-image:url("../topbar/middle.png");
+	-fx-text-fill:#ffffff;
+}
+
 #back{
 	-fx-background-image:url("../topbar/back.png");
 	-fx-background-color:transparent;

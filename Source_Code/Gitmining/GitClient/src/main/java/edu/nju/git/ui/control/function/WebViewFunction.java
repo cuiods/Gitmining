@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.ui.control.FunctionPanel;
-import edu.nju.git.ui.control.GitPanel;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
@@ -40,6 +39,11 @@ public class WebViewFunction extends FunctionPanel{
 
 	@Override
 	public void removeChild() {
+	}
+
+	@Override
+	public String getLocationName() {
+		return "web view";
 	}
 
 }

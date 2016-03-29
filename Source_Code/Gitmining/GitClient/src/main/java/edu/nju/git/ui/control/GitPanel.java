@@ -4,7 +4,6 @@ import edu.nju.git.ui.css.CSSFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.layout.Region;
 
 /**
  * <h1>Controller of a parent element read from {@link FXMLLoader}</h1>

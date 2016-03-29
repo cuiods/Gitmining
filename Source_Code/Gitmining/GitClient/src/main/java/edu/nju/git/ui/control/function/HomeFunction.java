@@ -91,4 +91,10 @@ public class HomeFunction extends FunctionPanel {
 		
 	}
 
+
+	@Override
+	public String getLocationName() {
+		return "Home";
+	}
+
 }
