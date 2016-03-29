@@ -136,7 +136,51 @@ public class ReaderAndCount {
 	 * this method traverse all repo and user to generate the bar chart, pie chart and so on
 	 */
 	private void initChart() {
-		// TODO: 2016/3/26
+		repoCreateTime = new RepoCreateTimeChartVO();
+		repoSize = new RepoSizeChartVO();
+		forkCount = new RepoForkChartVO();
+		starCount = new RepoStarChartVO();
+		repoContributors = new RepoContriChartVO();
+		repoCollabrators = new RepoCollaChartVO();
+		repoSubscribers = new RepoSubscChartVO();language = new RepoLanguChartVO();
+
+		statUserType = new UserTypeChartVO();
+		statUserCreateTime = new UserCreateTimeChartVO();
+		statUserOwnRepo = new UserOwnRepoChartVO();
+		statUserCollaborateRepo = new UserCollaRepoChartVO();
+		statUserContributorRepo = new UserContriRepoChartVO();
+		statUserSubscriberRepo = new UserSubscrRepoChartVO();
+		statUserGist = new UserGistChartVO();
+		statUserFolllowers = new UserFollowerChartVO();
+		statUserEmail = new UserEmailChartVO();
+		statCompanyUser = new UserCompanyChartVO();
+
+		for (RepoPO repo : nameOrderRepoPOs) {
+			repoCreateTime.increase(repo.getCreate_at().substring(0,4));//get the year of create time
+			repoSize.increase(repo.getSize());
+			forkCount.increase(repo.getNum_forks());
+			starCount.increase(repo.getNum_stars());
+			repoContributors.increase(repo.getNum_contrbutors());
+			repoCollabrators.increase(repo.getNum_collaborators());
+			repoSubscribers.increase(repo.getNum_subscribers());
+		}
+
+		for (UserPO user : nameOrderUsers) {
+			statUserType.increase(user.getType());
+			statUserCreateTime.increase(user.getCreate_at().substring(0,4));
+			statUserOwnRepo.increase(user.getPublic_repos());
+			statUserCollaborateRepo.increase(user.getNum_collaborate());
+			statUserContributorRepo.increase(user.getNum_contribute());
+			statUserSubscriberRepo.increase(user.getNum_subscribe());
+			statUserGist.increase(user.getPublic_gists());
+			statUserFolllowers.increase(user.getFollowNum());
+			statUserEmail.increase(user.getEmail());
+			statCompanyUser.increase(user.getCompany());
+		}
+
+		//attention! the two method can not delete!
+		statUserEmail.sortAndSetArray();
+		statCompanyUser.sortAndSetArray();
 	}
 
 	/**

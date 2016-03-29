@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.control.function.DisplayShelf;
-import edu.nju.git.ui.control.function.HomeFunction;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -16,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -80,6 +79,9 @@ public class TaskPanel extends GitPanel {
 	 */
 	@FXML
 	private VBox leftbar;
+	@FXML
+	private Label location;
+	
 
 	/**
 	 * sub button of {@link #nav_user}
@@ -94,9 +96,8 @@ public class TaskPanel extends GitPanel {
 	/**
 	 * a list to store past pages.
 	 */
-	private ArrayList<Parent> functions = new ArrayList<>(20);
+	private ArrayList<ScreenShot> functions = new ArrayList<>(20);
 	private int index = 0;
-	private boolean isBack = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -111,7 +112,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_default");
 		Parent child = shot.getRoot();
 		setChildren(child);
-		functions.add(shot.getRoot());
+		functions.add(shot);
 		initHome();
 	}
 	
@@ -120,6 +121,8 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_home");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
 		setChildren(shot.getRoot());
+		functions.add(shot);
+		updateLocation();
 	}
 	
 	private void initUser() {
@@ -127,7 +130,8 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
-		functions.add(shot.getRoot());
+		functions.add(shot);
+		updateLocation();
 	}
 
 	private void initRepo() {
@@ -135,11 +139,13 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
-		functions.add(shot.getRoot());
+		functions.add(shot);
+		updateLocation();
 	}
 
 	@Override
 	public void setChildren(Parent panel) {
+		
 		EventHandler<ActionEvent> eh = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -160,10 +166,10 @@ public class TaskPanel extends GitPanel {
 //					new KeyFrame(Duration.seconds(0.45), eh),
 //					new KeyFrame(Duration.seconds(0.6), new KeyValue(childPanel.opacityProperty(), 1))).play();
 			new Timeline(
-					new KeyFrame(Duration.seconds(1.00), new KeyValue(childPanel.translateXProperty(), -870)
+					new KeyFrame(Duration.seconds(0.5), new KeyValue(childPanel.translateXProperty(), -870)
 							,new KeyValue(childPanel.opacityProperty(), 0)),
-					new KeyFrame(Duration.seconds(1.00), eh),
-					new KeyFrame(Duration.seconds(2.00),new KeyValue(childPanel.opacityProperty(), 1)
+					new KeyFrame(Duration.seconds(0.5), eh),
+					new KeyFrame(Duration.seconds(1.00),new KeyValue(childPanel.opacityProperty(), 1)
 							,new KeyValue(childPanel.translateXProperty(), 0))
 					).play();
 		}
@@ -177,12 +183,13 @@ public class TaskPanel extends GitPanel {
 	/**
 	 * get back to lask function.
 	 */
-	public void back(ActionEvent e) {
+	@FXML
+	protected void back() {
 		if (functions.size() >= 2 && index >= 1) {
 			index--;
-			setChildren(functions.get(index));
-			isBack = true;
+			setChildren(functions.get(index).getRoot());
 		}
+		updateLocation(index);
 	}
 
 	/**
@@ -190,11 +197,48 @@ public class TaskPanel extends GitPanel {
 	 * 
 	 * @param e
 	 */
-	public void forward(ActionEvent e) {
+	@FXML
+	protected void forward() {
 		if (functions.size() > index + 1) {
 			index++;
-			setChildren(functions.get(index));
+			setChildren(functions.get(index).getRoot());
 		}
+		updateLocation(index);
+	}
+	
+	/**
+	 * set navigation bar's location
+	 */
+	public void setCurrentLocation(String location){
+		this.location.setText(location);
+	}
+	public void updateLocation(){
+		String result = "";
+		for(ScreenShot shot:functions) {
+			FunctionPanel panel = (FunctionPanel) shot.getPanel();
+			if(result.isEmpty()){
+				result += panel.getLocationName();
+			}else{
+				result += "->" + panel.getLocationName();
+			}
+		}
+		setCurrentLocation(result);
+	}
+	public void updateLocation(int index){
+		String result = "";
+		for(int i = 0; i <= index; i++) {
+			ScreenShot shot = functions.get(i);
+			FunctionPanel panel = (FunctionPanel) shot.getPanel();
+			if(result.isEmpty()){
+				result += panel.getLocationName();
+			}else{
+				result += "->" + panel.getLocationName();
+			}
+		}
+		setCurrentLocation(result);
+	}
+	public String getLocation(){
+		return location.getText();
 	}
 
 	/**
@@ -203,7 +247,11 @@ public class TaskPanel extends GitPanel {
 	 * @param shot
 	 */
 	public void appendFunction(ScreenShot shot) {
-		functions.add(shot.getRoot());
+//		for(int i = index+1;  i < functions.size(); i++){
+//			functions.remove(index);
+//		}
+		index = functions.size();
+		functions.add(shot);
 	}
 
 	/**
@@ -211,6 +259,7 @@ public class TaskPanel extends GitPanel {
 	 */
 	public void clearFunction() {
 		functions.clear();
+		index = 0;
 	}
 
 	private void setListener() {

@@ -39,42 +39,42 @@ public class UserChartDataImpl extends UnicastRemoteObject implements UserChartD
     }
 
     @Override
-    public MyChartVO statUserEmail() {
+    public MyChartVO statUserEmail() throws RemoteException{
         return readerAndCount.getStatUserEmail();
     }
 
     @Override
-    public MyChartVO statUserCreateTime() {
+    public MyChartVO statUserCreateTime()throws RemoteException {
         return readerAndCount.getStatUserCreateTime();
     }
 
     @Override
-    public MyChartVO statUserOwnRepo() {
+    public MyChartVO statUserOwnRepo()throws RemoteException {
         return readerAndCount.getStatUserOwnRepo();
     }
 
     @Override
-    public MyChartVO statUserGist() {
+    public MyChartVO statUserGist()throws RemoteException {
         return readerAndCount.getStatUserGist();
     }
 
     @Override
-    public MyChartVO statUserCollabRepo() {
+    public MyChartVO statUserCollabRepo()throws RemoteException {
         return readerAndCount.getStatUserCollaborateRepo();
     }
 
     @Override
-    public MyChartVO statUserContriRepo() {
+    public MyChartVO statUserContriRepo()throws RemoteException {
         return readerAndCount.getStatUserContributorRepo();
     }
 
     @Override
-    public MyChartVO statUserSubscrRepo() {
+    public MyChartVO statUserSubscrRepo()throws RemoteException {
         return readerAndCount.getStatUserSubscriberRepo();
     }
 
     @Override
-    public MyChartVO statUserFolllowers() {
+    public MyChartVO statUserFolllowers()throws RemoteException {
         return readerAndCount.getStatUserFolllowers();
     }
 }

@@ -14,7 +14,7 @@ import javafx.scene.Parent;
  * @date 2016-03-04 23:20:55
  *
  */
-public class FunctionPanel extends GitPanel{
+public abstract class FunctionPanel extends GitPanel{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -38,4 +38,6 @@ public class FunctionPanel extends GitPanel{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	abstract public String getLocationName();
 }

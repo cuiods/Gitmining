@@ -12,7 +12,7 @@ import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.control.GitPanel;
+import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
  * @author cuihao
  * @date 2016-03-23 20:29:52
  */
-public class RepoListFunction extends GitPanel{
+public class RepoListFunction extends FunctionPanel{
 
 	@FXML private VBox listBox;
 	@FXML private ScrollPane scroll;
@@ -206,6 +206,11 @@ public class RepoListFunction extends GitPanel{
 	
 	@Override
 	public void removeChild() {
+	}
+
+	@Override
+	public String getLocationName() {
+		return "Repository";
 	}
 
 }
