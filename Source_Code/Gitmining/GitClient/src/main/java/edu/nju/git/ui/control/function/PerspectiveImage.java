@@ -45,6 +45,8 @@ public class PerspectiveImage extends Parent {
     private static final double BACK = WIDTH / 10;
 
     private PerspectiveTransform transform = new PerspectiveTransform();//透视变换，2d图片出3d效果
+    
+    private boolean isCenter=false;
 
     /**
 
@@ -110,6 +112,14 @@ public class PerspectiveImage extends Parent {
 
         return angle;
 
+    }
+    
+    public final boolean getIsCenter(){
+    	return isCenter;
+    }
+    
+    public final void setCenter(boolean isCenter){
+    	this.isCenter=isCenter;
     }
 
  

@@ -44,7 +44,7 @@ public class HomeFunction extends GitPanel {
        
         // create display shelf
 
-        DisplayShelf displayShelf = new DisplayShelf(images);
+        DisplayShelfNew displayShelf = new DisplayShelfNew(images);
 
         displayShelf.setPrefSize(WIDTH, HEIGHT);
 

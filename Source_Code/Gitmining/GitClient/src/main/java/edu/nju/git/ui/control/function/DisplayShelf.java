@@ -2,37 +2,20 @@ package edu.nju.git.ui.control.function;
 /* ....Show License.... */
 
 import javafx.animation.Interpolator;
-
 import javafx.animation.KeyFrame;
-
 import javafx.animation.KeyValue;
-
 import javafx.animation.Timeline;
-
-import javafx.beans.InvalidationListener;
-
 import javafx.beans.Observable;
-
 import javafx.collections.ObservableList;
-
-import javafx.event.EventHandler;
-
 import javafx.scene.Group;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
-
 import javafx.scene.image.Image;
-
 import javafx.scene.input.KeyCode;
-
 import javafx.scene.input.KeyEvent;
-
 import javafx.scene.input.MouseEvent;
-
 import javafx.scene.layout.Region;
-
 import javafx.scene.shape.Rectangle;
-
 import javafx.util.Duration;
 
  
@@ -80,6 +63,8 @@ public class DisplayShelf extends Region {
     private Timeline timeline;
 
     private ScrollBar scrollBar = new ScrollBar();
+    private Button buttons[]; 
+    private Button indexButton = new Button();
 
     private boolean localChange = false;
 
@@ -106,6 +91,7 @@ public class DisplayShelf extends Region {
         // create items
 
         items = new PerspectiveImage[images.length];
+        buttons = new Button[images.length];
         
         
         for (int i = 0; i < images.length; i++) {
@@ -123,6 +109,7 @@ public class DisplayShelf extends Region {
                 localChange = true;
 
                 scrollBar.setValue(index);
+                indexButton = buttons[(int)(index)];
 
                 localChange = false;
 
