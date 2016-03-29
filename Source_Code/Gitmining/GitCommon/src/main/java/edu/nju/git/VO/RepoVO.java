@@ -84,7 +84,11 @@ public class RepoVO implements Serializable{
 		this.ownerName = ownerName;
 	}
 	public String getUrl() {
-		return url;
+		StringBuilder builder = new StringBuilder();
+		builder.append("https://github.com/");
+		builder.append(ownerName);
+		builder.append(name);
+		return builder.toString();
 	}
 	public void setUrl(String url) {
 		this.url = url;

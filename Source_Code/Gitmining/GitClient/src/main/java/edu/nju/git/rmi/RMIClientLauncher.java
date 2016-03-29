@@ -1,6 +1,6 @@
 package edu.nju.git.rmi;
 
-public class RMIClientTest {
+public class RMIClientLauncher {
 
 	public static void main(String[] args){
 //		try{
