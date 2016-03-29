@@ -35,12 +35,12 @@ public class UserListFunction extends GitPanel{
 	private boolean isContributor;	
 	
 	private List<UserBriefVO> datalist;
-	private UserBlService service;
+	private UserBlService userblServive;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setCssFactory(UIManager.instance().getCssFactory());
-		service = BlFactory.instance().getUserBlService();
+		userblServive = BlFactory.instance().getUserBlService();
 		initialGeneral();
 		listBox.toFront();
 		
@@ -50,7 +50,7 @@ public class UserListFunction extends GitPanel{
 	protected void next() {
 		List<UserBriefVO> data = null;
 		try {
-			data = service.nextPage();
+			data = userblServive.nextPage();
 		} catch (PageOutOfBoundException e) {
 			return;
 		}
@@ -66,7 +66,7 @@ public class UserListFunction extends GitPanel{
 		}
 		List<UserBriefVO> data = null;
 		try {
-			data = service.previousPage();
+			data = userblServive.previousPage();
 		} catch (PageOutOfBoundException e) {
 			return;
 		}
@@ -78,8 +78,8 @@ public class UserListFunction extends GitPanel{
 	@FXML
 	protected void search(){
 		String text = search.getText();
-		List<UserBriefVO> list = service.getSearchResult(text);
-		list = service.getShownUserList();
+		List<UserBriefVO> list = userblServive.getSearchResult(text);
+		list = userblServive.getShownUserList();
 		if (list!=null) {
 			datalist = list;
 			updateList(datalist);
@@ -100,8 +100,8 @@ public class UserListFunction extends GitPanel{
 		btn_following.setText("Following");
 		btn_followed.setText("Followed");
 		btn_repo.setText("Repositorys"+(isStar?"↑":"↓"));
-		List<UserBriefVO> list = service.sort(SortType.REPO_NUM,isStar=!isStar);
-		list = service.getShownUserList();
+		List<UserBriefVO> list = userblServive.sort(SortType.REPO_NUM,isStar=!isStar);
+		list = userblServive.getShownUserList();
 		if (list!=null) {
 			datalist = list;
 			updateList(datalist);
@@ -114,8 +114,8 @@ public class UserListFunction extends GitPanel{
 		btn_following.setText("Following"+(isFork?"↑":"↓"));
 		btn_followed.setText("Followed");
 		btn_repo.setText("Repositorys");
-		List<UserBriefVO> list = service.sort(SortType.FOLLOWER_NUM,isFork=!isFork);
-		list = service.getShownUserList();
+		List<UserBriefVO> list = userblServive.sort(SortType.FOLLOWER_NUM,isFork=!isFork);
+		list = userblServive.getShownUserList();
 		if (list!=null) {
 			datalist = list;
 			updateList(datalist);
@@ -128,8 +128,8 @@ public class UserListFunction extends GitPanel{
 		btn_following.setText("Following");
 		btn_followed.setText("Followed"+(isContributor?"↑":"↓"));
 		btn_repo.setText("Repositorys");
-		List<UserBriefVO> list = service.sort(SortType.FOLLOWER_NUM,isContributor=!isContributor);
-		list = service.getShownUserList();
+		List<UserBriefVO> list = userblServive.sort(SortType.FOLLOWER_NUM,isContributor=!isContributor);
+		list = userblServive.getShownUserList();
 		if (list!=null) {
 			datalist = list;
 			updateList(datalist);
@@ -160,10 +160,10 @@ public class UserListFunction extends GitPanel{
 	 * initilaize at the beginning
 	 */
 	private void initialGeneral(){
-		datalist = service.getSearchResult("");
-		if (service.getTotalPage()>=1) {
+		datalist = userblServive.getSearchResult("");
+		if (userblServive.getTotalPage()>=1) {
 			try {
-				datalist = service.jumpToPage(1);
+				datalist = userblServive.jumpToPage(1);
 			} catch (PageOutOfBoundException e) {
 				e.printStackTrace();
 			}
@@ -173,7 +173,7 @@ public class UserListFunction extends GitPanel{
 		}
 		for(Iterator<UserBriefVO> iterator = datalist.iterator(); iterator.hasNext();){
 			UserBriefVO UserBriefVO = iterator.next();
-			ScreenShot pane = ConfigReader.readParentPanel("UsertableLabel");
+			ScreenShot pane = ConfigReader.readParentPanel("UserTableLabel");
 			pane.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoTableLabel());
 			UserTableLabel label = (UserTableLabel) pane.getPanel();
 			label.setUserBriefVO(UserBriefVO);
