@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoDetailFunction">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.RepoDetailFunction">
   <children>
     <AnchorPane layoutX="-4.0" layoutY="0.0">
       <children>
@@ -24,15 +24,18 @@
         </AnchorPane>
         <AnchorPane layoutX="25.0" layoutY="295.0" prefHeight="300.0" prefWidth="250.0">
           <children>
-            <Label alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="33.0" prefWidth="159.0" text="Label" />
-            <ScrollPane layoutY="40.0" prefHeight="253.0" prefWidth="220.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+            <Label alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="33.0" prefWidth="150.0" text="Related Repositorys" />
+            <ScrollPane layoutY="40.0" prefHeight="253.0" prefWidth="220.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+              <content>
+                <VBox fx:id="vbox" prefHeight="-1.0" prefWidth="218.0" />
+              </content>
+            </ScrollPane>
           </children>
         </AnchorPane>
         <Label fx:id="generalName" alignment="CENTER" prefHeight="38.0" prefWidth="145.0" text="name" AnchorPane.leftAnchor="25.0" />
         <AnchorPane layoutY="46.0" prefHeight="231.0" prefWidth="820.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
           <children>
             <Hyperlink fx:id="name" layoutX="20.0" layoutY="14.0" prefHeight="30.0" prefWidth="201.0" text="Loading" />
-            <Label fx:id="description" alignment="TOP_LEFT" layoutX="20.0" layoutY="53.0" prefHeight="107.0" prefWidth="373.0" text="Loading" />
             <Label fx:id="create" layoutX="20.0" layoutY="176.0" prefHeight="15.0" prefWidth="162.0" text="Loading" />
             <Label fx:id="update" layoutX="20.0" layoutY="202.0" prefHeight="15.0" prefWidth="162.0" text="Loading" />
             <Label alignment="CENTER" layoutX="417.0" layoutY="53.0" prefHeight="32.0" prefWidth="49.0" text="Owner" />
@@ -43,6 +46,7 @@
             <Label fx:id="language" layoutX="492.0" layoutY="144.0" prefHeight="32.0" prefWidth="88.0" text="Loading" />
             <Label alignment="CENTER" layoutX="414.0" layoutY="186.0" prefHeight="32.0" prefWidth="41.0" text="size" />
             <Label fx:id="size" layoutX="492.0" layoutY="186.0" prefHeight="32.0" prefWidth="88.0" text="Loading" />
+            <TextArea fx:id="description" editable="false" layoutX="20.0" layoutY="53.0" prefHeight="109.00009999999747" prefWidth="319.0" text="Loading" wrapText="true" />
           </children>
         </AnchorPane>
       </children>

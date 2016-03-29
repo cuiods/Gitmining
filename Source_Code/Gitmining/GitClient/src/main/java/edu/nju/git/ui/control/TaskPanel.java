@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
-import edu.nju.git.ui.control.function.DisplayShelf;
-import edu.nju.git.ui.control.function.HomeFunction;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -94,9 +92,8 @@ public class TaskPanel extends GitPanel {
 	/**
 	 * a list to store past pages.
 	 */
-	private ArrayList<Parent> functions = new ArrayList<>(20);
+	private ArrayList<ScreenShot> functions = new ArrayList<>(20);
 	private int index = 0;
-	private boolean isBack = false;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -111,7 +108,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_default");
 		Parent child = shot.getRoot();
 		setChildren(child);
-		functions.add(shot.getRoot());
+		functions.add(shot);
 		initHome();
 	}
 	
@@ -127,7 +124,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_userList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
-		functions.add(shot.getRoot());
+		functions.add(shot);
 	}
 
 	private void initRepo() {
@@ -135,7 +132,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoList");
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
-		functions.add(shot.getRoot());
+		functions.add(shot);
 	}
 
 	@Override
@@ -177,11 +174,11 @@ public class TaskPanel extends GitPanel {
 	/**
 	 * get back to lask function.
 	 */
-	public void back(ActionEvent e) {
+	@FXML
+	protected void back() {
 		if (functions.size() >= 2 && index >= 1) {
 			index--;
-			setChildren(functions.get(index));
-			isBack = true;
+			setChildren(functions.get(index).getRoot());
 		}
 	}
 
@@ -190,10 +187,11 @@ public class TaskPanel extends GitPanel {
 	 * 
 	 * @param e
 	 */
-	public void forward(ActionEvent e) {
+	@FXML
+	protected void forward() {
 		if (functions.size() > index + 1) {
 			index++;
-			setChildren(functions.get(index));
+			setChildren(functions.get(index).getRoot());
 		}
 	}
 
@@ -203,7 +201,8 @@ public class TaskPanel extends GitPanel {
 	 * @param shot
 	 */
 	public void appendFunction(ScreenShot shot) {
-		functions.add(shot.getRoot());
+		index = functions.size();
+		functions.add(shot);
 	}
 
 	/**
@@ -211,6 +210,7 @@ public class TaskPanel extends GitPanel {
 	 */
 	public void clearFunction() {
 		functions.clear();
+		index = 0;
 	}
 
 	private void setListener() {

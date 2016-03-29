@@ -18,8 +18,8 @@
 					<left>
 						<HBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
 							<children>
-								<Button id="back" fx:id="back" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
-								<Button id="forward" fx:id="forward" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+								<Button id="back" fx:id="back" onAction="#back" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
+								<Button id="forward" fx:id="forward" onAction="#forward" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" />
 							</children>
 						</HBox>
 					</left>
