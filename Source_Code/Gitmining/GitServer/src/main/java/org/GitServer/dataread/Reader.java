@@ -1,6 +1,10 @@
 package org.GitServer.dataread;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Field;
 
 import org.GitServer.cacheinit.DataEncapsulation;
@@ -13,7 +17,6 @@ import org.GitServer.cacheinit.DataEncapsulation;
  * @author daixinyan
  * @date 2016-03-23
  */
-@SuppressWarnings("unused")
 public class Reader {
 
 	private final String dir = "cache/";
@@ -22,8 +25,10 @@ public class Reader {
 	 * @see org.GitServer.cacheinit.Install 
 	 */
 	public Reader(){}
+	
+	private DataEncapsulation dataEncapsulation;
 	public DataEncapsulation excute(){
-		DataEncapsulation dataEncapsulation = new DataEncapsulation();
+		dataEncapsulation = new DataEncapsulation();
 		try {
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
@@ -33,6 +38,7 @@ public class Reader {
 				field.set(dataEncapsulation, readerStream.readObject());
 				readerStream.close();
 			}
+			
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
@@ -44,4 +50,7 @@ public class Reader {
 		}
 		return dataEncapsulation;
 	}
+	
+	
+
 }
