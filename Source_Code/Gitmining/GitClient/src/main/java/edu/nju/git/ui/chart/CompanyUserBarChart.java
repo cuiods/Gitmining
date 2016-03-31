@@ -4,13 +4,13 @@ public class CompanyUserBarChart extends MyBarChart {
 
 	@Override
 	public String chartName() {
-		return "User Num of different Company";
+		return "User Num of Different Company";
 	}
 
 	@Override
 	public double[] updown() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new double[]{0,1500,250};
 	}
 
 	

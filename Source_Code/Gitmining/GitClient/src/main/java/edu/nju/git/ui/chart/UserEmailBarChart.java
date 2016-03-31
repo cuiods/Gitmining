@@ -4,14 +4,14 @@ public class UserEmailBarChart extends MyBarChart {
 
 	@Override
 	public String chartName() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "User Num Ranging in Different Emails";
 	}
 
 	@Override
 	public double[] updown() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return new double[]{0,600,60};
 	}
 
 }
