@@ -3,6 +3,7 @@ package edu.nju.git.ui.control;
 import java.net.URL;
 
 import edu.nju.git.main.Main;
+import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
@@ -61,6 +62,7 @@ public final class UIManager {
 	 * @return
 	 */
 	public Parent initialize(Stage stage){
+		RMIClientLauncher.initRMI();
 		cssFactory = new DefaultCSSFactory();
 		root = ConfigReader.readParentPanel("index");
 		root.getPanel().initPanel(new Object[]{stage});
