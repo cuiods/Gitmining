@@ -100,7 +100,9 @@ public class ReaderAndCount {
 	 *
 	 */
 	public void loadAllData() {
+		System.out.println("read txt file start!========");
 		DataEncapsulation allData = new Reader().excute();
+		System.out.println("read txt file end!========");
 
 		this.nameOrderRepoPOs = allData.nameOrderRepoPOs;
 		this.nameOrderUsers = allData.nameOrderUserPOs;
@@ -120,16 +122,21 @@ public class ReaderAndCount {
 		this.repoToIssue = allData.repoToIssue;
 
 		//the 4 methods below can not reverse!!!!!!
+		System.out.println("set count start!========");
 		setCounts();
 
+		System.out.println("sort list start!========");
 		sortList();
 
+		System.out.println("generate map start!========");
 		generateMap();
 
+		System.out.println("set user value start!========");
 		setUserValue();
 
+		System.out.println("initChart start!========");
 		initChart();
-
+		System.out.println("initChart end!========");
 	}
 
 	/**
@@ -142,7 +149,8 @@ public class ReaderAndCount {
 		starCount = new RepoStarChartVO();
 		repoContributors = new RepoContriChartVO();
 		repoCollabrators = new RepoCollaChartVO();
-		repoSubscribers = new RepoSubscChartVO();language = new RepoLanguChartVO();
+		repoSubscribers = new RepoSubscChartVO();
+		language = new RepoLanguChartVO();
 
 		statUserType = new UserTypeChartVO();
 		statUserCreateTime = new UserCreateTimeChartVO();
@@ -163,6 +171,7 @@ public class ReaderAndCount {
 			repoContributors.increase(repo.getNum_contrbutors());
 			repoCollabrators.increase(repo.getNum_collaborators());
 			repoSubscribers.increase(repo.getNum_subscribers());
+			language.increase(repo.getLanguage());
 		}
 
 		for (UserPO user : nameOrderUsers) {
@@ -241,6 +250,8 @@ public class ReaderAndCount {
 	 */
 	private void setCounts() {
 		// count repo
+		int missingUserMap=0;
+		int missingRepoMap=0;
 		for (RepoPO repoPO : nameOrderRepoPOs) {
 			String repoID = repoPO.getOwnerName()+"/"+repoPO.getName();
 
@@ -250,6 +261,7 @@ public class ReaderAndCount {
 			}
 			else { 		//there is no such repo in the map
 				System.out.println("no element in repo to contributor map for "+repoID);
+				missingRepoMap++;
 			}
 
 			List<String> repoToCollaList = repoToCollab.get(repoID);
@@ -295,6 +307,7 @@ public class ReaderAndCount {
 			}
 			else {
 				System.out.println("no element for in user to subscri map for "+userID);
+				missingUserMap++;
 			}
 
 			List<String> userToContriList = userToContribute.get(userID);
@@ -314,6 +327,10 @@ public class ReaderAndCount {
 			}
 
 		}	//end count user
+
+		System.out.println("missing repo count: "+missingRepoMap);
+		System.out.println("missing user count: "+missingUserMap);
+
 	}
 
 	/**

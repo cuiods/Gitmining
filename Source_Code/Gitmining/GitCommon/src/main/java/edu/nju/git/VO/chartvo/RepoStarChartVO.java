@@ -7,28 +7,26 @@ public class RepoStarChartVO extends MyChartVO {
     public RepoStarChartVO() {
         super();
         super.fields = new String[11];
-        fields[0] = "0~1000";
-        fields[1] = "1000~2000";
-        fields[2] = "2000~3000";
-        fields[3] = "3000~4000";
-        fields[4] = "4000~5000";
-        fields[5] = "5000~6000";
-        fields[6] = "6000~7000";
-        fields[7] = "7000~8000";
-        fields[8] = "8000~9000";
-        fields[9] = "9000~10000";
-        fields[10] = ">= 10000";
+        fields[0] = "0~500";
+        fields[1] = "500~1000";
+        fields[2] = "1000~1500";
+        fields[3] = "1500~2000";
+        fields[4] = "2000~2500";
+        fields[5] = "2500~3000";
+        fields[6] = "3000~3500";
+        fields[7] = "3500~4000";
+        fields[8] = ">= 4000";
 
         super.values = new int[11];
-        for (int i=0;i<11;i++) {
+        for (int i=0;i<9;i++) {
             values[i] = 0;
         }
     }
 
     public void increase(int size) {
-        size /= 1000;
-        if (size >10) {
-            size = 10;
+        size /= 500;
+        if (size >8) {
+            size = 8;
         }
         values[size] ++;
     }
