@@ -7,6 +7,6 @@
 <AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.StatisticFunction">
   <!-- TODO Add Nodes -->
   <children>
-    <AnchorPane fx:id="chartPane" layoutX="0.0" layoutY="0.0" prefHeight="580.0" prefWidth="870.0" />
+    <AnchorPane fx:id="chartPane" layoutX="0.0" layoutY="0.0" minHeight="580.0" minWidth="870.0" prefHeight="580.0" prefWidth="870.0" />
   </children>
 </AnchorPane>

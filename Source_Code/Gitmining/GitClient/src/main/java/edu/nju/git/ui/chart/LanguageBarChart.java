@@ -26,6 +26,7 @@ public class LanguageBarChart extends MyChart{
         	 series.getData().add(new XYChart.Data<String, Number>(chartVO.getFields()[i], chartVO.getValues()[i]));
         }
         chart.getData().add(series);
+        chart.setPrefSize(840, 580);
         return chart;
     }
 
