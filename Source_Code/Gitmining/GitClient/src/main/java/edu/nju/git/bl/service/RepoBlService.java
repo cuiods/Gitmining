@@ -2,13 +2,9 @@ package edu.nju.git.bl.service;
 
 import java.util.List;
 
-import edu.nju.git.VO.BranchVO;
-import edu.nju.git.VO.CommitVO;
-import edu.nju.git.VO.IssueVO;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
-import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
@@ -92,7 +88,7 @@ public interface RepoBlService {
 	 * @return list of {@link UserBriefVO}
 	 * 			list of brief info of contributors.
 	 */
-	public List<UserBriefVO> getRepoContributor(String owner, String repoName);
+	public List<String> getRepoContributor(String owner, String repoName);
 	
 	/**
 	 * Get brief info of collaborators.
@@ -103,51 +99,17 @@ public interface RepoBlService {
 	 * @return list of {@link UserBriefVO}
 	 * 			list of brief info of collaborators.
 	 */
-	public List<UserBriefVO> getRepoCollaborator(String owner, String repoName);
-	
-	/**
-	 * Get {@code List} of info of branches.
-	 * @param owner
-	 * 			name of the owner of the repository
-	 * @param repoName
-	 * 			name of the repository
-	 * @return list of {@link BranchVO}
-	 * 			list of info of branches.
-	 */
-	public List<BranchVO> getRepoBranch(String owner, String repoName);
-	
-	/**
-	 * Get {@code List} of repositorys which fork the project.
-	 * @param owner
-	 * 			name of the owner of the repository
-	 * @param repoName
-	 * 			name of the repository
-	 * @return list of {@link RepoBriefVO}
-	 * 			list of brief info of repositorys.
-	 */
-	public List<RepoBriefVO> getRepoFork(String owner, String repoName);
-	
-	/**
-	 * Get {@code List} of commit info of the repository.
-	 * @param owner
-	 * 			name of the owner of the repository
-	 * @param repoName
-	 * 			name of the repository
-	 * @return list of {@link CommitVO}
-	 * 			list of info of commits.
-	 */
-	public List<CommitVO> getRepoCommit(String owner, String repoName);
-	
-	/**
-	 * Get {@code List} of issues of the repository.
-	 * @param owner
-	 * 			name of the owner of the repository
-	 * @param repoName
-	 * 			name of the repository
-	 * @return list of {@link IssueVO}
-	 * 			list of info of issues.
-	 */
-	public List<IssueVO> getRepoIssue(String owner, String repoName);
+	public List<String> getRepoCollaborator(String owner, String repoName);
+
+
+	//public List<BranchVO> getRepoBranch(String owner, String repoName);
+
+	//public List<RepoBriefVO> getRepoFork(String owner, String repoName);
+
+	//public List<CommitVO> getRepoCommit(String owner, String repoName);
+
+	//public List<IssueVO> getRepoIssue(String owner, String repoName);
+
 
 	/**
 	 * return the brief list.

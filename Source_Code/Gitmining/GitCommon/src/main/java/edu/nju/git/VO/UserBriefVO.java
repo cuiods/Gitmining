@@ -23,8 +23,13 @@ public class UserBriefVO implements Serializable{
 	public UserBriefVO() {
 	}
 
-	public UserBriefVO(String login, int followers, int public_repos) {
-		this.followers = followers;
+	public UserBriefVO(String login, int followers, int following, int public_repos, String create_at,
+					   String update_at, String company) {
+        this.followers = followers;
+        this.following = following;
+        this.create_at = create_at;
+        this.update_at = update_at;
+        this.company = company;
 		this.login = login;
 		this.public_repos = public_repos;
 	}

@@ -25,7 +25,6 @@
 	<modules>
 		<module>GitClient</module>
 		<module>GitCommon</module>
-		<module>GitIntegration</module>
 		<module>GitServer</module>
 	</modules>
 
@@ -37,10 +36,6 @@
 			</resource>
 			<resource>
 				<directory>GitCommon/src/test/java</directory>
-				<filtering>true</filtering>
-			</resource>
-			<resource>
-				<directory>GitIntegration/src/test/java</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>

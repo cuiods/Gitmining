@@ -22,12 +22,6 @@ public class UserSearchModel implements UserBrowseModelService {
         this.userBl = userBl;
     }
 
-
-    @Override
-    public List<UserBriefVO> getSearchResult(String regex) {
-        return null;
-    }
-
     @Override
     public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = userBl.getTotalPage();

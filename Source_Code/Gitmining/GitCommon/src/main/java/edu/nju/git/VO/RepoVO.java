@@ -31,11 +31,11 @@ public class RepoVO implements Serializable{
 	private int num_issue;
 	private int num_pull;
 	
-	private float radar_popular;//calculated by num of subscriber and star
-	private float radar_forks; 
-	private float radar_size;
-	private float radar_complexity; //calculated by num of contributor\collabrator
-	private float radar_activity;  //calculated by num of  commit and issue and pull.	
+	private double radar_popular;//calculated by num of subscriber and star
+	private double radar_forks;
+	private double radar_size;
+	private double radar_complexity; //calculated by num of contributor\collabrator
+	private double radar_activity;  //calculated by num of  commit and issue and pull.
 	
 
     public RepoVO () {
@@ -136,34 +136,34 @@ public class RepoVO implements Serializable{
 	public void setNum_subscribers(int num_subscribers) {
 		this.num_subscribers = num_subscribers;
 	}
-	public float getRadar_popular() {
+	public double getRadar_popular() {
 		return radar_popular;
 	}
-	public void setRadar_popular(float radar_popular) {
+	public void setRadar_popular(double radar_popular) {
 		this.radar_popular = radar_popular;
 	}
-	public float getRadar_forks() {
+	public double getRadar_forks() {
 		return radar_forks;
 	}
-	public void setRadar_forks(float radar_forks) {
+	public void setRadar_forks(double radar_forks) {
 		this.radar_forks = radar_forks;
 	}
-	public float getRadar_size() {
+	public double getRadar_size() {
 		return radar_size;
 	}
-	public void setRadar_size(float radar_size) {
+	public void setRadar_size(double radar_size) {
 		this.radar_size = radar_size;
 	}
-	public float getRadar_complexity() {
+	public double getRadar_complexity() {
 		return radar_complexity;
 	}
-	public void setRadar_complexity(float radar_complexity) {
+	public void setRadar_complexity(double radar_complexity) {
 		this.radar_complexity = radar_complexity;
 	}
-	public float getRadar_activity() {
+	public double getRadar_activity() {
 		return radar_activity;
 	}
-	public void setRadar_activity(float radar_activity) {
+	public void setRadar_activity(double radar_activity) {
 		this.radar_activity = radar_activity;
 	}
 	public int getNum_ontributors() {

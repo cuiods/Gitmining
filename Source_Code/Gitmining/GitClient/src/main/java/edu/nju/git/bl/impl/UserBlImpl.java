@@ -1,6 +1,5 @@
 package edu.nju.git.bl.impl;
 
-import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.BrowseModel.impl.UserCasualModel;
@@ -8,14 +7,13 @@ import edu.nju.git.bl.BrowseModel.impl.UserSearchModel;
 import edu.nju.git.bl.BrowseModel.service.UserBrowseModelService;
 import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.constant.Consts;
-import edu.nju.git.data.factory.impl.DataFactory;
-import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.UserDataService;
-import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -76,9 +74,6 @@ public class UserBlImpl implements UserBlService {
      * The constructor initialize <tt>userDataService</tt> and <tt>briefUserList</tt> variables.
      */
     private UserBlImpl() {
-        DataFactoryService dataFactoryService = DataFactory.instance();
-        userDataService = dataFactoryService.getUserDataService();
-
         //we use casual model in default
         browseModelService = new UserCasualModel(this);
 
@@ -99,16 +94,18 @@ public class UserBlImpl implements UserBlService {
             String regex = RegexTranslator.translate(keyword);
             try {
 				briefUserList = userDataService.getSearchResult(regex);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			} catch (RemoteException e) {
+                RMIClientLauncher.sendRMIWarning();
+                return getSearchResult(keyword);
+            }
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
                 System.out.println("No search result !");
             }
         }
-        return null;
+        shownUserList.clear();
+        return shownUserList;
     }
 
     @Override
@@ -128,32 +125,63 @@ public class UserBlImpl implements UserBlService {
 
     @Override
     public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
-        return shownUserList = browseModelService.sort(sortType, reverse);
+        try {
+            return shownUserList = browseModelService.sort(sortType, reverse);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return sort(sortType, reverse);
+        }
     }
 
     @Override
     public UserVO getUserInfo(String userName) {
-        return userDataService.getUserInfo(userName);
+        try {
+            return userDataService.getUserInfo(userName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            //recurse
+            return getUserInfo(userName);
+        }
     }
 
     @Override
-    public List<RepoBriefVO> getUserOwnRepos(String userName) {
-        return userDataService.getUserOwnRepos(userName);
+    public List<String> getUserOwnRepos(String userName) {
+        try {
+            return userDataService.getUserOwnRepos(userName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getUserOwnRepos(userName);
+        }
     }
 
     @Override
-    public List<RepoBriefVO> getUserSubscribeRepos(String userName) {
-        return userDataService.getUserSubscribeRepos(userName);
+    public List<String> getUserSubscribeRepos(String userName) {
+        try {
+            return userDataService.getUserSubscribeRepos(userName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getUserSubscribeRepos(userName);
+        }
     }
 
     @Override
-    public List<RepoBriefVO> getUserCollaborateRepos(String userName) {
-        return userDataService.getUserCollaborateRepos(userName);
+    public List<String> getUserCollaborateRepos(String userName) {
+        try {
+            return userDataService.getUserCollaborateRepos(userName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getUserCollaborateRepos(userName);
+        }
     }
 
     @Override
-    public List<RepoBriefVO> getUserContributeRepos(String userName) {
-        return userDataService.getUserContributeRepos(userName);
+    public List<String> getUserContributeRepos(String userName) {
+        try {
+            return userDataService.getUserContributeRepos(userName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getUserContributeRepos(userName);
+        }
     }
 
     @Override
@@ -180,7 +208,12 @@ public class UserBlImpl implements UserBlService {
     public int getTotalPage(){
         int elementNum;
         if (browseModelService instanceof UserCasualModel) {
-            elementNum = userDataService.getTotalCount();
+            try {
+                elementNum = userDataService.getTotalCount();
+            } catch (RemoteException e) {
+                RMIClientLauncher.sendRMIWarning();
+                return getTotalPage();
+            }
         }
         else {
             elementNum = briefUserList.size();
@@ -218,5 +251,9 @@ public class UserBlImpl implements UserBlService {
 
     public UserDataService getUserDataService(){
         return userDataService;
+    }
+
+    public void setUserDataService(UserDataService userDataService) {
+        this.userDataService = userDataService;
     }
 }

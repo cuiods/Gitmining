@@ -10,6 +10,7 @@ import edu.nju.git.PO.UserPO;
 import edu.nju.git.VO.chartvo.*;
 import edu.nju.git.comparators.repocomparators.po.*;
 import edu.nju.git.comparators.usercomparators.po.UserPOFollowerComparator;
+import edu.nju.git.comparators.usercomparators.po.UserPOFollowingComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPONameComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPORepoNumComparator;
 import org.GitServer.cacheinit.DataEncapsulation;
@@ -46,6 +47,7 @@ public class ReaderAndCount {
 	private List<UserPO> nameOrderUsers;
 	private List<UserPO> followerOrderUsers;
     private List<UserPO> repoNumOrderUsers;
+	private List<UserPO> followingOrderUsers;
 
 	private Map<String, RepoPO>  nameToRepo ;
 	private Map<String, UserPO>  nameToUser ;
@@ -353,6 +355,8 @@ public class ReaderAndCount {
 		followerOrderUsers.sort(new UserPOFollowerComparator());
 		this.repoNumOrderUsers = (ArrayList<UserPO>)((ArrayList)nameOrderUsers).clone();
 		repoNumOrderUsers.sort(new UserPORepoNumComparator());
+		this.followingOrderUsers = (ArrayList<UserPO>)((ArrayList)nameOrderUsers).clone();
+		followingOrderUsers.sort(new UserPOFollowingComparator());
 		nameOrderUsers.sort(new UserPONameComparator());
 	}
 
@@ -398,6 +402,9 @@ public class ReaderAndCount {
 	}
 	public List<UserPO> getFollowerOrderUsers() {
 		return followerOrderUsers;
+	}
+	public List<UserPO> getFollowingOrderUsers() {
+		return followingOrderUsers;
 	}
 	public List<UserPO> getRepoNumOrderUsers() {
 		return repoNumOrderUsers;

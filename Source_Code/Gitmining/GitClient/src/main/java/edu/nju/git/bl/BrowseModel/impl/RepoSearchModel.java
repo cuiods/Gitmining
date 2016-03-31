@@ -29,12 +29,6 @@ public class RepoSearchModel implements RepoBrowseModelService {
         this.repoBl = repoBl;
     }
 
-
-    @Override
-    public List<RepoBriefVO> getSearchResult(String regex) {
-        return null;
-    }
-
     @Override
     public List<RepoBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = repoBl.getTotalPage();

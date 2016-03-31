@@ -1,9 +1,7 @@
 package edu.nju.git.bl.service;
 
-import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
-import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
@@ -75,30 +73,30 @@ public interface UserBlService {
     /**
      * Get a list of repositories that the specific user owns
      * @param userName name of the user you want to search
-     * @return a list of brief information of repositories that the user owns 
+     * @return a list of brief information of repositories that the user owns
      */
-    public List<RepoBriefVO> getUserOwnRepos (String userName);
+    public List<String> getUserOwnRepos (String userName);
     
     /**
      * Get a list of repositories that the specific user subscribes
      * @param userName name of the user you want to search
-     * @return a list of brief information of repositories that the user subscribes 
+     * @return a list of brief information of repositories that the user subscribes
      */
-    public List<RepoBriefVO> getUserSubscribeRepos (String userName);
+    public List<String> getUserSubscribeRepos (String userName);
 
     /**
      * Get a list of repositories that the specific user collaborates
      * @param userName name of the user you want to search
-     * @return a list of brief information of repositories that the user collaborates 
+     * @return a list of brief information of repositories that the user collaborates
      */
-    public List<RepoBriefVO> getUserCollaborateRepos(String userName);
+    public List<String> getUserCollaborateRepos(String userName);
 
     /**
      * Get a list of repositories that the specific user contributes
      * @param userName name of the user you want to search
-     * @return a list of brief information of repositories that the user contributes 
+     * @return a list of brief information of repositories that the user contributes
      */
-    public List<RepoBriefVO> getUserContributeRepos(String userName);
+    public List<String> getUserContributeRepos(String userName);
 
     /**
      * return the brief list.

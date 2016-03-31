@@ -6,9 +6,11 @@ import edu.nju.git.bl.impl.UserBlImpl;
 import edu.nju.git.datavisitors.uservisitors.SimpleUserVisitor;
 import edu.nju.git.datavisitors.uservisitors.UserNameOrderVisitor;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.VisitorFactory;
 import edu.nju.git.type.SortType;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -29,12 +31,6 @@ public class UserCasualModel implements UserBrowseModelService {
         visitor = new UserNameOrderVisitor(1, false);
     }
 
-
-    @Override
-    public List<UserBriefVO> getSearchResult(String regex) {
-        return null;
-    }
-
     @Override
     public List<UserBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = userBl.getTotalPage();
@@ -45,10 +41,10 @@ public class UserCasualModel implements UserBrowseModelService {
         userBl.setCurrentPage(pageNum);
         try {
 			return userBl.getUserDataService().acceptVisitor(visitor);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        return null;
+		} catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return jumpToPage(pageNum);
+        }
     }
 
     @Override
@@ -62,7 +58,7 @@ public class UserCasualModel implements UserBrowseModelService {
     }
 
     @Override
-    public List<UserBriefVO> sort(SortType sortType, boolean reverse) {
+    public List<UserBriefVO> sort(SortType sortType, boolean reverse) throws RemoteException {
         visitor = (SimpleUserVisitor) VisitorFactory.getUserVisitor(sortType);
         visitor.setReverse(reverse);
         return userBl.getUserDataService().acceptVisitor(visitor);

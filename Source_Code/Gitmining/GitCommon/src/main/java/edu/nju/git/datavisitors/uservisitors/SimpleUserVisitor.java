@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import edu.nju.git.PO.UserBriefPO;
+import edu.nju.git.PO.UserPO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.constant.Consts;
 import edu.nju.git.data.service.UserDataService;
@@ -48,9 +49,9 @@ public abstract class SimpleUserVisitor implements UserVisitor {
     public abstract List<UserBriefVO> visit(UserDataService userDataService);
 
     protected List<UserBriefVO> visit(UserDataService userDataService, SortType sortType) {
-        List<UserBriefPO> POList = null;
+        List<UserPO> POList = null;
 		try {
-			POList = userDataService.getUserBriefPOs(sortType);
+			POList = userDataService.getUserPOs(sortType);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,10 +65,10 @@ public abstract class SimpleUserVisitor implements UserVisitor {
 		}
         if ((page-1)* Consts.PAGE_CAPACITY < totalItem) {
             if (reverse) {
-                ListIterator<UserBriefPO> itr = POList.listIterator(totalItem - (page-1)*Consts.PAGE_CAPACITY);
+                ListIterator<UserPO> itr = POList.listIterator(totalItem - (page-1)*Consts.PAGE_CAPACITY);
                 for (int i=0; i<Consts.PAGE_CAPACITY; i++) {
                     if (itr.hasPrevious()){
-                        resultList.add(POVOConverter.convert(itr.previous()));
+                        resultList.add(POVOConverter.convertToBriefVO(itr.previous()));
                     }
                     else {
                         break;
@@ -75,10 +76,10 @@ public abstract class SimpleUserVisitor implements UserVisitor {
                 }
             }
             else {
-                ListIterator<UserBriefPO> itr = POList.listIterator((page-1)*Consts.PAGE_CAPACITY);
+                ListIterator<UserPO> itr = POList.listIterator((page-1)*Consts.PAGE_CAPACITY);
                 for (int i=0;i<Consts.PAGE_CAPACITY; i++) {
                     if (itr.hasNext()) {
-                        resultList.add(POVOConverter.convert(itr.next()));
+                        resultList.add(POVOConverter.convertToBriefVO(itr.next()));
                     }
                     else {
                         break;

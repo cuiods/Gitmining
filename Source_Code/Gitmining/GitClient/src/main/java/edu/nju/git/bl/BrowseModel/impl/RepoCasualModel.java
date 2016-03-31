@@ -6,9 +6,11 @@ import edu.nju.git.bl.impl.RepoBlImpl;
 import edu.nju.git.datavisitors.repovisitors.RepoNameOrderVisitor;
 import edu.nju.git.datavisitors.repovisitors.SimpleRepoVisitor;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.VisitorFactory;
 import edu.nju.git.type.SortType;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -29,12 +31,6 @@ public class RepoCasualModel implements RepoBrowseModelService {
         visitor = new RepoNameOrderVisitor(1, false);
     }
 
-
-    @Override
-    public List<RepoBriefVO> getSearchResult(String regex) {
-        return null;
-    }
-
     @Override
     public List<RepoBriefVO> jumpToPage(int pageNum) throws PageOutOfBoundException {
         int totalPage = repoBl.getTotalPage();
@@ -45,10 +41,10 @@ public class RepoCasualModel implements RepoBrowseModelService {
         repoBl.setCurrentPage(pageNum);
         try {
 			return repoBl.getRepoDataService().acceptVisitor(visitor);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        return null;
+		} catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return jumpToPage(pageNum);
+        }
     }
 
     @Override
@@ -62,7 +58,7 @@ public class RepoCasualModel implements RepoBrowseModelService {
     }
 
     @Override
-    public List<RepoBriefVO> sort(SortType sortType, boolean reverse) {
+    public List<RepoBriefVO> sort(SortType sortType, boolean reverse) throws RemoteException {
         visitor = (SimpleRepoVisitor) VisitorFactory.getRepoVisitor(sortType);
         visitor.setReverse(reverse);
         return repoBl.getRepoDataService().acceptVisitor(visitor);

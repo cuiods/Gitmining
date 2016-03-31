@@ -38,7 +38,7 @@ public interface UserDataRMIService extends Remote{
      * @param sortType which type of list to get
      * @return the reference to the list
      */
-    public List<UserPO> getPOs(SortType sortType)throws RemoteException;
+    public List<UserPO> getUserPOs(SortType sortType)throws RemoteException;
 
     /**
      * use a visitor to access the data and return the wanted value.

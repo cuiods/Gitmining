@@ -1,10 +1,7 @@
 package edu.nju.git.tools;
 
 import edu.nju.git.datavisitors.repovisitors.*;
-import edu.nju.git.datavisitors.uservisitors.UserFollowerOrderVisitor;
-import edu.nju.git.datavisitors.uservisitors.UserNameOrderVisitor;
-import edu.nju.git.datavisitors.uservisitors.UserReposOrderVisitor;
-import edu.nju.git.datavisitors.uservisitors.UserVisitor;
+import edu.nju.git.datavisitors.uservisitors.*;
 import edu.nju.git.type.SortType;
 
 /**
@@ -19,6 +16,7 @@ public class VisitorFactory {
             case USER_NAME:return new UserNameOrderVisitor(1, false);
             case FOLLOWER_NUM:return new UserFollowerOrderVisitor(1, false);
             case REPO_NUM:return new UserReposOrderVisitor(1, false);
+            case FOLLOWING_NUM:return new UserFollowingOrderVisitor(1, false);
             default:return null;
         }
     }

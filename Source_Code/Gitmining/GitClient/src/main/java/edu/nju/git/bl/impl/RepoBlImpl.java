@@ -6,14 +6,13 @@ import edu.nju.git.bl.BrowseModel.impl.RepoSearchModel;
 import edu.nju.git.bl.BrowseModel.service.RepoBrowseModelService;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.constant.Consts;
-import edu.nju.git.data.factory.impl.DataFactory;
-import edu.nju.git.data.factory.service.DataFactoryService;
 import edu.nju.git.data.service.RepoDataService;
-import edu.nju.git.exception.NoSearchResultException;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.SortType;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -73,15 +72,10 @@ public class RepoBlImpl implements RepoBlService {
      * The constructor also initialize some variables of this class.
      */
     private RepoBlImpl() {
-        DataFactoryService dataFactoryService = DataFactory.instance();
-        repoDataService = dataFactoryService.getRepoDataService();
-
         //we use casual model in default
         browseModelService  = new RepoCasualModel(this);
 
     }
-
-
 
     @Override
     public List<RepoBriefVO> getSearchResult(String keyword){
@@ -98,16 +92,18 @@ public class RepoBlImpl implements RepoBlService {
             String regex = RegexTranslator.translate(keyword);
             try {
 				briefRepoList = repoDataService.getSearchResult(regex);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
+			} catch (RemoteException e) {
+                RMIClientLauncher.sendRMIWarning();
+                return getSearchResult(keyword);
+            }
             try {
                 return jumpToPage(1);
             } catch (PageOutOfBoundException e) {
                 System.out.println("No search result !");
             }
         }
-        return null;
+        shownRepoList.clear();
+        return shownRepoList;
     }
 
     @Override
@@ -127,42 +123,42 @@ public class RepoBlImpl implements RepoBlService {
 
     @Override
     public List<RepoBriefVO> sort(SortType sortType, boolean reverse) {
-        return shownRepoList = browseModelService.sort(sortType, reverse);
+        try {
+            return shownRepoList = browseModelService.sort(sortType, reverse);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return sort(sortType, reverse);
+        }
     }
 
     @Override
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
-        return repoDataService.getRepoBasicInfo(owner, repoName);
+        try {
+            return repoDataService.getRepoBasicInfo(owner, repoName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getRepoBasicInfo(owner, repoName);
+        }
     }
 
     @Override
-    public List<UserBriefVO> getRepoContributor(String owner, String repoName) {
-        return repoDataService.getRepoContributor(owner, repoName);
+    public List<String> getRepoContributor(String owner, String repoName) {
+        try {
+            return repoDataService.getRepoContributor(owner, repoName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getRepoContributor(owner, repoName);
+        }
     }
 
     @Override
-    public List<UserBriefVO> getRepoCollaborator(String owner, String repoName) {
-        return repoDataService.getRepoCollaborator(owner, repoName);
-    }
-
-    @Override
-    public List<BranchVO> getRepoBranch(String owner, String repoName) {
-        return repoDataService.getRepoBranch(owner, repoName);
-    }
-
-    @Override
-    public List<RepoBriefVO> getRepoFork(String owner, String repoName) {
-        return repoDataService.getRepoFork(owner, repoName);
-    }
-
-    @Override
-    public List<CommitVO> getRepoCommit(String owner, String repoName) {
-        return repoDataService.getRepoCommit(owner, repoName);
-    }
-
-    @Override
-    public List<IssueVO> getRepoIssue(String owner, String repoName) {
-        return repoDataService.getRepoIssue(owner, repoName);
+    public List<String> getRepoCollaborator(String owner, String repoName) {
+        try {
+            return repoDataService.getRepoCollaborator(owner, repoName);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getRepoCollaborator(owner, repoName);
+        }
     }
 
     @Override
@@ -189,7 +185,12 @@ public class RepoBlImpl implements RepoBlService {
     public int getTotalPage() {
         int elementNum;
         if (browseModelService instanceof RepoCasualModel) {
-            elementNum = repoDataService.getTotalCount();
+            try {
+                elementNum = repoDataService.getTotalCount();
+            } catch (RemoteException e) {
+                RMIClientLauncher.sendRMIWarning();
+                return getTotalPage();
+            }
         }
         else {
             elementNum = briefRepoList.size();
@@ -227,5 +228,9 @@ public class RepoBlImpl implements RepoBlService {
 
     public RepoDataService getRepoDataService() {
         return repoDataService;
+    }
+
+    public void setRepoDataService(RepoDataService repoDataService) {
+        this.repoDataService = repoDataService;
     }
 }

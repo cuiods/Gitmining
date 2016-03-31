@@ -44,7 +44,7 @@ public interface RepoDataRMIService extends Remote{
      * @param sortType which type of list to get
      * @return the reference to the list
      */
-    public List<RepoPO> getRepoBriefPOs(SortType sortType)throws RemoteException;
+    public List<RepoPO> getRepoPOs(SortType sortType)throws RemoteException;
 
     /**
      * use a visitor to access the data and return the wanted value.

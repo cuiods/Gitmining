@@ -9,15 +9,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import edu.nju.git.PO.RepoPO;
-import edu.nju.git.data.rmiservice.RepoDataRMIService;
+import edu.nju.git.data.service.RepoDataService;
 import org.GitServer.dataread.ReaderAndCount;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
+import org.GitServer.radarstrategy.impl.SimpleRepoRadarCalculator;
+import org.GitServer.radarstrategy.service.RepoRadarService;
 
-public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIService {
+public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService {
 
 	private static final long serialVersionUID = -1928059689118751499L;
 
@@ -27,6 +29,8 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 	private static RepoDataImpl uniqueInstance = null;
 
 	private ReaderAndCount readerAndCount = ReaderAndCount.instance();
+
+	private RepoRadarService repoRadarService;
 
 	/**
 	 * Singleton method.
@@ -41,6 +45,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 	
 	private  RepoDataImpl() throws RemoteException {
 		super();
+		repoRadarService = SimpleRepoRadarCalculator.instance(getRepoPOs(SortType.REPO_NAME));
 	}
 
 	@Override
@@ -66,7 +71,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 	}
 
 	@Override
-	public List<RepoPO> getRepoBriefPOs(SortType sortType) throws RemoteException {
+	public List<RepoPO> getRepoPOs(SortType sortType) throws RemoteException {
 		switch (sortType) {
 			case REPO_NAME:return readerAndCount.getNameOrderRepoPOs();
 			case STAR_NUM:return readerAndCount.getStarOrderRepoPOs();
@@ -79,9 +84,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 
 	@Override
 	public List<RepoBriefVO> acceptVisitor(RepoVisitor visitor) throws RemoteException {
-		// TODO: 2016/3/29
-		//return visitor.visit(this);
-		return null;
+		return visitor.visit(this);
 	}
 
 	@Override
@@ -89,9 +92,13 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataRMIServ
 		RepoPO po = readerAndCount.getNameToRepo().get(owner+"/"+repoName);
 		if (po!=null) {
 			RepoVO vo = POVOConverter.convertToVO(po);
-			// TODO: 2016/3/23 set the double value for radar chart to use
 
-			return null;
+			vo.setRadar_size(repoRadarService.calSize(po.getSize()));
+			vo.setRadar_popular(repoRadarService.calPopular(po.getPopular()));
+			vo.setRadar_forks(repoRadarService.calFork(po.getNum_forks()));
+			vo.setRadar_activity(repoRadarService.calActivity(po.getRepoActivity()));
+			vo.setRadar_complexity(repoRadarService.calComplexity(po.getComplexity()));
+			return vo;
 		}
 		else {	//no repo matches given name
 			return null;

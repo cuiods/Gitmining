@@ -4,6 +4,7 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.type.SortType;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -16,13 +17,6 @@ import java.util.List;
  * @date 2016-03-05
  */
 public interface RepoBrowseModelService {
-
-    /**
-     * get the list match the regex.
-     * @param regex a regex represents the content you want to search.
-     * @return result list of repositories.
-     */
-    public List<RepoBriefVO> getSearchResult(String regex);
 
     /**
      * jump to the page specified by the parameter <tt>pageNum</tt>
@@ -53,5 +47,5 @@ public interface RepoBrowseModelService {
      * @see SortType
      * @return result list of repositories after sorted.
      */
-    public List<RepoBriefVO> sort(SortType sortType, boolean reverse);
+    public List<RepoBriefVO> sort(SortType sortType, boolean reverse) throws RemoteException;
 }
