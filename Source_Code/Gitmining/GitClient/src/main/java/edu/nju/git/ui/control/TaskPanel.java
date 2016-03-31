@@ -151,6 +151,14 @@ public class TaskPanel extends GitPanel {
 		functions.add(shot);
 		updateLocation();
 	}
+	
+	private void initUserStatistic() {
+		clearFunction();
+		ScreenShot shot = ConfigReader.readParentPanel("function_userStatistic");
+		setChildren(shot.getRoot());
+		functions.add(shot);
+		updateLocation();
+	}
 
 	@Override
 	public void setChildren(Parent panel) {
@@ -295,6 +303,15 @@ public class TaskPanel extends GitPanel {
 					subview_user2 = new Button("UserStatistic");
 					subview_user2.setPrefSize(150, 40);
 					subview_user2.getStyleClass().add("sub_button");
+					subview_user2.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+						@Override
+						public void handle(MouseEvent event) {
+							initUserStatistic();
+							
+						}
+						
+					});
 					leftbar.getChildren().remove(nav_repo);
 					if (subview_repo1!=null) {
 						leftbar.getChildren().remove(subview_repo1);

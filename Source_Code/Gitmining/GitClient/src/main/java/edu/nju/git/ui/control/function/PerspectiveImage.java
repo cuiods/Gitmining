@@ -16,7 +16,10 @@ import javafx.scene.image.Image;
 
 import javafx.scene.image.ImageView;
 
- 
+ /*
+  * special image class used in displayshelf
+  * @author yyy
+  */
 
 /**
 

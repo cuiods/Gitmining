@@ -1,5 +1,5 @@
 package edu.nju.git.ui.control.function;
-/* ....Show License.... */
+
 
  
 
@@ -20,7 +20,8 @@ import javafx.scene.layout.AnchorPane;
 
 /**
 
- * A display shelf of images using the PerspectiveTransform effect.
+ * the home function 
+ * @author yyy
 
  */
 

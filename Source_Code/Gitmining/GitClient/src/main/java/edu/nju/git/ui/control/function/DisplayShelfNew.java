@@ -22,7 +22,10 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
+/*
+ * to show the home animation
+ * @author yyy
+ */
 public class DisplayShelfNew extends Region{
 	private final Duration DURATION = Duration.millis(500);//Duration，持续时间
     private final Interpolator INTERPOLATOR = Interpolator.EASE_BOTH;//动画的变化率
