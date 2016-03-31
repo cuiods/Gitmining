@@ -6,7 +6,7 @@ package edu.nju.git.VO.chartvo;
 public class RepoLanguChartVO extends MyChartVO {
     public RepoLanguChartVO() {
         super();
-        super.fields = new String[10];
+        super.fields = new String[11];
         fields[0] = "Java";
         fields[1] = "C";
         fields[2] = "C++";
@@ -16,21 +16,22 @@ public class RepoLanguChartVO extends MyChartVO {
         fields[6] = "Haskell";
         fields[7] = "HTML";
         fields[8] = "Ruby";
-        fields[9] = "Other";
+        fields[9] = "Python";
+        fields[10] = "Other";
 
-        super.values = new int[10];
-        for (int i=0;i<10;i++) {
+        super.values = new int[11];
+        for (int i=0;i<11;i++) {
             values[i] = 0;
         }
     }
 
     public void increase (String language) {
-        for (int i=0;i<9;i++) {
+        for (int i=0;i<10;i++) {
             if (language.equals(fields[i])) {
                 values[i] ++;
                 return;
             }
         }
-        values [9] ++;
+        values [10] ++;
     }
 }

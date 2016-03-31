@@ -14,6 +14,11 @@ public class UserEmailChartVO extends MyChartVO{
     }
 
     public void increase (String email) {
+        int domainIndex = email.lastIndexOf("@");
+        if (domainIndex<0) {
+            return;
+        }
+        email = email.substring(domainIndex+1);
         if (emailCount.containsKey(email)) {
             emailCount.replace(email, emailCount.get(email)+1);
         }

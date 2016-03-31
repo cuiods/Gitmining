@@ -24,6 +24,7 @@ public class ServerLauncher {
             Naming.rebind("rmi://127.0.0.1:1099/RepoChartDataService", repoChartDataService);
             Naming.rebind("rmi://127.0.0.1:1099/UserChartDataService", userChartDataService);
             System.out.println("RepoChartDataService Start!");
+            System.out.println("UserChartDataService Start!");
 
         } catch (RemoteException e) {
             e.printStackTrace();
