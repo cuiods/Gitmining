@@ -9,13 +9,21 @@
   <!-- TODO Add Nodes -->
   <children>
     <Label layoutX="372.0" layoutY="30.0" prefHeight="38.0" prefWidth="127.0" text="Choose an item" />
-    <AnchorPane fx:id="language" layoutX="17.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="227.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="437.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="647.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="18.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="228.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="438.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
-    <AnchorPane id="language" layoutX="648.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="language" layoutX="17.0" layoutY="85.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="createTime" layoutX="227.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="contributors" layoutX="437.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="collaborator" layoutX="647.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="size" layoutX="18.0" layoutY="363.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="subscriber" layoutX="228.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="forks" layoutX="438.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane fx:id="stars" layoutX="648.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <Label fx:id="language_label" alignment="CENTER" layoutX="72.0" layoutY="295.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Language" />
+    <Label fx:id="createTime_label" alignment="CENTER" layoutX="283.0" layoutY="295.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Create Time" />
+    <Label fx:id="contributors_label" alignment="CENTER" layoutX="493.0" layoutY="295.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Contributor" />
+    <Label fx:id="collaborator_label" alignment="CENTER" layoutX="702.0" layoutY="295.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Collaborator" />
+    <Label fx:id="size_label" alignment="CENTER" layoutX="70.0" layoutY="572.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Size" />
+    <Label fx:id="subscriber_label" alignment="CENTER" layoutX="281.0" layoutY="572.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Subscriber" />
+    <Label fx:id="forks_label" alignment="CENTER" layoutX="491.0" layoutY="572.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Forks" />
+    <Label fx:id="stars_label" alignment="CENTER" layoutX="700.0" layoutY="572.0" opacity="0.0" prefHeight="38.0" prefWidth="102.0" text="Stars" />
   </children>
 </AnchorPane>

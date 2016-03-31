@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  */
 public final class UIManager {
 	/**
-	 * sychronization singleton.
+	 * Synchronization singleton.
 	 */
 	private static volatile UIManager manager;
 	/**
@@ -77,7 +77,7 @@ public final class UIManager {
 	/**
 	 * Change to a new Function Panel.
 	 * @param funtion
-	 * 			next funtion panel to change
+	 * 			next function panel to change
 	 * @param bundle
 	 * 			data to the next panel
 	 */
