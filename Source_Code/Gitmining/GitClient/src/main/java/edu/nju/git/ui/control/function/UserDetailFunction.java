@@ -71,7 +71,7 @@ public class UserDetailFunction extends FunctionPanel{
 
 			@Override
 			public void handle(MouseEvent event) {
-				edu.nju.git.ui.control.UIManager.instance().changeFunction("function_webView",new Object[]{blog.toString()});
+				edu.nju.git.ui.control.UIManager.instance().changeFunction("function_webView",new Object[]{blog.toString().split("'")[1]});
 				
 			}
 			
@@ -83,6 +83,7 @@ public class UserDetailFunction extends FunctionPanel{
 			return;
 		}
 		loginName.setText(user.getName());
+		System.out.println(user.getAvatar_url());
 		Image headingImage = new Image(user.getAvatar_url());
 		heading.setImage(headingImage);
 		create.setText(user.getCreate_at());
