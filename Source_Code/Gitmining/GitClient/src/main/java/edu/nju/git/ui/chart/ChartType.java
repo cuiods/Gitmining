@@ -1,5 +1,7 @@
 package edu.nju.git.ui.chart;
 
 public enum ChartType {
-	RepoLanguage
+	RepoLanguage,
+	UserType,CompanyUser,UserEmail,UserOwnRepos,UserGist,
+	UserFollowers,UserCreate,UserSubsRepos,UserCollaRepos,UserContriRepos
 }

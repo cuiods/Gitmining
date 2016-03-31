@@ -19,17 +19,16 @@ import javafx.scene.paint.Color;
 public class UserStatisticFunction extends FunctionPanel{
 	
 	
-	@FXML AnchorPane userOrg;
+	@FXML AnchorPane userType;
 	@FXML AnchorPane companyUser;
-	@FXML AnchorPane blog;
+	@FXML AnchorPane subscri;
 	@FXML AnchorPane email;
-	@FXML AnchorPane repos;
+	@FXML AnchorPane ownRepos;
 	@FXML AnchorPane gist;
 	@FXML AnchorPane followers;
-	@FXML AnchorPane following;
-	@FXML AnchorPane location;
+	@FXML AnchorPane collabor;
+	@FXML AnchorPane contri;
 	@FXML AnchorPane create;
-	@FXML AnchorPane organization;
 	
 	
 	@Override
@@ -50,8 +49,8 @@ public class UserStatisticFunction extends FunctionPanel{
 	
 	private void initUserOrg(){
 		CubeButton userOrgButton = new CubeButton();
-		userOrg.getChildren().add(userOrgButton.createContent(1.4, Color.BLUE));
-		userOrg.setOnMouseEntered(new EventHandler<MouseEvent>(){
+		userType.getChildren().add(userOrgButton.createContent(1.4, Color.BLUE));
+		userType.setOnMouseEntered(new EventHandler<MouseEvent>(){
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -59,7 +58,7 @@ public class UserStatisticFunction extends FunctionPanel{
 			}
 			
 		});
-		userOrg.setOnMouseExited(new EventHandler<MouseEvent>(){
+		userType.setOnMouseExited(new EventHandler<MouseEvent>(){
 
 			@Override
 			public void handle(MouseEvent event) {

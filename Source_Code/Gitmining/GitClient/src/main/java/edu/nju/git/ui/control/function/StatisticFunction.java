@@ -5,11 +5,24 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
+import edu.nju.git.VO.chartvo.UserContriRepoChartVO;
 import edu.nju.git.bl.impl.RepoChartBlImpl;
+import edu.nju.git.bl.impl.UserChartBlImpl;
 import edu.nju.git.bl.service.RepoChartBlService;
+import edu.nju.git.bl.service.UserChartBlService;
 import edu.nju.git.ui.chart.ChartType;
+import edu.nju.git.ui.chart.CompanyUserBarChart;
 import edu.nju.git.ui.chart.LanguageBarChart;
 import edu.nju.git.ui.chart.MyChart;
+import edu.nju.git.ui.chart.UserCollaReposBarChart;
+import edu.nju.git.ui.chart.UserContriReposBarChart;
+import edu.nju.git.ui.chart.UserCreateLineChart;
+import edu.nju.git.ui.chart.UserEmailBarChart;
+import edu.nju.git.ui.chart.UserFollowerBarChart;
+import edu.nju.git.ui.chart.UserGistBarChart;
+import edu.nju.git.ui.chart.UserOwnReposBarChart;
+import edu.nju.git.ui.chart.UserSubscriBarChart;
+import edu.nju.git.ui.chart.UserTypePieChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -26,10 +39,12 @@ public class StatisticFunction extends FunctionPanel{
 	private MyChart chart;
 	private MyChartVO vo;
 	private RepoChartBlService repoChart;
+	private UserChartBlService userChart;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		repoChart = RepoChartBlImpl.instance();
+		userChart = UserChartBlImpl.instance();
 	}
 
 	@Override
@@ -41,7 +56,48 @@ public class StatisticFunction extends FunctionPanel{
 				chart = new LanguageBarChart();
 				vo = repoChart.statLanguage();
 				break;
+			case UserType:
+				chart = new UserTypePieChart();
+				vo = userChart.statUserType();
+				break;	
+			case CompanyUser:
+				chart = new CompanyUserBarChart();
+				vo = userChart.statCompanyUser();
+				break;
+			case UserEmail:
+				chart = new UserEmailBarChart();
+				vo = userChart.statUserEmail();
+				break;
+			case UserOwnRepos:
+				chart = new UserOwnReposBarChart();
+				vo = userChart.statUserOwnRepo();
+				break;
+			case UserGist:
+				chart = new UserGistBarChart();
+				vo = userChart.statUserGist();
+				break;
+			case UserFollowers:
+				chart = new UserFollowerBarChart();
+				vo = userChart.statUserFolllowers();
+				break;
+			case UserCreate:
+				chart = new UserCreateLineChart();
+				vo = userChart.statUserCreateTime();
+				break;
+			case UserSubsRepos:
+				chart = new UserSubscriBarChart();
+				vo = userChart.statUserSubscrRepo();
+				break;
+			case UserCollaRepos:
+				chart = new UserCollaReposBarChart();
+				vo = userChart.statUserCollabRepo();
+				break;
+			case UserContriRepos:
+				chart = new UserContriReposBarChart();
+				vo = userChart.statUserContriRepo();
+				break;				
 			}
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -14,25 +14,24 @@
       </Label>
       <HBox layoutX="15.0" layoutY="60.0" prefHeight="180.0" prefWidth="840.0">
          <children>
-            <AnchorPane fx:id="userOrg" prefHeight="180.0" prefWidth="210.0" />
+            <AnchorPane fx:id="userType" prefHeight="180.0" prefWidth="210.0" />
             <AnchorPane fx:id="companyUser" prefHeight="180.0" prefWidth="210.0" />
-            <AnchorPane fx:id="blog" prefHeight="180.0" prefWidth="210.0" />
             <AnchorPane fx:id="email" prefHeight="180.0" prefWidth="210.0" />
+            <AnchorPane fx:id="create" prefHeight="180.0" prefWidth="210.0" />
          </children>
       </HBox>
       <HBox layoutX="15.0" layoutY="250.0" prefHeight="180.0" prefWidth="840.0">
          <children>
-            <AnchorPane fx:id="repos" prefHeight="180.0" prefWidth="210.0" />
+            <AnchorPane fx:id="ownRepos" prefHeight="180.0" prefWidth="210.0" />
             <AnchorPane fx:id="gist" prefHeight="180.0" prefWidth="210.0" />
             <AnchorPane fx:id="followers" prefHeight="180.0" prefWidth="210.0" />
-            <AnchorPane fx:id="following" prefHeight="180.0" prefWidth="210.0" />
+            <AnchorPane fx:id="subscri" prefHeight="180.0" prefWidth="210.0" />
          </children>
       </HBox>
       <HBox layoutX="5.0" layoutY="430.0" prefHeight="180.0" prefWidth="860.0">
          <children>
-            <AnchorPane fx:id="location" prefHeight="180.0" prefWidth="280.0" />
-            <AnchorPane fx:id="create" prefHeight="180.0" prefWidth="280.0" />
-            <AnchorPane fx:id="orgnization" prefHeight="180.0" prefWidth="280.0" />
+            <AnchorPane fx:id="collabor" prefHeight="180.0" prefWidth="420.0" />
+            <AnchorPane fx:id="contri" prefHeight="180.0" prefWidth="420.0" />
          </children>
       </HBox>
    </children>
