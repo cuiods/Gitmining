@@ -15,11 +15,13 @@ public class UserCompanyChartVO extends MyChartVO {
     }
 
     public void increase (String company) {
-        if (companyCount.containsKey(company)) {
-            companyCount.replace(company, companyCount.get(company)+1);
-        }
-        else {
-            companyCount.put(company, 1);
+        if (!company.isEmpty()){
+            if (companyCount.containsKey(company)) {
+                companyCount.replace(company, companyCount.get(company)+1);
+            }
+            else {
+                companyCount.put(company, 1);
+            }
         }
     }
 
