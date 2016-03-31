@@ -3,7 +3,9 @@ package edu.nju.git.ui.control.function;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.nju.git.ui.chart.ChartType;
 import edu.nju.git.ui.control.FunctionPanel;
+import edu.nju.git.ui.control.UIManager;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -56,6 +58,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 			@Override
 			public void handle(MouseEvent event) {
 				languageButton.stop();
+			}
+		});
+		language.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoLanguage});
 			}
 		});
 	}
