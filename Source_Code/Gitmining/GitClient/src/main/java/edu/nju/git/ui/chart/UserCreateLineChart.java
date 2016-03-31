@@ -17,4 +17,10 @@ public class UserCreateLineChart extends MyChart {
 		return null;
 	}
 
+	@Override
+	public double[] updown() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
