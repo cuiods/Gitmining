@@ -23,9 +23,10 @@ public abstract class MyBarChart extends MyChart{
 	public Parent createContent(MyChartVO chartVO) {
         xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(chartVO.getFields()));
-        yAxis = new NumberAxis("Value", 0.0d, 1000.0d, 200.0d);
+        double[] bound = updown();
+        yAxis = new NumberAxis("Value", bound[0],bound[1], bound[2]);
     	chart = new BarChart<>(xAxis, yAxis);
-		chart.setTitle("Language Statistic");
+		chart.setTitle(chartName());
 		XYChart.Series<String, Number> series =new XYChart.Series<>();
         for (int i = 0; i < chartVO.getFields().length; i++) {
         	 series.setName(chartVO.getFields()[i]);

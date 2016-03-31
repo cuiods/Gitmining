@@ -5,15 +5,21 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
-import edu.nju.git.VO.chartvo.UserContriRepoChartVO;
 import edu.nju.git.bl.impl.RepoChartBlImpl;
 import edu.nju.git.bl.impl.UserChartBlImpl;
 import edu.nju.git.bl.service.RepoChartBlService;
 import edu.nju.git.bl.service.UserChartBlService;
 import edu.nju.git.ui.chart.ChartType;
 import edu.nju.git.ui.chart.CompanyUserBarChart;
-import edu.nju.git.ui.chart.LanguageBarChart;
 import edu.nju.git.ui.chart.MyChart;
+import edu.nju.git.ui.chart.RepoCollaBarChart;
+import edu.nju.git.ui.chart.RepoContriBarChart;
+import edu.nju.git.ui.chart.RepoCreateTimeBarChart;
+import edu.nju.git.ui.chart.RepoForkBarChart;
+import edu.nju.git.ui.chart.RepoLanguageBarChart;
+import edu.nju.git.ui.chart.RepoSizeBarChart;
+import edu.nju.git.ui.chart.RepoStarsBarChart;
+import edu.nju.git.ui.chart.RepoSubscriberBarChart;
 import edu.nju.git.ui.chart.UserCollaReposBarChart;
 import edu.nju.git.ui.chart.UserContriReposBarChart;
 import edu.nju.git.ui.chart.UserCreateLineChart;
@@ -50,11 +56,40 @@ public class StatisticFunction extends FunctionPanel{
 	@Override
 	public void initPanel(Object[] bundle) {
 		ChartType type = (ChartType) bundle[0];
+		//TODO can use reflection
 		try {
 			switch(type) {
 			case RepoLanguage:
-				chart = new LanguageBarChart();
+				chart = new RepoLanguageBarChart();
 				vo = repoChart.statLanguage();
+				break;
+			case RepoCreateTime:
+				chart = new RepoCreateTimeBarChart();
+				vo = repoChart.statCreateTime();
+				break;
+			case RepoContributor:
+				chart = new RepoContriBarChart();
+				vo = repoChart.statContributors();
+				break;
+			case RepoCollaborator:
+				chart = new RepoCollaBarChart();
+				vo = repoChart.statCollaborators();
+				break;
+			case RepoSize:
+				chart = new RepoSizeBarChart();
+				vo = repoChart.statSize();
+				break;
+			case RepoSubscribor:
+				chart = new RepoSubscriberBarChart();
+				vo = repoChart.statSubscriber();
+				break;
+			case RepoForks:
+				chart = new RepoForkBarChart();
+				vo = repoChart.statForks();
+				break;
+			case RepoStars:
+				chart = new RepoStarsBarChart();
+				vo = repoChart.statStars();
 				break;
 			case UserType:
 				chart = new UserTypePieChart();
@@ -95,7 +130,8 @@ public class StatisticFunction extends FunctionPanel{
 			case UserContriRepos:
 				chart = new UserContriReposBarChart();
 				vo = userChart.statUserContriRepo();
-				break;				
+				break;	
+			default:break;
 			}
 			
 		} catch (RemoteException e) {

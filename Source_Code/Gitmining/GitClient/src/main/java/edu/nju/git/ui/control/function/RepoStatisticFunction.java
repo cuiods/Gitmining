@@ -105,6 +105,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 				labelDisappear(stars_label);
 			}
 		});
+		stars.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoStars});
+			}
+		});
 	}
 
 	private void initForks() {
@@ -123,6 +129,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 			public void handle(MouseEvent event) {
 				button.play();
 				labelDisappear(forks_label);
+			}
+		});
+		forks.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoForks});
 			}
 		});
 	}
@@ -145,6 +157,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 				labelDisappear(subscriber_label);
 			}
 		});
+		subscriber.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoSubscribor});
+			}
+		});
 	}
 
 	private void initSize() {
@@ -163,6 +181,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 			public void handle(MouseEvent event) {
 				button.play();
 				labelDisappear(size_label);
+			}
+		});
+		size.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoSize});
 			}
 		});
 	}
@@ -185,6 +209,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 				labelDisappear(collaborator_label);
 			}
 		});
+		collaborator.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoCollaborator});
+			}
+		});
 	}
 
 	private void initContributor() {
@@ -205,6 +235,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 				labelDisappear(contributors_label);
 			}
 		});
+		contributors.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoContributor});
+			}
+		});
 	}
 
 	private void initCreateTime() {
@@ -223,6 +259,12 @@ public class RepoStatisticFunction extends FunctionPanel{
 			public void handle(MouseEvent event) {
 				button.play();
 				labelDisappear(createTime_label);
+			}
+		});
+		createTime.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic", new Object[]{ChartType.RepoCreateTime});
 			}
 		});
 	}

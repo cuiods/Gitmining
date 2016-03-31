@@ -23,4 +23,12 @@ public abstract class MyChart {
 	 * 			name of the chart.
 	 */
 	public abstract String chartName();
+	
+	/**
+	 * @return
+	 * 				double[0]: lower bound<br>
+	 * 				double[1]: upper bound<br>
+	 * 				double[2]: tick unit
+	 */
+	public abstract double[] updown();
 }
