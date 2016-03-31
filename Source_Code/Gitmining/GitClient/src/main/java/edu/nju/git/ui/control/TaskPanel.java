@@ -142,6 +142,15 @@ public class TaskPanel extends GitPanel {
 		functions.add(shot);
 		updateLocation();
 	}
+	
+	private void initRepoStatistic() {
+		clearFunction();
+		ScreenShot shot = ConfigReader.readParentPanel("function_repoStatistic");
+		//shot.getRoot().getStylesheets().add(e)
+		setChildren(shot.getRoot());
+		functions.add(shot);
+		updateLocation();
+	}
 
 	@Override
 	public void setChildren(Parent panel) {
@@ -321,6 +330,12 @@ public class TaskPanel extends GitPanel {
 					subview_repo2 = new Button("RepoStatistic");
 					subview_repo2.setPrefSize(150, 40);
 					subview_repo2.getStyleClass().add("sub_button");
+					subview_repo2.setOnMouseReleased(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							initRepoStatistic();
+						}
+					});
 					leftbar.getChildren().add(subview_repo1);
 					leftbar.getChildren().add(subview_repo2);
 				} else {

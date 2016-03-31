@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.RepoStatisticFunction">
   <!-- TODO Add Nodes -->
+  <children>
+    <Label layoutX="372.0" layoutY="30.0" prefHeight="38.0" prefWidth="127.0" text="Choose an item" />
+    <AnchorPane fx:id="language" layoutX="17.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="227.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="437.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="647.0" layoutY="84.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="18.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="228.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="438.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+    <AnchorPane id="language" layoutX="648.0" layoutY="362.0" prefHeight="210.0" prefWidth="210.0" />
+  </children>
 </AnchorPane>

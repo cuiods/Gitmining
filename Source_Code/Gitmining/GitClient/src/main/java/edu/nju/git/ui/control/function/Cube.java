@@ -6,6 +6,11 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 
+/**
+ * a simple cube to show 3d button
+ * @author cuihao
+ * @date 2016-03-31 14:53:27
+ */
 public class Cube extends Box {
 	
 	final Rotate rx = new Rotate(0, Rotate.X_AXIS);
