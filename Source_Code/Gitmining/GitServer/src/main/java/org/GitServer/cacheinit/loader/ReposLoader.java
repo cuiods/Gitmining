@@ -41,6 +41,7 @@ public class ReposLoader {
 			pos.add(  repoBreifPOfactory.getPO() );
 			System.out.println("reading out of repo: "+string);
 		}
+		System.out.println("done with reading repos");
 	}
 
     

@@ -16,6 +16,7 @@ import org.GitServer.cacheinit.loader.CommitLoader;
 import org.GitServer.cacheinit.loader.IssueLoader;
 import org.GitServer.cacheinit.loader.PullsLoader;
 import org.GitServer.cacheinit.loader.ReposLoader;
+import org.GitServer.cacheinit.loader.UserNamesLoader;
 import org.GitServer.cacheinit.loader.UsersLoader;
 import org.GitServer.cacheinit.loader.listfactory.CollaboratorsListReader;
 import org.GitServer.cacheinit.loader.listfactory.ContributorsListReader;
@@ -65,9 +66,7 @@ import edu.nju.git.PO.UserBriefPO;
 @SuppressWarnings("unused")
 public class Install {
 
-	/**
-	 * 1. read out map, and breifvos
-	 */
+	
 
 	private DataEncapsulation dataEncapsulation = new DataEncapsulation();
 	private Saver saver;
@@ -77,66 +76,43 @@ public class Install {
          JsonGenerationException, JsonMappingException, 
          IOException, NoSuchFieldException, SecurityException{
 		
-		init();
 		saver = new Saver(dataEncapsulation, rootpath);
+		initAllUserInfo();
 		
-		List<String>  repos = new RepositoriesListReader().getNames();
-		System.out.println("done with reading "+repos.size()+"repos' names");
-		downloadUsers(repos);
+		
+//		List<String>  repos = new RepositoriesListReader().getNames();
+//		System.out.println("done with reading "+repos.size()+"repos' names");
+//		downloadUsers(repos);
 //		downloadRepos(repos);
-//		this.downloadReposAndUsers();
 //		readReposAndUsers();
 //		System.out.println("done with repos and users");
 		
 //		initUserToOwnerRepo();
-//		System.out.println("done with initUserToOwnerRepo");
-//		saver.excute(dataEncapsulation.getClass().getField("userToOwnerRepo"));
-//		System.out.println("done with saving initUserToOwnerRepo");
-		
-		
 //		initSubscribe();
-//		System.out.println("done with initSubscribe");
-//		saver.excute(dataEncapsulation.getClass().getField("userToSubscribeRepo"));
-//		saver.excute(dataEncapsulation.getClass().getField("repoToSubscriber"));
-//		System.out.println("done with saving last loading object.");
-		
-		
 //		initCollabRepo();
-//		System.out.println("done with initCollabRepo");
-//		saver.excute(dataEncapsulation.getClass().getField("userToCollabRepo"));
-//		saver.excute(dataEncapsulation.getClass().getField("repoToCollab"));
-//		System.out.println("done with saving last loading object.");
-		
 //		initContribute();
-//		System.out.println("done with initContribute");
-//		saver.excute(dataEncapsulation.getClass().getField("userToContribute"));
-//		saver.excute(dataEncapsulation.getClass().getField("repoToContributor"));
-//		System.out.println("done with saving last loading object.");
+		
 		
 //		initPull();
-//		System.out.println("done with initPull");
-//		saver.excute(dataEncapsulation.getClass().getField("repoToPull"));
-//		System.out.println("done with saving last loading object.");
-		
 //		initIssue();
-//		System.out.println("done with initIssue");
-//		saver.excute(dataEncapsulation.getClass().getField("repoToIssue"));
-//		System.out.println("done with saving last loading object.");
-		
-//		errorCommitsReponame = new HashSet<String>(50);
 //		initCommit();
-//		System.out.println("done with initCommit");
-//		saver.excute(dataEncapsulation.getClass().getField("repoToCommit"));
-//		System.out.println("done with saving last loading object.");
-//		saver.excute("error/error.txt", errorCommitsReponame);
-		
-		
 	}
+	/**
+	 * read all users names
+	 */
+	private void initAllUserInfo() throws NoSuchFieldException, SecurityException{
+		List<String> alluserNames = new UserNamesLoader().getUsernames();
+		dataEncapsulation.allUserPOs = new UsersLoader(alluserNames).getPos();
+		saver.excute(dataEncapsulation.getClass().getField("allUserPOs"));
+	}
+	
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs  must be set
 	 */
-	private void initCommit()throws JsonGenerationException, JsonMappingException, IOException{
+	private void initCommit()throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
 		AbstractPullIssueCommitLoader loader = new CommitLoader();
+		dataEncapsulation.repoToCommit = new HashMap<String, List<String>>(REPO_HASHSIZE);
+		
 		int i = 1;
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			String fullname  = repoPO.getOwnerName()+"/"+repoPO.getName();
@@ -144,13 +120,16 @@ public class Install {
 			dataEncapsulation.repoToCommit.put(fullname, loader.read());
 			System.out.println("done with reading out commits of : "+fullname+" " + (i++));
 		}
+		System.out.println("done with initCommit");
+		saver.excute(dataEncapsulation.getClass().getField("repoToCommit"));
 		
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs a must be set
 	 */
-	private void initIssue()throws JsonGenerationException, JsonMappingException, IOException{
+	private void initIssue()throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
 		AbstractPullIssueCommitLoader loader = new IssueLoader();
+		dataEncapsulation.repoToIssue = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		int i = 1;
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			String fullname  = repoPO.getOwnerName()+"/"+repoPO.getName();
@@ -158,12 +137,15 @@ public class Install {
 			dataEncapsulation.repoToIssue.put(fullname, loader.read());
 			System.out.println("done with reading out issues of : "+fullname+" " + (i++));
 		}
+		System.out.println("done with initIssue");
+		saver.excute(dataEncapsulation.getClass().getField("repoToIssue"));
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs  must be set
 	 */
-	private void initPull()throws JsonGenerationException, JsonMappingException, IOException{
+	private void initPull()throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
 		AbstractPullIssueCommitLoader loader = new PullsLoader();
+		dataEncapsulation.repoToPull = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		int i = 1;
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			String fullname  = repoPO.getOwnerName()+"/"+repoPO.getName();
@@ -171,15 +153,17 @@ public class Install {
 			dataEncapsulation.repoToPull.put(fullname, loader.read());
 			System.out.println("done with reading out pulls of : "+fullname+" " + (i++));
 		}
+		System.out.println("done with initPull");
+		saver.excute(dataEncapsulation.getClass().getField("repoToPull"));
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs and nameOrderUserPOs must be set
 	 */
-	private void initSubscribe() throws JsonGenerationException, JsonMappingException, IOException{
+	private void initSubscribe() throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
+		dataEncapsulation.userToSubscribeRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
+		dataEncapsulation.repoToSubscriber = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
-			
 			String fullname = repoPO.getOwnerName()+"/"+repoPO.getName();
-			
 			List<String> subscriberslist = new 
 					SubscribersListReader(repoPO.getOwnerName(),repoPO.getName()).getNames();
 			dataEncapsulation.repoToSubscriber.put(fullname, subscriberslist);
@@ -195,14 +179,20 @@ public class Install {
 			}
 		    
 		}
+		System.out.println("done with initSubscribe");
+		saver.excute(dataEncapsulation.getClass().getField("userToSubscribeRepo"));
+		saver.excute(dataEncapsulation.getClass().getField("repoToSubscriber"));
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs and nameOrderUserPOs must be set
+	 * @throws SecurityException 
+	 * @throws NoSuchFieldException 
 	 */
-	private void initCollabRepo() throws JsonGenerationException, JsonMappingException, IOException{
+	private void initCollabRepo() throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
+		dataEncapsulation.userToCollabRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
+		dataEncapsulation.repoToCollab = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			List<String> collablist = new CollaboratorsListReader(repoPO.getOwnerName(),repoPO.getName()).getNames();
-		    
 			dataEncapsulation.repoToCollab.put(repoPO.getOwnerName()+"/"+repoPO.getName(), collablist);
 		    
 		    for (String collaborator : collablist) {
@@ -214,13 +204,18 @@ public class Install {
 					dataEncapsulation.userToCollabRepo.put(collaborator, valueStringList);
 			    }
 			}
-		    
 		}
+		System.out.println("done with initCollabRepo");
+		saver.excute(dataEncapsulation.getClass().getField("userToCollabRepo"));
+		saver.excute(dataEncapsulation.getClass().getField("repoToCollab"));
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs and nameOrderUserPOs must be set
 	 */
-	private void initContribute() throws JsonGenerationException, JsonMappingException, IOException{
+	private void initContribute() throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
+		
+		dataEncapsulation.userToContribute = new HashMap<String, List<String>>(USER_HASHSIZE);
+		dataEncapsulation.repoToContributor = new HashMap<String, List<String>>(REPO_HASHSIZE);
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			List<String> contrilist = new ContributorsListReader(repoPO.getOwnerName(),repoPO.getName()).getNames();
 			dataEncapsulation.repoToContributor.put(repoPO.getOwnerName()+"/"+repoPO.getName(), contrilist);
@@ -234,14 +229,16 @@ public class Install {
 					dataEncapsulation.userToContribute.put(contri, valueStringList);
 			    }
 			}
-		    
 		}
+		System.out.println("done with initContribute");
+		saver.excute(dataEncapsulation.getClass().getField("userToContribute"));
+		saver.excute(dataEncapsulation.getClass().getField("repoToContributor"));
 	}
 	/**
 	 * <br/><b>precondition</b>：dataEncapsulation.nameOrderRepoPOs and nameOrderUserPOs must be set
 	 */
-	private void initUserToOwnerRepo() throws JsonGenerationException, JsonMappingException, IOException{
-		
+	private void initUserToOwnerRepo() throws JsonGenerationException, JsonMappingException, IOException, NoSuchFieldException, SecurityException{
+		dataEncapsulation.userToOwnerRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
 		for (RepoPO repoPO : dataEncapsulation.nameOrderRepoPOs) {
 			boolean isContain = dataEncapsulation.userToOwnerRepo.containsKey(repoPO.getOwnerName());
 			if(!isContain){
@@ -252,6 +249,8 @@ public class Install {
 				dataEncapsulation.userToOwnerRepo.get(repoPO.getOwnerName()).add(repoPO.getOwnerName()+"/"+repoPO.getName());
 			}
 		}
+		System.out.println("done with initUserToOwnerRepo");
+		saver.excute(dataEncapsulation.getClass().getField("userToOwnerRepo"));
 	}
 	
 
@@ -259,19 +258,23 @@ public class Install {
 	
 	private void downloadRepos(List<String>  repos ) throws NoSuchFieldException, SecurityException{
 		dataEncapsulation.nameOrderRepoPOs = new ReposLoader(repos).getPos();
-		System.out.println("done with reading repos");
 		saver.excute(dataEncapsulation.getClass().getField("nameOrderRepoPOs"));
-		System.out.println("done with saving last loading object.");
 	}
 	
+	/**
+	 * @param repos are all repositories full names which split with "/", 
+	 * or else cannot read the userPO from cloud
+	 */
 	private void downloadUsers(List<String>  repos ) throws NoSuchFieldException, SecurityException{
-		dataEncapsulation.nameOrderUserPOs = new UsersLoader(repos).getPos();
-		System.out.println("done whith reading users");
+		Set<String> userNames = new HashSet<>(REPO_HASHSIZE);
+		for (String string : repos) {
+			userNames.add(string.split("/")[0]);
+		}
+		dataEncapsulation.nameOrderUserPOs = new UsersLoader(userNames).getPos();
 		saver.excute(dataEncapsulation.getClass().getField("nameOrderUserPOs"));
-		System.out.println("done with saving last loading object.");
 	}
 	/**
-	 * 
+	 * read from the locall file
 	 */
 	private void readReposAndUsers(){
 		try {
@@ -306,24 +309,11 @@ public class Install {
 	
 	
 	
+	private final int USER_SIZE = 2500;
+	private final int REPO_SIZE = 3300;
+	private final int REPO_HASHSIZE = (int)(REPO_SIZE/0.75);
+	private final int USER_HASHSIZE = (int)(USER_SIZE/0.75);
 	
-	private final int REPO_HASHSIZE = (int)(3300/0.75);
-	private final int USER_HASHSIZE = (int)(3000/0.75);
-	private void init(){
-//		dataEncapsulation.userToOwnerRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
-//		dataEncapsulation.userToCollabRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
-//		dataEncapsulation.userToContribute = new HashMap<String, List<String>>(USER_HASHSIZE);
-//		dataEncapsulation.userToSubscribeRepo = new HashMap<String, List<String>>(USER_HASHSIZE);
-//		
-//		
-//		dataEncapsulation.repoToContributor = new HashMap<String, List<String>>(REPO_HASHSIZE);
-//		dataEncapsulation.repoToCollab = new HashMap<String, List<String>>(REPO_HASHSIZE);
-//		dataEncapsulation.repoToSubscriber = new HashMap<String, List<String>>(REPO_HASHSIZE);
-
-		dataEncapsulation.repoToCommit = new HashMap<String, List<String>>(REPO_HASHSIZE);
-		dataEncapsulation.repoToIssue = new HashMap<String, List<String>>(REPO_HASHSIZE);
-		dataEncapsulation.repoToPull = new HashMap<String, List<String>>(REPO_HASHSIZE);
-	}
 
 	public static void main(String[] args)
 			throws JsonGenerationException, JsonMappingException, IOException,

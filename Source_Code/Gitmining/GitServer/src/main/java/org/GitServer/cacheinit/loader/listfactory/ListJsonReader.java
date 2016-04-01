@@ -15,11 +15,10 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class ListJsonReader {
 
 	private List<String> names;
-	/**
-	 * generate list<String> in initial function
-	 */
+	
+	
 	@SuppressWarnings("unchecked")
-	public ListJsonReader(String url_location) {
+	private void init(String url_location){
 		try {
 			URL url = new URL(url_location);
 			List<String> list = JacksonConfig.getObjectMapper().readValue(url.openStream(), List.class);
@@ -36,8 +35,28 @@ public class ListJsonReader {
 		}
 		names =  new ArrayList<String>();
 	}
-
+	
+	
+	
+	
+	public void setUrl(String url_location){
+		init(url_location);
+	}
+	
 	public List<String> getNames(){
 		return this.names;
+	}
+	
+	
+	
+	
+	
+	
+	public ListJsonReader(){}
+	/**
+	 * generate list<String> in initial function
+	 */
+	public ListJsonReader(String url_location) {
+		init(url_location);
 	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.GitServer.dataread.Reader;
-import org.omg.CORBA.PRIVATE_MEMBER;
 
 import edu.nju.git.PO.UserPO;
 
@@ -13,11 +12,11 @@ import edu.nju.git.PO.UserPO;
  * a temperary class , for deleting some users which do not have 
  * enough contributots',conllabrators' or subscirbers' reposotories.
  * this class is used only before the administer start the server.
+ * <br/><b>once you created the object, triming users started and ending after creating</b>
  * @author daixinyan
  * @date 2016-03-31
  * 
  */
-@SuppressWarnings("unused")
 public final class TrimUsers {
 
 	

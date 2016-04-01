@@ -30,12 +30,22 @@ public class Reader {
 	public DataEncapsulation excute(){
 		dataEncapsulation = new DataEncapsulation();
 		try {
+			
+		       
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
 				String path = dir+field.getName()+".txt";  //file path: "cache/nameOrderRepoPOs.txt"
 				ObjectInputStream readerStream 
 					= new ObjectInputStream(new FileInputStream(new File(path)));
+				System.out.println("try to read object :"+field.getName()+" at "+path);
 				field.set(dataEncapsulation, readerStream.readObject());
+				System.out.println("done to read object :"+field.getName());
+				
+				Runtime runtime = Runtime.getRuntime ();
+				int freeMemory = ( int ) (runtime.freeMemory() / 1024 / 1024);
+		        int totalMemory = ( int ) (runtime.totalMemory() / 1024 / 1024);
+				System.out.println("curreny free memory:"+freeMemory);
+				System.out.println("current total memory:"+totalMemory);
 				readerStream.close();
 			}
 			

@@ -28,7 +28,9 @@ public class Saver {
 				outputStream.writeObject(field.get(dataEncapsulation));
 				outputStream.flush();
 				outputStream.close();
+				System.out.println("done with save the object in file : "+field.getName());
 			}
+			System.out.println("done with save all objects");
 		} catch (IllegalArgumentException  e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -49,7 +51,7 @@ public class Saver {
 				outputStream.writeObject(field.get(dataEncapsulation));
 				outputStream.flush();
 				outputStream.close();
-				
+				System.out.println("done with save the object in file : "+field.getName()+".txt");
 		} catch (IllegalArgumentException  e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -71,6 +73,7 @@ public class Saver {
 				outputStream.writeObject(object);
 				outputStream.flush();
 				outputStream.close();
+				System.out.println("done with save the object in file : "+fullpath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

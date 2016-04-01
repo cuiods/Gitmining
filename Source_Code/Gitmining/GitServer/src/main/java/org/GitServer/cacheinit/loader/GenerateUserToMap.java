@@ -15,6 +15,10 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 /**
  * this class is for correct the user,s contribute\conllabrator and subscriber
+ * <br/>actually these map have been already initial and the class is useless.   
+ * <br/>this class has the same logic as class {@link}Install
+ * <br/>once you creat a GenerateUserToMap object, the generation starting and 
+ * ending after creating opration done.
  * @author daixinyan
  * @date 2016-03-30
  */
@@ -26,6 +30,11 @@ public class GenerateUserToMap {
 	
 	private DataEncapsulation dataEncapsulation ;
 	private Saver saver;
+
+	/**
+	 * assure that file cache/collabarotor ,cache/contribute , cache/subscriber exist
+	 *  and can be read out to a object.
+	 */
 	public GenerateUserToMap(){
 		dataEncapsulation = new Reader().excute();
 		saver = new Saver(dataEncapsulation, "cache");

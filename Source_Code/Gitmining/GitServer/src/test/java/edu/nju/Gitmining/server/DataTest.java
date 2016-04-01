@@ -22,11 +22,16 @@ public class DataTest {
 //		printRepoToSub();
 //		printUsers();
 //		printUserOwne();
-		printrepoToSunCount();
-		printUserNameKeyToSubCount();
-		
+//		printrepoToSunCount();
+//		printUserNameKeyToSubCount();
+		printallUsers();
 	}
 
+	private void printallUsers(){
+		List<UserPO> usernames = dataEncapsulation.allUserPOs;
+		System.out.println(usernames.size());
+	}
+	
 	private void printuserToSubCount(){
 		Map<String, List<String>> subs = dataEncapsulation.userToSubscribeRepo;
 		List<UserPO> usernames = dataEncapsulation.nameOrderUserPOs;

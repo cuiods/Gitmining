@@ -13,6 +13,8 @@ import edu.nju.git.PO.UserPO;
 public class DataEncapsulation {
 	public List<RepoPO> nameOrderRepoPOs;
 	public List<UserPO> nameOrderUserPOs;
+	/**all users, for statistics not for search users*/
+	public List<UserPO> allUserPOs;
 	
 	public Map<String, List<String>> userToOwnerRepo ;
 	public Map<String, List<String>> userToCollabRepo ;
@@ -29,4 +31,7 @@ public class DataEncapsulation {
 	public Map<String, List<String>> repoToIssue;
 	/**repo's name to pullcreated time*/
 	public Map<String, List<String>> repoToPull;
+	
+	
+	
 }
