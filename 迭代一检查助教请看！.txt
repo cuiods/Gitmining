@@ -1,5 +1,0 @@
-1.我们所有的文档都在Doc文件夹中
-
-2.我们将导出的jar包在放在 Source_Code/Gitmining/GitClient/GitClient-1.0-SNAPSHOT-jar-with-dependencies.jar，请不要改变jar包的位置，因为jar包的执行依赖jar包所在目录下的cache文件夹和src/main/resources文件夹中的数据文件
-
-3.communication和project progress文件夹中的txt文件可能会因为windows和ubuntu系统对于回车符CRLF和LF处理的差别，导致如果用记事本打开的话看起来没有换行，请使用notepad++等文档查看器打开查看
