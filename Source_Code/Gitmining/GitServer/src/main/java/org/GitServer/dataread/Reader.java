@@ -20,6 +20,7 @@ import org.GitServer.cacheinit.DataEncapsulation;
 public class Reader {
 
 	private final String dir = "cache/";
+	private final String file_postfix = ".txt";
 	/**
 	 * before initial we should have already load data from cloud to local cache
 	 * @see org.GitServer.cacheinit.Install 
@@ -31,22 +32,25 @@ public class Reader {
 		dataEncapsulation = new DataEncapsulation();
 		try {
 			
-		       
+			Runtime runtime = Runtime.getRuntime ();  
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
-				String path = dir+field.getName()+".txt";  //file path: "cache/nameOrderRepoPOs.txt"
+				String path = dir+field.getName()+file_postfix;  //file path: "cache/nameOrderRepoPOs.txt"
 				ObjectInputStream readerStream 
 					= new ObjectInputStream(new FileInputStream(new File(path)));
-				System.out.println("try to read object :"+field.getName()+" at "+path);
-				field.set(dataEncapsulation, readerStream.readObject());
-				System.out.println("done to read object :"+field.getName());
 				
-				Runtime runtime = Runtime.getRuntime ();
+				
+				//set value as read object
+				field.set(dataEncapsulation, readerStream.readObject());
+				readerStream.close();
+				
+				
+				System.out.println("done to read object :"+field.getName()+" at "+path);
 				int freeMemory = ( int ) (runtime.freeMemory() / 1024 / 1024);
 		        int totalMemory = ( int ) (runtime.totalMemory() / 1024 / 1024);
 				System.out.println("curreny free memory:"+freeMemory);
 				System.out.println("current total memory:"+totalMemory);
-				readerStream.close();
+				System.out.println();
 			}
 			
 		} catch (IllegalAccessException e) {
