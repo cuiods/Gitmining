@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.GitServer.cacheinit.writer.Saver;
 import org.GitServer.dataread.Reader;
 
 import edu.nju.git.PO.UserPO;
@@ -35,7 +36,12 @@ public final class TrimUsers {
 		System.out.println("done with trim subscribers of users");
 		
 		
-		
+		try {
+			new Saver(dataEncapsulation, "cache").excute(dataEncapsulation.getClass().getField("nameOrderUserPOs"));
+		} catch (NoSuchFieldException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
 	}
 	
 	
