@@ -4,7 +4,9 @@ package edu.nju.git.ui.control.function;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.nju.git.ui.chart.ChartType;
 import edu.nju.git.ui.control.FunctionPanel;
+import edu.nju.git.ui.control.UIManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -56,6 +58,215 @@ public class UserStatisticFunction extends FunctionPanel{
 	
 	public void initialize(URL location,ResourceBundle resources){
 		initUserOrg();
+		initUserColla();
+		initCompanyUser();
+		initOwnRepos();
+		initUserContri();
+		initUserCreate();
+		initUserEmail();
+		initUserFollower();
+		initUserGist();
+		initUserSubs();
+	}
+	
+	
+	
+	public void initPanel(Object[] bundle){
+		
+	}
+	
+	
+	public void setChildren(Parent region){
+		
+	}
+	
+	private void initUserOrg(){
+		CubeButton userOrgButton = new CubeButton();
+		userType.getChildren().add(userOrgButton.createContent(1.4, Color.BLUE));
+		userOrgButton.play();
+		setHandler(userType,userOrgButton,userType_label);
+		userType.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserType});
+				
+			}
+			
+		});
+	}
+	
+	private void initCompanyUser(){
+		CubeButton companyUserButton = new CubeButton();
+		companyUser.getChildren().add(companyUserButton.createContent(1.4, Color.RED));
+		companyUserButton.play();
+		setHandler(companyUser, companyUserButton, companyUser_label);
+		companyUser.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.CompanyUser});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserEmail(){
+		CubeButton userEmailButton = new CubeButton();
+		email.getChildren().add(userEmailButton.createContent(1.4, Color.YELLOW));
+		userEmailButton.play();
+		setHandler(email,userEmailButton,email_label);
+		email.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserEmail});
+				
+			}
+			
+		});
+	}
+	
+	private void initOwnRepos(){
+		CubeButton ownReposButton = new CubeButton();
+		ownRepos.getChildren().add(ownReposButton.createContent(1.4, Color.BROWN));
+		ownReposButton.play();
+		setHandler(ownRepos,ownReposButton,ownRepos_label);
+		ownRepos.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserOwnRepos});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserGist(){
+		CubeButton userGistButton = new CubeButton();
+		gist.getChildren().add(userGistButton.createContent(1.4, Color.ANTIQUEWHITE));
+		userGistButton.play();
+		setHandler(gist,userGistButton,gist_label);
+		gist.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserGist});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserFollower(){
+		CubeButton userFollowerButton = new CubeButton();
+		followers.getChildren().add(userFollowerButton.createContent(1.4, Color.BLUEVIOLET));
+		userFollowerButton.play();
+		setHandler(followers,userFollowerButton,followers_label);
+		followers.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserFollowers});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserCreate(){
+		CubeButton userCreateButton = new CubeButton();
+		create.getChildren().add(userCreateButton.createContent(1.4, Color.CADETBLUE));
+		userCreateButton.play();
+		setHandler(create,userCreateButton,create_label);
+		create.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserCreate});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserSubs(){
+		CubeButton userSubsButton = new CubeButton();
+		subscribe.getChildren().add(userSubsButton.createContent(1.4, Color.CORNFLOWERBLUE));
+		userSubsButton.play();
+		setHandler(subscribe,userSubsButton,subscribe_label);
+		subscribe.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserSubsRepos});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserColla(){
+		CubeButton userCollaButton = new CubeButton();
+		Parent cube = userCollaButton.createContent(1.4, Color.CORAL);
+		collaborate.getChildren().add(cube);
+		cube.setLayoutX(100);
+		userCollaButton.play();
+		setHandler(collaborate,userCollaButton,collaborate_label);
+		collaborate.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserCollaRepos});
+				
+			}
+			
+		});
+	}
+	
+	private void initUserContri(){
+		CubeButton userContriButton = new CubeButton();
+		Parent cube = userContriButton.createContent(1.4, Color.GREEN);
+		contribute.getChildren().add(cube);
+		cube.setLayoutX(100);
+		userContriButton.play();
+		setHandler(contribute,userContriButton,contribute_label);
+		contribute.setOnMouseReleased(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.UserContriRepos});
+				
+			}
+			
+		});
+	}
+	
+	
+	
+	private void setHandler(AnchorPane pane,CubeButton cube,Label label){
+		pane.setOnMouseEntered(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				cube.stop();
+				labelAppear(label);
+				
+			}
+			
+		});
+		pane.setOnMouseExited(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				cube.play();
+				labelDisappear(label);
+				
+			}
+			
+		});
 	}
 	
 	private void labelAppear(Label label) {
@@ -81,37 +292,6 @@ public class UserStatisticFunction extends FunctionPanel{
 		ParallelTransition parallel = new ParallelTransition();
 		parallel.getChildren().addAll(rotate, fade);
 		parallel.play();
-	}
-	
-	public void initPanel(Object[] bundle){
-		
-	}
-	
-	
-	public void setChildren(Parent region){
-		
-	}
-	
-	private void initUserOrg(){
-		CubeButton userOrgButton = new CubeButton();
-		userType.getChildren().add(userOrgButton.createContent(1.4, Color.BLUE));
-		userType.setOnMouseEntered(new EventHandler<MouseEvent>(){
-
-			@Override
-			public void handle(MouseEvent event) {
-				userOrgButton.stop();	
-			}
-			
-		});
-		userType.setOnMouseExited(new EventHandler<MouseEvent>(){
-
-			@Override
-			public void handle(MouseEvent event) {
-				userOrgButton.stop();
-				
-			}
-			
-		});
 	}
 
 }

@@ -5,13 +5,13 @@ public class UserFollowerBarChart extends MyBarChart {
 	@Override
 	public String chartName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "User Num Ranging in Followers' Num";
 	}
 
 	@Override
 	public double[] updown() {
 		// TODO Auto-generated method stub
-		return null;
+		return new double[]{0,1500,150};
 	}
 
 }

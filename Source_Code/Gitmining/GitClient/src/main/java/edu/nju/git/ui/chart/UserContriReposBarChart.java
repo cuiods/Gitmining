@@ -4,14 +4,12 @@ public class UserContriReposBarChart extends MyBarChart {
 
 	@Override
 	public String chartName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "User Num Ranging in Contribute Repositories";
 	}
 
 	@Override
 	public double[] updown() {
-		// TODO Auto-generated method stub
-		return null;
+		return new double[]{0,2500,250};
 	}
 
 }
