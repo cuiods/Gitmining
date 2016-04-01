@@ -63,10 +63,11 @@ public class CubeButton {
 //		c2.setTranslateX(2);
 		c2.rx.setAngle(45);
 		c2.ry.setAngle(45);
+		c2.rz.setAngle(45);
 
 		animation = new Timeline();
 		animation.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new KeyValue(c2.rx.angleProperty(), 0d)),
-				new KeyFrame(Duration.seconds(2), new KeyValue(c2.rx.angleProperty(), 360d)));
+				new KeyFrame(Duration.seconds(3), new KeyValue(c2.rx.angleProperty(), 360d)));
 		animation.setCycleCount(Timeline.INDEFINITE);
 
 		PerspectiveCamera camera = new PerspectiveCamera(true);
