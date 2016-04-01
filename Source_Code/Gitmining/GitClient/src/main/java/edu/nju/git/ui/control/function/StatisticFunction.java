@@ -142,7 +142,7 @@ public class StatisticFunction extends FunctionPanel{
 
 	@Override
 	public String getLocationName() {
-		return "Language";
+		return chart.chartName();
 	}
 
 }

@@ -122,6 +122,7 @@ public class TaskPanel extends GitPanel {
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionHome());
 		setChildren(shot.getRoot());
 		functions.add(shot);
+		index = 0;
 		updateLocation();
 	}
 	
@@ -131,6 +132,7 @@ public class TaskPanel extends GitPanel {
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
 		functions.add(shot);
+		index = 0;
 		updateLocation();
 	}
 
@@ -140,6 +142,7 @@ public class TaskPanel extends GitPanel {
 		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionRepoList());
 		setChildren(shot.getRoot());
 		functions.add(shot);
+		index = 0;
 		updateLocation();
 	}
 	
@@ -149,6 +152,7 @@ public class TaskPanel extends GitPanel {
 		//shot.getRoot().getStylesheets().add(e)
 		setChildren(shot.getRoot());
 		functions.add(shot);
+		index = 0;
 		updateLocation();
 	}
 	
@@ -157,6 +161,7 @@ public class TaskPanel extends GitPanel {
 		ScreenShot shot = ConfigReader.readParentPanel("function_userStatistic");
 		setChildren(shot.getRoot());
 		functions.add(shot);
+		index = 0;
 		updateLocation();
 	}
 
@@ -264,11 +269,14 @@ public class TaskPanel extends GitPanel {
 	 * @param shot
 	 */
 	public void appendFunction(ScreenShot shot) {
-//		for(int i = index+1;  i < functions.size(); i++){
-//			functions.remove(index);
-//		}
+		for(int i = index+1;  i < functions.size(); i++){
+			functions.remove(i);
+			i--;
+		}
 		index = functions.size();
 		functions.add(shot);
+		System.out.println(functions);
+		System.out.println(index);
 	}
 
 	/**
