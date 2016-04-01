@@ -6,24 +6,25 @@ package edu.nju.git.VO.chartvo;
 public class UserCollaRepoChartVO extends MyChartVO {
     public UserCollaRepoChartVO() {
         super();
-        super.fields = new String[6];
-        fields[0] = "0~20";
-        fields[1] = "20~40";
-        fields[2] = "40~60";
-        fields[3] = "60~80";
-        fields[4] = "80~100";
-        fields[5] = ">= 100";
+        super.fields = new String[7];
+        fields[0] = "0~5";
+        fields[1] = "5~10";
+        fields[2] = "10~15";
+        fields[3] = "15~20";
+        fields[4] = "20~25";
+        fields[5] = "25~30";
+        fields[6] = ">=30";
 
-        super.values = new int[6];
-        for (int i=0;i<6;i++) {
+        super.values = new int[7];
+        for (int i=0;i<7;i++) {
             values[i] = 0;
         }
     }
 
     public void increase (int repoCount) {
-        repoCount /= 20;
-        if (repoCount >5) {
-            repoCount =5;
+        repoCount /= 5;
+        if (repoCount >6) {
+            repoCount =6;
         }
         values[repoCount] ++;
     }

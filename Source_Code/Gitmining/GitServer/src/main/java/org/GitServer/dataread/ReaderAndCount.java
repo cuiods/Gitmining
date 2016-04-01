@@ -49,6 +49,8 @@ public class ReaderAndCount {
     private List<UserPO> repoNumOrderUsers;
 	private List<UserPO> followingOrderUsers;
 
+	private List<UserPO> allUserPOs;
+
 	private Map<String, RepoPO>  nameToRepo ;
 	private Map<String, UserPO>  nameToUser ;
 
@@ -109,6 +111,7 @@ public class ReaderAndCount {
 		this.nameOrderRepoPOs = allData.nameOrderRepoPOs;
 		this.nameOrderUsers = allData.nameOrderUserPOs;
 
+		this.allUserPOs = allData.allUserPOs;
 
 		this.userToOwnerRepo = allData.userToOwnerRepo;
 		this.userToContribute = allData.userToContribute;
@@ -176,17 +179,21 @@ public class ReaderAndCount {
 			language.increase(repo.getLanguage());
 		}
 
-		for (UserPO user : nameOrderUsers) {
+		for (UserPO user : allUserPOs) {
 			statUserType.increase(user.getType());
 			statUserCreateTime.increase(user.getCreate_at().substring(0,4));
 			statUserOwnRepo.increase(user.getPublic_repos());
-			statUserCollaborateRepo.increase(user.getNum_collaborate());
-			statUserContributorRepo.increase(user.getNum_contribute());
-			statUserSubscriberRepo.increase(user.getNum_subscribe());
+
 			statUserGist.increase(user.getPublic_gists());
 			statUserFolllowers.increase(user.getFollowNum());
 			statUserEmail.increase(user.getEmail());
 			statCompanyUser.increase(user.getCompany());
+		}
+
+		for (UserPO user: nameOrderUsers) {
+			statUserCollaborateRepo.increase(user.getNum_collaborate());
+			statUserContributorRepo.increase(user.getNum_contribute());
+			statUserSubscriberRepo.increase(user.getNum_subscribe());
 		}
 
 		//attention! the two method can not delete!
@@ -322,7 +329,7 @@ public class ReaderAndCount {
 
 			List<String> userToCollaList = userToCollabRepo.get(userID);
 			if (userToCollaList != null) {
-				userPO.setNum_contribute(userToCollaList.size());
+				userPO.setNum_collaborate(userToCollaList.size());
 			}
 			else {
 				System.out.println("no element for in user to collab map for "+userID);
