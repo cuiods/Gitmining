@@ -7,6 +7,7 @@ import java.util.List;
 import org.GitServer.cacheinit.loader.POfactory.UserPOfactory;
 
 import edu.nju.git.PO.UserPO;
+import edu.nju.git.type.OwnerType;
 /**
  * this object can can be created with a array of strings,which is the name of users.
  * <br/>once you created a object, reading started.  
@@ -40,9 +41,11 @@ public class UsersLoader {
 			
 				userPOfactory.setName(tempString);
 				UserPO po = userPOfactory.getPO();
-				System.out.println("done withing reading user: "+tempString);
+				
 				if(po!=null){
-					System.out.println(po.toString());
+					if(po.getType()==OwnerType.ORIGANIZATION){
+						System.out.println("done withing reading user: "+tempString);
+					}
 					pos.add(po);
 				}
 			

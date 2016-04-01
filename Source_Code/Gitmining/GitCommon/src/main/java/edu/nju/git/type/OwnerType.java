@@ -9,10 +9,10 @@ public enum OwnerType {
    USER,ORIGANIZATION;
 	
    public static OwnerType getInstance(String string){
-	   if(string.toUpperCase().equals("ORIGANIZATION")){
-		   return OwnerType.ORIGANIZATION;
-	   }else{
+	   if(string.toUpperCase().equals("USER")){
 		   return OwnerType.USER;
+	   }else{
+		   return OwnerType.ORIGANIZATION;
 	   }
    }
 }

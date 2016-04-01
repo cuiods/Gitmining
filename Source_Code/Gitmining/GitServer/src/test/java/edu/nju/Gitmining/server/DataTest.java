@@ -24,12 +24,32 @@ public class DataTest {
 //		printUserOwne();
 //		printrepoToSunCount();
 //		printUserNameKeyToSubCount();
-		printallUsers();
+//		printallUsers();
+		printCollab();
 	}
 
+	private void printCollab(){
+		Map<String, List<String>> map = dataEncapsulation.userToCollabRepo;
+		List<UserPO> usernames = dataEncapsulation.nameOrderUserPOs;
+		int count = 0;
+		for (UserPO userPO : usernames) {
+		
+			String name = userPO.getName();
+			List<String> temp = map.get(name);
+			if(temp==null){
+				
+			}else{
+				System.out.println(temp.size());
+				count+=temp.size();
+			}
+		}
+		System.out.println("all user to sub count sum:"+count);
+	}
+	
 	private void printallUsers(){
 		List<UserPO> usernames = dataEncapsulation.allUserPOs;
 		System.out.println(usernames.size());
+		
 	}
 	
 	private void printuserToSubCount(){
