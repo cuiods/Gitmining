@@ -3,7 +3,9 @@ package edu.nju.git.ui.control.function;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.nju.git.main.Main;
 import edu.nju.git.ui.chart.ChartType;
+import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.animation.FadeTransition;
@@ -12,6 +14,7 @@ import javafx.animation.RotateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -89,7 +92,8 @@ public class RepoStatisticFunction extends FunctionPanel{
 
 	private void initStars() {
 		CubeButton button = new CubeButton();
-		stars.getChildren().add(button.createContent(1.6, Color.AQUA));
+		URL url1 = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/java.png");
+		stars.getChildren().add(button.createContent(1.6, new Image(url1.toExternalForm()), new Image(url1.toExternalForm()), Color.TRANSPARENT));
 		button.play();
 		stars.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -219,7 +223,8 @@ public class RepoStatisticFunction extends FunctionPanel{
 
 	private void initContributor() {
 		CubeButton button = new CubeButton();
-		contributors.getChildren().add(button.createContent(1.6, Color.DARKORANGE));
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/contributor.png");
+		contributors.getChildren().add(button.createContent(1.6, new Image(url.toExternalForm()), new Image(url.toExternalForm()), Color.DARKORANGE));
 		button.play();
 		contributors.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -245,7 +250,8 @@ public class RepoStatisticFunction extends FunctionPanel{
 
 	private void initCreateTime() {
 		CubeButton button = new CubeButton();
-		createTime.getChildren().add(button.createContent(1.6, Color.DODGERBLUE));
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/time.png");
+		createTime.getChildren().add(button.createContent(1.6, new Image(url.toExternalForm()),new Image(url.toExternalForm()),Color.DODGERBLUE));
 		button.play();
 		createTime.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
@@ -271,7 +277,8 @@ public class RepoStatisticFunction extends FunctionPanel{
 	
 	private void initLanguage() {
 		CubeButton button = new CubeButton();
-		language.getChildren().add(button.createContent(1.6, Color.RED));
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/java.png");
+		language.getChildren().add(button.createContent(1.6, new Image(url.toExternalForm()), new Image(url.toExternalForm()), Color.RED));
 		button.play();
 		language.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			@Override
