@@ -24,7 +24,7 @@ public class DataTest {
 //		printUserOwne();
 //		printrepoToSunCount();
 //		printUserNameKeyToSubCount();
-//		printallUsers();
+		printallUsers();
 		printCollab();
 	}
 
@@ -39,11 +39,10 @@ public class DataTest {
 			if(temp==null){
 				
 			}else{
-				System.out.println(temp.size());
 				count+=temp.size();
 			}
 		}
-		System.out.println("all user to sub count sum:"+count);
+		System.out.println("all user to collab count sum:"+count);
 	}
 	
 	private void printallUsers(){

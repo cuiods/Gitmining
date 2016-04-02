@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.GitServer.cacheinit.DataEncapsulation;
 
@@ -28,32 +30,48 @@ public class Reader {
 	public Reader(){}
 	
 	private DataEncapsulation dataEncapsulation;
+	
+	/**
+	 * synchronized,using multi threads reading files, which can speed up.
+	 */
 	public DataEncapsulation excute(){
 		dataEncapsulation = new DataEncapsulation();
-		try {
-			
-			Runtime runtime = Runtime.getRuntime ();  
-			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
+		init();
+		return dataEncapsulation;
+	}
+	
+	private void init(){
+		Field[] fields = DataEncapsulation.class.getDeclaredFields();
+		try{
+			List<Thread> threads = new ArrayList<>(fields.length);
+			//created multiple threads
 			for (Field field : fields) {
-				String path = dir+field.getName()+file_postfix;  //file path: "cache/nameOrderRepoPOs.txt"
-				ObjectInputStream readerStream 
-					= new ObjectInputStream(new FileInputStream(new File(path)));
-				
-				
-				//set value as read object
-				field.set(dataEncapsulation, readerStream.readObject());
-				readerStream.close();
-				
-				
-				System.out.println("done to read object :"+field.getName()+" at "+path);
-				int freeMemory = ( int ) (runtime.freeMemory() / 1024 / 1024);
-		        int totalMemory = ( int ) (runtime.totalMemory() / 1024 / 1024);
-				System.out.println("curreny free memory:"+freeMemory);
-				System.out.println("current total memory:"+totalMemory);
-				System.out.println();
+				final Thread thread = new Thread(()->{MyFunction(field);});
+				thread.setPriority( Thread.MAX_PRIORITY);
+				thread.start();
+				threads.add(thread);
 			}
 			
-		} catch (IllegalAccessException e) {
+			//synchronized methods,the thread who created this object,should wait these reading thread.
+			for (Thread thread : threads) {
+				thread.join();
+			}
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
+	
+	private void MyFunction(Field field) {
+		try{
+			String path = dir+field.getName()+file_postfix;  //file path: "cache/nameOrderRepoPOs.txt"
+			ObjectInputStream readerStream 
+				= new ObjectInputStream(new FileInputStream(new File(path)));
+			
+			//set value as read object
+			field.set(dataEncapsulation, readerStream.readObject());
+			readerStream.close();
+			System.out.println("done to read object :"+field.getName()+" at "+path);
+		}catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -62,9 +80,6 @@ public class Reader {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		return dataEncapsulation;
 	}
-	
-	
 
 }
