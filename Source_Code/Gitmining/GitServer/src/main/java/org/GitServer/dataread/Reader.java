@@ -36,17 +36,23 @@ public class Reader {
 	 */
 	public DataEncapsulation excute(){
 		dataEncapsulation = new DataEncapsulation();
+		long a = System.currentTimeMillis();
 		init();
+		long b = System.currentTimeMillis();
+		System.out.println("\n we speed "+(b-a)/1000+" seconds to reading");
 		return dataEncapsulation;
 	}
 	
 	private void init(){
 		Field[] fields = DataEncapsulation.class.getDeclaredFields();
 		try{
+//			for (Field field : fields) {
+//				myFunction(field);
+//			}
 			List<Thread> threads = new ArrayList<>(fields.length);
 			//created multiple threads
 			for (Field field : fields) {
-				final Thread thread = new Thread(()->{MyFunction(field);});
+				final Thread thread = new Thread(()->{myFunction(field);});
 				thread.setPriority( Thread.MAX_PRIORITY);
 				thread.start();
 				threads.add(thread);
@@ -61,7 +67,7 @@ public class Reader {
 		}
 	}
 	
-	private void MyFunction(Field field) {
+	private void myFunction(Field field) {
 		try{
 			String path = dir+field.getName()+file_postfix;  //file path: "cache/nameOrderRepoPOs.txt"
 			ObjectInputStream readerStream 
