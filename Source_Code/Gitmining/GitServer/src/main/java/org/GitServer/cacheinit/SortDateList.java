@@ -25,7 +25,7 @@ public class SortDateList {
 		System.out.println("issues dereplication and sorting,done");
 		this.dereplicationAndSort(dataEncapsulation.repoToPull);
 		System.out.println("pulls dereplication and sorting,done");
-		//new Saver(dataEncapsulation, "cache");
+		new Saver(dataEncapsulation, "cache").excute();
 	}
 	
 	private void dereplicationAndSort(Map<String, List<String>> map){
