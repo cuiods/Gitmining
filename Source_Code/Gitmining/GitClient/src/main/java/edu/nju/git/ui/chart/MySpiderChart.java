@@ -1,6 +1,5 @@
 package edu.nju.git.ui.chart;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JComponent;
@@ -84,7 +83,7 @@ public abstract class MySpiderChart {
 	}
 
 	private JFreeChart createChart() {
-		MySpiderWebPlot spider = new MySpiderWebPlot(getSpiderData());
+		MySpiderWebPlot spider = new MySpiderWebPlot(getSpiderData(),1,drawRings(), getTicks());
 		spider.setBackgroundAlpha(0);
 		spider.setMaxValue(1);
 		JFreeChart chart = new JFreeChart(getChartName(), TextTitle.DEFAULT_FONT, spider, false);
