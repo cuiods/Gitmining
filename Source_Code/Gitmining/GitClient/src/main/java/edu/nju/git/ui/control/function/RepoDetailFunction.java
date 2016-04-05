@@ -1,11 +1,13 @@
 package edu.nju.git.ui.control.function;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
+import edu.nju.git.ui.chart.RepoSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.application.Platform;
@@ -17,6 +19,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -41,6 +44,7 @@ public class RepoDetailFunction extends FunctionPanel{
     @FXML private Label subcri;
     @FXML private Label collab;
     @FXML private VBox vbox;
+    @FXML private AnchorPane radarPane;
 
     /**
      * repository business logic service
@@ -106,11 +110,19 @@ public class RepoDetailFunction extends FunctionPanel{
         contri.setText(repoVO.getNum_ontributors()+"");
         subcri.setText(repoVO.getNum_subscribers()+"");
         collab.setText(repoVO.getNum_collaboration()+"");
+        setRadar();
     }
 
 	@Override
 	public String getLocationName() {
 		return repoVO.getName();
+	}
+	
+	private void setRadar(){
+		ArrayList<RepoVO> repos = new ArrayList<>();
+		repos.add(repoVO);
+		RepoSpiderChart chart = new RepoSpiderChart(repos, 350, 300);
+		radarPane.getChildren().add(chart.createComponent());
 	}
 
 }

@@ -1,11 +1,13 @@
 package edu.nju.git.ui.control.function;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.UserBlService;
+import edu.nju.git.ui.chart.UserSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -83,7 +85,6 @@ public class UserDetailFunction extends FunctionPanel{
 			return;
 		}
 		loginName.setText(user.getName());
-		System.out.println(user.getAvatar_url());
 		Image headingImage = new Image(user.getAvatar_url());
 		heading.setImage(headingImage);
 		create.setText(user.getCreate_at());
@@ -97,7 +98,7 @@ public class UserDetailFunction extends FunctionPanel{
 		following.setText(user.getFollowingNum()+"");
 		followers.setText(user.getFollowNum()+"");
 		gists.setText(user.getRadar_gist()+"");
-		
+		setRadar();
 		
 	}
 	@Override
@@ -106,5 +107,11 @@ public class UserDetailFunction extends FunctionPanel{
 		return user.getName();
 	}
 	
+	private void setRadar(){
+		ArrayList<UserVO> users = new ArrayList<>();
+		users.add(user);
+		UserSpiderChart chart = new UserSpiderChart(users, 385, 288);
+		radarPane.getChildren().add(chart.createComponent());
+	}
 	
 }

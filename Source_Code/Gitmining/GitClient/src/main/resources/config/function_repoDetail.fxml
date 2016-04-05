@@ -20,6 +20,7 @@
             <Label fx:id="contri" alignment="CENTER" layoutX="115.0" layoutY="135.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
             <Label fx:id="fork" alignment="CENTER" layoutX="115.0" layoutY="75.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
             <Label fx:id="star" alignment="CENTER" layoutX="115.0" layoutY="15.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
+            <AnchorPane fx:id="radarPane" layoutX="197.0" layoutY="0.0" maxHeight="300.0" maxWidth="350.0" minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" />
           </children>
         </AnchorPane>
         <AnchorPane layoutX="25.0" layoutY="295.0" prefHeight="300.0" prefWidth="250.0">
