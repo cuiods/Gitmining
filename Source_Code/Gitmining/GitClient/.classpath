@@ -28,5 +28,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="src/main/resources/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="src/main/resources/lib/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/jcommon-1.0.12.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/jfreechart-1.0.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
