@@ -29,7 +29,6 @@ public class RepoSpiderChart extends MySpiderChart{
 			data.addValue(repo.getRadar_complexity(), group, "Complexity");
 			data.addValue(repo.getRadar_forks(), group, "Forks");
 			data.addValue(repo.getRadar_popular(), group, "Popularity");
-			System.out.println(repo.getRadar_size());
 			data.addValue(repo.getRadar_size(), group, "Size");
 		}
 		return data;

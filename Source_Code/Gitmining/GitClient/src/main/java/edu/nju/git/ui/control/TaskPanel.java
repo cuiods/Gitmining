@@ -275,8 +275,6 @@ public class TaskPanel extends GitPanel {
 		}
 		index = functions.size();
 		functions.add(shot);
-		System.out.println(functions);
-		System.out.println(index);
 	}
 
 	/**

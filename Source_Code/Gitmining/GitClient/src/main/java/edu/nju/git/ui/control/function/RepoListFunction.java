@@ -1,11 +1,13 @@
 package edu.nju.git.ui.control.function;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoBriefVO;
+import edu.nju.git.VO.RepoVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.exception.PageOutOfBoundException;
@@ -14,11 +16,16 @@ import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -35,6 +42,7 @@ public class RepoListFunction extends FunctionPanel{
 	@FXML private Button btn_star;
 	@FXML private Button btn_fork;
 	@FXML private Button btn_contri;
+	@FXML private Button btn_compare;
 	
 	private boolean isStar;
 	private boolean isFork;
@@ -148,6 +156,31 @@ public class RepoListFunction extends FunctionPanel{
 			updateList(datalist);
 			page.setText("1");
 		}
+	}
+	
+	@FXML
+	protected void compare(){
+		ObservableList<Node> nodes = listBox.getChildren();
+		ArrayList<RepoVO> choosen = new ArrayList<>();
+loop:	for(Node node: nodes) {
+			if (node instanceof AnchorPane) {
+				ObservableList<Node> ns = ((AnchorPane) node).getChildren();
+				for(Node n: ns) {
+					if (n instanceof CheckBox) {
+						if(!((CheckBox)n).isSelected()){
+							choosen.remove(choosen.size()-1);
+							continue loop;
+						}
+					}
+					if(n instanceof Hyperlink) {
+						String[] names = ((Hyperlink)n).getText().split("/");
+						RepoVO vo = service.getRepoBasicInfo(names[0], names[1]);
+						choosen.add(vo);
+					}
+				}
+			}
+		}
+		UIManager.instance().changeFunction("function_repoCompare", new Object[]{choosen});
 	}
 	
 	/**
