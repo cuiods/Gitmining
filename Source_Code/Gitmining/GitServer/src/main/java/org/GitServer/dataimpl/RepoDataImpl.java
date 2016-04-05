@@ -16,8 +16,11 @@ import edu.nju.git.VO.RepoVO;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
+import org.GitServer.radarstrategy.impl.LogRepoRadarCalculator;
 import org.GitServer.radarstrategy.impl.SimpleRepoRadarCalculator;
 import org.GitServer.radarstrategy.service.RepoRadarService;
+import org.GitServer.repoactivitystrategy.impl.RepoActivityCalculatorImpl;
+import org.GitServer.repoactivitystrategy.service.RepoActivityCalculator;
 
 public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService {
 
@@ -32,6 +35,8 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 
 	private RepoRadarService repoRadarService;
 
+	private RepoActivityCalculator repoActivityCalculator;
+
 	/**
 	 * Singleton method.
 	 * @return the singleton reference pointed to the instance of this class.
@@ -45,7 +50,8 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 	
 	private  RepoDataImpl() throws RemoteException {
 		super();
-		repoRadarService = SimpleRepoRadarCalculator.instance(getRepoPOs(SortType.REPO_NAME));
+		repoRadarService = LogRepoRadarCalculator.instance(getRepoPOs(SortType.REPO_NAME));
+		repoActivityCalculator = new RepoActivityCalculatorImpl();
 	}
 
 	@Override
@@ -98,6 +104,9 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 			vo.setRadar_forks(repoRadarService.calFork(po.getNum_forks()));
 			vo.setRadar_activity(repoRadarService.calActivity(po.getRepoActivity()));
 			vo.setRadar_complexity(repoRadarService.calComplexity(po.getComplexity()));
+
+//			List<String> commits =
+//			vo = repoActivityCalculator.generateLineChart(vo, )
 			return vo;
 		}
 		else {	//no repo matches given name

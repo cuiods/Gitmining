@@ -8,6 +8,7 @@ import edu.nju.git.datavisitors.uservisitors.UserVisitor;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 import org.GitServer.dataread.ReaderAndCount;
+import org.GitServer.radarstrategy.impl.LogUserRadarCalculator;
 import org.GitServer.radarstrategy.impl.SimpleUserRadarCalculator;
 import org.GitServer.radarstrategy.service.UserRadarService;
 
@@ -39,7 +40,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 
     private UserDataImpl() throws RemoteException {
         super();
-        userRadarService = SimpleUserRadarCalculator.instance(getUserPOs(SortType.USER_NAME));
+        userRadarService = LogUserRadarCalculator.instance(getUserPOs(SortType.USER_NAME));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package edu.nju.git.VO;
 
 import java.io.Serializable;
+import java.util.List;
 
 import edu.nju.git.type.OwnerType;
 
@@ -36,7 +37,26 @@ public class RepoVO implements Serializable{
 	private double radar_size;
 	private double radar_complexity; //calculated by num of contributor\collabrator
 	private double radar_activity;  //calculated by num of  commit and issue and pull.
-	
+
+	private List<String> lineCharField;
+
+	public List<Integer> getLineChartValue() {
+		return lineChartValue;
+	}
+
+	public void setLineChartValue(List<Integer> lineChartValue) {
+		this.lineChartValue = lineChartValue;
+	}
+
+	public List<String> getLineCharField() {
+		return lineCharField;
+	}
+
+	public void setLineCharField(List<String> lineCharField) {
+		this.lineCharField = lineCharField;
+	}
+
+	private List<Integer> lineChartValue;
 
     public RepoVO () {
 
