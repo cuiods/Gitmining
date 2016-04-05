@@ -35,15 +35,17 @@ public class LogRepoRadarCalculator implements RepoRadarService {
 
     private void setMaxAndMin(List<RepoPO> repoList) {
         for (RepoPO po : repoList) {
-            double logSize = Math.log(po.getSize());
+            double logSize = Math.log(po.getSize()+1);  //use +1 to avoid -infinity
             if (logSize>SizeMax) {
                 SizeMax = logSize;
+                //System.out.println(po.getOwnerName()+"/"+po.getName()+" max size: "+SizeMax);
             }
             if (logSize<SizeMin) {
                 SizeMin = logSize;
+                //System.out.println(po.getOwnerName()+"/"+po.getName()+" min size: "+SizeMin);
             }
 
-            double logFork = Math.log(po.getNum_forks());
+            double logFork = Math.log(po.getNum_forks()+1);
             if (logFork>ForkMax) {
                 ForkMax = logFork;
             }
@@ -51,7 +53,7 @@ public class LogRepoRadarCalculator implements RepoRadarService {
                 ForkMin = logFork;
             }
 
-            double logPopular = Math.log(po.getPopular());
+            double logPopular = Math.log(po.getPopular()+1);
             if (logPopular>PopularMax) {
                 PopularMax = logPopular;
             }
@@ -59,7 +61,7 @@ public class LogRepoRadarCalculator implements RepoRadarService {
                 PopularMin = logPopular;
             }
 
-            double logComplexity = Math.log(po.getComplexity());
+            double logComplexity = Math.log(po.getComplexity()+1);
             if (logComplexity>ComplexityMax) {
                 ComplexityMax = logComplexity;
             }
@@ -67,7 +69,7 @@ public class LogRepoRadarCalculator implements RepoRadarService {
                 ComplexityMin = logComplexity;
             }
 
-            double logActivity = Math.log(po.getRepoActivity());
+            double logActivity = Math.log(po.getRepoActivity()+1);
             if (logActivity>ActivityMax) {
                 ActivityMax = logActivity;
             }
@@ -79,26 +81,26 @@ public class LogRepoRadarCalculator implements RepoRadarService {
 
     @Override
     public double calSize(int sizeValue) {
-        return (Math.log(sizeValue)-SizeMin)/(SizeMax-SizeMin);
+        return (Math.log(sizeValue+1)-SizeMin)/(SizeMax-SizeMin);
     }
 
     @Override
     public double calFork(int forkValue) {
-        return (Math.log(forkValue)-ForkMin)/(ForkMax-ForkMin);
+        return (Math.log(forkValue+1)-ForkMin)/(ForkMax-ForkMin);
     }
 
     @Override
     public double calPopular(double popularValue) {
-        return (Math.log(popularValue)-PopularMin)/(PopularMax-PopularMin);
+        return (Math.log(popularValue+1)-PopularMin)/(PopularMax-PopularMin);
     }
 
     @Override
     public double calComplexity(double complexityValue) {
-        return (Math.log(complexityValue)-ComplexityMin)/(ComplexityMax-ComplexityMin);
+        return (Math.log(complexityValue+1)-ComplexityMin)/(ComplexityMax-ComplexityMin);
     }
 
     @Override
     public double calActivity(double activityValue) {
-        return (Math.log(activityValue)-ActivityMin)/(ActivityMax-ActivityMin);
+        return (Math.log(activityValue+1)-ActivityMin)/(ActivityMax-ActivityMin);
     }
 }

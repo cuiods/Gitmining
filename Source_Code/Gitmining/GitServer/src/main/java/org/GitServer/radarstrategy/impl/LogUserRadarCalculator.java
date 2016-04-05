@@ -35,7 +35,7 @@ public class LogUserRadarCalculator implements UserRadarService {
 
     private void setMaxAndMin(List<UserPO> userList) {
         for (UserPO po : userList) {
-            double logRepos = Math.log(po.getPublic_repos());
+            double logRepos = Math.log(po.getPublic_repos()+1);
             if (logRepos>RepoCountMax) {
                 RepoCountMax = logRepos;
             }
@@ -43,7 +43,7 @@ public class LogUserRadarCalculator implements UserRadarService {
                 RepoCountMin = logRepos;
             }
 
-            double logGists = Math.log(po.getPublic_gists());
+            double logGists = Math.log(po.getPublic_gists()+1);
             if (logGists>GistCountMax) {
                 GistCountMax = logGists;
             }
@@ -51,7 +51,7 @@ public class LogUserRadarCalculator implements UserRadarService {
                 GistCountMin = logGists;
             }
 
-            double logFollower = Math.log(po.getFollowNum());
+            double logFollower = Math.log(po.getFollowNum()+1);
             if (logFollower>FollowerMax) {
                 FollowerMax = logFollower;
             }
@@ -59,7 +59,7 @@ public class LogUserRadarCalculator implements UserRadarService {
                 FollowerMin = logFollower;
             }
 
-            double logActivuty = Math.log(po.getUserActivity());
+            double logActivuty = Math.log(po.getUserActivity()+1);
             if (logActivuty>ActivityMax) {
                 ActivityMax = logActivuty;
             }
@@ -67,7 +67,7 @@ public class LogUserRadarCalculator implements UserRadarService {
                 ActivityMin = logActivuty;
             }
 
-            double logValue = Math.log(po.getUserValue());
+            double logValue = Math.log(po.getUserValue()+1);
             if (logValue>UserValueMax) {
                 UserValueMax = logValue;
             }
@@ -79,26 +79,26 @@ public class LogUserRadarCalculator implements UserRadarService {
 
     @Override
     public double calRepoCount(int repoCount) {
-        return (Math.log(repoCount)-RepoCountMin)/(RepoCountMax - RepoCountMin);
+        return (Math.log(repoCount+1)-RepoCountMin)/(RepoCountMax - RepoCountMin);
     }
 
     @Override
     public double calGistCount(int gistCount) {
-        return (Math.log(gistCount)-GistCountMin)/(GistCountMax - GistCountMin);
+        return (Math.log(gistCount+1)-GistCountMin)/(GistCountMax - GistCountMin);
     }
 
     @Override
     public double calFollower(int follower) {
-        return (Math.log(follower)-FollowerMin)/(FollowerMax - FollowerMin);
+        return (Math.log(follower+1)-FollowerMin)/(FollowerMax - FollowerMin);
     }
 
     @Override
     public double calActivity(double activity) {
-        return (Math.log(activity)-ActivityMin)/ (ActivityMax - ActivityMin);
+        return (Math.log(activity+1)-ActivityMin)/ (ActivityMax - ActivityMin);
     }
 
     @Override
     public double calUserValue(double userValue) {
-        return (Math.log(userValue)-UserValueMin)/ (UserValueMax - UserValueMin);
+        return (Math.log(userValue+1)-UserValueMin)/ (UserValueMax - UserValueMin);
     }
 }
