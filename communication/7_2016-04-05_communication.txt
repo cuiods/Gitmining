@@ -1,0 +1,9 @@
+who:崔浩，董本超，袁阳阳，戴新颜
+
+when:第7周
+
+what: 关于折线图的逻辑层与UI统一与协调。
+
+how long:1h
+
+arrived solutions: 应当在这一周完成数据展示。下一周迭代二基本结束。

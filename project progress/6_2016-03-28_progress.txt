@@ -1,0 +1,23 @@
+who:董本超
+when:第6周
+what:
+problem:
+todo:
+
+who：崔浩
+when：第6周
+what：
+problem：
+todo：
+
+who：戴新颜
+when：第6周
+what：基本完成了数据层代码编写，以及本地缓存工作。
+problem：迭代二的后期可扩展性。
+todo：迭代二向迭代三的迁移，迭代三计划。
+
+who: 袁阳阳
+when:第6周
+what：
+problem:
+todo:
