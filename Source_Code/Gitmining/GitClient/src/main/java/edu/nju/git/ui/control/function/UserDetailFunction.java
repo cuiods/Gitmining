@@ -97,7 +97,7 @@ public class UserDetailFunction extends FunctionPanel{
 		pub_repos.setText(user.getPublic_repos()+"");
 		following.setText(user.getFollowingNum()+"");
 		followers.setText(user.getFollowNum()+"");
-		gists.setText(user.getRadar_gist()+"");
+		gists.setText(user.getPublic_gists()+"");
 		setRadar();
 		
 	}
