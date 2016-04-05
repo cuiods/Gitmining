@@ -10,7 +10,7 @@ public class CompanyUserBarChart extends MyBarChart {
 	@Override
 	public double[] updown() {
 		
-		return new double[]{0,1500,250};
+		return new double[]{0,350,35};
 	}
 
 	

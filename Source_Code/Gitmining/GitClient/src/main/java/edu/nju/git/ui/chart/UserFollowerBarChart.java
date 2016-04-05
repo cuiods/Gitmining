@@ -11,7 +11,7 @@ public class UserFollowerBarChart extends MyBarChart {
 	@Override
 	public double[] updown() {
 		// TODO Auto-generated method stub
-		return new double[]{0,1500,150};
+		return new double[]{0,40000,4000};
 	}
 
 }

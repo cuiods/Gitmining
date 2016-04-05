@@ -10,7 +10,7 @@ public class UserCollaReposBarChart extends MyBarChart {
 
 	@Override
 	public double[] updown() {
-		return new double[]{0,2500,250};
+		return new double[]{0,1500,150};
 	}
 
 }

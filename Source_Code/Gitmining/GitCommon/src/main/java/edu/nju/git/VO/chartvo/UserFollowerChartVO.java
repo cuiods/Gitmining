@@ -12,11 +12,11 @@ public class UserFollowerChartVO extends MyChartVO{
         fields[2] = "20~30";
         fields[3] = "30~40";
         fields[4] = "40~50";
-        fields[6] = "50~60";
-        fields[7] = "60~70";
-        fields[8] = "70~80";
-        fields[9] = ">= 80";
-
+        fields[5] = "50~60";
+        fields[6] = "60~70";
+        fields[7] = "70~80";
+        fields[8] = "80~90";
+        fields[9] = ">=90";
         super.values = new int[10];
         for (int i=0;i<10;i++) {
             values[i] = 0;

@@ -11,7 +11,7 @@ public class UserEmailBarChart extends MyBarChart {
 	@Override
 	public double[] updown() {
 		
-		return new double[]{0,600,60};
+		return new double[]{0,15000,1500};
 	}
 
 }

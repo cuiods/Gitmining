@@ -11,7 +11,7 @@ public class UserGistBarChart extends MyBarChart {
 	@Override
 	public double[] updown() {
 		// TODO Auto-generated method stub
-		return new double[]{0,1800,180};
+		return new double[]{0,50000,5000};
 	}
 
 }
