@@ -38,25 +38,8 @@ public class RepoVO implements Serializable{
 	private double radar_complexity; //calculated by num of contributor\collabrator
 	private double radar_activity;  //calculated by num of  commit and issue and pull.
 
-	private List<String> lineCharField;
-
-	public List<Integer> getLineChartValue() {
-		return lineChartValue;
-	}
-
-	public void setLineChartValue(List<Integer> lineChartValue) {
-		this.lineChartValue = lineChartValue;
-	}
-
-	public List<String> getLineCharField() {
-		return lineCharField;
-	}
-
-	public void setLineCharField(List<String> lineCharField) {
-		this.lineCharField = lineCharField;
-	}
-
-	private List<Integer> lineChartValue;
+	private String [] lineCharField;
+	private Integer [] lineChartValue;
 
     public RepoVO () {
 
@@ -111,6 +94,23 @@ public class RepoVO implements Serializable{
 		builder.append(name);
 		return builder.toString();
 	}
+
+	public Integer[] getLineChartValue() {
+		return lineChartValue;
+	}
+
+	public void setLineChartValue(Integer[] lineChartValue) {
+		this.lineChartValue = lineChartValue;
+	}
+
+	public String[] getLineCharField() {
+		return lineCharField;
+	}
+
+	public void setLineCharField(String[] lineCharField) {
+		this.lineCharField = lineCharField;
+	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}

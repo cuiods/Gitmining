@@ -59,12 +59,12 @@ public class LogUserRadarCalculator implements UserRadarService {
                 FollowerMin = logFollower;
             }
 
-            double logActivuty = Math.log(po.getUserActivity()+1);
-            if (logActivuty>ActivityMax) {
-                ActivityMax = logActivuty;
+            double logActivity = Math.log(po.getUserActivity()+1);
+            if (logActivity>ActivityMax) {
+                ActivityMax = logActivity;
             }
-            if (logActivuty<ActivityMin) {
-                ActivityMin = logActivuty;
+            if (logActivity<ActivityMin) {
+                ActivityMin = logActivity;
             }
 
             double logValue = Math.log(po.getUserValue()+1);

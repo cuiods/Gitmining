@@ -17,9 +17,8 @@ import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.tools.POVOConverter;
 import edu.nju.git.type.SortType;
 import org.GitServer.radarstrategy.impl.LogRepoRadarCalculator;
-import org.GitServer.radarstrategy.impl.SimpleRepoRadarCalculator;
 import org.GitServer.radarstrategy.service.RepoRadarService;
-import org.GitServer.repoactivitystrategy.impl.RepoActivityCalculatorImpl;
+import org.GitServer.repoactivitystrategy.impl.RepoActivityMonthCalculator;
 import org.GitServer.repoactivitystrategy.service.RepoActivityCalculator;
 
 public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService {
@@ -51,7 +50,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 	private  RepoDataImpl() throws RemoteException {
 		super();
 		repoRadarService = LogRepoRadarCalculator.instance(getRepoPOs(SortType.REPO_NAME));
-		repoActivityCalculator = new RepoActivityCalculatorImpl();
+		repoActivityCalculator = new RepoActivityMonthCalculator();
 	}
 
 	@Override
@@ -95,18 +94,23 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 
 	@Override
 	public RepoVO getRepoBasicInfo(String owner, String repoName) throws RemoteException {
-		RepoPO po = readerAndCount.getNameToRepo().get(owner+"/"+repoName);
+		String id = owner+"/"+repoName;
+		RepoPO po = readerAndCount.getNameToRepo().get(id);
 		if (po!=null) {
 			RepoVO vo = POVOConverter.convertToVO(po);
 
+			//set radar chart data
 			vo.setRadar_size(repoRadarService.calSize(po.getSize()));
 			vo.setRadar_popular(repoRadarService.calPopular(po.getPopular()));
 			vo.setRadar_forks(repoRadarService.calFork(po.getNum_forks()));
 			vo.setRadar_activity(repoRadarService.calActivity(po.getRepoActivity()));
 			vo.setRadar_complexity(repoRadarService.calComplexity(po.getComplexity()));
 
-//			List<String> commits =
-//			vo = repoActivityCalculator.generateLineChart(vo, )
+			//set line chart data
+			List<String> commits = readerAndCount.getRepoToCommit().get(id);
+			List<String> pulls = readerAndCount.getRepoToPull().get(id);
+			List<String> issues = readerAndCount.getRepoToIssue().get(id);
+			vo = repoActivityCalculator.generateLineChart(vo, commits, pulls, issues);
 			return vo;
 		}
 		else {	//no repo matches given name
