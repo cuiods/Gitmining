@@ -11,13 +11,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 
 public class UserTypePieChart extends MyChart{
 
 	@Override
-	public Parent createContent(MyChartVO chartVO) {
+	public Node createContent(MyChartVO chartVO) {
 		PieChart.Data dataList[] = new PieChart.Data[chartVO.getFields().length];
 		int sum = 0;
 		for(int i=0;i<chartVO.getFields().length;i++){

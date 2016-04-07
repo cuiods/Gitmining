@@ -107,9 +107,9 @@ public class RepoDetailFunction extends FunctionPanel{
         size.setText(repoVO.getSize()+"");
         star.setText(repoVO.getNum_stars()+"");
         fork.setText(repoVO.getNum_forks()+"");
-        contri.setText(repoVO.getNum_ontributors()+"");
+        contri.setText(repoVO.getNum_contributors()+"");
         subcri.setText(repoVO.getNum_subscribers()+"");
-        collab.setText(repoVO.getNum_collaboration()+"");
+        collab.setText(repoVO.getNum_collaborators()+"");
         setRadar();
     }
 

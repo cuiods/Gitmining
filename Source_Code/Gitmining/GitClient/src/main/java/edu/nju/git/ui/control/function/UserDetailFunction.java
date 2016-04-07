@@ -103,7 +103,6 @@ public class UserDetailFunction extends FunctionPanel{
 	}
 	@Override
 	public String getLocationName() {
-		// TODO Auto-generated method stub
 		return user.getName();
 	}
 	

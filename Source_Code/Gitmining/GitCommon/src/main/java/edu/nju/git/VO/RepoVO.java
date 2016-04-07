@@ -186,16 +186,16 @@ public class RepoVO implements Serializable{
 	public void setRadar_activity(double radar_activity) {
 		this.radar_activity = radar_activity;
 	}
-	public int getNum_ontributors() {
+	public int getNum_contributors() {
 		return num_contributors;
 	}
-	public void setNum_ontributors(int num_ontributors) {
+	public void setNum_contributors(int num_ontributors) {
 		this.num_contributors = num_ontributors;
 	}
-	public int getNum_collaboration() {
+	public int getNum_collaborators() {
 		return num_collaborators;
 	}
-	public void setNum_collaboration(int num_collaboration) {
+	public void setNum_collaborators(int num_collaboration) {
 		this.num_collaborators = num_collaboration;
 	}
 	public int getNum_commit() {

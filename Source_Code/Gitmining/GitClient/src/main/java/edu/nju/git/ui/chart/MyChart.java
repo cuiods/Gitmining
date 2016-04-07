@@ -1,7 +1,7 @@
 package edu.nju.git.ui.chart;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 
 /**
  * chart class used to generate a chart node.
@@ -16,7 +16,7 @@ public abstract class MyChart {
 	 * @return
 	 * 				chart node
 	 */
-	public abstract Parent createContent(MyChartVO chartVO);
+	public abstract Node createContent(MyChartVO chartVO);
 	/**
 	 * get chart name
 	 * @return

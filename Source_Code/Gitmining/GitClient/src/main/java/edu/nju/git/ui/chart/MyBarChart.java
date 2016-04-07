@@ -6,7 +6,7 @@ import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -20,7 +20,7 @@ public abstract class MyBarChart extends MyChart{
     private NumberAxis yAxis;
  
     @Override
-	public Parent createContent(MyChartVO chartVO) {
+	public Node createContent(MyChartVO chartVO) {
         xAxis = new CategoryAxis();
         xAxis.setCategories(FXCollections.<String>observableArrayList(chartVO.getFields()));
         double[] bound = updown();

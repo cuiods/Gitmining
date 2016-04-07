@@ -13,8 +13,11 @@ import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.ui.RectangleEdge;
 
+import edu.nju.git.ui.control.UIManager;
 import javafx.embed.swing.SwingNode;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Radar or spider chart.<br>
@@ -60,6 +63,14 @@ public abstract class MySpiderChart {
 	public Node createComponent() {
 		SwingNode swingNode = new SwingNode();
 		createSwingNode(swingNode);
+		swingNode.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				SwingNode swing = new SwingNode();
+				createSwingNode(swing,870,640);
+				UIManager.instance().changeFunction("SpiderDetail", new Object[]{swing});
+			}
+		});
 		return swingNode;
 	}
 	/**
@@ -70,6 +81,26 @@ public abstract class MySpiderChart {
 		SwingUtilities.invokeLater(() -> {
 			node.setContent(getSwingComponent());
 		});
+	}
+	/**
+	 * add swing node.
+	 * @param node
+	 */
+	private void createSwingNode(SwingNode node,int width, int height) {
+		SwingUtilities.invokeLater(() -> {
+			node.setContent(getSwingComponent(width, height));
+		});
+	}
+	
+	/**
+	 * add swing component
+	 * @return
+	 */
+	private JComponent getSwingComponent(int width,int height) {
+		JFreeChart chart = createChart();
+		ChartPanel panel = new ChartPanel(chart);
+		panel.setPreferredSize(new Dimension(width, height));
+		return panel;
 	}
 	/**
 	 * add swing component
