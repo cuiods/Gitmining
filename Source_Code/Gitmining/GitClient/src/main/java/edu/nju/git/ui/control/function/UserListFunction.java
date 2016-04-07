@@ -100,7 +100,16 @@ public class UserListFunction extends FunctionPanel{
 		btn_repo.setText("Repositorys");
 		btn_followed.setText("Followed");
 		btn_following.setText("Following");
-		initialGeneral();
+		
+		List<UserBriefVO> list = userblServive.sort(SortType.USER_NAME,false);
+		list = userblServive.getShownUserList();
+		if (list!=null) {
+			datalist = list;
+			updateList(datalist);
+			page.setText("1");
+		}
+		
+//		initialGeneral();
 	}
 	
 	@FXML
