@@ -13,6 +13,8 @@ import edu.nju.git.comparators.usercomparators.po.UserPOFollowerComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPOFollowingComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPONameComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPORepoNumComparator;
+import edu.nju.git.type.MostType;
+import edu.nju.git.type.SortType;
 import org.GitServer.cacheinit.DataEncapsulation;
 
 /**
@@ -48,6 +50,17 @@ public class ReaderAndCount {
 	private List<UserPO> followerOrderUsers;
     private List<UserPO> repoNumOrderUsers;
 	private List<UserPO> followingOrderUsers;
+
+	private RepoPO mostSizeRepo;
+	private RepoPO mostActivityRepo;
+	private RepoPO mostComplexRepo;
+	private RepoPO mostPopularRepo;
+	private RepoPO mostContrbuteRepo;
+	private RepoPO mostCollaborateRepo;
+
+	private UserPO mostValueUser;
+	private UserPO mostActivityUser;
+	private UserPO mostGistUser;
 
 	private List<UserPO> allUserPOs;
 
@@ -142,6 +155,8 @@ public class ReaderAndCount {
 		System.out.println("initChart start!========");
 		initChart();
 		System.out.println("initChart end!========");
+
+		setMost();
 	}
 
 	/**
@@ -259,8 +274,6 @@ public class ReaderAndCount {
 	 */
 	private void setCounts() {
 		// count repo
-		int missingUserMap=0;
-		int missingRepoMap=0;
 		for (RepoPO repoPO : nameOrderRepoPOs) {
 			String repoID = repoPO.getOwnerName()+"/"+repoPO.getName();
 
@@ -270,7 +283,6 @@ public class ReaderAndCount {
 			}
 			else { 		//there is no such repo in the map
 				System.out.println("no element in repo to contributor map for "+repoID);
-				missingRepoMap++;
 			}
 
 			List<String> repoToCollaList = repoToCollab.get(repoID);
@@ -316,7 +328,6 @@ public class ReaderAndCount {
 			}
 			else {
 				System.out.println("no element for in user to subscri map for "+userID);
-				missingUserMap++;
 			}
 
 			List<String> userToContriList = userToContribute.get(userID);
@@ -336,9 +347,6 @@ public class ReaderAndCount {
 			}
 
 		}	//end count user
-
-		System.out.println("missing repo count: "+missingRepoMap);
-		System.out.println("missing user count: "+missingUserMap);
 
 	}
 
@@ -365,6 +373,7 @@ public class ReaderAndCount {
 		this.followingOrderUsers = (ArrayList<UserPO>)((ArrayList)nameOrderUsers).clone();
 		followingOrderUsers.sort(new UserPOFollowingComparator());
 		nameOrderUsers.sort(new UserPONameComparator());
+
 	}
 
 	/**
@@ -386,6 +395,61 @@ public class ReaderAndCount {
 		for (UserPO userPO: nameOrderUsers) {
 			nameToUser.put(userPO.getName(), userPO);
 		}
+	}
+
+	public RepoPO getMostRepo(MostType type) {
+		switch (type) {
+			case REPO_SIZE:return mostSizeRepo;
+			case REPO_ACTIVITY:return mostActivityRepo;
+			case REPO_COMPLEXITY:return mostComplexRepo;
+			case REPO_POPULARITY:return mostPopularRepo;
+			case REPO_CONTRIBUTOR:return mostContrbuteRepo;
+			case REPO_COLLABORATOR:return mostCollaborateRepo;
+			default:return null;
+		}
+	}
+
+	public UserPO getMostUser(MostType type) {
+		switch (type) {
+			case USER_VALUE:return mostValueUser;
+			case USER_ACTIVITY:return mostActivityUser;
+			case USER_GIST:return mostGistUser;
+			default:return null;
+		}
+	}
+
+	private void setMost() {
+		if (nameOrderRepoPOs.size()>0){
+			mostSizeRepo = mostActivityRepo = mostComplexRepo = mostPopularRepo
+					= mostContrbuteRepo = mostCollaborateRepo = nameOrderRepoPOs.get(0);
+			for (RepoPO po : nameOrderRepoPOs) {
+				if (mostSizeRepo.getSize()<po.getSize())
+					mostSizeRepo = po;
+				if (mostActivityRepo.getRepoActivity()<po.getRepoActivity())
+					mostActivityRepo = po;
+				if (mostComplexRepo.getComplexity()<po.getComplexity())
+					mostComplexRepo = po;
+				if (mostPopularRepo.getPopular()<po.getPopular())
+					mostPopularRepo = po;
+				if (mostContrbuteRepo.getNum_contrbutors()<po.getNum_contrbutors())
+					mostContrbuteRepo = po;
+				if (mostCollaborateRepo.getNum_collaborators()<po.getNum_collaborators())
+					mostCollaborateRepo = po;
+			}
+		}
+
+		if (nameOrderUsers.size()>0) {
+			mostValueUser = mostActivityUser = mostGistUser = nameOrderUsers.get(0);
+			for (UserPO po : nameOrderUsers) {
+				if (mostValueUser.getUserValue()<po.getUserValue())
+					mostValueUser = po;
+				if (mostActivityUser.getUserActivity()<po.getUserActivity())
+					mostActivityUser = po;
+				if (mostGistUser.getPublic_gists()<po.getPublic_gists())
+					mostGistUser = po;
+			}
+		}
+
 	}
 
 
@@ -508,10 +572,4 @@ public class ReaderAndCount {
 	public MyChartVO getStatUserFolllowers() {
 		return statUserFolllowers;
 	}
-	
-
-	
-	
-
-	
 }

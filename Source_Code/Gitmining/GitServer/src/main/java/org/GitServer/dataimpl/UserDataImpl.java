@@ -6,6 +6,7 @@ import edu.nju.git.VO.UserVO;
 import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.datavisitors.uservisitors.UserVisitor;
 import edu.nju.git.tools.POVOConverter;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 import org.GitServer.dataread.ReaderAndCount;
 import org.GitServer.radarstrategy.impl.LogUserRadarCalculator;
@@ -119,5 +120,15 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
     @Override
     public List<String> getUserContributeRepos(String userName) throws RemoteException {
         return readerAndCount.getUserToContribute().get(userName);
+    }
+
+    @Override
+    public UserVO getMostRank(MostType type) throws RemoteException {
+        UserPO po = readerAndCount.getMostUser(type);
+        if (po == null) {
+            return null;
+        }
+
+        return getUserInfo(po.getName());
     }
 }

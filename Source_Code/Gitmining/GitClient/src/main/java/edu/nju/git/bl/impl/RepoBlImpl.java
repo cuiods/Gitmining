@@ -10,6 +10,7 @@ import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.RegexTranslator;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 
 import java.rmi.RemoteException;
@@ -196,6 +197,16 @@ public class RepoBlImpl implements RepoBlService {
             elementNum = briefRepoList.size();
         }
         return (elementNum% Consts.PAGE_CAPACITY)==0?elementNum/Consts.PAGE_CAPACITY:elementNum/Consts.PAGE_CAPACITY+1;
+    }
+
+    @Override
+    public RepoVO getMostRank(MostType type) {
+        try {
+            return repoDataService.getMostRank(type);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getMostRank(type);
+        }
     }
 
     /**

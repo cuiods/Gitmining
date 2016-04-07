@@ -14,6 +14,7 @@ import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.datavisitors.repovisitors.RepoVisitor;
 import edu.nju.git.exception.NoSearchResultException;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 
 /**
@@ -98,4 +99,12 @@ public interface RepoDataService extends Remote{
      * @throws RemoteException
      */
     public List<String> getRepoSubscriber(String owner, String repoName) throws RemoteException;
+
+    /**
+     * get the repo with the given most type
+     * @param type
+     * @return
+     * @throws RemoteException
+     */
+    public RepoVO getMostRank(MostType type) throws RemoteException;
 }

@@ -9,7 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import edu.nju.git.PO.RepoPO;
+import edu.nju.git.PO.UserPO;
 import edu.nju.git.data.service.RepoDataService;
+import edu.nju.git.type.MostType;
 import org.GitServer.dataread.ReaderAndCount;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
@@ -131,6 +133,16 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 	@Override
 	public List<String> getRepoSubscriber(String owner, String repoName) throws RemoteException {
 		return readerAndCount.getRepoToSubscriber().get(owner+"/"+repoName);
+	}
+
+	@Override
+	public RepoVO getMostRank(MostType type) throws RemoteException {
+		RepoPO po = readerAndCount.getMostRepo(type);
+		if (po == null) {
+			return null;
+		}
+
+		return getRepoBasicInfo(po.getOwnerName(), po.getName());
 	}
 
 }

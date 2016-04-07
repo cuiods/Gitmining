@@ -6,6 +6,7 @@ import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 
 /**
@@ -130,5 +131,12 @@ public interface RepoBlService {
 	 * @return total page number
 	 */
 	public int getTotalPage();
+
+	/**
+	 * get the most* repo for home page to recommend
+	 * @param type
+	 * @return
+     */
+	public RepoVO getMostRank(MostType type);
 
 }

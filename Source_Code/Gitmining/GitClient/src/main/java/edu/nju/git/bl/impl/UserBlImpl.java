@@ -11,6 +11,7 @@ import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.exception.PageOutOfBoundException;
 import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.RegexTranslator;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 
 import java.rmi.RemoteException;
@@ -219,6 +220,16 @@ public class UserBlImpl implements UserBlService {
             elementNum = briefUserList.size();
         }
         return (elementNum % Consts.PAGE_CAPACITY)==0?elementNum/Consts.PAGE_CAPACITY:elementNum/Consts.PAGE_CAPACITY+1;
+    }
+
+    @Override
+    public UserVO getMostRank(MostType type) {
+        try {
+            return userDataService.getMostRank(type);
+        } catch (RemoteException e) {
+            RMIClientLauncher.sendRMIWarning();
+            return getMostRank(type);
+        }
     }
 
     /**

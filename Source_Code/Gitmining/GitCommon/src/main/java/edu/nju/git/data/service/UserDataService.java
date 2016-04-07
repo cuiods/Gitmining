@@ -7,6 +7,7 @@ import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.datavisitors.uservisitors.UserVisitor;
 import edu.nju.git.exception.NoSearchResultException;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 
 import java.rmi.Remote;
@@ -83,4 +84,12 @@ public interface UserDataService extends Remote{
      * @return a list of brief information of repositories that the user contributes
      */
     public List<String> getUserContributeRepos(String userName)throws RemoteException;
+
+    /**
+     * get the most user with the specific most type
+     * @param type
+     * @return
+     * @throws RemoteException
+     */
+    public UserVO getMostRank(MostType type) throws RemoteException;
 }

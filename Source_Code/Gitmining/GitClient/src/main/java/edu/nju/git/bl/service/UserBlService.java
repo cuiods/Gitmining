@@ -3,6 +3,7 @@ package edu.nju.git.bl.service;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.type.MostType;
 import edu.nju.git.type.SortType;
 
 import java.util.List;
@@ -117,5 +118,12 @@ public interface UserBlService {
      * @return page number
      */
     public int getTotalPage();
+
+    /**
+     * get the most* user for home page to recommend
+     * @param type
+     * @return
+     */
+    public UserVO getMostRank(MostType type);
 
 }
