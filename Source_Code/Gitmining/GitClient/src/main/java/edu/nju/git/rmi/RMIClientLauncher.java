@@ -9,6 +9,7 @@ import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.data.service.UserChartDataService;
 import edu.nju.git.data.service.UserDataService;
 
+import java.io.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -22,10 +23,14 @@ public class RMIClientLauncher {
 
 	public static boolean initRMI() {
 		try {
-			RepoChartDataService repoChartDataService = (RepoChartDataService) Naming.lookup("rmi://127.0.0.1:1099/RepoChartDataService");
-			UserChartDataService userChartDataService = (UserChartDataService) Naming.lookup("rmi://127.0.0.1:1099/UserChartDataService");
-			RepoDataService repoDataService = (RepoDataService) Naming.lookup("rmi://127.0.0.1:1099/RepoDataService");
-			UserDataService userDataService = (UserDataService) Naming.lookup("rmi://127.0.0.1:1099/UserDataService");
+			File file = new File("support_files/ServerIPAddress.txt");
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+			String ip = bufferedReader.readLine();
+
+			RepoChartDataService repoChartDataService = (RepoChartDataService) Naming.lookup(ip+"/RepoChartDataService");
+			UserChartDataService userChartDataService = (UserChartDataService) Naming.lookup(ip+"/UserChartDataService");
+			RepoDataService repoDataService = (RepoDataService) Naming.lookup(ip+"/RepoDataService");
+			UserDataService userDataService = (UserDataService) Naming.lookup(ip+"/UserDataService");
 
 			RepoChartBlImpl.instance().setRepoChartDataService(repoChartDataService);
 			UserChartBlImpl.instance().setUserChartDataService(userChartDataService);
@@ -39,6 +44,12 @@ public class RMIClientLauncher {
 			e.printStackTrace();
 			return false;
 		} catch (RemoteException e) {
+			e.printStackTrace();
+			return false;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
