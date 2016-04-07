@@ -124,6 +124,6 @@ public interface UserBlService {
      * @param type
      * @return
      */
-    public UserVO getMostRank(MostType type);
+    public String getMostRank(MostType type);
 
 }

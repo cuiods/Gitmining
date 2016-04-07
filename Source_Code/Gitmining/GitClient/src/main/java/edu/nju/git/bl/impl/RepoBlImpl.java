@@ -200,7 +200,7 @@ public class RepoBlImpl implements RepoBlService {
     }
 
     @Override
-    public RepoVO getMostRank(MostType type) {
+    public String getMostRank(MostType type) {
         try {
             return repoDataService.getMostRank(type);
         } catch (RemoteException e) {

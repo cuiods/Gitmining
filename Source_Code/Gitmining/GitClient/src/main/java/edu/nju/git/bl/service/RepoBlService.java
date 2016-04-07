@@ -137,6 +137,6 @@ public interface RepoBlService {
 	 * @param type
 	 * @return
      */
-	public RepoVO getMostRank(MostType type);
+	public String getMostRank(MostType type);
 
 }

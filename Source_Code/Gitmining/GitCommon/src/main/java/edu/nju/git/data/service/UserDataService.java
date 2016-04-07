@@ -91,5 +91,5 @@ public interface UserDataService extends Remote{
      * @return
      * @throws RemoteException
      */
-    public UserVO getMostRank(MostType type) throws RemoteException;
+    public String getMostRank(MostType type) throws RemoteException;
 }

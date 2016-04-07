@@ -136,13 +136,13 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 	}
 
 	@Override
-	public RepoVO getMostRank(MostType type) throws RemoteException {
+	public String getMostRank(MostType type) throws RemoteException {
 		RepoPO po = readerAndCount.getMostRepo(type);
 		if (po == null) {
 			return null;
 		}
 
-		return getRepoBasicInfo(po.getOwnerName(), po.getName());
+		return po.getOwnerName()+"/"+po.getName();
 	}
 
 }

@@ -106,5 +106,5 @@ public interface RepoDataService extends Remote{
      * @return
      * @throws RemoteException
      */
-    public RepoVO getMostRank(MostType type) throws RemoteException;
+    public String getMostRank(MostType type) throws RemoteException;
 }

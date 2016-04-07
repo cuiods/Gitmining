@@ -223,7 +223,7 @@ public class UserBlImpl implements UserBlService {
     }
 
     @Override
-    public UserVO getMostRank(MostType type) {
+    public String getMostRank(MostType type) {
         try {
             return userDataService.getMostRank(type);
         } catch (RemoteException e) {

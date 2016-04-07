@@ -123,12 +123,12 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
     }
 
     @Override
-    public UserVO getMostRank(MostType type) throws RemoteException {
+    public String getMostRank(MostType type) throws RemoteException {
         UserPO po = readerAndCount.getMostUser(type);
         if (po == null) {
             return null;
         }
 
-        return getUserInfo(po.getName());
+        return po.getLogin();
     }
 }
