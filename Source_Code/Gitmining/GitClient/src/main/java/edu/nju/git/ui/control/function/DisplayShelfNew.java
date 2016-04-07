@@ -165,7 +165,7 @@ public class DisplayShelfNew extends Region{
         
         //position the buttons
         for(int i=0;i<items.length;i++){
-        	buttons[i].setLayoutX(i*50+(getWidth()-500)/2);
+        	buttons[i].setLayoutX(i*50+(getWidth()-300)/2);
         	buttons[i].setLayoutY(getHeight()-25);
         	buttons[i].resize(30, 3);
         }

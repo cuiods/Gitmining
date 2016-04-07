@@ -2,8 +2,11 @@ package edu.nju.git.ui.control.function;
 
  
 
+import edu.nju.git.VO.RepoVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
+import edu.nju.git.type.MostType;
+import edu.nju.git.ui.control.UIManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Parent;
@@ -48,6 +51,7 @@ public class PerspectiveImage extends Parent {
     private boolean isCenter=false;
     
     private RepoBlService repoBl;
+    private RepoVO vo;
 
     /**
 
@@ -127,15 +131,31 @@ public class PerspectiveImage extends Parent {
     	repoBl = BlFactory.instance().getRepoBlService();
     	switch(index){
     	case 0:
+    		jumpDetail(MostType.REPO_SIZE);
+    		break;
     	case 1:
+    		jumpDetail(MostType.REPO_ACTIVITY);
+    		break;
     	case 2:
+    		jumpDetail(MostType.REPO_POPULARITY);
+    		break;
     	case 3:
+    		jumpDetail(MostType.REPO_CONTRIBUTOR);
+    		break;
     	case 4:
+    		jumpDetail(MostType.REPO_COLLABORATOR);
+    		break;
     	case 5:
-    	case 6:
-    	case 7:
+    		jumpDetail(MostType.REPO_COMPLEXITY);
+    		break;
     		
     	}
+    }
+    
+    private void jumpDetail(MostType type){
+    	repoBl = BlFactory.instance().getRepoBlService();
+    	vo = repoBl.getMostRank(type);
+//		UIManager.instance().changeFunction("function_repoDetail", new Object[]{name[0],name[1]});
     }
 
  

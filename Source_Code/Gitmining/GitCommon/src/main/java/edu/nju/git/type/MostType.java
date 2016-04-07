@@ -5,6 +5,6 @@ package edu.nju.git.type;
  * the enumeration is for get the most* repos or users for recommending on the home page
  */
 public enum MostType {
-    REPO_SIZE, REPO_ACTIVITY, REPO_COMPLEXITY, REPO_POPULARITY, REPO_CONTRIBUTOR, REPO_COLLABORATOR,
+    REPO_SIZE, REPO_ACTIVITY,  REPO_POPULARITY, REPO_CONTRIBUTOR, REPO_COLLABORATOR,REPO_COMPLEXITY,
     USER_VALUE, USER_ACTIVITY, USER_GIST
 }

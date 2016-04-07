@@ -43,7 +43,7 @@ public class HomeFunction extends FunctionPanel {
 
          // load images
 
-        Image[] images = new Image[8];
+        Image[] images = new Image[6];
         for(int i=0;i<images.length;i++){
         	images[i] = new Image( Main.class.getResource(StringReader.readPath("picture")+"home/git"+(i)+".png").toString());
         }
