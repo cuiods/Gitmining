@@ -18,14 +18,17 @@ public class DataTest {
 		dataEncapsulation = reader.excute();
 		System.out.println("read out");
 //		printCommit();
+//		printPullsDate();
+//		printIssueDate();
 //		printRepos();
 //		printRepoToSub();
 //		printUsers();
 //		printUserOwne();
 //		printrepoToSunCount();
 //		printUserNameKeyToSubCount();
-		printallUsers();
-		printCollab();
+//		printallUsers();
+//		printCollab();
+		
 	}
 
 	private void printCollab(){
@@ -143,12 +146,30 @@ public class DataTest {
 		}
 	}
 	
+	private void printMapToList(Map<String, List<String>> map){
+		Set<String> keys = map.keySet();
+		for (String string : keys) {
+			System.out.print(string);
+			List<String> list = map.get(string);
+			for (String element : list) {
+				System.out.print(" " +element);
+			}
+			System.out.println();
+		}
+	}
 	private void printCommit(){
 		Map<String, List<String>> commits = dataEncapsulation.repoToCommit;
-		Set<String> keys = commits.keySet();
-		for (String string : keys) {
-			System.out.println(string+" "+commits.get(string));
-		}
+		this.printMapToList(commits);
+	}
+	
+	private void printPullsDate(){
+		Map<String, List<String>> pulls = dataEncapsulation.repoToPull;
+		this.printMapToList(pulls);
+	}
+	
+	private void printIssueDate(){
+		Map<String, List<String>> issues = dataEncapsulation.repoToIssue;
+		this.printMapToList(issues);
 	}
 	
 	private void printRepos(){

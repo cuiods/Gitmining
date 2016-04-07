@@ -17,6 +17,7 @@ import org.GitServer.dataread.Reader;
  */
 public class SortDateList {
 	
+	
 	public void excute(){
 		DataEncapsulation dataEncapsulation = new Reader().excute();
 		this.dereplicationAndSort(dataEncapsulation.repoToCommit);
@@ -28,6 +29,7 @@ public class SortDateList {
 		new Saver(dataEncapsulation, "cache").excute();
 	}
 	
+	
 	private void dereplicationAndSort(Map<String, List<String>> map){
 		Set<String> set = map.keySet();
 		for (String key : set) {
@@ -35,6 +37,7 @@ public class SortDateList {
 			map.replace(key, this.dereplicationAndSort(temp));
 		}
 	}
+	
 	
 	private List<String> dereplicationAndSort(List<String> replicationList){
 		
@@ -44,7 +47,9 @@ public class SortDateList {
 		return replicationLess;
 	}
 	
+	
 	public static void main(String[] args){
 		new SortDateList().excute();
 	}
+	
 }
