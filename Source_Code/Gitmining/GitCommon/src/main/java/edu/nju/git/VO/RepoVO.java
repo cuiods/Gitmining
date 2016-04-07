@@ -2,6 +2,8 @@ package edu.nju.git.VO;
 
 import java.io.Serializable;
 
+import edu.nju.git.VO.chartvo.MyChartVO;
+
 /**
  * info of repository<br>
  * the basic infomation about the repository, no list thing.
@@ -214,7 +216,17 @@ public class RepoVO implements Serializable{
 		this.num_pull = num_pull;
 	}
 	
-	
+	public MyChartVO getActivityChart(){
+		String[] fields = getLineCharField();
+    	Integer[] valuesTemp = getLineChartValue();
+    	int[] values = new int[valuesTemp.length];
+    	for(int i = 0; i < valuesTemp.length; i++){
+    		values[i] = valuesTemp[i].intValue();
+    	}
+    	MyChartVO chartVO = new MyChartVO();
+    	chartVO.setChartVO(fields, values);
+    	return chartVO;
+	}
 	
 	
 }

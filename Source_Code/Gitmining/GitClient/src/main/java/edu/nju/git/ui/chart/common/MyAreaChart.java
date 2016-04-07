@@ -15,13 +15,21 @@ public abstract class MyAreaChart extends MyChart{
 	private AreaChart<String, Number> chart;
     private CategoryAxis xAxis;
     private NumberAxis yAxis;
+    private int width = 800;
+    private int height = 580;
+    
+    public MyAreaChart() {
+	}
+    
+    public MyAreaChart(int width, int height) {
+    	this.width = width;
+    	this.height = height;
+    }
 	
 	@Override
 	public Node createContent(MyChartVO chartVO) {
 		xAxis = new CategoryAxis(FXCollections.<String>observableArrayList(chartVO.getFields()));
 		xAxis.setLabel(getXName());
-		double[] bound = updown();
-		yAxis = new NumberAxis("Value", bound[0],bound[1], bound[2]);
 		chart = new AreaChart<>(xAxis, yAxis);
 		chart.setTitle(chartName());
 		AreaChart.Series<String, Number> series =new AreaChart.Series<>();
@@ -29,7 +37,7 @@ public abstract class MyAreaChart extends MyChart{
         	 series.getData().add(new AreaChart.Data<String, Number>(chartVO.getFields()[i], chartVO.getValues()[i]));
         }
         chart.getData().add(series);
-        chart.setPrefSize(800, 580);
+        chart.setPrefSize(width, height);
         chart.setLegendVisible(false);
         return chart;
 	}
@@ -49,7 +57,7 @@ public abstract class MyAreaChart extends MyChart{
 	        }
 	        chart.getData().add(series);
 		}
-        chart.setPrefSize(800, 580);
+        chart.setPrefSize(width, height);
         chart.setLegendVisible(false);
         return chart;
 	}

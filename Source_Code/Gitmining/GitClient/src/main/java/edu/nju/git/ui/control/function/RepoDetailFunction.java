@@ -89,16 +89,8 @@ public class RepoDetailFunction extends FunctionPanel{
     
     @FXML
     public void view(){
-    	String[] fields = repoVO.getLineCharField();
-    	Integer[] valuesTemp = repoVO.getLineChartValue();
-    	int[] values = new int[valuesTemp.length];
-    	for(int i = 0; i < valuesTemp.length; i++){
-    		values[i] = valuesTemp[i].intValue();
-    	}
-    	MyChartVO chartVO = new MyChartVO();
-    	chartVO.setChartVO(fields, values);
     	ArrayList<MyChartVO> vos = new ArrayList<>();
-    	vos.add(chartVO);
+    	vos.add(repoVO.getActivityChart());
     	UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.RepoAcitivity,vos});
     }
     

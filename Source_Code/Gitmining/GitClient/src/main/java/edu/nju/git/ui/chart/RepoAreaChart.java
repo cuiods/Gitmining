@@ -4,6 +4,13 @@ import edu.nju.git.ui.chart.common.MyAreaChart;
 
 public class RepoAreaChart extends MyAreaChart{
 
+	public RepoAreaChart() {
+	}
+	
+	public RepoAreaChart(int width, int height) {
+		super(width,height);
+	}
+	
 	@Override
 	public String getXName() {
 		return "Time";
