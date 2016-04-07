@@ -41,12 +41,12 @@ public class RepoListFunction extends FunctionPanel{
 	@FXML private TextField search;
 	@FXML private Button btn_star;
 	@FXML private Button btn_fork;
-	@FXML private Button btn_contri;
+	@FXML private Button btn_Subscri;
 	@FXML private Button btn_compare;
 	
 	private boolean isStar;
 	private boolean isFork;
-	private boolean isContributor;	
+	private boolean isSubscriber;	
 	
 	private List<RepoBriefVO> datalist;
 	private RepoBlService service;
@@ -104,7 +104,7 @@ public class RepoListFunction extends FunctionPanel{
 	@FXML
 	protected void sortGenerous(){
 		btn_star.setText("Stars");
-		btn_contri.setText("Contributors");
+		btn_Subscri.setText("Subscribers");
 		btn_fork.setText("Forks");
 //		List<RepoBriefVO> list = service.sort(SortType.REPO_NAME);
 //		list = service.getShownRepoList();
@@ -119,7 +119,7 @@ public class RepoListFunction extends FunctionPanel{
 	@FXML
 	protected void sortStar() {
 		btn_fork.setText("Forks");
-		btn_contri.setText("Contributors");
+		btn_Subscri.setText("Subscribers");
 		btn_star.setText("Stars"+(isStar?"↑":"↓"));
 		List<RepoBriefVO> list = service.sort(SortType.STAR_NUM,isStar=!isStar);
 		list = service.getShownRepoList();
@@ -133,7 +133,7 @@ public class RepoListFunction extends FunctionPanel{
 	@FXML
 	protected void sortFork() {
 		btn_fork.setText("Forks"+(isFork?"↑":"↓"));
-		btn_contri.setText("Contributors");
+		btn_Subscri.setText("Subscribers");
 		btn_star.setText("Stars");
 		List<RepoBriefVO> list = service.sort(SortType.FORK_NUM,isFork=!isFork);
 		list = service.getShownRepoList();
@@ -145,11 +145,11 @@ public class RepoListFunction extends FunctionPanel{
 	}
 	
 	@FXML
-	protected void sortContributor(){
+	protected void sortSubscriber(){
 		btn_fork.setText("Forks");
-		btn_contri.setText("Contributors"+(isContributor?"↑":"↓"));
+		btn_Subscri.setText("Subscribers"+(isSubscriber?"↑":"↓"));
 		btn_star.setText("Stars");
-		List<RepoBriefVO> list = service.sort(SortType.SUBSCR_NUM,isContributor=!isContributor);
+		List<RepoBriefVO> list = service.sort(SortType.SUBSCR_NUM,isSubscriber=!isSubscriber);
 		list = service.getShownRepoList();
 		if (list!=null) {
 			datalist = list;

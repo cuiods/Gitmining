@@ -94,6 +94,8 @@ public class DisplayShelfNew extends Region{
     				for(int j=buttonIndex+1;j<images.length;j++){
     					items[j].setCenter(false);
     				}
+    				
+    				item.jump(buttonIndex);
     				//to jump ,has to finish aftertime
     			}else{
     				shiftToCenter(item);

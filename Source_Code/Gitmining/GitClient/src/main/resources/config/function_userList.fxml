@@ -15,10 +15,10 @@
         <VBox fx:id="listBox" prefWidth="828.0" />
       </content>
     </ScrollPane>
-    <Button layoutX="20.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortGenerous" prefHeight="30.0" prefWidth="100.0" text="Repositorys" />
-    <Button fx:id="btn_repo" layoutX="120.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortRepos" prefHeight="30.0" prefWidth="100.0" text="Following" />
-    <Button fx:id="btn_following" layoutX="220.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortFollowing" prefHeight="30.0" prefWidth="100.0" text="Followed" />
-    <Button fx:id="btn_followed" layoutX="320.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortFollowed" prefHeight="30.0" prefWidth="100.0" text="Contributors" />
+    <Button layoutX="20.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortGenerous" prefHeight="30.0" prefWidth="100.0" text="General" />
+    <Button fx:id="btn_repo" layoutX="120.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortRepos" prefHeight="30.0" prefWidth="100.0" text="Repostory" />
+    <Button fx:id="btn_following" layoutX="220.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortFollowing" prefHeight="30.0" prefWidth="100.0" text="Following" />
+    <Button fx:id="btn_followed" layoutX="320.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortFollowed" prefHeight="30.0" prefWidth="100.0" text="Followed" />
     <Button layoutX="779.0" layoutY="573.0" mnemonicParsing="false" onAction="#next" prefHeight="30.0" prefWidth="38.0" text="▶" />
     <Button layoutX="710.0" layoutY="573.0" mnemonicParsing="false" onAction="#previous" prefHeight="30.0" prefWidth="38.0" text="◀" />
     <TextField fx:id="page" layoutX="748.0" layoutY="572.0" prefHeight="32.0" prefWidth="32.0" />

@@ -2,18 +2,14 @@ package edu.nju.git.ui.control.function;
 
  
 
+import edu.nju.git.bl.factory.impl.BlFactory;
+import edu.nju.git.bl.service.RepoBlService;
 import javafx.beans.property.DoubleProperty;
-
 import javafx.beans.property.SimpleDoubleProperty;
-
 import javafx.scene.Parent;
-
 import javafx.scene.effect.PerspectiveTransform;
-
 import javafx.scene.effect.Reflection;
-
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 
  /*
@@ -50,6 +46,8 @@ public class PerspectiveImage extends Parent {
     private PerspectiveTransform transform = new PerspectiveTransform();//透视变换，2d图片出3d效果
     
     private boolean isCenter=false;
+    
+    private RepoBlService repoBl;
 
     /**
 
@@ -123,6 +121,21 @@ public class PerspectiveImage extends Parent {
     
     public final void setCenter(boolean isCenter){
     	this.isCenter=isCenter;
+    }
+    
+    public void jump(int index){
+    	repoBl = BlFactory.instance().getRepoBlService();
+    	switch(index){
+    	case 0:
+    	case 1:
+    	case 2:
+    	case 3:
+    	case 4:
+    	case 5:
+    	case 6:
+    	case 7:
+    		
+    	}
     }
 
  

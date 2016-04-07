@@ -14,6 +14,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
  
@@ -27,8 +28,12 @@ import javafx.scene.layout.AnchorPane;
 
 public class HomeFunction extends FunctionPanel {
 	
-	@FXML AnchorPane anchorPane;
+	@FXML private AnchorPane anchorPane;
+	@FXML private ImageView value;
+	@FXML private ImageView active;
+	@FXML private ImageView gists;
     private static final double WIDTH = 820, HEIGHT = 450;
+    
 
     private Timeline animation;
 
@@ -38,9 +43,9 @@ public class HomeFunction extends FunctionPanel {
 
          // load images
 
-        Image[] images = new Image[10];
+        Image[] images = new Image[8];
         for(int i=0;i<images.length;i++){
-        	images[i] = new Image( Main.class.getResource(StringReader.readPath("picture")+"git"+(i+1)+".png").toString());
+        	images[i] = new Image( Main.class.getResource(StringReader.readPath("picture")+"home/git"+(i)+".png").toString());
         }
        
         // create display shelf
