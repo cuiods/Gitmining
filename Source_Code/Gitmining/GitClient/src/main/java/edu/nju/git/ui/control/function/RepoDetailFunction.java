@@ -88,7 +88,7 @@ public class RepoDetailFunction extends FunctionPanel{
     }
     
     @FXML
-    protected void viewActivity(){
+    public void view(){
     	String[] fields = repoVO.getLineCharField();
     	Integer[] valuesTemp = repoVO.getLineChartValue();
     	int[] values = new int[valuesTemp.length];

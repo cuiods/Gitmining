@@ -83,7 +83,7 @@
 						<TextArea fx:id="description" editable="false" layoutX="20.0"
 							layoutY="53.0" prefHeight="109.00009999999747" prefWidth="319.0"
 							text="Loading" wrapText="true" />
-						<Button fx:id="activity" layoutX="615.0" layoutY="58.0" mnemonicParsing="false"
+						<Button fx:id="activity" onAction="#view" layoutX="615.0" layoutY="58.0" mnemonicParsing="false"
 							prefHeight="150.0" prefWidth="150.0" text="Repository Activity" />
 					</children>
 				</AnchorPane>
