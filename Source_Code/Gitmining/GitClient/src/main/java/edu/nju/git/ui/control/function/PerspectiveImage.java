@@ -154,8 +154,8 @@ public class PerspectiveImage extends Parent {
     
     private void jumpDetail(MostType type){
     	repoBl = BlFactory.instance().getRepoBlService();
-    	vo = repoBl.getMostRank(type);
-//		UIManager.instance().changeFunction("function_repoDetail", new Object[]{name[0],name[1]});
+    	String[] temp = repoBl.getMostRank(type).split("/");
+		UIManager.instance().changeFunction("function_repoDetail", new Object[]{temp[0],temp[1]});
     }
 
  

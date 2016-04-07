@@ -6,7 +6,10 @@ package edu.nju.git.ui.control.function;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.nju.git.bl.factory.impl.BlFactory;
+import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.main.Main;
+import edu.nju.git.type.MostType;
 import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
@@ -32,6 +35,8 @@ public class HomeFunction extends FunctionPanel {
 	@FXML private ImageView value;
 	@FXML private ImageView active;
 	@FXML private ImageView gists;
+	
+	private UserBlService userBl;
     private static final double WIDTH = 820, HEIGHT = 450;
     
 
@@ -62,6 +67,11 @@ public class HomeFunction extends FunctionPanel {
 
         return displayShelf;
 
+    }
+    
+    public ImageView getUsers(MostType type){
+    	userBl = BlFactory.instance().getUserBlService();
+    	return null;
     }
 
 
