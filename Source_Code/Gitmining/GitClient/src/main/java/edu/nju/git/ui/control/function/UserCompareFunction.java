@@ -4,7 +4,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import edu.nju.git.VO.RepoVO;
-import edu.nju.git.ui.chart.RepoSpiderChart;
+import edu.nju.git.VO.UserVO;
+import edu.nju.git.ui.chart.UserSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,37 +15,31 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * Repository compare function.
- * @author cuihao
- * @date 2016-04-06 12:32:10
- */
-public class RepoCompareFunction extends FunctionPanel{
-
+public class UserCompareFunction extends FunctionPanel{
 	@FXML private AnchorPane radar;
-	@FXML private TableView<RepoVO> repoTable;
+	@FXML private TableView<UserVO> userTable;
 	
-	private ArrayList<RepoVO> repos;
+	private ArrayList<UserVO> users;
 
+	@Override
+	public String getLocationName() {
+		return "User Compare";
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initPanel(Object[] bundle) {
-		repos = (ArrayList<RepoVO>) bundle[0];
-		RepoSpiderChart chart = new RepoSpiderChart(repos, 380, 250);
+		users = (ArrayList<UserVO>) bundle[0];
+		UserSpiderChart chart = new UserSpiderChart(users, 380, 250);
 		radar.getChildren().add(chart.createComponent());
-		ObservableList<RepoVO> tablevos = FXCollections.observableArrayList(repos);
-		repoTable.setItems(tablevos);
+		ObservableList<UserVO> uservos = FXCollections.observableArrayList(users);
+		userTable.setItems(uservos);
 		addTableItems();
-	}
-
-	@Override
-	public String getLocationName() {		
-		return "Repository Compare";
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void addTableItems(){
-		Field[] fields = RepoVO.class.getDeclaredFields();
+		Field[] fields = UserVO.class.getDeclaredFields();
 		try {
             for(int i = 0; i < fields.length; i++) {
             	String name = fields[i].getName();
@@ -53,20 +48,14 @@ public class RepoCompareFunction extends FunctionPanel{
 					TableColumn column = new TableColumn<>(name);
 					column.setMaxWidth(150);
             		column.setCellValueFactory(new PropertyValueFactory<RepoVO,String>(name));
-            		repoTable.getColumns().add(column);
+            		userTable.getColumns().add(column);
             	}
             	if(type.equals("int")) {
             		String[] temp=name.split("_");
 					TableColumn column = new TableColumn<>(temp.length>1? temp[1]:temp[0]);
 					column.setMaxWidth(150);
             		column.setCellValueFactory(new PropertyValueFactory<RepoVO,Integer>(name));
-            		repoTable.getColumns().add(column);
-            	}
-            	if(type.equals("double")) {
-            		TableColumn column = new TableColumn<>(name);
-            		column.setMaxWidth(150);
-            		column.setCellValueFactory(new PropertyValueFactory<RepoVO,Double>(name));
-            		repoTable.getColumns().add(column);
+            		userTable.getColumns().add(column);
             	}
             }
         } catch (SecurityException e) {
