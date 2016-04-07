@@ -2,6 +2,7 @@ package edu.nju.git.ui.control.function;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
@@ -11,7 +12,7 @@ import edu.nju.git.bl.service.RepoChartBlService;
 import edu.nju.git.bl.service.UserChartBlService;
 import edu.nju.git.ui.chart.ChartType;
 import edu.nju.git.ui.chart.CompanyUserBarChart;
-import edu.nju.git.ui.chart.MyChart;
+import edu.nju.git.ui.chart.RepoAreaChart;
 import edu.nju.git.ui.chart.RepoCollaBarChart;
 import edu.nju.git.ui.chart.RepoContriBarChart;
 import edu.nju.git.ui.chart.RepoCreateTimeBarChart;
@@ -29,6 +30,7 @@ import edu.nju.git.ui.chart.UserGistBarChart;
 import edu.nju.git.ui.chart.UserOwnReposBarChart;
 import edu.nju.git.ui.chart.UserSubscriBarChart;
 import edu.nju.git.ui.chart.UserTypePieChart;
+import edu.nju.git.ui.chart.common.MyChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -53,6 +55,7 @@ public class StatisticFunction extends FunctionPanel{
 		userChart = UserChartBlImpl.instance();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initPanel(Object[] bundle) {
 		ChartType type = (ChartType) bundle[0];
@@ -130,14 +133,21 @@ public class StatisticFunction extends FunctionPanel{
 			case UserContriRepos:
 				chart = new UserContriReposBarChart();
 				vo = userChart.statUserContriRepo();
-				break;	
+				break;
+			case RepoAcitivity:
+				chart = new RepoAreaChart();
+				break;
 			default:break;
 			}
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		chartPane.getChildren().add(chart.createContent(vo));
+		if (type == ChartType.RepoAcitivity) {
+			chartPane.getChildren().add(chart.createContent((ArrayList<MyChartVO>)bundle[1]));
+		}else {
+			chartPane.getChildren().add(chart.createContent(vo));
+		}
 	}
 
 	@Override

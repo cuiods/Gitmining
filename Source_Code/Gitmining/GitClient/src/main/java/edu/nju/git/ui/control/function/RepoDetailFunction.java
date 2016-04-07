@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoVO;
+import edu.nju.git.VO.chartvo.MyChartVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
+import edu.nju.git.ui.chart.ChartType;
 import edu.nju.git.ui.chart.RepoSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
@@ -15,6 +17,7 @@ import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -45,6 +48,7 @@ public class RepoDetailFunction extends FunctionPanel{
     @FXML private Label collab;
     @FXML private VBox vbox;
     @FXML private AnchorPane radarPane;
+    @FXML private Button activity;
 
     /**
      * repository business logic service
@@ -83,6 +87,21 @@ public class RepoDetailFunction extends FunctionPanel{
         service = BlFactory.instance().getRepoBlService();
     }
     
+    @FXML
+    protected void viewActivity(){
+    	String[] fields = repoVO.getLineCharField();
+    	Integer[] valuesTemp = repoVO.getLineChartValue();
+    	int[] values = new int[valuesTemp.length];
+    	for(int i = 0; i < valuesTemp.length; i++){
+    		values[i] = valuesTemp[i].intValue();
+    	}
+    	MyChartVO chartVO = new MyChartVO();
+    	chartVO.setChartVO(fields, values);
+    	ArrayList<MyChartVO> vos = new ArrayList<>();
+    	vos.add(chartVO);
+    	UIManager.instance().changeFunction("function_Statistic",new Object[]{ChartType.RepoAcitivity,vos});
+    }
+    
     private void initLink() {
 		url.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
@@ -92,6 +111,7 @@ public class RepoDetailFunction extends FunctionPanel{
 			}
 		});
 	}
+    
     
     private void initData(Object[] bundle){
         if (repoVO == null) return;

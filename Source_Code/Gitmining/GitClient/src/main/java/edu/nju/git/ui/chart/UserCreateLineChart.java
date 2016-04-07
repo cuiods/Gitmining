@@ -3,6 +3,7 @@ package edu.nju.git.ui.chart;
 import java.util.ArrayList;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
+import edu.nju.git.ui.chart.common.MyChart;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;

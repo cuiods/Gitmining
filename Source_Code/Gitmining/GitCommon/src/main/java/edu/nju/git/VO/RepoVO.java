@@ -1,9 +1,6 @@
 package edu.nju.git.VO;
 
 import java.io.Serializable;
-import java.util.List;
-
-import edu.nju.git.type.OwnerType;
 
 /**
  * info of repository<br>

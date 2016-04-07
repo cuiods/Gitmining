@@ -3,6 +3,7 @@ package edu.nju.git.ui.chart;
 import java.text.DecimalFormat;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
+import edu.nju.git.ui.chart.common.MyChart;
 import javafx.animation.TranslateTransitionBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

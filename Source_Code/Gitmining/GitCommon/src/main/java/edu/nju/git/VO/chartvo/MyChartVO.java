@@ -21,4 +21,9 @@ public class MyChartVO implements Serializable{
 	public int[] getValues() {
 		return values;
 	}
+	
+	public void setChartVO(String[] fields, int[] values) {
+		this.fields = fields;
+		this.values = values;
+	}
 }

@@ -6,6 +6,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import edu.nju.git.VO.UserVO;
+import edu.nju.git.ui.chart.common.MySpiderChart;
 
 public class UserSpiderChart extends MySpiderChart{
 	private ArrayList<UserVO> users ;
