@@ -8,6 +8,8 @@ import org.GitServer.dataimpl.RepoChartDataImpl;
 import org.GitServer.dataimpl.RepoDataImpl;
 import org.GitServer.dataimpl.UserChartDataImpl;
 import org.GitServer.dataimpl.UserDataImpl;
+import org.GitServer.ui.Troy;
+import org.GitServer.ui.Window;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -16,10 +18,12 @@ import java.rmi.registry.LocateRegistry;
 
 /**
  * Created by Harry on 2016/3/29.
+ * changed by daixinyan on 2016-04-07
  */
 public class ServerLauncher {
-    public static void main(String[] args) {
-        try {
+	
+	public void init(){
+		try {
             RepoDataService repoDataService = RepoDataImpl.instance();
             UserDataService userDataService = UserDataImpl.instance();
             RepoChartDataService repoChartDataService = RepoChartDataImpl.instance();
@@ -41,5 +45,31 @@ public class ServerLauncher {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+	}
+	
+    public static void main(String[] args) {
+    	
+    	new Thread(
+    			()->{
+    				Window aWindow = new Window();
+    				Troy troy = new Troy();
+    				troy.creatTray();
+    				troy.addAction((e)->{aWindow.setVisible(!aWindow.isVisible());});
+    				troy.addMenu("exit",(e)->{System.exit(0);});
+    				
+    				new ServerLauncher().init();
+    				aWindow.setDone();
+    				try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+    				aWindow.setVisible(false);
+    				
+    				
+    			}
+    	).start();;
+    	
+    	
     }
 }
