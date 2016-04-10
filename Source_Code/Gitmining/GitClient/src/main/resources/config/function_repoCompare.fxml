@@ -5,9 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.RepoCompareFunction">
+<AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoCompareFunction">
   <children>
     <TableView fx:id="repoTable" layoutX="21.0" layoutY="44.0" prefHeight="267.0" prefWidth="788.0" />
     <AnchorPane fx:id="radar" layoutX="21.0" layoutY="333.0" prefHeight="250.0" prefWidth="380.0" />
+      <AnchorPane fx:id="activity" layoutX="415.0" layoutY="333.0" prefHeight="270.0" prefWidth="390.0" />
   </children>
 </AnchorPane>

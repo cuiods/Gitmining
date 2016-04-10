@@ -1,4 +1,6 @@
-package edu.nju.git.ui.chart;
+package edu.nju.git.ui.chart.common;
+
+import java.util.ArrayList;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
 import javafx.scene.Node;
@@ -17,6 +19,10 @@ public abstract class MyChart {
 	 * 				chart node
 	 */
 	public abstract Node createContent(MyChartVO chartVO);
+	
+	public Node createContent(ArrayList<MyChartVO> vos){
+		return null;
+	}
 	/**
 	 * get chart name
 	 * @return

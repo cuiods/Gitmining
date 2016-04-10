@@ -1,4 +1,4 @@
-package edu.nju.git.ui.chart;
+package edu.nju.git.ui.chart.common;
 
 import java.awt.Dimension;
 

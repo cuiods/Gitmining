@@ -6,6 +6,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import edu.nju.git.VO.RepoVO;
+import edu.nju.git.ui.chart.common.MySpiderChart;
 
 public class RepoSpiderChart extends MySpiderChart{
 

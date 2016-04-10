@@ -6,15 +6,21 @@ package edu.nju.git.ui.control.function;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import edu.nju.git.VO.UserVO;
+import edu.nju.git.bl.factory.impl.BlFactory;
+import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.main.Main;
+import edu.nju.git.type.MostType;
 import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
  
@@ -32,6 +38,8 @@ public class HomeFunction extends FunctionPanel {
 	@FXML private ImageView value;
 	@FXML private ImageView active;
 	@FXML private ImageView gists;
+	
+	private UserBlService userBl;
     private static final double WIDTH = 820, HEIGHT = 450;
     
 
@@ -63,12 +71,34 @@ public class HomeFunction extends FunctionPanel {
         return displayShelf;
 
     }
+    
+    private ImageView getUsers(MostType type,ImageView view){
+    	userBl = BlFactory.instance().getUserBlService();
+    	String userName = userBl.getMostRank(type);
+    	UserVO vo = userBl.getUserInfo(userName);
+    	Image heading = new Image(vo.getAvatar_url());
+    	view.setImage(heading);
+    	view.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().changeFunction("function_userDetail", new Object[]{userName});
+				
+			}
+    		
+    	});
+    	
+    	return view;
+    }
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Parent display = createContent();
 		anchorPane.getChildren().addAll(display);
+		value = getUsers(MostType.USER_VALUE,value);
+		active = getUsers(MostType.USER_ACTIVITY,active);
+		gists = getUsers(MostType.USER_GIST,gists);
 		
 		
 	}

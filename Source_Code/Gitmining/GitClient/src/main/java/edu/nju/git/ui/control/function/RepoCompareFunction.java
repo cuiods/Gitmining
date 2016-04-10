@@ -4,7 +4,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import edu.nju.git.VO.RepoVO;
+import edu.nju.git.VO.chartvo.MyChartVO;
+import edu.nju.git.ui.chart.RepoAreaChart;
 import edu.nju.git.ui.chart.RepoSpiderChart;
+import edu.nju.git.ui.chart.common.MyAreaChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 public class RepoCompareFunction extends FunctionPanel{
 
 	@FXML private AnchorPane radar;
+	@FXML private AnchorPane activity;
 	@FXML private TableView<RepoVO> repoTable;
 	
 	private ArrayList<RepoVO> repos;
@@ -35,6 +39,12 @@ public class RepoCompareFunction extends FunctionPanel{
 		ObservableList<RepoVO> tablevos = FXCollections.observableArrayList(repos);
 		repoTable.setItems(tablevos);
 		addTableItems();
+		ArrayList<MyChartVO> vos = new ArrayList<>();
+		for(RepoVO repo: repos) {
+			vos.add(repo.getActivityChart());
+		}
+		MyAreaChart areaChart = new RepoAreaChart(390,270);
+		activity.getChildren().add(areaChart.createContent(vos));
 	}
 
 	@Override
