@@ -6,11 +6,5 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.WebViewFunction">
-   <children>
-      <VBox fx:id="vbox" prefHeight="640.0" prefWidth="870.0">
-         <children>
-            <WebView fx:id="webView" maxHeight="-1.0" maxWidth="870.0" minHeight="600.0" minWidth="870.0" prefHeight="640.0" prefWidth="870.0" />
-         </children></VBox>
-   </children>
+<AnchorPane fx:id="pane" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.WebViewFunction">
 </AnchorPane>

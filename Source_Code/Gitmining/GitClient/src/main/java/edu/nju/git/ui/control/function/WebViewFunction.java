@@ -4,8 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.ui.control.FunctionPanel;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -17,9 +20,9 @@ import javafx.scene.web.WebView;
  */
 public class WebViewFunction extends FunctionPanel{
 
-	@FXML private VBox vbox;
 	private String url = "";
-	@FXML private WebView webView;
+	@FXML private AnchorPane pane;
+	private WebView webView;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -29,6 +32,17 @@ public class WebViewFunction extends FunctionPanel{
 	@Override
 	public void initPanel(Object[] bundle) {
 		url = (String) bundle[0];
+//		ProgressIndicator progressIndicator = new ProgressIndicator();
+//		LoadWebTask task = new LoadWebTask(url);
+//		progressIndicator.progressProperty().bind(task.progressProperty());
+//		progressIndicator.visibleProperty().bind(task.runningProperty());
+//		progressIndicator.setPrefSize(150, 150);
+//		pane.getChildren().add(progressIndicator);
+//		new Thread(task).start();
+		webView = new WebView();
+		webView.setPrefSize(870, 640);	
+		webView.requestFocus();
+		pane.getChildren().add(webView);
 		final WebEngine webEngine = webView.getEngine();
 		webEngine.load(url);
 	}
@@ -44,6 +58,27 @@ public class WebViewFunction extends FunctionPanel{
 	@Override
 	public String getLocationName() {
 		return "web view";
+	}
+	
+	class LoadWebTask extends Task<Void> {
+
+		private String url;
+		
+		public LoadWebTask(String url) {
+			this.url = url;
+		}
+		
+		@Override
+		protected Void call() throws Exception {
+			webView = new WebView();
+			webView.setPrefSize(870, 640);	
+			webView.requestFocus();
+			pane.getChildren().add(webView);
+			final WebEngine webEngine = webView.getEngine();
+			webEngine.load(url);
+			return null;
+		}
+		
 	}
 
 }
