@@ -54,18 +54,8 @@ public class UserDetailFunction extends FunctionPanel{
 	
 	public void initPanel(Object bundle[]){
 		user = service.getUserInfo((String)bundle[0]);
-		Task<Void> task = new Task<Void>(){
-			@Override
-			protected Void call() throws Exception {
-				initData(bundle);
-				initLink();
-				return null;
-			}
-			
-		};
-		Platform.runLater(task);
-
-			
+		initUserDetailTask task = new initUserDetailTask(bundle);
+		new Thread(task).start();		
 	}
 	
 	private void initLink(){
@@ -85,8 +75,6 @@ public class UserDetailFunction extends FunctionPanel{
 			return;
 		}
 		loginName.setText(user.getName());
-		Image headingImage = new Image(user.getAvatar_url());
-		heading.setImage(headingImage);
 		create.setText(user.getCreate_at());
 		update.setText(user.getUpdate_at());
 		blog.setText(user.getBlog());
@@ -99,6 +87,8 @@ public class UserDetailFunction extends FunctionPanel{
 		followers.setText(user.getFollowNum()+"");
 		gists.setText(user.getPublic_gists()+"");
 		setRadar();
+		Image headingImage = new Image(user.getAvatar_url());
+		heading.setImage(headingImage);	
 		
 	}
 	@Override
@@ -111,6 +101,23 @@ public class UserDetailFunction extends FunctionPanel{
 		users.add(user);
 		UserSpiderChart chart = new UserSpiderChart(users, 385, 288);
 		radarPane.getChildren().add(chart.createComponent());
+	}
+	
+	class initUserDetailTask extends Task<Void> {
+		
+		private Object[] bundle;
+		
+		public initUserDetailTask(Object[] bundle) {
+			this.bundle = bundle;
+		}
+
+		@Override
+		protected Void call() throws Exception {
+			initData(bundle);
+			initLink();
+			return null;
+		}
+		
 	}
 	
 }
