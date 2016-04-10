@@ -1,6 +1,8 @@
 package edu.nju.git.ui.control.function;
 
 
+
+
 import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.StringReader;
 import javafx.animation.Interpolator;
@@ -8,6 +10,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -80,7 +84,16 @@ public class DisplayShelfNew extends Region{
     		buttons[i].getStyleClass().add("specialButton");
     		buttons[i].setIndex(i);
     		
-    		
+    		item.setOnMouseEntered(new EventHandler<MouseEvent>(){
+
+				@Override
+				public void handle(MouseEvent event) {
+//					if(item.getIsCenter())
+						item.setCursor(Cursor.HAND);
+					
+				}
+    			
+    		});
     		item.setOnMouseClicked((MouseEvent me) ->{
     			//to do
     			localChange = true;
@@ -110,6 +123,7 @@ public class DisplayShelfNew extends Region{
     			    			
     		});
     	}
+    	items[0].setCenter(true);
     	//initialize the buttons
     	for(int i=0;i<images.length;i++){
     		SpecialButton butt = buttons[i];

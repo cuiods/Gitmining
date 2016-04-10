@@ -8,8 +8,10 @@
 
 <AnchorPane fx:id="anchorPane" layoutX="25" layoutY="0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.HomeFunction">
    <children>
-      <ImageView fx:id="value" fitHeight="160.0" fitWidth="240.0" layoutX="25.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="active" fitHeight="160.0" fitWidth="240.0" layoutX="315.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="gists" fitHeight="160.0" fitWidth="240.0" layoutX="605.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true" />
+   	  <Label layoutX="0" layoutY="435" text="About User">
+   	  </Label>
+      <ImageView fx:id="value" fitHeight="160.0" fitWidth="240.0" layoutX="0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="active" fitHeight="160.0" fitWidth="240.0" layoutX="290.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="gists" fitHeight="160.0" fitWidth="240.0" layoutX="580.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

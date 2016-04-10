@@ -17,6 +17,7 @@ import edu.nju.git.ui.control.UIManager;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -65,7 +66,7 @@ public class HomeFunction extends FunctionPanel {
         this.setCssFactory(UIManager.instance().getCssFactory());
 //        System.out.println(getCssFactory().getDisplayShelf());
         String displayShelfCss = getCssFactory().getDisplayShelf();
-
+        
         displayShelf.getStylesheets().add(displayShelfCss);       
 
         return displayShelf;
@@ -75,9 +76,24 @@ public class HomeFunction extends FunctionPanel {
     private ImageView getUsers(MostType type,ImageView view){
     	userBl = BlFactory.instance().getUserBlService();
     	String userName = userBl.getMostRank(type);
-    	UserVO vo = userBl.getUserInfo(userName);
-    	Image heading = new Image(vo.getAvatar_url());
+//    	UserVO vo = userBl.getUserInfo(userName);
+    	Image heading = new Image(Main.class.getResource(StringReader.readPath("picture")+"home/"+type+".png").toString(),
+    							240,160,true,true);
+    	
     	view.setImage(heading);
+    	view.setSmooth(true);
+    	view.setPreserveRatio(true);
+    	view.setCache(true);
+    	view.setOnMouseEntered(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				view.setCursor(Cursor.HAND);
+				
+			}
+    		
+    	});
+    	
     	view.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
 			@Override
@@ -95,6 +111,7 @@ public class HomeFunction extends FunctionPanel {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Parent display = createContent();
+		display.setLayoutY(-20);
 		anchorPane.getChildren().addAll(display);
 		value = getUsers(MostType.USER_VALUE,value);
 		active = getUsers(MostType.USER_ACTIVITY,active);
