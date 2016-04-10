@@ -30,7 +30,7 @@ public abstract class MyBarChart extends MyChart{
 		XYChart.Series<String, Number> series =new XYChart.Series<>();
         for (int i = 0; i < chartVO.getFields().length; i++) {
         	 series.setName(chartVO.getFields()[i]);
-        	 series.getData().add(new XYChart.Data<String, Number>(chartVO.getFields()[i], chartVO.getValues()[i]));
+        	 series.getData().add(new XYChart.Data<String, Number>(chartVO.getFields()[i], 0));
         }
         Timeline tl = new Timeline(new KeyFrame(Duration.millis(100), 
             new EventHandler<ActionEvent>() {

@@ -33,6 +33,9 @@ import edu.nju.git.ui.chart.UserTypePieChart;
 import edu.nju.git.ui.chart.common.MyChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -44,10 +47,9 @@ public class StatisticFunction extends FunctionPanel{
 
 	@FXML private AnchorPane chartPane;
 	
-	private MyChart chart;
-	private MyChartVO vo;
 	private RepoChartBlService repoChart;
 	private UserChartBlService userChart;
+	private ChartType type;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -55,11 +57,42 @@ public class StatisticFunction extends FunctionPanel{
 		userChart = UserChartBlImpl.instance();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initPanel(Object[] bundle) {
-		ChartType type = (ChartType) bundle[0];
-		//TODO can use reflection
+		type = (ChartType) bundle[0];
+		chartPane.getChildren().add(createComponent(bundle));
+	}
+	
+	@SuppressWarnings("unchecked")
+	private Node createComponent(Object[] bundle){
+		Pagination pagination = null;
+		if (type.ordinal() == 18) {
+			MyChart chart = new RepoAreaChart();
+			return chart.createContent((ArrayList<MyChartVO>)bundle[1]);
+		}
+		int base = 0;
+		if (type.ordinal() < 8) {
+			pagination = new Pagination(8);
+		} else {
+			pagination = new Pagination(10);
+			base = 8;
+		}
+		final int offSet = base;
+		pagination.setPageFactory((Integer pageIndex) -> initChart(ChartType.class.getEnumConstants()[pageIndex+offSet], bundle));
+		pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
+		pagination.setCurrentPageIndex(type.ordinal()-base);
+		return pagination;
+	}
+
+	@Override
+	public String getLocationName() {
+		return "Statistic Detail";
+	}
+	
+	
+	private Node initChart(ChartType type, Object[] bundle){
+		MyChart chart = null;
+		MyChartVO vo = null;
 		try {
 			switch(type) {
 			case RepoLanguage:
@@ -134,25 +167,14 @@ public class StatisticFunction extends FunctionPanel{
 				chart = new UserContriReposBarChart();
 				vo = userChart.statUserContriRepo();
 				break;
-			case RepoAcitivity:
-				chart = new RepoAreaChart();
-				break;
 			default:break;
 			}
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		if (type == ChartType.RepoAcitivity) {
-			chartPane.getChildren().add(chart.createContent((ArrayList<MyChartVO>)bundle[1]));
-		}else {
-			chartPane.getChildren().add(chart.createContent(vo));
-		}
-	}
-
-	@Override
-	public String getLocationName() {
-		return chart.chartName();
+		Node node = chart.createContent(vo);
+		return node;
 	}
 
 }

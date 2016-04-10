@@ -2,7 +2,8 @@ package edu.nju.git.ui.chart;
 
 public enum ChartType {
 	RepoLanguage,RepoCreateTime,RepoContributor,RepoCollaborator,
-	RepoSize,RepoSubscribor,RepoForks,RepoStars,RepoAcitivity,
+	RepoSize,RepoSubscribor,RepoForks,RepoStars,
 	UserType,CompanyUser,UserEmail,UserOwnRepos,UserGist,
-	UserFollowers,UserCreate,UserSubsRepos,UserCollaRepos,UserContriRepos
+	UserFollowers,UserCreate,UserSubsRepos,UserCollaRepos,UserContriRepos,
+	RepoAcitivity,
 }
