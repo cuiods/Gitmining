@@ -1,8 +1,8 @@
 who:董本超
 when:第7周
-what:
-problem:
-todo:
+what:编写仓库和用户的雷达图数据，编写仓库活跃度折线图数据
+problem:commit数据统计区间的划分各不相同，需要好好设计
+todo:暂无
 
 who：崔浩
 when：第7周

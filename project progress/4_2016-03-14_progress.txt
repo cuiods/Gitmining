@@ -1,12 +1,12 @@
 who:董本超
 when:第4周
-what:
-problem:
-todo:
+what:完成迭代二详细设计文档，重点说明数据部分的组织和设计
+problem:除数据视角以外的其他视角没有详细表述
+todo:根据设计结果进行代码编写
 
 who：崔浩
 when：第4周
-what：
+what：编写用例文档，并将事先准备的javafx界面实现和迭代一的逻辑层等进行集成
 problem：
 todo：
 
