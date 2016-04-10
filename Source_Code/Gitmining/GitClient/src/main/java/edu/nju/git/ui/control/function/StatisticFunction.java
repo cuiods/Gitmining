@@ -34,7 +34,6 @@ import edu.nju.git.ui.chart.common.MyChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.AnchorPane;
 
@@ -78,7 +77,7 @@ public class StatisticFunction extends FunctionPanel{
 			base = 8;
 		}
 		final int offSet = base;
-		pagination.setPageFactory((Integer pageIndex) -> initChart(ChartType.class.getEnumConstants()[pageIndex+offSet], bundle));
+		pagination.setPageFactory((Integer pageIndex) -> initChart(ChartType.class.getEnumConstants()[pageIndex+offSet]));
 		pagination.getStyleClass().add(Pagination.STYLE_CLASS_BULLET);
 		pagination.setCurrentPageIndex(type.ordinal()-base);
 		return pagination;
@@ -90,7 +89,7 @@ public class StatisticFunction extends FunctionPanel{
 	}
 	
 	
-	private Node initChart(ChartType type, Object[] bundle){
+	private Node initChart(ChartType type){
 		MyChart chart = null;
 		MyChartVO vo = null;
 		try {
