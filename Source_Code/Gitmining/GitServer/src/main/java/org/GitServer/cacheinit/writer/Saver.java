@@ -17,6 +17,7 @@ public class Saver {
 	}
 	
 	public void excute(){
+		ObjectOutputStream outputStream;
 		try {
 			Field[] fields = dataEncapsulation.getClass().getDeclaredFields();
 			for (Field field : fields) {
@@ -24,7 +25,7 @@ public class Saver {
 				if(!file.exists()){
 					file.createNewFile();
 				}
-				ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(file));
+				outputStream = new ObjectOutputStream(new FileOutputStream(file));
 				outputStream.writeObject(field.get(dataEncapsulation));
 				outputStream.flush();
 				outputStream.close();
@@ -38,7 +39,6 @@ public class Saver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void excute(Field field){
