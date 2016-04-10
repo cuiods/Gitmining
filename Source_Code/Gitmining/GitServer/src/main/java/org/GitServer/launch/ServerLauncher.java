@@ -52,11 +52,21 @@ public class ServerLauncher {
     	new Thread(
     			()->{
     				Window aWindow = new Window();
-    				new ServerLauncher().init();
-    				aWindow.dispose();
     				Troy troy = new Troy();
     				troy.creatTray();
+    				troy.addAction((e)->{aWindow.setVisible(!aWindow.isVisible());});
     				troy.addMenu("exit",(e)->{System.exit(0);});
+    				
+    				new ServerLauncher().init();
+    				aWindow.setDone();
+    				try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+    				aWindow.setVisible(false);
+    				
+    				
     			}
     	).start();;
     	

@@ -6,6 +6,8 @@ import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -29,11 +31,42 @@ public class Troy {
 		menuItem.addActionListener((e)->{consumer.accept(null);});
 	}
 	
-	public void addMenu(){
-		MenuItem restart = new MenuItem("restart");  
-        MenuItem exit = new MenuItem("exit");  
-        popupMenu.add(restart);  
-        popupMenu.add(exit);  
+	public void addAction(Consumer<Object> consumer){
+		trayIcon.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(MouseEvent.BUTTON1==e.getButton()){
+					consumer.accept(null);
+				}
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 	
 	public void creatTray(){
