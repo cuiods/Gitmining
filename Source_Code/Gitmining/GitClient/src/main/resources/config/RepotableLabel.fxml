@@ -7,36 +7,36 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="pane" maxHeight="100.0" maxWidth="815.0" prefHeight="100.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoTableLabel">
+<AnchorPane id="pane" maxHeight="100.0" maxWidth="815.0" prefHeight="30.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoTableLabel">
    <children>
       <Hyperlink fx:id="name" layoutX="9.0" layoutY="6.0" prefHeight="30.0" prefWidth="300.0" text="Hyperlink" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
       <Label fx:id="description" layoutX="14.0" layoutY="33.0" prefHeight="50.0" prefWidth="360.0" text="description" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="35.0" />
-      <Label fx:id="create" layoutX="18.0" layoutY="78.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
+      <Label id="def_text" fx:id="create" layoutX="18.0" layoutY="78.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <Label fx:id="update" layoutX="235.0" layoutY="75.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
+      <Label id="def_text" fx:id="update" layoutX="235.0" layoutY="75.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <Label fx:id="star" alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="20.0" prefHeight="45.0" prefWidth="45.0" text="1234" textAlignment="CENTER" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="15.0">
+      <Label id="def_text" fx:id="star" alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="20.0" prefHeight="45.0" prefWidth="45.0" text="1234" textAlignment="CENTER" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="fork" alignment="CENTER" layoutX="561.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
+      <Label id="def_text" fx:id="fork" alignment="CENTER" layoutX="561.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="contributor" alignment="CENTER" layoutX="655.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
+      <Label id="def_text" fx:id="contributor" alignment="CENTER" layoutX="655.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="464.0" layoutY="60.0" prefHeight="20.0" prefWidth="45.0" text="Star" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="60.0" />
-      <Label alignment="CENTER" layoutX="561.0" layoutY="60.0" prefHeight="20.0" prefWidth="45.0" text="Forks" />
-      <Label alignment="CENTER" layoutX="638.0" layoutY="60.0" prefHeight="20.0" prefWidth="79.0" text="Subscribers" />
-      <CheckBox layoutX="774.0" layoutY="45.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0" />
+      <Label id="def_text" alignment="CENTER" layoutX="464.0" layoutY="60.0" prefHeight="20.0" prefWidth="45.0" text="Star" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="60.0" />
+      <Label id="def_text" alignment="CENTER" layoutX="561.0" layoutY="60.0" prefHeight="20.0" prefWidth="45.0" text="Forks" />
+      <Label id="def_text" alignment="CENTER" layoutX="638.0" layoutY="60.0" prefHeight="20.0" prefWidth="79.0" text="Subscribers" />
+      <CheckBox id="check" layoutX="774.0" layoutY="45.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>

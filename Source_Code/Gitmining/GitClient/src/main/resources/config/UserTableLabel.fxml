@@ -11,32 +11,32 @@
    <children>
       <Hyperlink fx:id="name" layoutX="9.0" layoutY="6.0" prefHeight="30.0" prefWidth="300.0" text="Hyperlink" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0" />
       <Label fx:id="company" layoutX="14.0" layoutY="33.0" prefHeight="50.0" prefWidth="360.0" text="company" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="35.0" />
-      <Label fx:id="create" layoutX="18.0" layoutY="78.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
+      <Label id="def_text" fx:id="create" layoutX="18.0" layoutY="78.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <Label fx:id="update" layoutX="235.0" layoutY="75.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
+      <Label id="def_text" fx:id="update" layoutX="235.0" layoutY="75.0" prefHeight="20.0" prefWidth="200.0" text="date" AnchorPane.bottomAnchor="5.0">
          <font>
             <Font size="10.0" />
          </font></Label>
-      <Label fx:id="repos" alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="20.0" prefHeight="45.0" prefWidth="45.0" text="1234" textAlignment="CENTER" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="15.0">
+      <Label id="def_text" fx:id="repos" alignment="CENTER" contentDisplay="CENTER" layoutX="464.0" layoutY="20.0" prefHeight="45.0" prefWidth="45.0" text="1234" textAlignment="CENTER" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="following" alignment="CENTER" layoutX="561.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
+      <Label id="def_text" fx:id="following" alignment="CENTER" layoutX="561.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="followed" alignment="CENTER" layoutX="655.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
+      <Label id="def_text" fx:id="followed" alignment="CENTER" layoutX="655.0" layoutY="15.0" prefHeight="45.0" prefWidth="45.0" text="1234">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="447.0" layoutY="60.0" prefHeight="20.0" prefWidth="79.0" text="Repositorys" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="60.0" />
-      <Label alignment="CENTER" layoutX="552.0" layoutY="60.0" prefHeight="20.0" prefWidth="63.0" text="Following" />
-      <Label alignment="CENTER" layoutX="646.0" layoutY="60.0" prefHeight="20.0" prefWidth="63.0" text="Followed" />
+      <Label id="def_text" alignment="CENTER" layoutX="447.0" layoutY="60.0" prefHeight="20.0" prefWidth="79.0" text="Repositorys" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="60.0" />
+      <Label id="def_text" alignment="CENTER" layoutX="552.0" layoutY="60.0" prefHeight="20.0" prefWidth="63.0" text="Following" />
+      <Label id="def_text" alignment="CENTER" layoutX="646.0" layoutY="60.0" prefHeight="20.0" prefWidth="63.0" text="Followed" />
       <CheckBox layoutX="774.0" layoutY="45.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" AnchorPane.bottomAnchor="40.0" AnchorPane.topAnchor="40.0" />
    </children>
 </AnchorPane>

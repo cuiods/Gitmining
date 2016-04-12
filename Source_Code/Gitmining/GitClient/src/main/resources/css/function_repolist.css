@@ -27,7 +27,7 @@
 
 #scroll:focused{
 	-fx-border-color:#ffffff;
-	-fx-border-size:0;
+	-fx-border-width:0;
 	-fx-backgroud-color:#ffffff;
 	-fx-effect:null;
 }
@@ -75,6 +75,22 @@
 	    -fx-background-insets: 2, 0, 0;
 	    -fx-background-radius: 2em;
 	 
+}
+
+#page{
+	-fx-alignment:center;
+	-fx-border-color:#d3d3d3;
+	-fx-background-color:transparent;
+}
+
+#search{
+	-fx-border-color:#d3d3d3;
+	-fx-background-color:#ffffff;
+}
+
+#search:focused{
+	-fx-border-color:rgb(105,167,180);
+	-fx-background-color:rgb(250,250,250);
 }
 
 

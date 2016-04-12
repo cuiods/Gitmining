@@ -53,8 +53,8 @@ public class UserTableLabel extends GitPanel{
 				
 			});
 			company.setText(userBriefVO.getCompany());
-			create.setText(userBriefVO.getCreate_at());
-			update.setText(userBriefVO.getUpdate_at());
+			create.setText("create: "+userBriefVO.getCreate_at());
+			update.setText("update: "+userBriefVO.getUpdate_at());
 			repos.setText(userBriefVO.getPublic_repos()+"");
 			following.setText(userBriefVO.getFollowing()+"");
 			followed.setText(userBriefVO.getFollowers()+"");

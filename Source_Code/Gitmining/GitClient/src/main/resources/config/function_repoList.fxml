@@ -21,7 +21,7 @@
     <Button fx:id="btn_Subscri" layoutX="320.0" layoutY="94.0" mnemonicParsing="false" onAction="#sortSubscriber" prefHeight="30.0" prefWidth="100.0" text="Subscribers" />
     <Button layoutX="779.0" layoutY="573.0" mnemonicParsing="false" onAction="#next" prefHeight="30.0" prefWidth="38.0" text="▶" />
     <Button layoutX="710.0" layoutY="573.0" mnemonicParsing="false" onAction="#previous" prefHeight="30.0" prefWidth="38.0" text="◀" />
-    <TextField fx:id="page" layoutX="748.0" layoutY="572.0" prefHeight="32.0" prefWidth="32.0" />
+    <TextField fx:id="page" layoutX="748.0" layoutY="572.0" prefHeight="32.0" prefWidth="32.0" editable="false" />
     <Button fx:id="btn_compare" onAction="#compare" layoutX="749.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Compare" />
   </children>
 </AnchorPane>
