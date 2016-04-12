@@ -6,9 +6,9 @@ todo:和界面层协商解决重构问题
 
 who：崔浩
 when：第5周
-what：
-problem：
-todo：
+what：界面框架搭建
+problem：雷达图的显示方式
+todo：数据接口格式与逻辑层协调
 
 who：戴新颜
 when：第5周
@@ -18,6 +18,6 @@ todo：分析与实现统计数据显示策略。
 
 who: 袁阳阳
 when:第5周
-what：
-problem:
-todo:
+what：界面框架美化
+problem:界面的主题风格
+todo:雷达图的显示

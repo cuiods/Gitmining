@@ -15,15 +15,26 @@
 	-fx-background-color:transparent;
 }
 
+.specialButton{	
+	-fx-background-image:url("../imageOut.png");
+	-fx-background-color:transparent;
+	-fx-border-radius:0;
+	-fx-border-width:0;
+	-fx-border-color:transparent;
+}
 .specialButton:hover{
 	-fx-background-image:url("../imageIn.png");
+	-fx-background-color:transparent;
 	-fx-border-radius:0;
 	-fx-border-width:0;
+	-fx-border-color:transparent;
 }
 
-.specialButton{
-	
-	
+.specialButton:pressed{
+	-fx-background-image:url("../imageIn.png");
+	-fx-background-color:transparent;
 	-fx-border-radius:0;
 	-fx-border-width:0;
+	-fx-border-color:transparent;
 }
+

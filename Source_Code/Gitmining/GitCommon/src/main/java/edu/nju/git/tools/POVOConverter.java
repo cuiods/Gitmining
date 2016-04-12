@@ -21,26 +21,32 @@ import edu.nju.git.VO.UserVO;
 public class POVOConverter {
 
     public static RepoBriefVO convertToBriefVO(RepoPO po) {
+        String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
         return new RepoBriefVO(po.getOwnerName(), po.getName(), po.getDescription(), po.getNum_stars(),
-                po.getNum_forks(), po.getNum_subscribers(), po.getUpdate_at());
+                po.getNum_forks(), po.getNum_subscribers(), updateTime);
     }
 
     public static RepoVO convertToVO(RepoPO po) {
+        String createTime = po.getCreate_at().replace('T',' ').replace("Z","");
+        String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
         RepoVO vo  = new RepoVO(po.getName(), po.getOwnerName(), po.getSize(), po.getLanguage(),po.getUrl(),
-                po.getDescription(),po.getCreate_at(),po.getUpdate_at(),po.getNum_stars(),po.getNum_forks(),
+                po.getDescription(),createTime,updateTime,po.getNum_stars(),po.getNum_forks(),
                 po.getNum_subscribers(),po.getNum_contrbutors(),po.getNum_collaborators(),po.getNum_commits(),
                 po.getNum_issues(), po.getNum_pulls());
         return vo;
     }
 
     public static UserBriefVO convertToBriefVO(UserPO po) {
+        String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
         return new UserBriefVO(po.getLogin(), po.getFollowNum(), po.getFollowingNum(), po.getPublic_repos(),
-                po.getCreate_at(), po.getUpdate_at(), po.getCompany());
+                po.getCreate_at(), updateTime, po.getCompany());
     }
 
     public static UserVO convertToVO(UserPO po) {
+        String createTime = po.getCreate_at().replace('T',' ').replace("Z","");
+        String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
         return new UserVO(po.getLogin(), po.getType(), po.getName(), po.getCompany(), po.getBlog(), po.getLocation(),
-                po.getEmail(), po.getBio(),po.getFollowNum(),po.getFollowingNum(),po.getCreate_at(),po.getUpdate_at(),
+                po.getEmail(), po.getBio(),po.getFollowNum(),po.getFollowingNum(),createTime,updateTime,
                 po.getPublic_repos(),po.getPublic_gists(),po.getNum_subscribe(),po.getNum_contribute(),
                 po.getNum_collaborate(),po.getAvatar_url());
     }

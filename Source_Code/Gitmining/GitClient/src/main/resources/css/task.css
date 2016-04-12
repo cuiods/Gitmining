@@ -5,32 +5,7 @@
 	-fx-background-color:#000000;
 }
 
-.button:hover{
-	-fx-text-fill:#000000;
-	-fx-font-size:20;
-	-fx-background-color:#ffffff;
-    -fx-border-radius: 5;
-    -fx-border-color:#48d1cc;
-    -fx-font-style:oblique;
-}
 
-.button:pressed{
-	-fx-text-fill:#000000;
-	-fx-font-size:20;
-	-fx-background-color:#f0ffff;
-    -fx-border-radius: 5;
-    -fx-border-color:#90ee90;
-    -fx-font-style:oblique;
-}
-
-.button{
-	-fx-text-fill:#ffffff;
-	-fx-font-size:20;
-	-fx-background-color:#393f4f;
-    -fx-border-radius: 5;
-    -fx-border-color:#48d1cc;
-    -fx-font-style:oblique;
-}
 
 #nav_home{
 	-fx-background-image:url("../button/home.png");

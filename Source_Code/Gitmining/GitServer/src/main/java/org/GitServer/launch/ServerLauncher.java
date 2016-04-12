@@ -68,7 +68,7 @@ public class ServerLauncher {
     				
     				
     			}
-    	).start();;
+    	).start();
     	
     	
     }

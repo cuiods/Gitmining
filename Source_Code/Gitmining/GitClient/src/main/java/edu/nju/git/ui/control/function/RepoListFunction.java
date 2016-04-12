@@ -109,8 +109,9 @@ public class RepoListFunction extends FunctionPanel{
 		btn_star.setText("Stars");
 		btn_Subscri.setText("Subscribers");
 		btn_fork.setText("Forks");
-		List<RepoBriefVO> list = service.sort(SortType.REPO_NAME,false);
-		list = service.getShownRepoList();
+//		List<RepoBriefVO> list = service.sort(SortType.REPO_NAME,false);
+//		list = service.getShownRepoList();
+		List<RepoBriefVO> list = service.getSearchResult("");
 		if (list!=null) {
 			datalist = list;
 			updateList(datalist);

@@ -131,6 +131,7 @@ public class DisplayShelfNew extends Region{
     			if (!localChange) {
     				buttonIndex = butt.getIndex();
                     shiftToCenter(items[(int) Math.round(butt.getIndex())]);
+                   
                     
                 }
     		});
@@ -276,6 +277,7 @@ public class DisplayShelfNew extends Region{
     	for(int i=0;i<items.length;i++){
     		if(buttons[i].getIndex()==buttonIndex){
     			buttons[i].setBackground(back_in);
+//    			buttons[i].setGraphic(value);
     		}else{
     			buttons[i].setBackground(back_out);
     			items[i].setCenter(false);

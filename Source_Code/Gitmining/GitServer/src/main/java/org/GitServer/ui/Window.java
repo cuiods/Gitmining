@@ -39,6 +39,10 @@ public class Window extends JFrame {
 		setVisible(true);
 	}
 	
+	public void setProgress(long count,long amount){
+		lblGitmining.setText("data loading…"+count+"/"+amount);
+	}
+	
 	public void setDone(){
 		loading.setIcon(new ImageIcon("pic"+File.separator+"done.jpg"));
 		lblGitmining.setText("data loading,done.");
