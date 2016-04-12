@@ -2,6 +2,8 @@ package org.GitServer.cacheinit.loader.api;
 
 import org.GitServer.cacheinit.loader.service.AbstractMapGetter;
 
+import edu.nju.git.tools.APIconfig;
+
 /**
  * firstly,please set name's value
  * reader userPO or UserBriefPO from a hashmap 

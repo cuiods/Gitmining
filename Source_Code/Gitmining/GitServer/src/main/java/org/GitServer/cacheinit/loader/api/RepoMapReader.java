@@ -2,6 +2,8 @@ package org.GitServer.cacheinit.loader.api;
 
 import org.GitServer.cacheinit.loader.service.AbstractMapGetter;
 
+import edu.nju.git.tools.APIconfig;
+
 /**
  * read detail repository information by owner/repo_name pair
  * by read a map
