@@ -38,8 +38,9 @@ public class POVOConverter {
 
     public static UserBriefVO convertToBriefVO(UserPO po) {
         String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
+        String createTime = po.getCreate_at().replace('T',' ').replace("Z","");
         return new UserBriefVO(po.getLogin(), po.getFollowNum(), po.getFollowingNum(), po.getPublic_repos(),
-                po.getCreate_at(), updateTime, po.getCompany());
+                createTime, updateTime, po.getCompany());
     }
 
     public static UserVO convertToVO(UserPO po) {
