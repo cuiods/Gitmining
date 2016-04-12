@@ -1,12 +1,12 @@
 who:董本超
 when:第8周
-what:
+what:项目执行文档完善。
 problem:
 todo:
 
 who：崔浩
 when：第8周
-what：
+what：界面美化。
 problem：
 todo：
 
@@ -18,6 +18,6 @@ todo：迭代三需求。
 
 who: 袁阳阳
 when:第8周
-what：
+what：界面美化
 problem:
 todo:
