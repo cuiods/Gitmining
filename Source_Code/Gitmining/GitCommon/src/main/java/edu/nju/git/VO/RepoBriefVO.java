@@ -18,12 +18,13 @@ public class RepoBriefVO implements Serializable{
 	private int num_forks;
 	private int num_subscribers;
 	private String lastUpdate;
+	private String create_at;
 
 	public RepoBriefVO() {
 	}
 
 	public RepoBriefVO(String owner, String name, String description, int num_stars,
-					   int num_forks, int num_subscribers, String lastUpdate) {
+					   int num_forks, int num_subscribers, String lastUpdate, String creat) {
 		this.owner = owner;
 		this.name = name;
 		this.description = description;
@@ -31,6 +32,7 @@ public class RepoBriefVO implements Serializable{
 		this.num_forks = num_forks;
 		this.num_subscribers = num_subscribers;
 		this.lastUpdate = lastUpdate;
+		this.create_at = creat;
 	}
 
 	public String getName() {
@@ -78,5 +80,13 @@ public class RepoBriefVO implements Serializable{
 		this.owner = owner;
 	}
 
+
+	public String getCreate_at() {
+		return create_at;
+	}
+
+	public void setCreate_at(String create_at) {
+		this.create_at = create_at;
+	}
 
 }

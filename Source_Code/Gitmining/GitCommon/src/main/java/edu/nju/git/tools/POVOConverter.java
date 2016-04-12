@@ -22,8 +22,9 @@ public class POVOConverter {
 
     public static RepoBriefVO convertToBriefVO(RepoPO po) {
         String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
+        String createTime = po.getCreate_at().replace('T',' ').replace("Z","");
         return new RepoBriefVO(po.getOwnerName(), po.getName(), po.getDescription(), po.getNum_stars(),
-                po.getNum_forks(), po.getNum_subscribers(), updateTime);
+                po.getNum_forks(), po.getNum_subscribers(), updateTime, createTime);
     }
 
     public static RepoVO convertToVO(RepoPO po) {
