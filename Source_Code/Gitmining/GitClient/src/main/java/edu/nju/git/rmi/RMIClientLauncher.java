@@ -4,10 +4,13 @@ import edu.nju.git.bl.impl.RepoBlImpl;
 import edu.nju.git.bl.impl.RepoChartBlImpl;
 import edu.nju.git.bl.impl.UserBlImpl;
 import edu.nju.git.bl.impl.UserChartBlImpl;
+import edu.nju.git.constant.Consts;
 import edu.nju.git.data.service.RepoChartDataService;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.data.service.UserChartDataService;
 import edu.nju.git.data.service.UserDataService;
+import edu.nju.git.ui.utils.CloseOperation;
+import edu.nju.git.ui.utils.UtilDialog;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -60,9 +63,21 @@ public class RMIClientLauncher {
 	 */
 	public static void sendRMIWarning() {
 		// TODO: 2016/3/31 count 5 seconds, send warnings to presentation and then initRMI
+		int counts = 0;
+		UtilDialog.ShowMessage("连接服务器失败，正在尝试重连，请稍后...");
 		do {
-
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-		while (!initRMI());
+		while ((!initRMI())||(Consts.CONNECT_TIMES <= ++counts));
+		if (counts >= Consts.CONNECT_TIMES) {	//can not reconnect to server
+			UtilDialog.ShowConfirm("无法连接至服务器，请尝试检查ip并重启客户端", new CloseOperation());
+		}
+		else {
+			UtilDialog.hideDialog();
+		}
 	}
 }
