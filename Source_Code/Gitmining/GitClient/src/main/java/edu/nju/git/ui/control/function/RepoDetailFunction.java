@@ -2,6 +2,7 @@ package edu.nju.git.ui.control.function;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.RepoVO;
@@ -9,6 +10,7 @@ import edu.nju.git.VO.chartvo.MyChartVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.ui.chart.ChartType;
+import edu.nju.git.ui.chart.RepoLanguagePieChart;
 import edu.nju.git.ui.chart.RepoSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
@@ -48,6 +50,7 @@ public class RepoDetailFunction extends FunctionPanel{
     @FXML private VBox vbox;
     @FXML private AnchorPane radarPane;
     @FXML private Button activity;
+    @FXML private AnchorPane lAnchorPane;
 
     /**
      * repository business logic service
@@ -103,6 +106,22 @@ public class RepoDetailFunction extends FunctionPanel{
 		});
 	}
     
+    private void initLanguage() {
+    	RepoLanguagePieChart pieChart = new RepoLanguagePieChart();
+    	MyChartVO vo = new MyChartVO();
+    	List<Integer> temp = repoVO.getLanguagesLine();
+    	int[] values = new int[temp.size()];
+    	for(int i = 0; i < values.length; i++) {
+    		values[i] = temp.get(i).intValue();
+    	}
+    	List<String> tempStr = repoVO.getLanguagesField();
+    	String[] strings = new String[tempStr.size()];
+    	for (int i = 0; i < strings.length; i++) {
+    		strings[i] = tempStr.get(i);
+    	}
+    	vo.setChartVO(strings, values);
+    	lAnchorPane.getChildren().add(pieChart.createContent(vo));
+    }
     
     private void initData(Object[] bundle){
         if (repoVO == null) return;
@@ -119,6 +138,7 @@ public class RepoDetailFunction extends FunctionPanel{
         contri.setText(repoVO.getNum_contributors()+"");
         subcri.setText(repoVO.getNum_subscribers()+"");
         collab.setText(repoVO.getNum_collaborators()+"");
+        initLanguage();
         setRadar();
     }
 

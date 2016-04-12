@@ -1,7 +1,6 @@
 package edu.nju.git.VO.chartvo;
 
 import java.io.Serializable;
-import java.util.List;
 /**
  * the VO offer all information to draw a chart except radar chart.
  * @author daixinyan
