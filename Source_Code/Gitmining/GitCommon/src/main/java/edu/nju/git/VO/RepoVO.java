@@ -1,6 +1,10 @@
 package edu.nju.git.VO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
 
@@ -40,9 +44,9 @@ public class RepoVO implements Serializable{
 	private String [] lineCharField;
 	private Integer [] lineChartValue;
 
-    public RepoVO () {
-
-	}
+	private List<String> languagesField;
+	private List<Integer> languagesLine;
+	
 
 	public RepoVO(String name, String ownerName, int size, String language, String url, String description,
 				  String create_at, String update_at, int num_stars, int num_forks, int num_subscribers,
@@ -227,6 +231,30 @@ public class RepoVO implements Serializable{
     	chartVO.setChartVO(fields, values);
     	return chartVO;
 	}
-	
-	
+	public List<String> getLanguagesField() {
+		return languagesField;
+	}
+
+	public List<Integer> getLanguagesLine() {
+		return languagesLine;
+	}
+
+	public RepoVO () {
+
+	}
+	/**
+	 * initial value of languages
+	 */
+	public void setLanguagsCharts(Map<String, Integer> map){
+		Set<String> set = map.keySet();
+		this.languagesField = new ArrayList<>(set.size());
+		
+		this.languagesLine = new ArrayList<>(set.size());
+		for (String key : set) {
+			languagesField.add(key);
+			languagesLine.add(map.get(key));
+		}
+//		System.out.println(languagesField);
+//		System.out.println(languagesLine);
+	}
 }

@@ -8,6 +8,7 @@ import edu.nju.git.bl.service.RepoBlService;
 import edu.nju.git.constant.Consts;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.exception.PageOutOfBoundException;
+import edu.nju.git.integration.RepoLanguages;
 import edu.nju.git.rmi.RMIClientLauncher;
 import edu.nju.git.tools.RegexTranslator;
 import edu.nju.git.type.MostType;
@@ -135,7 +136,9 @@ public class RepoBlImpl implements RepoBlService {
     @Override
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
         try {
-            return repoDataService.getRepoBasicInfo(owner, repoName);
+        	RepoVO repoVO = repoDataService.getRepoBasicInfo(owner, repoName);
+        	repoVO.setLanguagsCharts(new RepoLanguages(owner,repoName).getLaguages());
+        	return repoVO;
         } catch (RemoteException e) {
             RMIClientLauncher.sendRMIWarning();
             return getRepoBasicInfo(owner, repoName);
