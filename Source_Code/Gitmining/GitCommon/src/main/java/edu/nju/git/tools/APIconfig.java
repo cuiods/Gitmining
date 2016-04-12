@@ -1,6 +1,4 @@
-package org.GitServer.cacheinit.loader.api;
-
-import java.nio.charset.Charset;
+package edu.nju.git.tools;
 
 public final class APIconfig {
 
@@ -19,5 +17,4 @@ public final class APIconfig {
 	}
 
 
-	public static Charset charset = Charset.forName("UTF-8");
 }

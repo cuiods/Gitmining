@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="221.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.utils.Dialog">
+   <children>
+      <Label fx:id="title" layoutY="-1.0" prefHeight="29.0" prefWidth="400.0" style="-fx-background-color: #778899;" text="   Alert" />
+      <ImageView fx:id="icon" fitHeight="100.0" fitWidth="100.0" layoutX="14.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="message1" layoutX="129.0" layoutY="60.0" prefHeight="29.0" prefWidth="249.0" />
+      <Label fx:id="message2" layoutX="129.0" layoutY="111.0" prefHeight="29.0" prefWidth="249.0" />
+      <Button fx:id="ok" layoutX="302.0" layoutY="173.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="OK" />
+      <Button fx:id="cancel" layoutX="224.0" layoutY="173.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Cancel" />
+   </children>
+</AnchorPane>

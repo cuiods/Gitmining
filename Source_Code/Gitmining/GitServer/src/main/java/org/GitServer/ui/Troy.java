@@ -19,7 +19,7 @@ public class Troy {
 	private TrayIcon trayIcon;
 	private SystemTray systemTray;
 	private PopupMenu popupMenu;
-	private String iconpath = "pic"+File.separator+"loading.gif";
+	private String iconpath = "pic"+File.separator+"tray.gif";
 	
 	private final int WIDTH = 20;
 	private final int HEIGHT = 20;
@@ -44,26 +44,18 @@ public class Troy {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			
 		});

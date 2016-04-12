@@ -6,7 +6,7 @@ todo:暂无
 
 who：崔浩
 when：第7周
-what：
+what：界面美化，表格显示
 problem：
 todo：
 
@@ -18,6 +18,6 @@ todo：文档订正。
 
 who: 袁阳阳
 when:第7周
-what：
+what：界面美化，表格显示
 problem:
 todo:

@@ -86,7 +86,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserOrg(){
 		CubeButton userOrgButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/userType.png");
-		userType.getChildren().add(userOrgButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		userType.getChildren().add(userOrgButton.createContent(1.65,null, new Image(url.toExternalForm()),Color.TRANSPARENT));
 		userOrgButton.play();
 		setHandler(userType,userOrgButton,userType_label);
 		userType.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -104,7 +104,7 @@ public class UserStatisticFunction extends FunctionPanel{
 		CubeButton companyUserButton = new CubeButton();
 		
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/shopify.png");
-		companyUser.getChildren().add(companyUserButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		companyUser.getChildren().add(companyUserButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		companyUserButton.play();
 		setHandler(companyUser, companyUserButton, companyUser_label);
 		companyUser.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -121,7 +121,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserEmail(){
 		CubeButton userEmailButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/email.png");
-		email.getChildren().add(userEmailButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		email.getChildren().add(userEmailButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		userEmailButton.play();
 		setHandler(email,userEmailButton,email_label);
 		email.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -138,7 +138,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initOwnRepos(){
 		CubeButton ownReposButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/ownRepos.png");
-		ownRepos.getChildren().add(ownReposButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		ownRepos.getChildren().add(ownReposButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		ownReposButton.play();
 		setHandler(ownRepos,ownReposButton,ownRepos_label);
 		ownRepos.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -155,7 +155,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserGist(){
 		CubeButton userGistButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/gists.png");
-		gist.getChildren().add(userGistButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		gist.getChildren().add(userGistButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		userGistButton.play();
 		setHandler(gist,userGistButton,gist_label);
 		gist.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -172,7 +172,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserFollower(){
 		CubeButton userFollowerButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/followers.png");
-		followers.getChildren().add(userFollowerButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		followers.getChildren().add(userFollowerButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		userFollowerButton.play();
 		setHandler(followers,userFollowerButton,followers_label);
 		followers.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -189,7 +189,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserCreate(){
 		CubeButton userCreateButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/time.png");
-		create.getChildren().add(userCreateButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		create.getChildren().add(userCreateButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		userCreateButton.play();
 		setHandler(create,userCreateButton,create_label);
 		create.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -206,7 +206,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserSubs(){
 		CubeButton userSubsButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/subscribe.png");
-		subscribe.getChildren().add(userSubsButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
+		subscribe.getChildren().add(userSubsButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT));
 		userSubsButton.play();
 		setHandler(subscribe,userSubsButton,subscribe_label);
 		subscribe.setOnMouseReleased(new EventHandler<MouseEvent>(){
@@ -223,7 +223,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserColla(){
 		CubeButton userCollaButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/collaborate.png");
-		Parent cube = userCollaButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT);
+		Parent cube = userCollaButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT);
 		collaborate.getChildren().add(cube);
 		cube.setLayoutX(100);
 		userCollaButton.play();
@@ -242,7 +242,7 @@ public class UserStatisticFunction extends FunctionPanel{
 	private void initUserContri(){
 		CubeButton userContriButton = new CubeButton();
 		URL url = Main.class.getResource(StringReader.readPath("picture")+"statisticButton/contribute.png");
-		Parent cube = userContriButton.createContent(1.6, null,new Image(url.toExternalForm()),Color.TRANSPARENT);
+		Parent cube = userContriButton.createContent(1.65, null,new Image(url.toExternalForm()),Color.TRANSPARENT);
 		contribute.getChildren().add(cube);
 		cube.setLayoutX(100);
 		userContriButton.play();

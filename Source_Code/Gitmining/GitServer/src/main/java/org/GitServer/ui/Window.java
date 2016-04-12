@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Font;
 
 public class Window extends JFrame {
 
@@ -28,13 +29,18 @@ public class Window extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		lblGitmining = new JLabel("loading");
+		lblGitmining = new JLabel("loading……");
+		lblGitmining.setFont(new Font("楷体", Font.PLAIN, 40));
 		lblGitmining.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblGitmining, BorderLayout.NORTH);
+		contentPane.add(lblGitmining, BorderLayout.SOUTH);
 		
 		loading = new JLabel(new ImageIcon("pic"+File.separator+"loading.gif"));
 		contentPane.add(loading, BorderLayout.CENTER);
 		setVisible(true);
+	}
+	
+	public void setProgress(long count,long amount){
+		lblGitmining.setText("data loading…"+count+"/"+amount);
 	}
 	
 	public void setDone(){

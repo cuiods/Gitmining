@@ -16,6 +16,7 @@ import org.jfree.ui.RectangleEdge;
 import edu.nju.git.ui.control.UIManager;
 import javafx.embed.swing.SwingNode;
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 
@@ -69,6 +70,18 @@ public abstract class MySpiderChart {
 				SwingNode swing = new SwingNode();
 				createSwingNode(swing,870,640);
 				UIManager.instance().changeFunction("SpiderDetail", new Object[]{swing});
+			}
+		});
+		swingNode.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				swingNode.setCursor(Cursor.HAND);
+			}
+		});
+		swingNode.setOnMouseExited(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				swingNode.setCursor(Cursor.DEFAULT);
 			}
 		});
 		return swingNode;

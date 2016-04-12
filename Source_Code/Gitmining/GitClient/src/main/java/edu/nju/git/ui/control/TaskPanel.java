@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.ConfigReader;
 import edu.nju.git.ui.config.ScreenShot;
+import edu.nju.git.ui.config.StringReader;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -15,7 +17,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -291,24 +300,30 @@ public class TaskPanel extends GitPanel {
 			public void handle(MouseEvent event) {
 //				initPanel(null);
 				initHome();
+//				Image bgImage = new Image(Main.class.getResource(StringReader.readPath("picture")+"/button/home1.png").toString());
+//				BackgroundImage bg = new BackgroundImage(bgImage,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT,BackgroundSize.DEFAULT);
+//				nav_home.setBackground(new Background(bg));
+				
 			}
 		});
 		nav_user.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				if (subview_user1 == null) {
-					subview_user1 = new Button("UserInfo");
+					subview_user1 = new Button();
 					subview_user1.setPrefSize(150, 40);
-					subview_user1.getStyleClass().add("sub_button");
+//					subview_user1.getStyleClass().add("sub_button");
+					subview_user1.setId("userInfo");
 					subview_user1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							initUser();
 						}
 					});
-					subview_user2 = new Button("UserStatistic");
+					subview_user2 = new Button();
 					subview_user2.setPrefSize(150, 40);
-					subview_user2.getStyleClass().add("sub_button");
+//					subview_user2.getStyleClass().add("sub_button");
+					subview_user2.setId("userSta");
 					subview_user2.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
 						@Override
@@ -341,18 +356,20 @@ public class TaskPanel extends GitPanel {
 			@Override
 			public void handle(MouseEvent event) {
 				if (subview_repo1 == null) {
-					subview_repo1 = new Button("RepoInfo");
+					subview_repo1 = new Button();
 					subview_repo1.setPrefSize(150, 40);
-					subview_repo1.getStyleClass().add("sub_button");
+//					subview_repo1.getStyleClass().add("sub_button");
+					subview_repo1.setId("repoInfo");
 					subview_repo1.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
 							initRepo();
 						}
 					});
-					subview_repo2 = new Button("RepoStatistic");
+					subview_repo2 = new Button();
 					subview_repo2.setPrefSize(150, 40);
-					subview_repo2.getStyleClass().add("sub_button");
+//					subview_repo2.getStyleClass().add("sub_button");
+					subview_repo2.setId("repoSta");
 					subview_repo2.setOnMouseReleased(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {

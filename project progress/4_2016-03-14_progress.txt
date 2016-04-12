@@ -18,6 +18,6 @@ todo：数据层数据初始化模块结构设计与代码编写
 
 who: 袁阳阳
 when:第4周
-what：
-problem:
+what：编写需求规格说明文档。
+problem:需求的不稳定性。
 todo:
