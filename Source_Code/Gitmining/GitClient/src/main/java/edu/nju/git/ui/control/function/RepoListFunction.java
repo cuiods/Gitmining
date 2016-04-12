@@ -91,6 +91,9 @@ public class RepoListFunction extends FunctionPanel{
 	
 	@FXML
 	protected void search(){
+		btn_star.setText("Stars");
+		btn_Subscri.setText("Subscribers");
+		btn_fork.setText("Forks");
 		String text = search.getText();
 		List<RepoBriefVO> list = service.getSearchResult(text);
 		list = service.getShownRepoList();
