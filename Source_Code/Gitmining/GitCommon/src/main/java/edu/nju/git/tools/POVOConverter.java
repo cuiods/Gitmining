@@ -21,8 +21,9 @@ import edu.nju.git.VO.UserVO;
 public class POVOConverter {
 
     public static RepoBriefVO convertToBriefVO(RepoPO po) {
+        String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
         return new RepoBriefVO(po.getOwnerName(), po.getName(), po.getDescription(), po.getNum_stars(),
-                po.getNum_forks(), po.getNum_subscribers(), po.getUpdate_at());
+                po.getNum_forks(), po.getNum_subscribers(), updateTime);
     }
 
     public static RepoVO convertToVO(RepoPO po) {
@@ -36,8 +37,9 @@ public class POVOConverter {
     }
 
     public static UserBriefVO convertToBriefVO(UserPO po) {
+        String updateTime = po.getUpdate_at().replace('T',' ').replace("Z","");
         return new UserBriefVO(po.getLogin(), po.getFollowNum(), po.getFollowingNum(), po.getPublic_repos(),
-                po.getCreate_at(), po.getUpdate_at(), po.getCompany());
+                po.getCreate_at(), updateTime, po.getCompany());
     }
 
     public static UserVO convertToVO(UserPO po) {
