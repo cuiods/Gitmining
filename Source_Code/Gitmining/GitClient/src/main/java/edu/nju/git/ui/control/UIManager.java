@@ -81,12 +81,13 @@ public final class UIManager {
 	 * @param bundle
 	 * 			data to the next panel
 	 */
-	public void changeFunction(String name, Object[] bundle) {
+	public Parent changeFunction(String name, Object[] bundle) {
 		ScreenShot function = ConfigReader.readParentPanel(name);
 		function.getPanel().initPanel(bundle);
 		root.getPanel().setChildren(function.getRoot());
 		IndexPanel task = (IndexPanel) root.getPanel();
 		task.appendFunction(function);
+		return function.getRoot();
 	}
 	
 	public void changeFunction(Parent node) {

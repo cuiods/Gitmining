@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.UserBriefVO;
+import edu.nju.git.ui.config.ConfigReader;
+import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.control.GitPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.event.EventHandler;
@@ -42,13 +44,15 @@ public class UserTableLabel extends GitPanel{
 	}
 	
 	private void initialize(){
+		setCssFactory(UIManager.instance().getCssFactory());
 		if (userBriefVO != null) {
 			name.setText(userBriefVO.getLogin());
 			name.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
 				@Override
 				public void handle(MouseEvent event) {
-					UIManager.instance().changeFunction("function_userDetail", new Object[]{name.getText()});					
+					Parent root=UIManager.instance().changeFunction("function_userDetail", new Object[]{name.getText()});
+					root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
 				}
 				
 			});

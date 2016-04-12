@@ -11,12 +11,12 @@
   <children>
     <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
       <children>
-        <Label fx:id="loginName" layoutX="23.0" layoutY="14.0" prefHeight="40.0" prefWidth="113.0" text="LoginName">
+        <Label id="name_label" fx:id="loginName" layoutX="23.0" layoutY="14.0" prefHeight="40.0" prefWidth="113.0" text="LoginName">
           <font>
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <GridPane layoutX="23.0" layoutY="65.0" prefHeight="202.0" prefWidth="797.0">
+        <GridPane id="basic_info" layoutX="23.0" layoutY="60.0" prefHeight="225.0" prefWidth="810.0" alignment="CENTER_RIGHT">
           <children>
             <ImageView fx:id="heading" fitHeight="150.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
             <Label prefHeight="15.0" prefWidth="81.0" text="createde_at" GridPane.rowIndex="5" />

@@ -1,0 +1,10 @@
+#name_label{
+	-fx-font-size:25px;
+	-fx-font-weight:bold;
+	-fx-text-fill:#000000;
+	-fx-effect:dropshadow(gaussian,rgba(255,255,255,0.5),0,0,0,1);
+}
+
+#basic_info{
+	-fx-background-image:url("../css/grid_back.png");
+}

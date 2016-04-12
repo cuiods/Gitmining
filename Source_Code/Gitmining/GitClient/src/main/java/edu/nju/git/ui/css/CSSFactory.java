@@ -13,4 +13,5 @@ public abstract class CSSFactory {
 	public abstract String getFunctionRepoList();
 	public abstract String getFunctionRepoTableLabel();
 	public abstract String getFunctionUserTableLabel();
+	public abstract String getFunctionUserDetail();
 }

@@ -53,6 +53,12 @@ public class DefaultCSSFactory extends CSSFactory{
 		return urlcss.toString();
 	}
 
+	@Override
+	public String getFunctionUserDetail() {
+		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"function_detail.css");
+		return urlcss.toString();
+	}
+
 	
 
 }

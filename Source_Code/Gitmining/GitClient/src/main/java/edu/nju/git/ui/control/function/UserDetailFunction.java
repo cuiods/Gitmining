@@ -9,6 +9,7 @@ import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.ui.chart.UserSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
+import edu.nju.git.ui.control.UIManager;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
@@ -48,12 +49,14 @@ public class UserDetailFunction extends FunctionPanel{
 	private UserVO user;
 	
 	public void initialize(URL location,ResourceBundle resource){
+		this.setCssFactory(UIManager.instance().getCssFactory());
 		service = BlFactory.instance().getUserBlService();
 		
 	}
 	
 	public void initPanel(Object bundle[]){
 		user = service.getUserInfo((String)bundle[0]);
+		
 		initUserDetailTask task = new initUserDetailTask(bundle);
 		new Thread(task).start();		
 	}
