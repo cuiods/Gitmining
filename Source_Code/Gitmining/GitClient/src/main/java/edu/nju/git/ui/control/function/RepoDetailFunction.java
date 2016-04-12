@@ -33,7 +33,6 @@ public class RepoDetailFunction extends FunctionPanel{
      * FXML components
      */
     @FXML private Label generalName;
-    @FXML private Hyperlink name;
     @FXML private TextArea description;
     @FXML private Label create;
     @FXML private Label update;
@@ -108,8 +107,6 @@ public class RepoDetailFunction extends FunctionPanel{
     private void initData(Object[] bundle){
         if (repoVO == null) return;
         
-        generalName.setText(repoVO.getName());
-        name.setText(repoVO.getName());
         description.setText(repoVO.getDescription());
         create.setText(repoVO.getCreate_at());
         update.setText(repoVO.getUpdate_at());
