@@ -77,10 +77,12 @@ public class Install {
          IOException, NoSuchFieldException, SecurityException{
 		
 		saver = new Saver(dataEncapsulation, rootpath);
-		initAllUserInfo();
+//		initAllUserInfo();
 		
 		
-//		List<String>  repos = new RepositoriesListReader().getNames();
+		List<String>  repos = new RepositoriesListReader().getNames();
+		initLanguages(repos);
+		
 //		System.out.println("done with reading "+repos.size()+"repos' names");
 //		downloadUsers(repos);
 //		downloadRepos(repos);
@@ -97,6 +99,18 @@ public class Install {
 //		initIssue();
 //		initCommit();
 	}
+	
+	private void initLanguages(List<String>  repos) throws NoSuchFieldException, SecurityException{
+		Map<String,Map<String, Integer>> map = new HashMap<>();
+		RepoLanguages repoLanguages = new RepoLanguages();
+		for (String fullname : repos) {
+			repoLanguages.setName(fullname);
+			map.put(fullname, repoLanguages.getLaguages());
+		}
+		dataEncapsulation.repoLanguages = map;
+		saver.excute(dataEncapsulation.getClass().getField("repoLanguages"));
+	}
+	
 	/**
 	 * read all users names
 	 */

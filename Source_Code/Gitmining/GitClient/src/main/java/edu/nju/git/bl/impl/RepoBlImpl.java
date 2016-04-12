@@ -137,7 +137,9 @@ public class RepoBlImpl implements RepoBlService {
     public RepoVO getRepoBasicInfo(String owner, String repoName) {
         try {
         	RepoVO repoVO = repoDataService.getRepoBasicInfo(owner, repoName);
-        	repoVO.setLanguagsCharts(new RepoLanguages(owner,repoName).getLaguages());
+        	System.out.println(repoVO.getLanguagesField());
+        	System.out.println(repoVO.getLanguagesLine());
+        	//repoVO.setLanguagsCharts(new RepoLanguages(owner,repoName).getLaguages());
         	return repoVO;
         } catch (RemoteException e) {
             RMIClientLauncher.sendRMIWarning();

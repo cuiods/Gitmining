@@ -5,17 +5,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.GitServer.cacheinit.DataEncapsulation;
+
 import edu.nju.git.PO.RepoPO;
 import edu.nju.git.PO.UserPO;
-import edu.nju.git.VO.chartvo.*;
-import edu.nju.git.comparators.repocomparators.po.*;
+import edu.nju.git.VO.chartvo.MyChartVO;
+import edu.nju.git.VO.chartvo.RepoCollaChartVO;
+import edu.nju.git.VO.chartvo.RepoContriChartVO;
+import edu.nju.git.VO.chartvo.RepoCreateTimeChartVO;
+import edu.nju.git.VO.chartvo.RepoForkChartVO;
+import edu.nju.git.VO.chartvo.RepoLanguChartVO;
+import edu.nju.git.VO.chartvo.RepoSizeChartVO;
+import edu.nju.git.VO.chartvo.RepoStarChartVO;
+import edu.nju.git.VO.chartvo.RepoSubscChartVO;
+import edu.nju.git.VO.chartvo.UserCollaRepoChartVO;
+import edu.nju.git.VO.chartvo.UserCompanyChartVO;
+import edu.nju.git.VO.chartvo.UserContriRepoChartVO;
+import edu.nju.git.VO.chartvo.UserCreateTimeChartVO;
+import edu.nju.git.VO.chartvo.UserEmailChartVO;
+import edu.nju.git.VO.chartvo.UserFollowerChartVO;
+import edu.nju.git.VO.chartvo.UserGistChartVO;
+import edu.nju.git.VO.chartvo.UserOwnRepoChartVO;
+import edu.nju.git.VO.chartvo.UserSubscrRepoChartVO;
+import edu.nju.git.VO.chartvo.UserTypeChartVO;
+import edu.nju.git.comparators.repocomparators.po.RepoPOForkComparator;
+import edu.nju.git.comparators.repocomparators.po.RepoPONameComparator;
+import edu.nju.git.comparators.repocomparators.po.RepoPOStarComparator;
+import edu.nju.git.comparators.repocomparators.po.RepoPOSubscrComparator;
+import edu.nju.git.comparators.repocomparators.po.RepoPOUpdateComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPOFollowerComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPOFollowingComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPONameComparator;
 import edu.nju.git.comparators.usercomparators.po.UserPORepoNumComparator;
 import edu.nju.git.type.MostType;
-import edu.nju.git.type.SortType;
-import org.GitServer.cacheinit.DataEncapsulation;
 
 /**
  * read local data form txt file.
@@ -64,6 +86,12 @@ public class ReaderAndCount {
 
 	private List<UserPO> allUserPOs;
 
+	/**
+	 * new add 
+	 * @
+	 */
+	private Map<String,Map<String, Integer>> repoLanguages;
+	
 	private Map<String, RepoPO>  nameToRepo ;
 	private Map<String, UserPO>  nameToUser ;
 
@@ -126,6 +154,8 @@ public class ReaderAndCount {
 
 		this.allUserPOs = allData.allUserPOs;
 
+		this.repoLanguages = allData.repoLanguages;
+		
 		this.userToOwnerRepo = allData.userToOwnerRepo;
 		this.userToContribute = allData.userToContribute;
 		this.userToCollabRepo = allData.userToCollabRepo;
@@ -522,6 +552,10 @@ public class ReaderAndCount {
 
 	public MyChartVO getRepoSubscribers() {
 		return repoSubscribers;
+	}
+
+	public Map<String, Map<String, Integer>> getRepoLanguages() {
+		return repoLanguages;
 	}
 
 	public MyChartVO getForkCount() {

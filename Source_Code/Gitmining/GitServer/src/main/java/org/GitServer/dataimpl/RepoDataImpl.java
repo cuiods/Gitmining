@@ -100,7 +100,7 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 		RepoPO po = readerAndCount.getNameToRepo().get(id);
 		if (po!=null) {
 			RepoVO vo = POVOConverter.convertToVO(po);
-
+			vo.setLanguagsCharts(readerAndCount.getRepoLanguages().get(owner+"/"+repoName));
 			//set radar chart data
 			vo.setRadar_size(repoRadarService.calSize(po.getSize()));
 			vo.setRadar_popular(repoRadarService.calPopular(po.getPopular()));

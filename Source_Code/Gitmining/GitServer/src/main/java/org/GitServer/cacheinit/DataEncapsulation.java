@@ -11,6 +11,9 @@ import edu.nju.git.PO.UserPO;
  * @date 2016-03-23
  */
 public class DataEncapsulation {
+	
+	public Map<String,Map<String, Integer>> repoLanguages;
+	
 	public List<RepoPO> nameOrderRepoPOs;
 	public List<UserPO> nameOrderUserPOs;
 	/**all users, for statistics not for search users*/
