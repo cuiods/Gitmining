@@ -3,6 +3,7 @@ package edu.nju.git.ui.chart.common;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Polygon;
@@ -382,8 +383,9 @@ public class MySpiderWebPlot extends SpiderWebPlot {
 						// g2.drawString(StrUtil.obj2str(value,""),
 						// StrUtil.obj2int(point.getX() - headW),
 						// StrUtil.obj2int(point.getY() - headH));
-						//java.text.DecimalFormat df=new java.text.DecimalFormat("#.##"); 
-						//g2.drawString(df.format(value) + "", (int) (point.getX() - headW), (int) (point.getY() - headH));
+						java.text.DecimalFormat df=new java.text.DecimalFormat("#.##"); 
+						g2.setFont(new Font("", Font.ITALIC, 8));
+						g2.drawString(df.format(value) + "", (int) (point.getX() - headW), (int) (point.getY() - headH));
 						g2.setStroke(outlineStroke);
 						g2.setPaint(outlinePaint);
 					}
