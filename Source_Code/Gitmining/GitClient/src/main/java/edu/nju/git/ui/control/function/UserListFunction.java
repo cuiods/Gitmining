@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import edu.nju.git.VO.RepoVO;
 import edu.nju.git.VO.UserBriefVO;
 import edu.nju.git.VO.UserVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
@@ -101,8 +100,10 @@ public class UserListFunction extends FunctionPanel{
 		btn_followed.setText("Followed");
 		btn_following.setText("Following");
 		
-		List<UserBriefVO> list = userblServive.sort(SortType.USER_NAME,false);
-		list = userblServive.getShownUserList();
+		
+//		List<UserBriefVO> list = userblServive.sort(SortType.USER_NAME,false);
+//		list = userblServive.getShownUserList();
+		List<UserBriefVO> list = userblServive.getSearchResult("");
 		if (list!=null) {
 			datalist = list;
 			updateList(datalist);

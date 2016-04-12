@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.RepoListFunction">
   <children>
-    <Label id="label" layoutX="21.0" layoutY="32.0" prefHeight="37.0" prefWidth="120.0" text="Overview" />
+    <Label id="label" layoutX="21.0" layoutY="28.0" prefHeight="37.0" prefWidth="120.0" text="Overview" />
     <TextField fx:id="search" layoutX="592.0" layoutY="35.0" prefHeight="23.0" prefWidth="187.0" />
     <Button layoutX="779.0" layoutY="35.0" mnemonicParsing="false" onAction="#search" prefHeight="23.0" prefWidth="66.0" text="Search" />
     <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="20.0" layoutY="124.0" minWidth="830.0" prefHeight="426.0" prefWidth="830.0">
