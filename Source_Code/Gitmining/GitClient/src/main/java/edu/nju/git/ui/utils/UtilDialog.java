@@ -1,10 +1,12 @@
 package edu.nju.git.ui.utils;
 
+import java.io.IOException;
 import java.net.URL;
 
 import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.StringReader;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,10 +18,16 @@ public class UtilDialog {
 		FXMLLoader loader = new FXMLLoader();
 		URL url = Main.class.getResource(StringReader.readPath("config")+"dialog_alert.fxml");
 		loader.setLocation(url);
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Dialog dialog = loader.getController();
 		dialog.initMessage(message);
 		stage = new Stage(StageStyle.TRANSPARENT);
-		stage.setScene(new Scene(loader.getRoot()));
+		stage.setScene(new Scene(root));
 		stage.show();
 	}
 	

@@ -1,6 +1,7 @@
 package edu.nju.git.main;
 
 import edu.nju.git.ui.control.UIManager;
+import edu.nju.git.ui.utils.UtilDialog;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

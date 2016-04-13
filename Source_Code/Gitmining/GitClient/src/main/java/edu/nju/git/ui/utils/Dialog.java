@@ -40,7 +40,7 @@ public class Dialog implements Initializable{
 	 * 		Message to show.
 	 */
 	protected void initMessage(String message) {
-		Image image = new Image(Main.class.getResource(StringReader.readPath("picture")+"message.png").toString());
+		Image image = new Image(Main.class.getResource(StringReader.readPath("picture")+"dialog/message.png").toString());
 		icon.setImage(image);
 		message1.setText(message);
 		ok.setVisible(false);
@@ -54,7 +54,7 @@ public class Dialog implements Initializable{
 	 * 		ok button operation.
 	 */
 	protected void initConfirm(String message, Operation operation) {
-		Image image = new Image(Main.class.getResource(StringReader.readPath("picture")+"confirm.png").toString());
+		Image image = new Image(Main.class.getResource(StringReader.readPath("picture")+"dialog/confirm.png").toString());
 		icon.setImage(image);
 		message1.setText(message);
 		ok.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -77,7 +77,7 @@ public class Dialog implements Initializable{
 	 * 		cancel button operation.
 	 */
 	protected void initChoose(String m1, String m2, Operation operation1, Operation operation2) {
-		Image image = new Image(Main.class.getResource(StringReader.readPath("picture")+"choose.png").toString());
+		Image image = new Image(Main.class.getResource(StringReader.readPath("picture")+"dialog/choose.png").toString());
 		icon.setImage(image);
 		message1.setText(m1);
 		message2.setText(m2);
