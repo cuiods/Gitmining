@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.UserBriefVO;
-import edu.nju.git.ui.config.ConfigReader;
-import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.control.GitPanel;
 import edu.nju.git.ui.control.UIManager;
 import javafx.event.EventHandler;

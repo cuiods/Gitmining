@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import edu.nju.git.VO.chartvo.MyChartVO;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -93,6 +92,9 @@ public abstract class MyAreaChart extends MyChart{
 	class HoveredThresholdNode extends StackPane {
 		public HoveredThresholdNode(int priorValue, int value) {
 			setPrefSize(10, 10);
+			if (height < 580) {
+				setPrefSize(5, 5);
+			}
 
 			final Label label = createDataThresholdLabel(priorValue, value);
 

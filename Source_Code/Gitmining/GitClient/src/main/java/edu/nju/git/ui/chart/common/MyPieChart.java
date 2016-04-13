@@ -44,7 +44,7 @@ public abstract class MyPieChart extends MyChart{
 		
 		chart.setClockwise(false);
 		chart.setLabelLineLength(10);
-		chart.setTitle(chartName());
+		//chart.setTitle(chartName());
 		chart.setPrefSize(getWidth(), getHeight());
 		chart.setLegendSide(Side.BOTTOM);
 		return chart;
