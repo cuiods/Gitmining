@@ -9,14 +9,16 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.UserDetailFunction">
   <children>
-    <AnchorPane layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
+    <AnchorPane id="inner_back" layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
       <children>
-        <Label id="name_label" fx:id="loginName" layoutX="23.0" layoutY="14.0" prefHeight="40.0" prefWidth="113.0" text="LoginName">
+        <Label id="name_label" fx:id="loginName" layoutX="23.0" layoutY="7.0" prefHeight="40.0" prefWidth="113.0" text="LoginName">
           <font>
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <GridPane id="basic_info" layoutX="23.0" layoutY="60.0" prefHeight="225.0" prefWidth="810.0" alignment="CENTER_RIGHT">
+        <AnchorPane id="pane_back" layoutX="13.0" layoutY="50.0" prefHeight="230.0" prefWidth="820.0">
+        
+        <GridPane layoutX="10.0" layoutY="5.0" prefHeight="220.0" prefWidth="805.0" >
           <children>
             <ImageView fx:id="heading" fitHeight="150.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
             <Label prefHeight="15.0" prefWidth="81.0" text="createde_at" GridPane.rowIndex="5" />
@@ -50,26 +52,30 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           </rowConstraints>
         </GridPane>
-        <AnchorPane layoutX="13.0" layoutY="296.0" prefHeight="330.0" prefWidth="259.0">
+        </AnchorPane>
+        <AnchorPane id="pane_back" layoutX="13.0" layoutY="296.0" prefHeight="335.0" prefWidth="259.0">
           <children>
-            <Label font="$x1" layoutX="32.0" layoutY="14.0" prefHeight="21.0" prefWidth="196.0" text="Related Repositories" />
+            <Label id="related_label" font="$x1" layoutX="32.0" layoutY="14.0" prefHeight="21.0" prefWidth="196.0" text="Related Repositories" />
             <ScrollPane fx:id="table" layoutX="11.0" layoutY="50.0" prefHeight="275.0" prefWidth="239.0" />
           </children>
         </AnchorPane>
-        <GridPane layoutX="337.0" layoutY="308.0" prefHeight="336.0" prefWidth="171.0">
+        
+        <AnchorPane id="pane_back" layoutX="300.0" layoutY="296.0" prefHeight="335.0" prefWidth="533">
+        
+        <GridPane layoutX="17.0" layoutY="0.0" prefHeight="335.0" prefWidth="118.0">
           <children>
             <Label text="public repos" GridPane.rowIndex="1">
               <font>
                 <Font size="15.0" fx:id="x2" />
               </font>
             </Label>
-            <Label fx:id="pub_repos" text="loading..." GridPane.rowIndex="2" />
+            <Label id="data_text" fx:id="pub_repos" text="loading..." GridPane.rowIndex="2" />
             <Label font="$x2" text="following" GridPane.rowIndex="3" />
-            <Label fx:id="following" text="loading..." GridPane.rowIndex="4" />
+            <Label id="data_text" fx:id="following" text="loading..." GridPane.rowIndex="4" />
             <Label font="$x2" text="followers" GridPane.rowIndex="5" />
-            <Label fx:id="followers" text="loading..." GridPane.rowIndex="6" />
+            <Label id="data_text" fx:id="followers" text="loading..." GridPane.rowIndex="6" />
             <Label font="$x2" text="gists" GridPane.rowIndex="7" />
-            <Label fx:id="gists" text="loading" GridPane.rowIndex="8" />
+            <Label id="data_text" fx:id="gists" text="loading" GridPane.rowIndex="8" />
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="127.0" />
@@ -86,8 +92,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           </rowConstraints>
-        </GridPane>
-        <AnchorPane fx:id="radarPane" layoutX="454.0" layoutY="334.0" prefHeight="288.0" prefWidth="385.0" />
+        </GridPane>  
+        <AnchorPane fx:id="radarPane" layoutX="130.0" layoutY="20.0" prefHeight="315.0" prefWidth="385.0" />
+        
+        </AnchorPane>
+        
       </children>
     </AnchorPane>
   </children>
