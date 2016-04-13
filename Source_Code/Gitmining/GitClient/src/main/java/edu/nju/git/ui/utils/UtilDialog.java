@@ -35,10 +35,16 @@ public class UtilDialog {
 		FXMLLoader loader = new FXMLLoader();
 		URL url = Main.class.getResource(StringReader.readPath("config")+"dialog_alert.fxml");
 		loader.setLocation(url);
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Dialog dialog = loader.getController();
 		dialog.initConfirm(message, op);
 		stage = new Stage(StageStyle.TRANSPARENT);
-		stage.setScene(new Scene(loader.getRoot()));
+		stage.setScene(new Scene(root));
 		stage.show();
 	}
 	
@@ -46,10 +52,16 @@ public class UtilDialog {
 		FXMLLoader loader = new FXMLLoader();
 		URL url = Main.class.getResource(StringReader.readPath("config")+"dialog_alert.fxml");
 		loader.setLocation(url);
+		Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Dialog dialog = loader.getController();
 		dialog.initChoose(message1, message2, opOk, opCacel);
 		stage = new Stage(StageStyle.TRANSPARENT);
-		stage.setScene(new Scene(loader.getRoot()));
+		stage.setScene(new Scene(root));
 		stage.show();
 	}
 	
