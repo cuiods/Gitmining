@@ -12,6 +12,9 @@ import edu.nju.git.data.service.UserDataService;
 import edu.nju.git.ui.utils.CloseOperation;
 import edu.nju.git.ui.utils.UtilDialog;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -62,22 +65,96 @@ public class RMIClientLauncher {
 	 * this method is invoked when client has problem connecting to server
 	 */
 	public static void sendRMIWarning() {
-		// TODO: 2016/3/31 count 5 seconds, send warnings to presentation and then initRMI
 		int counts = 0;
-		UtilDialog.ShowMessage("连接服务器失败，正在尝试重连，请稍后...");
+//		UtilDialog.ShowMessage("连接服务器失败，正在尝试重连，请稍后...");
+		Thread t1 = showWarning();
+		t1.start();
 		do {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(500);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+			System.out.println("try to reconnect count: "+counts);
 		}
 		while ((!initRMI())&&(Consts.CONNECT_TIMES > ++counts));
+
 		if (counts >= Consts.CONNECT_TIMES) {	//can not reconnect to server
-			UtilDialog.ShowConfirm("无法连接至服务器，请尝试检查ip并重启客户端", new CloseOperation());
+			System.out.println("reconnect fail");
+//			UtilDialog.hideDialog();
+//			UtilDialog.ShowConfirm("无法连接至服务器，客户端将在3秒后关闭", new CloseOperation());
+
+			Thread t2 = showExit();
+			t2.start();
+
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				System.out.println("thread sleep exception");
+			}
+			System.exit(-1);
 		}
 		else {
-			UtilDialog.hideDialog();
+//			UtilDialog.hideDialog();
+			t1.stop();
+		}
+	}
+
+	public static Thread showWarning() {
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String message = "连接服务器失败，正在尝试重连，请稍后...";
+				WarningFrame frame = new WarningFrame(message);
+
+				frame.setVisible(true);
+			}
+		});
+
+		return thread;
+	}
+
+	public static Thread showExit() {
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String message = "无法连接服务器，程序将在5秒后关闭...";
+				WarningFrame frame = new WarningFrame(message);
+
+				frame.setVisible(true);
+			}
+		});
+
+		return thread;
+	}
+
+	protected static class WarningFrame extends JFrame {
+		public WarningFrame(String message) {
+			super("警告");
+			this.setSize(400,300);
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			Dimension frameSize = this.getSize();
+
+			if (frameSize.height > screenSize.height)
+				frameSize.height = screenSize.height;
+			if (frameSize.width > screenSize.width)
+				frameSize.width = screenSize.width;
+
+			this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+
+			JLabel label = new JLabel(message,SwingConstants.CENTER);
+			label.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+			this.getContentPane().add(label);
+
+			this.enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+		}
+
+		@Override
+		protected void processWindowEvent(WindowEvent e) {
+			if (e.getID() == WindowEvent.WINDOW_CLOSING)
+				return;
+			super.processWindowEvent(e);
 		}
 	}
 }
