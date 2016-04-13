@@ -10,9 +10,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 @SuppressWarnings("deprecation")
@@ -28,22 +26,27 @@ public abstract class MyPieChart extends MyChart{
 		DecimalFormat    df   = new DecimalFormat("######0.00");   
 		for(int i=0;i<chartVO.getFields().length;i++){
 			dataList[i] = new 
-					PieChart.Data(chartVO.getFields()[i]+": "/*+df.format(chartVO.getValues()[i]*1.0/sum*100)+"%"*/, chartVO.getValues()[i]);
+					PieChart.Data(chartVO.getFields()[i]+": "+df.format(chartVO.getValues()[i]*1.0/sum*100)+"%", chartVO.getValues()[i]);
 		}
 		ObservableList<PieChart.Data> pieChartData = FXCollections
 				.observableArrayList(dataList);
 		PieChart chart = new PieChart(pieChartData);
-		
-		for (PieChart.Data d : pieChartData) {
-			d.getNode().setOnMouseEntered(new MouseHoverAnimation(d, chart));
-			d.getNode().setOnMouseExited(new MouseExitAnimation());
+		if (getWidth() <= 400) {
+			chart.setLabelsVisible(false);
+			chart.setStyle("-fx-font-size:9;");
 		}
+		if (getWidth() > 400) {
+			for (PieChart.Data d : pieChartData) {
+				d.getNode().setOnMouseEntered(new MouseHoverAnimation(d, chart));
+				d.getNode().setOnMouseExited(new MouseExitAnimation());
+			}
+		}
+		
 		chart.setClockwise(false);
-		chart.setLabelLineLength(5);
+		chart.setLabelLineLength(10);
 		//chart.setTitle(chartName());
 		chart.setPrefSize(getWidth(), getHeight());
 		chart.setLegendSide(Side.BOTTOM);
-		chart.setStyle("-fx-font-size:9;");
 		return chart;
 	}
 
