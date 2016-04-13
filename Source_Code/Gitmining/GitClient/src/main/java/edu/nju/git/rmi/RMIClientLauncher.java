@@ -41,19 +41,19 @@ public class RMIClientLauncher {
 			UserBlImpl.instance().setUserDataService(userDataService);
 			return true;
 		} catch (NotBoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		} catch (RemoteException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 	}
@@ -67,12 +67,12 @@ public class RMIClientLauncher {
 		UtilDialog.ShowMessage("连接服务器失败，正在尝试重连，请稍后...");
 		do {
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		while ((!initRMI())||(Consts.CONNECT_TIMES <= ++counts));
+		while ((!initRMI())&&(Consts.CONNECT_TIMES > ++counts));
 		if (counts >= Consts.CONNECT_TIMES) {	//can not reconnect to server
 			UtilDialog.ShowConfirm("无法连接至服务器，请尝试检查ip并重启客户端", new CloseOperation());
 		}
