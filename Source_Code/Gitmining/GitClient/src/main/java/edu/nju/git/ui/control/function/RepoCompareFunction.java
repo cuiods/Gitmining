@@ -43,7 +43,7 @@ public class RepoCompareFunction extends FunctionPanel{
 		for(RepoVO repo: repos) {
 			vos.add(repo.getActivityChart());
 		}
-		MyAreaChart areaChart = new RepoAreaChart(390,270);
+		MyAreaChart areaChart = new RepoAreaChart(784,270);
 		activity.getChildren().add(areaChart.createContent(vos));
 	}
 
