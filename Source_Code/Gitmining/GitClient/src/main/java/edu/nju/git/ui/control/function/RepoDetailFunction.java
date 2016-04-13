@@ -125,7 +125,7 @@ public class RepoDetailFunction extends FunctionPanel{
     
     private void initData(Object[] bundle){
         if (repoVO == null) return;
-        
+        generalName.setText(repoVO.getName());
         description.setText(repoVO.getDescription());
         create.setText(repoVO.getCreate_at());
         update.setText(repoVO.getUpdate_at());

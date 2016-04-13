@@ -6,7 +6,7 @@ public class RepoLanguagePieChart extends MyPieChart{
 
 	@Override
 	protected double getHeight() {
-		return 276;
+		return 260;
 	}
 
 	@Override
