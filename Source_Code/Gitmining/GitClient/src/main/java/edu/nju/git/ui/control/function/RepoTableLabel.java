@@ -40,13 +40,15 @@ public class RepoTableLabel extends GitPanel{
 		initialize();
 	}
 	private void initialize(){
+		this.setCssFactory(UIManager.instance().getCssFactory());
 		if (repoBriefVO!=null) {
 			name.setText(repoBriefVO.getOwner()+"/"+repoBriefVO.getName());
 			name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					String[] temp = name.getText().split("/");
-					UIManager.instance().changeFunction("function_repoDetail",new Object[]{temp[0],temp[1]});
+					Parent root=UIManager.instance().changeFunction("function_repoDetail",new Object[]{temp[0],temp[1]});
+					root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
 				}
 			});
 			description.setText(repoBriefVO.getDescription());

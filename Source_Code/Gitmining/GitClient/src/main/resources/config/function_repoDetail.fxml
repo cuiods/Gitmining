@@ -6,26 +6,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoDetailFunction">
 	<children>
-		<AnchorPane layoutX="-4.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
+		<AnchorPane id="inner_back" layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
 			<children>
-				<AnchorPane layoutX="275.0" layoutY="326.0" prefHeight="300.0" prefWidth="550.0">
+				<AnchorPane id="pane_back" layoutX="285.0" layoutY="320.0" prefHeight="300.0" prefWidth="568.0">
 					<children>
 						<Label alignment="CENTER" layoutX="26.0" prefHeight="30.0" prefWidth="80.0" text="Stars" AnchorPane.topAnchor="15.0" />
 						<Label alignment="CENTER" layoutX="26.0" prefHeight="30.0" prefWidth="80.0" text="Forks" AnchorPane.topAnchor="75.0" />
 						<Label alignment="CENTER" layoutX="26.0" prefHeight="30.0" prefWidth="80.0" text="Contributors" AnchorPane.topAnchor="135.0" />
 						<Label alignment="CENTER" layoutX="26.0" prefHeight="30.0" prefWidth="80.0" text="Subscribers" AnchorPane.topAnchor="195.0" />
 						<Label alignment="CENTER" layoutX="26.0" prefHeight="30.0" prefWidth="80.0" text="Collaborators" AnchorPane.topAnchor="255.0" />
-						<Label fx:id="collab" alignment="CENTER" layoutX="115.0" layoutY="255.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
-						<Label fx:id="subcri" alignment="CENTER" layoutX="115.0" layoutY="195.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
-						<Label fx:id="contri" alignment="CENTER" layoutX="115.0" layoutY="135.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
-						<Label fx:id="fork" alignment="CENTER" layoutX="115.0" layoutY="75.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
-						<Label fx:id="star" alignment="CENTER" layoutX="115.0" layoutY="15.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
+						<Label id="data_text" fx:id="collab" alignment="CENTER" layoutX="115.0" layoutY="255.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
+						<Label id="data_text" fx:id="subcri" alignment="CENTER" layoutX="115.0" layoutY="195.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
+						<Label id="data_text" fx:id="contri" alignment="CENTER" layoutX="115.0" layoutY="135.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
+						<Label id="data_text" fx:id="fork" alignment="CENTER" layoutX="115.0" layoutY="75.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
+						<Label id="data_text" fx:id="star" alignment="CENTER" layoutX="115.0" layoutY="15.0" prefHeight="30.0" prefWidth="80.0" text="Loading" />
 						<AnchorPane fx:id="radarPane" layoutX="197.0" maxHeight="300.0" maxWidth="350.0" minHeight="300.0" minWidth="350.0" prefHeight="300.0" prefWidth="350.0" />
 					</children>
 				</AnchorPane>
-				<AnchorPane layoutX="25.0" layoutY="320.0" prefHeight="300.0" prefWidth="250.0">
+				<AnchorPane id="pane_back" layoutX="25.0" layoutY="320.0" prefHeight="300.0" prefWidth="250.0">
 					<children>
-						<Label alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="33.0" prefWidth="150.0" text="Related Repositorys" />
+						<Label id="related_label" alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="30.0" prefWidth="150.0" text="Related Repositorys" />
 						<ScrollPane layoutY="40.0" prefHeight="253.0" prefWidth="220.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
 							<content>
 								<VBox fx:id="vbox" prefHeight="-1.0" prefWidth="218.0" />
@@ -33,8 +33,8 @@
 						</ScrollPane>
 					</children>
 				</AnchorPane>
-				<Label fx:id="generalName" alignment="CENTER" prefHeight="38.0" prefWidth="145.0" text="name" AnchorPane.leftAnchor="25.0" />
-				<AnchorPane layoutY="46.0" prefHeight="253.0" prefWidth="550.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="295.0">
+				<Label id="name_label" fx:id="generalName" alignment="CENTER" prefHeight="38.0" prefWidth="145.0" text="name" AnchorPane.leftAnchor="0.0" />
+				<AnchorPane id="pane_back" layoutY="45.0" prefHeight="265.0" prefWidth="550.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="295.0">
 					<children>
 						<Label fx:id="create" layoutX="20.0" layoutY="176.0" prefHeight="15.0" prefWidth="162.0" text="Loading" />
 						<Label fx:id="update" layoutX="20.0" layoutY="202.0" prefHeight="15.0" prefWidth="162.0" text="Loading" />
@@ -47,11 +47,11 @@
 						<Label alignment="CENTER" layoutX="298.0" layoutY="186.0" prefHeight="32.0" prefWidth="41.0" text="size" />
 						<Label fx:id="size" layoutX="362.0" layoutY="186.0" prefHeight="32.0" prefWidth="88.0" text="Loading" />
 						<TextArea fx:id="description" editable="false" layoutX="20.0" layoutY="53.0" prefHeight="110.0" prefWidth="238.0" text="Loading" wrapText="true" />
-						<Button fx:id="activity" layoutX="195.0" layoutY="187.0" mnemonicParsing="false" onAction="#view" prefHeight="30.0" prefWidth="88.0" text=" Activity" />
+						<Button fx:id="activity" layoutX="170.0" layoutY="185.0" mnemonicParsing="false" onAction="#view" prefHeight="30.0" prefWidth="88.0" text=" Activity" />
                   <Label layoutX="20.0" layoutY="16.0" prefHeight="32.0" prefWidth="135.0" text="Description" />
 					</children>
 				</AnchorPane>
-            <AnchorPane fx:id="lAnchorPane" layoutX="597.0" layoutY="25.0" prefHeight="276.0" prefWidth="263.0" />
+            <AnchorPane id="pane_back" fx:id="lAnchorPane" layoutX="590.0" layoutY="45.0" prefHeight="265.0" prefWidth="263.0" />
 			</children>
 		</AnchorPane>
 	</children>
