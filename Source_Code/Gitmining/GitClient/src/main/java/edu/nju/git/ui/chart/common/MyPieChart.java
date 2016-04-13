@@ -33,7 +33,7 @@ public abstract class MyPieChart extends MyChart{
 		PieChart chart = new PieChart(pieChartData);
 		if (getWidth() <= 400) {
 			chart.setLabelsVisible(false);
-			chart.setStyle("-fx-font-size:9;");
+			chart.setStyle("-fx-font-size:8;");
 		}
 		if (getWidth() > 400) {
 			for (PieChart.Data d : pieChartData) {
@@ -44,7 +44,7 @@ public abstract class MyPieChart extends MyChart{
 		
 		chart.setClockwise(false);
 		chart.setLabelLineLength(10);
-		//chart.setTitle(chartName());
+		chart.setTitle(chartName());
 		chart.setPrefSize(getWidth(), getHeight());
 		chart.setLegendSide(Side.BOTTOM);
 		return chart;

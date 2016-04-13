@@ -62,6 +62,7 @@ public class RepoDetailFunction extends FunctionPanel{
     private RepoVO repoVO;
     @Override
     public void initPanel(Object[] bundle) {
+    	setCssFactory(UIManager.instance().getCssFactory());
     	repoVO = service.getRepoBasicInfo((String)bundle[0],(String)bundle[1]);
         Task<Void> task = new Task<Void>() {
             @Override
@@ -102,6 +103,13 @@ public class RepoDetailFunction extends FunctionPanel{
 			@Override
 			public void handle(MouseEvent event) {
 				UIManager.instance().changeFunction("function_webView",new Object[]{url.toString().split("'")[1]});
+			}
+		});
+		owner.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				Parent root=UIManager.instance().changeFunction("function_userDetail", new Object[]{owner.getText()});
+				root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
 			}
 		});
 	}
