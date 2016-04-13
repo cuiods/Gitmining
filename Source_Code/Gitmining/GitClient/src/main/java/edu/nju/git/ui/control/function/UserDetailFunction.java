@@ -2,6 +2,7 @@ package edu.nju.git.ui.control.function;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import edu.nju.git.VO.UserVO;
@@ -10,17 +11,19 @@ import edu.nju.git.bl.service.UserBlService;
 import edu.nju.git.ui.chart.UserSpiderChart;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 /*
  * UserDetial controller
  */
@@ -37,12 +40,12 @@ public class UserDetailFunction extends FunctionPanel{
 	@FXML private Label company;
 	@FXML private Label location;
 	@FXML private Label bio;
-	@FXML private ScrollPane table;
 	@FXML private Label pub_repos;
 	@FXML private Label following;
 	@FXML private Label followers;
 	@FXML private Label gists;
 	@FXML private AnchorPane radarPane;
+	@FXML private VBox vbox;
 	
 	private UserBlService service;
 	
@@ -56,7 +59,10 @@ public class UserDetailFunction extends FunctionPanel{
 	
 	public void initPanel(Object bundle[]){
 		user = service.getUserInfo((String)bundle[0]);
-		
+		if (user == null) {
+			user = new UserVO();
+			user.setName("Can't Find Data");
+		}
 		initUserDetailTask task = new initUserDetailTask(bundle);
 		new Thread(task).start();		
 	}
@@ -90,6 +96,7 @@ public class UserDetailFunction extends FunctionPanel{
 		followers.setText(user.getFollowNum()+"");
 		gists.setText(user.getPublic_gists()+"");
 		setRadar();
+		setRelative();
 		Image headingImage = new Image(user.getAvatar_url());
 		heading.setImage(headingImage);	
 		
@@ -104,6 +111,29 @@ public class UserDetailFunction extends FunctionPanel{
 		users.add(user);
 		UserSpiderChart chart = new UserSpiderChart(users, 385, 288);
 		radarPane.getChildren().add(chart.createComponent());
+	}
+	
+	private void setRelative(){
+		List<String> repos = service.getUserOwnRepos(user.getName());
+		if (repos.size() > 15) {
+			repos = repos.subList(0, 15);
+		}
+		for(String repo: repos) {
+			String[] temp = repo.split("/");
+			Hyperlink hyperlink = new Hyperlink(temp[1]);
+			hyperlink.setPrefSize(200, 50);
+			hyperlink.setFont(new Font(20));
+			hyperlink.setAlignment(Pos.CENTER);
+			hyperlink.setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					Parent root=UIManager.instance().changeFunction("function_repoDetail", new Object[]{temp[0],temp[1]});
+					root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
+				}
+			});
+			vbox.getChildren().add(hyperlink);
+		}
+		System.out.println(vbox.getChildren());
 	}
 	
 	class initUserDetailTask extends Task<Void> {

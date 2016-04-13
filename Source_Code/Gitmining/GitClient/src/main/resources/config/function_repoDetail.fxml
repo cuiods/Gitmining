@@ -25,7 +25,7 @@
 				</AnchorPane>
 				<AnchorPane id="pane_back" layoutX="25.0" layoutY="320.0" prefHeight="300.0" prefWidth="250.0">
 					<children>
-						<Label id="related_label" alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="30.0" prefWidth="150.0" text="Related Repositorys" />
+						<Label id="related_label" alignment="CENTER" layoutX="46.0" layoutY="7.0" prefHeight="30.0" prefWidth="150.0" text="Related Users" />
 						<ScrollPane layoutY="40.0" prefHeight="253.0" prefWidth="220.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
 							<content>
 								<VBox fx:id="vbox" prefHeight="-1.0" prefWidth="218.0" />
@@ -33,7 +33,7 @@
 						</ScrollPane>
 					</children>
 				</AnchorPane>
-				<Label id="name_label" fx:id="generalName" alignment="CENTER" prefHeight="38.0" prefWidth="150.0" text="name" AnchorPane.leftAnchor="0.0" />
+				<Label id="name_label" fx:id="generalName" alignment="CENTER" layoutX="41.0" layoutY="14.0" prefHeight="38.0" prefWidth="250.0" text="name" AnchorPane.leftAnchor="41.0" />
 				<AnchorPane id="pane_back" layoutY="45.0" prefHeight="265.0" prefWidth="550.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="295.0">
 					<children>
 						<Label fx:id="create" layoutX="20.0" layoutY="176.0" prefHeight="15.0" prefWidth="162.0" text="Loading" />
