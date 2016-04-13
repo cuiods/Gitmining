@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class UtilDialog {
+	
 	private static Stage stage;
 	
 	public static void ShowMessage(String message){
@@ -70,4 +71,5 @@ public class UtilDialog {
 			stage.hide();
 		}
 	}
+	
 }

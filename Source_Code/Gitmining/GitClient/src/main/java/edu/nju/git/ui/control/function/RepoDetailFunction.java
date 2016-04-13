@@ -18,6 +18,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 /**
  * RepoDetail controller
@@ -69,6 +71,7 @@ public class RepoDetailFunction extends FunctionPanel{
             protected Void call() throws Exception {
                 initData(bundle);
                 initLink();
+                initRelative();
                 return null;
             }
         };
@@ -160,6 +163,27 @@ public class RepoDetailFunction extends FunctionPanel{
 		repos.add(repoVO);
 		RepoSpiderChart chart = new RepoSpiderChart(repos, 350, 300);
 		radarPane.getChildren().add(chart.createComponent());
+	}
+	
+	private void initRelative() {
+		List<String> uservos = service.getRepoCollaborator(repoVO.getOwnerName(), repoVO.getName());
+		if (uservos.size() > 15) {
+			uservos = uservos.subList(0, 15);
+		}
+		for(String user: uservos) {
+			Hyperlink hyperlink = new Hyperlink(user);
+			hyperlink.setPrefSize(200, 50);
+			hyperlink.setFont(new Font(20));
+			hyperlink.setAlignment(Pos.CENTER);
+			hyperlink.setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					Parent root=UIManager.instance().changeFunction("function_userDetail", new Object[]{user});
+					root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
+				}
+			});
+			vbox.getChildren().add(hyperlink);
+		}
 	}
 
 }

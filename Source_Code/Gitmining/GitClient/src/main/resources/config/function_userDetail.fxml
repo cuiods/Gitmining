@@ -7,93 +7,100 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.UserDetailFunction">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.UserDetailFunction">
   <children>
     <AnchorPane id="inner_back" layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
       <children>
-        <Label id="name_label" fx:id="loginName" layoutX="23.0" layoutY="7.0" prefHeight="40.0" prefWidth="113.0" text="LoginName">
+        <Label id="name_label" fx:id="loginName" layoutX="23.0" layoutY="7.0" prefHeight="40.0" prefWidth="320.0" text="LoginName">
           <font>
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
         <AnchorPane id="pane_back" layoutX="13.0" layoutY="50.0" prefHeight="230.0" prefWidth="820.0">
-        
-        <GridPane layoutX="10.0" layoutY="5.0" prefHeight="220.0" prefWidth="805.0" >
-          <children>
-            <ImageView fx:id="heading" fitHeight="150.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-            <Label prefHeight="15.0" prefWidth="81.0" text="createde_at" GridPane.rowIndex="5" />
-            <Label text="updated_at" GridPane.rowIndex="6" />
-            <Label fx:id="create" text="loading........." GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label fx:id="update" text="loading............" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label prefHeight="15.0" prefWidth="56.0" text="blog" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Hyperlink fx:id="blog" text="blog_loading...." GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label prefHeight="15.0" prefWidth="48.0" text="email" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label fx:id="email" text="email_loading..." GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Label prefHeight="15.0" prefWidth="63.0" text="company" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label fx:id="company" text="loading....." GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label text="location" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label fx:id="location" text="loading" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Label text="bio" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Label fx:id="bio" text="personnal information........................................" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-          </children>
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="91.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="241.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="155.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="447.0" minWidth="10.0" prefWidth="321.0" />
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          </rowConstraints>
-        </GridPane>
+           <children>
+           
+           <GridPane layoutX="10.0" layoutY="5.0" prefHeight="220.0" prefWidth="805.0">
+             <children>
+               <ImageView fx:id="heading" fitHeight="150.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+               <Label prefHeight="15.0" prefWidth="81.0" text="createde_at" GridPane.rowIndex="5" />
+               <Label text="updated_at" GridPane.rowIndex="6" />
+               <Label fx:id="create" text="loading........." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               <Label fx:id="update" text="loading............" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               <Label prefHeight="15.0" prefWidth="56.0" text="blog" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               <Hyperlink fx:id="blog" text="blog_loading...." GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               <Label prefHeight="15.0" prefWidth="48.0" text="email" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <Label fx:id="email" text="email_loading..." GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               <Label prefHeight="15.0" prefWidth="63.0" text="company" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <Label fx:id="company" text="loading....." GridPane.columnIndex="3" GridPane.rowIndex="3" />
+               <Label text="location" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               <Label fx:id="location" text="loading" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+               <Label text="bio" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+               <Label fx:id="bio" text="personnal information........................................" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+             </children>
+             <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="91.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="382.0" minWidth="10.0" prefWidth="241.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="155.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="447.0" minWidth="10.0" prefWidth="321.0" />
+             </columnConstraints>
+             <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             </rowConstraints>
+           </GridPane>
+           </children>
         </AnchorPane>
         <AnchorPane id="pane_back" layoutX="13.0" layoutY="296.0" prefHeight="335.0" prefWidth="259.0">
           <children>
             <Label id="related_label" font="$x1" layoutX="32.0" layoutY="14.0" prefHeight="21.0" prefWidth="196.0" text="Related Repositories" />
-            <ScrollPane fx:id="table" layoutX="11.0" layoutY="50.0" prefHeight="275.0" prefWidth="239.0" />
+            <ScrollPane layoutX="11.0" layoutY="50.0" prefHeight="275.0" prefWidth="239.0">
+                     <content>
+                        <VBox fx:id="vbox" prefWidth="230.0" />
+                     </content></ScrollPane>
           </children>
         </AnchorPane>
         
         <AnchorPane id="pane_back" layoutX="300.0" layoutY="296.0" prefHeight="335.0" prefWidth="533">
-        
-        <GridPane layoutX="17.0" layoutY="0.0" prefHeight="335.0" prefWidth="118.0">
-          <children>
-            <Label text="public repos" GridPane.rowIndex="1">
-              <font>
-                <Font size="15.0" fx:id="x2" />
-              </font>
-            </Label>
-            <Label id="data_text" fx:id="pub_repos" text="loading..." GridPane.rowIndex="2" />
-            <Label font="$x2" text="following" GridPane.rowIndex="3" />
-            <Label id="data_text" fx:id="following" text="loading..." GridPane.rowIndex="4" />
-            <Label font="$x2" text="followers" GridPane.rowIndex="5" />
-            <Label id="data_text" fx:id="followers" text="loading..." GridPane.rowIndex="6" />
-            <Label font="$x2" text="gists" GridPane.rowIndex="7" />
-            <Label id="data_text" fx:id="gists" text="loading" GridPane.rowIndex="8" />
-          </children>
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="127.0" />
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          </rowConstraints>
-        </GridPane>  
-        <AnchorPane fx:id="radarPane" layoutX="130.0" layoutY="20.0" prefHeight="315.0" prefWidth="385.0" />
+           <children>
+           
+           <GridPane layoutX="17.0" layoutY="0.0" prefHeight="335.0" prefWidth="118.0">
+             <children>
+               <Label text="public repos" GridPane.rowIndex="1">
+                 <font>
+                   <Font size="15.0" fx:id="x2" />
+                 </font>
+               </Label>
+               <Label id="data_text" fx:id="pub_repos" text="loading..." GridPane.rowIndex="2" />
+               <Label font="$x2" text="following" GridPane.rowIndex="3" />
+               <Label id="data_text" fx:id="following" text="loading..." GridPane.rowIndex="4" />
+               <Label font="$x2" text="followers" GridPane.rowIndex="5" />
+               <Label id="data_text" fx:id="followers" text="loading..." GridPane.rowIndex="6" />
+               <Label font="$x2" text="gists" GridPane.rowIndex="7" />
+               <Label id="data_text" fx:id="gists" text="loading" GridPane.rowIndex="8" />
+             </children>
+             <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="127.0" />
+             </columnConstraints>
+             <rowConstraints>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             </rowConstraints>
+           </GridPane>  
+           <AnchorPane fx:id="radarPane" layoutX="130.0" layoutY="20.0" prefHeight="315.0" prefWidth="385.0" />
+           </children>
         
         </AnchorPane>
         
