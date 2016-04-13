@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +13,8 @@ import edu.nju.git.PO.RepoPO;
 import edu.nju.git.PO.UserPO;
 import edu.nju.git.data.service.RepoDataService;
 import edu.nju.git.type.MostType;
+
+import org.GitServer.cacheinit.TrimUsers;
 import org.GitServer.dataread.ReaderAndCount;
 import edu.nju.git.VO.RepoBriefVO;
 import edu.nju.git.VO.RepoVO;
@@ -120,19 +123,40 @@ public class RepoDataImpl extends UnicastRemoteObject implements RepoDataService
 		}
 	}
 
+	/**
+	 * @param userNames
+	 * @return filter the users not in user list.
+	 * @date 2016-04-13
+	 */
+	private List<String> _TrimUsers(List<String> userNames){
+		List<String> exsitUsers = new ArrayList<>();
+		if(userNames==null){
+			return exsitUsers;
+		}
+		Map<String, UserPO> userHash = readerAndCount.getNameToUser();
+		userNames.stream()
+				 .filter(p->userHash.containsKey(p))
+				 .forEach(name->exsitUsers.add(name));
+		
+		return exsitUsers;
+	}
+	
 	@Override
 	public List<String> getRepoContributor(String owner, String repoName) throws RemoteException {
-		return readerAndCount.getRepoToContributor().get(owner+"/"+repoName);
+		List<String> temp = readerAndCount.getRepoToContributor().get(owner+"/"+repoName);
+		return _TrimUsers(temp);
 	}
 
 	@Override
 	public List<String> getRepoCollaborator(String owner, String repoName) throws RemoteException {
-		return readerAndCount.getRepoToCollab().get(owner+"/"+repoName);
+		List<String> temp = readerAndCount.getRepoToCollab().get(owner+"/"+repoName);
+		return _TrimUsers(temp);
 	}
 
 	@Override
 	public List<String> getRepoSubscriber(String owner, String repoName) throws RemoteException {
-		return readerAndCount.getRepoToSubscriber().get(owner+"/"+repoName);
+		List<String> temp = readerAndCount.getRepoToSubscriber().get(owner+"/"+repoName);
+		return _TrimUsers(temp);
 	}
 
 	@Override
