@@ -98,7 +98,8 @@ public class HomeFunction extends FunctionPanel {
 
 			@Override
 			public void handle(MouseEvent event) {
-				UIManager.instance().changeFunction("function_userDetail", new Object[]{userName});
+				Parent root=UIManager.instance().changeFunction("function_userDetail", new Object[]{userName});
+				root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
 				
 			}
     		

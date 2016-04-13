@@ -33,7 +33,7 @@
 						</ScrollPane>
 					</children>
 				</AnchorPane>
-				<Label id="name_label" fx:id="generalName" alignment="CENTER" prefHeight="38.0" prefWidth="145.0" text="name" AnchorPane.leftAnchor="0.0" />
+				<Label id="name_label" fx:id="generalName" alignment="CENTER" prefHeight="38.0" prefWidth="150.0" text="name" AnchorPane.leftAnchor="0.0" />
 				<AnchorPane id="pane_back" layoutY="45.0" prefHeight="265.0" prefWidth="550.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="295.0">
 					<children>
 						<Label fx:id="create" layoutX="20.0" layoutY="176.0" prefHeight="15.0" prefWidth="162.0" text="Loading" />

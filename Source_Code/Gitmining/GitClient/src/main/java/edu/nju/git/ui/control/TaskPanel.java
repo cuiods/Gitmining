@@ -150,6 +150,7 @@ public class TaskPanel extends GitPanel {
 		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_repoStatistic");
 		//shot.getRoot().getStylesheets().add(e)
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionUserDetail());
 		setChildren(shot.getRoot());
 		functions.add(shot);
 		index = 0;
@@ -159,6 +160,7 @@ public class TaskPanel extends GitPanel {
 	private void initUserStatistic() {
 		clearFunction();
 		ScreenShot shot = ConfigReader.readParentPanel("function_userStatistic");
+		shot.getRoot().getStylesheets().add(getCssFactory().getFunctionUserDetail());
 		setChildren(shot.getRoot());
 		functions.add(shot);
 		index = 0;
