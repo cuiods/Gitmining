@@ -133,7 +133,6 @@ public class UserDetailFunction extends FunctionPanel{
 			});
 			vbox.getChildren().add(hyperlink);
 		}
-		System.out.println(vbox.getChildren());
 	}
 	
 	class initUserDetailTask extends Task<Void> {

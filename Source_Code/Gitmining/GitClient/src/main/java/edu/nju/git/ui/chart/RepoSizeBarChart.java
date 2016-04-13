@@ -11,7 +11,7 @@ public class RepoSizeBarChart extends MyBarChart{
 
 	@Override
 	public double[] updown() {
-		return new double[]{0,1200,300};
+		return new double[]{0,1800,300};
 	}
 
 }

@@ -230,6 +230,11 @@ public class TaskPanel extends GitPanel {
 		updateLocation(index);
 	}
 	
+	@FXML
+	protected void setTheme() {
+		UIManager.instance().changeFunction("theme",new Object[]{});
+	}
+	
 	/**
 	 * set navigation bar's location
 	 */

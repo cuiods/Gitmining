@@ -10,8 +10,10 @@ import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.css.CSSFactory;
 import edu.nju.git.ui.css.DefaultCSSFactory;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * <h1>Singleton manager of presentation</h1>
@@ -110,6 +112,20 @@ public final class UIManager {
 
 	public void setCssFactory(CSSFactory cssFactory) {
 		this.cssFactory = cssFactory;
+	}
+	
+	public void changeTheme(CSSFactory cssFactory){
+		primaryStage.hide();
+		setCssFactory(cssFactory);
+		root = ConfigReader.readParentPanel("index");
+		root.getPanel().initPanel(new Object[]{primaryStage});
+		root.getRoot().getStylesheets().add(cssFactory.getIndexCSS());
+		primaryStage.setTitle(StringReader.readString("title"));
+		URL url = Main.class.getResource(StringReader.readPath("picture")+"icon.png");
+		primaryStage.getIcons().add(new Image(url.toString()));
+		Scene scene = new Scene(root.getRoot());
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 }

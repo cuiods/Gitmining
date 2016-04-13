@@ -28,7 +28,7 @@
             </HBox>
           </left>
           <right>
-            <Button id="setting" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
+            <Button onAction="#setTheme" id="setting" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER" />
           </right>
         </BorderPane>
       </top>

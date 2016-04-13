@@ -10,7 +10,7 @@ public class RepoForkBarChart extends MyBarChart{
 
 	@Override
 	public double[] updown() {
-		return new double[]{0,1500,300};
+		return new double[]{0,1800,300};
 	}
 
 }
