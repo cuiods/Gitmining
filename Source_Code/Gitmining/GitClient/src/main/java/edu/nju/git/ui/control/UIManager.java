@@ -73,6 +73,12 @@ public final class UIManager {
 		primaryStage.getIcons().add(new Image(url.toString()));
 		return root.getRoot();
 	}
+	/*
+	 * mini the stage
+	 */
+	public void hide(){
+		primaryStage.setIconified(!primaryStage.isIconified());
+	}
 	
 	/**
 	 * Change to a new Function Panel.

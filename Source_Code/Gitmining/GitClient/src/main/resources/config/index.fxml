@@ -18,6 +18,7 @@
          <top>
             <HBox id="box" fx:id="box" alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="1020.0" BorderPane.alignment="CENTER">
                <children>
+               	  <Button fx:id="mini" id="mini" mnemonicParsing="false" prefHeight="40.0" prefWidth="33.0" />
                   <Button fx:id="exit" id="exit" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" />
                </children></HBox>
          </top>

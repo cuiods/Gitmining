@@ -33,6 +33,7 @@ public class IndexPanel extends GitPanel{
 	@FXML private HBox box;
 	@FXML private BorderPane pane;
 	@FXML private ImageView image;
+	@FXML private Button mini;
 	@FXML private Button exit;
 	private BorderPane childpane;
 	private GitPanel childcontroller;
@@ -80,6 +81,16 @@ public class IndexPanel extends GitPanel{
 			public void handle(MouseEvent event) {
 				System.exit(0);
 			}
+		});
+		
+		mini.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				UIManager.instance().hide();
+				
+			}
+			
 		});
 	}
 

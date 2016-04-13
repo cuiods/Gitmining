@@ -15,6 +15,16 @@
 	-fx-background-color:transparent;
 }
 
+#mini{
+	-fx-background-image:url("../button/mini.png");
+	-fx-background-color:transparent;
+}
+
+#mini:hover{
+	-fx-background-image:url("../button/mini1.png");
+	-fx-background-color:transparent;
+}
+
 .specialButton{	
 	-fx-background-image:url("../imageOut.png");
 	-fx-background-color:transparent;
