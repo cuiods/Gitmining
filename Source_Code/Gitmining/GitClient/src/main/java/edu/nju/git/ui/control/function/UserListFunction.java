@@ -177,7 +177,8 @@ loop:	for(Node node: nodes) {
 				}
 			}
 		}
-		UIManager.instance().changeFunction("function_userCompare", new Object[]{choosen});
+		Parent root=UIManager.instance().changeFunction("function_userCompare", new Object[]{choosen});
+		root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
 	}
 	
 	/**

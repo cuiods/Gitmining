@@ -30,7 +30,7 @@ public class UserCompareFunction extends FunctionPanel{
 	@Override
 	public void initPanel(Object[] bundle) {
 		users = (ArrayList<UserVO>) bundle[0];
-		UserSpiderChart chart = new UserSpiderChart(users, 380, 250);
+		UserSpiderChart chart = new UserSpiderChart(users, 780, 290);
 		radar.getChildren().add(chart.createComponent());
 		ObservableList<UserVO> uservos = FXCollections.observableArrayList(users);
 		userTable.setItems(uservos);

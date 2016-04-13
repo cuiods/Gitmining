@@ -184,7 +184,8 @@ loop:	for(Node node: nodes) {
 				}
 			}
 		}
-		UIManager.instance().changeFunction("function_repoCompare", new Object[]{choosen});
+		Parent root = UIManager.instance().changeFunction("function_repoCompare", new Object[]{choosen});
+		root.getStylesheets().add(getCssFactory().getFunctionUserDetail());
 	}
 	
 	/**

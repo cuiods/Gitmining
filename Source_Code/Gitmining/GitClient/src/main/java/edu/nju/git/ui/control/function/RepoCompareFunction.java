@@ -34,7 +34,7 @@ public class RepoCompareFunction extends FunctionPanel{
 	@Override
 	public void initPanel(Object[] bundle) {
 		repos = (ArrayList<RepoVO>) bundle[0];
-		RepoSpiderChart chart = new RepoSpiderChart(repos, 380, 250);
+		RepoSpiderChart chart = new RepoSpiderChart(repos, 380, 300);
 		radar.getChildren().add(chart.createComponent());
 		ObservableList<RepoVO> tablevos = FXCollections.observableArrayList(repos);
 		repoTable.setItems(tablevos);

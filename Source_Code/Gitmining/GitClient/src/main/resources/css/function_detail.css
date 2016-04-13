@@ -41,3 +41,7 @@
     -fx-border-color:transparent;
     -fx-effect:dropshadow(gaussian,#ffffff,5,0.5,2,2);
 }
+
+#table{
+	-fx-blend-mode:darken;
+}

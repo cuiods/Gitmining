@@ -8,7 +8,12 @@
 <AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="edu.nju.git.ui.control.function.UserCompareFunction">
   <!-- TODO Add Nodes -->
   <children>
-    <TableView fx:id="userTable" layoutX="35.0" layoutY="36.0" prefHeight="252.0" prefWidth="789.0" />
-    <AnchorPane fx:id="radar" layoutX="35.0" layoutY="330.0" prefHeight="281.0" prefWidth="400.0" />
+  	<AnchorPane id="inner_back" layoutX="0.0" layoutY="0.0" prefWidth="870.0" prefHeight="640.0">
+  	<AnchorPane id="pane_back" layoutX="35.0" layoutY="30.0" prefHeight="265" prefWidth="789.0">
+  		<Label id="related_label" layoutX="320" layoutY="5.0" prefHeight="20" prefWidth="200" text="Compare Table"/>
+    	<TableView fx:id="userTable" layoutX="10.0" layoutY="30.0" prefHeight="220.0" prefWidth="769.0" />
+    </AnchorPane>
+    <AnchorPane id="pane_back" fx:id="radar" layoutX="35.0" layoutY="310.0" prefHeight="300.0" prefWidth="789.0" />
+    </AnchorPane>
   </children>
 </AnchorPane>

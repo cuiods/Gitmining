@@ -4,11 +4,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.RepoCompareFunction">
   <children>
-    <TableView fx:id="repoTable" layoutX="435.0" layoutY="333.0" prefHeight="250.0" prefWidth="380.0" />
-    <AnchorPane fx:id="radar" layoutX="21.0" layoutY="333.0" prefHeight="250.0" prefWidth="380.0" />
-      <AnchorPane fx:id="activity" layoutX="32.0" layoutY="23.0" prefHeight="270.0" prefWidth="784.0" />
+  <AnchorPane id="inner_back" layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870">
+  	<AnchorPane id="pane_back" layoutX="435.0" layoutY="313.0" prefHeight="300.0" prefWidth="400.0">
+  		<Label id="related_label" alignment="CENTER" layoutX="130" layoutY="5" prefHeight="20" prefWidth="135" text="Compare Table">
+  		</Label>
+    	<TableView id="table" fx:id="repoTable" layoutX="10.0" layoutY="30.0" prefHeight="250.0" prefWidth="380.0" />
+    </AnchorPane>
+    <AnchorPane id="pane_back" fx:id="radar" layoutX="21.0" layoutY="313.0" prefHeight="300.0" prefWidth="380.0" />
+    <AnchorPane id="pane_back" fx:id="activity" layoutX="32.0" layoutY="23.0" prefHeight="270.0" prefWidth="804.0" />
+  </AnchorPane>
   </children>
 </AnchorPane>
