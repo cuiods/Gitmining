@@ -67,25 +67,25 @@ public class RMIClientLauncher {
 	public static void sendRMIWarning() {
 		int counts = 0;
 //		UtilDialog.ShowMessage("连接服务器失败，正在尝试重连，请稍后...");
-		Thread t1 = showWarning();
-		t1.start();
+		WarningFrame frame1 = showWarning("连接服务器失败，正在尝试重连，请稍后...");
 		do {
-//			try {
-//				Thread.sleep(500);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			System.out.println("try to reconnect count: "+counts);
 		}
 		while ((!initRMI())&&(Consts.CONNECT_TIMES > ++counts));
+
+		frame1.dispose();
 
 		if (counts >= Consts.CONNECT_TIMES) {	//can not reconnect to server
 			System.out.println("reconnect fail");
 //			UtilDialog.hideDialog();
 //			UtilDialog.ShowConfirm("无法连接至服务器，客户端将在3秒后关闭", new CloseOperation());
 
-			Thread t2 = showExit();
-			t2.start();
+			WarningFrame frame2 = showWarning("无法连接至服务器，客户端将在5秒内关闭");
 
 			try {
 				Thread.sleep(5000);
@@ -93,46 +93,43 @@ public class RMIClientLauncher {
 				e.printStackTrace();
 				System.out.println("thread sleep exception");
 			}
+			frame2.dispose();
 			System.exit(-1);
 		}
 		else {
 //			UtilDialog.hideDialog();
-			t1.stop();
 		}
 	}
 
-	public static Thread showWarning() {
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				String message = "连接服务器失败，正在尝试重连，请稍后...";
-				WarningFrame frame = new WarningFrame(message);
-
-				frame.setVisible(true);
-			}
-		});
-
-		return thread;
+	public static WarningFrame showWarning(String message) {
+		MyRunnable runnable = new MyRunnable(message);
+		Thread thread = new Thread(runnable);
+		thread.start();
+		return runnable.getFrame();
 	}
 
-	public static Thread showExit() {
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				String message = "无法连接服务器，程序将在5秒后关闭...";
-				WarningFrame frame = new WarningFrame(message);
+	protected static class MyRunnable implements Runnable {
 
-				frame.setVisible(true);
-			}
-		});
+		private WarningFrame frame;
 
-		return thread;
+		public MyRunnable(String message) {
+			frame = new WarningFrame(message);
+		}
+
+		@Override
+		public void run() {
+			frame.setVisible(true);
+		}
+
+		public WarningFrame getFrame(){
+			return frame;
+		}
 	}
 
 	protected static class WarningFrame extends JFrame {
 		public WarningFrame(String message) {
 			super("警告");
-			this.setSize(400,300);
+			this.setSize(400,250);
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			Dimension frameSize = this.getSize();
 
@@ -144,7 +141,7 @@ public class RMIClientLauncher {
 			this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 
 			JLabel label = new JLabel(message,SwingConstants.CENTER);
-			label.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+			label.setFont(new Font("", Font.PLAIN, 20));
 			this.getContentPane().add(label);
 
 			this.enableEvents(AWTEvent.WINDOW_EVENT_MASK);

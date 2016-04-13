@@ -6,7 +6,7 @@ package edu.nju.git.VO.chartvo;
 public class UserGistChartVO extends MyChartVO {
     public UserGistChartVO() {
         super();
-        super.fields = new String[10];
+        super.fields = new String[11];
         fields[0] = "0~10";
         fields[1] = "10~20";
         fields[2] = "20~30";
@@ -16,18 +16,19 @@ public class UserGistChartVO extends MyChartVO {
         fields[6] = "60~70";
         fields[7] = "70~80";
         fields[8] = "80~90";
-        fields[9] = ">=90";
+        fields[9] = "90~100";
+        fields[10] = ">=100";
 
-        super.values = new int[10];
-        for (int i=0;i<10;i++) {
+        super.values = new int[fields.length];
+        for (int i=0;i<values.length;i++) {
             values[i] = 0;
         }
     }
 
     public void increase (int repoCount) {
         repoCount /= 10;
-        if (repoCount >9) {
-            repoCount =9;
+        if (repoCount >10) {
+            repoCount =10;
         }
         values[repoCount] ++;
     }

@@ -6,24 +6,29 @@ package edu.nju.git.VO.chartvo;
 public class RepoSubscChartVO extends MyChartVO{
     public RepoSubscChartVO() {
         super();
-        super.fields = new String[6];
-        fields[0] = "0~100";
-        fields[1] = "100~200";
-        fields[2] = "200~300";
-        fields[3] = "300~400";
-        fields[4] = "400~500";
-        fields[5] = ">= 500";
+        super.fields = new String[11];
+        fields[0] = "0~20";
+        fields[1] = "20~40";
+        fields[2] = "40~60";
+        fields[3] = "60~80";
+        fields[4] = "80~100";
+        fields[5] = "100~120";
+        fields[6] = "120~140";
+        fields[7] = "140~160";
+        fields[8] = "160~180";
+        fields[9] = "180~200";
+        fields[10] = ">=200";
 
-        super.values = new int[6];
-        for (int i=0;i<6;i++) {
+        super.values = new int[fields.length];
+        for (int i=0;i<values.length;i++) {
             values[i] = 0;
         }
     }
 
     public void increase (int subscrCount) {
-        subscrCount /= 10;
-        if (subscrCount > 5) {
-            subscrCount =5;
+        subscrCount /= 20;
+        if (subscrCount > 10) {
+            subscrCount =10;
         }
         values[subscrCount] ++;
     }
