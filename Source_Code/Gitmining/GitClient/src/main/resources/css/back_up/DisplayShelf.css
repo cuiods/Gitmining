@@ -1,0 +1,18 @@
+#displayshelf {
+
+    -fx-background-color: linear-gradient(to bottom, white 60, #FFFFFF 30.1%, white 100%);
+
+}
+
+.button:hover{
+	-fx-border-radius:0;
+	-fx-border-width:0;
+}
+
+.button{
+	-fx-border-radius:0;
+	-fx-border-width:0;
+	
+}
+
+

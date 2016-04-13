@@ -1,5 +1,5 @@
 #leftbar{
-	-fx-background-image:url("../pink_leftbar.png");
+	-fx-background-image:url("../leftbar.png");
 	-fx-background-repeat:repeat;
 	-fx-fill-height:true;
 	-fx-background-color:#000000;
@@ -8,21 +8,21 @@
 
 
 #nav_home{
-	-fx-background-image:url("../button/pink_home.png");
+	-fx-background-image:url("../button/home.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_home:pressed{
-	-fx-background-image:url("../button/pink_home1.png");
+	-fx-background-image:url("../button/home1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_home:hover{
-	-fx-background-image:url("../button/pink_home1.png");
+	-fx-background-image:url("../button/home1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -38,14 +38,14 @@
 
 
 #nav_user:hover{
-	-fx-background-image:url("../button/pink_user1.png");
+	-fx-background-image:url("../button/user1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_user:pressed{
-	-fx-background-image:url("../button/pink_user1.png");
+	-fx-background-image:url("../button/user1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -61,14 +61,14 @@
 
 
 #nav_repo:hover{
-	-fx-background-image:url("../button/pink_repo1.png");
+	-fx-background-image:url("../button/repo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_repo:pressed{
-	-fx-background-image:url("../button/pink_repo1.png");
+	-fx-background-image:url("../button/repo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -106,21 +106,21 @@
 
 
 #userInfo:hover{
-	-fx-background-image:url("../button/pink_userInfo1.png");
+	-fx-background-image:url("../button/userInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #userInfo:pressed{
-	-fx-background-image:url("../button/pink_userInfo1.png");
+	-fx-background-image:url("../button/userInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #userSta{
-	-fx-background-image:url("../button/pink_userSta.png");
+	-fx-background-image:url("../button/userSta.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -129,14 +129,14 @@
 
 
 #userSta:hover{
-	-fx-background-image:url("../button/pink_userSta1.png");
+	-fx-background-image:url("../button/userSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #userSta:pressed{
-	-fx-background-image:url("../button/pink_userSta1.png");
+	-fx-background-image:url("../button/userSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -152,14 +152,14 @@
 
 
 #repoInfo:hover{
-	-fx-background-image:url("../button/pink_repoInfo1.png");
+	-fx-background-image:url("../button/repoInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #repoInfo:pressed{
-	-fx-background-image:url("../button/pink_repoInfo1.png");
+	-fx-background-image:url("../button/repoInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -167,7 +167,7 @@
 
 
 #repoSta{
-	-fx-background-image:url("../button/pink_repoSta.png");
+	-fx-background-image:url("../button/repoSta.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -176,14 +176,14 @@
 
 
 #repoSta:hover{
-	-fx-background-image:url("../button/pink_repoSta1.png");
+	-fx-background-image:url("../button/repoSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #repoSta:pressed{
-	-fx-background-image:url("../button/pink_repoSta1.png");
+	-fx-background-image:url("../button/repoSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;

@@ -9,16 +9,16 @@
 .button:hover{
 	-fx-text-fill:#ffffff;
 	-fx-font-size:12;
-	-fx-background-color:rgb(229,96,96);
+	-fx-background-color:#48d1cc;
     -fx-border-radius: 1;
-    -fx-border-color:rgb(229,96,96);
+    -fx-border-color:#48d1cc;
     -fx-effect:dropshadow(gaussian,#ffffff,5,0.5,2,2);
 }
 
 .button{
 	-fx-text-fill:#ffffff;
 	-fx-font-size:12;
-	-fx-background-color:rgb(54,179,162);
+	-fx-background-color:rgb(105,167,180);
     -fx-border-radius: 1;
     -fx-border-color:transparent;
     -fx-effect:dropshadow(gaussian,#ffffff,5,0.5,2,2);
