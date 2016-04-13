@@ -122,7 +122,7 @@ public class UserDetailFunction extends FunctionPanel{
 			String[] temp = repo.split("/");
 			Hyperlink hyperlink = new Hyperlink(temp[1]);
 			hyperlink.setPrefSize(200, 50);
-			hyperlink.setFont(new Font(20));
+			hyperlink.setFont(new Font(15));
 			hyperlink.setAlignment(Pos.CENTER);
 			hyperlink.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override

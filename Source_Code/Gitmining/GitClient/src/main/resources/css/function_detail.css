@@ -44,4 +44,23 @@
 
 #table{
 	-fx-blend-mode:darken;
+	-fx-background-color:transparent;
 }
+
+#scroll_back{
+	-fx-base:transparent;
+	-fx-background-color:transparent;
+	-fx-foreground-color:transparent;
+	-fx-border-color:rgb(200,200,200);
+}
+
+.scroll-bar{
+	-fx-base:#ffffff;
+	-fx-backgrround-color:transparent;
+	-fx-border-color:#ffffff;
+}
+
+.scroll-bar .thumb{
+	-fx-background-color:rgb(200,200,200);
+}
+

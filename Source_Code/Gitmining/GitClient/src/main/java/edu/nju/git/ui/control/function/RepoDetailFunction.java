@@ -173,7 +173,7 @@ public class RepoDetailFunction extends FunctionPanel{
 		for(String user: uservos) {
 			Hyperlink hyperlink = new Hyperlink(user);
 			hyperlink.setPrefSize(200, 50);
-			hyperlink.setFont(new Font(20));
+			hyperlink.setFont(new Font(15));
 			hyperlink.setAlignment(Pos.CENTER);
 			hyperlink.setOnMousePressed(new EventHandler<MouseEvent>() {
 				@Override

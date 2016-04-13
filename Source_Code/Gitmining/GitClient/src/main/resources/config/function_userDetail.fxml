@@ -57,10 +57,10 @@
         </AnchorPane>
         <AnchorPane id="pane_back" layoutX="13.0" layoutY="296.0" prefHeight="335.0" prefWidth="259.0">
           <children>
-            <Label id="related_label" font="$x1" layoutX="32.0" layoutY="14.0" prefHeight="21.0" prefWidth="196.0" text="Related Repositories" />
-            <ScrollPane layoutX="11.0" layoutY="50.0" prefHeight="275.0" prefWidth="239.0">
+            <Label id="related_label" font="$x1" layoutX="50.0" layoutY="14.0" prefHeight="21.0" prefWidth="196.0" text="Related Repositories" />
+            <ScrollPane id="scroll_back" layoutX="11.0" layoutY="50.0" prefHeight="275.0" prefWidth="239.0">
                      <content>
-                        <VBox fx:id="vbox" prefWidth="230.0" />
+                        <VBox  fx:id="vbox" prefWidth="230.0" />
                      </content></ScrollPane>
           </children>
         </AnchorPane>
