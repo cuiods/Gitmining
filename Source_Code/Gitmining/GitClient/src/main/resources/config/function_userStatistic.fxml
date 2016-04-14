@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.nju.git.ui.control.function.UserStatisticFunction">
    <children>
-   <AnchorPane  layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
+   <AnchorPane  id="statis_back" layoutX="0.0" layoutY="0.0" prefHeight="640.0" prefWidth="870.0">
       <Label id="related_label" layoutX="353.0" layoutY="10.0" text="Choose a Statistic Item"/>
       <AnchorPane  fx:id="userType" layoutX="15.0" layoutY="30.0" prefHeight="180.0" prefWidth="210.0" />
       <AnchorPane  fx:id="companyUser" layoutX="225.0" layoutY="30.0" prefHeight="180.0" prefWidth="210.0" />
