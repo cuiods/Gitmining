@@ -1,0 +1,3 @@
+1.我们的GitMining软件分为Server和Client两部分，需要先启动Server再启动Client
+2.GitServer部署和GitClient部署文件夹下的除jar包以外的文件为jar运行需要的支持文件，请勿移动或删除
+3.GitClient部署\support_files\ServerIPAddress.txt为客户端连接服务器时服务器的ip地址和端口号，默认为本地回环地址，如果服务器和客户端不是同一台电脑请按照相应格式更改txt中的ip地址
