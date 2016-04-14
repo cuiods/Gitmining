@@ -1,5 +1,5 @@
 #leftbar{
-	-fx-background-image:url("../pink_leftbar.png");
+	-fx-background-image:url("../pictures/pink_leftbar.png");
 	-fx-background-repeat:repeat;
 	-fx-fill-height:true;
 	-fx-background-color:#000000;
@@ -8,28 +8,28 @@
 
 
 #nav_home{
-	-fx-background-image:url("../button/pink_home.png");
+	-fx-background-image:url("../pictures/button/pink_home.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_home:pressed{
-	-fx-background-image:url("../button/pink_home1.png");
+	-fx-background-image:url("../pictures/button/pink_home1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_home:hover{
-	-fx-background-image:url("../button/pink_home1.png");
+	-fx-background-image:url("../pictures/button/pink_home1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_user{
-	-fx-background-image:url("../button/user.png");
+	-fx-background-image:url("../pictures/button/user.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -38,21 +38,21 @@
 
 
 #nav_user:hover{
-	-fx-background-image:url("../button/pink_user1.png");
+	-fx-background-image:url("../pictures/button/pink_user1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_user:pressed{
-	-fx-background-image:url("../button/pink_user1.png");
+	-fx-background-image:url("../pictures/button/pink_user1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_repo{
-	-fx-background-image:url("../button/repo.png");
+	-fx-background-image:url("../pictures/button/repo.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -61,14 +61,14 @@
 
 
 #nav_repo:hover{
-	-fx-background-image:url("../button/pink_repo1.png");
+	-fx-background-image:url("../pictures/button/pink_repo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #nav_repo:pressed{
-	-fx-background-image:url("../button/pink_repo1.png");
+	-fx-background-image:url("../pictures/button/pink_repo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -97,7 +97,7 @@
 }
 
 #userInfo{
-	-fx-background-image:url("../button/userInfo.png");
+	-fx-background-image:url("../pictures/button/userInfo.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -106,21 +106,21 @@
 
 
 #userInfo:hover{
-	-fx-background-image:url("../button/pink_userInfo1.png");
+	-fx-background-image:url("../pictures/button/pink_userInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #userInfo:pressed{
-	-fx-background-image:url("../button/pink_userInfo1.png");
+	-fx-background-image:url("../pictures/button/pink_userInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #userSta{
-	-fx-background-image:url("../button/pink_userSta.png");
+	-fx-background-image:url("../pictures/button/pink_userSta.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -129,21 +129,21 @@
 
 
 #userSta:hover{
-	-fx-background-image:url("../button/pink_userSta1.png");
+	-fx-background-image:url("../pictures/button/pink_userSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #userSta:pressed{
-	-fx-background-image:url("../button/pink_userSta1.png");
+	-fx-background-image:url("../pictures/button/pink_userSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #repoInfo{
-	-fx-background-image:url("../button/repoInfo.png");
+	-fx-background-image:url("../pictures/button/repoInfo.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -152,14 +152,14 @@
 
 
 #repoInfo:hover{
-	-fx-background-image:url("../button/pink_repoInfo1.png");
+	-fx-background-image:url("../pictures/button/pink_repoInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #repoInfo:pressed{
-	-fx-background-image:url("../button/pink_repoInfo1.png");
+	-fx-background-image:url("../pictures/button/pink_repoInfo1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -167,7 +167,7 @@
 
 
 #repoSta{
-	-fx-background-image:url("../button/pink_repoSta.png");
+	-fx-background-image:url("../pictures/button/pink_repoSta.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
@@ -176,59 +176,59 @@
 
 
 #repoSta:hover{
-	-fx-background-image:url("../button/pink_repoSta1.png");
+	-fx-background-image:url("../pictures/button/pink_repoSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #repoSta:pressed{
-	-fx-background-image:url("../button/pink_repoSta1.png");
+	-fx-background-image:url("../pictures/button/pink_repoSta1.png");
 	-fx-background-color:transparent;
 	-fx-border-radius: 0;
     -fx-border-color:transparent;
 }
 
 #top_label{
-	-fx-background-image:url("../topbar/middle.png");
+	-fx-background-image:url("../pictures/topbar/middle.png");
 	-fx-text-fill:#ffffff;
 }
 
 #left_label{
-	-fx-background-image:url("../topbar/middle.png");
+	-fx-background-image:url("../pictures/topbar/middle.png");
 	-fx-text-fill:#ffffff;
 }
 
 #back{
-	-fx-background-image:url("../topbar/back.png");
+	-fx-background-image:url("../pictures/topbar/back.png");
 	-fx-background-color:transparent;
     -fx-border-radius: 2;
     -fx-border-color:transparent;
 }
 
 #back:hover{
-	-fx-background-image:url("../topbar/back_1.png");
+	-fx-background-image:url("../pictures/topbar/back_1.png");
 }
 
 #forward{
-	-fx-background-image:url("../topbar/front.png");
+	-fx-background-image:url("../pictures/topbar/front.png");
 	-fx-background-color:transparent;
     -fx-border-radius: 2;
     -fx-border-color:transparent;
 }
 
 #forward:hover{
-	-fx-background-image:url("../topbar/front_1.png");
+	-fx-background-image:url("../pictures/topbar/front_1.png");
 }
 
 #setting{
-	-fx-background-image:url("../topbar/set.png");
+	-fx-background-image:url("../pictures/topbar/set.png");
 	-fx-background-color:transparent;
     -fx-border-radius: 2;
     -fx-border-color:transparent;
 }
 
 #setting:hover{
-	-fx-background-image:url("../topbar/set1.png");
+	-fx-background-image:url("../pictures/topbar/set1.png");
 }
 

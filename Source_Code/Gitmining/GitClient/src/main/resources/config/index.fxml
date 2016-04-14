@@ -25,7 +25,7 @@
     </BorderPane>
     <ImageView fx:id="image" fitHeight="720.0" fitWidth="1020.0" pickOnBounds="true">
       <image>
-        <Image url="@back1.png" />
+        <Image url="@../pictures/back1.png" />
       </image>
     </ImageView>
   </children>

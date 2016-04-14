@@ -28,6 +28,8 @@ public class ConfigReader {
 	public static ScreenShot readParentPanel(String name){
 		FXMLLoader loader = new FXMLLoader();
 		URL url = Main.class.getResource(getRootPath()+name+".fxml");
+		System.out.println(getRootPath()+name+".fxml");
+		System.out.println(Main.class.getResource(getRootPath()+name+".fxml"));
 		loader.setLocation(url);
 		ScreenShot screenShot = null;
 		try {
