@@ -4,7 +4,7 @@ import edu.nju.git.main.Main;
 import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.FunctionPanel;
 import edu.nju.git.ui.control.UIManager;
-import edu.nju.git.ui.css.DefaultCSSFactory;
+import edu.nju.git.ui.css.OldCSSFactory;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -29,7 +29,7 @@ public class ThemeFunction extends FunctionPanel{
 
 			@Override
 			public void handle(MouseEvent event) {
-				UIManager.instance().changeTheme(new DefaultCSSFactory());
+				UIManager.instance().changeTheme(new OldCSSFactory());
 			}
 		});
 	}

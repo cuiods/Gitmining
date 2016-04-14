@@ -13,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * <h1>Singleton manager of presentation</h1>
@@ -115,7 +114,7 @@ public final class UIManager {
 	}
 	
 	public void changeTheme(CSSFactory cssFactory){
-		primaryStage.hide();
+		//primaryStage.hide();
 		setCssFactory(cssFactory);
 		root = ConfigReader.readParentPanel("index");
 		root.getPanel().initPanel(new Object[]{primaryStage});
