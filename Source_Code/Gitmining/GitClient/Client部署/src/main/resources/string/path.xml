@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<path>
+<url name="string" value="src/main/resources/string/"/>
+<url name="config" value="/config/"/>
+<url name="css" value="/css/"/>
+<url name="picture" value="/pictures/"/>
+</path>

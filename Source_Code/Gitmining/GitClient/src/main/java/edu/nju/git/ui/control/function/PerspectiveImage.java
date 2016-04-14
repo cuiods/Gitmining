@@ -2,14 +2,10 @@ package edu.nju.git.ui.control.function;
 
  
 
-import java.net.URL;
-
 import edu.nju.git.VO.RepoVO;
 import edu.nju.git.bl.factory.impl.BlFactory;
 import edu.nju.git.bl.service.RepoBlService;
-import edu.nju.git.main.Main;
 import edu.nju.git.type.MostType;
-import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.control.UIManager;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -160,8 +156,7 @@ public class PerspectiveImage extends Parent {
     	repoBl = BlFactory.instance().getRepoBlService();
     	String[] temp = repoBl.getMostRank(type).split("/");
 		Parent root=UIManager.instance().changeFunction("function_repoDetail", new Object[]{temp[0],temp[1]});
-		URL urlcss = Main.class.getResource(StringReader.readPath("css")+"function_detail.css");
-		root.getStylesheets().add(urlcss.toString()) ;
+		root.getStylesheets().add(UIManager.instance().getCssFactory().getFunctionUserDetail()) ;
     }
 
  

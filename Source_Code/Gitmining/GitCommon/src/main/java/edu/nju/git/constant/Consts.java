@@ -12,5 +12,5 @@ public class Consts {
     /**
      * the times client will try to reconnect to server when off line
      */
-    public static final int CONNECT_TIMES = 30;
+    public static final int CONNECT_TIMES = 60;
 }
