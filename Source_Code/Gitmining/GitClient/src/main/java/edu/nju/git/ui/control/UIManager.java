@@ -9,6 +9,7 @@ import edu.nju.git.ui.config.ScreenShot;
 import edu.nju.git.ui.config.StringReader;
 import edu.nju.git.ui.css.CSSFactory;
 import edu.nju.git.ui.css.DefaultCSSFactory;
+import edu.nju.git.ui.css.OldCSSFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -64,7 +65,7 @@ public final class UIManager {
 	 */
 	public Parent initialize(Stage stage){
 		RMIClientLauncher.initRMI();
-		cssFactory = new DefaultCSSFactory();
+		cssFactory = new OldCSSFactory();
 		root = ConfigReader.readParentPanel("index");
 		root.getPanel().initPanel(new Object[]{stage});
 		root.getRoot().getStylesheets().add(cssFactory.getIndexCSS());
