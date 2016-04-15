@@ -53,8 +53,8 @@ public class RepoTableLabel extends GitPanel{
 			});
 			description.setText(repoBriefVO.getDescription());
 			//WARNING:TO BE COMPLETED
-			create.setText("create:");
-			update.setText("update:"+repoBriefVO.getLastUpdate());
+			create.setText("create: "+repoBriefVO.getCreate_at());
+			update.setText("update: "+repoBriefVO.getLastUpdate());
 			star.setText(repoBriefVO.getNum_stars()+"");
 			fork.setText(repoBriefVO.getNum_forks()+"");
 			contributor.setText(repoBriefVO.getNum_subscribers()+"");
