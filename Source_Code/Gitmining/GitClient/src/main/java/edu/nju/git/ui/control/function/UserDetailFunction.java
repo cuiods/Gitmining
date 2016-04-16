@@ -72,7 +72,7 @@ public class UserDetailFunction extends FunctionPanel{
 
 			@Override
 			public void handle(MouseEvent event) {
-				edu.nju.git.ui.control.UIManager.instance().changeFunction("function_webView",new Object[]{blog.toString().split("'")[1]});
+				UIManager.instance().changeFunction("function_webView",new Object[]{blog.toString().split("'")[1]});
 				
 			}
 			
