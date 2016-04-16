@@ -2,4 +2,6 @@
 2.GitServer部署和GitClient部署文件夹下的除jar包以外的文件为jar运行需要的支持文件，请勿移动或删除
 3.GitClient部署\support_files\ServerIPAddress.txt为客户端连接服务器时服务器的ip地址和端口号，默认为本地回环地址，如果服务器和客户端不是同一台电脑请按照相应格式更改txt中的ip地址
 4.需要在java8版本上运行，建议更新至java SE 8u77，java8以前的版本不支持或不能完整支持javafx，会导致客户端不能运行。
-5.相关文档位于Doc/迭代二文件夹中
+5.服务器运行时内存要求比较大，建议JVM内存：
+-Xms512m -Xmx512m。
+如果直接在控制台运行“java -Xms512m -Xmx512m -jar GitServer.jar”。
