@@ -49,7 +49,7 @@
 	
 	
 	<build>
-		<finalName>GitlabMonitor</finalName>
+		<!--finalName>GitlabMonitor</finalName-->
 	<plugins>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>

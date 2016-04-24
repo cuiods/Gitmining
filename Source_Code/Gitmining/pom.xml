@@ -28,7 +28,7 @@
 	</modules>
 
 	<build>
-		<finalName>GitlabMonitor</finalName>
+		<!--finalName>GitlabMonitor</finalName-->
 		<resources>
 			<resource>
 				<directory>GitClient/src/test/java</directory>
@@ -68,8 +68,8 @@
 							<mainClass>edu.nju.git.main.ClientStarter</mainClass>
 						</manifest>
 					</archive>
-
 				</configuration>
+
 				<executions>
 					<execution>
 						<id>make-assembly</id>
