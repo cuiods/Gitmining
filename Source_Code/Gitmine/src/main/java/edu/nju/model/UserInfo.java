@@ -1,4 +1,4 @@
-package edu.nju.common;
+package edu.nju.model;
 
 import java.util.Arrays;
 import java.util.Date;
