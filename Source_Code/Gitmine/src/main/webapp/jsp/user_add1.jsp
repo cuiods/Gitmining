@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>用户信息添加</h1>
-<form action="user/add1.do" method="post">
+<form action="../user/add1.do" method="post">
 	账号：<input  type="text" name="userNumber" /><br/>
 	密码：<input  type="text" name="passWord" /><br/>
 	<input type="submit" value="提交"/>
