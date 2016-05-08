@@ -26,28 +26,30 @@
         <property name="initialPoolSize" value="${c3p0.initialPoolSize}"/>
         <!-- 指定连接数据库连接池的连接的最大空闲时间 -->
         <property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>
+        <property name="maxStatements" value="${c3p0.maxStatements}"/>
+        <property name="idleConnectionTestPeriod" value="${c3p0.idleConnectionTestPeriod}"/>
+        <property name="acquireRetryAttempts" value="${c3p0.acquireRetryAttempts}"/>
     </bean>
 
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mappingResources">
-            <list>
-                <value>edu/nju/entity</value>
-            </list>
-        </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
-                <prop key="hibernate.connection.url">jdbc:mysql://139.129.48.182:3306/gitmining</prop>
-                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
+        </property>
+        <property name="packagesToScan">
+            <list>
+                <value>edu.nju.dao</value>
+            </list>
         </property>
     </bean>
 
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory"><ref local="sessionFactory"/></property>
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
 </beans>

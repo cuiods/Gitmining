@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Created by cuihao on 2016/5/8.
  */
 @Entity
-@Table(name = "tbl_user", schema = "gitmining", catalog = "")
+@Table(name = "tbl_user", schema = "gitmining")
 public class TblUser {
     private long userId;
     private String loginName;

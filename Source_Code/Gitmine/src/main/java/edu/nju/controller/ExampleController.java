@@ -15,7 +15,7 @@ public class ExampleController {
     @Resource
     ExampleService exampleService;
 
-    @RequestMapping("/login")
+    @RequestMapping("/example")
     public String login(@RequestParam String userName) {
         if (exampleService.findUserByName(userName) == null) {
             return "error";
