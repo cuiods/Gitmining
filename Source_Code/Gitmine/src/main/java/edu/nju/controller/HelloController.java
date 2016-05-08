@@ -1,6 +1,6 @@
 package edu.nju.controller;
 
-import edu.nju.model.UserInfo;
+import edu.nju.entity.UserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

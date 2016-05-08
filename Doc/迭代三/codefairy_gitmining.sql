@@ -3,8 +3,8 @@ Navicat MySQL Data Transfer
 
 Source Server         : qicq
 Source Server Version : 50540
-Source Host           : 115.159.161.96:3306
-Source Database       : codefairy_gitmining
+Source Host           : 139.129.48.182
+Source Database       : gitmining
 
 Target Server Type    : MYSQL
 Target Server Version : 50540
