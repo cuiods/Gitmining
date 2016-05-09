@@ -1,5 +1,6 @@
 package edu.nju.dao.impl;
 
+import edu.nju.common.SortType;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
 import org.hibernate.Query;
@@ -37,5 +38,64 @@ public class UserDaoImp implements UserDaoService {
             return users.get(0);
         }
         return user;
+    }
+
+    /**
+     * search users by login name(keyword)
+     *
+     * @param keyword
+     * @return list of users
+     */
+    public List<TblUser> searchUserByLoginName(String keyword) {
+        return null;
+    }
+
+    /**
+     * get Total count of user.
+     *
+     * @return number of user
+     */
+    public int getUserTotalCount() {
+        return 0;
+    }
+
+    /**
+     * get sorted user list.
+     *
+     * @param type
+     * @return list of sorted user.
+     */
+    public List<TblUser> getUsers(SortType type) {
+        return null;
+    }
+
+    /**
+     * get related repositorys
+     *
+     * @param userLoginName
+     * @return list of repo names
+     */
+    public List<String> getUserSubscribeRepos(String userLoginName) {
+        return null;
+    }
+
+    /**
+     * get related collaborator repositories
+     *
+     * @param userLoginName
+     * @return list of repo names
+     */
+    public List<String> getUserCollaboratorRepos(String userLoginName) {
+        return null;
+    }
+
+    /**
+     * get related contributor
+     *
+     * @param userLoginName
+     * @return list of repo names
+     */
+    public List<String> getUserContriutorRepos(String userLoginName) {
+        return null;
     }
 }
