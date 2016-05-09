@@ -47,7 +47,11 @@ public class UserDaoImp implements UserDaoService {
      * @return list of users
      */
     public List<TblUser> searchUserByLoginName(String keyword) {
-        return null;
+        TblUser user = null;
+        Query query = getSession().createQuery("from TblUser as u where u.loginName like %?%");
+        query.setString(0, keyword);
+        List<TblUser> users = query.list();
+        return users;
     }
 
     /**
@@ -56,6 +60,8 @@ public class UserDaoImp implements UserDaoService {
      * @return number of user
      */
     public int getUserTotalCount() {
+        Query query = getSession().createQuery("select count(*) from TblUser");
+        System.out.println("hahahaah----------"+query.list().get(0).getClass());
         return 0;
     }
 
