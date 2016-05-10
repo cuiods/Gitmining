@@ -28,6 +28,7 @@ public class TblUser {
     private Integer numContributor;
     private Integer numCollabrator;
     private byte state;
+    private String name;
 
     @Id
     @Column(name = "user_id")
@@ -274,5 +275,15 @@ public class TblUser {
         result = 31 * result + (numCollabrator != null ? numCollabrator.hashCode() : 0);
         result = 31 * result + (int) state;
         return result;
+    }
+
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
