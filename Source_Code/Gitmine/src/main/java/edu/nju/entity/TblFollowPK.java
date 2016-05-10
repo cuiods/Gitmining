@@ -1,18 +1,18 @@
 package edu.nju.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by cuihao on 2016/5/10.
  */
-@Entity
-@Table(name = "tbl_register", schema = "gitmining", catalog = "")
-public class TblRegister {
+public class TblFollowPK implements Serializable {
     private long userId;
-    private String loginName;
+    private long followingId;
 
-    @Id
     @Column(name = "user_id")
+    @Id
     public long getUserId() {
         return userId;
     }
@@ -21,14 +21,14 @@ public class TblRegister {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "login_name")
-    public String getLoginName() {
-        return loginName;
+    @Column(name = "following_id")
+    @Id
+    public long getFollowingId() {
+        return followingId;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setFollowingId(long followingId) {
+        this.followingId = followingId;
     }
 
     @Override
@@ -36,10 +36,10 @@ public class TblRegister {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TblRegister that = (TblRegister) o;
+        TblFollowPK that = (TblFollowPK) o;
 
         if (userId != that.userId) return false;
-        if (loginName != null ? !loginName.equals(that.loginName) : that.loginName != null) return false;
+        if (followingId != that.followingId) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public class TblRegister {
     @Override
     public int hashCode() {
         int result = (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
+        result = 31 * result + (int) (followingId ^ (followingId >>> 32));
         return result;
     }
 }

@@ -61,7 +61,6 @@ public class UserDaoImp implements UserDaoService {
      */
     public int getUserTotalCount() {
         Query query = getSession().createQuery("select count(*) from TblUser");
-        System.out.println("hahahaah----------"+query.list().get(0).getClass());
         return 0;
     }
 

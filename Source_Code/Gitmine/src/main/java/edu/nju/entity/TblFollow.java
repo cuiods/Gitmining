@@ -6,10 +6,11 @@ import javax.persistence.*;
  * Created by cuihao on 2016/5/10.
  */
 @Entity
-@Table(name = "tbl_register", schema = "gitmining", catalog = "")
-public class TblRegister {
+@Table(name = "tbl_follow", schema = "gitmining", catalog = "")
+@IdClass(TblFollowPK.class)
+public class TblFollow {
     private long userId;
-    private String loginName;
+    private long followingId;
 
     @Id
     @Column(name = "user_id")
@@ -21,14 +22,14 @@ public class TblRegister {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "login_name")
-    public String getLoginName() {
-        return loginName;
+    @Id
+    @Column(name = "following_id")
+    public long getFollowingId() {
+        return followingId;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setFollowingId(long followingId) {
+        this.followingId = followingId;
     }
 
     @Override
@@ -36,10 +37,10 @@ public class TblRegister {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TblRegister that = (TblRegister) o;
+        TblFollow tblFollow = (TblFollow) o;
 
-        if (userId != that.userId) return false;
-        if (loginName != null ? !loginName.equals(that.loginName) : that.loginName != null) return false;
+        if (userId != tblFollow.userId) return false;
+        if (followingId != tblFollow.followingId) return false;
 
         return true;
     }
@@ -47,7 +48,7 @@ public class TblRegister {
     @Override
     public int hashCode() {
         int result = (int) (userId ^ (userId >>> 32));
-        result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
+        result = 31 * result + (int) (followingId ^ (followingId >>> 32));
         return result;
     }
 }
