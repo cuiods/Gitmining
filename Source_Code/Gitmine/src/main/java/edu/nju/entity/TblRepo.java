@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by cuihao on 2016/5/10.
+ * Created by cuihao on 2016/5/11.
  */
 @Entity
 @Table(name = "tbl_repo", schema = "gitmining", catalog = "")
 public class TblRepo {
     private long repoId;
     private String name;
-    private long ownerId;
+    private String ownerName;
     private int size;
-    private byte language;
+    private String language;
     private String url;
     private String description;
     private Timestamp createAt;
@@ -48,13 +48,13 @@ public class TblRepo {
     }
 
     @Basic
-    @Column(name = "owner_id")
-    public long getOwnerId() {
-        return ownerId;
+    @Column(name = "owner_name")
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
     @Basic
@@ -69,11 +69,11 @@ public class TblRepo {
 
     @Basic
     @Column(name = "language")
-    public byte getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(byte language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
@@ -205,10 +205,10 @@ public class TblRepo {
         TblRepo tblRepo = (TblRepo) o;
 
         if (repoId != tblRepo.repoId) return false;
-        if (ownerId != tblRepo.ownerId) return false;
         if (size != tblRepo.size) return false;
-        if (language != tblRepo.language) return false;
         if (name != null ? !name.equals(tblRepo.name) : tblRepo.name != null) return false;
+        if (ownerName != null ? !ownerName.equals(tblRepo.ownerName) : tblRepo.ownerName != null) return false;
+        if (language != null ? !language.equals(tblRepo.language) : tblRepo.language != null) return false;
         if (url != null ? !url.equals(tblRepo.url) : tblRepo.url != null) return false;
         if (description != null ? !description.equals(tblRepo.description) : tblRepo.description != null) return false;
         if (createAt != null ? !createAt.equals(tblRepo.createAt) : tblRepo.createAt != null) return false;
@@ -232,9 +232,9 @@ public class TblRepo {
     public int hashCode() {
         int result = (int) (repoId ^ (repoId >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (int) (ownerId ^ (ownerId >>> 32));
+        result = 31 * result + (ownerName != null ? ownerName.hashCode() : 0);
         result = 31 * result + size;
-        result = 31 * result + (int) language;
+        result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (createAt != null ? createAt.hashCode() : 0);

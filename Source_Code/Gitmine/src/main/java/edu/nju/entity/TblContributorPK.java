@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by cuihao on 2016/5/10.
+ * Created by cuihao on 2016/5/11.
  */
 public class TblContributorPK implements Serializable {
     private long repo;

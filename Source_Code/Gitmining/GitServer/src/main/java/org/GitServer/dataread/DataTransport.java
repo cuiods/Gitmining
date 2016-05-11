@@ -6,13 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.GitServer.cacheinit.DataEncapsulation;
 
+import edu.nju.git.PO.RepoPO;
 import edu.nju.git.PO.UserPO;
-import edu.nju.git.type.OwnerType;
 
 public class DataTransport {
 	private static String url = "jdbc:mysql://139.129.48.182:3306/gitmining?characterEncoding=utf-8&useSSL=false";
@@ -24,13 +23,72 @@ public class DataTransport {
 	public static void main(String args[]) {
 		DataTransport dataTransport = new DataTransport();
 		dataTransport.init();
-		dataTransport.addUser();
+		dataTransport.addRepository();
 	}
 	private void init() {
 		Reader reader = new Reader();
 		dataEncapsulation = reader.excute();
 		try {
 			connection = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void addRepository() {
+		String sql = "insert into tbl_repo(name,owner_name,size,language,url,description,create_at,update_at,num_star,num_fork,num_subscriber,num_contributor,num_collaborator,num_commit,num_pull,num_issue) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		List<RepoPO> repoPOs = dataEncapsulation.nameOrderRepoPOs;
+		for(int i = 0; i < repoPOs.size(); i++) {
+			RepoPO repoPO = repoPOs.get(i);
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				preparedStatement.setString(1, repoPO.getName());
+				preparedStatement.setString(2, repoPO.getOwnerName());
+				preparedStatement.setInt(3, repoPO.getSize());
+				preparedStatement.setString(4, repoPO.getLanguage());
+				preparedStatement.setString(5, repoPO.getUrl());
+				preparedStatement.setString(6, repoPO.getDescription());
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				String temp = repoPO.getCreate_at();
+				if(temp!=null&&!temp.isEmpty()){
+					String[] create = temp.substring(0, temp.length()-1).split("T");
+					String[] one = create[0].split("-");
+					String[] two = create[1].split(":");
+					Calendar calendar = Calendar.getInstance();
+					calendar.set(Integer.parseInt(one[0]), Integer.parseInt(one[1]), Integer.parseInt(one[2]), Integer.parseInt(two[0]), Integer.parseInt(two[1]), Integer.parseInt(two[2]));
+					timestamp = new Timestamp(calendar.getTimeInMillis());
+				}
+				preparedStatement.setTimestamp(7, timestamp);
+				timestamp = new Timestamp(System.currentTimeMillis());
+				temp = repoPO.getUpdate_at();
+				if(temp!=null&&!temp.isEmpty()){
+					String[] create = temp.substring(0, temp.length()-1).split("T");
+					String[] one = create[0].split("-");
+					String[] two = create[1].split(":");
+					Calendar calendar = Calendar.getInstance();
+					calendar.set(Integer.parseInt(one[0]), Integer.parseInt(one[1]), Integer.parseInt(one[2]), Integer.parseInt(two[0]), Integer.parseInt(two[1]), Integer.parseInt(two[2]));
+					timestamp = new Timestamp(calendar.getTimeInMillis());
+				}
+				preparedStatement.setTimestamp(8, timestamp);
+				preparedStatement.setInt(9, repoPO.getNum_stars());
+				preparedStatement.setInt(10, repoPO.getNum_forks());
+				preparedStatement.setInt(11, repoPO.getNum_subscribers());
+				preparedStatement.setInt(12, repoPO.getNum_contrbutors());
+				preparedStatement.setInt(13, repoPO.getNum_collaborators());
+				preparedStatement.setInt(14, repoPO.getNum_commits());
+				preparedStatement.setInt(15, repoPO.getNum_pulls());
+				preparedStatement.setInt(16, repoPO.getNum_issues());
+				preparedStatement.executeUpdate();
+				if(i%50==0){
+					System.out.println("completed:"+i*1.0/repoPOs.size()*100+"%");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			preparedStatement.close();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

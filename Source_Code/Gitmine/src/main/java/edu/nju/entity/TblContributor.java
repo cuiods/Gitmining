@@ -3,7 +3,7 @@ package edu.nju.entity;
 import javax.persistence.*;
 
 /**
- * Created by cuihao on 2016/5/10.
+ * Created by cuihao on 2016/5/11.
  */
 @Entity
 @Table(name = "tbl_contributor", schema = "gitmining", catalog = "")
