@@ -25,13 +25,44 @@ public class DataTransport {
 	public static void main(String args[]) {
 		DataTransport dataTransport = new DataTransport();
 		dataTransport.init();
-		dataTransport.addContributor();
+		dataTransport.addSubscribor();
 	}
 	private void init() {
 		Reader reader = new Reader();
 		dataEncapsulation = reader.excute();
 		try {
 			connection = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void addSubscribor(){
+		String sql = "insert into tbl_subscriber(repo_owner,repo,subscriber) values(?,?,?)";
+		Iterator<Map.Entry<String, List<String>>> iterator = dataEncapsulation.repoToSubscriber.entrySet().iterator();
+		int count = 0;
+		int sum = dataEncapsulation.nameOrderRepoPOs.size();
+		while (iterator.hasNext()) {
+			Map.Entry<String, List<String>> entry = iterator.next();
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				String[] repoName = entry.getKey().split("/");
+				preparedStatement.setString(1, repoName[0]);
+				preparedStatement.setString(2, repoName[1]);
+				List<String> subscribors = entry.getValue();
+				for (int i = 0; i < subscribors.size(); i++) {
+					preparedStatement.setString(3, subscribors.get(i));
+					preparedStatement.executeUpdate();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			count++;
+			System.out.println("Completed: "+count/sum*100+"%");
+		}
+		try {
+			preparedStatement.close();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

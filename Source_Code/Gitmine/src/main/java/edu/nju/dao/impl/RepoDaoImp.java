@@ -71,11 +71,15 @@ public class RepoDaoImp implements RepoDaoService{
      * detailed info of a repository
      */
     public TblRepo getRepoBasicInfo(String owner, String repoName) {
+        TblRepo repo = null;
         Query query = getSession().createQuery("from TblRepo where ownerName=? and name=?");
         query.setString(0,owner);
         query.setString(1,repoName);
         List<TblRepo> repos = query.list();
-        return repos.get(0);
+        if (repos.size()>0) {
+            return repos.get(0);
+        }
+        return repo;
     }
 
     /**
