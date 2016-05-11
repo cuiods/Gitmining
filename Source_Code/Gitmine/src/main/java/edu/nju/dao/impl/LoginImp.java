@@ -37,8 +37,8 @@ public class LoginImp implements LoginDaoService{
      * @param password
      * @return TblRegister
      */
-    public TblRegister login(String userName, String password) {
-        return null;
+    public boolean login(String userName, String password) {
+        return false;
     }
 
     /**

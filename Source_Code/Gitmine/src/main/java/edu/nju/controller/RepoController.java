@@ -16,6 +16,13 @@ public class RepoController {
     @Resource
     private RepoDaoService repoDaoImpl;
 
+    @RequestMapping(value = "/home")
+    public String home(Model model){
+        //todo get current user from session scope and generate recommend content
+
+        return "repo/recommend";
+    }
+
     @RequestMapping(value = "/search")
     public String getSearchResult(@RequestParam String keyword, String sortType){
 

@@ -8,8 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * Created by cuihao on 2016/5/4.
@@ -29,6 +31,8 @@ public class LoginController {
         this.loginImpl = loginImpl;
     }
 
+
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model){
         model.addAttribute("webUser", new WebUser());
@@ -36,7 +40,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addNewUser(@Validated WebUser webUser, BindingResult bindingResult){
+    public String addNewUser(@Valid WebUser webUser, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "register";
         }
@@ -46,6 +50,34 @@ public class LoginController {
         }
         else {
             return "registerfail";
+        }
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String login(Model model){
+        //todo protext the password from leaking? security?
+        model.addAttribute("webUser", new WebUser());
+        return "login";
+    }
+
+    /**
+     * if login success, save current user information to session and redirect to the recommend page;<br>
+     * else back to login page
+     * @param webUser
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/verify", method = RequestMethod.POST)
+    public String login(@RequestParam(value = "webUser") WebUser webUser, Model model){
+        boolean loginResult = loginImpl.login(webUser.getUserName(), webUser.getPassword());
+        if (loginResult){
+            //todo add user information to session scope for aop to use
+
+            return "redirect:/repo/home";   //default to repo page
+        }
+        else {
+            return "login";
         }
     }
 

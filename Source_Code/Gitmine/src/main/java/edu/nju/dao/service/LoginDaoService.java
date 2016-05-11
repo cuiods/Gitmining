@@ -19,7 +19,7 @@ public interface LoginDaoService {
      * @param password
      * @return TblRegister
      */
-    public TblRegister login(String userName, String password);
+    public boolean login(String userName, String password);
 
     /**
      * registe
