@@ -48,6 +48,14 @@
     font-size: x-large;
 }
 
+#user-relate{
+    height: 100%;
+    font-size: x-large;
+    border: none;
+    color: white;
+    background: black;
+}
+
 /*重置*/
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 table{
