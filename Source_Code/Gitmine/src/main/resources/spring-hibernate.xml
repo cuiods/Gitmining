@@ -58,6 +58,9 @@
                 <value>edu.nju.entity.TblSubscriber</value>
                 <value>edu.nju.entity.TblUser</value>
                 <value>edu.nju.entity.TblFollow</value>
+                <value>edu.nju.entity.RegisterLabel</value>
+                <value>edu.nju.entity.RepoLabel</value>
+                <value>edu.nju.entity.UserLabel</value>
             </list>
         </property>
     </bean>
