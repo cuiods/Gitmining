@@ -85,7 +85,7 @@ $(document).ready(function() {
 		}
 		$.ajax({
 			type: reMethod,
-			url: "/member/ajaxyz.php",
+			url: "/register",
 			data: "uid=" + $("#user").val() + '&temp=' + new Date(), <!--要传递的数据-->
 			dataType: 'html',                  <!--接受数据的格式-->
 			success: function(result) {
