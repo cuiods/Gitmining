@@ -27,5 +27,5 @@ public interface LoginDaoService {
      * @param passWord
      * @return isSucceed
      */
-    public boolean register(String userName, String passWord);
+    public boolean register(String userName, String passWord, String email);
 }
