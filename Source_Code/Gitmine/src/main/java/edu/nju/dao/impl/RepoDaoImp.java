@@ -2,12 +2,17 @@ package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
 import edu.nju.dao.service.RepoDaoService;
+import edu.nju.entity.TblCollabrator;
+import edu.nju.entity.TblContributor;
 import edu.nju.entity.TblRepo;
+import edu.nju.entity.TblSubscriber;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +33,10 @@ public class RepoDaoImp implements RepoDaoService{
      * @return list of repositorys
      */
     public List<TblRepo> getSearchResult(String keyword) {
-        return null;
+        Query query = getSession().createQuery("from TblRepo as u where u.name like %?%");
+        query.setString(0, keyword);
+        List<TblRepo> repos = query.list();
+        return repos;
     }
 
     /**
@@ -36,8 +44,9 @@ public class RepoDaoImp implements RepoDaoService{
      *
      * @return number of repository
      */
-    public int getTotalCount() {
-        return 0;
+    public long getTotalCount() {
+        Query query = getSession().createQuery("select count(*) from TblRepo");
+        return (Long) query.list().get(0);
     }
 
     /**
@@ -47,7 +56,10 @@ public class RepoDaoImp implements RepoDaoService{
      * @return the reference to the list
      */
     public List<TblRepo> getRepos(SortType sortType) {
-        return null;
+        String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
+        Query query = getSession().createQuery("from TblRepo order by ?");
+        query.setString(0,sort[sortType.ordinal()-SortType.Repo_Name.ordinal()]);
+        return query.list();
     }
 
     /**
@@ -59,7 +71,11 @@ public class RepoDaoImp implements RepoDaoService{
      * detailed info of a repository
      */
     public TblRepo getRepoBasicInfo(String owner, String repoName) {
-        return null;
+        Query query = getSession().createQuery("from TblRepo where ownerName=? and name=?");
+        query.setString(0,owner);
+        query.setString(1,repoName);
+        List<TblRepo> repos = query.list();
+        return repos.get(0);
     }
 
     /**
@@ -72,7 +88,15 @@ public class RepoDaoImp implements RepoDaoService{
      * The return value will be null if the is no such repository.
      */
     public List<String> getRepoContributor(String owner, String repoName) {
-        return null;
+        Query query = getSession().createQuery("from TblContributor where ownerName=? and repo=?");
+        query.setString(0,owner);
+        query.setString(1,repoName);
+        List<TblContributor> contributors = query.list();
+        List<String> list = new ArrayList<String>(contributors.size());
+        for(int i = 0; i < contributors.size(); i++) {
+            list.add(contributors.get(i).getContributor());
+        }
+        return list;
     }
 
     /**
@@ -83,7 +107,15 @@ public class RepoDaoImp implements RepoDaoService{
      * @return list of brief info of collaborators.
      */
     public List<String> getRepoCollaborator(String owner, String repoName) {
-        return null;
+        Query query = getSession().createQuery("from TblCollabrator where repoOwner=? and repo=?");
+        query.setString(0,owner);
+        query.setString(1,repoName);
+        List<TblCollabrator> collabrators = query.list();
+        List<String> list = new ArrayList<String>(collabrators.size());
+        for(int i = 0; i < collabrators.size(); i++) {
+            list.add(collabrators.get(i).getCollabrator());
+        }
+        return list;
     }
 
     /**
@@ -94,6 +126,14 @@ public class RepoDaoImp implements RepoDaoService{
      * @return
      */
     public List<String> getRepoSubscriber(String owner, String repoName) {
-        return null;
+        Query query = getSession().createQuery("from TblSubscriber where repoOwner=? and repo=?");
+        query.setString(0,owner);
+        query.setString(1,repoName);
+        List<TblSubscriber> subscriber = query.list();
+        List<String> list = new ArrayList<String>(subscriber.size());
+        for(int i = 0; i < subscriber.size(); i++) {
+            list.add(subscriber.get(i).getSubscriber());
+        }
+        return list;
     }
 }

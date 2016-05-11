@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by cuihao on 2016/5/10.
+ * Created by cuihao on 2016/5/11.
  */
 @Entity
 @Table(name = "tbl_user", schema = "gitmining", catalog = "")
 public class TblUser {
     private long userId;
     private String loginName;
+    private String name;
     private String avatarUrl;
     private String blog;
     private String location;
@@ -24,11 +25,7 @@ public class TblUser {
     private String bio;
     private Timestamp createAt;
     private Timestamp updateAt;
-    private Integer numSubscriber;
-    private Integer numContributor;
-    private Integer numCollabrator;
     private byte state;
-    private String name;
 
     @Id
     @Column(name = "user_id")
@@ -48,6 +45,16 @@ public class TblUser {
 
     public void setLoginName(String loginName) {
         this.loginName = loginName;
+    }
+
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
@@ -181,36 +188,6 @@ public class TblUser {
     }
 
     @Basic
-    @Column(name = "num_subscriber")
-    public Integer getNumSubscriber() {
-        return numSubscriber;
-    }
-
-    public void setNumSubscriber(Integer numSubscriber) {
-        this.numSubscriber = numSubscriber;
-    }
-
-    @Basic
-    @Column(name = "num_contributor")
-    public Integer getNumContributor() {
-        return numContributor;
-    }
-
-    public void setNumContributor(Integer numContributor) {
-        this.numContributor = numContributor;
-    }
-
-    @Basic
-    @Column(name = "num_collabrator")
-    public Integer getNumCollabrator() {
-        return numCollabrator;
-    }
-
-    public void setNumCollabrator(Integer numCollabrator) {
-        this.numCollabrator = numCollabrator;
-    }
-
-    @Basic
     @Column(name = "state")
     public byte getState() {
         return state;
@@ -231,6 +208,7 @@ public class TblUser {
         if (type != tblUser.type) return false;
         if (state != tblUser.state) return false;
         if (loginName != null ? !loginName.equals(tblUser.loginName) : tblUser.loginName != null) return false;
+        if (name != null ? !name.equals(tblUser.name) : tblUser.name != null) return false;
         if (avatarUrl != null ? !avatarUrl.equals(tblUser.avatarUrl) : tblUser.avatarUrl != null) return false;
         if (blog != null ? !blog.equals(tblUser.blog) : tblUser.blog != null) return false;
         if (location != null ? !location.equals(tblUser.location) : tblUser.location != null) return false;
@@ -243,12 +221,6 @@ public class TblUser {
         if (bio != null ? !bio.equals(tblUser.bio) : tblUser.bio != null) return false;
         if (createAt != null ? !createAt.equals(tblUser.createAt) : tblUser.createAt != null) return false;
         if (updateAt != null ? !updateAt.equals(tblUser.updateAt) : tblUser.updateAt != null) return false;
-        if (numSubscriber != null ? !numSubscriber.equals(tblUser.numSubscriber) : tblUser.numSubscriber != null)
-            return false;
-        if (numContributor != null ? !numContributor.equals(tblUser.numContributor) : tblUser.numContributor != null)
-            return false;
-        if (numCollabrator != null ? !numCollabrator.equals(tblUser.numCollabrator) : tblUser.numCollabrator != null)
-            return false;
 
         return true;
     }
@@ -257,6 +229,7 @@ public class TblUser {
     public int hashCode() {
         int result = (int) (userId ^ (userId >>> 32));
         result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
         result = 31 * result + (blog != null ? blog.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
@@ -270,20 +243,7 @@ public class TblUser {
         result = 31 * result + (bio != null ? bio.hashCode() : 0);
         result = 31 * result + (createAt != null ? createAt.hashCode() : 0);
         result = 31 * result + (updateAt != null ? updateAt.hashCode() : 0);
-        result = 31 * result + (numSubscriber != null ? numSubscriber.hashCode() : 0);
-        result = 31 * result + (numContributor != null ? numContributor.hashCode() : 0);
-        result = 31 * result + (numCollabrator != null ? numCollabrator.hashCode() : 0);
         result = 31 * result + (int) state;
         return result;
-    }
-
-    @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

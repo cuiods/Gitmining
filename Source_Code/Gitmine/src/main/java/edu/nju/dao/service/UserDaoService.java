@@ -38,8 +38,10 @@ public interface UserDaoService {
     public List<TblUser> getUsers(SortType type);
 
     /**
+     *
      * get related repositorys
      * @return list of repo names
+     *  [[ownerName, repoName],[ownerName, repoName]]
      */
     public List<List> getUserSubscribeRepos(String userLoginName);
 
@@ -47,6 +49,7 @@ public interface UserDaoService {
      * get related collaborator repositories
      * @param userLoginName
      * @return list of repo names
+     *  [[ownerName, repoName],[ownerName, repoName]]
      */
     public List<List> getUserCollaboratorRepos(String userLoginName);
 
@@ -54,6 +57,7 @@ public interface UserDaoService {
      * get related contributor
      * @param userLoginName
      * @return list of repo names
+     *  [[ownerName, repoName],[ownerName, repoName]]
      */
     public List<List> getUserContriutorRepos(String userLoginName);
 

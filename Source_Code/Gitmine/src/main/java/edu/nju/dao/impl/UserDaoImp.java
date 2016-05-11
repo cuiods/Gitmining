@@ -71,8 +71,8 @@ public class UserDaoImp implements UserDaoService {
      * @return list of sorted user.
      */
     public List<TblUser> getUsers(SortType type) {
-        String[] sort = {"follower","following","public_repo","login_name"};
-        Query query = getSession().createQuery("from TblUser group by ?");
+        String[] sort = {"follower","following","publicRepo","loginName"};
+        Query query = getSession().createQuery("from TblUser order by ?");
         query.setString(0,sort[type.ordinal()]);
         return query.list();
     }
@@ -96,7 +96,9 @@ public class UserDaoImp implements UserDaoService {
      * @return list of repo names
      */
     public List<List> getUserCollaboratorRepos(String userLoginName) {
-        return null;
+        Query query = getSession().createQuery("select new list(repoOwner,repo) from TblCollabrator where collabrator=?");
+        query.setString(0,userLoginName);
+        return query.list();
     }
 
     /**
@@ -106,6 +108,8 @@ public class UserDaoImp implements UserDaoService {
      * @return list of repo names
      */
     public List<List> getUserContriutorRepos(String userLoginName) {
-        return null;
+        Query query = getSession().createQuery("select new list(ownerName,repo) from TblContributor where contributor=?");
+        query.setString(0,userLoginName);
+        return query.list();
     }
 }

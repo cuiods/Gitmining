@@ -21,7 +21,7 @@ public interface RepoDaoService {
      * get total count of repository
      * @return number of repository
      */
-    public int getTotalCount();
+    public long getTotalCount();
 
     /**
      * get the user po list in the order specified by parameter <tt>sortType</tt>
