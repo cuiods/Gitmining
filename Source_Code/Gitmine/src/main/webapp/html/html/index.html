@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
 <html>
-    <meta charset="UTF-8">
-    <link href="../../css/header.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <title>Title</title>
+<head>
+    <title>GitMining</title>
+    <link href="../../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/common/header.css" rel="stylesheet">
+    <script src="../../plugin/jquery/jquery.min.js"></script>
+    <script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="header">
-    <div class="wrap">
 
-        <ul class="nav nav-pills" id="navigation">
-
-            <li class="dropdown">
-                <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">用户<b class="caret"></b></a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
-                    <li role="presentation"><a href="##">LIST</a></li>
-                    <li role="presentation"><a href="##">STAT</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">仓库<b class="caret"></b></a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
-                    <li role="presentation"><a href="##">LIST</a></li>
-                    <li role="presentation"><a href="##">STAT</a></li>
-                </ul>
-            </li>
-
-        </ul>
-
-        <script src="../../plugin/jquery/jquery.min.js"></script>
-        <script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id ="header">
+    <div class="navbar-header" id="logo">
+        <a class="navbar-brand"  href="#"><img src="../../img/logo.png"> </a>
     </div>
 
-</div>
-<div name="main"></div>
-<div name="footer"></div>
+    <div id="nav_list">
+
+        <ul class="nav nav-pills" >
+            <li class="active"><a href="" style="background: black"><span>HOME</span></a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> USER </span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-sub-item"><a href="#">LIST</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-sub-item"><a href="#">STAT</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span> REPO </span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">LIST</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">STAT</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="search" >
+        <input  class="search-content" type="text" autocomplete="off" placeholder="input key to search">
+        <input  class="search-button"  type="submit">
+    </div>
+
+</nav>
+
 </body>
 </html>
