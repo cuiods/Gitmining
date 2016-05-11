@@ -41,20 +41,20 @@ public interface UserDaoService {
      * get related repositorys
      * @return list of repo names
      */
-    public List<String> getUserSubscribeRepos(String userLoginName);
+    public List<List> getUserSubscribeRepos(String userLoginName);
 
     /**
      * get related collaborator repositories
      * @param userLoginName
      * @return list of repo names
      */
-    public List<String> getUserCollaboratorRepos(String userLoginName);
+    public List<List> getUserCollaboratorRepos(String userLoginName);
 
     /**
      * get related contributor
      * @param userLoginName
      * @return list of repo names
      */
-    public List<String> getUserContriutorRepos(String userLoginName);
+    public List<List> getUserContriutorRepos(String userLoginName);
 
 }

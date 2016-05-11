@@ -83,8 +83,10 @@ public class UserDaoImp implements UserDaoService {
      * @param userLoginName
      * @return list of repo names
      */
-    public List<String> getUserSubscribeRepos(String userLoginName) {
-        return null;
+    public List<List> getUserSubscribeRepos(String userLoginName) {
+        Query query = getSession().createQuery("select new list(repoOwner,repo) from TblSubscriber where subscriber=?");
+        query.setString(0,userLoginName);
+        return query.list();
     }
 
     /**
@@ -93,7 +95,7 @@ public class UserDaoImp implements UserDaoService {
      * @param userLoginName
      * @return list of repo names
      */
-    public List<String> getUserCollaboratorRepos(String userLoginName) {
+    public List<List> getUserCollaboratorRepos(String userLoginName) {
         return null;
     }
 
@@ -103,7 +105,7 @@ public class UserDaoImp implements UserDaoService {
      * @param userLoginName
      * @return list of repo names
      */
-    public List<String> getUserContriutorRepos(String userLoginName) {
+    public List<List> getUserContriutorRepos(String userLoginName) {
         return null;
     }
 }

@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.GitServer.cacheinit.DataEncapsulation;
 
@@ -23,7 +25,7 @@ public class DataTransport {
 	public static void main(String args[]) {
 		DataTransport dataTransport = new DataTransport();
 		dataTransport.init();
-		dataTransport.addRepository();
+		dataTransport.addContributor();
 	}
 	private void init() {
 		Reader reader = new Reader();
@@ -34,6 +36,36 @@ public class DataTransport {
 			e.printStackTrace();
 		}
 	}
+	
+	private void addContributor(){
+		String sql = "insert into tbl_contributor(owner_name,repo,contributor) values(?,?,?)";
+		Iterator<Map.Entry<String, List<String>>> iterator = dataEncapsulation.repoToContributor.entrySet().iterator();
+		int count = 0;
+		while (iterator.hasNext()) {
+			Map.Entry<String, List<String>> entry = iterator.next();
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				String[] repoName = entry.getKey().split("/");
+				preparedStatement.setString(1, repoName[0]);
+				preparedStatement.setString(2, repoName[1]);
+				List<String> contributors = entry.getValue();
+				for (int i = 0; i < contributors.size(); i++) {
+					preparedStatement.setString(3, contributors.get(i));
+					preparedStatement.executeUpdate();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			count++;
+			System.out.println("Completed: "+count);
+		}
+		try {
+			preparedStatement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	} 
 	
 	private void addRepository() {
 		String sql = "insert into tbl_repo(name,owner_name,size,language,url,description,create_at,update_at,num_star,num_fork,num_subscriber,num_contributor,num_collaborator,num_commit,num_pull,num_issue) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

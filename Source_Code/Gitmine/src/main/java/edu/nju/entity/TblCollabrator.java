@@ -8,36 +8,38 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_collabrator", schema = "gitmining", catalog = "")
 public class TblCollabrator {
-    private long repo;
-    private long collabrator;
-    private long collabratorId;
+    private String repo;
     private String repoOwner;
+    private String collabrator;
+    private long collabratorId;
+
+    @Basic
+    @Column(name = "repo")
+    public String getRepo() {
+        return repo;
+    }
 
     public void setRepo(String repo) {
         this.repo = repo;
     }
 
-    public void setCollabrator(String collabrator) {
-        this.collabrator = collabrator;
-    }
-
     @Basic
-    @Column(name = "repo")
-    public long getRepo() {
-        return repo;
+    @Column(name = "repo_owner")
+    public String getRepoOwner() {
+        return repoOwner;
     }
 
-    public void setRepo(long repo) {
-        this.repo = repo;
+    public void setRepoOwner(String repoOwner) {
+        this.repoOwner = repoOwner;
     }
 
     @Basic
     @Column(name = "collabrator")
-    public long getCollabrator() {
+    public String getCollabrator() {
         return collabrator;
     }
 
-    public void setCollabrator(long collabrator) {
+    public void setCollabrator(String collabrator) {
         this.collabrator = collabrator;
     }
 
@@ -58,28 +60,20 @@ public class TblCollabrator {
 
         TblCollabrator that = (TblCollabrator) o;
 
-        if (repo != that.repo) return false;
-        if (collabrator != that.collabrator) return false;
         if (collabratorId != that.collabratorId) return false;
+        if (repo != null ? !repo.equals(that.repo) : that.repo != null) return false;
+        if (repoOwner != null ? !repoOwner.equals(that.repoOwner) : that.repoOwner != null) return false;
+        if (collabrator != null ? !collabrator.equals(that.collabrator) : that.collabrator != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (repo ^ (repo >>> 32));
-        result = 31 * result + (int) (collabrator ^ (collabrator >>> 32));
+        int result = repo != null ? repo.hashCode() : 0;
+        result = 31 * result + (repoOwner != null ? repoOwner.hashCode() : 0);
+        result = 31 * result + (collabrator != null ? collabrator.hashCode() : 0);
         result = 31 * result + (int) (collabratorId ^ (collabratorId >>> 32));
         return result;
-    }
-
-    @Basic
-    @Column(name = "repo_owner")
-    public String getRepoOwner() {
-        return repoOwner;
-    }
-
-    public void setRepoOwner(String repoOwner) {
-        this.repoOwner = repoOwner;
     }
 }
