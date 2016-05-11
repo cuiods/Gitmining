@@ -1,60 +1,53 @@
 
-.header{
-    position: relative;
-    z-index: 1000;
-    height: 70px;
-    background-position: 0 -80px;
-    background-color: #22313F;
-    background-repeat: repeat-x;
-}
-.header .wrap{
-    width: 980px;
-    margin: 0 auto;
-}
+
 #logo{
     float: left;
-    height: 60px;
-    width: 60px;
-    margin-left: 40px;
-    margin-top: 5px;
+    width: 55px;
+    margin-left: 30px;
+    margin-top: 8px;
+    margin-right: 20px;
+
 }
 
 #header{
+    position: relative;
     background: black;
     height: 70px;
 }
-span{
+
+#nav_list{
+    position: relative;
+    width: 400px;
+    height: 100%;
+    float: left;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+
+#no_login{
+    float: right;
+    position: relative;
+    width: 200px;
+    height: 100%;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+#with_login{
+    float: right;
+    position: relative;
+    width: 200px;
+    height: 100%;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    display: none;
+}
+
+.nav-item{
+    height: 100%;
     font-size: x-large;
 }
-#nav_list{
-    float: left;
-    margin-top: 15px;
-}
 
-.search{
-    float: right;
-    margin-top: 15px;
-}
-
-ul, menu, dir {
-    display: block;
-    list-style-type: disc;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-    -webkit-padding-start: 40px;
-}
-.search{
-    background: darkgrey;
-    opacity: 0.5;
-    height: 50px;
-}
-.search-button {
-    
-}
-.search-content{
-}
 /*重置*/
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
 table{
@@ -64,13 +57,9 @@ address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:nor
 ol,ul{list-style:none;}
 caption,th{text-align:left;}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
-q:before{
-    content: open-quote;
-}
-q:after{
-    content: close-quote;
-}
 abbr,acronym{border:0;}
 body{color:#666; background-color:#fff;font: 12px/1.5 '微软雅黑',tahoma,arial,'Hiragino Sans GB',宋体,sans-serif;}
 .clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 .clearfix {zoom:1;}
+
+input, textarea, select { font-size: 100%; }
