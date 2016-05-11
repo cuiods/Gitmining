@@ -28,7 +28,7 @@ public interface UserDaoService {
      * get Total count of user.
      * @return number of user
      */
-    public int getUserTotalCount();
+    public long getUserTotalCount();
 
     /**
      * get sorted user list.

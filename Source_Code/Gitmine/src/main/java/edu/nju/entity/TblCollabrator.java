@@ -11,6 +11,15 @@ public class TblCollabrator {
     private long repo;
     private long collabrator;
     private long collabratorId;
+    private String repoOwner;
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
+
+    public void setCollabrator(String collabrator) {
+        this.collabrator = collabrator;
+    }
 
     @Basic
     @Column(name = "repo")
@@ -62,5 +71,15 @@ public class TblCollabrator {
         result = 31 * result + (int) (collabrator ^ (collabrator >>> 32));
         result = 31 * result + (int) (collabratorId ^ (collabratorId >>> 32));
         return result;
+    }
+
+    @Basic
+    @Column(name = "repo_owner")
+    public String getRepoOwner() {
+        return repoOwner;
+    }
+
+    public void setRepoOwner(String repoOwner) {
+        this.repoOwner = repoOwner;
     }
 }

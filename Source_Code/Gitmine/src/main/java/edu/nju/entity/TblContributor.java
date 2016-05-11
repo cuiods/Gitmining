@@ -11,6 +11,15 @@ import javax.persistence.*;
 public class TblContributor {
     private long repo;
     private long contributor;
+    private String ownerName;
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
+
+    public void setContributor(String contributor) {
+        this.contributor = contributor;
+    }
 
     @Id
     @Column(name = "repo")
@@ -50,5 +59,15 @@ public class TblContributor {
         int result = (int) (repo ^ (repo >>> 32));
         result = 31 * result + (int) (contributor ^ (contributor >>> 32));
         return result;
+    }
+
+    @Id
+    @Column(name = "owner_name")
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }

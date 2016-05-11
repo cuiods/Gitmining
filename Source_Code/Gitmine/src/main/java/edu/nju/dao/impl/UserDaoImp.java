@@ -59,9 +59,9 @@ public class UserDaoImp implements UserDaoService {
      *
      * @return number of user
      */
-    public int getUserTotalCount() {
+    public long getUserTotalCount() {
         Query query = getSession().createQuery("select count(*) from TblUser");
-        return 0;
+        return (Long) query.list().get(0);
     }
 
     /**
@@ -71,7 +71,10 @@ public class UserDaoImp implements UserDaoService {
      * @return list of sorted user.
      */
     public List<TblUser> getUsers(SortType type) {
-        return null;
+        String[] sort = {"follower","following","public_repo","login_name"};
+        Query query = getSession().createQuery("from TblUser group by ?");
+        query.setString(0,sort[type.ordinal()]);
+        return query.list();
     }
 
     /**

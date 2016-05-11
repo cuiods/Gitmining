@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class TblContributorPK implements Serializable {
     private long repo;
     private long contributor;
+    private String ownerName;
 
     @Column(name = "repo")
     @Id
@@ -49,5 +50,15 @@ public class TblContributorPK implements Serializable {
         int result = (int) (repo ^ (repo >>> 32));
         result = 31 * result + (int) (contributor ^ (contributor >>> 32));
         return result;
+    }
+
+    @Column(name = "owner_name")
+    @Id
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }

@@ -9,7 +9,17 @@ import javax.persistence.*;
 @Table(name = "tbl_subscriber", schema = "gitmining", catalog = "")
 public class TblSubscriber {
     private long repo;
+
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
+
     private long subscriber;
+
+    public void setSubscriber(String subscriber) {
+        this.subscriber = subscriber;
+    }
+
     private long repoSubscriberId;
 
     @Basic
@@ -30,6 +40,12 @@ public class TblSubscriber {
 
     public void setSubscriber(long subscriber) {
         this.subscriber = subscriber;
+    }
+
+    @Id
+    @Column(name = "repo_subscriber_id")
+    public long getRepoSubscriberId() {
+        return repoSubscriberId;
     }
 
     @Id
@@ -62,5 +78,15 @@ public class TblSubscriber {
         result = 31 * result + (int) (subscriber ^ (subscriber >>> 32));
         result = 31 * result + (int) (repoSubscriberId ^ (repoSubscriberId >>> 32));
         return result;
+    }    private String repoOwner;
+
+    @Basic
+    @Column(name = "repo_owner")
+    public String getRepoOwner() {
+        return repoOwner;
+    }
+
+    public void setRepoOwner(String repoOwner) {
+        this.repoOwner = repoOwner;
     }
 }
