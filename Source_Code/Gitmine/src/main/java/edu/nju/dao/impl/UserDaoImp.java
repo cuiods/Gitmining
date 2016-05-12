@@ -129,4 +129,14 @@ public class UserDaoImp implements UserDaoService {
         }
         return null;
     }
+
+    /**
+     * save userLabel
+     *
+     * @param userLabel
+     * @return is succeed
+     */
+    public boolean saveUserInterest(UserLabel userLabel) {
+        return !(getSession().save(userLabel)==null);
+    }
 }

@@ -70,4 +70,12 @@ public interface UserDaoService {
      */
     public UserLabel getUserInterest(String userName);
 
+    /**
+     * save userLabel
+     * @param userLabel
+     * @return
+     *      is succeed
+     */
+    public boolean saveUserInterest(UserLabel userLabel);
+
 }

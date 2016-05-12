@@ -82,4 +82,12 @@ public interface RepoDaoService {
      */
     public RepoLabel getRepoInterest(String repoOwner, String repoName);
 
+    /**
+     * save repository interest label.
+     * @param repoLabel
+     * @return
+     *      is succeed.
+     */
+    public boolean saveRepoInterest(RepoLabel repoLabel);
+
 }

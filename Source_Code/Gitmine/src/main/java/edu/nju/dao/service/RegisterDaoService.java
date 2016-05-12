@@ -38,4 +38,12 @@ public interface RegisterDaoService {
      *      registerLabel
      */
     public RegisterLabel getRegisterInterest(String userName);
+
+    /**
+     * save register labels
+     * @param registerLabel
+     * @return
+     *      is succeed.
+     */
+    public boolean saveRegisterInterest(RegisterLabel registerLabel);
 }

@@ -83,4 +83,14 @@ public class RegisterDaoImp implements RegisterDaoService {
         }
         return null;
     }
+
+    /**
+     * save register labels
+     *
+     * @param registerLabel
+     * @return is succeed.
+     */
+    public boolean saveRegisterInterest(RegisterLabel registerLabel) {
+        return !(getSession().save(registerLabel)==null);
+    }
 }

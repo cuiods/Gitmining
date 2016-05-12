@@ -156,4 +156,14 @@ public class RepoDaoImp implements RepoDaoService{
         }
         return repoLabel;
     }
+
+    /**
+     * save repository interest label.
+     *
+     * @param repoLabel
+     * @return is succeed.
+     */
+    public boolean saveRepoInterest(RepoLabel repoLabel) {
+        return !(getSession().save(repoLabel)==null);
+    }
 }
