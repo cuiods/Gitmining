@@ -1,4 +1,4 @@
-package edu.nju.service;
+package edu.nju.model.service;
 
 import edu.nju.entity.TblUser;
 
