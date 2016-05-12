@@ -3,6 +3,7 @@ package edu.nju.dao.impl;
 import edu.nju.common.SortType;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
+import edu.nju.entity.UserLabel;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -110,5 +111,16 @@ public class UserDaoImp implements UserDaoService {
         Query query = getSession().createQuery("select new list(ownerName,repo) from TblContributor where contributor=?");
         query.setString(0,userLoginName);
         return query.list();
+    }
+
+    /**
+     * get user interest labels
+     *
+     * @param userName
+     * @return user label
+     * {@link UserLabel}
+     */
+    public UserLabel getUserInterenst(String userName) {
+        return null;
     }
 }

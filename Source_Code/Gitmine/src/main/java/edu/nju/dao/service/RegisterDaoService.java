@@ -1,11 +1,12 @@
 package edu.nju.dao.service;
 
+import edu.nju.entity.RegisterLabel;
 import edu.nju.entity.TblRegister;
 
 /**
  * login and register
  */
-public interface LoginDaoService {
+public interface RegisterDaoService {
     /**
      * used in register
      * @param name
@@ -28,4 +29,13 @@ public interface LoginDaoService {
      * @return isSucceed
      */
     public boolean register(String userName, String passWord, String email);
+
+    /**
+     * get register labels
+     * @param userName
+     *      username of the register
+     * @return
+     *      registerLabel
+     */
+    public RegisterLabel getRegisterInterest(String userName);
 }

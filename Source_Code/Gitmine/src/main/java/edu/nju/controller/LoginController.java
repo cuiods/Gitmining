@@ -1,11 +1,10 @@
 package edu.nju.controller;
 
-import edu.nju.dao.service.LoginDaoService;
+import edu.nju.dao.service.RegisterDaoService;
 import edu.nju.model.WebUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,13 +20,13 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Resource
-    private LoginDaoService loginImpl;
+    private RegisterDaoService loginImpl;
 
-    public LoginDaoService getLoginImpl() {
+    public RegisterDaoService getLoginImpl() {
         return loginImpl;
     }
 
-    public void setLoginImpl(LoginDaoService loginImpl) {
+    public void setLoginImpl(RegisterDaoService loginImpl) {
         this.loginImpl = loginImpl;
     }
 

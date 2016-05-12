@@ -2,6 +2,7 @@ package edu.nju.dao.service;
 
 import edu.nju.common.SortType;
 import edu.nju.entity.TblUser;
+import edu.nju.entity.UserLabel;
 
 import java.util.List;
 
@@ -60,5 +61,13 @@ public interface UserDaoService {
      *  [[ownerName, repoName],[ownerName, repoName]]
      */
     public List<List> getUserContriutorRepos(String userLoginName);
+
+    /**
+     * get user interest labels
+     * @param userName
+     * @return user label
+     *  {@link UserLabel}
+     */
+    public UserLabel getUserInterenst(String userName);
 
 }

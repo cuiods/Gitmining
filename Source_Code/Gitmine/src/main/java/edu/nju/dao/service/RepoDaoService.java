@@ -1,6 +1,7 @@
 package edu.nju.dao.service;
 
 import edu.nju.common.SortType;
+import edu.nju.entity.RepoLabel;
 import edu.nju.entity.TblRepo;
 
 import java.util.List;
@@ -72,5 +73,13 @@ public interface RepoDaoService {
      * @return
      */
     public List<String> getRepoSubscriber(String owner, String repoName);
+
+    /**
+     * get repository label
+     * @param repoOwner
+     * @param repoName
+     * @return RepoLabel
+     */
+    public RepoLabel getRepoInterest(String repoOwner, String repoName);
 
 }

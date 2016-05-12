@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
-import edu.nju.dao.service.LoginDaoService;
+import edu.nju.dao.service.RegisterDaoService;
+import edu.nju.entity.RegisterLabel;
 import edu.nju.entity.TblRegister;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,7 +16,7 @@ import java.io.Serializable;
  * @author cuihao
  */
 @Repository
-public class LoginImp implements LoginDaoService{
+public class RegisterDaoImp implements RegisterDaoService {
     @Resource
     private SessionFactory sessionFactory;
 
@@ -64,5 +65,15 @@ public class LoginImp implements LoginDaoService{
         register.setEmail(email);
         Serializable test = getSession().save(register);
         return !(test==null);
+    }
+
+    /**
+     * get register labels
+     *
+     * @param userName username of the register
+     * @return registerLabel
+     */
+    public RegisterLabel getRegisterInterest(String userName) {
+        return null;
     }
 }

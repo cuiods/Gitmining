@@ -2,10 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
 import edu.nju.dao.service.RepoDaoService;
-import edu.nju.entity.TblCollabrator;
-import edu.nju.entity.TblContributor;
-import edu.nju.entity.TblRepo;
-import edu.nju.entity.TblSubscriber;
+import edu.nju.entity.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -139,5 +136,16 @@ public class RepoDaoImp implements RepoDaoService{
             list.add(subscriber.get(i).getSubscriber());
         }
         return list;
+    }
+
+    /**
+     * get repository label
+     *
+     * @param repoOwner
+     * @param repoName
+     * @return RepoLabel
+     */
+    public RepoLabel getRepoInterest(String repoOwner, String repoName) {
+        return null;
     }
 }
