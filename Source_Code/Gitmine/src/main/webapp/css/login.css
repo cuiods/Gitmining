@@ -94,10 +94,10 @@ input::-ms-clear {
 .web_login .input-tips {
 	float:left;
 	margin-top:10px;
-	width:50px;
-	height:42px;
+	width:70px;
+	height:30px;
 	font-size:16px;
-	line-height:42px;
+	line-height:30px;
 	font-family:"Hiragino Sans GB", "Microsoft Yahei";
 }
 .web_login .input-tips2 {
@@ -113,15 +113,17 @@ input::-ms-clear {
 	font-family:"Hiragino Sans GB", "Microsoft Yahei";
 }
 .web_login .inputOuter {
-	width:200px;
+	width:180px;
 	height:42px;
 	margin-top:10px;
+	margin-left: 20px;
 	float:left;
 	
 }
 .web_login .inputOuter2 {
-	width:200px;
+	width:180px;
 	margin-top:6px;margin-top:5px\9;
+	margin-left: 20px;
 	float:left;
 	
 }

@@ -3,7 +3,7 @@ $(function(){
 	$('#switch_qlogin').click(function(){
 		$('#switch_login').removeClass("switch_btn_focus").addClass('switch_btn');
 		$('#switch_qlogin').removeClass("switch_btn").addClass('switch_btn_focus');
-		$('#switch_bottom').animate({left:'0px',width:'70px'});
+		$('#switch_bottom').animate({left:'-8px',width:'70px'});
 		$('#qlogin').css('display','none');    <!--隐藏属性-->
 		$('#web_qr_login').css('display','block');
 		
@@ -12,7 +12,7 @@ $(function(){
 		
 		$('#switch_login').removeClass("switch_btn").addClass('switch_btn_focus');
 		$('#switch_qlogin').removeClass("switch_btn_focus").addClass('switch_btn');
-		$('#switch_bottom').animate({left:'154px',width:'70px'});
+		$('#switch_bottom').animate({left:'140px',width:'70px'});
 		
 		$('#qlogin').css('display','block');
 		$('#web_qr_login').css('display','none');
@@ -54,7 +54,7 @@ function getParam(pname) {
 }  
 
 
-var reMethod = "GET",
+var reMethod = "post",
 	pwdmin = 6;
 
 $(document).ready(function() {
@@ -86,8 +86,8 @@ $(document).ready(function() {
 		$.ajax({
 			type: reMethod,
 			url: "/register",
-			data: "uid=" + $("#user").val() + '&temp=' + new Date(), <!--要传递的数据-->
-			dataType: 'html',                  <!--接受数据的格式-->
+			data: { userName:$("#user").val(),password:$("#passwd").val()}, <!--要传递的数据-->
+			dataType:"json",                  <!--接受数据的格式-->
 			success: function(result) {
 
 				if (result.length > 2) {
@@ -109,12 +109,12 @@ $(document).ready(function() {
 
 		if ($('#passwd').val().length < pwdmin) {
 			$('#passwd').focus();
-			$('#userCue').html("<font color='red'><b>×密码不能小于" + pwdmin + "位</b></font>");
+			$('#userCue').html("<font color='red'><b>×the password cannot be less than " + pwdmin + "bits</b></font>");
 			return false;
 		}
 		if ($('#passwd2').val() != $('#passwd').val()) {
 			$('#passwd2').focus();
-			$('#userCue').html("<font color='red'><b>×两次密码不一致！</b></font>");
+			$('#userCue').html("<font color='red'><b>×the two passwords are not same！</b></font>");
 			return false;
 		}
 
@@ -124,7 +124,7 @@ $(document).ready(function() {
 				border: "1px solid red",
 				boxShadow: "0 0 2px red"
 			});
-			$('#userCue').html("<font color='red'><b>×QQ号码格式不正确</b></font>");return false;
+			$('#userCue').html("<font color='red'><b>×the format of email is not correct!</b></font>");return false;
 		} else {
 			$('#qq').css({
 				border: "1px solid #D7D7D7",
