@@ -32,6 +32,7 @@ public interface RepoDaoService {
      * get the user po list in the order specified by parameter <tt>sortType</tt>
      * @param sortType which type of list to get
      * @return the reference to the list
+     * @deprecated
      */
     public List<TblRepo> getRepos(SortType sortType);
 
@@ -48,7 +49,7 @@ public interface RepoDaoService {
      * @param maxNum
      * @return
      */
-    public List<TblRepo> getRepos(SortType sortType, int offset, int maxNum);
+    public List<TblRepo> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum);
 
 
     /**

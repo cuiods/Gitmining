@@ -40,7 +40,32 @@ public class RepoDaoImp implements RepoDaoService{
 
     public List<TblRepo> getSearchResult(String keyword, int offset, int maxNum, SortType type,
                                          String filterType, String language, Calendar createYear) {
-        return null;
+        String hql = "from TblRepo where name=? ";
+        if (filterType!=null&&!filterType.isEmpty()) {
+            hql+="and description like ? ";
+        }
+        if (language!=null&&!language.isEmpty()) {
+            hql+="and language=? ";
+        }
+        if (createYear!=null) {
+            Calendar c = createYear;
+            c.set(Calendar.YEAR,createYear.get(Calendar.YEAR)+1);
+            hql+="and createAt ";
+        }
+        switch (type) {
+            case Repo_Star:hql+="order by numStar ";break;
+            case Repo_Fork:hql+="order by numFork ";break;
+            case Repo_Subcri:hql+="order by numSubscriber ";break;
+            case Repo_Contri:hql+="order by numContributor ";break;
+            case Repo_Colla:hql+="order by numCollaborator ";break;
+            case Repo_Update:hql+="order by updateAt ";break;
+            default:hql+="order by name ";break;
+        }
+        Query query = getSession().createQuery(hql);
+        query.setString(0,"%"+keyword+"%");
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
+        return query.list();
     }
 
     /**
@@ -88,18 +113,19 @@ public class RepoDaoImp implements RepoDaoService{
      * @param maxNum
      * @return
      */
-    public List<TblRepo> getRepos(SortType sortType, int offset, int maxNum) {
+    public List<TblRepo> getRepos(SortType sortType,boolean isDesc, int offset, int maxNum) {
         String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
         Session session = getSession();
         Query query = null;
+        String order = isDesc?"desc":"asc";
         switch (sortType) {
-            case Repo_Star:query = getSession().createQuery("from TblRepo order by numStar desc");break;
-            case Repo_Fork:query = getSession().createQuery("from TblRepo order by numFork desc ");break;
-            case Repo_Subcri:query = getSession().createQuery("from TblRepo order by numSubscriber desc");break;
-            case Repo_Contri:query = getSession().createQuery("from TblRepo order by numContributor desc ");break;
-            case Repo_Colla:query = getSession().createQuery("from TblRepo order by numCollaborator desc ");break;
-            case Repo_Update:query = getSession().createQuery("from TblRepo order by updateAt desc ");break;
-            default:query = getSession().createQuery("from TblRepo order by name desc");break;
+            case Repo_Star:query = getSession().createQuery("from TblRepo order by numStar "+order);break;
+            case Repo_Fork:query = getSession().createQuery("from TblRepo order by numFork "+order);break;
+            case Repo_Subcri:query = getSession().createQuery("from TblRepo order by numSubscriber "+order);break;
+            case Repo_Contri:query = getSession().createQuery("from TblRepo order by numContributor "+order);break;
+            case Repo_Colla:query = getSession().createQuery("from TblRepo order by numCollaborator "+order);break;
+            case Repo_Update:query = getSession().createQuery("from TblRepo order by updateAt "+order);break;
+            default:query = getSession().createQuery("from TblRepo order by name "+order);break;
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);

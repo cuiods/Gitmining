@@ -51,7 +51,7 @@ public interface UserDaoService {
      * @param maxNum
      * @return
      */
-    public List<TblUser> getUsers(SortType sortType, int offset, int maxNum);
+    public List<TblUser> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum);
 
     /**
      *

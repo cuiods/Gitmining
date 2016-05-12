@@ -71,6 +71,7 @@ public class UserDaoImp implements UserDaoService {
      *
      * @param type
      * @return list of sorted user.
+     * @deprecated
      */
     public List<TblUser> getUsers(SortType type) {
         Session session = getSession();
@@ -106,14 +107,15 @@ public class UserDaoImp implements UserDaoService {
      * @param maxNum
      * @return
      */
-    public List<TblUser> getUsers(SortType sortType, int offset, int maxNum) {
+    public List<TblUser> getUsers(SortType sortType, boolean isDesc,  int offset, int maxNum) {
         Session session = getSession();
         Query query = null;
+        String order = isDesc?"desc":"asc";
         switch (sortType) {
-            case User_Follored:query = session.createQuery("from TblUser order by follower desc ");break;
-            case User_Folloring:query = session.createQuery("from TblUser order by following desc");break;
-            case User_Repos:query = session.createQuery("from TblUser order by publicRepo desc");break;
-            default:query = session.createQuery("from TblUser order by loginName desc");break;
+            case User_Follored:query = session.createQuery("from TblUser order by follower "+order);break;
+            case User_Folloring:query = session.createQuery("from TblUser order by following "+order);break;
+            case User_Repos:query = session.createQuery("from TblUser order by publicRepo "+order);break;
+            default:query = session.createQuery("from TblUser order by loginName "+order);break;
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);

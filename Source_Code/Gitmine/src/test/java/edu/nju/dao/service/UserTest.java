@@ -51,7 +51,20 @@ public class UserTest {
     }
 
     @Test
-    public void testUserSubscribor(){
-        
+    public void testUserSubscriber(){
+        List<List> lists = userDaoService.getUserSubscribeRepos("maxlapshin");
+        Assert.assertTrue(lists.size()>0);
+    }
+
+    @Test
+    public void testUserCollaborator() {
+        List<List> lists = userDaoService.getUserCollaboratorRepos("norbert");
+        Assert.assertTrue(lists.size()>0);
+    }
+
+    @Test
+    public void testUserContributor() {
+        List<List> lists = userDaoService.getUserContriutorRepos("abraxxa");
+        Assert.assertTrue(lists.size()==5);
     }
 }
