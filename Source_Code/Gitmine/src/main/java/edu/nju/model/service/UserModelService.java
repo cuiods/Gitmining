@@ -37,7 +37,7 @@ public interface UserModelService {
      * @param keyword
      * @return
      */
-    public List<TblUser> getSearchResult(String keyword);
+    public List<TblUser> getSearchResult(String keyword, int pageNum);
 
     /**
      * get the basic information of a user, which means the name, email, etc.

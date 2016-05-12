@@ -38,8 +38,10 @@ public class RepoController {
     @RequestMapping(value = "/search")
     public String getSearchResult(@RequestParam String keyword, @RequestParam String sortType,
                                   @RequestParam String filterType, @RequestParam String language,
-                                  @RequestParam String createYear, Model model){
-        List<TblRepo> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType, language, createYear);
+                                  @RequestParam String createYear, @RequestParam int pageNum,
+                                  @RequestParam boolean reverse, Model model){
+        List<TblRepo> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType,
+                language, createYear, pageNum, reverse);
 
         //todo use the web user hobby to resort the result and put the items match the user hobby on the top
 
