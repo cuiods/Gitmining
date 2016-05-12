@@ -1,9 +1,8 @@
 package edu.nju.controller;
 
 import edu.nju.dao.service.UserDaoService;
-import edu.nju.service.ExampleService;
+import edu.nju.model.service.ExampleService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

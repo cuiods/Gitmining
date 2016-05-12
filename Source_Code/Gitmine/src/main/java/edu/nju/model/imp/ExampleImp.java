@@ -1,9 +1,8 @@
-package edu.nju.serviceimp;
+package edu.nju.model.imp;
 
-import edu.nju.dao.impl.UserDaoImp;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
-import edu.nju.service.ExampleService;
+import edu.nju.model.service.ExampleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
