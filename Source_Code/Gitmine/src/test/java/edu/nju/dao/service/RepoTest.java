@@ -28,7 +28,39 @@ public class RepoTest  {
     public void testSearchResult() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2008,1,1);
-        List<TblRepo> repoList = repoDaoService.getSearchResult("rai",0,20, SortType.User_Follored,true,"tool","Ruby",calendar);
+        List<TblRepo> repoList = repoDaoService.getSearchResult("rai",0,20, SortType.Repo_Name,true,"tool","Ruby",calendar);
         Assert.assertTrue(repoList.size()>0);
     }
+
+    @Test
+    public void testTotalCount() {
+        long num = repoDaoService.getTotalCount();
+        Assert.assertTrue(num>3000);
+    }
+
+    @Test
+    public void testGet1() {
+        List<TblRepo> repos = repoDaoService.getRepos(0,20);
+        Assert.assertTrue(repos.size()==20);
+    }
+
+    @Test
+    public void testRepoGet() {
+        List<TblRepo> repos = repoDaoService.getRepos(SortType.Repo_Star,true,0,20);
+        Assert.assertTrue(repos.get(0).getNumStar()>36000);
+    }
+
+    @Test
+    public void testRepoInfo() {
+        TblRepo repo = repoDaoService.getRepoBasicInfo("jquery","jquery");
+        Assert.assertTrue(repo.getNumStar()==36996);
+    }
+
+    @Test
+    public void testRepoContributor() {
+        List<String> contributors = repoDaoService.getRepoContributor("jashkenas","docco");
+        Assert.assertTrue(contributors.size()>0);
+    }
+
+    
 }

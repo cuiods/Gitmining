@@ -41,7 +41,7 @@ public class RepoDaoImp implements RepoDaoService{
 
     public List<TblRepo> getSearchResult(String keyword, int offset, int maxNum, SortType type,
                                          boolean isDesc, String filterType, String language, Calendar createYear) {
-        String hql = "from TblRepo where name=? ";
+        String hql = "from TblRepo where name like ? ";
         if (filterType!=null&&!filterType.isEmpty()) {
             hql+="and description like ? ";
         }
@@ -98,6 +98,7 @@ public class RepoDaoImp implements RepoDaoService{
      *
      * @param sortType which type of list to get
      * @return the reference to the list
+     * @deprecated
      */
     public List<TblRepo> getRepos(SortType sortType) {
         String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
