@@ -39,6 +39,21 @@ public interface UserDaoService {
     public List<TblUser> getUsers(SortType type);
 
     /**
+     * get sorted user list.
+     * @return list of sorted user.
+     */
+    public List<TblUser> getUsers(int offset, int maxNum);
+
+    /**
+     * get sorted user list.
+     * @param sortType
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<TblUser> getUsers(SortType sortType, int offset, int maxNum);
+
+    /**
      *
      * get related repositorys
      * @return list of repo names

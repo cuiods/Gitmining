@@ -3,7 +3,7 @@ package edu.nju.entity;
 import javax.persistence.*;
 
 /**
- * Created by cuihao on 2016/5/11.
+ * Created by cuihao on 2016/5/12.
  */
 @Entity
 @Table(name = "user_label", schema = "gitmining", catalog = "")
@@ -34,7 +34,7 @@ public class UserLabel {
     private double tempLate;
     private double library;
     private double ui;
-    private double database;
+    private double dataBase;
     private double other;
 
     @Id
@@ -298,13 +298,13 @@ public class UserLabel {
     }
 
     @Basic
-    @Column(name = "database")
-    public double getDatabase() {
-        return database;
+    @Column(name = "data_base")
+    public double getDataBase() {
+        return dataBase;
     }
 
-    public void setDatabase(double database) {
-        this.database = database;
+    public void setDataBase(double dataBase) {
+        this.dataBase = dataBase;
     }
 
     @Basic
@@ -349,7 +349,7 @@ public class UserLabel {
         if (Double.compare(userLabel.tempLate, tempLate) != 0) return false;
         if (Double.compare(userLabel.library, library) != 0) return false;
         if (Double.compare(userLabel.ui, ui) != 0) return false;
-        if (Double.compare(userLabel.database, database) != 0) return false;
+        if (Double.compare(userLabel.dataBase, dataBase) != 0) return false;
         if (Double.compare(userLabel.other, other) != 0) return false;
         if (userLogin != null ? !userLogin.equals(userLabel.userLogin) : userLabel.userLogin != null) return false;
 
@@ -411,7 +411,7 @@ public class UserLabel {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(ui);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(database);
+        temp = Double.doubleToLongBits(dataBase);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(other);
         result = 31 * result + (int) (temp ^ (temp >>> 32));

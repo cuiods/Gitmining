@@ -31,6 +31,21 @@ public interface RepoDaoService {
      */
     public List<TblRepo> getRepos(SortType sortType);
 
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     * @return the reference to the list
+     */
+    public List<TblRepo> getRepos(int offset, int maxNum);
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     * @param sortType
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<TblRepo> getRepos(SortType sortType, int offset, int maxNum);
+
 
     /**
      * Get <b>detailed</b> info of a repository.

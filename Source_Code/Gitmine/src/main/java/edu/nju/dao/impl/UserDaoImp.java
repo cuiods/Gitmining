@@ -49,9 +49,10 @@ public class UserDaoImp implements UserDaoService {
      * @return list of users
      */
     public List<TblUser> searchUserByLoginName(String keyword) {
-        Query query = getSession().createQuery("from TblUser as u where u.loginName like %?%");
-        query.setString(0, keyword);
+        Query query = getSession().createQuery("from TblUser as u where u.loginName like ?");
+        query.setString(0, "%"+keyword+"%");
         List<TblUser> users = query.list();
+        System.out.println(users);
         return users;
     }
 
@@ -72,11 +73,53 @@ public class UserDaoImp implements UserDaoService {
      * @return list of sorted user.
      */
     public List<TblUser> getUsers(SortType type) {
-        String[] sort = {"follower","following","publicRepo","loginName"};
-        Query query = getSession().createQuery("from TblUser order by ?");
-        query.setString(0,sort[type.ordinal()]);
+        Session session = getSession();
+        Query query = null;
+        switch (type) {
+            case User_Follored:query = session.createQuery("from TblUser order by follower desc ");break;
+            case User_Folloring:query = session.createQuery("from TblUser order by following desc");break;
+            case User_Repos:query = session.createQuery("from TblUser order by publicRepo desc");break;
+            default:query = session.createQuery("from TblUser order by loginName desc");break;
+        }
         return query.list();
     }
+
+    /**
+     * get sorted user list.
+     *
+     * @param offset
+     * @param maxNum
+     * @return list of sorted user.
+     */
+    public List<TblUser> getUsers(int offset, int maxNum) {
+        Query query = getSession().createQuery("from TblUser");
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
+        return query.list();
+    }
+
+    /**
+     * get sorted user list.
+     *
+     * @param sortType
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<TblUser> getUsers(SortType sortType, int offset, int maxNum) {
+        Session session = getSession();
+        Query query = null;
+        switch (sortType) {
+            case User_Follored:query = session.createQuery("from TblUser order by follower desc ");break;
+            case User_Folloring:query = session.createQuery("from TblUser order by following desc");break;
+            case User_Repos:query = session.createQuery("from TblUser order by publicRepo desc");break;
+            default:query = session.createQuery("from TblUser order by loginName desc");break;
+        }
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
+        return query.list();
+    }
+
 
     /**
      * get related repositorys
