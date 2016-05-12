@@ -7,6 +7,7 @@ import edu.nju.entity.UserLabel;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -137,6 +138,11 @@ public class UserDaoImp implements UserDaoService {
      * @return is succeed
      */
     public boolean saveUserInterest(UserLabel userLabel) {
-        return !(getSession().save(userLabel)==null);
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(userLabel);
+        session.flush();
+        transaction.commit();
+        return true;
     }
 }

@@ -6,6 +6,7 @@ import edu.nju.entity.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -164,6 +165,11 @@ public class RepoDaoImp implements RepoDaoService{
      * @return is succeed.
      */
     public boolean saveRepoInterest(RepoLabel repoLabel) {
-        return !(getSession().save(repoLabel)==null);
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(repoLabel);
+        session.flush();
+        transaction.commit();
+        return true;
     }
 }

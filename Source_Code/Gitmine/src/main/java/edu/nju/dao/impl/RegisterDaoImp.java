@@ -6,6 +6,7 @@ import edu.nju.entity.TblRegister;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -64,8 +65,12 @@ public class RegisterDaoImp implements RegisterDaoService {
         register.setLoginName(userName);
         register.setPassword(passWord);
         register.setEmail(email);
-        Serializable test = getSession().save(register);
-        return !(test==null);
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(register);
+        session.flush();
+        transaction.commit();
+        return true;
     }
 
     /**
@@ -91,6 +96,11 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @return is succeed.
      */
     public boolean saveRegisterInterest(RegisterLabel registerLabel) {
-        return !(getSession().save(registerLabel)==null);
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(registerLabel);
+        session.flush();
+        transaction.commit();
+        return true;
     }
 }
