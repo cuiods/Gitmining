@@ -1,10 +1,9 @@
 package edu.nju.dao.service;
 
-import edu.nju.entity.TblRegister;
+import edu.nju.entity.RegisterLabel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +16,7 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
+@Transactional
 public class LoginTest {
     @Resource
     RegisterDaoService registerDaoService;
@@ -37,10 +37,23 @@ public class LoginTest {
     }
 
     @Test
-    @Transactional
-    @Rollback(true)
     public void testRegister(){
-        boolean test = registerDaoService.register("cuihao","0628","cuihaoemail@163.com");
+        boolean test = registerDaoService.register("cuihao", Math.random()*100000+"","cuihaoemail@163.com");
         Assert.assertTrue(test);
     }
+
+    @Test
+    public void testSaveRegisterInterest(){
+//        RegisterLabel label = new RegisterLabel();
+//        label.setRegister("cuiods");
+//        boolean test = registerDaoService.saveRegisterInterest(label);
+//        Assert.assertTrue(test);
+    }
+
+    @Test
+    public void testGetRegisterInterest() {
+        RegisterLabel cuiods = registerDaoService.getRegisterInterest("cuiods");
+        Assert.assertTrue(!(cuiods==null));
+    }
+
 }

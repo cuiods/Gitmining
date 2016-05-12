@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -37,6 +38,11 @@ public class RepoDaoImp implements RepoDaoService{
         return repos;
     }
 
+    public List<TblRepo> getSearchResult(String keyword, int offset, int maxNum, SortType type,
+                                         String filterType, String language, Calendar createYear) {
+        return null;
+    }
+
     /**
      * get total count of repository
      *
@@ -57,6 +63,46 @@ public class RepoDaoImp implements RepoDaoService{
         String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
         Query query = getSession().createQuery("from TblRepo order by ?");
         query.setString(0,sort[sortType.ordinal()-SortType.Repo_Name.ordinal()]);
+        return query.list();
+    }
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     *
+     * @param offset
+     * @param maxNum
+     * @return the reference to the list
+     */
+    public List<TblRepo> getRepos(int offset, int maxNum) {
+        Query query = getSession().createQuery("from TblRepo");
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
+        return query.list();
+    }
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     *
+     * @param sortType
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<TblRepo> getRepos(SortType sortType, int offset, int maxNum) {
+        String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
+        Session session = getSession();
+        Query query = null;
+        switch (sortType) {
+            case Repo_Star:query = getSession().createQuery("from TblRepo order by numStar desc");break;
+            case Repo_Fork:query = getSession().createQuery("from TblRepo order by numFork desc ");break;
+            case Repo_Subcri:query = getSession().createQuery("from TblRepo order by numSubscriber desc");break;
+            case Repo_Contri:query = getSession().createQuery("from TblRepo order by numContributor desc ");break;
+            case Repo_Colla:query = getSession().createQuery("from TblRepo order by numCollaborator desc ");break;
+            case Repo_Update:query = getSession().createQuery("from TblRepo order by updateAt desc ");break;
+            default:query = getSession().createQuery("from TblRepo order by name desc");break;
+        }
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
         return query.list();
     }
 

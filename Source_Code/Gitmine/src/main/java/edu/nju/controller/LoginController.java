@@ -1,7 +1,7 @@
 package edu.nju.controller;
 
 import edu.nju.dao.service.RegisterDaoService;
-import edu.nju.model.WebUser;
+import edu.nju.model.pojo.WebUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

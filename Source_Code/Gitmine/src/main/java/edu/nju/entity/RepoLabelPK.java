@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by cuihao on 2016/5/11.
+ * Created by cuihao on 2016/5/12.
  */
 public class RepoLabelPK implements Serializable {
     private String repo;

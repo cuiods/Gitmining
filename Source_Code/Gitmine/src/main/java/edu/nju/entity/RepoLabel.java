@@ -3,7 +3,7 @@ package edu.nju.entity;
 import javax.persistence.*;
 
 /**
- * Created by cuihao on 2016/5/11.
+ * Created by cuihao on 2016/5/12.
  */
 @Entity
 @Table(name = "repo_label", schema = "gitmining", catalog = "")
@@ -36,7 +36,7 @@ public class RepoLabel {
     private double tempLate;
     private double library;
     private double ui;
-    private double database;
+    private double dataBase;
     private double other;
 
     @Id
@@ -310,13 +310,13 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "database")
-    public double getDatabase() {
-        return database;
+    @Column(name = "data_base")
+    public double getDataBase() {
+        return dataBase;
     }
 
-    public void setDatabase(double database) {
-        this.database = database;
+    public void setDataBase(double dataBase) {
+        this.dataBase = dataBase;
     }
 
     @Basic
@@ -361,7 +361,7 @@ public class RepoLabel {
         if (Double.compare(repoLabel.tempLate, tempLate) != 0) return false;
         if (Double.compare(repoLabel.library, library) != 0) return false;
         if (Double.compare(repoLabel.ui, ui) != 0) return false;
-        if (Double.compare(repoLabel.database, database) != 0) return false;
+        if (Double.compare(repoLabel.dataBase, dataBase) != 0) return false;
         if (Double.compare(repoLabel.other, other) != 0) return false;
         if (repo != null ? !repo.equals(repoLabel.repo) : repoLabel.repo != null) return false;
         if (repoOwner != null ? !repoOwner.equals(repoLabel.repoOwner) : repoLabel.repoOwner != null) return false;
@@ -425,7 +425,7 @@ public class RepoLabel {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(ui);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(database);
+        temp = Double.doubleToLongBits(dataBase);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(other);
         result = 31 * result + (int) (temp ^ (temp >>> 32));

@@ -3,7 +3,7 @@ package edu.nju.entity;
 import javax.persistence.*;
 
 /**
- * Created by cuihao on 2016/5/11.
+ * Created by cuihao on 2016/5/12.
  */
 @Entity
 @Table(name = "register_label", schema = "gitmining", catalog = "")
@@ -34,7 +34,7 @@ public class RegisterLabel {
     private double tempLate;
     private double library;
     private double ui;
-    private double database;
+    private double dataBase;
     private double other;
 
     @Id
@@ -298,13 +298,13 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "database")
-    public double getDatabase() {
-        return database;
+    @Column(name = "data_base")
+    public double getDataBase() {
+        return dataBase;
     }
 
-    public void setDatabase(double database) {
-        this.database = database;
+    public void setDataBase(double dataBase) {
+        this.dataBase = dataBase;
     }
 
     @Basic
@@ -322,36 +322,36 @@ public class RegisterLabel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RegisterLabel that = (RegisterLabel) o;
+        RegisterLabel label = (RegisterLabel) o;
 
-        if (Double.compare(that.web, web) != 0) return false;
-        if (Double.compare(that.activeRecord, activeRecord) != 0) return false;
-        if (Double.compare(that.app, app) != 0) return false;
-        if (Double.compare(that.api, api) != 0) return false;
-        if (Double.compare(that.framework, framework) != 0) return false;
-        if (Double.compare(that.cms, cms) != 0) return false;
-        if (Double.compare(that.django, django) != 0) return false;
-        if (Double.compare(that.emacs, emacs) != 0) return false;
-        if (Double.compare(that.irc, irc) != 0) return false;
-        if (Double.compare(that.mac, mac) != 0) return false;
-        if (Double.compare(that.management, management) != 0) return false;
-        if (Double.compare(that.linux, linux) != 0) return false;
-        if (Double.compare(that.windows, windows) != 0) return false;
-        if (Double.compare(that.interFace, interFace) != 0) return false;
-        if (Double.compare(that.os, os) != 0) return false;
-        if (Double.compare(that.server, server) != 0) return false;
-        if (Double.compare(that.source, source) != 0) return false;
-        if (Double.compare(that.textMate, textMate) != 0) return false;
-        if (Double.compare(that.tool, tool) != 0) return false;
-        if (Double.compare(that.website, website) != 0) return false;
-        if (Double.compare(that.pulgin, pulgin) != 0) return false;
-        if (Double.compare(that.json, json) != 0) return false;
-        if (Double.compare(that.tempLate, tempLate) != 0) return false;
-        if (Double.compare(that.library, library) != 0) return false;
-        if (Double.compare(that.ui, ui) != 0) return false;
-        if (Double.compare(that.database, database) != 0) return false;
-        if (Double.compare(that.other, other) != 0) return false;
-        if (register != null ? !register.equals(that.register) : that.register != null) return false;
+        if (Double.compare(label.web, web) != 0) return false;
+        if (Double.compare(label.activeRecord, activeRecord) != 0) return false;
+        if (Double.compare(label.app, app) != 0) return false;
+        if (Double.compare(label.api, api) != 0) return false;
+        if (Double.compare(label.framework, framework) != 0) return false;
+        if (Double.compare(label.cms, cms) != 0) return false;
+        if (Double.compare(label.django, django) != 0) return false;
+        if (Double.compare(label.emacs, emacs) != 0) return false;
+        if (Double.compare(label.irc, irc) != 0) return false;
+        if (Double.compare(label.mac, mac) != 0) return false;
+        if (Double.compare(label.management, management) != 0) return false;
+        if (Double.compare(label.linux, linux) != 0) return false;
+        if (Double.compare(label.windows, windows) != 0) return false;
+        if (Double.compare(label.interFace, interFace) != 0) return false;
+        if (Double.compare(label.os, os) != 0) return false;
+        if (Double.compare(label.server, server) != 0) return false;
+        if (Double.compare(label.source, source) != 0) return false;
+        if (Double.compare(label.textMate, textMate) != 0) return false;
+        if (Double.compare(label.tool, tool) != 0) return false;
+        if (Double.compare(label.website, website) != 0) return false;
+        if (Double.compare(label.pulgin, pulgin) != 0) return false;
+        if (Double.compare(label.json, json) != 0) return false;
+        if (Double.compare(label.tempLate, tempLate) != 0) return false;
+        if (Double.compare(label.library, library) != 0) return false;
+        if (Double.compare(label.ui, ui) != 0) return false;
+        if (Double.compare(label.dataBase, dataBase) != 0) return false;
+        if (Double.compare(label.other, other) != 0) return false;
+        if (register != null ? !register.equals(label.register) : label.register != null) return false;
 
         return true;
     }
@@ -411,7 +411,7 @@ public class RegisterLabel {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(ui);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(database);
+        temp = Double.doubleToLongBits(dataBase);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(other);
         result = 31 * result + (int) (temp ^ (temp >>> 32));

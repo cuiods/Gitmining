@@ -1,13 +1,15 @@
 package edu.nju.controller;
 
-import edu.nju.controller.recommend.service.RepoRecommendService;
-import edu.nju.dao.service.RepoDaoService;
+import edu.nju.entity.TblRepo;
+import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by cuihao on 2016/5/4.
@@ -16,11 +18,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/repo")
 public class RepoController {
-    @Resource
-    private RepoDaoService repoDaoImpl;
 
     @Resource
-    private RepoRecommendService repoRecommendImpl;
+    private RepoModelService repoModelImpl;
 
     @RequestMapping(value = "/home")
     public String home(Model model, HttpSession session){
@@ -36,26 +36,44 @@ public class RepoController {
     }
 
     @RequestMapping(value = "/search")
-    public String getSearchResult(@RequestParam String keyword, String sortType){
+    public String getSearchResult(@RequestParam String keyword, @RequestParam String sortType,
+                                  @RequestParam String filterType, @RequestParam String language,
+                                  @RequestParam String createYear, Model model){
+        List<TblRepo> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType, language, createYear);
 
+        //todo use the web user hobby to resort the result and put the items match the user hobby on the top
+
+        model.addAttribute("list", resultList);
         return "repo/list";
     }
 
 
     @RequestMapping(value = "/{ownername}/{reponame}", method = RequestMethod.GET)
     @ResponseBody
-    public String getRepoInfo(@PathVariable String ownername, @PathVariable String reponame, Model model) {
-        model.addAttribute("repo", repoDaoImpl.getRepoBasicInfo(ownername, reponame));
+    public String getRepoBasicInfo(@PathVariable String ownername, @PathVariable String reponame, Model model) {
+        model.addAttribute("basicInfo", repoModelImpl.getRepoBasicInfo(ownername, reponame));
+        model.addAttribute("radarChart", repoModelImpl.getRepoRadarChart(ownername, reponame));
+
         return "repo/detail";
     }
 
-    public RepoDaoService getRepoDaoImpl() {
-        return repoDaoImpl;
+    @RequestMapping(value = "/{ownername}/{reponame}/graph", method = RequestMethod.GET)
+    public String getRepoDetailGraph(@PathVariable String ownername, @PathVariable String reponame, Model model){
+        SimpleChart[] commitCharts = repoModelImpl.getRepoCommitCharts(ownername, reponame);
+        model.addAttribute("commitPerHourOfDay", commitCharts[0]);
+        model.addAttribute("commitPerDayOfWeek", commitCharts[1]);
+        model.addAttribute("commitPerDayOfMonth", commitCharts[2]);
+
+        //todo more graphs should be added here, such as contributions of each member
+
+        return "repo/graph";
     }
 
-    public void setRepoDaoImpl(RepoDaoService repoDaoImpl) {
-        this.repoDaoImpl = repoDaoImpl;
+    public RepoModelService getRepoModelImpl() {
+        return repoModelImpl;
     }
 
-
+    public void setRepoModelImpl(RepoModelService repoModelImpl) {
+        this.repoModelImpl = repoModelImpl;
+    }
 }

@@ -4,6 +4,7 @@ import edu.nju.common.SortType;
 import edu.nju.entity.RepoLabel;
 import edu.nju.entity.TblRepo;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -18,6 +19,9 @@ public interface RepoDaoService {
      */
     public List<TblRepo> getSearchResult(String keyword);
 
+    public List<TblRepo> getSearchResult(String keyword,int offset,int maxNum, SortType type, String filterType,
+                                         String language, Calendar createYear);
+
     /**
      * get total count of repository
      * @return number of repository
@@ -30,6 +34,21 @@ public interface RepoDaoService {
      * @return the reference to the list
      */
     public List<TblRepo> getRepos(SortType sortType);
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     * @return the reference to the list
+     */
+    public List<TblRepo> getRepos(int offset, int maxNum);
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     * @param sortType
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<TblRepo> getRepos(SortType sortType, int offset, int maxNum);
 
 
     /**
