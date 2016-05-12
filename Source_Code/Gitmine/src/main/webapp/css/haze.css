@@ -1,0 +1,1152 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300);
+body {
+    background: #332B33;
+}
+
+.h {
+    text-align: center;
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/overlay.png");
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    position: absolute;
+    border: 4px solid white;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.h h1, .h h2 {
+    position: absolute;
+    z-index: 3;
+    text-transform: uppercase;
+    text-shadow: 0px 10px rgba(0, 0, 0, 0.15);
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-family: lato;
+    font-weight: 300;
+    color: white;
+}
+.h h1 {
+    letter-spacing: 28px;
+    font-size: 14px;
+    top: 50%;
+}
+.h h2 {
+    letter-spacing: 10px;
+    font-size: 10px;
+    top: 60%;
+}
+.h .c {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 400px;
+    position: absolute;
+    margin: auto;
+}
+.h .c:nth-of-type(1) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 6px;
+    height: 1px;
+    right: 10px;
+    bottom: 10px;
+    -webkit-filter: blur(8.33333px);
+    -webkit-filter: blur(8.33333px);
+    -moz-filter: blur(8.33333px);
+    -o-filter: blur(8.33333px);
+    -ms-filter: blur(8.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 4px 2px;
+    transform-origin: 4px 2px;
+    -webkit-animation: spin 3s 0.1s linear infinite;
+    animation: spin 3s 0.1s linear infinite;
+    background: rgba(93, 34, 205, 0.9875);
+}
+.h .c:nth-of-type(2) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 12px;
+    height: 2px;
+    right: 20px;
+    bottom: 20px;
+    -webkit-filter: blur(8.66667px);
+    -webkit-filter: blur(8.66667px);
+    -moz-filter: blur(8.66667px);
+    -o-filter: blur(8.66667px);
+    -ms-filter: blur(8.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 8px 4px;
+    transform-origin: 8px 4px;
+    -webkit-animation: spin 3s 0.2s linear infinite;
+    animation: spin 3s 0.2s linear infinite;
+    background: rgba(96, 35, 205, 0.975);
+}
+.h .c:nth-of-type(3) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 18px;
+    height: 3px;
+    right: 30px;
+    bottom: 30px;
+    -webkit-filter: blur(9px);
+    -webkit-filter: blur(9px);
+    -moz-filter: blur(9px);
+    -o-filter: blur(9px);
+    -ms-filter: blur(9px);
+    filter: url(#blur);
+    -webkit-transform-origin: 12px 6px;
+    transform-origin: 12px 6px;
+    -webkit-animation: spin 3s 0.3s linear infinite;
+    animation: spin 3s 0.3s linear infinite;
+    background: rgba(99, 36, 205, 0.9625);
+}
+.h .c:nth-of-type(4) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 24px;
+    height: 4px;
+    right: 40px;
+    bottom: 40px;
+    -webkit-filter: blur(9.33333px);
+    -webkit-filter: blur(9.33333px);
+    -moz-filter: blur(9.33333px);
+    -o-filter: blur(9.33333px);
+    -ms-filter: blur(9.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 16px 8px;
+    transform-origin: 16px 8px;
+    -webkit-animation: spin 3s 0.4s linear infinite;
+    animation: spin 3s 0.4s linear infinite;
+    background: rgba(102, 37, 205, 0.95);
+}
+.h .c:nth-of-type(5) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 30px;
+    height: 5px;
+    right: 50px;
+    bottom: 50px;
+    -webkit-filter: blur(9.66667px);
+    -webkit-filter: blur(9.66667px);
+    -moz-filter: blur(9.66667px);
+    -o-filter: blur(9.66667px);
+    -ms-filter: blur(9.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 20px 10px;
+    transform-origin: 20px 10px;
+    -webkit-animation: spin 3s 0.5s linear infinite;
+    animation: spin 3s 0.5s linear infinite;
+    background: rgba(105, 38, 205, 0.9375);
+}
+.h .c:nth-of-type(6) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 36px;
+    height: 6px;
+    right: 60px;
+    bottom: 60px;
+    -webkit-filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: url(#blur);
+    -webkit-transform-origin: 24px 12px;
+    transform-origin: 24px 12px;
+    -webkit-animation: spin 3s 0.6s linear infinite;
+    animation: spin 3s 0.6s linear infinite;
+    background: rgba(108, 39, 205, 0.925);
+}
+.h .c:nth-of-type(7) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 42px;
+    height: 7px;
+    right: 70px;
+    bottom: 70px;
+    -webkit-filter: blur(10.33333px);
+    -webkit-filter: blur(10.33333px);
+    -moz-filter: blur(10.33333px);
+    -o-filter: blur(10.33333px);
+    -ms-filter: blur(10.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 28px 14px;
+    transform-origin: 28px 14px;
+    -webkit-animation: spin 3s 0.7s linear infinite;
+    animation: spin 3s 0.7s linear infinite;
+    background: rgba(111, 40, 205, 0.9125);
+}
+.h .c:nth-of-type(8) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 48px;
+    height: 8px;
+    right: 80px;
+    bottom: 80px;
+    -webkit-filter: blur(10.66667px);
+    -webkit-filter: blur(10.66667px);
+    -moz-filter: blur(10.66667px);
+    -o-filter: blur(10.66667px);
+    -ms-filter: blur(10.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 32px 16px;
+    transform-origin: 32px 16px;
+    -webkit-animation: spin 3s 0.8s linear infinite;
+    animation: spin 3s 0.8s linear infinite;
+    background: rgba(114, 41, 205, 0.9);
+}
+.h .c:nth-of-type(9) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 54px;
+    height: 9px;
+    right: 90px;
+    bottom: 90px;
+    -webkit-filter: blur(11px);
+    -webkit-filter: blur(11px);
+    -moz-filter: blur(11px);
+    -o-filter: blur(11px);
+    -ms-filter: blur(11px);
+    filter: url(#blur);
+    -webkit-transform-origin: 36px 18px;
+    transform-origin: 36px 18px;
+    -webkit-animation: spin 3s 0.9s linear infinite;
+    animation: spin 3s 0.9s linear infinite;
+    background: rgba(117, 42, 205, 0.8875);
+}
+.h .c:nth-of-type(10) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 60px;
+    height: 10px;
+    right: 100px;
+    bottom: 100px;
+    -webkit-filter: blur(11.33333px);
+    -webkit-filter: blur(11.33333px);
+    -moz-filter: blur(11.33333px);
+    -o-filter: blur(11.33333px);
+    -ms-filter: blur(11.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 40px 20px;
+    transform-origin: 40px 20px;
+    -webkit-animation: spin 3s 1s linear infinite;
+    animation: spin 3s 1s linear infinite;
+    background: rgba(120, 43, 205, 0.875);
+}
+.h .c:nth-of-type(11) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 66px;
+    height: 11px;
+    right: 110px;
+    bottom: 110px;
+    -webkit-filter: blur(11.66667px);
+    -webkit-filter: blur(11.66667px);
+    -moz-filter: blur(11.66667px);
+    -o-filter: blur(11.66667px);
+    -ms-filter: blur(11.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 44px 22px;
+    transform-origin: 44px 22px;
+    -webkit-animation: spin 3s 1.1s linear infinite;
+    animation: spin 3s 1.1s linear infinite;
+    background: rgba(123, 44, 205, 0.8625);
+}
+.h .c:nth-of-type(12) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 72px;
+    height: 12px;
+    right: 120px;
+    bottom: 120px;
+    -webkit-filter: blur(12px);
+    -webkit-filter: blur(12px);
+    -moz-filter: blur(12px);
+    -o-filter: blur(12px);
+    -ms-filter: blur(12px);
+    filter: url(#blur);
+    -webkit-transform-origin: 48px 24px;
+    transform-origin: 48px 24px;
+    -webkit-animation: spin 3s 1.2s linear infinite;
+    animation: spin 3s 1.2s linear infinite;
+    background: rgba(126, 45, 205, 0.85);
+}
+.h .c:nth-of-type(13) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 78px;
+    height: 13px;
+    right: 130px;
+    bottom: 130px;
+    -webkit-filter: blur(12.33333px);
+    -webkit-filter: blur(12.33333px);
+    -moz-filter: blur(12.33333px);
+    -o-filter: blur(12.33333px);
+    -ms-filter: blur(12.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 52px 26px;
+    transform-origin: 52px 26px;
+    -webkit-animation: spin 3s 1.3s linear infinite;
+    animation: spin 3s 1.3s linear infinite;
+    background: rgba(129, 46, 205, 0.8375);
+}
+.h .c:nth-of-type(14) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 84px;
+    height: 14px;
+    right: 140px;
+    bottom: 140px;
+    -webkit-filter: blur(12.66667px);
+    -webkit-filter: blur(12.66667px);
+    -moz-filter: blur(12.66667px);
+    -o-filter: blur(12.66667px);
+    -ms-filter: blur(12.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 56px 28px;
+    transform-origin: 56px 28px;
+    -webkit-animation: spin 3s 1.4s linear infinite;
+    animation: spin 3s 1.4s linear infinite;
+    background: rgba(132, 47, 205, 0.825);
+}
+.h .c:nth-of-type(15) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 90px;
+    height: 15px;
+    right: 150px;
+    bottom: 150px;
+    -webkit-filter: blur(13px);
+    -webkit-filter: blur(13px);
+    -moz-filter: blur(13px);
+    -o-filter: blur(13px);
+    -ms-filter: blur(13px);
+    filter: url(#blur);
+    -webkit-transform-origin: 60px 30px;
+    transform-origin: 60px 30px;
+    -webkit-animation: spin 3s 1.5s linear infinite;
+    animation: spin 3s 1.5s linear infinite;
+    background: rgba(135, 48, 205, 0.8125);
+}
+.h .c:nth-of-type(16) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 96px;
+    height: 16px;
+    right: 160px;
+    bottom: 160px;
+    -webkit-filter: blur(13.33333px);
+    -webkit-filter: blur(13.33333px);
+    -moz-filter: blur(13.33333px);
+    -o-filter: blur(13.33333px);
+    -ms-filter: blur(13.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 64px 32px;
+    transform-origin: 64px 32px;
+    -webkit-animation: spin 3s 1.6s linear infinite;
+    animation: spin 3s 1.6s linear infinite;
+    background: rgba(138, 49, 205, 0.8);
+}
+.h .c:nth-of-type(17) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 102px;
+    height: 17px;
+    right: 170px;
+    bottom: 170px;
+    -webkit-filter: blur(13.66667px);
+    -webkit-filter: blur(13.66667px);
+    -moz-filter: blur(13.66667px);
+    -o-filter: blur(13.66667px);
+    -ms-filter: blur(13.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 68px 34px;
+    transform-origin: 68px 34px;
+    -webkit-animation: spin 3s 1.7s linear infinite;
+    animation: spin 3s 1.7s linear infinite;
+    background: rgba(141, 50, 205, 0.7875);
+}
+.h .c:nth-of-type(18) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 108px;
+    height: 18px;
+    right: 180px;
+    bottom: 180px;
+    -webkit-filter: blur(14px);
+    -webkit-filter: blur(14px);
+    -moz-filter: blur(14px);
+    -o-filter: blur(14px);
+    -ms-filter: blur(14px);
+    filter: url(#blur);
+    -webkit-transform-origin: 72px 36px;
+    transform-origin: 72px 36px;
+    -webkit-animation: spin 3s 1.8s linear infinite;
+    animation: spin 3s 1.8s linear infinite;
+    background: rgba(144, 51, 205, 0.775);
+}
+.h .c:nth-of-type(19) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 114px;
+    height: 19px;
+    right: 190px;
+    bottom: 190px;
+    -webkit-filter: blur(14.33333px);
+    -webkit-filter: blur(14.33333px);
+    -moz-filter: blur(14.33333px);
+    -o-filter: blur(14.33333px);
+    -ms-filter: blur(14.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 76px 38px;
+    transform-origin: 76px 38px;
+    -webkit-animation: spin 3s 1.9s linear infinite;
+    animation: spin 3s 1.9s linear infinite;
+    background: rgba(147, 52, 205, 0.7625);
+}
+.h .c:nth-of-type(20) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 120px;
+    height: 20px;
+    right: 200px;
+    bottom: 200px;
+    -webkit-filter: blur(14.66667px);
+    -webkit-filter: blur(14.66667px);
+    -moz-filter: blur(14.66667px);
+    -o-filter: blur(14.66667px);
+    -ms-filter: blur(14.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 80px 40px;
+    transform-origin: 80px 40px;
+    -webkit-animation: spin 3s 2s linear infinite;
+    animation: spin 3s 2s linear infinite;
+    background: rgba(150, 53, 205, 0.75);
+}
+.h .c:nth-of-type(21) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 126px;
+    height: 21px;
+    right: 210px;
+    bottom: 210px;
+    -webkit-filter: blur(15px);
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: url(#blur);
+    -webkit-transform-origin: 84px 42px;
+    transform-origin: 84px 42px;
+    -webkit-animation: spin 3s 2.1s linear infinite;
+    animation: spin 3s 2.1s linear infinite;
+    background: rgba(153, 54, 205, 0.7375);
+}
+.h .c:nth-of-type(22) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 132px;
+    height: 22px;
+    right: 220px;
+    bottom: 220px;
+    -webkit-filter: blur(15.33333px);
+    -webkit-filter: blur(15.33333px);
+    -moz-filter: blur(15.33333px);
+    -o-filter: blur(15.33333px);
+    -ms-filter: blur(15.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 88px 44px;
+    transform-origin: 88px 44px;
+    -webkit-animation: spin 3s 2.2s linear infinite;
+    animation: spin 3s 2.2s linear infinite;
+    background: rgba(156, 55, 205, 0.725);
+}
+.h .c:nth-of-type(23) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 138px;
+    height: 23px;
+    right: 230px;
+    bottom: 230px;
+    -webkit-filter: blur(15.66667px);
+    -webkit-filter: blur(15.66667px);
+    -moz-filter: blur(15.66667px);
+    -o-filter: blur(15.66667px);
+    -ms-filter: blur(15.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 92px 46px;
+    transform-origin: 92px 46px;
+    -webkit-animation: spin 3s 2.3s linear infinite;
+    animation: spin 3s 2.3s linear infinite;
+    background: rgba(159, 56, 205, 0.7125);
+}
+.h .c:nth-of-type(24) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 144px;
+    height: 24px;
+    right: 240px;
+    bottom: 240px;
+    -webkit-filter: blur(16px);
+    -webkit-filter: blur(16px);
+    -moz-filter: blur(16px);
+    -o-filter: blur(16px);
+    -ms-filter: blur(16px);
+    filter: url(#blur);
+    -webkit-transform-origin: 96px 48px;
+    transform-origin: 96px 48px;
+    -webkit-animation: spin 3s 2.4s linear infinite;
+    animation: spin 3s 2.4s linear infinite;
+    background: rgba(162, 57, 205, 0.7);
+}
+.h .c:nth-of-type(25) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 150px;
+    height: 25px;
+    right: 250px;
+    bottom: 250px;
+    -webkit-filter: blur(16.33333px);
+    -webkit-filter: blur(16.33333px);
+    -moz-filter: blur(16.33333px);
+    -o-filter: blur(16.33333px);
+    -ms-filter: blur(16.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 100px 50px;
+    transform-origin: 100px 50px;
+    -webkit-animation: spin 3s 2.5s linear infinite;
+    animation: spin 3s 2.5s linear infinite;
+    background: rgba(165, 58, 205, 0.6875);
+}
+.h .c:nth-of-type(26) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 156px;
+    height: 26px;
+    right: 260px;
+    bottom: 260px;
+    -webkit-filter: blur(16.66667px);
+    -webkit-filter: blur(16.66667px);
+    -moz-filter: blur(16.66667px);
+    -o-filter: blur(16.66667px);
+    -ms-filter: blur(16.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 104px 52px;
+    transform-origin: 104px 52px;
+    -webkit-animation: spin 3s 2.6s linear infinite;
+    animation: spin 3s 2.6s linear infinite;
+    background: rgba(168, 59, 205, 0.675);
+}
+.h .c:nth-of-type(27) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 162px;
+    height: 27px;
+    right: 270px;
+    bottom: 270px;
+    -webkit-filter: blur(17px);
+    -webkit-filter: blur(17px);
+    -moz-filter: blur(17px);
+    -o-filter: blur(17px);
+    -ms-filter: blur(17px);
+    filter: url(#blur);
+    -webkit-transform-origin: 108px 54px;
+    transform-origin: 108px 54px;
+    -webkit-animation: spin 3s 2.7s linear infinite;
+    animation: spin 3s 2.7s linear infinite;
+    background: rgba(171, 60, 205, 0.6625);
+}
+.h .c:nth-of-type(28) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 168px;
+    height: 28px;
+    right: 280px;
+    bottom: 280px;
+    -webkit-filter: blur(17.33333px);
+    -webkit-filter: blur(17.33333px);
+    -moz-filter: blur(17.33333px);
+    -o-filter: blur(17.33333px);
+    -ms-filter: blur(17.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 112px 56px;
+    transform-origin: 112px 56px;
+    -webkit-animation: spin 3s 2.8s linear infinite;
+    animation: spin 3s 2.8s linear infinite;
+    background: rgba(174, 61, 205, 0.65);
+}
+.h .c:nth-of-type(29) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 174px;
+    height: 29px;
+    right: 290px;
+    bottom: 290px;
+    -webkit-filter: blur(17.66667px);
+    -webkit-filter: blur(17.66667px);
+    -moz-filter: blur(17.66667px);
+    -o-filter: blur(17.66667px);
+    -ms-filter: blur(17.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 116px 58px;
+    transform-origin: 116px 58px;
+    -webkit-animation: spin 3s 2.9s linear infinite;
+    animation: spin 3s 2.9s linear infinite;
+    background: rgba(177, 62, 205, 0.6375);
+}
+.h .c:nth-of-type(30) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 180px;
+    height: 30px;
+    right: 300px;
+    bottom: 300px;
+    -webkit-filter: blur(18px);
+    -webkit-filter: blur(18px);
+    -moz-filter: blur(18px);
+    -o-filter: blur(18px);
+    -ms-filter: blur(18px);
+    filter: url(#blur);
+    -webkit-transform-origin: 120px 60px;
+    transform-origin: 120px 60px;
+    -webkit-animation: spin 3s 3s linear infinite;
+    animation: spin 3s 3s linear infinite;
+    background: rgba(180, 63, 205, 0.625);
+}
+.h .c:nth-of-type(31) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 186px;
+    height: 31px;
+    right: 310px;
+    bottom: 310px;
+    -webkit-filter: blur(18.33333px);
+    -webkit-filter: blur(18.33333px);
+    -moz-filter: blur(18.33333px);
+    -o-filter: blur(18.33333px);
+    -ms-filter: blur(18.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 124px 62px;
+    transform-origin: 124px 62px;
+    -webkit-animation: spin 3s 3.1s linear infinite;
+    animation: spin 3s 3.1s linear infinite;
+    background: rgba(183, 64, 205, 0.6125);
+}
+.h .c:nth-of-type(32) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 192px;
+    height: 32px;
+    right: 320px;
+    bottom: 320px;
+    -webkit-filter: blur(18.66667px);
+    -webkit-filter: blur(18.66667px);
+    -moz-filter: blur(18.66667px);
+    -o-filter: blur(18.66667px);
+    -ms-filter: blur(18.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 128px 64px;
+    transform-origin: 128px 64px;
+    -webkit-animation: spin 3s 3.2s linear infinite;
+    animation: spin 3s 3.2s linear infinite;
+    background: rgba(186, 65, 205, 0.6);
+}
+.h .c:nth-of-type(33) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 198px;
+    height: 33px;
+    right: 330px;
+    bottom: 330px;
+    -webkit-filter: blur(19px);
+    -webkit-filter: blur(19px);
+    -moz-filter: blur(19px);
+    -o-filter: blur(19px);
+    -ms-filter: blur(19px);
+    filter: url(#blur);
+    -webkit-transform-origin: 132px 66px;
+    transform-origin: 132px 66px;
+    -webkit-animation: spin 3s 3.3s linear infinite;
+    animation: spin 3s 3.3s linear infinite;
+    background: rgba(189, 66, 205, 0.5875);
+}
+.h .c:nth-of-type(34) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 204px;
+    height: 34px;
+    right: 340px;
+    bottom: 340px;
+    -webkit-filter: blur(19.33333px);
+    -webkit-filter: blur(19.33333px);
+    -moz-filter: blur(19.33333px);
+    -o-filter: blur(19.33333px);
+    -ms-filter: blur(19.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 136px 68px;
+    transform-origin: 136px 68px;
+    -webkit-animation: spin 3s 3.4s linear infinite;
+    animation: spin 3s 3.4s linear infinite;
+    background: rgba(192, 67, 205, 0.575);
+}
+.h .c:nth-of-type(35) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 210px;
+    height: 35px;
+    right: 350px;
+    bottom: 350px;
+    -webkit-filter: blur(19.66667px);
+    -webkit-filter: blur(19.66667px);
+    -moz-filter: blur(19.66667px);
+    -o-filter: blur(19.66667px);
+    -ms-filter: blur(19.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 140px 70px;
+    transform-origin: 140px 70px;
+    -webkit-animation: spin 3s 3.5s linear infinite;
+    animation: spin 3s 3.5s linear infinite;
+    background: rgba(195, 68, 205, 0.5625);
+}
+.h .c:nth-of-type(36) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 216px;
+    height: 36px;
+    right: 360px;
+    bottom: 360px;
+    -webkit-filter: blur(20px);
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: url(#blur);
+    -webkit-transform-origin: 144px 72px;
+    transform-origin: 144px 72px;
+    -webkit-animation: spin 3s 3.6s linear infinite;
+    animation: spin 3s 3.6s linear infinite;
+    background: rgba(198, 69, 205, 0.55);
+}
+.h .c:nth-of-type(37) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 222px;
+    height: 37px;
+    right: 370px;
+    bottom: 370px;
+    -webkit-filter: blur(20.33333px);
+    -webkit-filter: blur(20.33333px);
+    -moz-filter: blur(20.33333px);
+    -o-filter: blur(20.33333px);
+    -ms-filter: blur(20.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 148px 74px;
+    transform-origin: 148px 74px;
+    -webkit-animation: spin 3s 3.7s linear infinite;
+    animation: spin 3s 3.7s linear infinite;
+    background: rgba(201, 70, 205, 0.5375);
+}
+.h .c:nth-of-type(38) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 228px;
+    height: 38px;
+    right: 380px;
+    bottom: 380px;
+    -webkit-filter: blur(20.66667px);
+    -webkit-filter: blur(20.66667px);
+    -moz-filter: blur(20.66667px);
+    -o-filter: blur(20.66667px);
+    -ms-filter: blur(20.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 152px 76px;
+    transform-origin: 152px 76px;
+    -webkit-animation: spin 3s 3.8s linear infinite;
+    animation: spin 3s 3.8s linear infinite;
+    background: rgba(204, 71, 205, 0.525);
+}
+.h .c:nth-of-type(39) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 234px;
+    height: 39px;
+    right: 390px;
+    bottom: 390px;
+    -webkit-filter: blur(21px);
+    -webkit-filter: blur(21px);
+    -moz-filter: blur(21px);
+    -o-filter: blur(21px);
+    -ms-filter: blur(21px);
+    filter: url(#blur);
+    -webkit-transform-origin: 156px 78px;
+    transform-origin: 156px 78px;
+    -webkit-animation: spin 3s 3.9s linear infinite;
+    animation: spin 3s 3.9s linear infinite;
+    background: rgba(207, 72, 205, 0.5125);
+}
+.h .c:nth-of-type(40) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 240px;
+    height: 40px;
+    right: 400px;
+    bottom: 400px;
+    -webkit-filter: blur(21.33333px);
+    -webkit-filter: blur(21.33333px);
+    -moz-filter: blur(21.33333px);
+    -o-filter: blur(21.33333px);
+    -ms-filter: blur(21.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 160px 80px;
+    transform-origin: 160px 80px;
+    -webkit-animation: spin 3s 4s linear infinite;
+    animation: spin 3s 4s linear infinite;
+    background: rgba(210, 73, 205, 0.5);
+}
+.h .c:nth-of-type(41) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 246px;
+    height: 41px;
+    right: 410px;
+    bottom: 410px;
+    -webkit-filter: blur(21.66667px);
+    -webkit-filter: blur(21.66667px);
+    -moz-filter: blur(21.66667px);
+    -o-filter: blur(21.66667px);
+    -ms-filter: blur(21.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 164px 82px;
+    transform-origin: 164px 82px;
+    -webkit-animation: spin 3s 4.1s linear infinite;
+    animation: spin 3s 4.1s linear infinite;
+    background: rgba(213, 74, 205, 0.4875);
+}
+.h .c:nth-of-type(42) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 252px;
+    height: 42px;
+    right: 420px;
+    bottom: 420px;
+    -webkit-filter: blur(22px);
+    -webkit-filter: blur(22px);
+    -moz-filter: blur(22px);
+    -o-filter: blur(22px);
+    -ms-filter: blur(22px);
+    filter: url(#blur);
+    -webkit-transform-origin: 168px 84px;
+    transform-origin: 168px 84px;
+    -webkit-animation: spin 3s 4.2s linear infinite;
+    animation: spin 3s 4.2s linear infinite;
+    background: rgba(216, 75, 205, 0.475);
+}
+.h .c:nth-of-type(43) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 258px;
+    height: 43px;
+    right: 430px;
+    bottom: 430px;
+    -webkit-filter: blur(22.33333px);
+    -webkit-filter: blur(22.33333px);
+    -moz-filter: blur(22.33333px);
+    -o-filter: blur(22.33333px);
+    -ms-filter: blur(22.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 172px 86px;
+    transform-origin: 172px 86px;
+    -webkit-animation: spin 3s 4.3s linear infinite;
+    animation: spin 3s 4.3s linear infinite;
+    background: rgba(219, 76, 205, 0.4625);
+}
+.h .c:nth-of-type(44) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 264px;
+    height: 44px;
+    right: 440px;
+    bottom: 440px;
+    -webkit-filter: blur(22.66667px);
+    -webkit-filter: blur(22.66667px);
+    -moz-filter: blur(22.66667px);
+    -o-filter: blur(22.66667px);
+    -ms-filter: blur(22.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 176px 88px;
+    transform-origin: 176px 88px;
+    -webkit-animation: spin 3s 4.4s linear infinite;
+    animation: spin 3s 4.4s linear infinite;
+    background: rgba(222, 77, 205, 0.45);
+}
+.h .c:nth-of-type(45) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 270px;
+    height: 45px;
+    right: 450px;
+    bottom: 450px;
+    -webkit-filter: blur(23px);
+    -webkit-filter: blur(23px);
+    -moz-filter: blur(23px);
+    -o-filter: blur(23px);
+    -ms-filter: blur(23px);
+    filter: url(#blur);
+    -webkit-transform-origin: 180px 90px;
+    transform-origin: 180px 90px;
+    -webkit-animation: spin 3s 4.5s linear infinite;
+    animation: spin 3s 4.5s linear infinite;
+    background: rgba(225, 78, 205, 0.4375);
+}
+.h .c:nth-of-type(46) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 276px;
+    height: 46px;
+    right: 460px;
+    bottom: 460px;
+    -webkit-filter: blur(23.33333px);
+    -webkit-filter: blur(23.33333px);
+    -moz-filter: blur(23.33333px);
+    -o-filter: blur(23.33333px);
+    -ms-filter: blur(23.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 184px 92px;
+    transform-origin: 184px 92px;
+    -webkit-animation: spin 3s 4.6s linear infinite;
+    animation: spin 3s 4.6s linear infinite;
+    background: rgba(228, 79, 205, 0.425);
+}
+.h .c:nth-of-type(47) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 282px;
+    height: 47px;
+    right: 470px;
+    bottom: 470px;
+    -webkit-filter: blur(23.66667px);
+    -webkit-filter: blur(23.66667px);
+    -moz-filter: blur(23.66667px);
+    -o-filter: blur(23.66667px);
+    -ms-filter: blur(23.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 188px 94px;
+    transform-origin: 188px 94px;
+    -webkit-animation: spin 3s 4.7s linear infinite;
+    animation: spin 3s 4.7s linear infinite;
+    background: rgba(231, 80, 205, 0.4125);
+}
+.h .c:nth-of-type(48) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 288px;
+    height: 48px;
+    right: 480px;
+    bottom: 480px;
+    -webkit-filter: blur(24px);
+    -webkit-filter: blur(24px);
+    -moz-filter: blur(24px);
+    -o-filter: blur(24px);
+    -ms-filter: blur(24px);
+    filter: url(#blur);
+    -webkit-transform-origin: 192px 96px;
+    transform-origin: 192px 96px;
+    -webkit-animation: spin 3s 4.8s linear infinite;
+    animation: spin 3s 4.8s linear infinite;
+    background: rgba(234, 81, 205, 0.4);
+}
+.h .c:nth-of-type(49) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 294px;
+    height: 49px;
+    right: 490px;
+    bottom: 490px;
+    -webkit-filter: blur(24.33333px);
+    -webkit-filter: blur(24.33333px);
+    -moz-filter: blur(24.33333px);
+    -o-filter: blur(24.33333px);
+    -ms-filter: blur(24.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 196px 98px;
+    transform-origin: 196px 98px;
+    -webkit-animation: spin 3s 4.9s linear infinite;
+    animation: spin 3s 4.9s linear infinite;
+    background: rgba(237, 82, 205, 0.3875);
+}
+.h .c:nth-of-type(50) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 300px;
+    height: 50px;
+    right: 500px;
+    bottom: 500px;
+    -webkit-filter: blur(24.66667px);
+    -webkit-filter: blur(24.66667px);
+    -moz-filter: blur(24.66667px);
+    -o-filter: blur(24.66667px);
+    -ms-filter: blur(24.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 200px 100px;
+    transform-origin: 200px 100px;
+    -webkit-animation: spin 3s 5s linear infinite;
+    animation: spin 3s 5s linear infinite;
+    background: rgba(240, 83, 205, 0.375);
+}
+.h .c:nth-of-type(51) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 306px;
+    height: 51px;
+    right: 510px;
+    bottom: 510px;
+    -webkit-filter: blur(25px);
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: url(#blur);
+    -webkit-transform-origin: 204px 102px;
+    transform-origin: 204px 102px;
+    -webkit-animation: spin 3s 5.1s linear infinite;
+    animation: spin 3s 5.1s linear infinite;
+    background: rgba(243, 84, 205, 0.3625);
+}
+.h .c:nth-of-type(52) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 312px;
+    height: 52px;
+    right: 520px;
+    bottom: 520px;
+    -webkit-filter: blur(25.33333px);
+    -webkit-filter: blur(25.33333px);
+    -moz-filter: blur(25.33333px);
+    -o-filter: blur(25.33333px);
+    -ms-filter: blur(25.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 208px 104px;
+    transform-origin: 208px 104px;
+    -webkit-animation: spin 3s 5.2s linear infinite;
+    animation: spin 3s 5.2s linear infinite;
+    background: rgba(246, 85, 205, 0.35);
+}
+.h .c:nth-of-type(53) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 318px;
+    height: 53px;
+    right: 530px;
+    bottom: 530px;
+    -webkit-filter: blur(25.66667px);
+    -webkit-filter: blur(25.66667px);
+    -moz-filter: blur(25.66667px);
+    -o-filter: blur(25.66667px);
+    -ms-filter: blur(25.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 212px 106px;
+    transform-origin: 212px 106px;
+    -webkit-animation: spin 3s 5.3s linear infinite;
+    animation: spin 3s 5.3s linear infinite;
+    background: rgba(249, 86, 205, 0.3375);
+}
+.h .c:nth-of-type(54) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 324px;
+    height: 54px;
+    right: 540px;
+    bottom: 540px;
+    -webkit-filter: blur(26px);
+    -webkit-filter: blur(26px);
+    -moz-filter: blur(26px);
+    -o-filter: blur(26px);
+    -ms-filter: blur(26px);
+    filter: url(#blur);
+    -webkit-transform-origin: 216px 108px;
+    transform-origin: 216px 108px;
+    -webkit-animation: spin 3s 5.4s linear infinite;
+    animation: spin 3s 5.4s linear infinite;
+    background: rgba(252, 87, 205, 0.325);
+}
+.h .c:nth-of-type(55) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 330px;
+    height: 55px;
+    right: 550px;
+    bottom: 550px;
+    -webkit-filter: blur(26.33333px);
+    -webkit-filter: blur(26.33333px);
+    -moz-filter: blur(26.33333px);
+    -o-filter: blur(26.33333px);
+    -ms-filter: blur(26.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 220px 110px;
+    transform-origin: 220px 110px;
+    -webkit-animation: spin 3s 5.5s linear infinite;
+    animation: spin 3s 5.5s linear infinite;
+    background: rgba(255, 88, 205, 0.3125);
+}
+.h .c:nth-of-type(56) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 336px;
+    height: 56px;
+    right: 560px;
+    bottom: 560px;
+    -webkit-filter: blur(26.66667px);
+    -webkit-filter: blur(26.66667px);
+    -moz-filter: blur(26.66667px);
+    -o-filter: blur(26.66667px);
+    -ms-filter: blur(26.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 224px 112px;
+    transform-origin: 224px 112px;
+    -webkit-animation: spin 3s 5.6s linear infinite;
+    animation: spin 3s 5.6s linear infinite;
+    background: rgba(255, 89, 205, 0.3);
+}
+.h .c:nth-of-type(57) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 342px;
+    height: 57px;
+    right: 570px;
+    bottom: 570px;
+    -webkit-filter: blur(27px);
+    -webkit-filter: blur(27px);
+    -moz-filter: blur(27px);
+    -o-filter: blur(27px);
+    -ms-filter: blur(27px);
+    filter: url(#blur);
+    -webkit-transform-origin: 228px 114px;
+    transform-origin: 228px 114px;
+    -webkit-animation: spin 3s 5.7s linear infinite;
+    animation: spin 3s 5.7s linear infinite;
+    background: rgba(255, 90, 205, 0.2875);
+}
+.h .c:nth-of-type(58) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 348px;
+    height: 58px;
+    right: 580px;
+    bottom: 580px;
+    -webkit-filter: blur(27.33333px);
+    -webkit-filter: blur(27.33333px);
+    -moz-filter: blur(27.33333px);
+    -o-filter: blur(27.33333px);
+    -ms-filter: blur(27.33333px);
+    filter: url(#blur);
+    -webkit-transform-origin: 232px 116px;
+    transform-origin: 232px 116px;
+    -webkit-animation: spin 3s 5.8s linear infinite;
+    animation: spin 3s 5.8s linear infinite;
+    background: rgba(255, 91, 205, 0.275);
+}
+.h .c:nth-of-type(59) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 354px;
+    height: 59px;
+    right: 590px;
+    bottom: 590px;
+    -webkit-filter: blur(27.66667px);
+    -webkit-filter: blur(27.66667px);
+    -moz-filter: blur(27.66667px);
+    -o-filter: blur(27.66667px);
+    -ms-filter: blur(27.66667px);
+    filter: url(#blur);
+    -webkit-transform-origin: 236px 118px;
+    transform-origin: 236px 118px;
+    -webkit-animation: spin 3s 5.9s linear infinite;
+    animation: spin 3s 5.9s linear infinite;
+    background: rgba(255, 92, 205, 0.2625);
+}
+.h .c:nth-of-type(60) {
+    box-shadow: 3px 0px rgba(255, 255, 255, 0), 6px -5px rgba(10, 0, 0, 0);
+    width: 360px;
+    height: 60px;
+    right: 600px;
+    bottom: 600px;
+    -webkit-filter: blur(28px);
+    -webkit-filter: blur(28px);
+    -moz-filter: blur(28px);
+    -o-filter: blur(28px);
+    -ms-filter: blur(28px);
+    filter: url(#blur);
+    -webkit-transform-origin: 240px 120px;
+    transform-origin: 240px 120px;
+    -webkit-animation: spin 3s 6s linear infinite;
+    animation: spin 3s 6s linear infinite;
+    background: rgba(255, 93, 205, 0.25);
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

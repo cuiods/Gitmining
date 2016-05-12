@@ -1,138 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GitMining</title>
+    <title>Bootstrap 实例 - 模态框（Modal）插件</title>
     <link href="../../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../css/common/header.css" rel="stylesheet">
-    <link href="../../css/haze.css" rel="stylesheet">
+    <link href="../../css/login.css" rel="stylesheet">
     <script src="../../plugin/jquery/jquery.min.js"></script>
     <script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
-    <link href="../../css/login.css" rel="stylesheet">
     <script src="../../js/login.js"></script>
-
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id ="header">
-    <div class="navbar-header" id="logo">
-        <a class="navbar-brand"  href="#"><img src="../../img/logo.png"> </a>
-    </div>
-
-    <div id="nav_list">
-
-        <ul class="nav nav-pills" >
-            <li class="active"><a href="" style="background: black"><span class="nav-item">HOME</span></a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> USER </span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="nav-sub-item"><a href="#">LIST</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-sub-item"><a href="#">STAT</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> REPO </span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">LIST</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">STAT</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <div id="no_login">
-        <ul class="nav nav-pills" >
-        <li class="active">
-            <button  data-toggle="modal" data-target="#myModal" id="user-relate">
-                登陆注册
-            </button>
-        </li>
-        </ul>
-    </div>
-
-    <div id="with_login">
-        <ul class="nav nav-pills" >
-            <li class="active"><a href="" style="background: black"><span class="user-relate">sign_in</span></a></li>
-            <li class="active"><a href="" style="background: black"><span class="user-relate">logout</span></a></li>
-        </ul>
-    </div>
-
-</nav>
-
-<main>
-    <svg version='1.1' xmlns='http://www.w3.org/2000/svg'>
-        <filter id='blur'>
-            <fegaussianblur stddeviation='10'></fegaussianblur>
-        </filter>
-    </svg>
-    <div class='h'>
-        <h1>GitMine</h1>
-
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-        <div class='c'></div>
-    </div>
-</main>
+<button class="btn btn-primary btn-lg" data-toggle="modal"
+        data-target="#myModal">
+    登陆注册
+</button>
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
