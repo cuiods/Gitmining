@@ -19,7 +19,7 @@ public interface RepoDaoService {
      */
     public List<TblRepo> getSearchResult(String keyword);
 
-    public List<TblRepo> getSearchResult(String keyword,int offset,int maxNum, SortType type, String filterType,
+    public List<TblRepo> getSearchResult(String keyword,int offset,int maxNum, SortType type, boolean isDesc, String filterType,
                                          String language, Calendar createYear);
 
     /**

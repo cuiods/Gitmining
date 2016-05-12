@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -39,7 +40,7 @@ public class RepoDaoImp implements RepoDaoService{
     }
 
     public List<TblRepo> getSearchResult(String keyword, int offset, int maxNum, SortType type,
-                                         String filterType, String language, Calendar createYear) {
+                                         boolean isDesc, String filterType, String language, Calendar createYear) {
         String hql = "from TblRepo where name=? ";
         if (filterType!=null&&!filterType.isEmpty()) {
             hql+="and description like ? ";
@@ -48,9 +49,7 @@ public class RepoDaoImp implements RepoDaoService{
             hql+="and language=? ";
         }
         if (createYear!=null) {
-            Calendar c = createYear;
-            c.set(Calendar.YEAR,createYear.get(Calendar.YEAR)+1);
-            hql+="and createAt ";
+            hql+="and createAt <= ? and createAt >= ? ";
         }
         switch (type) {
             case Repo_Star:hql+="order by numStar ";break;
@@ -61,8 +60,24 @@ public class RepoDaoImp implements RepoDaoService{
             case Repo_Update:hql+="order by updateAt ";break;
             default:hql+="order by name ";break;
         }
+        hql += isDesc?"desc":"asc";
         Query query = getSession().createQuery(hql);
         query.setString(0,"%"+keyword+"%");
+        int param = 1;
+        if (filterType!=null&&!filterType.isEmpty()) {
+            query.setString(param++,"%"+filterType+"%");
+        }
+        if (language!=null&&!language.isEmpty()) {
+            query.setString(param++,language);
+        }
+        if (createYear!=null) {
+            Calendar c = (Calendar) createYear.clone();
+            c.set(Calendar.YEAR,createYear.get(Calendar.YEAR)+1);
+            Timestamp start = new Timestamp(createYear.getTimeInMillis());
+            Timestamp end = new Timestamp(c.getTimeInMillis());
+            query.setTimestamp(param++,end);
+            query.setTimestamp(param++,start);
+        }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
         return query.list();

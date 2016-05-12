@@ -46,7 +46,7 @@ public class UserTest {
 //        Assert.assertTrue(users.size()>60000);
         List<TblUser> users = userDaoService.getUsers(10,10);
         Assert.assertTrue(users.size()==10);
-        List<TblUser> users1 = userDaoService.getUsers(SortType.User_Follored,0,10);
+        List<TblUser> users1 = userDaoService.getUsers(SortType.User_Follored,true, 0,10);
         Assert.assertTrue(users1.get(0).getFollower()>10000);
     }
 
