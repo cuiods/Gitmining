@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -35,6 +36,11 @@ public class RepoDaoImp implements RepoDaoService{
         query.setString(0, keyword);
         List<TblRepo> repos = query.list();
         return repos;
+    }
+
+    public List<TblRepo> getSearchResult(String keyword, int offset, int maxNum, SortType type,
+                                         String filterType, String language, Calendar createYear) {
+        return null;
     }
 
     /**

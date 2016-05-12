@@ -49,4 +49,9 @@ public class UserTest {
         List<TblUser> users1 = userDaoService.getUsers(SortType.User_Follored,0,10);
         Assert.assertTrue(users1.get(0).getFollower()>10000);
     }
+
+    @Test
+    public void testUserSubscribor(){
+        
+    }
 }

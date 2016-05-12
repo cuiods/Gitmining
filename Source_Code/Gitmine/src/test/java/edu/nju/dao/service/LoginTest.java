@@ -55,4 +55,5 @@ public class LoginTest {
         RegisterLabel cuiods = registerDaoService.getRegisterInterest("cuiods");
         Assert.assertTrue(!(cuiods==null));
     }
+
 }

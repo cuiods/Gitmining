@@ -4,6 +4,7 @@ import edu.nju.common.SortType;
 import edu.nju.entity.RepoLabel;
 import edu.nju.entity.TblRepo;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -17,6 +18,9 @@ public interface RepoDaoService {
      * @return list of repositorys
      */
     public List<TblRepo> getSearchResult(String keyword);
+
+    public List<TblRepo> getSearchResult(String keyword,int offset,int maxNum, SortType type, String filterType,
+                                         String language, Calendar createYear);
 
     /**
      * get total count of repository
