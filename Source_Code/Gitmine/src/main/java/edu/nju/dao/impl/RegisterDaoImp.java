@@ -23,7 +23,7 @@ public class RegisterDaoImp implements RegisterDaoService {
     private SessionFactory sessionFactory;
 
     public Session getSession() {
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
     }
     /**
      * used in register
