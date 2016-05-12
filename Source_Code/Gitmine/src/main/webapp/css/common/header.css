@@ -1,18 +1,18 @@
 
 #logo{
     float: left;
-    width: 55px;
-    margin-left: 30px;
-    margin-top: 8px;
+    width: 70px;
+    height: 100%;
+    margin-left: 20px;
     margin-right: 20px;
-
 }
 
-#header{
-    position: relative;
-    background: black;
-    height: 70px;
-}
+.headroom {
+    -webkit-transition: all 0.4s ease-out;
+    -moz-transition: all 0.4s ease-out;
+    -o-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out; }
+
 
 #nav_list{
     position: relative;
@@ -49,12 +49,12 @@
     font-size: x-large;
 }
 
-#user-relate{
+.user-relate{
     height: 100%;
     font-size: x-large;
-    border: none;
     color: white;
-    background: black;
+    border: none;
+    background: transparent;
 }
 
 /*重置*/

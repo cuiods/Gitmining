@@ -13,15 +13,15 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default  navbar-fixed-top" role="navigation" id ="header">
+<div class="navbar navbar-inverse navbar-fixed-top headroom" role="navigation" id ="header">
     <div class="navbar-header" id="logo">
-        <a class="navbar-brand"  href="#"><img src="../../img/logo.png"> </a>
+        <a class="nav nav-pills"  href="#"><img src="../../img/logo.png" class="img-responsive center-block"> </a>
     </div>
 
-    <div id="nav_list">
 
-        <ul class="nav nav-pills" >
-            <li class="active"><a href="" style="background: black"><span class="nav-item">HOME</span></a></li>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav pull-left" id="nav_list">
+            <li ><a href="" ><span class="nav-item">HOME</span></a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> USER </span> <b class="caret"></b>
                 </a>
@@ -41,29 +41,25 @@
                 </ul>
             </li>
         </ul>
-    </div>
+        <ul class="nav navbar-nav pull-right" style="float: right">
+                    <li id="no_login">
+                        <button class="user-relate" data-toggle="modal" data-target="#myModal">
+                          <span class="user-relate">sign</span>
+                        </button>
+                    </li>
 
-
-    <!--<input type="text">-->
-    <!--<input type="submit" style="margin-bottom: 0px;">-->
-    <div id="no_login">
-        <ul class="nav nav-pills" >
-        <li class="active">
-            <button  data-toggle="modal" data-target="#myModal" id="user-relate">
-                登陆注册
-            </button>
-        </li>
+                    <li id="with_login">
+                        <a href="" >
+                            <span class="user-relate">logout</span>
+                        </a>
+                    </li>
         </ul>
     </div>
 
-    <div id="with_login">
-        <ul class="nav nav-pills" >
-            <li class="active"><a href="" style="background: black"><span class="user-relate">sign_in</span></a></li>
-            <li class="active"><a href="" style="background: black"><span class="user-relate">logout</span></a></li>
-        </ul>
-    </div>
 
-</nav>
+
+
+</div>
 
 <main>
     <svg version='1.1' xmlns='http://www.w3.org/2000/svg'>
@@ -136,6 +132,7 @@
         <div class='c'></div>
     </div>
 </main>
+
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
