@@ -25,11 +25,11 @@ public interface RepoModelService {
 
     /**
      * get the related repository for the given repository
-     * @param owername
+     * @param ownername
      * @param reponame
      * @return
      */
-    public List<TblRepo> getRelatedRepo(String owername, String reponame);
+    public List<TblRepo> getRelatedRepo(String ownername, String reponame);
 
     /**
      *
@@ -39,10 +39,11 @@ public interface RepoModelService {
      * @param filterType
      * @param language
      * @param createYear
+     * @param pageNum from 1, not 0
      * @return
      */
     public List<TblRepo> getSearchResult(String keyword, String sortType, String filterType,
-                                         String language, String createYear);
+                                         String language, String createYear, int pageNum, boolean reverse);
 
     /**
      * get the basic information of a repo

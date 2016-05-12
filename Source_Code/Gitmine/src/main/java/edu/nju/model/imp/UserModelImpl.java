@@ -1,5 +1,6 @@
 package edu.nju.model.imp;
 
+import edu.nju.common.Const;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.SimpleChart;
@@ -34,7 +35,12 @@ public class UserModelImpl implements UserModelService {
         return null;
     }
 
-    public List<TblUser> getSearchResult(String keyword) {
+    public List<TblUser> getSearchResult(String keyword, int pageNum) {
+        int offset = (pageNum-1)* Const.ITEMS_PER_PAGE;
+        if (offset<0){
+            offset = 0;
+        }
+        //List<TblUser> list = userDaoImpl.searchUserByLoginName(keyword)
         return null;
     }
 
