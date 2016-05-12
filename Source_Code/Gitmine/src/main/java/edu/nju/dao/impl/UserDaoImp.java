@@ -120,7 +120,13 @@ public class UserDaoImp implements UserDaoService {
      * @return user label
      * {@link UserLabel}
      */
-    public UserLabel getUserInterenst(String userName) {
+    public UserLabel getUserInterest(String userName) {
+        Query query = getSession().createQuery("from UserLabel where userLogin=?");
+        query.setString(0,userName);
+        List<UserLabel> userLabels = query.list();
+        if(userLabels.size()>0) {
+            return userLabels.get(0);
+        }
         return null;
     }
 }

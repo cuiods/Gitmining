@@ -68,6 +68,6 @@ public interface UserDaoService {
      * @return user label
      *  {@link UserLabel}
      */
-    public UserLabel getUserInterenst(String userName);
+    public UserLabel getUserInterest(String userName);
 
 }

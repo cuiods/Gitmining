@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * login data imp
@@ -74,6 +75,12 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @return registerLabel
      */
     public RegisterLabel getRegisterInterest(String userName) {
+        Query query = getSession().createQuery("from RegisterLabel where register=?");
+        query.setString(0,userName);
+        List<RegisterLabel> registerLabels = query.list();
+        if (registerLabels.size()>0) {
+            return registerLabels.get(0);
+        }
         return null;
     }
 }

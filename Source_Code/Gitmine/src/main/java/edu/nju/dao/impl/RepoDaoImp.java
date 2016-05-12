@@ -146,6 +146,14 @@ public class RepoDaoImp implements RepoDaoService{
      * @return RepoLabel
      */
     public RepoLabel getRepoInterest(String repoOwner, String repoName) {
-        return null;
+        RepoLabel repoLabel = null;
+        Query query = getSession().createQuery("from RepoLabel where repoOwner=? and repo=?");
+        query.setString(0,repoOwner);
+        query.setString(1,repoName);
+        List<RepoLabel> repoLabels = query.list();
+        if (repoLabels.size()>0) {
+            return repoLabels.get(0);
+        }
+        return repoLabel;
     }
 }
