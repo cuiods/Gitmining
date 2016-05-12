@@ -1,5 +1,4 @@
 
-
 #logo{
     float: left;
     width: 55px;
@@ -23,7 +22,9 @@
     padding-top: 15px;
     padding-bottom: 10px;
 }
-
+#nav-item:hover {
+    color: #ad6704;
+}
 
 #no_login{
     float: right;
