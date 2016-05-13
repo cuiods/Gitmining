@@ -1,0 +1,16 @@
+.radio-toolbar{
+
+    position: relative;
+    width: 500px;
+
+    background-color:white;
+    border-bottom: dashed 1px #D2D2D2;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: rgb(210, 210, 210);
+    padding: 0;
+
+
+    word-wrap: break-word;
+    word-break: normal;
+}
