@@ -9,7 +9,7 @@
   <display-name>Gitmine</display-name>
 
   <welcome-file-list>
-    <welcome-file>/index.html</welcome-file>
+    <welcome-file>/html/index.html</welcome-file>
   </welcome-file-list>
 
   <filter>
