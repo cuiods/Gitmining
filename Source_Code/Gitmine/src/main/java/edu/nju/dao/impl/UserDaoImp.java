@@ -48,9 +48,11 @@ public class UserDaoImp implements UserDaoService {
      * @param keyword
      * @return list of users
      */
-    public List<TblUser> searchUserByLoginName(String keyword) {
+    public List<TblUser> searchUserByLoginName(String keyword, int offset, int maxNum) {
         Query query = getSession().createQuery("from TblUser as u where u.loginName like ?");
         query.setString(0, "%"+keyword+"%");
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
         List<TblUser> users = query.list();
         System.out.println(users);
         return users;

@@ -5,6 +5,7 @@ import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
+import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Service;
@@ -44,11 +45,18 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public List<TblRepo> getPopularRepo() {
+        List<TblUser> result;
+
         return null;
     }
 
     public List<TblRepo> getRelatedRepo(String ownername, String reponame) {
         return null;
+    }
+
+    @Override
+    public List<TblRepo> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum) {
+        return repoDaoImpl.getRepos(sortType, isDesc, offset, maxNum);
     }
 
     public List<TblRepo> getSearchResult(String keyword, String sortType, String filterType,
@@ -82,6 +90,6 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public SimpleChart[] getRepoCommitCharts(String ownername, String reponame) {
-        return new SimpleChart[0];
+        return new SimpleChart[4];
     }
 }

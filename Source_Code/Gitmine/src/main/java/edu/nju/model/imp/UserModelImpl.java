@@ -1,6 +1,7 @@
 package edu.nju.model.imp;
 
 import edu.nju.common.Const;
+import edu.nju.common.SortType;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.SimpleChart;
@@ -32,7 +33,13 @@ public class UserModelImpl implements UserModelService {
     }
 
     public List<TblUser> getPopularUser() {
-        return null;
+        List<TblUser> result;
+        SortType sortType = SortType.User_Follored;
+        boolean isDesc = true;
+        int offset = 0;//todo change recommend each time
+        int maxNum = Const.ITEMS_PER_PAGE;
+        result = userDaoImpl.getUsers(sortType, isDesc, offset, maxNum);
+        return result;
     }
 
     public List<TblUser> getSearchResult(String keyword, int pageNum) {
@@ -40,12 +47,12 @@ public class UserModelImpl implements UserModelService {
         if (offset<0){
             offset = 0;
         }
-        //List<TblUser> list = userDaoImpl.searchUserByLoginName(keyword)
-        return null;
+        List<TblUser> list = userDaoImpl.searchUserByLoginName(keyword, offset, Const.ITEMS_PER_PAGE);
+        return list;
     }
 
     public TblUser getUserBasicInfo(String username) {
-        return null;
+        return userDaoImpl.findUserByLoginName(username);
     }
 
     public SimpleChart getUserRadarChart(String username) {

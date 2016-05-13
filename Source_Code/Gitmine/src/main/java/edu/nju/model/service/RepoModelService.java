@@ -1,5 +1,6 @@
 package edu.nju.model.service;
 
+import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.SimpleChart;
 
@@ -30,6 +31,15 @@ public interface RepoModelService {
      * @return
      */
     public List<TblRepo> getRelatedRepo(String ownername, String reponame);
+
+    /**
+     * get the user po list in the order specified by parameter <tt>sortType</tt>
+     * @param sortType
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<TblRepo> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum);
 
     /**
      *
@@ -65,8 +75,9 @@ public interface RepoModelService {
      * get graphs of a repo about commits<br/>
      * @param ownername
      * @param reponame
-     * @return the array of SimpleCharts' length is 3, the 1st is per hour of a day,<br/>
-     *          the 2nd is per day of a week, the 3rd is per day of a month
+     * @return the array of SimpleCharts' length is 4, the 0th is<br/>
+     *          per day of all, the 1st is per hour of a day,<br/>
+     *          the 2nd is per day of a week, the 3rd is per day of a month, t
      */
     public SimpleChart[] getRepoCommitCharts(String ownername, String reponame);
 }

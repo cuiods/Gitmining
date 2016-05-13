@@ -30,7 +30,7 @@ public class UserTest {
 
     @Test
     public void testSearchUserKeyword(){
-        List<TblUser> tblUsers = userDaoService.searchUserByLoginName("0x");
+        List<TblUser> tblUsers = userDaoService.searchUserByLoginName("0x",0,20);
         Assert.assertTrue(tblUsers.size()>1);
     }
 
