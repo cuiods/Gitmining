@@ -186,6 +186,7 @@ i.googlepluse{
 .banner-info {
 	width:93%;
 	margin:6em auto 0;
+	padding-top: 50px;
 }
 .header-bottom-grid1,.header-bottom-grid2,.header-bottom-grid3,.header-bottom-grid4{
 	width:23.5%;
@@ -193,7 +194,7 @@ i.googlepluse{
 	margin-right:2%;
 	padding: 3em 0 4em 0;
 }
-span.glyphicon.glyphicon-leaf,span.glyphicon.glyphicon-certificate,span.glyphicon.glyphicon-tree-deciduous,span.glyphicon.glyphicon-screenshot {
+span.glyphicon.glyphicon-headphones,span.glyphicon.glyphicon-star,span.glyphicon.glyphicon-save,span.glyphicon.glyphicon-folder-close {
 	color: #fff;
 	font-size: 50px;
 	padding:0.4em 0;
@@ -214,7 +215,7 @@ span.glyphicon.glyphicon-leaf,span.glyphicon.glyphicon-certificate,span.glyphico
 	-o-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 }
-.header-bottom-grid1:hover span.glyphicon.glyphicon-leaf{
+.header-bottom-grid1:hover span.glyphicon.glyphicon-star{
 	transform: rotateY(360deg);
 	-webkit-transform: rotateY(360deg);
 	-moz-transform: rotateY(360deg);
@@ -232,6 +233,7 @@ span.glyphicon.glyphicon-leaf,span.glyphicon.glyphicon-certificate,span.glyphico
 	-o-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 }
+
 .header-bottom-grid2:hover{
 	background:#a6192e;	
 	transition: 0.5s all;
@@ -240,7 +242,7 @@ span.glyphicon.glyphicon-leaf,span.glyphicon.glyphicon-certificate,span.glyphico
 	-o-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 }
-.header-bottom-grid2:hover span.glyphicon.glyphicon-certificate{
+.header-bottom-grid2:hover span.glyphicon.glyphicon-headphones{
 	transform: rotateY(360deg);
 	-webkit-transform: rotateY(360deg);
 	-moz-transform: rotateY(360deg);
@@ -258,7 +260,7 @@ span.glyphicon.glyphicon-leaf,span.glyphicon.glyphicon-certificate,span.glyphico
 	-o-transition: 0.5s all;
 	-ms-transition: 0.5s all;	
 }
-.header-bottom-grid3:hover span.glyphicon.glyphicon-tree-deciduous{
+.header-bottom-grid3:hover span.glyphicon.glyphicon-save{
 	transform: rotateY(360deg);
 	-webkit-transform: rotateY(360deg);
 	-moz-transform: rotateY(360deg);
@@ -294,7 +296,7 @@ span.glyphicon.glyphicon-leaf,span.glyphicon.glyphicon-certificate,span.glyphico
 	-ms-transition: 0.5s all;
 	margin-right:0;
 }
-.header-bottom-grid4:hover span.glyphicon.glyphicon-screenshot{
+.header-bottom-grid4:hover span.glyphicon.glyphicon-folder-close{
 	transform: rotateY(360deg);
 	-webkit-transform: rotateY(360deg);
 	-moz-transform: rotateY(360deg);
@@ -399,7 +401,7 @@ i.icon4{
 	color:#616161;
 	font-size:2.3em;
 	font-weight:300;
-	text-transform:uppercase
+	text-transform:uppercase;
 	  margin-top: 0.4em;
 }
 .services-bottom-middle p{
@@ -1265,7 +1267,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 	float:right;
 	width: 51%;
 }	
-.posts-right lable {
+.posts-right label {
 	font-size: 14px;
 	font-weight: 500;
 	color: #989595
@@ -2638,7 +2640,7 @@ span.menu {
 	span.glyphicon.glyphicon-home {
 		font-size: 19px;
 	}
-	span.glyphicon.glyphicon-leaf, span.glyphicon.glyphicon-certificate, span.glyphicon.glyphicon-tree-deciduous, span.glyphicon.glyphicon-screenshot {
+	span.glyphicon.glyphicon-headphones, span.glyphicon.glyphicon-star, span.glyphicon.glyphicon-save, span.glyphicon.glyphicon-folder-close {
 		font-size: 40px;
 	}
 	.testimonial-info h3 {
@@ -2739,7 +2741,7 @@ span.menu {
 	.testimonials {
 		min-height: 215px;
 	}
-	span.glyphicon.glyphicon-leaf, span.glyphicon.glyphicon-certificate, span.glyphicon.glyphicon-tree-deciduous, span.glyphicon.glyphicon-screenshot {
+	span.glyphicon.glyphicon-headphones, span.glyphicon.glyphicon-star, span.glyphicon.glyphicon-save, span.glyphicon.glyphicon-folder-close {
 		font-size: 30px;
 	}
 	.secvice-top-grid-1, .secvice-top-grid-2, .secvice-top-grid-3, .secvice-top-grid-4 {
@@ -3184,7 +3186,7 @@ span.menu {
 		  padding: 0.3em 8px;
 		  width: 87%;
 	}
-	span.glyphicon.glyphicon-leaf, span.glyphicon.glyphicon-certificate, span.glyphicon.glyphicon-tree-deciduous, span.glyphicon.glyphicon-screenshot {
+	span.glyphicon.glyphicon-headphones, span.glyphicon.glyphicon-star, span.glyphicon.glyphicon-save, span.glyphicon.glyphicon-folder-close {
 		font-size: 18px;
 	}
 	.testimonial-info h3 {
