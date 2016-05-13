@@ -8,6 +8,10 @@
          metadata-complete="true" version="3.0">
   <display-name>Gitmine</display-name>
 
+  <welcome-file-list>
+    <welcome-file>/index.html</welcome-file>
+  </welcome-file-list>
+
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
