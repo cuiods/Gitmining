@@ -1,16 +1,11 @@
-.compare{
-    float: right;
-    width: 8%;
-    margin:auto auto;
-    padding-top: 40px;
-    padding-left: 10px;
-}
 
 .title{
-    font-size: 26px;
-    line-height: 30px;
+    font-size: 18px;
+    white-space:nowrap;
+    overflow: hidden;
+    line-height: 20px;
     height: 20px;
-    margin-top: 15px;
+    margin-top: 12px;
     margin-bottom: 5px;
     color: #0f0f0f;
 }
@@ -21,10 +16,11 @@
 .list-item-right-description{
     height: 50px;
     font-size: 13px;
-    line-height: 30px;
-    padding-left: 5px;
-    padding-top: 5px;
+    line-height: 10px;
+    padding-top: 10px;
     padding-bottom: 5px;
+    word-wrap: break-word;
+    word-break: normal;
     color: #95A5A6;
 }
 
@@ -35,23 +31,25 @@
 
 .list-item-right-bottom{
     position: relative;
-    height: 25px;
-    padding-bottom: 10px;
+    overflow: hidden;
+    /*height: 25px;*/
+    /*padding-bottom: 10px;*/
 }
 
 .list-item-right-numbers{
     float: left;
 }
-
+.digital{
+    overflow: hidden;
+}
 .list-item-right-time{
     float: right;
-    margin-right: 10px;
 }
 
 .list-item{
     position: relative;
-
     height: 120px;
+    width: 100%;
     background-color:white;
     border-bottom: dashed 1px #D2D2D2;
     border-bottom-width: 1px;
@@ -60,20 +58,51 @@
     padding: 0;
 }
 
+.compare{
+    float: right;
+    width: 50px;
+    margin:auto auto;
+    padding-top: 40px;
+    margin: 0;
+    padding-left: 10px;
+}
+.recommend-item-left{
+    position: relative;
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 80px;
+    padding-top: 5px;
+}
+
+.recommend-item-right{
+    position: relative;
+    float: left;
+    width:200px;
+    margin-left: 15px;
+    margin-top: 5px;
+    height: 100%;
+    padding: 0;
+}
+
 .list-item-right{
     position: relative;
-    float: right;
-    height: 100px;
-    margin: 0;
+    float: left;
+    width:400px;
+    margin-left: 15px;
+    height: 100%;
     padding: 0;
 }
 
 
 .list-item-left{
+    
     position: relative;
     float: left;
     margin: 0;
-    padding-top: 10px;
+    height: 100%;
+    width: 100px;
+    padding-top: 5px;
     /*background: black;*/
 }
 
@@ -85,7 +114,8 @@
     position: relative;
     float: left;
     background: transparent;
-    margin-top: 100px;
+     width: 600px;
+    margin: auto;
     padding: 0;
 
 }
@@ -93,10 +123,30 @@
 .main-right{
     position: relative;
     float: right;
-    background: green;
+    width:300px;
+    margin: auto;
+    padding: 0;
+    background: transparent;
 }
 
 .main{
     position: relative;
 }
 
+/*on the right*/
+
+.recommend-head{
+
+}
+
+.recommend{
+
+}
+
+.recommend-item{
+
+}
+
+.recommend-item:hover{
+    background: #ECF0F1;
+}
