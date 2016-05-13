@@ -122,15 +122,18 @@
 
 .main-right{
     position: relative;
-    float: right;
+    float: left;
     width:300px;
-    margin: auto;
+    margin:auto 20px;
     padding: 0;
     background: transparent;
 }
 
 .main{
     position: relative;
+    width: 1000px;
+    margin:100px auto;
+    padding: 0;
 }
 
 /*on the right*/
@@ -144,7 +147,15 @@
 }
 
 .recommend-item{
-
+    position: relative;
+    height: 100px;
+    width: 100%;
+    background-color:white;
+    border-bottom: dashed 1px #D2D2D2;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: rgb(210, 210, 210);
+    padding: 0;
 }
 
 .recommend-item:hover{
