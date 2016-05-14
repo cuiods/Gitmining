@@ -630,6 +630,7 @@ img.zoom-img {
   -moz-transition-timing-function: ease-out;
   -moz-transition-duration: 250ms;
 }
+
 a.mask {
   text-decoration: none;
   overflow: hidden;
