@@ -28,9 +28,9 @@ public class LoginController {
     private LoginModelService loginModelImpl;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public boolean register(@RequestParam String webUsername, @RequestParam String password,
+    public boolean register(@RequestParam String username, @RequestParam String password,
                             @RequestParam String eamil){
-        return loginModelImpl.register(webUsername, password, eamil);
+        return loginModelImpl.register(username, password, eamil);
     }
 
     /**
@@ -45,9 +45,6 @@ public class LoginController {
     @ResponseBody
     public boolean login(@RequestParam String username, @RequestParam String password,
                         HttpSession session){
-        if (!loginModelImpl.existName(username)){
-            return false;
-        }
         boolean loginResult = loginModelImpl.login(username, password);
         if (loginResult){
             //add user information to session scope for aop to use

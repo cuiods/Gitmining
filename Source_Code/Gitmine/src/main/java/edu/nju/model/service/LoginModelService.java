@@ -10,7 +10,4 @@ public interface LoginModelService {
 
     public boolean login(String webUsername, String password);
 
-    public boolean existUser(String webUsername, String email);
-
-    public boolean existName(String webUsername);
 }

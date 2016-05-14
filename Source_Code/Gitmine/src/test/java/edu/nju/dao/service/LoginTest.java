@@ -38,7 +38,7 @@ public class LoginTest {
 
     @Test
     public void testRegister(){
-        boolean test = registerDaoService.register("cuihao", Math.random()*100000+"","cuihaoemail@163.com");
+        boolean test = registerDaoService.register("yyy", Math.random()*100000+"","cuihaoemail@163.com");
         Assert.assertTrue(test);
     }
 

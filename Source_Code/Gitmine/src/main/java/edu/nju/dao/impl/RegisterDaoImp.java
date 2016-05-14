@@ -38,6 +38,15 @@ public class RegisterDaoImp implements RegisterDaoService {
         return false;
     }
 
+    @Override
+    public boolean existUser(String username, String email) {
+        Query query = getSession().createQuery("from TblRegister where loginName=? or email=?");
+        query.setString(0, username);
+        query.setString(1, email);
+        if (query.list().size() > 0) return true;
+        return false;
+    }
+
     /**
      * login
      *

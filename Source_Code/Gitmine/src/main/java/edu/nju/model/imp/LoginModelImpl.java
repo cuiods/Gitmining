@@ -26,19 +26,13 @@ public class LoginModelImpl implements LoginModelService{
 
     @Override
     public boolean login(String webUsername, String password) {
-
+        if (!registerDaoImpl.existName(webUsername)){
+            return false;
+        }
+        //todo
         return true;
     }
 
-    @Override
-    public boolean existUser(String webUsername, String email) {
-        return false;
-    }
-
-    @Override
-    public boolean existName(String webUsername) {
-        return true;
-    }
 
     public RegisterDaoService getRegisterDaoImpl() {
         return registerDaoImpl;

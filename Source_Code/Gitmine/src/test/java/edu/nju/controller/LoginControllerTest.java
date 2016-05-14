@@ -46,7 +46,6 @@ public class LoginControllerTest {
         String webUsername = "cuihao";
         String password = "12345";
         when(loginModelImpl.login(webUsername, password)).thenReturn(true);
-        when(loginModelImpl.existName(webUsername)).thenReturn(true);
 
         mockMvc.perform(post("/login").param("username", webUsername)
             .param("password", password)).andDo(print()).andExpect(status().isOk());
