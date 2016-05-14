@@ -1,444 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta  charset="utf-8">
-    <meta contributorName="viewport" content="width=device-width, initial-scale=0.6">
-    <title>Title</title>
-    <script src="../../plugin/jquery/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../css/repo.css">
+    <title>Gallery</title>
     <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
-    <script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
-    <link href="../../css/common/header.css" rel="stylesheet">
-    <link href="../../css/login.css" rel="stylesheet">
-    <link href="../../css/glyphicon-rotate.css" rel="stylesheet">
-    <script src="../../js/login.js"></script>
+    <link rel="stylesheet" href="../../css/repo-label.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--webfont-->
+    <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="../../js/move-top.js"></script>
+    <script type="text/javascript" src="../../js/easing.js"></script>
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+            });
+        });
+    </script>
+    <style>
+        .radio-toolbar label {
+            display:inline-block;
+            background-color:#ddd;
+            padding:4px 11px;
+            font-family:Arial;
+            font-size:16px;
+        }
+
+        .radio-toolbar input[type="radio"] {
+            display:none;
+        }
+        .radio-toolbar input[type="radio"]:checked + label {
+            background-color: #3e8f3e;
+        }
+    </style>
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top headroom" role="navigation" id ="header">
-    <div class="navbar-header" id="logo">
-        <a class="nav nav-pills"  href="#"><img src="../../img/logo.png" class="img-responsive center-block"> </a>
-    </div>
 
 
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav pull-left" id="nav_list">
-            <li ><a href="" ><span class="nav-item">HOME</span></a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> USER </span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="nav-sub-item"><a href="#">LIST</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-sub-item"><a href="#">STAT</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> REPO </span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">LIST</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">STAT</a></li>
-                </ul>
-            </li>
-
-        </ul>
-        <ul class="nav navbar-nav pull-right" style="float: right">
-            <li id="no_login">
-                <button class="user-relate" data-toggle="modal" data-target="#myModal">
-                    <span class="user-relate">sign</span>
-                </button>
-            </li>
-
-            <li id="with_login">
-                <a href="" >
-                    <span class="user-relate">logout</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-
-
-
-</div>
-
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
-
-        <div class="header">   <!--登陆头（登陆、注册）-->
-            <div class="switch" id="switch">
-                <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">Sign in</a>
-                <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">Sign up</a>  <!--tabindex规定了tab键控制的次序-->
-
-                <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: -8px;"></div>
-            </div>
-        </div>
-
-
-        <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
-
-            <!--登录-->
-            <div class="web_login" id="web_login">
-
-
-                <div class="login-box">
-
-
-                    <div class="login_form">
-                        <form action="" contributorName="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
-                            <input type="hidden" contributorName="did" value="0"/>  <!--这个值干嘛的-->
-                            <input type="hidden" contributorName="to" value="log"/>     <!--这个值干嘛的-->
-                            <div class="uinArea" id="uinArea">
-                                <label class="input-tips" for="u">Username: </label>
-                                <div class="inputOuter" id="uArea">
-
-                                    <input type="text" id="u" contributorName="username" class="inputstyle2"/>
-                                </div>
-                            </div>
-                            <div class="pwdArea" id="pwdArea">
-                                <label class="input-tips" for="p">Password: </label>
-                                <div class="inputOuter" id="pArea">
-
-                                    <input type="password" id="p" contributorName="p" class="inputstyle2"/>
-                                </div>
-                            </div>
-
-                            <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="Sign in" style="width:150px;" class="button_blue"/></div>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-            <!--登录end-->
-        </div>
-
-        <!--注册-->
-        <div class="qlogin" id="qlogin" style="display: none; ">
-
-            <div class="web_login"><form contributorName="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
-                <input type="hidden" contributorName="to" value="reg"/>
-                <input type="hidden" contributorName="did" value="0"/>
-                <ul class="reg_form" id="reg-ul">
-                    <div id="userCue" class="cue">pay attention to your data format</div>
-                    <li>
-
-                        <label for="user"  class="input-tips2">Username: </label>
-                        <div class="inputOuter2">
-                            <input type="text" id="user" contributorName="user" maxlength="16" class="inputstyle2"/>
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <label for="passwd" class="input-tips2">Password: </label>
-                        <div class="inputOuter2">
-                            <input type="password" id="passwd"  contributorName="passwd" maxlength="16" class="inputstyle2"/>
-                        </div>
-
-                    </li>
-                    <li>
-                        <label for="passwd2" class="input-tips2">Confirm: </label>
-                        <div class="inputOuter2">
-                            <input type="password" id="passwd2" contributorName="" maxlength="16" class="inputstyle2" />
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <label for="email" class="input-tips2">Email: </label>
-                        <div class="inputOuter2">
-
-                            <input type="text" id="email" contributorName="qq" maxlength="10" class="inputstyle2"/>
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <div class="inputArea">
-                            <input type="button" id="reg"  style="margin-top:10px;margin-left:100px;" class="button_blue" value="Sign up"/>
-
-                        </div>
-
-                    </li><div class="cl"></div>
-                </ul></form>
-
-
-            </div>
-
-
-        </div>
-        <!--注册end-->
-    </div>
-</div>
-
-<div class="main">
-    <div class="list-header">
-        <div class="filter-label">
-
-            <!--<button style="background: transparent; border:none"><span class="label label-default">默认标签</span></button>-->
-            <!--<span class="label label-primary">主要标签</span>-->
-            <!--<span class="label label-success">成功标签</span>-->
-            <!--<span class="label label-info">信息标签</span>-->
-            <!--<span class="label label-warning">警告标签</span>-->
-            <!--<span class="label label-danger">危险标签</span>-->
-
-        </div>
-    </div>
+<!-- header-section-starts -->
+<div class="about-header-banner">
     <div class="container">
-        <!--for pc-->
-        <div class="list">
-            <!--以下会被循环输出-->
-            <div class="list-item row">
-                <div class="list-item-left">
-                    <img src="../../img/logo.png" class="img-responsive center-block rotate">
-                </div>
-                <div class="compare">
-                    <input type="checkbox">
-                </div>
-                <div class="list-item-right">
-                    <div class="title">
-                        <span >${owner}</span>
-                        /
-                        <span >${title}</span>
-                    </div>
-                    <div>
-                        <div class="list-item-right-description">${description}.................................................</div>
-
-                    </div>
-                    <div class="list-item-right-bottom">
-                        <div class="list-item-right-numbers">
-                            <span class="glyphicon glyphicon-star" title="star"></span>  &nbsp;${star} &nbsp;
-                            <span class="glyphicon  glyphicon-download-alt " title="fork"></span> &nbsp;${fork}&nbsp;
-                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
-                        </div>
-                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!--以下会被循环输出-->
-            <div class="list-item row">
-                <div class="list-item-left">
-                    <img src="../../img/logo.png" class="img-responsive center-block">
-                </div>
-                <div class="compare">
-                    <input type="checkbox">
-                </div>
-                <div class="list-item-right">
-                    <div class="title">
-                        <span >${owner}</span>
-                        /
-                        <span >${title}</span>
-                    </div>
-                    <div>
-                        <div class="list-item-right-description">${description}.................................................</div>
-
-                    </div>
-                    <div class="list-item-right-bottom">
-                        <div class="list-item-right-numbers">
-                            <span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;
-                            <span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;
-                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
-                        </div>
-                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!--以下会被循环输出-->
-            <div class="list-item row">
-                <div class="list-item-left">
-                    <img src="../../img/logo.png" class="img-responsive center-block">
-                </div>
-                <div class="compare">
-                    <input type="checkbox">
-                </div>
-                <div class="list-item-right">
-                    <div class="title">
-                        <span >${owner}</span>
-                        /
-                        <span >${title}</span>
-                    </div>
-                    <div>
-                        <div class="list-item-right-description">${description}.................................................</div>
-
-                    </div>
-                    <div class="list-item-right-bottom">
-                        <div class="list-item-right-numbers">
-                            <span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;
-                            <span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;
-                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
-                        </div>
-                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!--以下会被循环输出-->
-            <div class="list-item row">
-                <div class="list-item-left">
-                    <img src="../../img/logo.png" class="img-responsive center-block">
-                </div>
-                <div class="compare">
-                    <input type="checkbox">
-                </div>
-                <div class="list-item-right">
-                    <div class="title">
-                        <span >${owner}</span>
-                        /
-                        <span >${title}</span>
-                    </div>
-                    <div>
-                        <div class="list-item-right-description">${description}.................................................</div>
-
-                    </div>
-                    <div class="list-item-right-bottom">
-                        <div class="list-item-right-numbers">
-                            <span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;
-                            <span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;
-                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
-                        </div>
-                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
-                    </div>
-                </div>
-
-            </div>
-
-
+        <div class="home">
+            <a href="html/index.html"><span class="glyphicon glyphicon-home"></span></a>
         </div>
-
-
-        <div class="main-right">
-
-            <div class="recommend-head">
-                RECOMMEND
+        <div class="header-top">
+            <div class="social-icons">
+                <i class="facebook"></i>
+                <i class="twitter"></i>
+                <i class="googlepluse"></i>
             </div>
-            <div class="recommend">
-
-                <div class="recommend-item">
-                    <div class="recommend-item-left">
-                        <img src="../../img/logo.png" class="img-responsive center-block">
-                    </div>
-
-                    <div class="recommend-item-right">
-                        <div class="title">
-                            <span >${owner}</span>
-                            /
-                            <span >${title}</span>
-                        </div>
-                        <div>
-                            <div class="list-item-right-description">
-                                ${description}.................................................
-                            </div>
-                        </div>
-                        <!--<div class="list-item-right-bottom">-->
-                            <!--<div class="list-item-right-numbers">-->
-                                <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
-                                <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
-                                <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    </div>
-
-                </div>
-
-                <div class="recommend-item">
-                    <div class="recommend-item-left">
-                        <img src="../../img/logo.png" class="img-responsive center-block">
-                    </div>
-
-                    <div class="recommend-item-right">
-                        <div class="title">
-                            <span >${owner}</span>
-                            /
-                            <span >${title}</span>
-                        </div>
-                        <div>
-                            <div class="list-item-right-description">
-                                ${description}.................................................
-                            </div>
-                        </div>
-                        <!--<div class="list-item-right-bottom">-->
-                        <!--<div class="list-item-right-numbers">-->
-                        <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
-                        <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
-                        <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
-                        <!--</div>-->
-                        <!--</div>-->
-                    </div>
-
-                </div>
-
-                <div class="recommend-item">
-                    <div class="recommend-item-left">
-                        <img src="../../img/logo.png" class="img-responsive center-block">
-                    </div>
-
-                    <div class="recommend-item-right">
-                        <div class="title">
-                            <span >${owner}</span>
-                            /
-                            <span >${title}</span>
-                        </div>
-                        <div>
-                            <div class="list-item-right-description">
-                                ${description}.................................................
-                            </div>
-                        </div>
-                        <!--<div class="list-item-right-bottom">-->
-                        <!--<div class="list-item-right-numbers">-->
-                        <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
-                        <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
-                        <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
-                        <!--</div>-->
-                        <!--</div>-->
-                    </div>
-
-                </div>
-
-                <div class="recommend-item">
-                    <div class="recommend-item-left">
-                        <img src="../../img/logo.png" class="img-responsive center-block">
-                    </div>
-
-                    <div class="recommend-item-right">
-                        <div class="title">
-                            <span >${owner}</span>
-                            /
-                            <span >${title}</span>
-                        </div>
-                        <div>
-                            <div class="list-item-right-description">
-                                ${description}.................................................
-                            </div>
-                        </div>
-                        <!--<div class="list-item-right-bottom">-->
-                        <!--<div class="list-item-right-numbers">-->
-                        <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
-                        <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
-                        <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
-                        <!--</div>-->
-                        <!--</div>-->
-                    </div>
-
-                </div>
-
+            <span class="menu"><img src="../../images/nav.png" alt=""/></span>
+            <div class="top-menu">
+                <ul>
+                    <nav class="cl-effect-13">
+                        <li><a href="about.html">About</a></li>
+                        <li><a class="active" href="">UserInfo</a></li>
+                        <li><a href="html/index.html">News</a></li>
+                        <li><a href="typography.html">Typo</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </nav>
+                </ul>
             </div>
-
+            <!-- script for menu -->
+            <script>
+                $( "span.menu" ).click(function() {
+                    $( ".top-menu ul" ).slideToggle( 300, function() {
+                        // Animation complete.
+                    });
+                });
+            </script>
+            <!-- //script for menu -->
+            <div class="clearfix"></div>
         </div>
+        <div class="clearfix"></div>
+        <div class="banner-info row center-block">
+
+            <div class="col-md-3"> </div>
+            <!--<div class="col-lg-6">-->
+            <div class="input-group col-md-6 ">
+                <input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">Search</button>
+						</span>
+            </div><!-- /input-group -->
+            <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
+            <div class="col-md-3"> </div>
+        </div>
+    </div>
+</div>
+<!-- header-section-ends -->
+
+<!--search labels starts-->
+<div class="container labels">
+    <div class="radio-toolbar">
+        <input type="radio" id="radio00" name="radios0" value="false" >
+        <label class="label" for="radio00">All</label>
+        <input type="radio" id="radio01" name="radios0" value="false" >
+        <label class="label" for="radio01">默认标签</label>
+        <input type="radio" id="radio02" name="radios0" value="false" >
+        <label class="label" for="radio02">默认标签</label>
+        <input type="radio" id="radio03" name="radios0" value="false" >
+        <label class="label" for="radio03">默认标签</label>
+        <input type="radio" id="radio04" name="radios0" value="false" >
+        <label class="label" for="radio04">默认标签</label>
+        <input type="radio" id="radio05" name="radios0" value="false" >
+        <label class="label" for="radio05">默认标签</label>
+    </div>
+
+    <div class="radio-toolbar">
+        <input type="radio" id="radio10" name="radios1" value="false" >
+        <label class="label" for="radio10">All</label>
+        <input type="radio" id="radio11" name="radios1" value="false" >
+        <label class="label" for="radio11">默认标签</label>
+        <input type="radio" id="radio12" name="radios1" value="false" >
+        <label class="label" for="radio12">默认标签</label>
+        <input type="radio" id="radio13" name="radios1" value="false" >
+        <label class="label" for="radio13">默认标签</label>
+        <input type="radio" id="radio14" name="radios1" value="false" >
+        <label class="label" for="radio14">默认标签</label>
+        <input type="radio" id="radio15" name="radios1" value="false" >
+        <label class="label" for="radio15">默认标签</label>
+    </div>
+
+    <div class="radio-toolbar">
+        <input type="radio" id="radio20" name="radios2" value="false" >
+        <label class="label" for="radio20">All</label>
+        <input type="radio" id="radio21" name="radios2" value="false" >
+        <label class="label" for="radio21">默认标签</label>
+        <input type="radio" id="radio22" name="radios2" value="false" >
+        <label class="label" for="radio22">默认标签</label>
+        <input type="radio" id="radio23" name="radios2" value="false" >
+        <label class="label" for="radio23">默认标签</label>
+        <input type="radio" id="radio24" name="radios2" value="false" >
+        <label class="label" for="radio24">默认标签</label>
+        <input type="radio" id="radio25" name="radios2" value="false" >
+        <label class="label" for="radio25">默认标签</label>
     </div>
 
 </div>
+<!--search labels end-->
+
+<!-- content-section-starts -->
+<div class="content">
+    <div class="container">
+        <div class="gallery-head" id="portfolio">
+            <h3>Users</h3>
+
+            <!-- content-section-ends -->
+            <div class="get-in-touch">
+                <div class="container">
+                    <div class="col-md-3 gin">
+                        <h3>Get in Touch</h3>
+                        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspeisse eget diam</p>
+                        <div class="social-icons footer-icons">
+                            <i class="facebook"></i>
+                            <i class="twitter"></i>
+                            <i class="googlepluse"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3 address">
+                        <h3>Address</h3>
+                        <address>
+                            <p>10-765 mg-Road,
+                            <p>Washington, DC, United States,</p>
+                            <p>ud-19832-6578.</p>
+                            <p class="phone"><span>Phone</span> :+1 900 876 1234</p>
+                            <span class="phone">E-mail : <a href="mail-to:example@mail.com">example@mail.com</a></span>
+                        </address>
+                    </div>
+                    <div class="col-md-6 dal">
+                        <h3>Drop us a line</h3>
+                        <input type="text" class="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}">
+                        <input type="text" class="text" value="Last Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}">
+                        <input type="text" class="text" value="E-mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail';}">
+                        <input type="text" class="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}">
+                        <textarea onfocus="if(this.value == 'Your Message') this.value='';" onblur="if(this.value == '') this.value='Your Message';" >Your Message</textarea>
+                        <input type="submit" value="SEND">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- footer-section -->
+            <div class="footer">
+                <div class="container">
+                    <div class="copyright text-center">
+                        <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- footer-section -->
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    /*
+                     var defaults = {
+                     containerID: 'toTop', // fading element id
+                     containerHoverID: 'toTopHover', // fading element hover id
+                     scrollSpeed: 1200,
+                     easingType: 'linear'
+                     };
+                     */
+                    $().UItoTop({ easingType: 'easeOutQuart' });
+                });
+            </script>
+            <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+            <!---->
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
