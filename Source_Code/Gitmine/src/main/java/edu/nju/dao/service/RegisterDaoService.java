@@ -15,6 +15,14 @@ public interface RegisterDaoService {
     public boolean existName(String name);
 
     /**
+     * when register a new user, check that the email and username don't exist
+     * @param username
+     * @param email
+     * @return
+     */
+    public boolean existUser(String username, String email);
+
+    /**
      * login
      * @param userName
      * @param password

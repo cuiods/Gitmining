@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta  charset="utf-8">
+    <meta contributorName="viewport" content="width=device-width, initial-scale=0.6">
+    <title>Title</title>
+    <script src="../../plugin/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/repo.css">
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+    <script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+    <link href="../../css/common/header.css" rel="stylesheet">
+    <link href="../../css/login.css" rel="stylesheet">
+    <link href="../../css/glyphicon-rotate.css" rel="stylesheet">
+    <script src="../../js/login.js"></script>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top headroom" role="navigation" id ="header">
+    <div class="navbar-header" id="logo">
+        <a class="nav nav-pills"  href="#"><img src="../../img/logo.png" class="img-responsive center-block"> </a>
+    </div>
+
+
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav pull-left" id="nav_list">
+            <li ><a href="" ><span class="nav-item">HOME</span></a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> USER </span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-sub-item"><a href="#">LIST</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-sub-item"><a href="#">STAT</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="nav-item"> REPO </span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">LIST</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">STAT</a></li>
+                </ul>
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav pull-right" style="float: right">
+            <li id="no_login">
+                <button class="user-relate" data-toggle="modal" data-target="#myModal">
+                    <span class="user-relate">sign</span>
+                </button>
+            </li>
+
+            <li id="with_login">
+                <a href="" >
+                    <span class="user-relate">logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
+
+        <div class="header">   <!--登陆头（登陆、注册）-->
+            <div class="switch" id="switch">
+                <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">Sign in</a>
+                <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">Sign up</a>  <!--tabindex规定了tab键控制的次序-->
+
+                <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: -8px;"></div>
+            </div>
+        </div>
+
+
+        <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+
+            <!--登录-->
+            <div class="web_login" id="web_login">
+
+
+                <div class="login-box">
+
+
+                    <div class="login_form">
+                        <form action="" contributorName="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                            <input type="hidden" contributorName="did" value="0"/>  <!--这个值干嘛的-->
+                            <input type="hidden" contributorName="to" value="log"/>     <!--这个值干嘛的-->
+                            <div class="uinArea" id="uinArea">
+                                <label class="input-tips" for="u">Username: </label>
+                                <div class="inputOuter" id="uArea">
+
+                                    <input type="text" id="u" contributorName="username" class="inputstyle2"/>
+                                </div>
+                            </div>
+                            <div class="pwdArea" id="pwdArea">
+                                <label class="input-tips" for="p">Password: </label>
+                                <div class="inputOuter" id="pArea">
+
+                                    <input type="password" id="p" contributorName="p" class="inputstyle2"/>
+                                </div>
+                            </div>
+
+                            <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="Sign in" style="width:150px;" class="button_blue"/></div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--登录end-->
+        </div>
+
+        <!--注册-->
+        <div class="qlogin" id="qlogin" style="display: none; ">
+
+            <div class="web_login"><form contributorName="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
+                <input type="hidden" contributorName="to" value="reg"/>
+                <input type="hidden" contributorName="did" value="0"/>
+                <ul class="reg_form" id="reg-ul">
+                    <div id="userCue" class="cue">pay attention to your data format</div>
+                    <li>
+
+                        <label for="user"  class="input-tips2">Username: </label>
+                        <div class="inputOuter2">
+                            <input type="text" id="user" contributorName="user" maxlength="16" class="inputstyle2"/>
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <label for="passwd" class="input-tips2">Password: </label>
+                        <div class="inputOuter2">
+                            <input type="password" id="passwd"  contributorName="passwd" maxlength="16" class="inputstyle2"/>
+                        </div>
+
+                    </li>
+                    <li>
+                        <label for="passwd2" class="input-tips2">Confirm: </label>
+                        <div class="inputOuter2">
+                            <input type="password" id="passwd2" contributorName="" maxlength="16" class="inputstyle2" />
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <label for="email" class="input-tips2">Email: </label>
+                        <div class="inputOuter2">
+
+                            <input type="text" id="email" contributorName="qq" maxlength="10" class="inputstyle2"/>
+                        </div>
+
+                    </li>
+
+                    <li>
+                        <div class="inputArea">
+                            <input type="button" id="reg"  style="margin-top:10px;margin-left:100px;" class="button_blue" value="Sign up"/>
+
+                        </div>
+
+                    </li><div class="cl"></div>
+                </ul></form>
+
+
+            </div>
+
+
+        </div>
+        <!--注册end-->
+    </div>
+</div>
+
+<div class="main">
+    <div class="list-header">
+        <div class="filter-label">
+
+            <!--<button style="background: transparent; border:none"><span class="label label-default">默认标签</span></button>-->
+            <!--<span class="label label-primary">主要标签</span>-->
+            <!--<span class="label label-success">成功标签</span>-->
+            <!--<span class="label label-info">信息标签</span>-->
+            <!--<span class="label label-warning">警告标签</span>-->
+            <!--<span class="label label-danger">危险标签</span>-->
+
+        </div>
+    </div>
+    <div class="container">
+        <!--for pc-->
+        <div class="list">
+            <!--以下会被循环输出-->
+            <div class="list-item row">
+                <div class="list-item-left">
+                    <img src="../../img/logo.png" class="img-responsive center-block rotate">
+                </div>
+                <div class="compare">
+                    <input type="checkbox">
+                </div>
+                <div class="list-item-right">
+                    <div class="title">
+                        <span >${owner}</span>
+                        /
+                        <span >${title}</span>
+                    </div>
+                    <div>
+                        <div class="list-item-right-description">${description}.................................................</div>
+
+                    </div>
+                    <div class="list-item-right-bottom">
+                        <div class="list-item-right-numbers">
+                            <span class="glyphicon glyphicon-star" title="star"></span>  &nbsp;${star} &nbsp;
+                            <span class="glyphicon  glyphicon-download-alt " title="fork"></span> &nbsp;${fork}&nbsp;
+                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
+                        </div>
+                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--以下会被循环输出-->
+            <div class="list-item row">
+                <div class="list-item-left">
+                    <img src="../../img/logo.png" class="img-responsive center-block">
+                </div>
+                <div class="compare">
+                    <input type="checkbox">
+                </div>
+                <div class="list-item-right">
+                    <div class="title">
+                        <span >${owner}</span>
+                        /
+                        <span >${title}</span>
+                    </div>
+                    <div>
+                        <div class="list-item-right-description">${description}.................................................</div>
+
+                    </div>
+                    <div class="list-item-right-bottom">
+                        <div class="list-item-right-numbers">
+                            <span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;
+                            <span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;
+                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
+                        </div>
+                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--以下会被循环输出-->
+            <div class="list-item row">
+                <div class="list-item-left">
+                    <img src="../../img/logo.png" class="img-responsive center-block">
+                </div>
+                <div class="compare">
+                    <input type="checkbox">
+                </div>
+                <div class="list-item-right">
+                    <div class="title">
+                        <span >${owner}</span>
+                        /
+                        <span >${title}</span>
+                    </div>
+                    <div>
+                        <div class="list-item-right-description">${description}.................................................</div>
+
+                    </div>
+                    <div class="list-item-right-bottom">
+                        <div class="list-item-right-numbers">
+                            <span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;
+                            <span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;
+                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
+                        </div>
+                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--以下会被循环输出-->
+            <div class="list-item row">
+                <div class="list-item-left">
+                    <img src="../../img/logo.png" class="img-responsive center-block">
+                </div>
+                <div class="compare">
+                    <input type="checkbox">
+                </div>
+                <div class="list-item-right">
+                    <div class="title">
+                        <span >${owner}</span>
+                        /
+                        <span >${title}</span>
+                    </div>
+                    <div>
+                        <div class="list-item-right-description">${description}.................................................</div>
+
+                    </div>
+                    <div class="list-item-right-bottom">
+                        <div class="list-item-right-numbers">
+                            <span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;
+                            <span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;
+                            <span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}
+                        </div>
+                        <div class="list-item-right-time"><span class="glyphicon glyphicon-time" title="time"></span> &nbsp;${time}</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="main-right">
+
+            <div class="recommend-head">
+                RECOMMEND
+            </div>
+            <div class="recommend">
+
+                <div class="recommend-item">
+                    <div class="recommend-item-left">
+                        <img src="../../img/logo.png" class="img-responsive center-block">
+                    </div>
+
+                    <div class="recommend-item-right">
+                        <div class="title">
+                            <span >${owner}</span>
+                            /
+                            <span >${title}</span>
+                        </div>
+                        <div>
+                            <div class="list-item-right-description">
+                                ${description}.................................................
+                            </div>
+                        </div>
+                        <!--<div class="list-item-right-bottom">-->
+                            <!--<div class="list-item-right-numbers">-->
+                                <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
+                                <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
+                                <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+
+                <div class="recommend-item">
+                    <div class="recommend-item-left">
+                        <img src="../../img/logo.png" class="img-responsive center-block">
+                    </div>
+
+                    <div class="recommend-item-right">
+                        <div class="title">
+                            <span >${owner}</span>
+                            /
+                            <span >${title}</span>
+                        </div>
+                        <div>
+                            <div class="list-item-right-description">
+                                ${description}.................................................
+                            </div>
+                        </div>
+                        <!--<div class="list-item-right-bottom">-->
+                        <!--<div class="list-item-right-numbers">-->
+                        <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
+                        <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
+                        <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+
+                <div class="recommend-item">
+                    <div class="recommend-item-left">
+                        <img src="../../img/logo.png" class="img-responsive center-block">
+                    </div>
+
+                    <div class="recommend-item-right">
+                        <div class="title">
+                            <span >${owner}</span>
+                            /
+                            <span >${title}</span>
+                        </div>
+                        <div>
+                            <div class="list-item-right-description">
+                                ${description}.................................................
+                            </div>
+                        </div>
+                        <!--<div class="list-item-right-bottom">-->
+                        <!--<div class="list-item-right-numbers">-->
+                        <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
+                        <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
+                        <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+
+                <div class="recommend-item">
+                    <div class="recommend-item-left">
+                        <img src="../../img/logo.png" class="img-responsive center-block">
+                    </div>
+
+                    <div class="recommend-item-right">
+                        <div class="title">
+                            <span >${owner}</span>
+                            /
+                            <span >${title}</span>
+                        </div>
+                        <div>
+                            <div class="list-item-right-description">
+                                ${description}.................................................
+                            </div>
+                        </div>
+                        <!--<div class="list-item-right-bottom">-->
+                        <!--<div class="list-item-right-numbers">-->
+                        <!--<span class="glyphicon glyphicon glyphicon-headphones" title="star"></span>  &nbsp;${star} &nbsp;-->
+                        <!--<span class="glyphicon glyphicon-log-in" title="fork"></span> &nbsp;${fork}&nbsp;-->
+                        <!--<span class="glyphicon glyphicon-headphones" title="subscriber"></span> &nbsp;${subscriber}-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

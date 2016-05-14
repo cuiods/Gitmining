@@ -2,12 +2,14 @@ package edu.nju.controller;
 
 import edu.nju.dao.service.RegisterDaoService;
 import edu.nju.model.pojo.WebUser;
+import edu.nju.model.service.LoginModelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -23,47 +25,12 @@ import java.util.List;
 public class LoginController {
 
     @Resource
-    private RegisterDaoService loginImpl;
-
-    public RegisterDaoService getLoginImpl() {
-        return loginImpl;
-    }
-
-    public void setLoginImpl(RegisterDaoService loginImpl) {
-        this.loginImpl = loginImpl;
-    }
-
-
-
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(Model model){
-        model.addAttribute("webUser", new WebUser());
-        model.addAttribute("message", "");
-        return "register";
-    }
+    private LoginModelService loginModelImpl;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String addNewUser(@Valid WebUser webUser, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
-            return "register";
-        }
-        boolean registerResult = loginImpl.register(webUser.getUserName(), webUser.getPassword(), webUser.getEmail());
-        if (registerResult){
-            //todo add a new entry to hobby database
-
-            return "registerSuccess";
-        }
-        else {
-            model.addAttribute("message", "the username has exist");
-            return "register";
-        }
-    }
-
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String login(Model model){
-        model.addAttribute("message", "");
-        return "login";
+    public boolean register(@RequestParam String username, @RequestParam String password,
+                            @RequestParam String eamil){
+        return loginModelImpl.register(username, password, eamil);
     }
 
     /**
@@ -71,26 +38,19 @@ public class LoginController {
      * else back to login page
      * @param username
      * @param password
-     * @param model
      * @param session
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public String login(@RequestParam String username, @RequestParam String password,
-                        Model model, HttpSession session){
-        if (!loginImpl.existName(username)){
-            model.addAttribute("message", "the user do not exist");
-        }
-        boolean loginResult = loginImpl.login(username, password);
+    @ResponseBody
+    public boolean login(@RequestParam String username, @RequestParam String password,
+                        HttpSession session){
+        boolean loginResult = loginModelImpl.login(username, password);
         if (loginResult){
             //add user information to session scope for aop to use
             session.setAttribute("username", username);
-            return "redirect:/repo/home";   //default to repo page
         }
-        else {
-            model.addAttribute("message", "the password is wrong");
-            return "login";
-        }
+        return loginResult;
     }
 
     @RequestMapping(value = "/interest", method = RequestMethod.GET)
@@ -107,4 +67,11 @@ public class LoginController {
         return "redirect:/repo/home";
     }
 
+    public LoginModelService getLoginModelImpl() {
+        return loginModelImpl;
+    }
+
+    public void setLoginModelImpl(LoginModelService loginModelImpl) {
+        this.loginModelImpl = loginModelImpl;
+    }
 }

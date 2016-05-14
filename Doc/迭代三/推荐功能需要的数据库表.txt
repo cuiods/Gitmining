@@ -1,0 +1,12 @@
+1.repo标签表：
+属性名:api,web,framework,linux,windows,interface,os,plugin,json,server,template,library,ui,database
+以上属性全都是double值
+
+
+2.web user兴趣表：
+属性名:同repo标签表，也都是double值，用来衡量一个用户（网站的用户）在某一方面的兴趣
+
+
+
+3.github user兴趣表：
+属性名:同repo标签表，用来衡量某个user在某一方面的兴趣
