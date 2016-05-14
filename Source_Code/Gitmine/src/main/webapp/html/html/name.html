@@ -162,21 +162,21 @@
 
 
                     <div class="login_form">
-                        <form action="" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
-                            <input type="hidden" name="did" value="0"/>  <!--这个值干嘛的-->
-                            <input type="hidden" name="to" value="log"/>     <!--这个值干嘛的-->
+                        <form action="" contributorName="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                            <input type="hidden" contributorName="did" value="0"/>  <!--这个值干嘛的-->
+                            <input type="hidden" contributorName="to" value="log"/>     <!--这个值干嘛的-->
                             <div class="uinArea" id="uinArea">
                                 <label class="input-tips" for="u">Username: </label>
                                 <div class="inputOuter" id="uArea">
 
-                                    <input type="text" id="u" name="username" class="inputstyle2"/>
+                                    <input type="text" id="u" contributorName="username" class="inputstyle2"/>
                                 </div>
                             </div>
                             <div class="pwdArea" id="pwdArea">
                                 <label class="input-tips" for="p">Password: </label>
                                 <div class="inputOuter" id="pArea">
 
-                                    <input type="password" id="p" name="p" class="inputstyle2"/>
+                                    <input type="password" id="p" contributorName="p" class="inputstyle2"/>
                                 </div>
                             </div>
 
@@ -193,16 +193,16 @@
         <!--注册-->
         <div class="qlogin" id="qlogin" style="display: none; ">
 
-            <div class="web_login"><form name="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
-                <input type="hidden" name="to" value="reg"/>
-                <input type="hidden" name="did" value="0"/>
+            <div class="web_login"><form contributorName="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
+                <input type="hidden" contributorName="to" value="reg"/>
+                <input type="hidden" contributorName="did" value="0"/>
                 <ul class="reg_form" id="reg-ul">
                     <div id="userCue" class="cue">pay attention to your data format</div>
                     <li>
 
                         <label for="user"  class="input-tips2">Username: </label>
                         <div class="inputOuter2">
-                            <input type="text" id="user" name="user" maxlength="16" class="inputstyle2"/>
+                            <input type="text" id="user" contributorName="user" maxlength="16" class="inputstyle2"/>
                         </div>
 
                     </li>
@@ -210,14 +210,14 @@
                     <li>
                         <label for="passwd" class="input-tips2">Password: </label>
                         <div class="inputOuter2">
-                            <input type="password" id="passwd"  name="passwd" maxlength="16" class="inputstyle2"/>
+                            <input type="password" id="passwd"  contributorName="passwd" maxlength="16" class="inputstyle2"/>
                         </div>
 
                     </li>
                     <li>
                         <label for="passwd2" class="input-tips2">Confirm: </label>
                         <div class="inputOuter2">
-                            <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
+                            <input type="password" id="passwd2" contributorName="" maxlength="16" class="inputstyle2" />
                         </div>
 
                     </li>
@@ -226,7 +226,7 @@
                         <label for="email" class="input-tips2">Email: </label>
                         <div class="inputOuter2">
 
-                            <input type="text" id="email" name="qq" maxlength="10" class="inputstyle2"/>
+                            <input type="text" id="email" contributorName="qq" maxlength="10" class="inputstyle2"/>
                         </div>
 
                     </li>
