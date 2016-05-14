@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -32,12 +33,6 @@ public class LoginController {
         return loginModelImpl.register(webUsername, password, eamil);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String login(Model model){
-        model.addAttribute("message", "");
-        return "login";
-    }
-
     /**
      * if login success, save current user information to session and redirect to the recommend page;<br>
      * else back to login page
@@ -47,6 +42,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
     public boolean login(@RequestParam String username, @RequestParam String password,
                         HttpSession session){
         if (!loginModelImpl.existName(username)){

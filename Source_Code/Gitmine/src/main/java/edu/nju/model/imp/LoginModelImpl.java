@@ -37,7 +37,7 @@ public class LoginModelImpl implements LoginModelService{
 
     @Override
     public boolean existName(String webUsername) {
-        return false;
+        return true;
     }
 
     public RegisterDaoService getRegisterDaoImpl() {
