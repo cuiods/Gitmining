@@ -4,7 +4,7 @@ import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.service.UserModelService;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +55,7 @@ public class UserModelImpl implements UserModelService {
         return userDaoImpl.findUserByLoginName(username);
     }
 
-    public SimpleChart getUserRadarChart(String username) {
+    public RadarChart getUserRadarChart(String username) {
         return null;
     }
 

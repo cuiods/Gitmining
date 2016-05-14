@@ -4,12 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import edu.nju.common.TimeTranslator;
 import edu.nju.model.pojo.CodeFrequency;
 import edu.nju.model.pojo.CommitChart;
+import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.SimpleChart;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -84,9 +85,47 @@ public class JsonNodeParser {
     public CodeFrequency getCodeFrequency(String ownername, String reponame){
         JsonNode node = jsonNodeReader.getCodeFrequency(ownername, reponame);
         ArrayList<String> field = new ArrayList<>();
-        ArrayList<String> add = new ArrayList<>();
-        ArrayList<String> delete = new ArrayList<>();
+        ArrayList<Integer> addition = new ArrayList<>();
+        ArrayList<Integer> delete = new ArrayList<>();
+        for (JsonNode week: node){
+            String time = timeTranslator.transUnixTime(week.get(0).asLong());
+            field.add(time);
+            addition.add(week.get(1).asInt());
+            delete.add(week.get(2).asInt());
+        }
+        CodeFrequency codeFrequency = new CodeFrequency((String[])field.toArray(),
+                (Integer[])addition.toArray(), (Integer[])delete.toArray());
+        return codeFrequency;
+    }
 
-        return null;
+    /**
+     * get the commit chart for <b>commits per hour of a day</b> and <b>commits per day of a week</b>.
+     * @param ownername
+     * @param reponame
+     * @return an array with <b>TWO</b> <tt>RadarChart</tt>.
+     */
+    public SimpleChart[] getPunchCard(String ownername, String reponame){
+        SimpleChart[] simpleCharts = new SimpleChart[2];
+        JsonNode node = jsonNodeReader.getPunchCard(ownername, reponame);
+
+        String [] hourField = {"0","1","2","3","4","5","6","7","8","9","10","11","12",
+                                "13","14","15","16","17","18","19","20","21","22","23"};
+        String [] weekField = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+
+        long [] hourValue = {0,0,0,0, 0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0, 0,0,0,0};
+        long [] weekValue = {0,0,0,0,0,0,0};
+
+        for (JsonNode data: node){
+            int weekday = data.get(0).asInt();
+            int hour = data.get(1).asInt();
+            int commit = data.get(2).asInt();
+            hourValue[hour] += commit;
+            weekValue[weekday] += commit;
+        }
+
+        simpleCharts[0] = new SimpleChart(hourField,hourValue);
+        simpleCharts[1] = new SimpleChart(weekField, weekValue);
+
+        return simpleCharts;
     }
 }

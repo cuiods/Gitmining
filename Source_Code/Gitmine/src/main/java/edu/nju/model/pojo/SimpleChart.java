@@ -1,21 +1,19 @@
 package edu.nju.model.pojo;
 
 /**
- * Created by Harry on 2016/5/12.
- * this is a simple pojo for radar chart<br/>
- * the class only contains the field and value array for radar chart.
+ * Created by Harry on 2016/5/14.
  */
 public class SimpleChart {
 
     private String [] field;
 
-    private double [] value;
+    private long [] value;
 
     public SimpleChart(){
 
     }
 
-    public SimpleChart(String[] field, double[] value) {
+    public SimpleChart(String[] field, long[] value) {
         this.field = field;
         this.value = value;
     }
@@ -28,11 +26,11 @@ public class SimpleChart {
         this.field = field;
     }
 
-    public double[] getValue() {
+    public long[] getValue() {
         return value;
     }
 
-    public void setValue(double[] value) {
+    public void setValue(long[] value) {
         this.value = value;
     }
 }

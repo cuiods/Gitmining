@@ -1,7 +1,7 @@
 package edu.nju.model.service;
 
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.RadarChart;
 
 import java.util.List;
 
@@ -51,6 +51,6 @@ public interface UserModelService {
      * @param username
      * @return
      */
-    public SimpleChart getUserRadarChart(String username);
+    public RadarChart getUserRadarChart(String username);
 
 }

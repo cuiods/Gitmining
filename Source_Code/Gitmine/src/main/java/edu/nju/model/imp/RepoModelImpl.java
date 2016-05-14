@@ -3,9 +3,11 @@ package edu.nju.model.imp;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
+import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
+import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class RepoModelImpl implements RepoModelService {
 
     @Resource
     private RepoDaoService repoDaoImpl;
+
+    @Resource
+    private JsonNodeParser jsonNodeParser;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
@@ -85,11 +90,11 @@ public class RepoModelImpl implements RepoModelService {
         return repoDaoImpl.getRepoBasicInfo(ownername, reponame);
     }
 
-    public SimpleChart getRepoRadarChart(String ownername, String reponame) {
+    public RadarChart getRepoRadarChart(String ownername, String reponame) {
         return null;
     }
 
     public SimpleChart[] getRepoCommitCharts(String ownername, String reponame) {
-        return new SimpleChart[4];
+        return null;
     }
 }

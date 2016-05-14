@@ -2,6 +2,7 @@ package edu.nju.model.service;
 
 import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
+import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.SimpleChart;
 
 import java.util.List;
@@ -69,7 +70,7 @@ public interface RepoModelService {
      * @param reponame
      * @return
      */
-    public SimpleChart getRepoRadarChart(String ownername, String reponame);
+    public RadarChart getRepoRadarChart(String ownername, String reponame);
 
     /**
      * get graphs of a repo about commits<br/>

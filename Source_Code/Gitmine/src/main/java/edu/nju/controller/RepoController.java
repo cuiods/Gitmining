@@ -3,6 +3,7 @@ package edu.nju.controller;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
+import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Controller;
@@ -68,36 +69,26 @@ public class RepoController {
     public Map<String, Object> getRepoInfo(@PathVariable String ownername, @PathVariable String reponame) {
 
         TblRepo basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
-        SimpleChart radarChart = repoModelImpl.getRepoRadarChart(ownername, reponame);
-        SimpleChart[] commitCharts = repoModelImpl.getRepoCommitCharts(ownername, reponame);
+        RadarChart radarChart = repoModelImpl.getRepoRadarChart(ownername, reponame);
         List<TblRepo> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
 
         Map<String, Object> repoDetailInfo = new HashMap<>();
         repoDetailInfo.put("basicInfo", basicInfo);
         repoDetailInfo.put("radarChart", radarChart);
-        try{
-            repoDetailInfo.put("commitPerDayOfAll", commitCharts[0]);
-            repoDetailInfo.put("commitPerHourOfDay", commitCharts[1]);
-            repoDetailInfo.put("commitPerDayOfWeek", commitCharts[2]);
-            repoDetailInfo.put("commitPerDayOfMonth", commitCharts[3]);
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
         repoDetailInfo.put("related", relatedRepo);
 
         return repoDetailInfo;
     }
 
     @RequestMapping(value = "/{ownername}/{reponame}/graph", method = RequestMethod.GET)
-    public String getRepoDetailGraph(@PathVariable String ownername, @PathVariable String reponame, Model model){
+    @ResponseBody
+    public Map<String,Object> getRepoDetailGraph(@PathVariable String ownername, @PathVariable String reponame){
         SimpleChart[] commitCharts = repoModelImpl.getRepoCommitCharts(ownername, reponame);
-        model.addAttribute("commitPerHourOfDay", commitCharts[0]);
-        model.addAttribute("commitPerDayOfWeek", commitCharts[1]);
-        model.addAttribute("commitPerDayOfMonth", commitCharts[2]);
+
 
         //todo more graphs should be added here, such as contributions of each member
 
-        return "repo/graph";
+        return null;
     }
 
     public RepoModelService getRepoModelImpl() {

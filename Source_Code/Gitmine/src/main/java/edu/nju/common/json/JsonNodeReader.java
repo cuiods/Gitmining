@@ -76,7 +76,8 @@ public class JsonNodeReader {
         try {
             node = objectMapper.readTree(new URL(url));
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("io exception when read json from github");
         }
         return node;
     }
