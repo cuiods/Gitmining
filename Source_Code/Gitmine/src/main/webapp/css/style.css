@@ -141,9 +141,22 @@ nav a:focus {
 	display:inline-block;
 	cursor:pointer;
 }
+
 .social-icons i:hover {
 	opacity: 0.5;
 }
+.login-button:hover{
+	opacity: 0.5;
+}
+.login-button{
+	width:35px;
+	height:35px;
+	background: transparent;
+	color: white;
+	display:inline-block;
+	cursor:pointer;
+}
+
 i.facebook{
 	background-position:0px 0px;
 }
@@ -570,6 +583,8 @@ i.icon4{
   font-size: 1.2em;
   vertical-align: middle;
 }
+
+
 /*-- news --*/
 .news {
   padding: 4em 0;
@@ -597,6 +612,7 @@ i.icon4{
 .news-grid img{
   width: 100%;
 }
+
 img.zoom-img:hover {
   -webkit-transform: scale(1.15);
   -webkit-transition-timing-function: ease-out;
