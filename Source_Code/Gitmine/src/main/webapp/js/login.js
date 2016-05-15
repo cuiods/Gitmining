@@ -17,10 +17,10 @@ $(function(){
 		$('#qlogin').css('display','block');
 		$('#web_qr_login').css('display','none');
 		});
-if(getParam("a")=='0')
-{
-	$('#switch_login').trigger('click');
-}
+		if(getParam("a")=='0')
+		{
+			$('#switch_login').trigger('click');
+		}
 
 	});
 	
