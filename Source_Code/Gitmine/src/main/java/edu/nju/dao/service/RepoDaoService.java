@@ -110,4 +110,44 @@ public interface RepoDaoService {
      */
     public boolean saveRepoInterest(RepoLabel repoLabel);
 
+    /**
+     * get the max size of all repos
+     * @return
+     */
+    public double getMaxRepoSize();
+
+    public double getMinRepoSize();
+
+    /**
+     * get the max fork count of all repos
+     * @return
+     */
+    public double getMaxRepoFork();
+
+    public double getMinRepoFork();
+
+    /**
+     * get the max popular value of all repos, where "popular" means <tt>numStar</tt> + <tt>numSubsvriber</tt>.
+     * @return
+     */
+    public double getMaxRepoPopular();
+
+    public double getMinRepoPopular();
+
+    /**
+     * get the max complex value of all repos, where "complex" means <tt>numCollaborator</tt> + <tt>numContributor</tt>.
+     * @return
+     */
+    public double getMaxRepoComplex();
+
+    public double getMinRepoComplex();
+
+    /**
+     * get the max active value of all repos, where "active" means <tt>numCommit</tt> + <tt>numPull</tt>.
+     * @return
+     */
+    public double getMaxActive();
+
+    public double getMinActive();
+
 }
