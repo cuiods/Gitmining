@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class JsonNodeParser {
 
                 String contributorName = child.findValue("author").findValue("login").asText();
                 String avatarUrl = child.findValue("author").findValue("avatar_url").asText();
-                long commitCount = child.findValue("totals").asLong();
+                long commitCount = child.findValue("total").asLong();
                 allTotal ++ ;
 
                 ArrayList<String> field = new ArrayList<>();
@@ -65,14 +66,17 @@ public class JsonNodeParser {
                     }
                 }
 
+                Object [] of = field.toArray();
+
                 CommitChart commitChart = new CommitChart(contributorName,avatarUrl,commitCount,
-                        (String[])field.toArray(), (Integer[])value.toArray());
+                        Arrays.copyOf(of,of.length,String[].class), value.toArray(new Integer[value.size()]));
 
                 resultMap.put(commitChart.getContributorName(), commitChart);
             }
             //compute the total commit data of all contributors
-            allCommit = new CommitChart("all", "", allTotal, (String[])allField.toArray(),
-                    (Integer[])allValue.toArray());
+            Object [] oaf = allField.toArray();
+            allCommit = new CommitChart("all", "", allTotal, Arrays.copyOf(oaf, oaf.length, String[].class),
+                    allValue.toArray(new Integer[allValue.size()]));
             resultMap.put("all", allCommit);
         }
 
@@ -87,14 +91,20 @@ public class JsonNodeParser {
         ArrayList<String> field = new ArrayList<>();
         ArrayList<Integer> addition = new ArrayList<>();
         ArrayList<Integer> delete = new ArrayList<>();
-        for (JsonNode week: node){
-            String time = timeTranslator.transUnixTime(week.get(0).asLong());
-            field.add(time);
-            addition.add(week.get(1).asInt());
-            delete.add(week.get(2).asInt());
+        if (node != null) {
+            for (JsonNode week: node){
+                String time = timeTranslator.transUnixTime(week.get(0).asLong());
+                field.add(time);
+                addition.add(week.get(1).asInt());
+                delete.add(week.get(2).asInt());
+            }
         }
-        CodeFrequency codeFrequency = new CodeFrequency((String[])field.toArray(),
-                (Integer[])addition.toArray(), (Integer[])delete.toArray());
+
+        Object [] of = field.toArray();
+        String [] sf = Arrays.copyOf(of, of.length, String[].class);
+
+        CodeFrequency codeFrequency = new CodeFrequency(sf, addition.toArray(new Integer[addition.size()]),
+                delete.toArray(new Integer[delete.size()]));
         return codeFrequency;
     }
 
@@ -115,17 +125,35 @@ public class JsonNodeParser {
         long [] hourValue = {0,0,0,0, 0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0, 0,0,0,0};
         long [] weekValue = {0,0,0,0,0,0,0};
 
-        for (JsonNode data: node){
-            int weekday = data.get(0).asInt();
-            int hour = data.get(1).asInt();
-            int commit = data.get(2).asInt();
-            hourValue[hour] += commit;
-            weekValue[weekday] += commit;
+        if (node != null) {
+            for (JsonNode data: node){
+                int weekday = data.get(0).asInt();
+                int hour = data.get(1).asInt();
+                int commit = data.get(2).asInt();
+                hourValue[hour] += commit;
+                weekValue[weekday] += commit;
+            }
         }
 
         simpleCharts[0] = new SimpleChart(hourField,hourValue);
         simpleCharts[1] = new SimpleChart(weekField, weekValue);
 
         return simpleCharts;
+    }
+
+    public JsonNodeReader getJsonNodeReader() {
+        return jsonNodeReader;
+    }
+
+    public void setJsonNodeReader(JsonNodeReader jsonNodeReader) {
+        this.jsonNodeReader = jsonNodeReader;
+    }
+
+    public TimeTranslator getTimeTranslator() {
+        return timeTranslator;
+    }
+
+    public void setTimeTranslator(TimeTranslator timeTranslator) {
+        this.timeTranslator = timeTranslator;
     }
 }
