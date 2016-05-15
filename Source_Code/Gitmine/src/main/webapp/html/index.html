@@ -25,6 +25,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					event.preventDefault();
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
+                $("#login").click(function (event) {
+                    alert("good!");
+                });
 			});
 </script>
 
@@ -38,10 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="header-top">
 				<div class="social-icons">
-					<i class="facebook"><button style="background-color: transparent"></button> </i>
-					<i class="twitter"></i>
-					<i class="googlepluse"></i>
-					<button class="glyphicon glyphicon-log-in" s ></button>
+					<a id="login" href=""><i class="googlepluse"></i></a>
+					<!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
 
 				</div>
 				<span class="menu"><img src="../images/nav.png" alt=""/></span>
@@ -274,6 +275,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
+
+            <div class="header">   <!--登陆头（登陆、注册）-->
+                <div class="switch" id="switch">
+                    <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">Sign in</a>
+                    <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">Sign up</a>  <!--tabindex规定了tab键控制的次序-->
+
+                    <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: -8px;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 	<!-- footer-section -->
 	<script type="text/javascript">
 		$(document).ready(function() {

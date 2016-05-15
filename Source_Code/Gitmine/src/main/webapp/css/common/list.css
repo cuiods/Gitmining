@@ -1,6 +1,6 @@
-/*-- news --*/
+/*-- items --*/
 
-.news-text h3 {
+.items-text h3 {
     color: #a6192e;
     font-size: 40px;
     font-weight: 300;
@@ -9,7 +9,7 @@
 }
 
 
-.news-text h5 {
+.items-text h5 {
     color: #969696;
     font-size: 14px;
     text-align:center;
@@ -18,10 +18,10 @@
     font-weight: 300;
     padding: 0;
 }
-.news-text h5 span{
+.items-text h5 span{
     display:block;
 }
-.news-grid {
+.items-grid {
     padding: 0 15px;
     float: left;
     margin-top: 2em;
@@ -32,7 +32,7 @@
 
 
 
-.news-grid a{
+.items-grid a{
     color: #000;
     font-size: 16px;
     font-weight: 500;
@@ -42,12 +42,12 @@
 }
 
 
-.news-grid a:hover{
+.items-grid a:hover{
     text-decoration:none;
 }
 
 
-.news-info p {
+.items-info p {
     color: #333333;
     font-size: 14px;
     margin: 0;
@@ -55,7 +55,7 @@
     font-weight: 300;
     margin-top:0.8em;
 }
-.news-info p {
+.items-info p {
     color: #333333;
     font-size: 14px;
     margin: 0;
@@ -70,26 +70,30 @@ a.mask {
     display: block;
 }
 /*padding*/
-.news {
+.list{
+    margin-top: 50px;
+}
+
+.items {
     padding: 3em 0;
 }
-.news-text h3 {
+.items-text h3 {
     padding-top: 0;
 }
-.news-grid {
+.items-grid {
     padding: 0 10px;
     margin-top: 0;
 }
 
 
 
-.news-text h5 span{
+.items-text h5 span{
     display:block;
 }
-.news-grids {
+.items-grids {
     margin-top: 3em;
 }
-.news-grid img{
+.items-grid img{
     width: 100%;
 }
 img.zoom-img:hover {
@@ -116,7 +120,7 @@ a.mask {
     overflow: hidden;
     display: block;
 }
-.news-grid a{
+.items-grid a{
     color: #000;
     font-size: 16px;
     font-weight: 500;
@@ -128,10 +132,10 @@ a.button img {
     width: 7%;
     margin-top: 5px;
 }
-.news-grid a:hover{
+.items-grid a:hover{
     text-decoration:none;
 }
-.news-grid span {
+.items-grid span {
     color: #a6192e;
     font-size: 14px;
     line-height: 1.7em;
@@ -141,7 +145,7 @@ a.button img {
 
 }
 
-.news-info p {
+.items-info p {
     color: #333333;
     font-size: 14px;
     margin: 0;
@@ -168,3 +172,9 @@ img.zoom-img {
     -moz-transition-duration: 250ms;
 }
 /*end for zoom*/
+
+/*recommend*/
+.recommend{
+    float: right; margin-left: 30px;padding: 0;visibility: visible; -webkit-animation-delay: 0.4s;
+
+}

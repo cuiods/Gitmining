@@ -4,11 +4,11 @@
 
     background-color:white;
     border-bottom: dashed 1px #D2D2D2;
-    border-bottom-width: 1px;
-    border-bottom-style: dashed;
-    border-bottom-color: rgb(210, 210, 210);
+    /*border-bottom-width: 1px;*/
+    /*border-bottom-style: dashed;*/
+    /*border-bottom-color: rgb(210, 210, 210);*/
     padding: 10px;
-    margin: 10px;
+    margin: 0 auto;
 
 
     word-wrap: break-word;
@@ -16,6 +16,11 @@
 
 }
 
+.label{
+    margin-left: 40px;
+}
+
 .labels{
-    margin-top: 50px;
+    padding: 0px;
+    margin-top: 20px;
 }
