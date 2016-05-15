@@ -3,10 +3,7 @@ package edu.nju.dao.impl;
 import edu.nju.common.SortType;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.*;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -33,9 +30,11 @@ public class RepoDaoImp implements RepoDaoService{
      * @return list of repositorys
      */
     public List<TblRepo> getSearchResult(String keyword) {
-        Query query = getSession().createQuery("from TblRepo as u where u.name like %?%");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblRepo as u where u.name like %?%");
         query.setString(0, keyword);
         List<TblRepo> repos = query.list();
+        session.close();
         return repos;
     }
 
@@ -61,7 +60,8 @@ public class RepoDaoImp implements RepoDaoService{
             default:hql+="order by name ";break;
         }
         hql += isDesc?"desc":"asc";
-        Query query = getSession().createQuery(hql);
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(hql);
         query.setString(0,"%"+keyword+"%");
         int param = 1;
         if (filterType!=null&&!filterType.isEmpty()) {
@@ -80,7 +80,9 @@ public class RepoDaoImp implements RepoDaoService{
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
-        return query.list();
+        List result = query.list();
+        session.close();
+        return result;
     }
 
     /**
@@ -89,8 +91,11 @@ public class RepoDaoImp implements RepoDaoService{
      * @return number of repository
      */
     public long getTotalCount() {
-        Query query = getSession().createQuery("select count(*) from TblRepo");
-        return (Long) query.list().get(0);
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count(*) from TblRepo");
+        long result = (Long) query.list().get(0);
+        session.close();
+        return result;
     }
 
     /**
@@ -101,10 +106,13 @@ public class RepoDaoImp implements RepoDaoService{
      * @deprecated
      */
     public List<TblRepo> getRepos(SortType sortType) {
+        Session session = sessionFactory.openSession();
         String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
-        Query query = getSession().createQuery("from TblRepo order by ?");
+        Query query = session.createQuery("from TblRepo order by ?");
         query.setString(0,sort[sortType.ordinal()-SortType.Repo_Name.ordinal()]);
-        return query.list();
+        List result = query.list();
+        session.close();
+        return result;
     }
 
     /**
@@ -115,10 +123,13 @@ public class RepoDaoImp implements RepoDaoService{
      * @return the reference to the list
      */
     public List<TblRepo> getRepos(int offset, int maxNum) {
+        Session session = sessionFactory.openSession();
         Query query = getSession().createQuery("from TblRepo");
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
-        return query.list();
+        List result = query.list();
+        session.close();
+        return result;
     }
 
     /**
@@ -131,7 +142,7 @@ public class RepoDaoImp implements RepoDaoService{
      */
     public List<TblRepo> getRepos(SortType sortType,boolean isDesc, int offset, int maxNum) {
         String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
-        Session session = getSession();
+        Session session = sessionFactory.openSession();
         Query query = null;
         String order = isDesc?"desc":"asc";
         switch (sortType) {
@@ -145,7 +156,9 @@ public class RepoDaoImp implements RepoDaoService{
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
-        return query.list();
+        List result = query.list();
+        session.close();
+        return result;
     }
 
     /**
@@ -158,13 +171,15 @@ public class RepoDaoImp implements RepoDaoService{
      */
     public TblRepo getRepoBasicInfo(String owner, String repoName) {
         TblRepo repo = null;
-        Query query = getSession().createQuery("from TblRepo where ownerName=? and name=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblRepo where ownerName=? and name=?");
         query.setString(0,owner);
         query.setString(1,repoName);
         List<TblRepo> repos = query.list();
         if (repos.size()>0) {
-            return repos.get(0);
+            repo = repos.get(0);
         }
+        session.close();
         return repo;
     }
 
@@ -178,7 +193,8 @@ public class RepoDaoImp implements RepoDaoService{
      * The return value will be null if the is no such repository.
      */
     public List<String> getRepoContributor(String owner, String repoName) {
-        Query query = getSession().createQuery("from TblContributor where ownerName=? and repo=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblContributor where ownerName=? and repo=?");
         query.setString(0,owner);
         query.setString(1,repoName);
         List<TblContributor> contributors = query.list();
@@ -186,6 +202,7 @@ public class RepoDaoImp implements RepoDaoService{
         for(int i = 0; i < contributors.size(); i++) {
             list.add(contributors.get(i).getContributor());
         }
+        session.close();
         return list;
     }
 
@@ -197,7 +214,8 @@ public class RepoDaoImp implements RepoDaoService{
      * @return list of brief info of collaborators.
      */
     public List<String> getRepoCollaborator(String owner, String repoName) {
-        Query query = getSession().createQuery("from TblCollabrator where repoOwner=? and repo=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblCollabrator where repoOwner=? and repo=?");
         query.setString(0,owner);
         query.setString(1,repoName);
         List<TblCollabrator> collabrators = query.list();
@@ -205,6 +223,7 @@ public class RepoDaoImp implements RepoDaoService{
         for(int i = 0; i < collabrators.size(); i++) {
             list.add(collabrators.get(i).getCollabrator());
         }
+        session.close();
         return list;
     }
 
@@ -216,7 +235,8 @@ public class RepoDaoImp implements RepoDaoService{
      * @return
      */
     public List<String> getRepoSubscriber(String owner, String repoName) {
-        Query query = getSession().createQuery("from TblSubscriber where repoOwner=? and repo=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblSubscriber where repoOwner=? and repo=?");
         query.setString(0,owner);
         query.setString(1,repoName);
         List<TblSubscriber> subscriber = query.list();
@@ -224,6 +244,7 @@ public class RepoDaoImp implements RepoDaoService{
         for(int i = 0; i < subscriber.size(); i++) {
             list.add(subscriber.get(i).getSubscriber());
         }
+        session.close();
         return list;
     }
 
@@ -235,14 +256,16 @@ public class RepoDaoImp implements RepoDaoService{
      * @return RepoLabel
      */
     public RepoLabel getRepoInterest(String repoOwner, String repoName) {
+        Session session = sessionFactory.openSession();
         RepoLabel repoLabel = null;
-        Query query = getSession().createQuery("from RepoLabel where repoOwner=? and repo=?");
+        Query query = session.createQuery("from RepoLabel where repoOwner=? and repo=?");
         query.setString(0,repoOwner);
         query.setString(1,repoName);
         List<RepoLabel> repoLabels = query.list();
         if (repoLabels.size()>0) {
-            return repoLabels.get(0);
+            repoLabel = repoLabels.get(0);
         }
+        session.close();
         return repoLabel;
     }
 
@@ -259,5 +282,105 @@ public class RepoDaoImp implements RepoDaoService{
         session.flush();
         transaction.commit();
         return true;
+    }
+
+    @Override
+    public double getMaxRepoSize() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max (repo.size) from TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMinRepoSize() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select min (repo.size) from TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMaxRepoFork() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max (repo.numFork) from  TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMinRepoFork() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select min (repo.numFork) from  TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMaxRepoPopular() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max (repo.numStar + repo.numSubscriber) from  TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMinRepoPopular() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select min (repo.numStar + repo.numSubscriber) from  TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMaxRepoComplex() {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery(
+                "SELECT max(num_colla + num_contri) AS complex FROM ( (SELECT owner_name AS owner, " +
+                "repo AS repo, count(*) AS num_contri FROM tbl_contributor GROUP BY owner_name, repo) " +
+                "AS A RIGHT JOIN (SELECT repo_owner AS owner, repo AS repo, count(*) AS num_colla " +
+                "FROM tbl_collabrator GROUP BY repo_owner, repo) AS B ON A.owner = B.owner AND " +
+                "A.repo = B.repo)");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMinRepoComplex() {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery(
+                "SELECT min(num_colla + num_contri) AS complex FROM ( (SELECT owner_name AS owner, " +
+                        "repo AS repo, count(*) AS num_contri FROM tbl_contributor GROUP BY owner_name, repo) " +
+                        "AS A RIGHT JOIN (SELECT repo_owner AS owner, repo AS repo, count(*) AS num_colla " +
+                        "FROM tbl_collabrator GROUP BY repo_owner, repo) AS B ON A.owner = B.owner AND " +
+                        "A.repo = B.repo)");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMaxActive() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max (repo.numCommit + repo.numPull) from  TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMinActive() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select min (repo.numCommit + repo.numPull) from  TblRepo repo");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
     }
 }
