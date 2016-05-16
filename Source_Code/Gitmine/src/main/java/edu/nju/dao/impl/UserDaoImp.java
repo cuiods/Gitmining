@@ -93,11 +93,15 @@ public class UserDaoImp implements UserDaoService {
      * @param maxNum
      * @return list of sorted user.
      */
+    @Deprecated
     public List<TblUser> getUsers(int offset, int maxNum) {
-        Query query = getSession().createQuery("from TblUser");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblUser");
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
-        return query.list();
+        List<TblUser> list = query.list();
+        session.close();
+        return list;
     }
 
     /**
@@ -109,7 +113,7 @@ public class UserDaoImp implements UserDaoService {
      * @return
      */
     public List<TblUser> getUsers(SortType sortType, boolean isDesc,  int offset, int maxNum) {
-        Session session = getSession();
+        Session session = sessionFactory.openSession();
         Query query = null;
         String order = isDesc?"desc":"asc";
         switch (sortType) {
@@ -120,7 +124,9 @@ public class UserDaoImp implements UserDaoService {
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
-        return query.list();
+        List<TblUser> list = query.list();
+        session.close();
+        return list;
     }
 
 
@@ -131,9 +137,12 @@ public class UserDaoImp implements UserDaoService {
      * @return list of repo names
      */
     public List<List> getUserSubscribeRepos(String userLoginName) {
-        Query query = getSession().createQuery("select new list(repoOwner,repo) from TblSubscriber where subscriber=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select new list(repoOwner,repo) from TblSubscriber where subscriber=?");
         query.setString(0,userLoginName);
-        return query.list();
+        List<List> list = query.list();
+        session.close();
+        return list;
     }
 
     /**
@@ -143,9 +152,12 @@ public class UserDaoImp implements UserDaoService {
      * @return list of repo names
      */
     public List<List> getUserCollaboratorRepos(String userLoginName) {
-        Query query = getSession().createQuery("select new list(repoOwner,repo) from TblCollabrator where collabrator=?");
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("select new list(repoOwner,repo) from TblCollabrator where collabrator=?");
         query.setString(0,userLoginName);
-        return query.list();
+        List<List> list = query.list();
+        session.close();
+        return list;
     }
 
     /**
@@ -155,9 +167,12 @@ public class UserDaoImp implements UserDaoService {
      * @return list of repo names
      */
     public List<List> getUserContriutorRepos(String userLoginName) {
-        Query query = getSession().createQuery("select new list(ownerName,repo) from TblContributor where contributor=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select new list(ownerName,repo) from TblContributor where contributor=?");
         query.setString(0,userLoginName);
-        return query.list();
+        List<List> list = query.list();
+        session.close();
+        return list;
     }
 
     /**
@@ -168,9 +183,11 @@ public class UserDaoImp implements UserDaoService {
      * {@link UserLabel}
      */
     public UserLabel getUserInterest(String userName) {
-        Query query = getSession().createQuery("from UserLabel where userLogin=?");
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("from UserLabel where userLogin=?");
         query.setString(0,userName);
         List<UserLabel> userLabels = query.list();
+        session.close();
         if(userLabels.size()>0) {
             return userLabels.get(0);
         }
@@ -184,11 +201,12 @@ public class UserDaoImp implements UserDaoService {
      * @return is succeed
      */
     public boolean saveUserInterest(UserLabel userLabel) {
-        Session session = getSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(userLabel);
         session.flush();
         transaction.commit();
+        session.close();
         return true;
     }
 

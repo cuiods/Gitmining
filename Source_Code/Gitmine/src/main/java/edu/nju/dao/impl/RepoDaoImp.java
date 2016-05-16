@@ -20,9 +20,6 @@ public class RepoDaoImp implements RepoDaoService{
     @Resource
     private SessionFactory sessionFactory;
 
-    public Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
     /**
      * search repos by keyword.
      *
@@ -127,7 +124,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Deprecated
     public List<TblRepo> getRepos(int offset, int maxNum) {
         Session session = sessionFactory.openSession();
-        Query query = getSession().createQuery("from TblRepo");
+        Query query = session.createQuery("from TblRepo");
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
         List result = query.list();
@@ -144,18 +141,18 @@ public class RepoDaoImp implements RepoDaoService{
      * @return
      */
     public List<TblRepo> getRepos(SortType sortType,boolean isDesc, int offset, int maxNum) {
-        String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
+        //String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
         Session session = sessionFactory.openSession();
         Query query = null;
         String order = isDesc?"desc":"asc";
         switch (sortType) {
-            case Repo_Star:query = getSession().createQuery("from TblRepo order by numStar "+order);break;
-            case Repo_Fork:query = getSession().createQuery("from TblRepo order by numFork "+order);break;
-            case Repo_Subcri:query = getSession().createQuery("from TblRepo order by numSubscriber "+order);break;
-            case Repo_Contri:query = getSession().createQuery("from TblRepo order by numContributor "+order);break;
-            case Repo_Colla:query = getSession().createQuery("from TblRepo order by numCollaborator "+order);break;
-            case Repo_Update:query = getSession().createQuery("from TblRepo order by updateAt "+order);break;
-            default:query = getSession().createQuery("from TblRepo order by name "+order);break;
+            case Repo_Star:query = session.createQuery("from TblRepo order by numStar "+order);break;
+            case Repo_Fork:query = session.createQuery("from TblRepo order by numFork "+order);break;
+            case Repo_Subcri:query = session.createQuery("from TblRepo order by numSubscriber "+order);break;
+            case Repo_Contri:query = session.createQuery("from TblRepo order by numContributor "+order);break;
+            case Repo_Colla:query = session.createQuery("from TblRepo order by numCollaborator "+order);break;
+            case Repo_Update:query = session.createQuery("from TblRepo order by updateAt "+order);break;
+            default:query = session.createQuery("from TblRepo order by name "+order);break;
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
@@ -279,11 +276,12 @@ public class RepoDaoImp implements RepoDaoService{
      * @return is succeed.
      */
     public boolean saveRepoInterest(RepoLabel repoLabel) {
-        Session session = getSession();
+        Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(repoLabel);
         session.flush();
         transaction.commit();
+        session.close();
         return true;
     }
 

@@ -43,6 +43,7 @@ public interface UserDaoService {
      * get sorted user list.
      * @return list of sorted user.
      */
+    @Deprecated
     public List<TblUser> getUsers(int offset, int maxNum);
 
     /**
