@@ -7,6 +7,7 @@ import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -383,4 +384,60 @@ public class RepoDaoImp implements RepoDaoService{
         session.close();
         return Double.valueOf(list.get(0).toString());
     }
+
+    @Override
+    public double getRepoComplex(String ownername, String reponame) {
+        Session session = sessionFactory.openSession();
+        double contrCount = 0;
+        double collaCount = 0;
+
+        Query query = session.createQuery("select count (*) from TblContributor where ownerName = ? and repo = ?");
+        query.setString(0,ownername);
+        query.setString(1,reponame);
+        List contriList = query.list();
+        contrCount = ((BigInteger)contriList.get(0)).doubleValue();
+
+        Query query1 = session.createQuery("select count (*) from TblCollabrator where repoOwner = ?  and repo = ?");
+        query.setString(0,ownername);
+        query.setString(1,reponame);
+        List collaList = query1.list();
+        collaCount = ((BigInteger)collaList.get(0)).doubleValue();
+
+        session.close();
+
+        return contrCount+collaCount;
+    }
+
+    /*
+    public void updateUrl(){
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM tbl_repo");
+        List list = query.list();
+        long total = ((BigInteger) list.get(0)).longValue();
+        String header = "https://github.com/";
+
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+
+            for (long i=1; i<=total;i++) {
+                TblRepo tempRepo = (TblRepo) session.get(TblRepo.class, i);
+                String url = header+tempRepo.getOwnerName()+"/"+tempRepo.getName();
+                tempRepo.setUrl(url);
+                session.update(tempRepo);
+                //session.flush();
+            }
+            session.flush();
+            transaction.commit();
+            System.out.println("url update success!");
+        } catch (HibernateException e){
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+    }
+    */
 }
