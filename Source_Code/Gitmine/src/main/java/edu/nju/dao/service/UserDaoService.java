@@ -4,6 +4,7 @@ import edu.nju.common.SortType;
 import edu.nju.entity.TblUser;
 import edu.nju.entity.UserLabel;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -93,4 +94,49 @@ public interface UserDaoService {
      */
     public boolean saveUserInterest(UserLabel userLabel);
 
+    /**
+     * get the count of user or organization
+     * @param isOrg 0 for user, 1 for org
+     * @return
+     */
+    public long getStatsUserType(byte isOrg);
+
+    /**
+     * get the count of users who has repos between min and max
+     * @param min
+     * @param max
+     * @return
+     */
+    public long getStatsUserOwnRepo(int min, int max);
+
+    /**
+     * get the count of users who has gists between min and max
+     * @param min
+     * @param max
+     * @return
+     */
+    public long getStatsUserGist(int min, int max);
+
+    /**
+     * get the count if users who has repos between min and max
+     * @param min
+     * @param max
+     * @return
+     */
+    public long getStatsUserFollower(int min, int max);
+
+    /**
+     * get the count of users create between fromTime and toTime
+     * @param fromTime
+     * @param toTime
+     * @return
+     */
+    public long getStatsCreateTime(Calendar fromTime, Calendar toTime);
+
+    /**
+     * get the statistic for user email
+     * @param maxResults
+     * @return
+     */
+    public List getStatsEmail(int maxResults);
 }

@@ -10,14 +10,12 @@ import javax.persistence.*;
 public class RegisterLabel {
     private String register;
     private double web;
-    private double activeRecord;
     private double app;
     private double api;
     private double framework;
     private double cms;
     private double django;
     private double emacs;
-    private double irc;
     private double mac;
     private double management;
     private double linux;
@@ -25,17 +23,13 @@ public class RegisterLabel {
     private double interFace;
     private double os;
     private double server;
-    private double source;
-    private double textMate;
     private double tool;
-    private double website;
-    private double pulgin;
+    private double plugin;
     private double json;
     private double tempLate;
     private double library;
     private double ui;
     private double dataBase;
-    private double other;
 
     @Id
     @Column(name = "register")
@@ -55,16 +49,6 @@ public class RegisterLabel {
 
     public void setWeb(double web) {
         this.web = web;
-    }
-
-    @Basic
-    @Column(name = "active_record")
-    public double getActiveRecord() {
-        return activeRecord;
-    }
-
-    public void setActiveRecord(double activeRecord) {
-        this.activeRecord = activeRecord;
     }
 
     @Basic
@@ -128,16 +112,6 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "irc")
-    public double getIrc() {
-        return irc;
-    }
-
-    public void setIrc(double irc) {
-        this.irc = irc;
-    }
-
-    @Basic
     @Column(name = "mac")
     public double getMac() {
         return mac;
@@ -178,7 +152,7 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "inter_face")
+    @Column(name = "interface")
     public double getInterFace() {
         return interFace;
     }
@@ -208,26 +182,6 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "source")
-    public double getSource() {
-        return source;
-    }
-
-    public void setSource(double source) {
-        this.source = source;
-    }
-
-    @Basic
-    @Column(name = "text_mate")
-    public double getTextMate() {
-        return textMate;
-    }
-
-    public void setTextMate(double textMate) {
-        this.textMate = textMate;
-    }
-
-    @Basic
     @Column(name = "tool")
     public double getTool() {
         return tool;
@@ -238,23 +192,13 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "website")
-    public double getWebsite() {
-        return website;
+    @Column(name = "plugin")
+    public double getPlugin() {
+        return plugin;
     }
 
-    public void setWebsite(double website) {
-        this.website = website;
-    }
-
-    @Basic
-    @Column(name = "pulgin")
-    public double getPulgin() {
-        return pulgin;
-    }
-
-    public void setPulgin(double pulgin) {
-        this.pulgin = pulgin;
+    public void setPlugin(double pulgin) {
+        this.plugin = pulgin;
     }
 
     @Basic
@@ -268,7 +212,7 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "temp_late")
+    @Column(name = "template")
     public double getTempLate() {
         return tempLate;
     }
@@ -298,23 +242,13 @@ public class RegisterLabel {
     }
 
     @Basic
-    @Column(name = "data_base")
+    @Column(name = "database")
     public double getDataBase() {
         return dataBase;
     }
 
     public void setDataBase(double dataBase) {
         this.dataBase = dataBase;
-    }
-
-    @Basic
-    @Column(name = "other")
-    public double getOther() {
-        return other;
-    }
-
-    public void setOther(double other) {
-        this.other = other;
     }
 
     @Override
@@ -325,14 +259,12 @@ public class RegisterLabel {
         RegisterLabel label = (RegisterLabel) o;
 
         if (Double.compare(label.web, web) != 0) return false;
-        if (Double.compare(label.activeRecord, activeRecord) != 0) return false;
         if (Double.compare(label.app, app) != 0) return false;
         if (Double.compare(label.api, api) != 0) return false;
         if (Double.compare(label.framework, framework) != 0) return false;
         if (Double.compare(label.cms, cms) != 0) return false;
         if (Double.compare(label.django, django) != 0) return false;
         if (Double.compare(label.emacs, emacs) != 0) return false;
-        if (Double.compare(label.irc, irc) != 0) return false;
         if (Double.compare(label.mac, mac) != 0) return false;
         if (Double.compare(label.management, management) != 0) return false;
         if (Double.compare(label.linux, linux) != 0) return false;
@@ -340,17 +272,13 @@ public class RegisterLabel {
         if (Double.compare(label.interFace, interFace) != 0) return false;
         if (Double.compare(label.os, os) != 0) return false;
         if (Double.compare(label.server, server) != 0) return false;
-        if (Double.compare(label.source, source) != 0) return false;
-        if (Double.compare(label.textMate, textMate) != 0) return false;
         if (Double.compare(label.tool, tool) != 0) return false;
-        if (Double.compare(label.website, website) != 0) return false;
-        if (Double.compare(label.pulgin, pulgin) != 0) return false;
+        if (Double.compare(label.plugin, plugin) != 0) return false;
         if (Double.compare(label.json, json) != 0) return false;
         if (Double.compare(label.tempLate, tempLate) != 0) return false;
         if (Double.compare(label.library, library) != 0) return false;
         if (Double.compare(label.ui, ui) != 0) return false;
         if (Double.compare(label.dataBase, dataBase) != 0) return false;
-        if (Double.compare(label.other, other) != 0) return false;
         if (register != null ? !register.equals(label.register) : label.register != null) return false;
 
         return true;
@@ -363,8 +291,6 @@ public class RegisterLabel {
         result = register != null ? register.hashCode() : 0;
         temp = Double.doubleToLongBits(web);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(activeRecord);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(app);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(api);
@@ -376,8 +302,6 @@ public class RegisterLabel {
         temp = Double.doubleToLongBits(django);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(emacs);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(irc);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(mac);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -393,15 +317,9 @@ public class RegisterLabel {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(server);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(source);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(textMate);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(tool);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(website);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(pulgin);
+        temp = Double.doubleToLongBits(plugin);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(json);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -412,8 +330,6 @@ public class RegisterLabel {
         temp = Double.doubleToLongBits(ui);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(dataBase);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(other);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }

@@ -11,6 +11,8 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -191,5 +193,69 @@ public class UserDaoImp implements UserDaoService {
         session.flush();
         transaction.commit();
         return true;
+    }
+
+    @Override
+    public long getStatsUserType(byte isOrg) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblUser where type = ?");
+        query.setByte(0, isOrg);
+        List list = query.list();
+        session.close();
+        return ((BigInteger)list.get(0)).longValue();
+    }
+
+    @Override
+    public long getStatsUserOwnRepo(int min, int max) {
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblUser where publicRepo >= " +
+                "? and publicRepo <= ?");
+        query.setInteger(0, min);
+        query.setInteger(1, max);
+        List list = query.list();
+        session.close();
+        return ((BigInteger)list.get(0)).longValue();
+    }
+
+    @Override
+    public long getStatsUserGist(int min, int max) {
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblUser where publicGist >= " +
+                "? and publicGist <= ?");
+        query.setInteger(0, min);
+        query.setInteger(1, max);
+        List list = query.list();
+        session.close();
+        return ((BigInteger)list.get(0)).longValue();
+    }
+
+    @Override
+    public long getStatsUserFollower(int min, int max) {
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblUser where follower >= " +
+                "? and follower <= ?");
+        query.setInteger(0, min);
+        query.setInteger(1, max);
+        List list = query.list();
+        session.close();
+        return ((BigInteger)list.get(0)).longValue();
+    }
+
+    @Override
+    public long getStatsCreateTime(Calendar fromTime, Calendar toTime) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblUser where createAt " +
+                ">= :fT and createAt <= :tT");
+        query.setTimestamp("fT", fromTime.getTime());
+        query.setTimestamp("tT", toTime.getTime());
+        List list = query.list();
+        long result = ((BigInteger)list.get(0)).longValue();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public List getStatsEmail(int maxResults) {
+        return null;
     }
 }

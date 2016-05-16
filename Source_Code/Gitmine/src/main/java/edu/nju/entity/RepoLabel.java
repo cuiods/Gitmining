@@ -12,14 +12,12 @@ public class RepoLabel {
     private String repo;
     private String repoOwner;
     private double web;
-    private double activeRecord;
     private double app;
     private double api;
     private double framework;
     private double cms;
     private double django;
     private double emacs;
-    private double irc;
     private double mac;
     private double management;
     private double linux;
@@ -27,17 +25,13 @@ public class RepoLabel {
     private double interFace;
     private double os;
     private double server;
-    private double source;
-    private double textMate;
     private double tool;
-    private double website;
-    private double pulgin;
+    private double plugin;
     private double json;
     private double tempLate;
     private double library;
     private double ui;
     private double dataBase;
-    private double other;
 
     @Id
     @Column(name = "repo")
@@ -67,16 +61,6 @@ public class RepoLabel {
 
     public void setWeb(double web) {
         this.web = web;
-    }
-
-    @Basic
-    @Column(name = "active_record")
-    public double getActiveRecord() {
-        return activeRecord;
-    }
-
-    public void setActiveRecord(double activeRecord) {
-        this.activeRecord = activeRecord;
     }
 
     @Basic
@@ -140,16 +124,6 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "irc")
-    public double getIrc() {
-        return irc;
-    }
-
-    public void setIrc(double irc) {
-        this.irc = irc;
-    }
-
-    @Basic
     @Column(name = "mac")
     public double getMac() {
         return mac;
@@ -190,7 +164,7 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "inter_face")
+    @Column(name = "interface")
     public double getInterFace() {
         return interFace;
     }
@@ -220,26 +194,6 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "source")
-    public double getSource() {
-        return source;
-    }
-
-    public void setSource(double source) {
-        this.source = source;
-    }
-
-    @Basic
-    @Column(name = "text_mate")
-    public double getTextMate() {
-        return textMate;
-    }
-
-    public void setTextMate(double textMate) {
-        this.textMate = textMate;
-    }
-
-    @Basic
     @Column(name = "tool")
     public double getTool() {
         return tool;
@@ -250,23 +204,13 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "website")
-    public double getWebsite() {
-        return website;
+    @Column(name = "plugin")
+    public double getPlugin() {
+        return plugin;
     }
 
-    public void setWebsite(double website) {
-        this.website = website;
-    }
-
-    @Basic
-    @Column(name = "pulgin")
-    public double getPulgin() {
-        return pulgin;
-    }
-
-    public void setPulgin(double pulgin) {
-        this.pulgin = pulgin;
+    public void setPlugin(double plugin) {
+        this.plugin = plugin;
     }
 
     @Basic
@@ -280,7 +224,7 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "temp_late")
+    @Column(name = "template")
     public double getTempLate() {
         return tempLate;
     }
@@ -310,23 +254,13 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "data_base")
+    @Column(name = "database")
     public double getDataBase() {
         return dataBase;
     }
 
     public void setDataBase(double dataBase) {
         this.dataBase = dataBase;
-    }
-
-    @Basic
-    @Column(name = "other")
-    public double getOther() {
-        return other;
-    }
-
-    public void setOther(double other) {
-        this.other = other;
     }
 
     @Override
@@ -337,14 +271,12 @@ public class RepoLabel {
         RepoLabel repoLabel = (RepoLabel) o;
 
         if (Double.compare(repoLabel.web, web) != 0) return false;
-        if (Double.compare(repoLabel.activeRecord, activeRecord) != 0) return false;
         if (Double.compare(repoLabel.app, app) != 0) return false;
         if (Double.compare(repoLabel.api, api) != 0) return false;
         if (Double.compare(repoLabel.framework, framework) != 0) return false;
         if (Double.compare(repoLabel.cms, cms) != 0) return false;
         if (Double.compare(repoLabel.django, django) != 0) return false;
         if (Double.compare(repoLabel.emacs, emacs) != 0) return false;
-        if (Double.compare(repoLabel.irc, irc) != 0) return false;
         if (Double.compare(repoLabel.mac, mac) != 0) return false;
         if (Double.compare(repoLabel.management, management) != 0) return false;
         if (Double.compare(repoLabel.linux, linux) != 0) return false;
@@ -352,17 +284,13 @@ public class RepoLabel {
         if (Double.compare(repoLabel.interFace, interFace) != 0) return false;
         if (Double.compare(repoLabel.os, os) != 0) return false;
         if (Double.compare(repoLabel.server, server) != 0) return false;
-        if (Double.compare(repoLabel.source, source) != 0) return false;
-        if (Double.compare(repoLabel.textMate, textMate) != 0) return false;
         if (Double.compare(repoLabel.tool, tool) != 0) return false;
-        if (Double.compare(repoLabel.website, website) != 0) return false;
-        if (Double.compare(repoLabel.pulgin, pulgin) != 0) return false;
+        if (Double.compare(repoLabel.plugin, plugin) != 0) return false;
         if (Double.compare(repoLabel.json, json) != 0) return false;
         if (Double.compare(repoLabel.tempLate, tempLate) != 0) return false;
         if (Double.compare(repoLabel.library, library) != 0) return false;
         if (Double.compare(repoLabel.ui, ui) != 0) return false;
         if (Double.compare(repoLabel.dataBase, dataBase) != 0) return false;
-        if (Double.compare(repoLabel.other, other) != 0) return false;
         if (repo != null ? !repo.equals(repoLabel.repo) : repoLabel.repo != null) return false;
         if (repoOwner != null ? !repoOwner.equals(repoLabel.repoOwner) : repoLabel.repoOwner != null) return false;
 
@@ -377,8 +305,6 @@ public class RepoLabel {
         result = 31 * result + (repoOwner != null ? repoOwner.hashCode() : 0);
         temp = Double.doubleToLongBits(web);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(activeRecord);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(app);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(api);
@@ -390,8 +316,6 @@ public class RepoLabel {
         temp = Double.doubleToLongBits(django);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(emacs);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(irc);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(mac);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -407,15 +331,9 @@ public class RepoLabel {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(server);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(source);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(textMate);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(tool);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(website);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(pulgin);
+        temp = Double.doubleToLongBits(plugin);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(json);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -426,8 +344,6 @@ public class RepoLabel {
         temp = Double.doubleToLongBits(ui);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(dataBase);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(other);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
