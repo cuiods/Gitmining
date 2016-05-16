@@ -67,7 +67,7 @@ $(document).ready(function() {
 				border: "1px solid red",
 				boxShadow: "0 0 2px red"
 			});
-			$('#userCue').html("<font color='red'><b>×用户名不能为空</b></font>");
+			$('#userCue').html("<font color='red'><b>×User name cannot be empty.</b></font>");
 			return false;
 		}
 
@@ -83,13 +83,24 @@ $(document).ready(function() {
 			return false;
 
 		}
+		
+		if ($('#passwd').val().length < pwdmin) {
+			$('#passwd').focus();
+			$('#userCue').html("<font color='red'><b>×the password cannot be less than " + pwdmin + "bits</b></font>");
+			return false;
+		}
+		if ($('#passwd2').val() != $('#passwd').val()) {
+			$('#passwd2').focus();
+			$('#userCue').html("<font color='red'><b>×the two passwords are not same！</b></font>");
+			return false;
+		}
+
 		$.ajax({
 			type: reMethod,
 			url: "/register",
 			data: { userName:$("#user").val(),password:$("#passwd").val()}, <!--要传递的数据-->
 			dataType:"json",                  <!--接受数据的格式-->
 			success: function(result) {
-
 				if (result.length > 2) {
 					$('#user').focus().css({
 						border: "1px solid red",
@@ -105,18 +116,6 @@ $(document).ready(function() {
 
 			}
 		});
-
-
-		if ($('#passwd').val().length < pwdmin) {
-			$('#passwd').focus();
-			$('#userCue').html("<font color='red'><b>×the password cannot be less than " + pwdmin + "bits</b></font>");
-			return false;
-		}
-		if ($('#passwd2').val() != $('#passwd').val()) {
-			$('#passwd2').focus();
-			$('#userCue').html("<font color='red'><b>×the two passwords are not same！</b></font>");
-			return false;
-		}
 
 		// var sqq = /^[1-9]{1}[0-9]{4,9}$/;
 		// if (!sqq.test($('#qq').val()) || $('#qq').val().length < 5 || $('#qq').val().length > 12) {
@@ -135,5 +134,16 @@ $(document).ready(function() {
 
 		$('#regUser').submit();
 	})
+	
+	$("#login_btn").click(function () {
+		$.ajax({
+			type:reMethod,
+			url:"login",
+			data: { username:$("#u").val(),password:$("#p").val()},
+			success:function (result) {
+				alert(result);
+			}
+		});
+	});
 
 });
