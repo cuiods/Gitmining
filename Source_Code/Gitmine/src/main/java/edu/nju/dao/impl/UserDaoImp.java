@@ -4,10 +4,7 @@ import edu.nju.common.SortType;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.TblUser;
 import edu.nju.entity.UserLabel;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -256,6 +253,22 @@ public class UserDaoImp implements UserDaoService {
 
     @Override
     public List getStatsEmail(int maxResults) {
-        return null;
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT email_suffix, COUNT (*) AS num FROM tbl_user WHERE " +
+                "email_suffix <> '' GROUP BY email_suffix ORDER BY num DESC ");
+        query.setMaxResults(maxResults);
+        List list = query.list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public List getStatsCompany(int maxResults) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select company, count (*) as num from TblUser " +
+                "where company <> '' group by company order by num desc ");
+        List list = query.list();
+        session.close();
+        return list;
     }
 }

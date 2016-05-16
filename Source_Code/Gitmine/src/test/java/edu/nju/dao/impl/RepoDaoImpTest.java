@@ -1,5 +1,8 @@
 package edu.nju.dao.impl;
 
+import edu.nju.common.SortType;
+import edu.nju.entity.TblRepo;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -7,6 +10,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
+import java.util.Calendar;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -23,52 +29,80 @@ public class RepoDaoImpTest {
 
     @Test
     public void getSearchResult() throws Exception {
-
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2008,1,1);
+        List<TblRepo> repoList = repoDaoImp.getSearchResult("rai",0,20, SortType.Repo_Name,true,"tool","Ruby",calendar);
+        assertTrue(repoList.size()>0);
+        TblRepo repo = repoList.get(0);
+        System.out.println("name-->"+repo.getName()+"  owner-->"+repo.getOwnerName());
     }
 
     @Test
     public void getSearchResult1() throws Exception {
-
+        List<TblRepo> list = repoDaoImp.getSearchResult("rai");
+        assertTrue(list.size()>0);
+        TblRepo repo = list.get(0);
+        System.out.println("name-->"+repo.getName()+"  owner-->"+repo.getOwnerName());
     }
 
     @Test
     public void getTotalCount() throws Exception {
-
+        long num = repoDaoImp.getTotalCount();
+        assertTrue(num>3000);
     }
 
     @Test
     public void getRepos() throws Exception {
-
+        List<TblRepo> list = repoDaoImp.getRepos(SortType.Repo_Star);
+        assertTrue(list.size()>2000);
     }
 
     @Test
     public void getRepos1() throws Exception {
-
+        List<TblRepo> repos = repoDaoImp.getRepos(0,20);
+        assertTrue(repos.size()==20);
     }
 
     @Test
     public void getRepos2() throws Exception {
-
+        List<TblRepo> repos = repoDaoImp.getRepos(SortType.Repo_Star,true,0,20);
+        Assert.assertTrue(repos.get(0).getNumStar()>36000);
     }
 
     @Test
     public void getRepoBasicInfo() throws Exception {
-
+        TblRepo repo = repoDaoImp.getRepoBasicInfo("jquery","jquery");
+        Assert.assertTrue(repo.getNumStar()==36996);
+        System.out.println(repo.getName()+repo.getCreateAt());
     }
 
     @Test
     public void getRepoContributor() throws Exception {
-
+        List<String> contributors = repoDaoImp.getRepoContributor("jashkenas","docco");
+        Assert.assertTrue(contributors.size()>0);
+        System.out.println(contributors.get(0));
     }
 
     @Test
     public void getRepoCollaborator() throws Exception {
+        List<String> list = repoDaoImp.getRepoCollaborator("jquery","jquery");
+        Assert.assertTrue(list.size()>0);
+        System.out.println("first colla: "+list.get(0));
+        System.out.println("total colla: "+list.size());
 
+        List<String> noresult = repoDaoImp.getRepoCollaborator("Harry1001", "hhahah");
+        assertTrue(noresult.size() == 0);
     }
 
     @Test
     public void getRepoSubscriber() throws Exception {
+        List<String> list = repoDaoImp.getRepoSubscriber("jquery","jquery");
+        Assert.assertTrue(list.size()>0);
+        System.out.println("first sub: "+list.get(0));
+        System.out.println("total sub: "+list.size());
 
+        List<String> noresult = repoDaoImp.getRepoSubscriber("Harry1001", "hhahah");
+        assertTrue(noresult.size() == 0);
     }
 
     @Test
@@ -150,6 +184,56 @@ public class RepoDaoImpTest {
         assertTrue(minActive>=0);
         System.out.println("repo min active is: "+minActive);
 
+    }
+
+    @Test
+    public void getRepoComplex() throws Exception {
+        double complex = repoDaoImp.getRepoComplex("rubinius", "rubinius");
+        assertTrue(complex>0);
+        System.out.println("rubinius complex: "+complex);
+    }
+
+    @Test
+    public void getStatsCreateTime() throws Exception {
+        Calendar cFrom = Calendar.getInstance();
+        Calendar cTo = Calendar.getInstance();
+        cFrom.set(2010,Calendar.JANUARY, 1, 0, 0, 0);
+        cTo.set(2010,Calendar.DECEMBER, 31, 23, 59, 59);
+        long people  = repoDaoImp.getStatsCreateTime(cFrom, cTo);
+        assertTrue(people>0);
+        System.out.println("2010 create repo count: "+people);
+    }
+
+    @Test
+    public void getStatsFork() throws Exception {
+        long forkCount = repoDaoImp.getStatsFork(10, 20);
+        assertTrue(forkCount>=0);
+        System.out.println("fork between 10 and 20 is: "+forkCount);
+    }
+
+    @Test
+    public void getStatsStar() throws Exception {
+        long starCount = repoDaoImp.getStatsStar(10,20);
+        assertTrue(starCount>=0);
+        System.out.println("star between 10 and 20 is: "+starCount);
+    }
+
+    @Test
+    public void getStatsLanguage() throws Exception {
+        List list = repoDaoImp.getStatsLanguage(10);
+        assertNotNull(list);
+        assertTrue(list.size()>0);
+        System.out.println("item's class is: "+list.get(0).getClass());
+        Object[] item = (Object[]) list.get(0);
+        System.out.println("item class: 1-->" + item[0].getClass() + "  2-->"+item[1].getClass());
+        System.out.println("in the item: 1-->" + item[0] + "  2-->"+item[1]);
+    }
+
+    @Test
+    public void getStatsSize() throws Exception {
+        long count = repoDaoImp.getStatsSize(50, 100);
+        assertTrue(count>0);
+        System.out.println("repos size between 50 and 100 is: " + count);
     }
 
 }

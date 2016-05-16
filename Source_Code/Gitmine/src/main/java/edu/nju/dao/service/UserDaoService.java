@@ -139,4 +139,12 @@ public interface UserDaoService {
      * @return
      */
     public List getStatsEmail(int maxResults);
+
+    /**
+     * get the statistic for users' company
+     * @param maxResults
+     * @return
+     */
+    public List getStatsCompany(int maxResults);
+
 }

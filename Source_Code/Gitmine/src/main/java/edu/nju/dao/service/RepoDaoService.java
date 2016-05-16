@@ -17,6 +17,7 @@ public interface RepoDaoService {
      * @param keyword
      * @return list of repositorys
      */
+    @Deprecated
     public List<TblRepo> getSearchResult(String keyword);
 
     public List<TblRepo> getSearchResult(String keyword,int offset,int maxNum, SortType type, boolean isDesc, String filterType,
@@ -34,12 +35,14 @@ public interface RepoDaoService {
      * @return the reference to the list
      * @deprecated
      */
+    @Deprecated
     public List<TblRepo> getRepos(SortType sortType);
 
     /**
      * get the user po list in the order specified by parameter <tt>sortType</tt>
      * @return the reference to the list
      */
+    @Deprecated
     public List<TblRepo> getRepos(int offset, int maxNum);
 
     /**

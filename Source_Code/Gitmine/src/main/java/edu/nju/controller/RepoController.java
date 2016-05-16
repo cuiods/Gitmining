@@ -83,7 +83,7 @@ public class RepoController {
     @RequestMapping(value = "/{ownername}/{reponame}/graph", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> getRepoDetailGraph(@PathVariable String ownername, @PathVariable String reponame){
-        SimpleChart[] commitCharts = repoModelImpl.getRepoCommitCharts(ownername, reponame);
+        //SimpleChart[] commitCharts = repoModelImpl.getRepoCommitCharts(ownername, reponame);
 
 
         //todo more graphs should be added here, such as contributions of each member
