@@ -150,4 +150,12 @@ public interface RepoDaoService {
 
     public double getMinActive();
 
+    /**
+     * get the repo complex value
+     * @param ownername
+     * @param reponame
+     * @return
+     */
+    public double getRepoComplex(String ownername, String reponame);
+
 }

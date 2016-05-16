@@ -32,6 +32,9 @@ public class RepoModelImpl implements RepoModelService {
     @Resource
     private JsonNodeParser jsonNodeParser;
 
+    @Resource
+    private RepoRadarImpl repoRadarImpl;
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
     public RepoModelImpl() {
@@ -91,7 +94,15 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public RadarChart getRepoRadarChart(String ownername, String reponame) {
-        return null;
+        String [] field = {"size", "fork", "popular", "complex", "active"};
+        double [] value = new double[5];
+        value[0] = repoRadarImpl.getRadarSize(ownername, reponame);
+        value[1] = repoRadarImpl.getRadarFork(ownername, reponame);
+        value[2] = repoRadarImpl.getRadarPopular(ownername, reponame);
+        value[3] = repoRadarImpl.getRadarComplex(ownername, reponame);
+        value[4] = repoRadarImpl.getRadarActive(ownername, reponame);
+
+        return new RadarChart(field, value);
     }
 
     public SimpleChart[] getRepoCommitCharts(String ownername, String reponame) {
