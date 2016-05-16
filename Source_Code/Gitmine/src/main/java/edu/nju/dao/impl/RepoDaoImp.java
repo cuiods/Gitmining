@@ -7,7 +7,6 @@ import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,10 +29,11 @@ public class RepoDaoImp implements RepoDaoService{
      * @param keyword
      * @return list of repositorys
      */
+    @Deprecated
     public List<TblRepo> getSearchResult(String keyword) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from TblRepo as u where u.name like %?%");
-        query.setString(0, keyword);
+        Query query = session.createQuery("from TblRepo as u where u.name like ? ");
+        query.setString(0, "%"+keyword+"%");
         List<TblRepo> repos = query.list();
         session.close();
         return repos;
@@ -106,6 +106,7 @@ public class RepoDaoImp implements RepoDaoService{
      * @return the reference to the list
      * @deprecated
      */
+    @Deprecated
     public List<TblRepo> getRepos(SortType sortType) {
         Session session = sessionFactory.openSession();
         String[] sort = {"name","numStar","numFork","numSubscriber","numContributor","numCollaborator","updateAt"};
@@ -123,6 +124,7 @@ public class RepoDaoImp implements RepoDaoService{
      * @param maxNum
      * @return the reference to the list
      */
+    @Deprecated
     public List<TblRepo> getRepos(int offset, int maxNum) {
         Session session = sessionFactory.openSession();
         Query query = getSession().createQuery("from TblRepo");
@@ -395,13 +397,17 @@ public class RepoDaoImp implements RepoDaoService{
         query.setString(0,ownername);
         query.setString(1,reponame);
         List contriList = query.list();
-        contrCount = ((BigInteger)contriList.get(0)).doubleValue();
+        if (contriList.size()>0){
+            contrCount = ((Long)contriList.get(0)).doubleValue();
+        }
 
         Query query1 = session.createQuery("select count (*) from TblCollabrator where repoOwner = ?  and repo = ?");
-        query.setString(0,ownername);
-        query.setString(1,reponame);
+        query1.setString(0,ownername);
+        query1.setString(1,reponame);
         List collaList = query1.list();
-        collaCount = ((BigInteger)collaList.get(0)).doubleValue();
+        if (collaList.size()>0){
+            collaCount = ((Long)collaList.get(0)).doubleValue();
+        }
 
         session.close();
 
@@ -416,7 +422,10 @@ public class RepoDaoImp implements RepoDaoService{
         query.setTimestamp("fT", fromTime.getTime());
         query.setTimestamp("tT", toTime.getTime());
         List list = query.list();
-        long result = ((BigInteger)list.get(0)).longValue();
+        long result = 0;
+        if (list.size()>0){
+            result = ((Long)list.get(0)).longValue();
+        }
         session.close();
         return result;
     }
@@ -429,7 +438,10 @@ public class RepoDaoImp implements RepoDaoService{
         query.setInteger("minFork", min);
         query.setInteger("maxFork", max);
         List list = query.list();
-        long result = ((BigInteger)list.get(0)).longValue();
+        long result = 0;
+        if (list.size()>0){
+            result = ((Long)list.get(0)).longValue();
+        }
         session.close();
         return result;
     }
@@ -442,7 +454,11 @@ public class RepoDaoImp implements RepoDaoService{
         query.setInteger(0,min);
         query.setInteger(1, max);
         List list = query.list();
-        long result = ((BigInteger)list.get(0)).longValue();
+        long result = 0;
+        if (list.size()>0){
+            result = ((Long)list.get(0)).longValue();
+        }
+
         session.close();
         return  result;
     }
@@ -461,46 +477,17 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public long getStatsSize(int min, int max){
         Session session =sessionFactory.openSession();
-        Query query = session.createQuery("select count (*) from TblRepo  where TblRepo.size>= " +
-                "? and TblRepo.size <= ?");
+        Query query = session.createQuery("select count (*) from TblRepo t  where t.size >= " +
+                "? and t.size <= ?");
         query.setInteger(0,min);
         query.setInteger(1, max);
         List list = query.list();
-        long result = ((BigInteger)list.get(0)).longValue();
+        long result = 0;
+        if (list.size()>0){
+            result = ((Long)list.get(0)).longValue();
+        }
         session.close();
         return result;
     }
 
-    /*
-    public void updateUrl(){
-        Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM tbl_repo");
-        List list = query.list();
-        long total = ((BigInteger) list.get(0)).longValue();
-        String header = "https://github.com/";
-
-        Transaction transaction = null;
-        try{
-            transaction = session.beginTransaction();
-
-            for (long i=1; i<=total;i++) {
-                TblRepo tempRepo = (TblRepo) session.get(TblRepo.class, i);
-                String url = header+tempRepo.getOwnerName()+"/"+tempRepo.getName();
-                tempRepo.setUrl(url);
-                session.update(tempRepo);
-                //session.flush();
-            }
-            session.flush();
-            transaction.commit();
-            System.out.println("url update success!");
-        } catch (HibernateException e){
-            e.printStackTrace();
-            if (transaction != null){
-                transaction.rollback();
-            }
-        } finally {
-            session.close();
-        }
-    }
-    */
 }
