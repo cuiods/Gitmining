@@ -145,17 +145,6 @@ nav a:focus {
 .social-icons i:hover {
 	opacity: 0.5;
 }
-.login-button:hover{
-	opacity: 0.5;
-}
-.login-button{
-	width:35px;
-	height:35px;
-	background: transparent;
-	color: white;
-	display:inline-block;
-	cursor:pointer;
-}
 
 i.facebook{
 	background-position:0px 0px;

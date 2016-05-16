@@ -118,23 +118,22 @@ $(document).ready(function() {
 			return false;
 		}
 
-		var sqq = /^[1-9]{1}[0-9]{4,9}$/;
-		if (!sqq.test($('#qq').val()) || $('#qq').val().length < 5 || $('#qq').val().length > 12) {
-			$('#qq').focus().css({
-				border: "1px solid red",
-				boxShadow: "0 0 2px red"
-			});
-			$('#userCue').html("<font color='red'><b>×the format of email is not correct!</b></font>");return false;
-		} else {
-			$('#qq').css({
-				border: "1px solid #D7D7D7",
-				boxShadow: "none"
-			});
-			
-		}
+		// var sqq = /^[1-9]{1}[0-9]{4,9}$/;
+		// if (!sqq.test($('#qq').val()) || $('#qq').val().length < 5 || $('#qq').val().length > 12) {
+		// 	$('#qq').focus().css({
+		// 		border: "1px solid red",
+		// 		boxShadow: "0 0 2px red"
+		// 	});
+		// 	$('#userCue').html("<font color='red'><b>×the format of email is not correct!</b></font>");return false;
+		// } else {
+		// 	$('#qq').css({
+		// 		border: "1px solid #D7D7D7",
+		// 		boxShadow: "none"
+		// 	});
+		//
+		// }
 
 		$('#regUser').submit();
-	});
-	
+	})
 
 });
