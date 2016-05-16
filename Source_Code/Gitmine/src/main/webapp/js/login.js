@@ -98,7 +98,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: reMethod,
 			url: "/register",
-			data: { userName:$("#user").val(),password:$("#passwd").val()}, <!--要传递的数据-->
+			data: { username:$("#user").val(),password:$("#passwd").val(),eamil:$("#email_input").val()}, <!--要传递的数据-->
 			dataType:"json",                  <!--接受数据的格式-->
 			success: function(result) {
 				if (result.length > 2) {
@@ -113,6 +113,7 @@ $(document).ready(function() {
 						boxShadow: "none"
 					});
 				}
+				alert(result);
 
 			}
 		});
@@ -141,9 +142,22 @@ $(document).ready(function() {
 			url:"login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
+				if (result.length > 2) {
+					$('#user').focus().css({
+						border: "1px solid red",
+						boxShadow: "0 0 2px red"
+					});$("#userCue").html(result);
+					return false;
+				} else {
+					$('#user').css({
+						border: "1px solid #D7D7D7",
+						boxShadow: "none"
+					});
+				}
 				alert(result);
 			}
 		});
+		$("login_form").submit();
 	});
 
 });
