@@ -48,7 +48,7 @@ public class RepoRadarImpl {
 
     public double getRadarSize(String ownername, String reponame){
         double complex = Math.log(repoDaoImpl.getRepoComplex(ownername, reponame)+1);
-        return (complex-minLogComplex)/(maxLogComplex-minLogComplex);
+        return (complex-minLogSize)/(maxLogSize-minLogSize);
     }
 
     public double getRadarFork(String ownername, String reponame){

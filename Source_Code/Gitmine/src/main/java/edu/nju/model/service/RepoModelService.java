@@ -2,10 +2,13 @@ package edu.nju.model.service;
 
 import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
+import edu.nju.model.pojo.CodeFrequency;
+import edu.nju.model.pojo.CommitChart;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.SimpleChart;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Harry on 2016/5/12.
@@ -76,9 +79,23 @@ public interface RepoModelService {
      * get graphs of a repo about commits<br/>
      * @param ownername
      * @param reponame
-     * @return the array of SimpleCharts' length is 4, the 0th is<br/>
-     *          per day of all, the 1st is per hour of a day,<br/>
-     *          the 2nd is per day of a week, the 3rd is per day of a month, t
+     * @return
      */
-    public SimpleChart[] getRepoCommitCharts(String ownername, String reponame);
+    public Map<String,CommitChart> getCommitByContributor(String ownername, String reponame);
+
+    /**
+     * get the code add and delete for each week
+     * @param ownername
+     * @param reponame
+     * @return
+     */
+    public CodeFrequency getCodeFrequency(String ownername, String reponame);
+
+    /**
+     * get the commit per hour of day and per day of week
+     * @param ownername
+     * @param reponame
+     * @return an array of <b>TWO</b> <tt>CommitChart</tt>
+     */
+    public SimpleChart [] getPunchCard(String ownername, String reponame);
 }

@@ -408,6 +408,69 @@ public class RepoDaoImp implements RepoDaoService{
         return contrCount+collaCount;
     }
 
+    @Override
+    public long getStatsCreateTime(Calendar fromTime, Calendar toTime) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblRepo where createAt " +
+                ">= :fT and createAt <= :tT");
+        query.setTimestamp("fT", fromTime.getTime());
+        query.setTimestamp("tT", toTime.getTime());
+        List list = query.list();
+        long result = ((BigInteger)list.get(0)).longValue();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public long getStatsFork(int min, int max) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblRepo where numFork >= :minFork " +
+                "and numFork <= :maxFork");
+        query.setInteger("minFork", min);
+        query.setInteger("maxFork", max);
+        List list = query.list();
+        long result = ((BigInteger)list.get(0)).longValue();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public long getStatsStar(int min, int max) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblRepo where numStar >= ? and " +
+                "numStar <= ?");
+        query.setInteger(0,min);
+        query.setInteger(1, max);
+        List list = query.list();
+        long result = ((BigInteger)list.get(0)).longValue();
+        session.close();
+        return  result;
+    }
+
+    @Override
+    public List getStatsLanguage(int maxResults) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select language, count (*) as num from TblRepo group by " +
+                "language order by num desc ");
+        query.setMaxResults(maxResults);
+        List list = query.list();
+        session.close();
+        return  list;
+    }
+
+    @Override
+    public long getStatsSize(int min, int max){
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("select count (*) from TblRepo  where TblRepo.size>= " +
+                "? and TblRepo.size <= ?");
+        query.setInteger(0,min);
+        query.setInteger(1, max);
+        List list = query.list();
+        long result = ((BigInteger)list.get(0)).longValue();
+        session.close();
+        return result;
+    }
+
     /*
     public void updateUrl(){
         Session session = sessionFactory.openSession();

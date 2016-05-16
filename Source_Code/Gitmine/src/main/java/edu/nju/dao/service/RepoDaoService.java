@@ -158,4 +158,42 @@ public interface RepoDaoService {
      */
     public double getRepoComplex(String ownername, String reponame);
 
+    /**
+     * get the count of repos create between fromTime and toTime
+     * @param fromTime
+     * @param toTime
+     * @return
+     */
+    public long getStatsCreateTime(Calendar fromTime, Calendar toTime);
+
+    /**
+     * get the count of repos has fork count between min and max
+     * @param min
+     * @param max
+     * @return
+     */
+    public long getStatsFork(int min, int max);
+
+    /**
+     * get the count of repos has star between min and max
+     * @param min
+     * @param max
+     * @return
+     */
+    public long getStatsStar(int min, int max);
+
+    /**
+     * statistic for repo language
+     * @param maxResults
+     * @return
+     */
+    public List getStatsLanguage(int maxResults);
+
+    /**
+     * statistic for repo size
+     * @param min
+     * @param max
+     * @return
+     */
+    public long getStatsSize(int min, int max);
 }

@@ -7,6 +7,8 @@ import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
+import edu.nju.model.pojo.CodeFrequency;
+import edu.nju.model.pojo.CommitChart;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
@@ -18,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Harry on 2016/5/12.
@@ -105,7 +108,20 @@ public class RepoModelImpl implements RepoModelService {
         return new RadarChart(field, value);
     }
 
-    public SimpleChart[] getRepoCommitCharts(String ownername, String reponame) {
-        return null;
+    @Override
+    public Map<String, CommitChart> getCommitByContributor(String ownername, String reponame) {
+        return jsonNodeParser.getCommitByContributors(ownername, reponame);
     }
+
+    @Override
+    public CodeFrequency getCodeFrequency(String ownername, String reponame) {
+        return jsonNodeParser.getCodeFrequency(ownername, reponame);
+    }
+
+    @Override
+    public SimpleChart[] getPunchCard(String ownername, String reponame) {
+        return jsonNodeParser.getPunchCard(ownername, reponame);
+    }
+
+
 }
