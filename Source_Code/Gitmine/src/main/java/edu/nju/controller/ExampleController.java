@@ -22,7 +22,7 @@ public class ExampleController {
     public String login(@RequestParam String userName) {
         userDaoService.getUserTotalCount();
         if (exampleService.findUserByName(userName) == null) {
-            return "error";
+            return "userInfo";
         }
         return "success";
     }
