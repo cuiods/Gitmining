@@ -422,7 +422,7 @@ public class RepoDaoImp implements RepoDaoService{
         List list = query.list();
         long result = 0;
         if (list.size()>0){
-            result = ((Long)list.get(0)).longValue();
+            result = ((Long)list.get(0));
         }
         session.close();
         return result;
@@ -438,7 +438,7 @@ public class RepoDaoImp implements RepoDaoService{
         List list = query.list();
         long result = 0;
         if (list.size()>0){
-            result = ((Long)list.get(0)).longValue();
+            result = ((Long)list.get(0));
         }
         session.close();
         return result;
@@ -454,7 +454,7 @@ public class RepoDaoImp implements RepoDaoService{
         List list = query.list();
         long result = 0;
         if (list.size()>0){
-            result = ((Long)list.get(0)).longValue();
+            result = ((Long)list.get(0));
         }
 
         session.close();
@@ -482,7 +482,7 @@ public class RepoDaoImp implements RepoDaoService{
         List list = query.list();
         long result = 0;
         if (list.size()>0){
-            result = ((Long)list.get(0)).longValue();
+            result = ((Long)list.get(0));
         }
         session.close();
         return result;

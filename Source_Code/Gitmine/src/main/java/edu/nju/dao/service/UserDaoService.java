@@ -34,13 +34,6 @@ public interface UserDaoService {
 
     /**
      * get sorted user list.
-     * @param type
-     * @return list of sorted user.
-     */
-    public List<TblUser> getUsers(SortType type);
-
-    /**
-     * get sorted user list.
      * @return list of sorted user.
      */
     @Deprecated
