@@ -8,7 +8,6 @@ import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,10 +19,6 @@ import java.util.List;
 public class UserDaoImp implements UserDaoService {
     @Resource
     private SessionFactory sessionFactory;
-
-    public Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
     /**
      * get user info
      *
@@ -31,13 +26,15 @@ public class UserDaoImp implements UserDaoService {
      * @return user info entity
      */
     public TblUser findUserByLoginName(String loginName) {
+        Session session =sessionFactory.openSession();
         TblUser user = null;
-        Query query = getSession().createQuery("from TblUser as u where u.loginName=?");
+        Query query = session.createQuery("from TblUser as u where u.loginName=?");
         query.setString(0, loginName);
         List<TblUser> users = query.list();
         if (users.size() > 0) {
             return users.get(0);
         }
+        session.close();
         return user;
     }
 
@@ -48,12 +45,13 @@ public class UserDaoImp implements UserDaoService {
      * @return list of users
      */
     public List<TblUser> searchUserByLoginName(String keyword, int offset, int maxNum) {
-        Query query = getSession().createQuery("from TblUser as u where u.loginName like ?");
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("from TblUser as u where u.loginName like ?");
         query.setString(0, "%"+keyword+"%");
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
         List<TblUser> users = query.list();
-        System.out.println(users);
+        session.close();
         return users;
     }
 
@@ -63,28 +61,13 @@ public class UserDaoImp implements UserDaoService {
      * @return number of user
      */
     public long getUserTotalCount() {
-        Query query = getSession().createQuery("select count(*) from TblUser");
-        return (Long) query.list().get(0);
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("select count(*) from TblUser");
+        Long result = (Long) query.list().get(0);
+        session.close();
+        return result;
     }
 
-    /**
-     * get sorted user list.
-     *
-     * @param type
-     * @return list of sorted user.
-     * @deprecated
-     */
-    public List<TblUser> getUsers(SortType type) {
-        Session session = getSession();
-        Query query = null;
-        switch (type) {
-            case User_Follored:query = session.createQuery("from TblUser order by follower desc ");break;
-            case User_Folloring:query = session.createQuery("from TblUser order by following desc");break;
-            case User_Repos:query = session.createQuery("from TblUser order by publicRepo desc");break;
-            default:query = session.createQuery("from TblUser order by loginName desc");break;
-        }
-        return query.list();
-    }
 
     /**
      * get sorted user list.
@@ -217,7 +200,7 @@ public class UserDaoImp implements UserDaoService {
         query.setByte(0, isOrg);
         List list = query.list();
         session.close();
-        return ((BigInteger)list.get(0)).longValue();
+        return ((Long)list.get(0));
     }
 
     @Override
@@ -229,7 +212,7 @@ public class UserDaoImp implements UserDaoService {
         query.setInteger(1, max);
         List list = query.list();
         session.close();
-        return ((BigInteger)list.get(0)).longValue();
+        return (Long)list.get(0);
     }
 
     @Override
@@ -241,7 +224,7 @@ public class UserDaoImp implements UserDaoService {
         query.setInteger(1, max);
         List list = query.list();
         session.close();
-        return ((BigInteger)list.get(0)).longValue();
+        return (Long)list.get(0);
     }
 
     @Override
@@ -253,7 +236,7 @@ public class UserDaoImp implements UserDaoService {
         query.setInteger(1, max);
         List list = query.list();
         session.close();
-        return ((BigInteger)list.get(0)).longValue();
+        return (Long)list.get(0);
     }
 
     @Override
@@ -264,7 +247,7 @@ public class UserDaoImp implements UserDaoService {
         query.setTimestamp("fT", fromTime.getTime());
         query.setTimestamp("tT", toTime.getTime());
         List list = query.list();
-        long result = ((BigInteger)list.get(0)).longValue();
+        long result = (Long)list.get(0);
         session.close();
         return result;
     }
@@ -272,8 +255,7 @@ public class UserDaoImp implements UserDaoService {
     @Override
     public List getStatsEmail(int maxResults) {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT email_suffix, COUNT (*) AS num FROM tbl_user WHERE " +
-                "email_suffix <> '' GROUP BY email_suffix ORDER BY num DESC ");
+        SQLQuery query = session.createSQLQuery("SELECT email_suffix, count(*) AS num FROM tbl_user WHERE email_suffix <> '' GROUP BY email_suffix ORDER BY num DESC ");
         query.setMaxResults(maxResults);
         List list = query.list();
         session.close();
@@ -285,6 +267,7 @@ public class UserDaoImp implements UserDaoService {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select company, count (*) as num from TblUser " +
                 "where company <> '' group by company order by num desc ");
+        query.setMaxResults(maxResults);
         List list = query.list();
         session.close();
         return list;
