@@ -64,7 +64,7 @@ public class RepoController {
     }
 
 
-    @RequestMapping(value = "/{ownername}/{reponame}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{ownername}/{reponame}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getRepoInfo(@PathVariable String ownername, @PathVariable String reponame) {
 

@@ -4,6 +4,8 @@ import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.CommitChart;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,7 +35,8 @@ public class RepoRadarImpl {
     private double minLogActive;
     private double maxLogActive;
 
-    public RepoRadarImpl(){
+    @Autowired
+    public RepoRadarImpl(RepoDaoService repoDaoImpl){
         minLogSize = Math.log(repoDaoImpl.getMinRepoSize()+1);
         maxLogSize = Math.log(repoDaoImpl.getMaxRepoSize()+1);
         minLogFork = Math.log(repoDaoImpl.getMinRepoFork()+1);
