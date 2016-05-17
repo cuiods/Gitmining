@@ -191,6 +191,10 @@ public class RepoDaoImpTest {
         double complex = repoDaoImp.getRepoComplex("rubinius", "rubinius");
         assertTrue(complex>0);
         System.out.println("rubinius complex: "+complex);
+
+        double hh = repoDaoImp.getRepoComplex("hhh", "hhh");
+        System.out.println("hhh complex is : "+hh);
+        assertTrue(hh>=0);
     }
 
     @Test
@@ -235,5 +239,16 @@ public class RepoDaoImpTest {
         assertTrue(count>0);
         System.out.println("repos size between 50 and 100 is: " + count);
     }
-
+/*
+    @Test
+    public void updateCommit() throws Exception{
+        try {
+            repoDaoImp.updateCommit();
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("update commit fail");
+            throw e;
+        }
+    }
+*/
 }

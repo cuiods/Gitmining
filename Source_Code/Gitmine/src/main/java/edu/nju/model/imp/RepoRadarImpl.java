@@ -5,7 +5,6 @@ import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.CommitChart;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,7 +17,6 @@ import java.util.Map;
 @Service
 public class RepoRadarImpl {
 
-    @Resource
     private RepoDaoService repoDaoImpl;
 
     @Resource
@@ -37,15 +35,21 @@ public class RepoRadarImpl {
 
     @Autowired
     public RepoRadarImpl(RepoDaoService repoDaoImpl){
-        minLogSize = Math.log(repoDaoImpl.getMinRepoSize()+1);
+        this.repoDaoImpl = repoDaoImpl;
+//        minLogSize = Math.log(repoDaoImpl.getMinRepoSize()+1);
+        minLogSize = 0;
         maxLogSize = Math.log(repoDaoImpl.getMaxRepoSize()+1);
-        minLogFork = Math.log(repoDaoImpl.getMinRepoFork()+1);
+//        minLogFork = Math.log(repoDaoImpl.getMinRepoFork()+1);
+        minLogFork = 0;
         maxLogFork = Math.log(repoDaoImpl.getMaxRepoFork()+1);
-        minLogPopular = Math.log(repoDaoImpl.getMinRepoPopular()+1);
+//        minLogPopular = Math.log(repoDaoImpl.getMinRepoPopular()+1);
+        minLogPopular = 0;
         maxLogPopular = Math.log(repoDaoImpl.getMaxRepoPopular()+1);
-        minLogComplex = Math.log(repoDaoImpl.getMinRepoComplex()+1);
+//        minLogComplex = Math.log(repoDaoImpl.getMinRepoComplex()+1);
+        minLogComplex = 0;
         maxLogComplex = Math.log(repoDaoImpl.getMaxRepoComplex()+1);
-        minLogActive = Math.log(repoDaoImpl.getMinActive()+1);
+//        minLogActive = Math.log(repoDaoImpl.getMinActive()+1);
+        minLogActive = 0;
         maxLogActive = Math.log(repoDaoImpl.getMaxActive()+1);
     }
 
@@ -87,7 +91,6 @@ public class RepoRadarImpl {
     }
 
     public double getRadarComplex(String ownername, String reponame){
-
         if (maxLogComplex == minLogComplex) {
             return 1.0;
         }

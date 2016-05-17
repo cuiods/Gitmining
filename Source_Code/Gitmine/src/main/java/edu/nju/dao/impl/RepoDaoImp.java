@@ -1,9 +1,12 @@
 package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
+import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.*;
+import edu.nju.model.pojo.CommitChart;
 import org.hibernate.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -11,6 +14,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 /**
  * imp of repo data service
@@ -19,6 +23,9 @@ import java.util.List;
 public class RepoDaoImp implements RepoDaoService{
     @Resource
     private SessionFactory sessionFactory;
+
+    @Resource
+    private JsonNodeParser jsonNodeParser;
 
     /**
      * search repos by keyword.
@@ -487,5 +494,69 @@ public class RepoDaoImp implements RepoDaoService{
         session.close();
         return result;
     }
+/*
+    public void updateCommit(){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        int totalRepos = 3216;
 
+        int totalSuccess = 0;
+
+        try {
+            //transaction = session.beginTransaction();
+
+            int count = 0;
+
+            for (int i=1;i<=totalRepos;i++){
+                Query query = session.createQuery("select ownerName, name from TblRepo where repoId = ?");
+                query.setInteger(0, i);
+                List list = query.list();
+                Object[] item = (Object[])list.get(0);
+                String owner = item[0].toString();
+                String repo = item[1].toString();
+                Map<String, CommitChart> map = jsonNodeParser.getCommitByContributors(owner, repo);
+                CommitChart all = map.get("all");
+                if (all!=null){
+                    int commitCount = (int)all.getCommitCount();
+                    Query up = session.createQuery("update TblRepo set numCommit = ? where repoId = ?");
+                    up.setInteger(0,commitCount);
+                    up.setInteger(1, i);
+                    int result = up.executeUpdate();
+                    count++;
+                    totalSuccess++;
+                }
+                if (count>=20){
+                    session.flush();
+                    transaction.commit();
+                    count=0;
+                }
+            }
+            if (count != 0)
+                session.flush();
+                transaction.commit();
+
+        } catch (Exception e){
+            System.out.println("===============Exception begin=====================");
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println("================Exception end=======================");
+            e.printStackTrace();
+            System.out.println("total successs : "+totalSuccess);
+            //if (transaction != null){
+            //    transaction.rollback();
+           // }
+
+        } finally {
+            session.close();
+        }
+
+    }
+*/
+    public JsonNodeParser getJsonNodeParser() {
+        return jsonNodeParser;
+    }
+
+    public void setJsonNodeParser(JsonNodeParser jsonNodeParser) {
+        this.jsonNodeParser = jsonNodeParser;
+    }
 }
