@@ -4,6 +4,9 @@
     <title>Gallery</title>
     <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/repo-label.css">
+    <script src="../../js/login.js"></script>
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <script src="../../js/bootstrap.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../../js/jquery.min.js"></script>
     <!-- Custom Theme files -->
@@ -57,23 +60,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="about-header-banner">
     <div class="container">
         <div class="home">
-            <a href="html/index.html"><span class="glyphicon glyphicon-home"></span></a>
+            <a href="/html/index.html"><span class="glyphicon glyphicon-home"></span></a>
         </div>
         <div class="header-top">
             <div class="social-icons">
-                <i class="facebook"></i>
-                <i class="twitter"></i>
-                <i class="googlepluse"></i>
+                <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
+                <!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
+
             </div>
             <span class="menu"><img src="../../images/nav.png" alt=""/></span>
             <div class="top-menu">
                 <ul>
                     <nav class="cl-effect-13">
-                        <li><a href="about.html">About</a></li>
-                        <li><a class="active" href="">UserInfo</a></li>
-                        <li><a href="html/index.html">News</a></li>
-                        <li><a href="typography.html">Typo</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <!--TODO : 	更换导航目录-->
+                        <li><a href="/html/about.html">About</a></li>
+                        <li><a href="/html/html/user_list.html" title="users search">USERS</a></li>
+                        <li><a class="scroll" href="#news" title="users statistic">U-STAT</a></li>
+                        <li><a href="/html/html/repo.html" title="repositories search">REPOS</a></li>
+                        <li><a href="/html/contact.html" title="repositories' statistic">R-STAT</a></li>
                     </nav>
                 </ul>
             </div>
@@ -411,6 +415,115 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="copyright text-center">
                         <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
                     </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
+
+                    <div class="header">   <!--登陆头（登陆、注册）-->
+                        <div class="switch" id="switch">
+                            <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">Login</a>
+                            <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">Register</a>  <!--tabindex规定了tab键控制的次序-->
+
+                            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+
+                        <!--登录-->
+                        <div class="web_login" id="web_login">
+
+
+                            <div class="login-box">
+
+
+                                <div class="login_form">
+                                    <form action="" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                                        <input type="hidden" name="did" value="0"/>
+                                        <input type="hidden" name="to" value="log"/>
+                                        <div class="uinArea" id="uinArea">
+                                            <label class="input-tips" for="u">ID:</label>
+                                            <div class="inputOuter" id="uArea">
+
+                                                <input type="text" id="u" name="username" class="inputstyle"/>
+                                            </div>
+                                        </div>
+                                        <div class="pwdArea" id="pwdArea">
+                                            <label class="input-tips" for="p">PW:</label>
+                                            <div class="inputOuter" id="pArea">
+
+                                                <input type="password" id="p" name="p" class="inputstyle"/>
+                                            </div>
+                                        </div>
+
+                                        <div style="padding-left:50px;margin-top:20px;"><input id="login_btn" type="button" value="Login" style="width:150px;" class="button_blue"/></div>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--登录end-->
+                    </div>
+
+                    <!--注册-->
+                    <div class="qlogin" id="qlogin" style="display: none; ">
+
+                        <div class="web_login"><form name="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
+                            <input type="hidden" name="to" value="reg"/>
+                            <input type="hidden" name="did" value="0"/>
+                            <ul class="reg_form" id="reg-ul">
+                                <div id="userCue" class="cue">Please pay attention to format.</div>
+                                <li>
+
+                                    <label for="user"  class="input-tips2">ID:</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="user" name="user" maxlength="16" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="passwd" class="input-tips2">Password:</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd"  name="passwd" maxlength="16" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <label for="passwd2" class="input-tips2">Confirm:</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="email_input" class="input-tips2">Email:</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="email_input" name="email" maxlength="50" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <div class="inputArea">
+                                        <input type="button" id="reg"  style="margin-top:10px;margin-left:85px;" class="button_blue" value="Sign up"/> <a href="#" class="zcxy" target="_blank">agreement</a>
+                                    </div>
+
+                                </li><div class="cl"></div>
+                            </ul></form>
+
+
+                        </div>
+
+
+                    </div>
+                    <!--注册end-->
                 </div>
             </div>
             <!-- footer-section -->
