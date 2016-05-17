@@ -272,4 +272,54 @@ public class UserDaoImp implements UserDaoService {
         session.close();
         return list;
     }
+
+    @Override
+    public double getMaxUserContribute() {
+        Session session =sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT max(A.num) FROM (SELECT COUNT(*) AS num " +
+                "FROM tbl_contributor GROUP BY contributor) AS A ");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getMaxUserValue() {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT max(A.val) FROM (SELECT avg(num_star*0.2+num_fork*0.3+num_subscriber*0.5) " +
+                "AS val FROM tbl_repo GROUP BY owner_name) AS A");
+        List list = query.list();
+        session.close();
+        return Double.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public double getUserContribute(String username) {
+        double contri = 0;
+        Session session = sessionFactory.openSession();
+
+        Query query2 = session.createQuery("select count(*) from TblContributor where contributor = ?");
+        query2.setString(0,username);
+        List list2 = query2.list();
+        if (list2.size()>0){
+            contri = Double.valueOf(list2.get(0).toString());
+        }
+
+        session.close();
+
+        return contri;
+    }
+
+    @Override
+    public double getUserValue(String username) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query  = session.createSQLQuery("SELECT avg(num_star*0.2+num_fork*0.3+num_subscriber*0.5) FROM tbl_repo WHERE owner_name = :un ");
+        query.setString("un", username);
+        List list = query.list();
+        session.close();
+        if (list.size()>0){
+            return Double.valueOf(list.get(0).toString());
+        }
+        return 0;
+    }
 }

@@ -141,4 +141,30 @@ public interface UserDaoService {
      */
     public List getStatsCompany(int maxResults);
 
+    /**
+     * used to replace the function <tt>getMaxUserActive</tt>
+     * @return
+     */
+    public double getMaxUserContribute();
+
+    /**
+     * get the max value for user value
+     * @return
+     */
+    public double getMaxUserValue();
+
+    /**
+     * get the active value of a user
+     * @param username
+     * @return
+     */
+    public double getUserContribute(String username);
+
+    /**
+     * get the value of a user
+     * @param username
+     * @return
+     */
+    public double getUserValue(String username);
+
 }

@@ -147,4 +147,34 @@ public class UserDaoImpTest {
         System.out.println(item[0] + "   "+item[1]);
     }
 
+    @Test
+    public void getMaxUserContribute() throws Exception {
+        double max = userDaoImp.getMaxUserContribute();
+        assertTrue(max>0);
+        System.out.println("max user contribute is: "+max);
+    }
+
+    @Test
+    public void getMaxUserValue() throws Exception {
+        double maxValue = userDaoImp.getMaxUserValue();
+        assertTrue(maxValue>0);
+        System.out.println("max user value is: " +maxValue);
+    }
+
+    @Test
+    public void getUserContribute() throws Exception {
+        double ac = userDaoImp.getUserContribute("zertosh");
+        assertTrue(ac>0);
+        System.out.println(" zertosh active is: " +ac);
+        double cc = userDaoImp.getUserContribute("hhh");
+        assertTrue(cc==0);
+    }
+
+    @Test
+    public void getUserValue() throws Exception {
+        double val = userDaoImp.getUserValue("rubinius");
+        assertTrue(val>0);
+        System.out.println("rubinius value is: " +val);
+    }
+
 }
