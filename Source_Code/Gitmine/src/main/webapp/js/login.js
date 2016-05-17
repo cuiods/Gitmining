@@ -54,11 +54,19 @@ function getParam(pname) {
 }  
 
 
-var reMethod = "post",
-	pwdmin = 6;
+var pwdmin = 6;
 
 $(document).ready(function() {
 
+	$.ajax({
+		type:"GET",
+		url:"login/name",
+		success:function (result) {
+			if (result.length>2) {
+				$("#login-href").html(result);
+			}
+		}
+	});
 
 	$('#reg').click(function() {
 
@@ -79,7 +87,7 @@ $(document).ready(function() {
 				border: "1px solid red",
 				boxShadow: "0 0 2px red"
 			});
-			$('#userCue').html("<font color='red'><b>×用户名位4-16字符</b></font>");
+			$('#userCue').html("<font color='red'><b>×username should have 4-16 characters.</b></font>");
 			return false;
 
 		}
@@ -96,25 +104,15 @@ $(document).ready(function() {
 		}
 
 		$.ajax({
-			type: reMethod,
-			url: "/register",
-			data: { username:$("#user").val(),password:$("#passwd").val(),eamil:$("#email_input").val()}, <!--要传递的数据-->
-			dataType:"json",                  <!--接受数据的格式-->
+			type: "GET",
+			url: "/login/register",
+			data: { username:$("#user").val(),password:$("#passwd").val(),email:$("#email_input").val()}, <!--要传递的数据--> 			<!--接受数据的格式-->
 			success: function(result) {
-				if (result.length > 2) {
-					$('#user').focus().css({
-						border: "1px solid red",
-						boxShadow: "0 0 2px red"
-					});$("#userCue").html(result);
-					return false;
-				} else {
-					$('#user').css({
-						border: "1px solid #D7D7D7",
-						boxShadow: "none"
-					});
-				}
-				alert(result);
-
+				alert("succeed! please login again !");
+				location.href = "";
+			},
+			error: function () {
+				alert("unknown error.");
 			}
 		});
 
@@ -133,19 +131,22 @@ $(document).ready(function() {
 		//
 		// }
 
-		$('#regUser').submit();
 	})
 	
 	$("#login_btn").click(function () {
 		$.ajax({
 			type:"GET",
-			url:"login",
+			url:"login/login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
-				alert(result);
+				if (result.length>0) {
+					location.href = "";
+				} else {
+					alert("name or password error!");
+				}
 			},
 			error:function () {
-				alert("fail");
+				alert("error!");
 			}
 		});
 	});
