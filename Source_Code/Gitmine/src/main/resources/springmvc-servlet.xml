@@ -23,7 +23,7 @@
     <mvc:resources mapping="/html/**" location="/html/"/>
     <mvc:resources mapping="/fonts/**" location="/fonts/"/>
     <mvc:resources mapping="/plugin/**" location="/plugin/" />
-    
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>
