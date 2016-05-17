@@ -5,6 +5,7 @@ import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class RepoController {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = repoModelImpl.getRecommendRepo(webUsername);
         }
-        List<TblRepo> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
+        List<RepoVO> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
         result.put("recommend", recommend);
         result.put("mainList", mainList);
 
@@ -57,7 +58,7 @@ public class RepoController {
                     @RequestParam(required = false, defaultValue = "false") boolean isDesc){
         Map<String,Object> map = new HashMap<>();
         long totalPage = repoModelImpl.getTotalPage();
-        List<TblRepo> repoList = null;
+        List<RepoVO> repoList = null;
         if (pageNum<=totalPage){
             SortType type = SortTypeBuilder.getSortType(sortType);
             if (type == null){
