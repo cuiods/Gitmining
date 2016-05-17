@@ -29,6 +29,12 @@ public interface RepoModelService {
     public List<TblRepo> getPopularRepo();
 
     /**
+     * get the total count of page of all repos
+     * @return
+     */
+    public long getTotalPage();
+
+    /**
      * get the related repository for the given repository
      * @param ownername
      * @param reponame

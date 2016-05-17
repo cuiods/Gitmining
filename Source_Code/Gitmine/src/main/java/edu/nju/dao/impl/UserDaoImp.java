@@ -274,6 +274,48 @@ public class UserDaoImp implements UserDaoService {
     }
 
     @Override
+    public double getMaxRepos() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max(publicRepo) from TblUser");
+        List list = query.list();
+        session.close();
+        if (list.size()>0){
+            return Double.valueOf(list.get(0).toString());
+        }
+        else {
+            return 0;
+        }
+    }
+
+    @Override
+    public double getMaxGists() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max(publicGist) from TblUser");
+        List list = query.list();
+        session.close();
+        if (list.size()>0){
+            return Double.valueOf(list.get(0).toString());
+        }
+        else {
+            return 0;
+        }
+    }
+
+    @Override
+    public double getMaxFollower() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select max(follower) from TblUser");
+        List list = query.list();
+        session.close();
+        if (list.size()>0){
+            return Double.valueOf(list.get(0).toString());
+        }
+        else {
+            return 0;
+        }
+    }
+
+    @Override
     public double getMaxUserContribute() {
         Session session =sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery("SELECT max(A.num) FROM (SELECT COUNT(*) AS num " +
@@ -313,7 +355,7 @@ public class UserDaoImp implements UserDaoService {
     @Override
     public double getUserValue(String username) {
         Session session = sessionFactory.openSession();
-        SQLQuery query  = session.createSQLQuery("SELECT avg(num_star*0.2+num_fork*0.3+num_subscriber*0.5) FROM tbl_repo WHERE owner_name = :un ");
+        SQLQuery query  = session.createSQLQuery("SELECT avg(num_star*0.2+num_fork*0.3+num_subscriber*0.5) FROM tbl_repo WHERE owner_name = :un GROUP BY owner_name");
         query.setString("un", username);
         List list = query.list();
         session.close();

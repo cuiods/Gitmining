@@ -142,6 +142,24 @@ public interface UserDaoService {
     public List getStatsCompany(int maxResults);
 
     /**
+     * get the max count of repos own by each user
+     * @return
+     */
+    public double getMaxRepos();
+
+    /**
+     * get the max count of gist each user has
+     * @return
+     */
+    public double getMaxGists();
+
+    /**
+     * get the max count of follower of each user
+     * @return
+     */
+    public double getMaxFollower();
+
+    /**
      * used to replace the function <tt>getMaxUserActive</tt>
      * @return
      */

@@ -56,9 +56,19 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public List<TblRepo> getPopularRepo() {
-        List<TblUser> result;
+        List<TblRepo> result = null;
+        result = repoDaoImpl.getRepos(SortType.Repo_Star, true, 0, 5);
+        return result;
+    }
 
-        return null;
+    @Override
+    public long getTotalPage() {
+        long totalItem = repoDaoImpl.getTotalCount();
+        long page = totalItem/Const.ITEMS_PER_PAGE;
+        if (totalItem%Const.ITEMS_PER_PAGE >0 ){
+            page++;
+        }
+        return page;
     }
 
     public List<TblRepo> getRelatedRepo(String ownername, String reponame) {
@@ -97,15 +107,7 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public RadarChart getRepoRadarChart(String ownername, String reponame) {
-        String [] field = {"size", "fork", "popular", "complex", "active"};
-        double [] value = new double[5];
-        value[0] = repoRadarImpl.getRadarSize(ownername, reponame);
-        value[1] = repoRadarImpl.getRadarFork(ownername, reponame);
-        value[2] = repoRadarImpl.getRadarPopular(ownername, reponame);
-        value[3] = repoRadarImpl.getRadarComplex(ownername, reponame);
-        value[4] = repoRadarImpl.getRadarActive(ownername, reponame);
-
-        return new RadarChart(field, value);
+        return repoRadarImpl.getRepoRadar(ownername, reponame);
     }
 
     @Override
