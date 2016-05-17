@@ -3,24 +3,19 @@ package edu.nju.model.imp;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
+import edu.nju.common.VOConvertor;
 import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.CodeFrequency;
-import edu.nju.model.pojo.CommitChart;
-import edu.nju.model.pojo.RadarChart;
-import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.*;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Harry on 2016/5/12.
@@ -37,6 +32,9 @@ public class RepoModelImpl implements RepoModelService {
 
     @Resource
     private RepoRadarImpl repoRadarImpl;
+
+    @Resource
+    private VOConvertor voConvertor;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
@@ -56,9 +54,19 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public List<TblRepo> getPopularRepo() {
-        List<TblUser> result;
+        List<TblRepo> result = null;
+        result = repoDaoImpl.getRepos(SortType.Repo_Star, true, 0, 5);
+        return result;
+    }
 
-        return null;
+    @Override
+    public long getTotalPage() {
+        long totalItem = repoDaoImpl.getTotalCount();
+        long page = totalItem/Const.ITEMS_PER_PAGE;
+        if (totalItem%Const.ITEMS_PER_PAGE >0 ){
+            page++;
+        }
+        return page;
     }
 
     public List<TblRepo> getRelatedRepo(String ownername, String reponame) {
@@ -66,8 +74,14 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     @Override
-    public List<TblRepo> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum) {
-        return repoDaoImpl.getRepos(sortType, isDesc, offset, maxNum);
+    public List<RepoVO> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum) {
+        List<TblRepo> tblRepoList = repoDaoImpl.getRepos(sortType, isDesc, offset, maxNum);
+        List<RepoVO> voList = new ArrayList<>();
+        for (TblRepo tblRepo:tblRepoList){
+            RepoVO vo = voConvertor.convert(tblRepo);
+            voList.add(vo);
+        }
+        return voList;
     }
 
     public List<TblRepo> getSearchResult(String keyword, String sortType, String filterType,
@@ -97,15 +111,7 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public RadarChart getRepoRadarChart(String ownername, String reponame) {
-        String [] field = {"size", "fork", "popular", "complex", "active"};
-        double [] value = new double[5];
-        value[0] = repoRadarImpl.getRadarSize(ownername, reponame);
-        value[1] = repoRadarImpl.getRadarFork(ownername, reponame);
-        value[2] = repoRadarImpl.getRadarPopular(ownername, reponame);
-        value[3] = repoRadarImpl.getRadarComplex(ownername, reponame);
-        value[4] = repoRadarImpl.getRadarActive(ownername, reponame);
-
-        return new RadarChart(field, value);
+        return repoRadarImpl.getRepoRadar(ownername, reponame);
     }
 
     @Override

@@ -2,8 +2,10 @@ package edu.nju.controller;
 
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
+import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Controller;
@@ -42,11 +44,33 @@ public class RepoController {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = repoModelImpl.getRecommendRepo(webUsername);
         }
-        List<TblRepo> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
+        List<RepoVO> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
         result.put("recommend", recommend);
         result.put("mainList", mainList);
 
         return result;
+    }
+
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Map list(@RequestParam int pageNum,
+                    @RequestParam(required = false, defaultValue = "repo_name") String sortType,
+                    @RequestParam(required = false, defaultValue = "false") boolean isDesc){
+        Map<String,Object> map = new HashMap<>();
+        long totalPage = repoModelImpl.getTotalPage();
+        List<RepoVO> repoList = null;
+        if (pageNum<=totalPage){
+            SortType type = SortTypeBuilder.getSortType(sortType);
+            if (type == null){
+                type = SortType.Repo_Name;
+            }
+            if (pageNum<1)  pageNum=1;
+            repoList = repoModelImpl.getRepos(type, isDesc, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
+        }
+        map.put("totalPage", totalPage);
+        map.put("currentPage", pageNum);
+        map.put("repoList", repoList);
+        return map;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)

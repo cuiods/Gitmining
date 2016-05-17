@@ -1,19 +1,12 @@
 package edu.nju.controller;
 
-import edu.nju.dao.service.RegisterDaoService;
-import edu.nju.model.pojo.WebUser;
 import edu.nju.model.service.LoginModelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +20,11 @@ public class LoginController {
     @Resource
     private LoginModelService loginModelImpl;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @ResponseBody
     public boolean register(@RequestParam String username, @RequestParam String password,
-                            @RequestParam String eamil){
-        return loginModelImpl.register(username, password, eamil);
+                            @RequestParam String email){
+        return loginModelImpl.register(username, password, email);
     }
 
     /**
@@ -41,7 +35,7 @@ public class LoginController {
      * @param session
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public String login(@RequestParam String username, @RequestParam String password,
                         HttpSession session){
@@ -51,6 +45,14 @@ public class LoginController {
             session.setAttribute("username", username);
         }
         return loginResult?username:"";
+    }
+
+    @RequestMapping("/name")
+    @ResponseBody
+    public String getLoginName(HttpSession session){
+        Object user = session.getAttribute("username");
+        if (user!=null) return (String) user;
+        else return "";
     }
 
     @RequestMapping(value = "/interest", method = RequestMethod.GET)

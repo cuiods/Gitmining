@@ -2,10 +2,7 @@ package edu.nju.model.service;
 
 import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
-import edu.nju.model.pojo.CodeFrequency;
-import edu.nju.model.pojo.CommitChart;
-import edu.nju.model.pojo.RadarChart;
-import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +26,12 @@ public interface RepoModelService {
     public List<TblRepo> getPopularRepo();
 
     /**
+     * get the total count of page of all repos
+     * @return
+     */
+    public long getTotalPage();
+
+    /**
      * get the related repository for the given repository
      * @param ownername
      * @param reponame
@@ -43,7 +46,7 @@ public interface RepoModelService {
      * @param maxNum
      * @return
      */
-    public List<TblRepo> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum);
+    public List<RepoVO> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum);
 
     /**
      *

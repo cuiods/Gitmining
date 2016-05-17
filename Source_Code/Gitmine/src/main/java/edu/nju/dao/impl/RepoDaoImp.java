@@ -295,7 +295,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMaxRepoSize() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select max (repo.size) from TblRepo repo");
+        Query query = session.createQuery("select max(repo.size) from TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -304,7 +304,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMinRepoSize() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select min (repo.size) from TblRepo repo");
+        Query query = session.createQuery("select min(repo.size) from TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -313,7 +313,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMaxRepoFork() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select max (repo.numFork) from  TblRepo repo");
+        Query query = session.createQuery("select max(repo.numFork) from  TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -322,7 +322,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMinRepoFork() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select min (repo.numFork) from  TblRepo repo");
+        Query query = session.createQuery("select min(repo.numFork) from  TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -331,7 +331,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMaxRepoPopular() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select max (repo.numStar + repo.numSubscriber) from  TblRepo repo");
+        Query query = session.createQuery("select max(repo.numStar + repo.numSubscriber) from  TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -340,7 +340,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMinRepoPopular() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select min (repo.numStar + repo.numSubscriber) from  TblRepo repo");
+        Query query = session.createQuery("select min(repo.numStar + repo.numSubscriber) from  TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());

@@ -173,6 +173,18 @@ i.googlepluse{
 .top-menu ul li a.active{
 	color:#83774A;
 }
+#login-href{
+	color:#fff;
+	text-transform:uppercase;
+	font-weight:400;
+	font-size:17px;
+	text-decoration:none;
+	margin:0 20px;
+	font-family: 'Oswald', sans-serif;
+}
+#login-href:hover{
+	color:#83774A;
+}
 .header-top {
 	background: rgba(255, 255, 255, 0.32);
 	padding: 2em 30px;
