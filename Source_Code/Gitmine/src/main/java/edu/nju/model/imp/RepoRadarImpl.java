@@ -4,6 +4,7 @@ import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.CommitChart;
+import edu.nju.model.pojo.RadarChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,12 +54,40 @@ public class RepoRadarImpl {
         maxLogActive = Math.log(repoDaoImpl.getMaxActive()+1);
     }
 
-    public double getRadarSize(String ownername, String reponame){
-        double complex = Math.log(repoDaoImpl.getRepoComplex(ownername, reponame)+1);
-        return (complex-minLogSize)/(maxLogSize-minLogSize);
+    public RadarChart getRepoRadar(String ownername, String reponame){
+        String [] field = {"size", "fork", "popular", "complex", "active"};
+        double [] value = new double[field.length];
+        TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
+        if (repo != null){
+            value[0] = (Math.log(repo.getSize()+1)-minLogSize)/(maxLogSize-minLogSize);
+            value[1] = (Math.log(repo.getNumFork()+1)-minLogFork)/(maxLogFork-minLogFork);
+            value[2] = (Math.log(repo.getNumStar()+repo.getNumSubscriber()+1)-minLogPopular)/(maxLogPopular-minLogPopular);
+            value[3] = getRadarComplex(ownername, reponame);
+            value[4] = getRadarActive(ownername, reponame);
+        }
+        else {
+
+        }
+        return new RadarChart(field, value);
+    }
+/*
+    private double getRadarSize(String ownername, String reponame){
+        TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
+        if (repo != null){
+
+            if (maxLogSize == minLogFork){
+                return 1.0;
+            }
+
+            int size = repo.getSize();
+            return (Math.log(size+1)-minLogSize)/(maxLogSize-minLogSize);
+        }
+        else {
+            return 0;
+        }
     }
 
-    public double getRadarFork(String ownername, String reponame){
+    private double getRadarFork(String ownername, String reponame){
         TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
         if (repo != null){
 
@@ -74,7 +103,7 @@ public class RepoRadarImpl {
         }
     }
 
-    public double getRadarPopular(String ownername, String reponame){
+    private double getRadarPopular(String ownername, String reponame){
         TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
         if (repo != null){
 
@@ -89,8 +118,8 @@ public class RepoRadarImpl {
             return 0;
         }
     }
-
-    public double getRadarComplex(String ownername, String reponame){
+*/
+    private double getRadarComplex(String ownername, String reponame){
         if (maxLogComplex == minLogComplex) {
             return 1.0;
         }
@@ -99,7 +128,7 @@ public class RepoRadarImpl {
         return (Math.log(complex+1)-minLogComplex)/(maxLogComplex-minLogComplex);
     }
 
-    public double getRadarActive(String ownername, String reponame){
+    private double getRadarActive(String ownername, String reponame){
 
         if (minLogActive == maxLogActive){
             return 1.0;

@@ -177,4 +177,24 @@ public class UserDaoImpTest {
         System.out.println("rubinius value is: " +val);
     }
 
+    @Test
+    public void getMaxRepos() throws Exception {
+        double repos = userDaoImp.getMaxRepos();
+        assertTrue(repos>0);
+        System.out.println("max repo count is:" +repos);
+    }
+
+    @Test
+    public void getMaxGists() throws Exception {
+        double gists = userDaoImp.getMaxGists();
+        assertTrue(gists>0);
+        System.out.println("max gist count is:" +gists);
+    }
+
+    @Test
+    public void getMaxFollower() throws Exception {
+        double follower = userDaoImp.getMaxFollower();
+        assertTrue(follower>0);
+        System.out.println("max follower count is:" +follower);
+    }
 }
