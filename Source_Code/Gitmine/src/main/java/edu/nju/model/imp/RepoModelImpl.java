@@ -3,24 +3,19 @@ package edu.nju.model.imp;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
+import edu.nju.common.VOConvertor;
 import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.CodeFrequency;
-import edu.nju.model.pojo.CommitChart;
-import edu.nju.model.pojo.RadarChart;
-import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.*;
 import edu.nju.model.service.RepoModelService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Harry on 2016/5/12.
@@ -37,6 +32,9 @@ public class RepoModelImpl implements RepoModelService {
 
     @Resource
     private RepoRadarImpl repoRadarImpl;
+
+    @Resource
+    private VOConvertor voConvertor;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
 
@@ -76,8 +74,14 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     @Override
-    public List<TblRepo> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum) {
-        return repoDaoImpl.getRepos(sortType, isDesc, offset, maxNum);
+    public List<RepoVO> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum) {
+        List<TblRepo> tblRepoList = repoDaoImpl.getRepos(sortType, isDesc, offset, maxNum);
+        List<RepoVO> voList = new ArrayList<>();
+        for (TblRepo tblRepo:tblRepoList){
+            RepoVO vo = voConvertor.convert(tblRepo);
+            voList.add(vo);
+        }
+        return voList;
     }
 
     public List<TblRepo> getSearchResult(String keyword, String sortType, String filterType,
