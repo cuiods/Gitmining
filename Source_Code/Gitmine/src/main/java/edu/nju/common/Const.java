@@ -9,5 +9,5 @@ public class Const {
     /**
      * the default number of items show on one page
      */
-    public static final int ITEMS_PER_PAGE = 20;
+    public static final int ITEMS_PER_PAGE = 16;
 }
