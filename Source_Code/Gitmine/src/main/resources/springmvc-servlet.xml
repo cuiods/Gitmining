@@ -21,6 +21,7 @@
     <mvc:resources mapping="/img/**" location="/img/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
     <mvc:resources mapping="/html/**" location="/html/"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

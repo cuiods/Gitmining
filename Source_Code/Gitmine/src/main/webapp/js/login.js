@@ -142,22 +142,9 @@ $(document).ready(function() {
 			url:"login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
-				if (result.length > 2) {
-					$('#user').focus().css({
-						border: "1px solid red",
-						boxShadow: "0 0 2px red"
-					});$("#userCue").html(result);
-					return false;
-				} else {
-					$('#user').css({
-						border: "1px solid #D7D7D7",
-						boxShadow: "none"
-					});
-				}
 				alert(result);
 			}
 		});
-		$("login_form").submit();
 	});
 
 });
