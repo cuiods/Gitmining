@@ -4,6 +4,7 @@ import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.imp.RepoModelImpl;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.service.RepoModelService;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,9 +39,9 @@ public class RepoControllerTest {
 
     private MockMvc mockMvc;
 
-    private TblRepo mockRepo;
+    private RepoVO mockRepo;
 
-    private List<TblRepo> mockRepoList;
+    private List<RepoVO> mockRepoList;
 
     @Mock
     private RepoModelService repoModelService;
@@ -56,8 +57,8 @@ public class RepoControllerTest {
 
 
     public RepoControllerTest() {
-        mockRepo = new TblRepo();
-        mockRepo.setName("test_repo");
+        mockRepo = new RepoVO();
+        mockRepo.setReponame("test_repo");
         mockRepo.setOwnerName("dbc");
 
         mockRepoList = new ArrayList<>();

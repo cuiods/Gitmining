@@ -49,27 +49,33 @@ public class RepoModelImpl implements RepoModelService {
         this.repoDaoImpl = repoDaoImpl;
     }
 
-    public List<TblRepo> getRecommendRepo(String webUsername) {
+    public List<RepoVO> getRecommendRepo(String webUsername) {
+        //todo
         return null;
     }
 
-    public List<TblRepo> getPopularRepo() {
-        List<TblRepo> result = null;
-        result = repoDaoImpl.getRepos(SortType.Repo_Star, true, 0, 5);
-        return result;
+    public List<RepoVO> getPopularRepo() {
+        List<TblRepo> tblRepoList = repoDaoImpl.getRepos(SortType.Repo_Star, true, 0, 5);
+        List<RepoVO> voList = new ArrayList<>();
+        for (TblRepo tblRepo: tblRepoList){
+            RepoVO vo = voConvertor.convert(tblRepo);
+            voList.add(vo);
+        }
+        return voList;
     }
 
     @Override
-    public long getTotalPage() {
+    public int getTotalPage() {
         long totalItem = repoDaoImpl.getTotalCount();
-        long page = totalItem/Const.ITEMS_PER_PAGE;
+        int page = (int)totalItem/Const.ITEMS_PER_PAGE;
         if (totalItem%Const.ITEMS_PER_PAGE >0 ){
             page++;
         }
         return page;
     }
 
-    public List<TblRepo> getRelatedRepo(String ownername, String reponame) {
+    public List<RepoVO> getRelatedRepo(String ownername, String reponame) {
+        //todo
         return null;
     }
 
@@ -84,30 +90,54 @@ public class RepoModelImpl implements RepoModelService {
         return voList;
     }
 
-    public List<TblRepo> getSearchResult(String keyword, String sortType, String filterType,
+    public List<RepoVO> getSearchResult(String keyword, String sortType, String filterType,
                                          String language, String createYear, int pageNum, boolean reverse) {
+
+        if (filterType.toLowerCase().equals("all")){
+            filterType = null;
+        }
+
+        if (language.toLowerCase().equals("all")){
+            language = null;
+        }
+
         int offset = (pageNum-1)* Const.ITEMS_PER_PAGE;
         if (offset<0){
             offset = 0;
         }
         int maxNum = Const.ITEMS_PER_PAGE;
-        Date date = null;
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        Calendar calendar = null;
         try {
-            date = dateFormat.parse(createYear);
+            Date date = dateFormat.parse(createYear);
+            calendar = Calendar.getInstance();
+            calendar.setTime(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("parse year error! the format of 'createYear' is not correct");
         }
+
         SortType sort = SortTypeBuilder.getSortType(sortType);
         List<TblRepo> list = repoDaoImpl.getSearchResult(keyword, offset, maxNum, sort, reverse, filterType,
                 language, calendar);
-        return list;
+
+        List<RepoVO> voList = new ArrayList<>();
+
+        for (TblRepo tblRepo: list){
+            RepoVO vo = voConvertor.convert(tblRepo);
+            voList.add(vo);
+        }
+        return voList;
     }
 
-    public TblRepo getRepoBasicInfo(String ownername, String reponame) {
-        return repoDaoImpl.getRepoBasicInfo(ownername, reponame);
+    @Override
+    public int getSearchPage(String keyword, String filterType, String language, String createYear) {
+        //todo
+        return 0;
+    }
+
+    public RepoVO getRepoBasicInfo(String ownername, String reponame) {
+        TblRepo tblRepo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
+        return voConvertor.convert(tblRepo);
     }
 
     public RadarChart getRepoRadarChart(String ownername, String reponame) {

@@ -36,7 +36,7 @@ public class RepoController {
 
         Map<String, Object> result = new HashMap<>();
 
-        List<TblRepo> recommend;
+        List<RepoVO> recommend;
         if (session.getAttribute("webUsername") == null){
             recommend = repoModelImpl.getPopularRepo();
         }
@@ -45,8 +45,8 @@ public class RepoController {
             recommend = repoModelImpl.getRecommendRepo(webUsername);
         }
         List<RepoVO> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
+        result.put("repoList", mainList);
         result.put("recommend", recommend);
-        result.put("mainList", mainList);
 
         return result;
     }
@@ -75,11 +75,14 @@ public class RepoController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @ResponseBody
-    public List<TblRepo> getSearchResult(@RequestParam String keyword, @RequestParam String sortType,
-                                  @RequestParam String filterType, @RequestParam String language,
-                                  @RequestParam String createYear, @RequestParam int pageNum,
-                                  @RequestParam boolean reverse){
-        List<TblRepo> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType,
+    public List<RepoVO> getSearchResult(@RequestParam String keyword,
+                                        @RequestParam(required = false, defaultValue = "") String filterType,
+                                        @RequestParam(required = false, defaultValue = "") String language,
+                                        @RequestParam(required = false, defaultValue = "") String createYear,
+                                        @RequestParam int pageNum,
+                                        @RequestParam(required = false, defaultValue = "repo_name") String sortType,
+                                        @RequestParam(required = false, defaultValue = "false") boolean reverse){
+        List<RepoVO> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType,
                 language, createYear, pageNum, reverse);
 
         //todo use the web user hobby to resort the result and put the items match the user hobby on the top
@@ -92,27 +95,38 @@ public class RepoController {
     @ResponseBody
     public Map<String, Object> getRepoInfo(@PathVariable String ownername, @PathVariable String reponame) {
 
-        TblRepo basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
+        RepoVO basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
         RadarChart radarChart = repoModelImpl.getRepoRadarChart(ownername, reponame);
-        List<TblRepo> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
+        List<RepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
 
         Map<String, Object> repoDetailInfo = new HashMap<>();
         repoDetailInfo.put("basicInfo", basicInfo);
         repoDetailInfo.put("radarChart", radarChart);
-        repoDetailInfo.put("related", relatedRepo);
+        repoDetailInfo.put("relatedRepo", relatedRepo);
 
         return repoDetailInfo;
     }
 
-    @RequestMapping(value = "/{ownername}/{reponame}/graph", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername}/{reponame}/graph/commit_by_contributor", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getRepoDetailGraph(@PathVariable String ownername, @PathVariable String reponame){
-        //SimpleChart[] commitCharts = repoModelImpl.getRepoCommitCharts(ownername, reponame);
+    public Map getRepoCommitByContributor(@PathVariable String ownername, @PathVariable String reponame){
+        return repoModelImpl.getCommitByContributor(ownername,reponame);
+    }
 
+    @RequestMapping(value = "/{ownername}/{reponame}/graph/code_frequency", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getRepoCodeFrequency(@PathVariable String ownername, @PathVariable String reponame){
+        return repoModelImpl.getCodeFrequency(ownername, reponame);
+    }
 
-        //todo more graphs should be added here, such as contributions of each member
-
-        return null;
+    @RequestMapping(value = "/{ownername}/{reponame}/graph/commit_by_time", method = RequestMethod.GET)
+    @ResponseBody
+    public Map getRepoCommitByTime(@PathVariable("ownername") String ownername, @PathVariable("reponame") String reponame){
+        SimpleChart [] charts = repoModelImpl.getPunchCard(ownername, reponame);
+        Map<String,Object> map = new HashMap<>();
+        map.put("commitPerHourOfDay", charts[0]);
+        map.put("commitPerDayOfWeek", charts[1]);
+        return map;
     }
 
     public RepoModelService getRepoModelImpl() {
