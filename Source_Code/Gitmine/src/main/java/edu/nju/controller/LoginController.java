@@ -41,16 +41,16 @@ public class LoginController {
      * @param session
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public boolean login(@RequestParam String username, @RequestParam String password,
+    public String login(@RequestParam String username, @RequestParam String password,
                         HttpSession session){
         boolean loginResult = loginModelImpl.login(username, password);
         if (loginResult){
             //add user information to session scope for aop to use
             session.setAttribute("username", username);
         }
-        return loginResult;
+        return loginResult?username:"";
     }
 
     @RequestMapping(value = "/interest", method = RequestMethod.GET)

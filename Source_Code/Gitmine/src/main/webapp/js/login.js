@@ -138,11 +138,14 @@ $(document).ready(function() {
 	
 	$("#login_btn").click(function () {
 		$.ajax({
-			type:reMethod,
+			type:"GET",
 			url:"login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
 				alert(result);
+			},
+			error:function () {
+				alert("fail");
 			}
 		});
 	});
