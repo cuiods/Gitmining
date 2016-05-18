@@ -35,14 +35,14 @@ public class UserController {
     public UserController() {
     }
 
-    @RequestMapping("/home")
+    @RequestMapping(value = "/home")
     public String home(Model model){
         //todo recommend
 
         return "user/recommend";
     }
 
-    @RequestMapping("/search")
+    @RequestMapping(value = "/search")
     @ResponseBody
     public List<UserVO> getSearchResult(@RequestParam String keyword,
                                   @RequestParam(required = false, defaultValue = "user_name") String sortType,
@@ -55,7 +55,7 @@ public class UserController {
         return resultList;
     }
 
-    @RequestMapping("/{username}")
+    @RequestMapping(value = "/{username}")
     @ResponseBody
     public Map getUserInfo(@PathVariable String username){
         Map<String,Object> map = new HashMap<>();
@@ -70,19 +70,19 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping("/statistic/type")
+    @RequestMapping(value = "/statistic/type")
     @ResponseBody
     public SimpleChart statUserType(){
         return userStatsImpl.statsUserType();
     }
 
-    @RequestMapping("/statistic/public_repo")
+    @RequestMapping(value = "/statistic/public_repo")
     @ResponseBody
     public SimpleChart statUserRepos(){
         return userStatsImpl.statsUserRepo();
     }
 
-    @RequestMapping("/statistic/public_gist")
+    @RequestMapping(value = "/statistic/public_gist")
     @ResponseBody
     public SimpleChart statUserGists(){
         return userStatsImpl.statsUserGist();
@@ -94,19 +94,19 @@ public class UserController {
         return userStatsImpl.statsUserFollower();
     }
 
-    @RequestMapping("/statistic/create_at")
+    @RequestMapping(value = "/statistic/create_at")
     @ResponseBody
     public SimpleChart statUserCreateTime(){
         return userStatsImpl.statsUserCreateTime();
     }
 
-    @RequestMapping("/statistic/email")
+    @RequestMapping(value = "/statistic/email")
     @ResponseBody
     public SimpleChart statUserEmail(){
         return userStatsImpl.statsUserEmail();
     }
 
-    @RequestMapping("/statistic/company")
+    @RequestMapping(value = "/statistic/company")
     @ResponseBody
     public SimpleChart statUserCompany(){
         return userStatsImpl.statsUserCompany();
