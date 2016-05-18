@@ -2,6 +2,7 @@
  * Created by yyy on 2016/5/18.
  */
 
+
 $(document).ready(function() {
     var userName=document.getElementById("userName");
     userName.innerHTML=getQueryString('userName');
@@ -23,6 +24,14 @@ $(document).ready(function() {
             document.getElementById("bio").innerHTML=data.basicInfo.bio;
             document.getElementById("createTime").innerHTML=data.basicInfo.createAt;
             document.getElementById("updateTime").innerHTML=data.basicInfo.updateAt;
+            var relatedRepo = document.getElementById("relatedRepo");
+            $.each(data.relatedRepo,function(){
+                var node = document.createElement("a");
+                node.href = "userDetail.html?userName="+userName;
+                node.innerHTML = this.ownerName+"/"+this.reponame;
+                node.class="list-group-item";
+                relatedRepo.appendChild(node);
+            })
 
 
         },
@@ -33,6 +42,7 @@ $(document).ready(function() {
 
 
 });
+
 
 //to cherish this user
 function cherish(){
