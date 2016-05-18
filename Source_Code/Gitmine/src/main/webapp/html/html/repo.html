@@ -12,7 +12,6 @@
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -66,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="header-top">
             <div class="social-icons">
-                            <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
+                <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
                 <!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
 
             </div>
@@ -192,25 +191,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="news-grids" id="news-grids">
             <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
 
-                <a href="single.html" id="user-name" style="display: inline-block">Integer</a>/
-                <a href="single.html" id="repo-name" style="display: inline-block">Integer</a>
-                <p id="description"> piciis iste natus scele risque auctor volutpat et massa.</p>
-                <span id="update_time">8.00 - 10.00 | JUN 09,2014
+                <a href="single.html" class="ownerName" style="display: inline-block">Integer</a>/
+                <a href="single.html" class="reponame" style="display: inline-block">Integer</a>
+                <p class="description"> piciis iste natus scele risque auctor volutpat et massa.</p>
+                <span class="createAt">8.00 - 10.00 | JUN 09,2014
                      <input  type="radio" style="display: inline-block;float: right"/>
                 </span>
 
-                <a class="mask" href="single.html"><img src="https://avatars.githubusercontent.com/u/11437641?v=3" class="img-responsive zoom-img" alt="" id="avatar" /></a>
+                <a class="mask" href="single.html">
+                    <img src="https://avatars.githubusercontent.com/u/11437641?v=3"
+                         class="img-responsive zoom-img ownerAvatarUrl" alt=""  /></a>
                 <div class="news-info">
 
-                    <div id="numbers">
-                       <button class=" glyphicon glyphicon-headphones" style="display: inline-block; background: transparent; border: none;color: purple"/>
-                        <span id="num_subscriber">123</span>
-                       <button class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: purple"/>
-                        <span id="num_fork">123</span>
-                       <button class=" glyphicon glyphicon-star" style="display: inline-block; background: transparent; border: none;color: purple"/>
-                        <span id="num_star">123</span>
+                    <div class="numbers">
+                        <button class=" glyphicon glyphicon-headphones" style="display: inline-block; background: transparent; border: none;color: purple"/>
+                        <span class="numSubscriber">123</span>
+                        <button class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: purple"/>
+                        <span class="numFork">123</span>
+                        <button class=" glyphicon glyphicon-star" style="display: inline-block; background: transparent; border: none;color: purple"/>
+                        <span class="numStar">123</span>
                     </div>
-                    <span style="float: right; font-size: 5px">8.00 - 10.00 | JUN 09,2014</span>
+                    <span style="float: right; font-size: 5px" class="updateAt"> 8.00 - 10.00 | JUN 09,2014</span>
                 </div>
             </div>
         </div>

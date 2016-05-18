@@ -12,7 +12,7 @@ var Repo = {
 
     init: function () {
         this.gridsFather =  $("#news-grids");
-        this.lastGrid = this.gridsFather.children(".news-grid");
+        this.lastGrid = this.gridsFather.children(".news-grid").eq(0);
         this.clear = $("<div class=\"clearfix\"> </div>" );
         this.gridsFather.empty();
         this.url = location_port+"/search";
@@ -29,52 +29,50 @@ var Repo = {
 
     updateData: function (object) {
 
-
-        // var object = $.parseJSON(data);
-
+        /**
+         * {"totalPage":10,
+         * repoList":[{"ownerName":null,"ownerAvatarUrl":null,"reponame":null,"size":0,"description":null,
+         * "language":null,"url":null,"createAt":null,"updateAt":null,
+         * "numStar":0,"numFork":0,"numSubscriber":0}],"currentPage":1}
+         */
         this.gridsFather.empty();
+        var _this = this;
         $.each(object, function (i, n)
         {
-            console.log(n);
-            var element = this.lastGrid.clone();
-            this.gridsFather.append(element);
+
+
+            var tempGrid = _this.lastGrid.clone();
+
+            tempGrid.find('.ownerName').eq(0).text (n.ownerName);
+            tempGrid.find('.reponame').eq(0).text (n.reponame);
+            tempGrid.find('.description').eq(0).text (n.description);
+            tempGrid.find('.createAt').eq(0).text (n.createAt);
+            tempGrid.find('.updateAt').eq(0).text (n.updateAt);
+
+            tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
+            tempGrid.find('.numSubscriber').eq(0).text  ( n.numSubscriber);
+            tempGrid.find('.numFork').eq(0).text  ( n.numFork);
+            tempGrid.find('.numStar').eq(0).text   ( n.numStar);
+
+            _this.gridsFather.append(tempGrid);
             if(i%4==3){
-                this.gridsFather.append(this.clear.clone());
+                _this.gridsFather.append(_this.clear.clone());
             }
 
         });
     },
 
-    updateList: function (pageNum) {
-        var url = location_port+'/repo/list'+"?pageNum="+pageNum;
-        var oAjax = null;
-        if(window.XMLHttpRequest){
-            oAjax = new XMLHttpRequest();
-        }else{
-            oAjax = new ActiveXObject('Microsoft.XMLHTTP');
-        }
-        oAjax.open('GET', url, true);
-        oAjax.send();
-
-        oAjax.onreadystatechange=function(){
-            if(oAjax.readyState==4){
-                if(oAjax.status==200){
-                    console.log(oAjax.responseText);
-                }else{
-                    console.log('filed');
-                }
-            }
-        };
-    }
 };
 
 $(document).ready(
     function () {
         Repo.init();
         Repo.initListeners();
-        Repo.updateList(1);
-        
-
+        var url = location_port+'/repo/list'+"?pageNum=1";
+        $.get(url,function (object) {
+            console.log(object);
+            Repo.updateData(object);
+        });
     }
 );
 
