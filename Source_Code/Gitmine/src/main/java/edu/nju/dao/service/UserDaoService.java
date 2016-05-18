@@ -1,6 +1,7 @@
 package edu.nju.dao.service;
 
 import edu.nju.common.SortType;
+import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.entity.UserLabel;
 
@@ -49,12 +50,19 @@ public interface UserDaoService {
     public List<TblUser> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum);
 
     /**
+     * get the repos owned by the user
+     * @param userLoginName
+     * @return
+     */
+    public List<TblRepo> getUserOwnRepos(String userLoginName, SortType sortType, int offset, int maxNum);
+
+    /**
      *
-     * get related repositorys
+     * get related repositories
      * @return list of repo names
      *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<List> getUserSubscribeRepos(String userLoginName);
+    public List<List> getUserSubscribeRepos(String userLoginName,int offset,int maxNum);
 
     /**
      * get related collaborator repositories
@@ -62,7 +70,7 @@ public interface UserDaoService {
      * @return list of repo names
      *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<List> getUserCollaboratorRepos(String userLoginName);
+    public List<List> getUserCollaboratorRepos(String userLoginName,int offset,int maxNum);
 
     /**
      * get related contributor
@@ -70,7 +78,7 @@ public interface UserDaoService {
      * @return list of repo names
      *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<List> getUserContriutorRepos(String userLoginName);
+    public List<List> getUserContributorRepos(String userLoginName,int offset,int maxNum);
 
     /**
      * get user interest labels

@@ -2,6 +2,7 @@ package edu.nju.controller;
 
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.UserModelService;
@@ -62,11 +63,12 @@ public class UserController {
         UserVO userVO = userModelImpl.getUserBasicInfo(username);
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
         List<UserVO> relatedUser = userModelImpl.getRelatedUser(username);
+        List<RepoVO> relatedRepo = userModelImpl.getRelatedRepo(username);
 
         map.put("basicInfo",userVO);
         map.put("radarChart",radarChart);
         map.put("relatedUser",relatedUser);
-
+        map.put("relatedRepo", relatedRepo);
         return map;
     }
 

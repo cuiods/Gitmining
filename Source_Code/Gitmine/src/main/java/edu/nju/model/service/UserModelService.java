@@ -3,6 +3,7 @@ package edu.nju.model.service;
 import edu.nju.common.SortType;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.UserVO;
 
 import java.util.List;
@@ -26,6 +27,13 @@ public interface UserModelService {
      * @return
      */
     public List<UserVO> getRelatedUser(String username);
+
+    /**
+     * get the related repositories for the given user, such as own repos or contribute repos
+     * @param username
+     * @return
+     */
+    public List<RepoVO> getRelatedRepo(String username);
 
     /**
      * get the user has the most followers
