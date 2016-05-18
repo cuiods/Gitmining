@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
+import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import org.junit.Assert;
 import org.junit.Test;
@@ -63,20 +64,26 @@ public class UserDaoImpTest {
     }
 
     @Test
+    public void getUserOwnRepos() throws Exception {
+        List<TblRepo> lists = userDaoImp.getUserOwnRepos("jquery",SortType.Repo_Name,0,10);
+        assertTrue(lists.size()>0);
+    }
+
+    @Test
     public void getUserSubscribeRepos() throws Exception {
-        List<List> lists = userDaoImp.getUserSubscribeRepos("maxlapshin");
+        List<List> lists = userDaoImp.getUserSubscribeRepos("maxlapshin",0,10);
         Assert.assertTrue(lists.size()>0);
     }
 
     @Test
     public void getUserCollaboratorRepos() throws Exception {
-        List<List> lists = userDaoImp.getUserCollaboratorRepos("norbert");
+        List<List> lists = userDaoImp.getUserCollaboratorRepos("norbert",0,10);
         Assert.assertTrue(lists.size()>0);
     }
 
     @Test
     public void getUserContriutorRepos() throws Exception {
-        List<List> lists = userDaoImp.getUserContriutorRepos("abraxxa");
+        List<List> lists = userDaoImp.getUserContributorRepos("abraxxa",0,10);
         Assert.assertTrue(lists.size()>0);
     }
 

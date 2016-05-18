@@ -107,6 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
             <div class="col-md-3"> </div>
         </div>
+
     </div>
 </div>
 <!-- header-section-ends -->
@@ -119,8 +120,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class=" col-md-9">
         <div>
             <div class="news-text" style="float:left;display:inline-block">
-                <h3>Users</h3>
+                <h3 style="float:left">Users</h3>
+                <ul class=" nav nav-tabs " style="margin-top: 2em;margin-left:6em;float:right">
+                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">General &nbsp;<span class="glyphicon glyphicon-arrow-down" id="sort_general"></span></a></li>
+                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">Repos &nbsp;<span class="glyphicon glyphicon-arrow-up"></span></a></li>
+                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">Following &nbsp;  <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">Followed &nbsp;<span class="glyphicon glyphicon-arrow-up"></span></a></li>
+                </ul>
             </div>
+
         </div>
         <div class="clearfix"></div>
         <div class="news-grids">
@@ -382,51 +390,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content">
     <div class="container">
         <div class="gallery-head" id="portfolio">
-
-
-            <!-- content-section-ends -->
-            <div class="get-in-touch">
-                <div class="container">
-                    <div class="col-md-3 gin">
-                        <h3>Get in Touch</h3>
-                        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspeisse eget diam</p>
-                        <div class="social-icons footer-icons">
-                            <i class="facebook"></i>
-                            <i class="twitter"></i>
-                            <i class="googlepluse"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-3 address">
-                        <h3>Address</h3>
-                        <address>
-                            <p>10-765 mg-Road,
-                            <p>Washington, DC, United States,</p>
-                            <p>ud-19832-6578.</p>
-                            <p class="phone"><span>Phone</span> :+1 900 876 1234</p>
-                            <span class="phone">E-mail : <a href="mail-to:example@mail.com">example@mail.com</a></span>
-                        </address>
-                    </div>
-                    <div class="col-md-6 dal">
-                        <h3>Drop us a line</h3>
-                        <input type="text" class="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}">
-                        <input type="text" class="text" value="Last Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}">
-                        <input type="text" class="text" value="E-mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail';}">
-                        <input type="text" class="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}">
-                        <textarea onfocus="if(this.value == 'Your Message') this.value='';" onblur="if(this.value == '') this.value='Your Message';" >Your Message</textarea>
-                        <input type="submit" value="SEND">
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <!-- footer-section -->
-            <div class="footer">
-                <div class="container">
-                    <div class="copyright text-center">
-                        <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-                    </div>
-                </div>
-            </div>
-
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
@@ -538,16 +501,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- footer-section -->
             <script type="text/javascript">
                 $(document).ready(function() {
-                    /*
-                     var defaults = {
-                     containerID: 'toTop', // fading element id
-                     containerHoverID: 'toTopHover', // fading element hover id
-                     scrollSpeed: 1200,
-                     easingType: 'linear'
-                     };
-                     */
                     $().UItoTop({ easingType: 'easeOutQuart' });
                 });
+                function sort(obj){
+                    $(obj).children('span').removeClass("glyphicon-arrow-down").addClass("glyphicon-arrow-up");
+                };
             </script>
             <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
             <!---->

@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
 import edu.nju.dao.service.UserDaoService;
+import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.entity.UserLabel;
 import org.hibernate.*;
@@ -129,6 +130,19 @@ public class UserDaoImp implements UserDaoService {
         return list;
     }
 
+    @Override
+    public List<TblRepo> getUserOwnRepos(String userLoginName,SortType sortType,int offset,int maxNum) {
+        Session session = sessionFactory.openSession();
+        String sql = "from TblRepo where owner_name = :owner "+getSortTypeHql(sortType,true);
+        Query query = session.createQuery(sql);
+        query.setString("owner", userLoginName);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
+        List<TblRepo> list = query.list();
+        session.close();
+        return list;
+    }
+
 
     /**
      * get related repositorys
@@ -136,10 +150,12 @@ public class UserDaoImp implements UserDaoService {
      * @param userLoginName
      * @return list of repo names
      */
-    public List<List> getUserSubscribeRepos(String userLoginName) {
+    public List<List> getUserSubscribeRepos(String userLoginName,int offset,int maxNum) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select new list(repoOwner,repo) from TblSubscriber where subscriber=?");
         query.setString(0,userLoginName);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
         List<List> list = query.list();
         session.close();
         return list;
@@ -151,10 +167,12 @@ public class UserDaoImp implements UserDaoService {
      * @param userLoginName
      * @return list of repo names
      */
-    public List<List> getUserCollaboratorRepos(String userLoginName) {
+    public List<List> getUserCollaboratorRepos(String userLoginName,int offset,int maxNum) {
         Session session =sessionFactory.openSession();
         Query query = session.createQuery("select new list(repoOwner,repo) from TblCollabrator where collabrator=?");
         query.setString(0,userLoginName);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
         List<List> list = query.list();
         session.close();
         return list;
@@ -166,10 +184,12 @@ public class UserDaoImp implements UserDaoService {
      * @param userLoginName
      * @return list of repo names
      */
-    public List<List> getUserContriutorRepos(String userLoginName) {
+    public List<List> getUserContributorRepos(String userLoginName,int offset,int maxNum) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select new list(ownerName,repo) from TblContributor where contributor=?");
         query.setString(0,userLoginName);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxNum);
         List<List> list = query.list();
         session.close();
         return list;
@@ -381,4 +401,39 @@ public class UserDaoImp implements UserDaoService {
         }
         return 0;
     }
+
+    private String getSortTypeHql(SortType sortType, boolean isDesc){
+        StringBuilder builder = new StringBuilder();
+        switch (sortType){
+            case User_Repos:builder.append(" order by publicRepo ");break;
+            case User_Follored:builder.append(" order by follower ");break;
+            case User_Folloring:builder.append(" order by following ");break;
+            default:builder.append(" order by loginName ");break;
+        }
+        if (isDesc){
+            builder.append("desc ");
+        }
+        else {
+            builder.append("asc ");
+        }
+        return builder.toString();
+    }
+
+    private String getSortTypeSql(SortType sortType, boolean isDesc){
+        StringBuilder builder = new StringBuilder();
+        switch (sortType){
+            case User_Repos:builder.append(" order by public_repo ");break;
+            case User_Follored:builder.append(" order by follower ");break;
+            case User_Folloring:builder.append(" order by following ");break;
+            default:builder.append(" order by login_name ");break;
+        }
+        if (isDesc){
+            builder.append("desc ");
+        }
+        else {
+            builder.append("asc ");
+        }
+        return builder.toString();
+    }
+
 }

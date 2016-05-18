@@ -1,7 +1,11 @@
 package edu.nju.controller;
 
+import edu.nju.common.Const;
+import edu.nju.common.SortType;
+import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.UserModelService;
@@ -42,6 +46,28 @@ public class UserController {
         return "user/recommend";
     }
 
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Map list(@RequestParam int pageNum,
+                    @RequestParam(required = false, defaultValue = "user_name") String sortType,
+                    @RequestParam(required = false, defaultValue = "false") boolean isDesc){
+        Map<String,Object> map = new HashMap<>();
+        long totalPage = userModelImpl.getTotalPage();
+        List<UserVO> userVOs = null;
+        if (pageNum<=totalPage){
+            SortType type = SortTypeBuilder.getSortType(sortType);
+            if (type == null){
+                type = SortType.User_Name;
+            }
+            if (pageNum<1)  pageNum=1;
+            userVOs = userModelImpl.getUsers(type,isDesc,(pageNum-1)*Const.ITEMS_PER_PAGE,Const.ITEMS_PER_PAGE);
+        }
+        map.put("totalPage", 10);
+        map.put("currentPage", pageNum);
+        map.put("repoList", userVOs);
+        return map;
+    }
+
     @RequestMapping(value = "/search")
     @ResponseBody
     public List<UserVO> getSearchResult(@RequestParam String keyword,
@@ -62,11 +88,12 @@ public class UserController {
         UserVO userVO = userModelImpl.getUserBasicInfo(username);
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
         List<UserVO> relatedUser = userModelImpl.getRelatedUser(username);
+        List<RepoVO> relatedRepo = userModelImpl.getRelatedRepo(username);
 
         map.put("basicInfo",userVO);
         map.put("radarChart",radarChart);
         map.put("relatedUser",relatedUser);
-
+        map.put("relatedRepo", relatedRepo);
         return map;
     }
 

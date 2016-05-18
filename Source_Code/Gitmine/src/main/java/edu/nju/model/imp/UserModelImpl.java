@@ -5,8 +5,10 @@ import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.common.VOConvertor;
 import edu.nju.dao.service.UserDaoService;
+import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.UserModelService;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,17 @@ public class UserModelImpl implements UserModelService {
         return null;
     }
 
+    @Override
+    public List<RepoVO> getRelatedRepo(String username) {
+        // at most 10 repos, order by star
+        List<TblRepo> ownRepos = userDaoImpl.getUserOwnRepos(username,SortType.Repo_Star,0,10);
+        List<RepoVO> repoVOs = new ArrayList<>();
+        for (TblRepo tblRepo:ownRepos){
+            repoVOs.add(voConvertor.convert(tblRepo));
+        }
+        return repoVOs;
+    }
+
     public List<UserVO> getPopularUser() {
         List<UserVO> result = new ArrayList<>();
         SortType sortType = SortType.User_Follored;
@@ -53,6 +66,16 @@ public class UserModelImpl implements UserModelService {
             result.add(voConvertor.convert(tblUser));
         }
         return result;
+    }
+
+    @Override
+    public int getTotalPage() {
+        long totalCount = userDaoImpl.getUserTotalCount();
+        int page = (int)totalCount/Const.ITEMS_PER_PAGE;
+        if (totalCount%Const.ITEMS_PER_PAGE > 0){
+            page++;
+        }
+        return page;
     }
 
     @Override
