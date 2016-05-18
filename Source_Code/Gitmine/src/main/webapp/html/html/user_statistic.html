@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Statistic</title>
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/repo-label.css">
+    <script src="../../js/login.js"></script>
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <script src="../../js/bootstrap.js"></script>
+    <!--Echart js file-->
+    <script src="../../plugin/echarts/echarts.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!--webfont-->
+    <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="../../js/move-top.js"></script>
+    <script type="text/javascript" src="../../js/easing.js"></script>
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- header-section-starts -->
+<div class="about-header-banner">
+    <div class="container">
+        <div class="home">
+            <a href="/html/index.html"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="header-top">
+            <div class="social-icons">
+                <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
+                <!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
+
+            </div>
+            <span class="menu"><img src="../../images/nav.png" alt=""/></span>
+            <div class="top-menu">
+                <ul>
+                    <nav class="cl-effect-13">
+                        <li><a href="/html/about.html">About</a></li>
+                        <li><a href="/html/html/userInfo.html" title="users search">USERS</a></li>
+                        <li><a class="scroll" href="/html/html/user_statistic.html" title="users statistic">U-STAT</a></li>
+                        <li><a href="/html/html/repo.html" title="repositories search">REPOS</a></li>
+                        <li><a href="/html/html/repo_statistic.html" title="repositories' statistic">R-STAT</a></li>
+                    </nav>
+                </ul>
+            </div>
+            <!-- script for menu -->
+            <script>
+                $( "span.menu" ).click(function() {
+                    $( ".top-menu ul" ).slideToggle( 300, function() {
+                        // Animation complete.
+                    });
+                });
+            </script>
+            <!-- //script for menu -->
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="banner-info row center-block">
+            <h1><a href="/html/html/user_statistic.html">User Statistic</a></h1>
+        </div>
+    </div>
+</div>
+<!-- header-section-ends -->
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 75% ;height:500%;margin-left: auto;
+margin-right: auto;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+<!-- content-section-starts -->
+<div class="content">
+    <div class="container">
+        <div class="gallery-head" id="portfolio">
+
+
+            <!-- content-section-ends -->
+            <div class="get-in-touch">
+                <div class="container">
+                    <div class="col-md-3 gin">
+                        <h3>Get in Touch</h3>
+                        <p>Nanjing University, XianLin Canpus</p>
+                    </div>
+                    <div class="col-md-3 address">
+                        <h3>Address</h3>
+                        <address>
+                            <p>163 Qixia-Road,
+                            <p>Nanjing, Jangsu, China,</p>
+                            <p>QQ: 23333333.</p>
+                            <p class="phone"><span>Phone</span> :110</p>
+                            <span class="phone">E-mail : <a href="mail-to:cuihaoemail@163.com">cuihaoemail#163.com</a></span>
+                        </address>
+                    </div>
+                    <div class="col-md-6 dal">
+                        <h3>Drop us a line</h3>
+                        <input type="text" class="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}">
+                        <input type="text" class="text" value="Last Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}">
+                        <input type="text" class="text" value="E-mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail';}">
+                        <input type="text" class="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}">
+                        <textarea onfocus="if(this.value == 'Your Message') this.value='';" onblur="if(this.value == '') this.value='Your Message';" >Your Message</textarea>
+                        <input type="submit" value="SEND">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- footer-section -->
+            <div class="footer">
+                <div class="container">
+                    <div class="copyright text-center">
+                        <p>Copyright &copy; 2016.All rights reserved.Coding Fairy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
+
+                    <div class="header">   <!--登陆头（登陆、注册）-->
+                        <div class="switch" id="switch">
+                            <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">Login</a>
+                            <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">Register</a>  <!--tabindex规定了tab键控制的次序-->
+
+                            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+
+                        <!--登录-->
+                        <div class="web_login" id="web_login">
+
+
+                            <div class="login-box">
+
+
+                                <div class="login_form">
+                                    <form action="" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                                        <input type="hidden" name="did" value="0"/>
+                                        <input type="hidden" name="to" value="log"/>
+                                        <div class="uinArea" id="uinArea">
+                                            <label class="input-tips" for="u">ID:</label>
+                                            <div class="inputOuter" id="uArea">
+
+                                                <input type="text" id="u" name="username" class="inputstyle"/>
+                                            </div>
+                                        </div>
+                                        <div class="pwdArea" id="pwdArea">
+                                            <label class="input-tips" for="p">PW:</label>
+                                            <div class="inputOuter" id="pArea">
+
+                                                <input type="password" id="p" name="p" class="inputstyle"/>
+                                            </div>
+                                        </div>
+
+                                        <div style="padding-left:50px;margin-top:20px;"><input id="login_btn" type="button" value="Login" style="width:150px;" class="button_blue"/></div>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--登录end-->
+                    </div>
+
+                    <!--注册-->
+                    <div class="qlogin" id="qlogin" style="display: none; ">
+
+                        <div class="web_login"><form name="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
+                            <input type="hidden" name="to" value="reg"/>
+                            <input type="hidden" name="did" value="0"/>
+                            <ul class="reg_form" id="reg-ul">
+                                <div id="userCue" class="cue">Please pay attention to format.</div>
+                                <li>
+
+                                    <label for="user"  class="input-tips2">ID:</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="user" name="user" maxlength="16" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="passwd" class="input-tips2">Password:</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd"  name="passwd" maxlength="16" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <label for="passwd2" class="input-tips2">Confirm:</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="email_input" class="input-tips2">Email:</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="email_input" name="email" maxlength="50" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <div class="inputArea">
+                                        <input type="button" id="reg"  style="margin-top:10px;margin-left:85px;" class="button_blue" value="Sign up"/> <a href="#" class="zcxy" target="_blank">agreement</a>
+                                    </div>
+
+                                </li><div class="cl"></div>
+                            </ul></form>
+
+
+                        </div>
+
+
+                    </div>
+                    <!--注册end-->
+                </div>
+            </div>
+            <!-- footer-section -->
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    /*
+                     var defaults = {
+                     containerID: 'toTop', // fading element id
+                     containerHoverID: 'toTopHover', // fading element hover id
+                     scrollSpeed: 1200,
+                     easingType: 'linear'
+                     };
+                     */
+                    $().UItoTop({ easingType: 'easeOutQuart' });
+                });
+            </script>
+            <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+            <!---->
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
