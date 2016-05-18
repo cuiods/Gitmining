@@ -37,7 +37,7 @@ var Repo = {
          */
         this.gridsFather.empty();
         var _this = this;
-        $.each(object, function (i, n)
+        $.each(object.repoList, function (i, n)
         {
 
 
