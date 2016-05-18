@@ -8,17 +8,22 @@ $(document).ready(function() {
     $().UItoTop({ easingType: 'easeOutQuart' });
 
     $.ajax({
-        type:'POST',
-        url:'/user'+userName.innerHTML,
+        type:'GET',
+        url:'/user/'+userName.innerHTML,
         success:function(data){
-            document.getElementById("userDetail_repos").innerHTML=data.publicRepo;
-            document.getElementById("userDetail_following").innerHTML=data.following;
-            document.getElementById("userDetail_followed").innerHTML=data.follower;
-            document.getElementById("userDetail_gists").innerHTML=data.publicGist;
-            document.getElementById("blog").innerHTML=data.blog;
-            document.getElementById("email").innerHTML=data.email;
-            document.getElementById("company").innerHTML=data.company;
-            document.getElementById("location").innerHTML=data.location;
+            document.getElementById("header_url").src=data.basicInfo.avatarUrl;
+            document.getElementById("userDetail_repos").innerHTML=data.basicInfo.publicRepo;
+            document.getElementById("userDetail_following").innerHTML=data.basicInfo.following;
+            document.getElementById("userDetail_followed").innerHTML=data.basicInfo.follower;
+            document.getElementById("userDetail_gists").innerHTML=data.basicInfo.publicGist;
+            document.getElementById("blog").innerHTML=data.basicInfo.blog;
+            document.getElementById("email").innerHTML=data.basicInfo.email;
+            document.getElementById("company").innerHTML=data.basicInfo.company;
+            document.getElementById("location").innerHTML=data.basicInfo.location;
+            document.getElementById("bio").innerHTML=data.basicInfo.bio;
+            document.getElementById("createTime").innerHTML=data.basicInfo.createAt;
+            document.getElementById("updateTime").innerHTML=data.basicInfo.updateAt;
+
 
         },
         error:function(){
@@ -27,10 +32,12 @@ $(document).ready(function() {
     })
 
 
-
 });
 
+//to cherish this user
+function cherish(){
 
+};
 
 //to get the parameter transfered by url
 function getQueryString(name) {
