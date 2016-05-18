@@ -35,7 +35,7 @@ public class RepoController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
-    public Map home( HttpSession session){
+    public Map home(HttpSession session){
         //todo get current user from session scope and generate recommend content
 
         Map<String, Object> result = new HashMap<>();
@@ -109,6 +109,18 @@ public class RepoController {
         repoDetailInfo.put("relatedRepo", relatedRepo);
 
         return repoDetailInfo;
+    }
+
+    @RequestMapping(value = "/star", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean star(@RequestParam String ownername,@RequestParam String reponame){
+        return true;
+    }
+
+    @RequestMapping(value = "/unstar", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean unStar(@RequestParam String ownername,@RequestParam String reponame){
+        return true;
     }
 
     @RequestMapping(value = "/{ownername}/{reponame}/graph/commit_by_contributor", method = RequestMethod.GET)

@@ -12,12 +12,10 @@ import edu.nju.model.service.UserModelService;
 import edu.nju.model.service.UserStatsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +38,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/home")
-    public String home(Model model){
-        //todo recommend
+    @ResponseBody
+    public Map home(HttpSession session){
+        //todo get current user from session scope and generate recommend content
 
-        return "user/recommend";
+        Map<String, Object> result = new HashMap<>();
+
+        List<UserVO> recommend;
+        if (session.getAttribute("webUsername") == null){
+            recommend = userModelImpl.getPopularUser();
+        }
+        else {
+            String webUsername = (String) session.getAttribute("webUsername");
+            recommend = userModelImpl.getRecommendUser(webUsername);
+        }
+        List<UserVO> mainList = userModelImpl.getUsers(SortType.User_Name,false,0,Const.ITEMS_PER_PAGE);
+        result.put("userList", mainList);
+        result.put("recommend", recommend);
+
+        return result;
     }
 
     @RequestMapping(value = "/list")

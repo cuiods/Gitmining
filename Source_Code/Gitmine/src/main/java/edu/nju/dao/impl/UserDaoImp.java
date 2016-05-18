@@ -133,8 +133,7 @@ public class UserDaoImp implements UserDaoService {
     @Override
     public List<TblRepo> getUserOwnRepos(String userLoginName,SortType sortType,int offset,int maxNum) {
         Session session = sessionFactory.openSession();
-        String sql = "from TblRepo where owner_name = :owner "+getSortTypeHql(sortType,true);
-        Query query = session.createQuery(sql);
+        Query query = session.createQuery("from TblRepo where ownerName = :owner order by numStar desc ");
         query.setString("owner", userLoginName);
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
@@ -402,12 +401,15 @@ public class UserDaoImp implements UserDaoService {
         return 0;
     }
 
+    /*
+
     private String getSortTypeHql(SortType sortType, boolean isDesc){
         StringBuilder builder = new StringBuilder();
         switch (sortType){
             case User_Repos:builder.append(" order by publicRepo ");break;
             case User_Follored:builder.append(" order by follower ");break;
             case User_Folloring:builder.append(" order by following ");break;
+            case Repo_Star:builder.append(" order by numStar ");break;
             default:builder.append(" order by loginName ");break;
         }
         if (isDesc){
@@ -425,6 +427,7 @@ public class UserDaoImp implements UserDaoService {
             case User_Repos:builder.append(" order by public_repo ");break;
             case User_Follored:builder.append(" order by follower ");break;
             case User_Folloring:builder.append(" order by following ");break;
+            case Repo_Star:builder.append(" order by num_star ");break;
             default:builder.append(" order by login_name ");break;
         }
         if (isDesc){
@@ -435,5 +438,5 @@ public class UserDaoImp implements UserDaoService {
         }
         return builder.toString();
     }
-
+*/
 }
