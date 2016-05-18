@@ -136,16 +136,34 @@ public class RepoController {
         return map;
     }
 
-    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
+    @RequestMapping(value = "/statistic/create_at", method = RequestMethod.GET)
     @ResponseBody
-    public Map getRepoStatsCharts(){
-        Map<String,SimpleChart> map = new HashMap<>();
-        map.put("createTime",repoStatsImpl.statsCreateTime());
-        map.put("size",repoStatsImpl.statsSize());
-        map.put("language",repoStatsImpl.statsLanguage());
-        map.put("star",repoStatsImpl.statsStarCount());
-        map.put("fork",repoStatsImpl.statsForkCount());
-        return map;
+    public SimpleChart statRepoCreateTime(){
+        return repoStatsImpl.statsCreateTime();
+    }
+
+    @RequestMapping(value = "/statistic/size", method = RequestMethod.GET)
+    @ResponseBody
+    public SimpleChart statRepoSize(){
+        return repoStatsImpl.statsSize();
+    }
+
+    @RequestMapping(value = "/statistic/language", method = RequestMethod.GET)
+    @ResponseBody
+    public SimpleChart statRepoLanguage(){
+        return repoStatsImpl.statsLanguage();
+    }
+
+    @RequestMapping(value = "/statistic/star", method = RequestMethod.GET)
+    @ResponseBody
+    public SimpleChart statRepoStar(){
+        return repoStatsImpl.statsStarCount();
+    }
+
+    @RequestMapping(value = "/statistic/fork", method = RequestMethod.GET)
+    @ResponseBody
+    public SimpleChart statRepoFork(){
+        return repoStatsImpl.statsForkCount();
     }
 
     public RepoModelService getRepoModelImpl() {
