@@ -37,10 +37,12 @@ public class UserModelImpl implements UserModelService {
     }
 
     public List<UserVO> getRecommendUser(String webUsername) {
+        //todo
         return null;
     }
 
     public List<UserVO> getRelatedUser(String username) {
+        //todo
         return null;
     }
 
