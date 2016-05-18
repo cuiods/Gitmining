@@ -65,11 +65,14 @@ public class RepoController {
                 type = SortType.Repo_Name;
             }
             if (pageNum<1)  pageNum=1;
+//            System.out.println("get list begin!====================================================");
             repoList = repoModelImpl.getRepos(type, isDesc, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
+//            System.out.println("get list end!====================================================");
         }
-        map.put("totalPage", totalPage);
+        map.put("totalPage", 10);
         map.put("currentPage", pageNum);
         map.put("repoList", repoList);
+//        System.out.println("to the end of controller!====================================================");
         return map;
     }
 

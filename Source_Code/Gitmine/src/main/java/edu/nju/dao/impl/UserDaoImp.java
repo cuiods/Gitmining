@@ -32,7 +32,10 @@ public class UserDaoImp implements UserDaoService {
         query.setString(0, loginName);
         List<TblUser> users = query.list();
         if (users.size() > 0) {
-            return users.get(0);
+            user = users.get(0);
+        }
+        else {
+//            System.out.println("miss for find user====================" + loginName+"=========================");
         }
         session.close();
         return user;

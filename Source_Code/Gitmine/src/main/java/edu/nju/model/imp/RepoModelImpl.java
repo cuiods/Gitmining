@@ -81,12 +81,15 @@ public class RepoModelImpl implements RepoModelService {
 
     @Override
     public List<RepoVO> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum) {
+//        System.out.println("get list from dao begin!====================================================");
         List<TblRepo> tblRepoList = repoDaoImpl.getRepos(sortType, isDesc, offset, maxNum);
+//        System.out.println("get list from dao end!====================================================");
         List<RepoVO> voList = new ArrayList<>();
         for (TblRepo tblRepo:tblRepoList){
             RepoVO vo = voConvertor.convert(tblRepo);
             voList.add(vo);
         }
+//        System.out.println("parse to vo end!====================================================");
         return voList;
     }
 

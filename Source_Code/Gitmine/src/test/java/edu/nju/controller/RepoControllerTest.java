@@ -18,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,15 +44,15 @@ public class RepoControllerTest {
 
     private List<RepoVO> mockRepoList;
 
-    @Mock
-    private RepoModelService repoModelService;
+//    @Mock
+//    private RepoModelService repoModelService;
 
-    @InjectMocks
+    @Resource
     private RepoController repoController;
 
     @Before
     public void setup(){
-        MockitoAnnotations.initMocks(this);
+//        MockitoAnnotations.initMocks(this);
         this.mockMvc = MockMvcBuilders.standaloneSetup(repoController).build();
     }
 
@@ -68,10 +69,15 @@ public class RepoControllerTest {
 
     @Test
     public void home() throws Exception {
-        when(repoModelService.getPopularRepo()).thenReturn(mockRepoList);
-        when(repoModelService.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE)).thenReturn(mockRepoList);
+//        when(repoModelService.getPopularRepo()).thenReturn(mockRepoList);
+//        when(repoModelService.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE)).thenReturn(mockRepoList);
 
         mockMvc.perform(get("/repo/home")).andDo(print()).andExpect(status().isOk());
+    }
+
+    @Test
+    public void getRepos() throws Exception{
+        mockMvc.perform(get("/repo/list?pageNum=1")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
@@ -84,8 +90,8 @@ public class RepoControllerTest {
         int pageNum = 1;
         boolean reverse = true;
 
-        when(repoModelService.getSearchResult(keyword,sortType,filterType,
-                language,year,pageNum,reverse)).thenReturn(mockRepoList);
+//        when(repoModelService.getSearchResult(keyword,sortType,filterType,
+//                language,year,pageNum,reverse)).thenReturn(mockRepoList);
 
         mockMvc.perform(post("/repo/search")
                         .param("keyword", "rubinius")
@@ -102,7 +108,7 @@ public class RepoControllerTest {
 
     @Test
     public void getRepoBasicInfo() throws Exception {
-        when(repoModelService.getRepoBasicInfo("rubinius", "rubinius")).thenReturn(mockRepo);
+//        when(repoModelService.getRepoBasicInfo("rubinius", "rubinius")).thenReturn(mockRepo);
 
         mockMvc.perform(post("/repo/rubinius/rubinius")).andDo(print()).andExpect(status().isOk());
     }

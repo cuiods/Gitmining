@@ -25,6 +25,7 @@ public class VOConvertor {
 
     public RepoVO convert(TblRepo tblRepo){
         TblUser tblUser = userDaoImpl.findUserByLoginName(tblRepo.getOwnerName());
+//        System.out.println("get user from dao !=================="+ tblUser.getName() +"==============================");
         String avatar = "";
         if (tblUser != null){
             avatar = tblUser.getAvatarUrl();
