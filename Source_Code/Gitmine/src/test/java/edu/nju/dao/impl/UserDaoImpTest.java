@@ -39,7 +39,7 @@ public class UserDaoImpTest {
 
     @Test
     public void searchUserByLoginName() throws Exception {
-        List<TblUser> tblUsers = userDaoImp.searchUserByLoginName("0x",0,20);
+        List<TblUser> tblUsers = userDaoImp.searchUserByLoginName("0x",SortType.Repo_Star,true,0,16);
         Assert.assertTrue(tblUsers.size()>1);
         System.out.println(tblUsers.get(0).getName());
     }

@@ -12,18 +12,18 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Harry on 2016/5/18.
- * test for repo statistic
+ * test for user
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
-public class RepoStatsImplTest {
+public class UserStatsImplTest {
 
     @Resource
-    private RepoStatsImpl repoStats;
+    private UserStatsImpl userStats;
 
     @Test
-    public void statsCreateTime() throws Exception {
-        SimpleChart chart = repoStats.statsCreateTime();
+    public void statsUserType() throws Exception {
+        SimpleChart chart = userStats.statsUserType();
         assertNotNull(chart);
         String [] field = chart.getField();
         long [] value = chart.getValue();
@@ -38,8 +38,8 @@ public class RepoStatsImplTest {
     }
 
     @Test
-    public void statsForkCount() throws Exception {
-        SimpleChart chart = repoStats.statsForkCount();
+    public void statsUserRepo() throws Exception {
+        SimpleChart chart = userStats.statsUserRepo();
         assertNotNull(chart);
         String [] field = chart.getField();
         long [] value = chart.getValue();
@@ -54,8 +54,8 @@ public class RepoStatsImplTest {
     }
 
     @Test
-    public void statsStarCount() throws Exception {
-        SimpleChart chart = repoStats.statsStarCount();
+    public void statsUserGist() throws Exception {
+        SimpleChart chart = userStats.statsUserGist();
         assertNotNull(chart);
         String [] field = chart.getField();
         long [] value = chart.getValue();
@@ -70,8 +70,8 @@ public class RepoStatsImplTest {
     }
 
     @Test
-    public void statsLanguage() throws Exception {
-        SimpleChart chart = repoStats.statsLanguage();
+    public void statsUserFollower() throws Exception {
+        SimpleChart chart = userStats.statsUserFollower();
         assertNotNull(chart);
         String [] field = chart.getField();
         long [] value = chart.getValue();
@@ -86,8 +86,40 @@ public class RepoStatsImplTest {
     }
 
     @Test
-    public void statsSize() throws Exception {
-        SimpleChart chart = repoStats.statsSize();
+    public void statsUserCreateTime() throws Exception {
+        SimpleChart chart = userStats.statsUserCreateTime();
+        assertNotNull(chart);
+        String [] field = chart.getField();
+        long [] value = chart.getValue();
+        for (String s:field){
+            System.out.print(s+"  ");
+        }
+        System.out.print('\n');
+        for (long l : value){
+            System.out.print(l+"  ");
+        }
+        System.out.print('\n');
+    }
+
+    @Test
+    public void statsUserEmail() throws Exception {
+        SimpleChart chart = userStats.statsUserEmail();
+        assertNotNull(chart);
+        String [] field = chart.getField();
+        long [] value = chart.getValue();
+        for (String s:field){
+            System.out.print(s+"  ");
+        }
+        System.out.print('\n');
+        for (long l : value){
+            System.out.print(l+"  ");
+        }
+        System.out.print('\n');
+    }
+
+    @Test
+    public void statsUserCompany() throws Exception {
+        SimpleChart chart = userStats.statsUserCompany();
         assertNotNull(chart);
         String [] field = chart.getField();
         long [] value = chart.getValue();

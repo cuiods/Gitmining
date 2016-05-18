@@ -47,9 +47,23 @@ public class UserDaoImp implements UserDaoService {
      * @param keyword
      * @return list of users
      */
-    public List<TblUser> searchUserByLoginName(String keyword, int offset, int maxNum) {
+    public List<TblUser> searchUserByLoginName(String keyword, SortType sortType, boolean isDesc, int offset, int maxNum) {
         Session session =sessionFactory.openSession();
-        Query query = session.createQuery("from TblUser as u where u.loginName like ?");
+
+        String sql = "from TblUser as u where u.loginName like ? order by ";
+        switch (sortType){
+            case User_Follored:sql+="follower ";break;
+            case User_Folloring:sql+="following ";break;
+            case User_Repos:sql+="publicRepo ";break;
+            default:sql+="loginName ";break;
+        }
+        if (isDesc){
+            sql+="desc ";
+        }
+        else {
+            sql+="asc";
+        }
+        Query query = session.createQuery(sql);
         query.setString(0, "%"+keyword+"%");
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
