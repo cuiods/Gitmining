@@ -8,6 +8,7 @@ import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoModelService;
+import edu.nju.model.service.RepoStatsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,9 @@ public class RepoController {
 
     @Resource
     private RepoModelService repoModelImpl;
+
+    @Resource
+    private RepoStatsService repoStatsImpl;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
@@ -129,6 +133,18 @@ public class RepoController {
         Map<String,Object> map = new HashMap<>();
         map.put("commitPerHourOfDay", charts[0]);
         map.put("commitPerDayOfWeek", charts[1]);
+        return map;
+    }
+
+    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
+    @ResponseBody
+    public Map getRepoStatsCharts(){
+        Map<String,SimpleChart> map = new HashMap<>();
+        map.put("createTime",repoStatsImpl.statsCreateTime());
+        map.put("size",repoStatsImpl.statsSize());
+        map.put("language",repoStatsImpl.statsLanguage());
+        map.put("star",repoStatsImpl.statsStarCount());
+        map.put("fork",repoStatsImpl.statsForkCount());
         return map;
     }
 
