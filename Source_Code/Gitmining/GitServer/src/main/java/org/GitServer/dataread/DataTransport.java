@@ -25,13 +25,50 @@ public class DataTransport {
 	public static void main(String args[]) {
 		DataTransport dataTransport = new DataTransport();
 		dataTransport.init();
-		dataTransport.addCollaborator();
+		dataTransport.updateRepoNums();
 	}
 	private void init() {
 		Reader reader = new Reader();
 		dataEncapsulation = reader.excute();
 		try {
 			connection = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void updateRepoNums() {
+		String sql = "update tbl_repo set num_subscriber=? , num_contributor=? , "
+				+ "num_collaborator=?, num_commit=?, num_pull=?, num_issue=? "
+				+ "where owner_name=? and name=?";
+		Iterator<Map.Entry<String, List<String>>> iterator = dataEncapsulation.repoToContributor.entrySet().iterator();
+		int count = 0;
+		int sum = dataEncapsulation.nameOrderRepoPOs.size();
+		while (iterator.hasNext()) {
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+				Map.Entry<String, List<String>> entry = iterator.next();
+				String name = entry.getKey();
+				preparedStatement.setInt(1, dataEncapsulation.repoToSubscriber.get(name).size());
+				preparedStatement.setInt(2, entry.getValue().size());
+				preparedStatement.setInt(3, dataEncapsulation.repoToCollab.get(name).size());
+				preparedStatement.setInt(4, dataEncapsulation.repoToCommit.get(name).size());
+				preparedStatement.setInt(5, dataEncapsulation.repoToPull.get(name).size());
+				preparedStatement.setInt(6, dataEncapsulation.repoToIssue.get(name).size());
+				preparedStatement.setString(7, name.split("/")[0]);
+				preparedStatement.setString(8, name.split("/")[1]);
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			count++;
+			if (count%10==0) {
+				System.out.println("completed:"+count*1.0/sum*100+"%");
+			}
+		}
+		try {
+			preparedStatement.close();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

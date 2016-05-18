@@ -103,9 +103,8 @@ public class JsonNodeParser {
         Object [] of = field.toArray();
         String [] sf = Arrays.copyOf(of, of.length, String[].class);
 
-        CodeFrequency codeFrequency = new CodeFrequency(sf, addition.toArray(new Integer[addition.size()]),
+        return new CodeFrequency(sf, addition.toArray(new Integer[addition.size()]),
                 delete.toArray(new Integer[delete.size()]));
-        return codeFrequency;
     }
 
     /**

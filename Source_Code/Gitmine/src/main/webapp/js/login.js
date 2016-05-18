@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 	$.ajax({
 		type:"GET",
-		url:"login/name",
+		url:"/login/name",
 		success:function (result) {
 			if (result.length>2) {
 				$("#login-href").html(result);
@@ -136,7 +136,7 @@ $(document).ready(function() {
 	$("#login_btn").click(function () {
 		$.ajax({
 			type:"GET",
-			url:"login/login",
+			url:"/login/login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
 				if (result.length>0) {

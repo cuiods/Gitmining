@@ -17,19 +17,19 @@ public interface RepoModelService {
      * @param webUsername
      * @return
      */
-    public List<TblRepo> getRecommendRepo(String webUsername);
+    public List<RepoVO> getRecommendRepo(String webUsername);
 
     /**
      * if there is no logined user, recommend the most popular repos
      * @return
      */
-    public List<TblRepo> getPopularRepo();
+    public List<RepoVO> getPopularRepo();
 
     /**
      * get the total count of page of all repos
      * @return
      */
-    public long getTotalPage();
+    public int getTotalPage();
 
     /**
      * get the related repository for the given repository
@@ -37,7 +37,7 @@ public interface RepoModelService {
      * @param reponame
      * @return
      */
-    public List<TblRepo> getRelatedRepo(String ownername, String reponame);
+    public List<RepoVO> getRelatedRepo(String ownername, String reponame);
 
     /**
      * get the user po list in the order specified by parameter <tt>sortType</tt>
@@ -59,8 +59,18 @@ public interface RepoModelService {
      * @param pageNum from 1, not 0
      * @return
      */
-    public List<TblRepo> getSearchResult(String keyword, String sortType, String filterType,
+    public List<RepoVO> getSearchResult(String keyword, String sortType, String filterType,
                                          String language, String createYear, int pageNum, boolean reverse);
+
+    /**
+     * get the total page of the search result
+     * @param keyword
+     * @param filterType
+     * @param language
+     * @param createYear
+     * @return
+     */
+    public int getSearchPage(String keyword, String filterType, String language, String createYear);
 
     /**
      * get the basic information of a repo
@@ -68,7 +78,7 @@ public interface RepoModelService {
      * @param reponame
      * @return
      */
-    public TblRepo getRepoBasicInfo(String ownername, String reponame);
+    public RepoVO getRepoBasicInfo(String ownername, String reponame);
 
     /**
      * get the radar chart for the repo
