@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
+import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import org.junit.Assert;
 import org.junit.Test;
@@ -64,7 +65,7 @@ public class UserDaoImpTest {
 
     @Test
     public void getUserOwnRepos() throws Exception {
-        List<Object[]> lists = userDaoImp.getUserOwnRepos("jquery",0,10);
+        List<TblRepo> lists = userDaoImp.getUserOwnRepos("jquery",SortType.Repo_Name,0,10);
         assertTrue(lists.size()>0);
     }
 

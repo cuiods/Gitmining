@@ -69,6 +69,16 @@ public class UserModelImpl implements UserModelService {
     }
 
     @Override
+    public int getTotalPage() {
+        long totalCount = userDaoImpl.getUserTotalCount();
+        int page = (int)totalCount/Const.ITEMS_PER_PAGE;
+        if (totalCount%Const.ITEMS_PER_PAGE > 0){
+            page++;
+        }
+        return page;
+    }
+
+    @Override
     public List<UserVO> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum) {
         List<TblUser> tblUsers = userDaoImpl.getUsers(sortType,isDesc,offset,maxNum);
         List<UserVO> userVOs = new ArrayList<>();

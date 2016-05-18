@@ -42,6 +42,12 @@ public interface UserModelService {
     public List<UserVO> getPopularUser();
 
     /**
+     * get the total page count of all users
+     * @return
+     */
+    public int getTotalPage();
+
+    /**
      * get the user list
      * @param sortType
      * @param isDesc
