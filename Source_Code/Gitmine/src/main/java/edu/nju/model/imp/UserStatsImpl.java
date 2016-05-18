@@ -6,6 +6,7 @@ import edu.nju.model.service.UserStatsService;
 import org.hibernate.annotations.Source;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 @Service
 public class UserStatsImpl implements UserStatsService {
 
-    @Source
+    @Resource
     private UserDaoService userDaoImpl;
 
     @Override

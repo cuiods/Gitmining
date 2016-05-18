@@ -1,15 +1,22 @@
 package edu.nju.controller;
 
 import edu.nju.entity.TblUser;
+import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.UserModelService;
+import edu.nju.model.service.UserStatsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by cuihao on 2016/5/4.
@@ -22,6 +29,9 @@ public class UserController {
     @Resource
     private UserModelService userModelImpl;
 
+    @Resource
+    private UserStatsService userStatsImpl;
+
     public UserController() {
     }
 
@@ -33,20 +43,73 @@ public class UserController {
     }
 
     @RequestMapping("/search")
-    public String getSearchResult(@RequestParam String keyword, @RequestParam String sortType,
-                                  @RequestParam int pageNum, Model model){
-        List<TblUser> resultList = userModelImpl.getSearchResult(keyword, pageNum);
+    @ResponseBody
+    public List<UserVO> getSearchResult(@RequestParam String keyword,
+                                  @RequestParam(required = false, defaultValue = "user_name") String sortType,
+                                  @RequestParam(required = false,defaultValue = "false") boolean reverse,
+                                  @RequestParam int pageNum){
+        List<UserVO> resultList = userModelImpl.getSearchResult(keyword,sortType,pageNum,reverse);
 
         //todo sort according to the web user's hobbies
 
-        model.addAttribute("list", resultList);
-        return "user/list";
+        return resultList;
     }
 
     @RequestMapping("/{username}")
-    public String getUserBasicInfo(@PathVariable String username, Model model){
-        model.addAttribute("basicInfo", userModelImpl.getUserBasicInfo(username));
-        return "user/detail";
+    @ResponseBody
+    public Map getUserInfo(@PathVariable String username){
+        Map<String,Object> map = new HashMap<>();
+        UserVO userVO = userModelImpl.getUserBasicInfo(username);
+        RadarChart radarChart = userModelImpl.getUserRadarChart(username);
+        List<UserVO> relatedUser = userModelImpl.getRelatedUser(username);
+
+        map.put("basicInfo",userVO);
+        map.put("radarChart",radarChart);
+        map.put("relatedUser",relatedUser);
+
+        return map;
+    }
+
+    @RequestMapping("/statistic/type")
+    @ResponseBody
+    public SimpleChart statUserType(){
+        return userStatsImpl.statsUserType();
+    }
+
+    @RequestMapping("/statistic/public_repo")
+    @ResponseBody
+    public SimpleChart statUserRepos(){
+        return userStatsImpl.statsUserRepo();
+    }
+
+    @RequestMapping("/statistic/public_gist")
+    @ResponseBody
+    public SimpleChart statUserGists(){
+        return userStatsImpl.statsUserGist();
+    }
+
+    @RequestMapping("/statistic/follower")
+    @ResponseBody
+    public SimpleChart statUserFollower(){
+        return userStatsImpl.statsUserFollower();
+    }
+
+    @RequestMapping("/statistic/create_at")
+    @ResponseBody
+    public SimpleChart statUserCreateTime(){
+        return userStatsImpl.statsUserCreateTime();
+    }
+
+    @RequestMapping("/statistic/email")
+    @ResponseBody
+    public SimpleChart statUserEmail(){
+        return userStatsImpl.statsUserEmail();
+    }
+
+    @RequestMapping("/statistic/company")
+    @ResponseBody
+    public SimpleChart statUserCompany(){
+        return userStatsImpl.statsUserCompany();
     }
 
     public UserModelService getUserModelImpl() {

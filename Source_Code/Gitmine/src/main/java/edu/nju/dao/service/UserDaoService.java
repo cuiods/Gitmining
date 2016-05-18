@@ -24,7 +24,7 @@ public interface UserDaoService {
      * @param keyword
      * @return list of users
      */
-    public List<TblUser> searchUserByLoginName(String keyword, int offset, int maxNum);
+    public List<TblUser> searchUserByLoginName(String keyword, SortType sortType, boolean isDesc, int offset, int maxNum);
 
     /**
      * get Total count of user.

@@ -25,13 +25,90 @@ public class DataTransport {
 	public static void main(String args[]) {
 		DataTransport dataTransport = new DataTransport();
 		dataTransport.init();
-		dataTransport.updateRepoNums();
+		dataTransport.updateUserCreateTime();
 	}
 	private void init() {
 		Reader reader = new Reader();
 		dataEncapsulation = reader.excute();
+
 		try {
+//			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+		}
+	}
+	
+	private void updateUserCreateTime(){
+		String sql = "update tbl_user set create_at=? where login_name = ? ";
+		List<UserPO> userPOs = dataEncapsulation.allUserPOs;
+		for(int i = 0; i < userPOs.size(); i++) {
+			UserPO userPO = userPOs.get(i);
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				String temp = userPO.getCreate_at();
+				if((temp!=null)&&(!temp.isEmpty())){
+					String[] create = temp.substring(0, temp.length()-1).split("T");
+					String[] one = create[0].split("-");
+					String[] two = create[1].split(":");
+					Calendar calendar = Calendar.getInstance();
+					calendar.set(Integer.parseInt(one[0]), Integer.parseInt(one[1]), Integer.parseInt(one[2]), Integer.parseInt(two[0]), Integer.parseInt(two[1]), Integer.parseInt(two[2]));
+					timestamp = new Timestamp(calendar.getTimeInMillis());
+				}
+				preparedStatement.setTimestamp(1, timestamp);
+				preparedStatement.setString(2, userPO.getLogin());
+				preparedStatement.executeUpdate();
+				if(i%50==0){
+					System.out.println("completed:"+i*1.0/userPOs.size()*100+"%");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			preparedStatement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void updateRepoCreateTime(){
+		String sql = "update tbl_repo set create_at=? where owner_name = ? and name = ?";
+		List<RepoPO> repoPOs = dataEncapsulation.nameOrderRepoPOs;
+		for(int i = 0; i < repoPOs.size(); i++) {
+			RepoPO repoPO = repoPOs.get(i);
+			try {
+				preparedStatement = connection.prepareStatement(sql);
+
+				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+				String temp = repoPO.getCreate_at();
+				if((temp!=null)&&(!temp.isEmpty())){
+					String[] create = temp.substring(0, temp.length()-1).split("T");
+					String[] one = create[0].split("-");
+					String[] two = create[1].split(":");
+					Calendar calendar = Calendar.getInstance();
+					calendar.set(Integer.parseInt(one[0]), Integer.parseInt(one[1]), Integer.parseInt(one[2]), Integer.parseInt(two[0]), Integer.parseInt(two[1]), Integer.parseInt(two[2]));
+					timestamp = new Timestamp(calendar.getTimeInMillis());
+				}
+				preparedStatement.setTimestamp(1, timestamp);
+				preparedStatement.setString(2, repoPO.getOwnerName());
+				preparedStatement.setString(3, repoPO.getName());
+				preparedStatement.executeUpdate();
+				if(i%50==0){
+					System.out.println("completed:"+i*1.0/repoPOs.size()*100+"%");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			preparedStatement.close();
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

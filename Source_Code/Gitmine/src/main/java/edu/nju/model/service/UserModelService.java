@@ -1,7 +1,9 @@
 package edu.nju.model.service;
 
+import edu.nju.common.SortType;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
+import edu.nju.model.pojo.UserVO;
 
 import java.util.List;
 
@@ -16,20 +18,30 @@ public interface UserModelService {
      * @param webUsername
      * @return
      */
-    public List<TblUser> getRecommendUser(String webUsername);
+    public List<UserVO> getRecommendUser(String webUsername);
 
     /**
      * get the user similar to the given user
      * @param username
      * @return
      */
-    public List<TblUser> getRelatedUser(String username);
+    public List<UserVO> getRelatedUser(String username);
 
     /**
      * get the user has the most followers
      * @return
      */
-    public List<TblUser> getPopularUser();
+    public List<UserVO> getPopularUser();
+
+    /**
+     * get the user list
+     * @param sortType
+     * @param isDesc
+     * @param offset
+     * @param maxNum
+     * @return
+     */
+    public List<UserVO> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum);
 
     /**
      * get the user(s) whose name matches the keyword<br/>
@@ -37,14 +49,14 @@ public interface UserModelService {
      * @param keyword
      * @return
      */
-    public List<TblUser> getSearchResult(String keyword, int pageNum);
+    public List<UserVO> getSearchResult(String keyword, String sortType, int pageNum, boolean reverse);
 
     /**
      * get the basic information of a user, which means the name, email, etc.
      * @param username
      * @return
      */
-    public TblUser getUserBasicInfo(String username);
+    public UserVO getUserBasicInfo(String username);
 
     /**
      * get the data for radar chart of a user
