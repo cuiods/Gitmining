@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="input-group col-md-6 ">
                 <input type="text" class="form-control" placeholder="Search for...">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Search</button>
+							<button class="btn btn-default" id="key" type="button" onclick="search(1)">Search</button>
 						</span>
             </div><!-- /input-group -->
             <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
@@ -120,8 +120,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="news-text">
             <!--search labels starts-->
             <div class=" labels center-block visible-lg visible-md">
-                <div class="radio-toolbar">
-                    <input type="radio" id="radio00" name="radios0" value="false" >
+
+                <div class="radio-toolbar radio-toolbar-language">
+                    <input type="radio" id="radio00" name="radios0" value="false" key="">
                     <label class="label" for="radio00">All</label>
                     <input type="radio" id="radio01" name="radios0" value="false" >
                     <label class="label" for="radio01">默认标签</label>
@@ -135,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <label class="label" for="radio05">默认标签</label>
                 </div>
 
-                <div class="radio-toolbar">
+                <div class="radio-toolbar radio-toolbar-filter">
                     <input type="radio" id="radio10" name="radios1" value="false" >
                     <label class="label" for="radio10">All</label>
                     <input type="radio" id="radio11" name="radios1" value="false" >
@@ -150,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <label class="label" for="radio15">默认标签</label>
                 </div>
 
-                <div class="radio-toolbar">
+                <div class="radio-toolbar radio-toolbar-year">
                     <input type="radio" id="radio20" name="radios2" value="false" >
                     <label class="label" for="radio20">All</label>
                     <input type="radio" id="radio21" name="radios2" value="false" >
@@ -168,18 +169,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!--search labels end-->
 
+
             <!-- header-section-starts -->
 
-            <script>
-                function onclickFunction(obj) {
-                    console.log("hao:");
-                }
-            </script>
             <ul class="nav nav-tabs " style="margin-top: 10em">
 
-                <li><a href="javascript:void(0)"  onclick="onclickFunction(this)" class="active">CSS3 &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
-                <li><a href="javascript:void(0)"  onclick="onclickFunction(this)" class="active">CSS3 &nbsp;<span class="glyphicon glyphicon-arrow-up"></span></a></li>
-                <li><a href="javascript:void(0)"  onclick="onclickFunction(this)" class="active">CSS3 &nbsp;  <span class="glyphicon glyphicon-sort-by-attributes"></span></a></li>
+                <li><a href="javascript:void(0)" sortType = "repo_name" ischecked="true" isReverse = "false"
+                       onclick="onclickFunction(this)" class="active">
+                    NAME &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                <li><a href="javascript:void(0)" sortType = "repo_star" ischecked="false" isReverse = "false"
+                       onclick="onclickFunction(this)" class="active">
+                    STARS &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                <li><a href="javascript:void(0)" sortType = "repo_fork" ischecked="false" isReverse = "false"
+                       onclick="onclickFunction(this)" class="active">
+                    FORKS &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                <li><a href="javascript:void(0)" sortType = "repo_update" ischecked="false" isReverse = "false"
+                       onclick="onclickFunction(this)" class="active">
+                    RECENTLY &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                <li><a href="javascript:void(0)" sortType = "repo_contribute" ischecked="false" isReverse = "false"
+                       onclick="onclickFunction(this)" class="active">
+                    CONTRIBUTORS &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+
 
             </ul>
 

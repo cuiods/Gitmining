@@ -2,61 +2,32 @@
  * Created by darxan on 2016/5/15.
  */
 var location_port = 'http://localhost:8080';
-var Repo = {
-
-
-    // gridsFatherNode: $("#news-grids"),
-    // gridNode: this.gridsFatherNode.find(".news-grid").eq(0),
-    initListeners: function () {
-    },
+var RepoList = {
 
     init: function () {
         this.gridsFather =  $("#news-grids");
         this.lastGrid = this.gridsFather.children(".news-grid").eq(0);
         this.clear = $("<div class=\"clearfix\"> </div>" );
         this.gridsFather.empty();
-        this.url = location_port+"/search";
-
-        for (var i=0; i<16; i++){
-            var tempGrid = this.lastGrid.clone(true);
-            this.gridsFather.append(tempGrid);
-            if(i%4==3){
-                this.gridsFather.append(this.clear.clone());
-            }
-        }
     },
-
-
     updateData: function (object) {
-
-        /**
-         * {"totalPage":10,
-         * repoList":[{"ownerName":null,"ownerAvatarUrl":null,"reponame":null,"size":0,"description":null,
-         * "language":null,"url":null,"createAt":null,"updateAt":null,
-         * "numStar":0,"numFork":0,"numSubscriber":0}],"currentPage":1}
-         */
         this.gridsFather.empty();
         var _this = this;
-        $.each(object.repoList, function (i, n)
+        $.each(object, function (i, n)
         {
-
-
-            var tempGrid = _this.lastGrid.clone();
-
+            var tempGrid = _this.lastGrid.clone(true);
             tempGrid.find('.ownerName').eq(0).text (n.ownerName);
             tempGrid.find('.reponame').eq(0).text (n.reponame);
             tempGrid.find('.description').eq(0).text (n.description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
-
             tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
             tempGrid.find('.numSubscriber').eq(0).text  ( n.numSubscriber);
             tempGrid.find('.numFork').eq(0).text  ( n.numFork);
             tempGrid.find('.numStar').eq(0).text   ( n.numStar);
-
             _this.gridsFather.append(tempGrid);
             if(i%4==3){
-                _this.gridsFather.append(_this.clear.clone());
+                _this.gridsFather.append(_this.clear.clone(true));
             }
 
         });
@@ -66,13 +37,98 @@ var Repo = {
 
 $(document).ready(
     function () {
-        Repo.init();
-        Repo.initListeners();
+        RepoList.init();
         var url = location_port+'/repo/list'+"?pageNum=1";
         $.get(url,function (object) {
-            console.log(object);
-            Repo.updateData(object);
+            RepoList.updateData(object.repoList);
         });
     }
 );
 
+function jumpPage() {
+
+}
+
+function search(page) {
+
+    var key = $('#key').val();
+    var label_language = findCheckedRadio($('.radio-toolbar-language').eq(0));
+    var label_year = findCheckedRadio($('.radio-toolbar-year').eq(0));
+    var label_filterType = findCheckedRadio($('.radio-toolbar-filter').eq(0));
+    var sort = findCheckedSortType();
+    var sort_by = sort.attr("sortType");
+    var isReverse = sort.attr("isReverse");
+
+    var data = {
+        // filterType:label_filterType,
+        // language:label_language,
+        // createYear:label_year,
+        keyword:key,
+        pageNum:page,
+        sortType:sort_by,
+        reverse:isReverse,
+    }
+    console.log(data);
+    var url = location_port+"/repo/search";
+    $.post(url,data,function (object) {
+        console.log(object);
+        RepoList.updateData(object);
+    });
+}
+
+
+//$（'element'）.children('')返回的是JQuery对象还是DOM对象??
+function findCheckedRadio(toolbar) {
+    var radios = toolbar.children('input');
+    var label = 'all';
+    radios.each(
+        function (i,n) {
+            if(n.ischecked='true'){
+                label =  n.value;
+            }
+        }
+    );
+    return label;
+}
+
+function onclickFunction(obj) {
+    var originCheck = findCheckedSortType();
+    var obj = $(obj);
+    if(originCheck.attr("sortType")==obj.attr('sortType')){
+
+
+        if(obj.attr("isReverse")=="true"){
+            obj.attr("isReverse" , "false");
+            obj.children("span").attr("class", "glyphicon glyphicon-arrow-down");
+        }else{
+            obj.attr("isReverse" , "true");
+            obj.children("span").attr("class",  "glyphicon glyphicon-arrow-up");
+        };
+
+    }else{
+        originCheck.attr("ischecked" ,"false");
+        obj.attr("ischecked" , "true");
+    }
+    search(1);
+}
+
+
+/**
+ *
+ * @returns JQuery
+ */
+function findCheckedSortType() {
+    var type = undefined;
+    $('.nav>li>a').each(
+        function (i,n){
+        var jq =  $(n);
+        if(jq.attr("ischecked")=="true"){
+            type =  jq;
+        }
+        }
+    );
+if(type==undefined){
+    type = $('.nav>li>a');
+}
+return type;
+}
