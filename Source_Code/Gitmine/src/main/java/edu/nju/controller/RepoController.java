@@ -95,7 +95,7 @@ public class RepoController {
     }
 
 
-    @RequestMapping(value = "/{ownername}/{reponame}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getRepoInfo(@PathVariable String ownername, @PathVariable String reponame) {
         RepoVO basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
@@ -122,19 +122,19 @@ public class RepoController {
         return true;
     }
 
-    @RequestMapping(value = "/{ownername}/{reponame}/graph/commit_by_contributor", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/graph/commit_by_contributor", method = RequestMethod.GET)
     @ResponseBody
     public Map getRepoCommitByContributor(@PathVariable String ownername, @PathVariable String reponame){
         return repoModelImpl.getCommitByContributor(ownername,reponame);
     }
 
-    @RequestMapping(value = "/{ownername}/{reponame}/graph/code_frequency", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/graph/code_frequency", method = RequestMethod.GET)
     @ResponseBody
     public Object getRepoCodeFrequency(@PathVariable String ownername, @PathVariable String reponame){
         return repoModelImpl.getCodeFrequency(ownername, reponame);
     }
 
-    @RequestMapping(value = "/{ownername}/{reponame}/graph/commit_by_time", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/graph/commit_by_time", method = RequestMethod.GET)
     @ResponseBody
     public Map getRepoCommitByTime(@PathVariable("ownername") String ownername, @PathVariable("reponame") String reponame){
         SimpleChart [] charts = repoModelImpl.getPunchCard(ownername, reponame);

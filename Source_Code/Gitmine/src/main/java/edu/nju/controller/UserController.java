@@ -94,7 +94,7 @@ public class UserController {
         return resultList;
     }
 
-    @RequestMapping(value = "/{username}")
+    @RequestMapping(value = "/{username:.+}")
     @ResponseBody
     public Map getUserInfo(@PathVariable String username){
         Map<String,Object> map = new HashMap<>();
