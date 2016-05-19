@@ -42,7 +42,10 @@ function setBasicInfo(basicInfo) {
     descriptions.find("#ownerName").text(basicInfo.ownerName);
     descriptions.find("#description").text(basicInfo.description);
     descriptions.find("#language").text(basicInfo.language);
+    descriptions.find("#createAt").text(basicInfo.createAt);
+    descriptions.find("#updateAt").text(basicInfo.updateAt);
     descriptions.find("#url").text(basicInfo.url);
+    descriptions.find("#url").attr("href",basicInfo.url);
 
     numbers.find("#numStar").text(basicInfo.numStar);
     numbers.find("#numFork").text(basicInfo.numFork);
