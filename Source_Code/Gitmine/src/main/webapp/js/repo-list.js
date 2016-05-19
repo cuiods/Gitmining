@@ -21,7 +21,7 @@ var RepoList = {
             owner.attr ('href','/html/html/userDetail.html?'+n.ownerName);
             var repo = tempGrid.find('.reponame').eq(0);
             repo.text (n.reponame);
-            repo.attr ('href','/html/html/repo-detail.html?'+n.reponame);
+            repo.attr ('href','/html/html/repo-detail.html?'+n.ownerName+"/"+n.reponame);
             tempGrid.find('.description').eq(0).text (n.description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);

@@ -20,7 +20,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
-    <script type="text/javascript" src="../../js/repoDatail.js"></script>
+    <script type="text/javascript" src="../../js/repoDetail.js"></script>
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <i class="twitter"></i>
                 <i class="googlepluse"></i>
             </div>
-            <span class="menu"><img src="../images/nav.png" alt=""/></span>
+            <span class="menu"><img src="../../images/nav.png" alt=""/></span>
             <div class="top-menu">
                 <ul>
                     <nav class="cl-effect-13">
@@ -81,19 +81,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-8 single-page-left" id="main-info">
                 <div class="col-md-5 single-page-info">
                     <h4>Basic Info</h4>
-                    <img src="../../images/gl7.jpg" class="img-responsive" id="header_url"alt=""/>
+                    <img src="../../images/gl7.jpg" class="img-responsive" id="ownerAvatarUrl"alt=""/>
 
                     <div class="comment-icons">
                         <ul id="numbers">
 
 
-                                <li><span class="glyphicon glyphicon-apple" ></span><span id="userDetail_repos">123</span></li>
-                                <li><span class="glyphicon glyphicon-download" ></span><span id="userDetail_following">123</span></li><br/>
-                                <li style="float:right"><button class="glyphicon icon-heart-empty icon-large" id="enshrine" style="display:inline-block;background: transparent;border:none;color:#a6192e"></button></li><br>
-                                <li><span class="glyphicon glyphicon-thumbs-up" ></span><span id="userDetail_followed">123</span></li>
-                                <li><span class="glyphicon glyphicon-log-in" ></span>&nbsp<span id="userDetail_gists">123</span></li><br/><br/>
-                                <li><span class="glyphicon glyphicon-log-in" ></span>&nbsp<span >123</span></li>
-                                <li><span class="glyphicon glyphicon-log-in" ></span>&nbsp<span >123</span></li>
+                            <li><span class="glyphicon glyphicon-apple" ></span><span id="numStar">123</span></li>
+                            <li><span class="glyphicon glyphicon-download" ></span><span id="numFork">123</span></li><br/>
+                            <li style="float:right"><button class="glyphicon icon-heart-empty icon-large" id="enshrine" style="display:inline-block;background: transparent;border:none;color:#a6192e"></button></li><br>
+                            <!--<li><span class="glyphicon glyphicon-thumbs-up" ></span><span id="numContributor">123</span></li>-->
+                            <li><span class="glyphicon glyphicon-log-in" ></span>&nbsp<span id="numSubscriber">123</span></li><br/><br/>
+                            <!--<li><span class="glyphicon glyphicon-log-in" ></span>&nbsp<span id="numCollaborator">123</span></li>-->
+                            <li><span class="glyphicon glyphicon-log-in" ></span>&nbsp<span id="size">123</span></li>
 
                         </ul>
                     </div>
@@ -104,13 +104,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="comment-icons">
                         <ul id="descriptions">
 
-                            <li><span class="glyphicon glyphicon-user"></span>Author&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#" id="owner">cuidios</a></li><br><br>
-                            <li><span class="glyphicon glyphicon-camera"></span>Github&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#"  id="Github">turn to Github </a></li><br><br>
-                            <li><span class="glyphicon glyphicon-envelope"></span>language&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#" id="language">java</a></li><br><br>
 
-                            <li><span class="glyphicon glyphicon-calendar" ></span>created at&nbsp&nbsp&nbsp&nbsp&nbsp<span id="createTime">June 2, 2015</span></li><br><br>
-                            <li><span class="glyphicon glyphicon-calendar" ></span>updated at&nbsp&nbsp&nbsp&nbsp&nbsp<span id="updateTime">June 2, 2015</span></li><br><br>
-                            <li><span class="glyphicon glyphicon-duplicate" ></span>description &nbsp&nbsp&nbsp&nbsp&nbsp<span id="description">
+                            <li><span class="glyphicon glyphicon-user"></span>Name&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="#" id="reponame">cuidios</a></li><br><br>
+                            <li><span class="glyphicon glyphicon-user"></span>Author&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="#" id="ownerName">cuidios</a></li><br><br>
+                            <li><span class="glyphicon glyphicon-camera"></span>Github&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="#"  id="url">turn to Github </a></li><br><br>
+                            <li><span class="glyphicon glyphicon-envelope"></span>language&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="#" id="language">java</a></li><br><br>
+
+                            <li><span class="glyphicon glyphicon-calendar" ></span>created at&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <span id="createAt">June 2, 2015</span></li><br><br>
+                            <li><span class="glyphicon glyphicon-calendar" ></span>updated at&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <span id="updateAt">June 2, 2015</span></li><br><br>
+                            <li><span class="glyphicon glyphicon-duplicate" ></span>description &nbsp&nbsp&nbsp&nbsp&nbsp
+                                <span id="description">
                                 为何下载 Java？
 Java 技术让您可以在安全的计算环境下工作和游戏。 升级到最新的 Java 版本可以提高系统安全性，因为旧版本不包括最新的安全更新。
 
