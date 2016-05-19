@@ -18,8 +18,10 @@ var RepoList = {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
             owner.text (n.ownerName);
+            owner.attr ('href','/html/html/userDetail.html?'+n.ownerName);
             var repo = tempGrid.find('.reponame').eq(0);
             repo.text (n.reponame);
+            repo.attr ('href','/html/html/repo-detail.html?'+n.reponame);
             tempGrid.find('.description').eq(0).text (n.description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
