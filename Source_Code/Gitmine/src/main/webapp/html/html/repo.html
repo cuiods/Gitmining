@@ -121,19 +121,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--search labels starts-->
             <div class=" labels center-block visible-lg visible-md">
 
+
                 <div class="radio-toolbar radio-toolbar-language">
-                    <input type="radio" id="radio00" name="radios0" value="false" key="">
-                    <label class="label" for="radio00">All</label>
-                    <input type="radio" id="radio01" name="radios0" value="false" >
-                    <label class="label" for="radio01">默认标签</label>
-                    <input type="radio" id="radio02" name="radios0" value="false" >
-                    <label class="label" for="radio02">默认标签</label>
-                    <input type="radio" id="radio03" name="radios0" value="false" >
-                    <label class="label" for="radio03">默认标签</label>
-                    <input type="radio" id="radio04" name="radios0" value="false" >
-                    <label class="label" for="radio04">默认标签</label>
-                    <input type="radio" id="radio05" name="radios0" value="false" >
-                    <label class="label" for="radio05">默认标签</label>
+                    <input type="radio" id="all" name="radios0" value="true">
+                    <label class="label" for="all">all</label>
+                    <script>
+                        generateFilterList();
+                    </script>
                 </div>
 
                 <div class="radio-toolbar radio-toolbar-filter">
@@ -169,9 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!--search labels end-->
 
-
             <!-- header-section-starts -->
-
             <ul class="nav nav-tabs " style="margin-top: 10em">
 
                 <li><a href="javascript:void(0)" sortType = "repo_name" ischecked="true" isReverse = "false"
@@ -192,9 +184,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
             </ul>
-
-
-
             <!-- header-section-ends -->
         </div>
 
@@ -212,7 +201,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <img src="https://avatars.githubusercontent.com/u/11437641?v=3"
                          class="img-responsive zoom-img ownerAvatarUrl" alt=""  /></a>
                 <div class="news-info">
-
                     <div class="numbers">
                         <button class=" glyphicon glyphicon-headphones" style="display: inline-block; background: transparent; border: none;color: purple"/>
                         <span class="numSubscriber">123</span>

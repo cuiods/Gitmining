@@ -16,8 +16,10 @@ var RepoList = {
         $.each(object, function (i, n)
         {
             var tempGrid = _this.lastGrid.clone(true);
-            tempGrid.find('.ownerName').eq(0).text (n.ownerName);
-            tempGrid.find('.reponame').eq(0).text (n.reponame);
+            var owner = tempGrid.find('.ownerName').eq(0);
+            owner.text (n.ownerName);
+            var repo = tempGrid.find('.reponame').eq(0);
+            repo.text (n.reponame);
             tempGrid.find('.description').eq(0).text (n.description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
@@ -25,6 +27,7 @@ var RepoList = {
             tempGrid.find('.numSubscriber').eq(0).text  ( n.numSubscriber);
             tempGrid.find('.numFork').eq(0).text  ( n.numFork);
             tempGrid.find('.numStar').eq(0).text   ( n.numStar);
+            
             _this.gridsFather.append(tempGrid);
             if(i%4==3){
                 _this.gridsFather.append(_this.clear.clone(true));
@@ -131,4 +134,40 @@ if(type==undefined){
     type = $('.nav>li>a');
 }
 return type;
+}
+
+/**
+ *
+ */
+function generateFilterList() {
+    var list = new Array(
+        "web",
+        "app",
+        "api",
+        "framework",
+        "cms",
+        "django",
+        "emacs",
+        "mac",
+        "management",
+        "linux",
+        "windows",
+        "interFace",
+        "os",
+        "server",
+        "tool",
+        "plugin",
+        "json",
+        "tempLate",
+        "library",
+        "ui",
+        "dataBase"
+    );
+    for(var i in list){
+        console.log(list[i]);
+        var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\"radios0\" value=\"false\">";
+        var label = " <label class=\"label\" for=\"" +list[i] + "\">" +list[i] + "</label>";
+        document.write(radio);
+        document.write(label);
+    }
 }
