@@ -28,21 +28,26 @@ $(document).ready(
 );
 
 function setBasicInfo(basicInfo) {
+    console.log(basicInfo);
     var mainInfo = $('#main>#single-page>#single-page>#container> #main-info');
-    var numbers = mainInfo.find("#numbers");
-    var descriptions = mainInfo.find("#descriptions");
-    var header = mainInfo.find("#ownerAvatarUrl");
 
-    descriptions.children("reponame").text(basicInfo.reponame);
-    descriptions.children("ownerName").text(basicInfo.ownerName);
-    descriptions.children("description").text(basicInfo.description);
-    descriptions.children("language").text(basicInfo.language);
-    descriptions.children("url").text(basicInfo.url);
+    console.log( mainInfo.find("#numbers"));
+    var numbers = $("#numbers");
+    console.log( $("#descriptions"));
+    var descriptions = $("#descriptions");
+    var header = $("#ownerAvatarUrl");
 
-    numbers.children("#numStar").text(basicInfo.numStar);
-    numbers.children("#numFork").text(basicInfo.numFork);
-    numbers.children("#numSubscriber").text(basicInfo.numSubscriber);
-    numbers.children("#size").text(basicInfo.size);
+
+    descriptions.find("#reponame").text(basicInfo.reponame);
+    descriptions.find("#ownerName").text(basicInfo.ownerName);
+    descriptions.find("#description").text(basicInfo.description);
+    descriptions.find("#language").text(basicInfo.language);
+    descriptions.find("#url").text(basicInfo.url);
+
+    numbers.find("#numStar").text(basicInfo.numStar);
+    numbers.find("#numFork").text(basicInfo.numFork);
+    numbers.find("#numSubscriber").text(basicInfo.numSubscriber);
+    numbers.find("#size").text(basicInfo.size);
 
     header.attr("src",basicInfo.ownerAvatarUrl);
 }
