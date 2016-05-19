@@ -5,7 +5,6 @@ import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.UserVO;
-import org.hibernate.annotations.Source;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,12 +23,7 @@ public class VOConvertor {
     private TimeTranslator timeTranslator;
 
     public RepoVO convert(TblRepo tblRepo){
-        TblUser tblUser = userDaoImpl.findUserByLoginName(tblRepo.getOwnerName());
-//        System.out.println("get user from dao !=================="+ tblUser.getName() +"==============================");
-        String avatar = "";
-        if (tblUser != null){
-            avatar = tblUser.getAvatarUrl();
-        }
+        String avatar = userDaoImpl.getUserAvatar(tblRepo.getOwnerName());
         String createAt = timeTranslator.transUnixTime(tblRepo.getCreateAt().getTime());
         String updateAt = timeTranslator.transUnixTime(tblRepo.getUpdateAt().getTime());
         RepoVO vo = new RepoVO(tblRepo.getOwnerName(),avatar,tblRepo.getName(),tblRepo.getSize(),tblRepo.getDescription(),

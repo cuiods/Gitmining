@@ -21,6 +21,13 @@ public interface UserDaoService {
     public TblUser findUserByLoginName(String loginName);
 
     /**
+     * get the avartar of the specific user
+     * @param username
+     * @return
+     */
+    public String getUserAvatar(String username);
+
+    /**
      * search users by login name(keyword)
      * @param keyword
      * @return list of users

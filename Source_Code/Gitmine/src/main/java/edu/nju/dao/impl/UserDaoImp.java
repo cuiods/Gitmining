@@ -42,6 +42,20 @@ public class UserDaoImp implements UserDaoService {
         return user;
     }
 
+    @Override
+    public String getUserAvatar(String username) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT avatar_url FROM tbl_user WHERE login_name = :username ");
+        query.setString("username",username);
+        List list = query.list();
+        String avatar = "";
+        if (list.size() > 0){
+            avatar = (String)list.get(0);
+        }
+        session.close();
+        return avatar;
+    }
+
     /**
      * search users by login name(keyword)
      *

@@ -39,6 +39,14 @@ public class UserDaoImpTest {
     }
 
     @Test
+    public void getUserAvatar() throws Exception {
+        String avatar = userDaoImp.getUserAvatar("jquery");
+        assertFalse(avatar.isEmpty());
+        String nouser = userDaoImp.getUserAvatar(".");
+        assertTrue(nouser.isEmpty());
+    }
+
+    @Test
     public void searchUserByLoginName() throws Exception {
         List<TblUser> tblUsers = userDaoImp.searchUserByLoginName("0x",SortType.Repo_Star,true,0,16);
         Assert.assertTrue(tblUsers.size()>1);
