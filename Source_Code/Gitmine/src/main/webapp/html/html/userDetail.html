@@ -7,6 +7,9 @@
     <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../../js/jquery.min.js"></script>
+    <!--Echart js file-->
+    <script src="../../plugin/echarts/echarts.min.js"></script>
+
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
@@ -115,6 +118,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="clearfix"></div>
                 <div class="admin-text">
                     <h4>Radar Graph</h4>
+                    <div id="userRadar" style="width: 600px;height:400px;"></div>
                     <div class="clearfix"> </div>
                 </div>
 
@@ -131,19 +135,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div id = "similarUsers">
                         <div class="recent-posts-info" >
                             <div class="posts-left sngl-img">
-                                 <img src="../../images/img16.jpg" alt=""/>
+                                 <img src="../../images/img16.jpg"/>
                             </div>
                             <div class="posts-right">
                                 <lable>updated at June 5, 2015</lable><br>
                                 <div >
                                     <h5  style="float:left;font-size:20px">UserName</h5>
-                                    <button class=" glyphicon icon-heart-empty icon-large" style="display: inline-block; background: transparent; border: none;color: #a6192e;float:right"/>
+                                    <button class=" glyphicon icon-heart-empty icon-large iconStyle" />
                                 </div>
                                 <div class="clearfix"></div>
                                 <div>
-                                    <span class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: #a6192e"/><span id="similar_repo">123</span>
-                                    <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/><span id="similar_following">123</span>
-                                    <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/><span id="similar_followed">123</span>
+                                    <span class=" glyphicon glyphicon-apple iconStyle" />
+                                    <span id="repo">123</span>
+                                    <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                                    <span id="following">123</span>
+                                    <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                                    <span id="followed">123</span>
                                 </div><br>
                                 <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
                             </div>
