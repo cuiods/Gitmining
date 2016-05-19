@@ -52,12 +52,18 @@ public class UserDaoImp implements UserDaoService {
         Session session =sessionFactory.openSession();
 
         String sql = "from TblUser as u where u.loginName like ? order by ";
-        switch (sortType){
-            case User_Follored:sql+="follower ";break;
-            case User_Folloring:sql+="following ";break;
-            case User_Repos:sql+="publicRepo ";break;
-            default:sql+="loginName ";break;
+        if (sortType == null){
+            sql+="loginName ";
         }
+        else {
+            switch (sortType){
+                case User_Follored:sql+="follower ";break;
+                case User_Folloring:sql+="following ";break;
+                case User_Repos:sql+="publicRepo ";break;
+                default:sql+="loginName ";break;
+            }
+        }
+
         if (isDesc){
             sql+="desc ";
         }
