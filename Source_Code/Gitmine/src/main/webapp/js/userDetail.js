@@ -24,14 +24,21 @@ $(document).ready(function() {
             document.getElementById("bio").innerHTML=data.basicInfo.bio;
             document.getElementById("createTime").innerHTML=data.basicInfo.createAt;
             document.getElementById("updateTime").innerHTML=data.basicInfo.updateAt;
+            //add related repos
             var relatedRepo = document.getElementById("relatedRepo");
             $.each(data.relatedRepo,function(){
                 var node = document.createElement("a");
-                node.href = "userDetail.html?userName="+userName;
+                node.href = "repoDetail.html?repoName="+this.repoName;
                 node.innerHTML = this.ownerName+"/"+this.reponame;
-                node.class="list-group-item";
+                node.className="list-group-item";
                 relatedRepo.appendChild(node);
-            })
+            });
+            
+            //add similar users
+            var similarUsers = document.getElementById("similarUsers");
+            $.each(data.relatedUser,function(){
+                var node_div = document.createElement("div");
+            });
 
 
         },
