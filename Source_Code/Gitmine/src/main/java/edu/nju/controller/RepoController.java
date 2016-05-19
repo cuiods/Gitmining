@@ -98,7 +98,6 @@ public class RepoController {
     @RequestMapping(value = "/{ownername}/{reponame}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getRepoInfo(@PathVariable String ownername, @PathVariable String reponame) {
-
         RepoVO basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
         RadarChart radarChart = repoModelImpl.getRepoRadarChart(ownername, reponame);
         List<RepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);

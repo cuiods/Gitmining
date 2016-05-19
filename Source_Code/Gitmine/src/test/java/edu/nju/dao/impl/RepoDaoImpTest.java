@@ -71,8 +71,8 @@ public class RepoDaoImpTest {
 
     @Test
     public void getRepoBasicInfo() throws Exception {
-        TblRepo repo = repoDaoImp.getRepoBasicInfo("jquery","jquery");
-        Assert.assertTrue(repo.getNumStar()==36996);
+        TblRepo repo = repoDaoImp.getRepoBasicInfo("klen",".vim");
+        assertNotNull(repo);
         System.out.println(repo.getName()+repo.getCreateAt());
     }
 

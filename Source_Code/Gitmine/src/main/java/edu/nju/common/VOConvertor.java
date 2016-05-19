@@ -23,6 +23,9 @@ public class VOConvertor {
     private TimeTranslator timeTranslator;
 
     public RepoVO convert(TblRepo tblRepo){
+        if (tblRepo == null){
+            return null;
+        }
         String avatar = userDaoImpl.getUserAvatar(tblRepo.getOwnerName());
         String createAt = timeTranslator.transUnixTime(tblRepo.getCreateAt().getTime());
         String updateAt = timeTranslator.transUnixTime(tblRepo.getUpdateAt().getTime());
@@ -33,6 +36,9 @@ public class VOConvertor {
     }
 
     public UserVO convert(TblUser tblUser){
+        if (tblUser == null){
+            return null;
+        }
         String createAt = timeTranslator.transUnixTime(tblUser.getCreateAt().getTime());
         String updateAt = timeTranslator.transUnixTime(tblUser.getUpdateAt().getTime());
         String type = (tblUser.getType()==0)?"User":"Organization";

@@ -40,8 +40,9 @@ public class UserDaoImpTest {
 
     @Test
     public void getUserAvatar() throws Exception {
-        String avatar = userDaoImp.getUserAvatar("jquery");
+        String avatar = userDaoImp.getUserAvatar("klen");
         assertFalse(avatar.isEmpty());
+        System.out.print(avatar);
         String nouser = userDaoImp.getUserAvatar(".");
         assertTrue(nouser.isEmpty());
     }
