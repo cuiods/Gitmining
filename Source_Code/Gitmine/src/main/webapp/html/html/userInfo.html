@@ -6,10 +6,12 @@
     <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../../css/repo-label.css">
     <script src="../../js/login.js"></script>
+    <script src="../../js/userInfo.js"></script>
     <link href="../../css/login.css" rel="stylesheet"/>
     <script src="../../js/bootstrap.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../../js/jquery.min.js"></script>
+
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
@@ -121,205 +123,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div>
             <div class="news-text" style="float:left;display:inline-block">
                 <h3 style="float:left">Users</h3>
-                <ul class=" nav nav-tabs " style="margin-top: 2em;margin-left:6em;float:right">
-                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">General &nbsp;</a></li>
-                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">Repos &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
-                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">Following &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
-                    <li><a href="javascript:void(0)"  onclick="sort(this)" class="active">Followed &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                <ul class="nav nav-tabs " style="margin-top: 6em">
+
+                    <li><a href="javascript:void(0)" sortType = "user_name" ischecked="true" isReverse = "false"
+                           onclick="sort(this)" class="active">
+                        NAME &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_repo" ischecked="false" isReverse = "false"
+                           onclick="sort(this)" class="active">
+                        REPOS &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_following" ischecked="false" isReverse = "false"
+                           onclick="sort(this)" class="active">
+                        FOLLOWING &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_followed" ischecked="false" isReverse = "false"
+                           onclick="sort(this)" class="active">
+                        FOLLOWED &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_create" ischecked="false" isReverse = "false"
+                           onclick="onclickFunction(this)" class="active">
+                        CREATE &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+
+
                 </ul>
             </div>
 
         </div>
         <div class="clearfix"></div>
-        <div class="news-grids">
+        <div class="news-grids" id="listStart">
             <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
                 <div>
-                    <a href="single.html" style="display: inline-block;float:left">User Name</a>
+                    <a href="single.html" style="display: inline-block;float:left" class="userName">User Name</a>
                     <!--<button class=" glyphicon glyphicon-heart-empty" style="display: inline-block; background: transparent; border: none;color: purple"/>-->
-                    <button class=" glyphicon icon-heart-empty icon-large" style="display: inline-block;background: transparent; border: none;color: purple;float:right" title="click to cherish"/>
+                    <input type="radio" class="radio" style="float:right">
 
                 </div>
                 <div class="clearfix"></div>
-                <a class="mask" href="userDetail.html?userName=rubinius"><img src="../../images/img1.jpg" class="img-responsive zoom-img" alt="" /></a>
+                <a class="mask imageUrl" href="userDetail.html?userName=rubinius" id="imageUrl"><img src="../../images/img1.jpg" class="img-responsive zoom-img header_user" alt="" id="header_user"/></a>
                 <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
+                    <ul>
+                        <li><span class="create" style="float:left">created at: &nbsp&nbsp 2001.11.04</span></li><br>
+                        <li><button class=" glyphicon icon-heart-empty icon-large cherish" style="display: inline-block;background: transparent; border: none;color: purple;float:right" title="click to cherish" /></li><br>
+                        <li><span class="update" style="float:left">updated at: &nbsp&nbsp 2016.03.04</span></li>
+                    </ul>
                     <div >
-                       <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple" title="own Repos"/>123
-                       <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple" title="following Num"/>123
-                       <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple" title="followed Num"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img2.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img3.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img4.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-            <div class="clearfix"> </div><br>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img1.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">UserName</a>
-                <a class="mask" href="single.html"><img src="../../images/img2.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img3.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img4.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
+                        <div class="clearfix"></div>
+                       <button class=" glyphicon glyphicon-apple " style="display: inline-block; background: transparent; border: none;color: purple" title="own Repos"/><span class="repo">123</span>&nbsp&nbsp&nbsp&nbsp
+                       <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple" title="following Num"/><span class="following">123</span>&nbsp&nbsp&nbsp&nbsp
+                       <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple" title="followed Num"/><span class="followed">123</span>&nbsp&nbsp&nbsp&nbsp
                     </div>
                 </div>
             </div>
 
-            <div class="clearfix"> </div>
-            <div class="clearfix"> </div><br>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img1.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">UserName</a>
-                <a class="mask" href="single.html"><img src="../../images/img2.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img3.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html">User Name</a>
-                <a class="mask" href="single.html"><img src="../../images/img4.jpg" class="img-responsive zoom-img" alt="" /></a>
-                <div class="news-info">
-                    <span> created at: 2001.11.04</span>
-                    <span> updated at: 2016.03.04</span>
-                    <div >
-                        <button class=" glyphicon glyphicon-apple" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/>123
-                    </div>
-                </div>
-            </div>
-            <div >
-                <nav>
-                    <ul class="pagination ">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div><br><br>
+
         </div>
     </div>
 
