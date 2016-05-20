@@ -16,7 +16,6 @@ public class RegisterLabel {
     private double cms;
     private double django;
     private double emacs;
-    private double mac;
     private double management;
     private double linux;
     private double windows;
@@ -109,16 +108,6 @@ public class RegisterLabel {
 
     public void setEmacs(double emacs) {
         this.emacs = emacs;
-    }
-
-    @Basic
-    @Column(name = "mac")
-    public double getMac() {
-        return mac;
-    }
-
-    public void setMac(double mac) {
-        this.mac = mac;
     }
 
     @Basic
@@ -265,7 +254,6 @@ public class RegisterLabel {
         if (Double.compare(label.cms, cms) != 0) return false;
         if (Double.compare(label.django, django) != 0) return false;
         if (Double.compare(label.emacs, emacs) != 0) return false;
-        if (Double.compare(label.mac, mac) != 0) return false;
         if (Double.compare(label.management, management) != 0) return false;
         if (Double.compare(label.linux, linux) != 0) return false;
         if (Double.compare(label.windows, windows) != 0) return false;
@@ -302,8 +290,6 @@ public class RegisterLabel {
         temp = Double.doubleToLongBits(django);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(emacs);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(mac);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(management);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
