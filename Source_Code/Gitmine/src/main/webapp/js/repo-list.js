@@ -2,34 +2,49 @@
  * Created by darxan on 2016/5/15.
  */
 var location_port = 'http://localhost:8080';
+var descritopmLength = 63;
+var descritopmLengthEachLine = 39;
+var nameLength = 10;
+
 var RepoList = {
 
     init: function () {
         this.gridsFather =  $("#news-grids");
         this.lastGrid = this.gridsFather.children(".news-grid").eq(0);
         this.clear = $("<div class=\"clearfix\"> </div>" );
-        this.gridsFather.empty();
+       // this.gridsFather.empty();
     },
     updateData: function (object) {
         this.gridsFather.empty();
         var _this = this;
+
         $.each(object, function (i, n)
         {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
-            owner.text (n.ownerName);
+            owner.text (n.ownerName.substr(0,descritopmLengthEachLine));
             owner.attr ('href','/html/html/userDetail.html?'+n.ownerName);
+
+
+
             var repo = tempGrid.find('.reponame').eq(0);
-            repo.text (n.reponame);
+            repo.text (n.reponame.substr(0,nameLength));
             repo.attr ('href','/html/html/repo-detail.html?'+n.ownerName+"/"+n.reponame);
-            tempGrid.find('.description').eq(0).text (n.description);
+
+            var description = n.description;
+            if(description.length>descritopmLength){
+                description = description.substr(0,descritopmLength)+"...";
+            }else if(description.length<descritopmLengthEachLine){
+                description = description+"<br><br>";
+            }
+            tempGrid.find('.description').eq(0).html (description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
             tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
             tempGrid.find('.numSubscriber').eq(0).text  ( n.numSubscriber);
             tempGrid.find('.numFork').eq(0).text  ( n.numFork);
             tempGrid.find('.numStar').eq(0).text   ( n.numStar);
-            
+
             _this.gridsFather.append(tempGrid);
             if(i%4==3){
                 _this.gridsFather.append(_this.clear.clone(true));
@@ -126,16 +141,16 @@ function findCheckedSortType() {
     var type = undefined;
     $('.nav>li>a').each(
         function (i,n){
-        var jq =  $(n);
-        if(jq.attr("ischecked")=="true"){
-            type =  jq;
-        }
+            var jq =  $(n);
+            if(jq.attr("ischecked")=="true"){
+                type =  jq;
+            }
         }
     );
-if(type==undefined){
-    type = $('.nav>li>a');
-}
-return type;
+    if(type==undefined){
+        type = $('.nav>li>a');
+    }
+    return type;
 }
 
 /**

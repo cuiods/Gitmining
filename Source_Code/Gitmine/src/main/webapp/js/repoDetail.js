@@ -20,6 +20,7 @@ $(document).ready(
                 console.log(url);
                 $.get(url,function (object) {
                     setBasicInfo(object.basicInfo);
+                    setRecommend(object.relatedRepo);
                 });
             }
 
@@ -28,12 +29,7 @@ $(document).ready(
 );
 
 function setBasicInfo(basicInfo) {
-    console.log(basicInfo);
-    var mainInfo = $('#main>#single-page>#single-page>#container> #main-info');
-
-    console.log( mainInfo.find("#numbers"));
     var numbers = $("#numbers");
-    console.log( $("#descriptions"));
     var descriptions = $("#descriptions");
     var header = $("#ownerAvatarUrl");
 
@@ -53,6 +49,24 @@ function setBasicInfo(basicInfo) {
     numbers.find("#size").text(basicInfo.size);
 
     header.attr("src",basicInfo.ownerAvatarUrl);
+}
+
+function setRecommend(recommend) {
+    console.log(recommend);
+    var fatherNode = $('#recommendRepos');
+    var recommendNode = fatherNode.find('#recommend-item');
+    fatherNode.empty();
+    $.each(recommend,function (i,item) {
+        var newNode = recommendNode.clone();
+        newNode.find("#recommend_ownerAvatarUrl").attr('src',item.ownerAvatarUrl);
+        newNode.find("#recommend_updateAt").attr('src',item.updateAt);
+        newNode.find("#recommend_description").attr('src',item.description);
+        newNode.find("#recommend_numStar").text(item.numStar);
+        newNode.find("#recommend_numFork").text(item.numFork);
+        newNode.find("#recommend_numSubscriber").text(item.numSubscriber);
+
+        fatherNode.add(newNode);
+    });
 }
 
 function wrongUrl() {

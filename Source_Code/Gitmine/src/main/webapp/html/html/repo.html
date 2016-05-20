@@ -99,9 +99,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3"> </div>
             <!--<div class="col-lg-6">-->
             <div class="input-group col-md-6 ">
-                <input type="text" class="form-control" placeholder="Search for...">
+                <input type="text" class="form-control" id="key" placeholder="Search for...">
 						<span class="input-group-btn">
-							<button class="btn btn-default" id="key" type="button" onclick="search(1)">Search</button>
+							<button class="btn btn-default"  type="button" onclick="search(1)">Search</button>
 						</span>
             </div><!-- /input-group -->
             <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
@@ -190,9 +190,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="news-grids" id="news-grids">
             <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
 
-                <a href="single.html" class="ownerName" style="display: inline-block">Integer</a>/
+
                 <a href="single.html" class="reponame" style="display: inline-block">Integer</a>
-                <p class="description"> piciis iste natus scele risque auctor volutpat et massa.</p>
+                <p class="description" style="word-break:break-all;"> piciis iste natus scele risque auctor volutpat et massa.</p>
                 <span class="createAt">8.00 - 10.00 | JUN 09,2014
                      <input  type="radio" style="display: inline-block;float: right"/>
                 </span>
@@ -202,6 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          class="img-responsive zoom-img ownerAvatarUrl" alt=""  /></a>
                 <div class="news-info">
                     <div class="numbers">
+                        <a href="single.html" class="ownerName" style="display: inline-block;float: right">Integer</a>
                         <button class=" glyphicon glyphicon-headphones" style="display: inline-block; background: transparent; border: none;color: purple"/>
                         <span class="numSubscriber">123</span>
                         <button class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: purple"/>
@@ -209,7 +210,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <button class=" glyphicon glyphicon-star" style="display: inline-block; background: transparent; border: none;color: purple"/>
                         <span class="numStar">123</span>
                     </div>
+
                     <span style="float: right; font-size: 5px" class="updateAt"> 8.00 - 10.00 | JUN 09,2014</span>
+
                 </div>
             </div>
         </div>
@@ -220,6 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="">
             <a href="single.html">Integer vitae ligula sed lectus</a>
+            <input type="radio" class="radio">
             <span>8.00 - 10.00 | JUN 09,2014</span>
             <a class="mask" href="single.html"><img src="../../images/img1.jpg" class="img-responsive zoom-img img-circle" alt="" /></a>
             <div class="news-info">
