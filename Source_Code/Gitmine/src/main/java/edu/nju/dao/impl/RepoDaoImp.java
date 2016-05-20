@@ -395,7 +395,7 @@ public class RepoDaoImp implements RepoDaoService{
         double contrCount = 0;
         double collaCount = 0;
 
-        Query query = session.createQuery("select count (*) from TblContributor where ownerName = ? and repo = ?");
+        Query query = session.createQuery("select count(*) from TblContributor where ownerName = ? and repo = ?");
         query.setString(0,ownername);
         query.setString(1,reponame);
         List contriList = query.list();
@@ -403,7 +403,7 @@ public class RepoDaoImp implements RepoDaoService{
             contrCount = ((Long)contriList.get(0)).doubleValue();
         }
 
-        Query query1 = session.createQuery("select count (*) from TblCollabrator where repoOwner = ?  and repo = ?");
+        Query query1 = session.createQuery("select count(*) from TblCollabrator where repoOwner = ?  and repo = ?");
         query1.setString(0,ownername);
         query1.setString(1,reponame);
         List collaList = query1.list();
@@ -549,11 +549,11 @@ public class RepoDaoImp implements RepoDaoService{
 
     }
 */
-    public JsonNodeParser getJsonNodeParser() {
-        return jsonNodeParser;
-    }
-
-    public void setJsonNodeParser(JsonNodeParser jsonNodeParser) {
-        this.jsonNodeParser = jsonNodeParser;
+    public List getAllRepoDescription(){
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT owner_name, name, description FROM tbl_repo");
+        List list = query.list();
+        session.close();
+        return list;
     }
 }

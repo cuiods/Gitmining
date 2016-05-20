@@ -4,6 +4,7 @@ import edu.nju.entity.RepoLabel;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ public class RepoLabelUpdater {
 
     public void saveOrUpdateLabel(String ownername, String reponame, String description){
         Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         RepoLabel repoLabel = new RepoLabel();
         repoLabel.setRepoOwner(ownername);
         repoLabel.setRepo(reponame);
@@ -44,7 +46,7 @@ public class RepoLabelUpdater {
         if (StringUtils.containsIgnoreCase(description,"windows"))
             repoLabel.setWindows(1.0);
         if (StringUtils.containsIgnoreCase(description,"interface"))
-            repoLabel.setInterFace(1.0);
+            repoLabel.setInter_Face(1.0);
         if (StringUtils.containsIgnoreCase(description,"os"))
             repoLabel.setOs(1.0);
         if (StringUtils.containsIgnoreCase(description,"server"))
@@ -63,6 +65,8 @@ public class RepoLabelUpdater {
             repoLabel.setDataBase(1.0);
 
         session.saveOrUpdate(repoLabel);
+        session.flush();
+        transaction.commit();
 
         session.close();
     }

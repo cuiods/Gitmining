@@ -21,7 +21,7 @@ public class RepoLabel {
     private double management;
     private double linux;
     private double windows;
-    private double interFace;
+    private double inter_face;
     private double os;
     private double server;
     private double tool;
@@ -153,13 +153,13 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "interface")
-    public double getInterFace() {
-        return interFace;
+    @Column(name = "inter_face")
+    public double getInter_Face() {
+        return inter_face;
     }
 
-    public void setInterFace(double interFace) {
-        this.interFace = interFace;
+    public void setInter_Face(double inter_face) {
+        this.inter_face = inter_face;
     }
 
     @Basic
@@ -243,7 +243,7 @@ public class RepoLabel {
     }
 
     @Basic
-    @Column(name = "database")
+    @Column(name = "data_base")
     public double getDataBase() {
         return dataBase;
     }
@@ -269,7 +269,7 @@ public class RepoLabel {
         if (Double.compare(repoLabel.management, management) != 0) return false;
         if (Double.compare(repoLabel.linux, linux) != 0) return false;
         if (Double.compare(repoLabel.windows, windows) != 0) return false;
-        if (Double.compare(repoLabel.interFace, interFace) != 0) return false;
+        if (Double.compare(repoLabel.inter_face, inter_face) != 0) return false;
         if (Double.compare(repoLabel.os, os) != 0) return false;
         if (Double.compare(repoLabel.server, server) != 0) return false;
         if (Double.compare(repoLabel.tool, tool) != 0) return false;
@@ -311,7 +311,7 @@ public class RepoLabel {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(windows);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(interFace);
+        temp = Double.doubleToLongBits(inter_face);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(os);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
