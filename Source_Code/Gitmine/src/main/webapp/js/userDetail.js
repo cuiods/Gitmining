@@ -198,6 +198,7 @@ $(document).ready(function() {
 
                 var detail = document.createElement("a");
                 $(detail).addClass("btn btn-primary hvr-rectangle-in");
+                detail.href = 'userDetail.html?userName='+name.innerHTML;
                 detail.innerHTML = "Read Detail";
                 wrap2_div.appendChild(detail);
 
