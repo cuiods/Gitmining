@@ -37,9 +37,32 @@ public class RepoLabelUpdater {
             repoLabel.setDjango(1.0);
         if (StringUtils.containsIgnoreCase(description,"emacs"))
             repoLabel.setEmacs(1.0);
-        if (StringUtils.containsIgnoreCase(description,"web"))
-            repoLabel.setWeb(1.0);
+        if (StringUtils.containsIgnoreCase(description,"management"))
+            repoLabel.setManagement(1.0);
+        if (StringUtils.containsIgnoreCase(description,"linux"))
+            repoLabel.setLinux(1.0);
+        if (StringUtils.containsIgnoreCase(description,"windows"))
+            repoLabel.setWindows(1.0);
+        if (StringUtils.containsIgnoreCase(description,"interface"))
+            repoLabel.setInterFace(1.0);
+        if (StringUtils.containsIgnoreCase(description,"os"))
+            repoLabel.setOs(1.0);
+        if (StringUtils.containsIgnoreCase(description,"server"))
+            repoLabel.setServer(1.0);
+        if (StringUtils.containsIgnoreCase(description,"tool"))
+            repoLabel.setTool(1.0);
+        if (StringUtils.containsIgnoreCase(description,"plugin"))
+            repoLabel.setPlugin(1.0);
+        if (StringUtils.containsIgnoreCase(description,"json"))
+            repoLabel.setJson(1.0);
+        if (StringUtils.containsIgnoreCase(description,"library"))
+            repoLabel.setLibrary(1.0);
+        if (StringUtils.containsIgnoreCase(description,"ui"))
+            repoLabel.setUi(1.0);
+        if (StringUtils.containsIgnoreCase(description,"database"))
+            repoLabel.setDataBase(1.0);
 
+        session.saveOrUpdate(repoLabel);
 
         session.close();
     }

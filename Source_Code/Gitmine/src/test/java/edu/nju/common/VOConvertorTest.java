@@ -39,6 +39,7 @@ public class VOConvertorTest {
         UserVO userVO = voConvertor.convert(tblUser);
         assertNotNull(userVO);
         assertTrue(userVO.getLogin().equals(tblUser.getLoginName()));
+        System.out.println("time: "+userVO.getCreateAt());
     }
 
     @Test
@@ -47,6 +48,7 @@ public class VOConvertorTest {
         RepoVO repoVO = voConvertor.convert(tblRepo);
         assertNotNull(repoVO);
         assertFalse(repoVO.getOwnerAvatarUrl().isEmpty());
+        System.out.println("time : "+repoVO.getCreateAt());
     }
 
 }
