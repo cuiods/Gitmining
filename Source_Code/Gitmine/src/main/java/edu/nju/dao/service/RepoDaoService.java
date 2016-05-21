@@ -162,6 +162,14 @@ public interface RepoDaoService {
     public double getRepoComplex(String ownername, String reponame);
 
     /**
+     * get the repo avtive value
+     * @param ownername
+     * @param reponame
+     * @return
+     */
+    public double getRepoActive(String ownername, String reponame);
+
+    /**
      * get the count of repos create between fromTime and toTime
      * @param fromTime
      * @param toTime

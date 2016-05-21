@@ -77,7 +77,7 @@ public class UserController {
         }
         map.put("totalPage", 10);
         map.put("currentPage", pageNum);
-        map.put("repoList", userVOs);
+        map.put("userList", userVOs);
         return map;
     }
 
