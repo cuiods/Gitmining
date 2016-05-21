@@ -29,21 +29,11 @@
 
 $(document).ready(function () {
     var myChart_create = echarts.init(document.getElementById('gra-create-time'));
-    var myChart_size = echarts.init(document.getElementById('gra-size'));
-    var myChart_language = echarts.init(document.getElementById('gra-language'));
-    var myChart_star = echarts.init(document.getElementById('gra-star'));
-    var myChart_fork = echarts.init(document.getElementById('gra-fork'));
-    
     myChart_create.showLoading();
-    myChart_size.showLoading();
-    myChart_language.showLoading();
-    myChart_star.showLoading();
-    myChart_fork.showLoading();
     $.ajax({
         type:"GET",
-        url:"/repo/statistic",
+        url:"/repo/statistic/create_at",
         success:function (data) {
-            var create_chart = data.createTime;
             option = {
                 title : {
                     text: 'Repository create time',
@@ -57,7 +47,7 @@ $(document).ready(function () {
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: create_chart.field
+                    data: data.field
                 },
                 series : [
                     {
@@ -66,11 +56,11 @@ $(document).ready(function () {
                         radius : '55%',
                         center: ['50%', '60%'],
                         data:[
-                            {value:create_chart.value[0], name:create_chart.field[0]},
-                            {value:create_chart.value[1], name:create_chart.field[1]},
-                            {value:create_chart.value[2], name:create_chart.field[2]},
-                            {value:create_chart.value[3], name:create_chart.field[3]},
-                            {value:create_chart.value[4], name:create_chart.field[4]}
+                            {value:data.value[0], name:data.field[0]},
+                            {value:data.value[1], name:data.field[1]},
+                            {value:data.value[2], name:data.field[2]},
+                            {value:data.value[3], name:data.field[3]},
+                            {value:data.value[4], name:data.field[4]}
                         ],
                         itemStyle: {
                             emphasis: {
@@ -86,7 +76,15 @@ $(document).ready(function () {
             myChart_create.setOption(option);
             window.onresize = myChart_create.resize;
 
-            var size = data.size;
+        }
+    });
+
+    var myChart_size = echarts.init(document.getElementById('gra-size'));
+    myChart_size.showLoading();
+    $.ajax({
+        type: "GET",
+        url: "/repo/statistic/size",
+        success: function (size) {
             option = {
                 title : {
                     text: 'Repository size',
@@ -141,8 +139,15 @@ $(document).ready(function () {
             myChart_size.hideLoading();
             myChart_size.setOption(option);
             window.onresize = myChart_size.resize;
+        }
+    });
 
-            var language = data.language;
+    var myChart_language = echarts.init(document.getElementById('gra-language'));
+    myChart_language.showLoading();
+    $.ajax({
+        type: "GET",
+        url: "/repo/statistic/language",
+        success: function (language) {
             option = {
                 title : {
                     text: 'Repository Language',
@@ -212,8 +217,15 @@ $(document).ready(function () {
             myChart_language.hideLoading();
             myChart_language.setOption(option);
             window.onresize = myChart_language.resize;
+        }
+    });
 
-            var star = data.star;
+    var myChart_star = echarts.init(document.getElementById('gra-star'));
+    myChart_star.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/repo/statistic/star",
+        success:function (star) {
             option = {
                 title : {
                     text: 'Repository star',
@@ -268,7 +280,15 @@ $(document).ready(function () {
             myChart_star.hideLoading();
             myChart_star.setOption(option);
             window.resize = myChart_star.resize;
-            var fork = data.fork;
+        }
+    });
+
+    var myChart_fork = echarts.init(document.getElementById('gra-fork'));
+    myChart_fork.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/repo/statistic/fork",
+        success:function (fork) {
             option = {
                 title : {
                     text: 'Repository fork',
