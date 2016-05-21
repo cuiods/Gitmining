@@ -46,7 +46,9 @@ $(document).ready(function() {
             }
             option = {
                 backgroundColor: '#161627',
+                tooltip:{
 
+                },
                 radar:{
                     indicator:[
                         {name: data.radarChart.field[0], max:1},

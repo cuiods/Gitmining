@@ -61,5 +61,62 @@ $(document).ready(
 );
 
 function sort(obj){
+    var originCheck = findCheckedSortType();
+    var obj = $(obj);
+    if(originCheck.attr("sortType")==obj.attr('sortType')){
+
+
+        if(obj.attr("isReverse")=="true"){
+            obj.attr("isReverse" , "false");
+            obj.children("span").attr("class", "glyphicon glyphicon-arrow-down");
+        }else{
+            obj.attr("isReverse" , "true");
+            obj.children("span").attr("class",  "glyphicon glyphicon-arrow-up");
+        };
+
+    }else{
+        originCheck.attr("ischecked" ,"false");
+        obj.attr("ischecked" , "true");
+    }
+    search();
+}
+
+//used to ensure which sortType is choosed
+function findCheckedSortType() {
+    var type = undefined;
+    $('.nav>li>a').each(
+        function (i,n){
+            var jq =  $(n);
+            if(jq.attr("ischecked")=="true"){
+                type =  jq;
+            }
+        }
+    );
+    if(type==undefined){
+        type = $('.nav>li>a');
+    }
+    return type;
+}
+
+function search(){
+    var keyword = $('#keyword');
+    var sortElement= findCheckedSortType();
+    var sortBy = sortElement.attr("sortType");
+    var isReverse = sortElement.attr("isReverse");
+    var page = 1;
+    $.ajax({
+        type:'GET',
+        url:'/user/search',
+        data:{
+            keyword:keyword,
+            sortType:sortBy,
+            reverse:isReverse,
+            pageNum:page,
+        },
+        success:function(searchList){
+            UserList.updateData(searchList);
+        }
+    })
+    
     
 }
