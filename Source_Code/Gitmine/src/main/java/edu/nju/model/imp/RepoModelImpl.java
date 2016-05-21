@@ -1,5 +1,6 @@
 package edu.nju.model.imp;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
@@ -158,7 +159,7 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     @Override
-    public SimpleChart[] getPunchCard(String ownername, String reponame) {
+    public JsonNode getPunchCard(String ownername, String reponame) {
         return jsonNodeParser.getPunchCard(ownername, reponame);
     }
 

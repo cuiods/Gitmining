@@ -1,5 +1,6 @@
 package edu.nju.model.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.nju.common.SortType;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.*;
@@ -110,5 +111,5 @@ public interface RepoModelService {
      * @param reponame
      * @return an array of <b>TWO</b> <tt>CommitChart</tt>
      */
-    public SimpleChart [] getPunchCard(String ownername, String reponame);
+    public JsonNode getPunchCard(String ownername, String reponame);
 }

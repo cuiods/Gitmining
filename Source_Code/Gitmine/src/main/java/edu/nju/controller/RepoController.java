@@ -1,5 +1,6 @@
 package edu.nju.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
@@ -134,14 +135,10 @@ public class RepoController {
         return repoModelImpl.getCodeFrequency(ownername, reponame);
     }
 
-    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/graph/commit_by_time", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/graph/punch_card", method = RequestMethod.GET)
     @ResponseBody
-    public Map getRepoCommitByTime(@PathVariable("ownername") String ownername, @PathVariable("reponame") String reponame){
-        SimpleChart [] charts = repoModelImpl.getPunchCard(ownername, reponame);
-        Map<String,Object> map = new HashMap<>();
-        map.put("commitPerHourOfDay", charts[0]);
-        map.put("commitPerDayOfWeek", charts[1]);
-        return map;
+    public JsonNode getRepoCommitByTime(@PathVariable("ownername") String ownername, @PathVariable("reponame") String reponame){
+        return repoModelImpl.getPunchCard(ownername, reponame);
     }
 
     @RequestMapping(value = "/statistic/create_at", method = RequestMethod.GET)

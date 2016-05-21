@@ -1,5 +1,6 @@
 package edu.nju.model.imp;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.nju.common.SortType;
 import edu.nju.model.pojo.*;
 import org.junit.Test;
@@ -104,9 +105,8 @@ public class RepoModelImplTest {
 
     @Test
     public void getPunchCard() throws Exception {
-        SimpleChart[] charts = repoModelImpl.getPunchCard("jquery","jquery");
-        assertTrue(charts.length == 2);
-        System.out.println("20:00 commit count for jquery "+charts[0].getValue()[16]);
+        JsonNode node = repoModelImpl.getPunchCard("jquery","jquery");
+        assertNotNull(node);
     }
 
 }

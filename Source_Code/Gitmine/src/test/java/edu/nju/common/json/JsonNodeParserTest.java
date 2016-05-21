@@ -1,5 +1,6 @@
 package edu.nju.common.json;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.nju.common.TimeTranslator;
 import edu.nju.model.pojo.CodeFrequency;
 import edu.nju.model.pojo.CommitChart;
@@ -59,10 +60,8 @@ public class JsonNodeParserTest {
 
     @Test
     public void getPunchCard() throws Exception {
-        SimpleChart [] punch = jsonNodeParser.getPunchCard("rubinius", "rubinius");
-        assertTrue(punch.length == 2);
-        assertTrue(punch[0].getValue().length>0);
-        System.out.println("hour per day of commit:  "+punch[0].getValue()[20]);
+        JsonNode punch = jsonNodeParser.getPunchCard("rubinius", "rubinius");
+        assertNotNull(punch);
     }
 
 }

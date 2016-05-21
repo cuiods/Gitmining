@@ -113,31 +113,30 @@ public class JsonNodeParser {
      * @param reponame
      * @return an array with <b>TWO</b> <tt>RadarChart</tt>.
      */
-    public SimpleChart[] getPunchCard(String ownername, String reponame){
+    public JsonNode getPunchCard(String ownername, String reponame){
         SimpleChart[] simpleCharts = new SimpleChart[2];
-        JsonNode node = jsonNodeReader.getPunchCard(ownername, reponame);
+        return jsonNodeReader.getPunchCard(ownername, reponame);
+//
+//        String [] hourField = {"0","1","2","3","4","5","6","7","8","9","10","11","12",
+//                                "13","14","15","16","17","18","19","20","21","22","23"};
+//        String [] weekField = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+//
+//        long [] hourValue = {0,0,0,0, 0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0, 0,0,0,0};
+//        long [] weekValue = {0,0,0,0,0,0,0};
+//
+//        if (node != null) {
+//            for (JsonNode data: node){
+//                int weekday = data.get(0).asInt();
+//                int hour = data.get(1).asInt();
+//                int commit = data.get(2).asInt();
+//                hourValue[hour] += commit;
+//                weekValue[weekday] += commit;
+//            }
+//        }
+//
+//        simpleCharts[0] = new SimpleChart(hourField,hourValue);
+//        simpleCharts[1] = new SimpleChart(weekField, weekValue);
 
-        String [] hourField = {"0","1","2","3","4","5","6","7","8","9","10","11","12",
-                                "13","14","15","16","17","18","19","20","21","22","23"};
-        String [] weekField = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
-
-        long [] hourValue = {0,0,0,0, 0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0, 0,0,0,0};
-        long [] weekValue = {0,0,0,0,0,0,0};
-
-        if (node != null) {
-            for (JsonNode data: node){
-                int weekday = data.get(0).asInt();
-                int hour = data.get(1).asInt();
-                int commit = data.get(2).asInt();
-                hourValue[hour] += commit;
-                weekValue[weekday] += commit;
-            }
-        }
-
-        simpleCharts[0] = new SimpleChart(hourField,hourValue);
-        simpleCharts[1] = new SimpleChart(weekField, weekValue);
-
-        return simpleCharts;
     }
 
     public JsonNodeReader getJsonNodeReader() {
