@@ -374,7 +374,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMaxActive() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select max (repo.numCommit + repo.numPull) from  TblRepo repo");
+        Query query = session.createQuery("select max (repo.numCommit) from  TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -383,7 +383,7 @@ public class RepoDaoImp implements RepoDaoService{
     @Override
     public double getMinActive() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select min (repo.numCommit + repo.numPull) from  TblRepo repo");
+        Query query = session.createQuery("select min (repo.numCommit) from  TblRepo repo");
         List list = query.list();
         session.close();
         return Double.valueOf(list.get(0).toString());
@@ -414,6 +414,22 @@ public class RepoDaoImp implements RepoDaoService{
         session.close();
 
         return contrCount+collaCount;
+    }
+
+    @Override
+    public double getRepoActive(String ownername, String reponame) {
+        double result = 0;
+        Session session =sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT num_commit FROM tbl_repo WHERE owner_name = :owner and name = :repo ");
+        query.setString("owner",ownername);
+        query.setString("repo",reponame);
+        List list = query.list();
+        if (list.size()>0){
+            result = Double.valueOf(list.get(0).toString());
+        }
+
+        session.close();
+        return result;
     }
 
     @Override

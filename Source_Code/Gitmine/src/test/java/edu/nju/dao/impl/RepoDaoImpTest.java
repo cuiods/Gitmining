@@ -198,6 +198,13 @@ public class RepoDaoImpTest {
     }
 
     @Test
+    public void getRepoActive() throws Exception {
+        double avtive = repoDaoImp.getRepoActive("jquery","jquery");
+        System.out.print(avtive);
+        assertTrue(avtive>0);
+    }
+
+    @Test
     public void getStatsCreateTime() throws Exception {
         Calendar cFrom = Calendar.getInstance();
         Calendar cTo = Calendar.getInstance();

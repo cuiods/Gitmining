@@ -2,15 +2,17 @@
 <html>
 <head>
     <title>UserInfo</title>
+    <script src="../../js/jquery.min.js"></script>
     <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
     <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../../css/repo-label.css">
     <script src="../../js/login.js"></script>
-    <script src="../../js/userInfo.js"></script>
+
     <link href="../../css/login.css" rel="stylesheet"/>
     <script src="../../js/bootstrap.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../js/jquery.min.js"></script>
+
+    <script src="../../js/userInfo.js"></script>
 
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -77,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <nav class="cl-effect-13">
                         <!--TODO : 	更换导航目录-->
                         <li><a href="/html/about.html">About</a></li>
-                        <li><a href="/html/html/userInfo.html" title="users search">USERS</a></li>
+                        <li><a href="/html/html/userInfo.html" title="users search" class="active">USERS</a></li>
                         <li><a href="/html/html/user_statistic.html" title="users statistic">U-STAT</a></li>
                         <li><a href="/html/html/repo.html" title="repositories search">REPOS</a></li>
                         <li><a href="/html/html/repo_statistic.html" title="repositories' statistic">R-STAT</a></li>
@@ -138,7 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            onclick="sort(this)" class="active">
                         FOLLOWED &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
                     <li><a href="javascript:void(0)" sortType = "user_create" ischecked="false" isReverse = "false"
-                           onclick="onclickFunction(this)" class="active">
+                           onclick="sort(this)" class="active">
                         CREATE &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
 
 
