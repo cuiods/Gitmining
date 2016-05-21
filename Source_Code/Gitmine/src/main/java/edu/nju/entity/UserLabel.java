@@ -141,7 +141,7 @@ public class UserLabel {
     }
 
     @Basic
-    @Column(name = "interface")
+    @Column(name = "inter_face")
     public double getInterFace() {
         return interFace;
     }
@@ -231,7 +231,7 @@ public class UserLabel {
     }
 
     @Basic
-    @Column(name = "database")
+    @Column(name = "data_base")
     public double getDataBase() {
         return dataBase;
     }
