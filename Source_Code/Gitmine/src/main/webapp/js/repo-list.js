@@ -77,15 +77,14 @@ function jumpPage() {
 
 function compare() {
    console.log(RepoList.checkboxes);
-   for(var item in RepoList.checkboxes){
-       console.log(item.checked);
-       console.log(item.name);
-       console.log("------------------");
-       
-       // if(item.attr("checked")){
-       //     alert(item.attr("name"));
-       // }
+    var selected = new Array();
+   for(var index in RepoList.checkboxes){
+       var item = RepoList.checkboxes[index];
+       if(item.prop("checked")){
+           selected.push(item.attr("name"));
+       }
    }
+   standardPost("",selected); 
 }
 
 function search(page) {
@@ -151,6 +150,25 @@ function onclickFunction(obj) {
     search(1);
 }
 
+/**
+ * 
+ */
+function standardPost(url,args){
+    var body = $(document.body),
+        form = $("<form method='post'></form>"),
+        input;
+    form.attr({"action":url});
+    $.each(args,function(key,value){
+        input = $("<input type='hidden'>");
+        input.attr({"name":key});
+        input.val(value);
+        form.append(input);
+    });
+
+    form.appendTo(document.body);
+    form.submit();
+    document.body.removeChild(form[0]);
+}
 
 /**
  *
