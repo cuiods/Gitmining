@@ -61,6 +61,7 @@ $(document).ready(
 );
 
 function sort(obj){
+
     var originCheck = findCheckedSortType();
     var obj = $(obj);
     if(originCheck.attr("sortType")==obj.attr('sortType')){
@@ -99,7 +100,7 @@ function findCheckedSortType() {
 }
 
 function search(){
-    var keyword = $('#keyword');
+    var keyword = $('#keyword').val();
     var sortElement= findCheckedSortType();
     var sortBy = sortElement.attr("sortType");
     var isReverse = sortElement.attr("isReverse");
@@ -115,6 +116,9 @@ function search(){
         },
         success:function(searchList){
             UserList.updateData(searchList);
+        },
+        error:function(){
+            alert("wrong!");
         }
     })
     
