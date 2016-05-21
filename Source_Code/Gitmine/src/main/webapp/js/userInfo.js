@@ -12,16 +12,16 @@ var UserList={
     updateData:function(userlist){
         this.gridsFather.empty();
         var _this = this;
-        $.each(repolist,function(i,user){
+        $.each(userlist,function(i,user){
             var tempGrid = _this.lastGrid.clone(true);
             var userName = tempGrid.find(".userName").eq(0);
-            userName.innerHTML = user.name;
+            userName.text(user.name);
             userName.attr('href','userDetail.html?userName='+user.name);
 
             var imageUrl = tempGrid.find(".imageUrl").eq(0);
             imageUrl.attr('href','userDetail.html?userName='+user.name);
             var image = tempGrid.find(".header_user").eq(0);
-            image.src = user.avatarUrl;
+            image.attr('src',user.avatarUrl);
 
             tempGrid.find('.create').eq(0).text('create at:  '+user.createAt);
             tempGrid.find('.update').eq(0).text('update at:  '+user.updateAt);
@@ -40,12 +40,11 @@ var UserList={
 
 $(document).ready(
     function () {
-        alert("hei!");
         UserList.init();
-        var url = location_port+'/user/list'+"?pageNum=1";
+        var url = '/user/list'+"?pageNum=1";
         $.get(url,function (object) {
 
-            UserList.updateData(object.repoList);
+            UserList.updateData(object.userList);
         });
         // $.ajax({
         //     type:'GET',
@@ -60,3 +59,7 @@ $(document).ready(
         // })
     }
 );
+
+function sort(obj){
+    
+}
