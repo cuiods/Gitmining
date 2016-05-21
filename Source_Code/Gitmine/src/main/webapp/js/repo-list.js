@@ -1,7 +1,7 @@
 /**
  * Created by darxan on 2016/5/15.
  */
-var location_port = '';
+var location_port = 'http://localhost:8080';
 var descritopmLength = 63;
 var descritopmLengthEachLine = 39;
 var nameLength = 10;
@@ -12,25 +12,26 @@ var RepoList = {
         this.gridsFather =  $("#news-grids");
         this.lastGrid = this.gridsFather.children(".news-grid").eq(0);
         this.clear = $("<div class=\"clearfix\"> </div>" );
-       // this.gridsFather.empty();
+        // this.gridsFather.empty();
     },
     updateData: function (object) {
         this.gridsFather.empty();
         var _this = this;
-
+        _this.checkboxes = new Array(object.length);
         $.each(object, function (i, n)
         {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
             owner.text (n.ownerName.substr(0,descritopmLengthEachLine));
-            owner.attr ('href','/html/html/userDetail.html?'+n.ownerName);
-
-
+            owner.attr ('href','/html/html/userDetail.html?ownerName='+n.ownerName);
 
             var repo = tempGrid.find('.reponame').eq(0);
             repo.text (n.reponame.substr(0,nameLength));
-            repo.attr ('href','/html/html/repo-detail.html?'+n.ownerName+"/"+n.reponame);
 
+            var repoHref = '/html/html/repo-detail.html?'+n.ownerName+"/"+n.reponame;
+            repo.attr ('href',repoHref);
+            tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
+            tempGrid.find('.mask').eq(0).attr  ( 'href',repoHref);
             var description = n.description;
             if(description.length>descritopmLength){
                 description = description.substr(0,descritopmLength)+"...";
@@ -40,17 +41,22 @@ var RepoList = {
             tempGrid.find('.description').eq(0).html (description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
-            tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
+
             tempGrid.find('.numSubscriber').eq(0).text  ( n.numSubscriber);
             tempGrid.find('.numFork').eq(0).text  ( n.numFork);
             tempGrid.find('.numStar').eq(0).text   ( n.numStar);
 
             _this.gridsFather.append(tempGrid);
+
+            var checkbox = tempGrid.find(".checkbox").eq(0);
+            checkbox.attr("name",n.ownerName+"/"+n.reponame);
+             _this.checkboxes.push(checkbox);
             if(i%4==3){
                 _this.gridsFather.append(_this.clear.clone(true));
             }
 
         });
+        console.log(_this.checkboxes);
     },
 
 };
@@ -67,6 +73,19 @@ $(document).ready(
 
 function jumpPage() {
 
+}
+
+function compare() {
+   console.log(RepoList.checkboxes);
+   for(var item in RepoList.checkboxes){
+       console.log(item.checked);
+       console.log(item.name);
+       console.log("------------------");
+       
+       // if(item.attr("checked")){
+       //     alert(item.attr("name"));
+       // }
+   }
 }
 
 function search(page) {
@@ -110,7 +129,6 @@ function findCheckedRadio(toolbar) {
     );
     return label;
 }
-
 
 function onclickFunction(obj) {
     var originCheck = findCheckedSortType();
@@ -182,7 +200,6 @@ function generateFilterList() {
         "dataBase"
     );
     for(var i in list){
-        console.log(list[i]);
         var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\"radios0\" value=\"false\">";
         var label = " <label class=\"label\" for=\"" +list[i] + "\">" +list[i] + "</label>";
         document.write(radio);
