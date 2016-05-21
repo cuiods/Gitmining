@@ -1,7 +1,7 @@
 /**
  * Created by darxan on 2016/5/19.
  */
-var location_port = 'http://localhost:8080';
+var location_port = '';
 $(document).ready(
     function () {
         var fullName = location.search;
