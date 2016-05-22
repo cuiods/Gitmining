@@ -51,7 +51,7 @@ public class JsonNodeParserTest {
 
     @Test
     public void getCodeFrequency() throws Exception {
-        CodeFrequency codeFrequency = jsonNodeParser.getCodeFrequency("rubinius", "rubinius");
+        CodeFrequency codeFrequency = jsonNodeParser.getCodeFrequency("garlik", "4store");
         assertNotNull(codeFrequency);
         assertTrue(codeFrequency.getAdd().length>0);
         System.out.println("code frequency time "+codeFrequency.getField()[0]);

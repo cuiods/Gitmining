@@ -311,7 +311,7 @@ public class UserDaoImp implements UserDaoService {
     @Override
     public List getStatsEmail(int maxResults) {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT email_suffix, count(*) AS num FROM tbl_user WHERE email_suffix <> '' GROUP BY email_suffix ORDER BY num DESC ");
+        SQLQuery query = session.createSQLQuery("SELECT DISTINCT substring_index(email, '@', -1) AS suffix, count(*) AS cc FROM tbl_user WHERE email <>'' GROUP BY suffix ORDER BY cc DESC");
         query.setMaxResults(maxResults);
         List list = query.list();
         session.close();
