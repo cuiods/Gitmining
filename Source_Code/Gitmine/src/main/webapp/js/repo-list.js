@@ -1,7 +1,7 @@
 /**
  * Created by darxan on 2016/5/15.
  */
-var location_port = 'http://localhost:8080';
+var location_port = '';
 var descritopmLength = 63;
 var descritopmLengthEachLine = 39;
 var nameLength = 10;
