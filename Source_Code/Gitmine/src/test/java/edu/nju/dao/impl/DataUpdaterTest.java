@@ -26,13 +26,13 @@ public class DataUpdaterTest {
 
     @Test
     public void saveEntity() throws Exception {
-        SecUserEntity userEntity = new SecUserEntity();
-        userEntity.setLogin("dbctest");
-        userEntity.setId(Long.MAX_VALUE);
-        userEntity.setEmail("dbc1994@126.com");
-        userEntity.setType("User");
-        userEntity.setCreateAt(new Timestamp(1293843661));
-        updater.saveEntity(userEntity);
+//        SecUserEntity userEntity = new SecUserEntity();
+//        userEntity.setLogin("dbctest");
+//        userEntity.setId(Long.MAX_VALUE);
+//        userEntity.setEmail("dbc1994@126.com");
+//        userEntity.setType("User");
+//        userEntity.setCreateAt(new Timestamp(1293843661));
+//        updater.saveEntity(userEntity);
     }
 
 }
