@@ -31,7 +31,7 @@ public class GithubReader {
         this.objectMapper = new ObjectMapper();
     }
 
-    public JsonNode traverseUsers(int since){
+    public JsonNode traverseUsers(long since){
         JsonNode node = null;
         String url = userHeader+getAuth()+"&since"+since;
         try {

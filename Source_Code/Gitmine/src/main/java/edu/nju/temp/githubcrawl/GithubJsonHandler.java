@@ -6,6 +6,7 @@ import edu.nju.entity.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.*;
 import java.sql.Timestamp;
 
 /**
@@ -29,7 +30,45 @@ public class GithubJsonHandler {
     }
 
     public void trverse(){
-        int since = 0;
+        //System.out.println("===============>>>"+GithubJsonHandler.class.getResource(""));
+        long since = 0;
+        File file = new File("src/main/java/edu/nju/temp/since_user.txt");
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            //System.out.println("----->>>"+Long.parseLong(reader.readLine()));
+            since = Long.parseLong(reader.readLine());
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JsonNode node = null;
+        while (((node=reader.traverseUsers(since))!=null) && (node.size()>0)){
+            for (JsonNode element: node){
+                String username = element.get("login").asText();
+                since = element.get("id").asLong();
+                String reposUrl = element.get("repos_url").asText();
+                addUser(username);
+                addRepos(reposUrl);
+                FileWriter writer = null;
+                try{
+                    writer = new FileWriter(file);
+                    writer.write(""+since);
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("==========================User id "+since+" all own repos completed!!!==========================");
+                //todo==========================
+                if (since>0){
+                    System.exit(0);
+                }
+            }
+
+        }
 
     }
 
@@ -39,6 +78,7 @@ public class GithubJsonHandler {
         if ((node!=null)&&(node.size()>0)){
             String avatar = node.get("avatar_url").asText();
             String name = node.get("name").asText();
+            String email = node.get("email").asText();
             String company = node.get("company").asText();
             String blog = node.get("blog").asText();
             String location = node.get("location").asText();
@@ -56,7 +96,7 @@ public class GithubJsonHandler {
             userEntity.setCompany(company.equals("null")?"":company);
             userEntity.setBlog(blog.equals("null")?"":blog);
             userEntity.setLocation(location.equals("null")?"":location);
-            userEntity.setEmail(node.get("email").asText());
+            userEntity.setEmail(email.equals("null")?"":email);
             userEntity.setBio(bio.equals("null")?"":bio);
             userEntity.setPublicRepos(node.get("public_repos").asInt());
             userEntity.setPublicGists(node.get("public_gists").asInt());
@@ -134,7 +174,7 @@ public class GithubJsonHandler {
 
     public void addSubscriber(String owner, String repo){
         int page = 1;
-        String url = commonUserUrl+owner+"/"+repo+"/subscribers";
+        String url = commonRepoUrl+owner+"/"+repo+"/subscribers";
         JsonNode node = null;
         while ((node = reader.getArrayNode(url, page)).size()>0){
             for (JsonNode element: node){
@@ -143,7 +183,7 @@ public class GithubJsonHandler {
 
                 SecSubscriberEntity subscriberEntity = new SecSubscriberEntity();
                 subscriberEntity.setRepoOwner(owner);
-                subscriberEntity.setRepoOwner(repo);
+                subscriberEntity.setRepoName(repo);
                 subscriberEntity.setSubscriber(subscriber);
 
                 updater.saveEntity(subscriberEntity);
@@ -154,7 +194,7 @@ public class GithubJsonHandler {
 
     public void addStargazer(String owner, String repo){
         int page = 1;
-        String url = commonUserUrl+owner+"/"+repo+"/stargazers";
+        String url = commonRepoUrl+owner+"/"+repo+"/stargazers";
         JsonNode node = null;
         while ((node = reader.getArrayNode(url, page)).size()>0){
             for (JsonNode element: node){

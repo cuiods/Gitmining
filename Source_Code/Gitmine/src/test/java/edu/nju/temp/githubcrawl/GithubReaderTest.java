@@ -22,12 +22,16 @@ public class GithubReaderTest {
 
     @Test
     public void traverseUsers() throws Exception {
-
+        JsonNode node = reader.traverseUsers(100);
+        assertTrue(node.size()>0);
     }
 
     @Test
     public void getArrayNode() throws Exception {
-
+        JsonNode node = reader.getArrayNode("https://api.github.com/users/mojombo/repos",2);
+        assertTrue(node.size()>0);
+        JsonNode node1 = reader.getArrayNode("https://api.github.com/users/mojombo/repos",4);
+        assertTrue(node1.size()==0);
     }
 
     @Test
