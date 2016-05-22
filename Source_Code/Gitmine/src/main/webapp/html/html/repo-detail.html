@@ -21,6 +21,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
     <script type="text/javascript" src="../../js/repoDetail.js"></script>
+    <script type="text/javascript" src="../../plugin/echarts/echarts.min.js"></script>
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -131,6 +132,9 @@ Java 技术让您可以在安全的计算环境下工作和游戏。 升级到�
                 <div class="clearfix"></div>
                 <div class="admin-text">
                     <h4>Radar Graph</h4>
+                    <div id="repoRadar" class="chart-container" style="height: 50em">
+
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
 
@@ -140,7 +144,6 @@ Java 技术让您可以在安全的计算环境下工作和游戏。 升级到�
                 <div class="category">
                     <h4>Related Repositories</h4>
                     <div class="list-group" id="relatedRepo">
-
                     </div>
                 </div>
                 <div >
@@ -177,6 +180,7 @@ Java 技术让您可以在安全的计算环境下工作和游戏。 升级到�
                 </div>
 
             </div>
+
             <div class="clearfix"> </div>
         </div>
     </div>
@@ -184,7 +188,6 @@ Java 技术让您可以在安全的计算环境下工作和游戏。 升级到�
 
 </div>
 <!-- content-section-ends -->
-
 
 <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!---->
