@@ -7,30 +7,48 @@
     <script src="../../plugin/echarts/echarts.min.js"></script>
     <script>
         function chart() {
-            var myChart = echarts.init(document.getElementById("test"));
+            var element = document.getElementById("test");
+            var chartNode = document.createElement("div");
+            chartNode.style.height = "40em";
+            var imgNode = document.createElement("image");
+            imgNode.src = "../../img/log.png";
+            imgNode.class = "col-md-4";
+            element.appendChild(imgNode);
+            element.appendChild(chartNode);
+
+            var myChart = echarts.init(chartNode);
             myChart.showLoading();
+            var xAxisData = [];
+            var data1 = [];
+            var data2 = [];
+            for (var i = 0; i < 100; i++) {
+                xAxisData.push('类目' + i);
+                data1.push((Math.sin(i / 5) * (i / 5 -10) + i / 6) * 5);
+                data2.push((Math.cos(i / 5) * (i / 5 -10) + i / 6) * 5);
+            }
+
             option = {
-                title : {
-                    text: '未来一周气温变化',
-                    subtext: '纯属虚构'
+                title: {
+                    text: '堆叠区域图',
+                    image: '../../img/log.png'
                 },
                 tooltip : {
                     trigger: 'axis'
                 },
                 legend: {
-                    data:['最高气温','最低气温']
+                    data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
                 },
                 toolbox: {
-                    show : true,
-                    feature : {
-                        mark : {show: true},
-                        dataView : {show: true, readOnly: false},
-                        magicType : {show: true, type: ['line', 'bar']},
-                        restore : {show: true},
-                        saveAsImage : {show: true}
+                    feature: {
+                        saveAsImage: {}
                     }
                 },
-                calculable : true,
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
                 xAxis : [
                     {
                         type : 'category',
@@ -40,49 +58,57 @@
                 ],
                 yAxis : [
                     {
-                        type : 'value',
-                        axisLabel : {
-                            formatter: '{value} °C'
-                        }
+                        type : 'value'
                     }
                 ],
                 series : [
                     {
-                        name:'最高气温',
+                        name:'邮件营销',
                         type:'line',
-                        data:[11, 11, 15, 13, 12, 13, 10],
-                        markPoint : {
-                            data : [
-                                {type : 'max', name: '最大值'},
-                                {type : 'min', name: '最小值'}
-                            ]
-                        },
-                        markLine : {
-                            data : [
-                                {type : 'average', name: '平均值'}
-                            ]
-                        }
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:[120, 132, 101, 134, 90, 230, 210]
                     },
                     {
-                        name:'最低气温',
+                        name:'联盟广告',
                         type:'line',
-                        data:[1, -2, 2, 5, 3, 2, 0],
-                        markPoint : {
-                            data : [
-                                {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-                            ]
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:[220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name:'视频广告',
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:[150, 232, 201, 154, 190, 330, 410]
+                    },
+                    {
+                        name:'直接访问',
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:[320, 332, 301, 334, 390, 330, 320]
+                    },
+                    {
+                        name:'搜索引擎',
+                        type:'line',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
                         },
-                        markLine : {
-                            data : [
-                                {type : 'average', name : '平均值'}
-                            ]
-                        }
+                        areaStyle: {normal: {}},
+                        data:[820, 932, 901, 934, 1290, 1330, 1320]
                     }
                 ]
             };
+
             myChart.hideLoading();
             myChart.setOption(option);
-            window.onresize = myChart_size.resize;
+            window.onresize = myChart.resize;
         }
     </script>
 </head>

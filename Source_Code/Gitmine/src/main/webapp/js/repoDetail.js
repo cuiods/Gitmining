@@ -1,9 +1,11 @@
 /**
  * Created by darxan on 2016/5/19.
  */
+
 var location_port = '';
 $(document).ready(
     function () {
+        
         var fullName = location.search;
         var index = location.search.indexOf("?");
 
@@ -13,17 +15,23 @@ $(document).ready(
             var params = fullName.substr(index+1);
             var names = params.split("/");
 
+            
             if(names.length<2){
                 wrongUrl();
             }else{
                 var url = location_port+"/repo/"+params;
-                console.log(url);
+                var radar_repo =echarts.init(document.getElementById("repoRadar"));
+                radar_repo.showLoading();
                 $.get(url,function (object) {
                     setBasicInfo(object.basicInfo);
                     setRecommend(object.relatedRepo);
-                    console.log(object.radarChart);
-                    setRadar(object.radarChart);
+                    setRadar(radar_repo,object.radarChart);
                 });
+                
+                setContributorsCommit(params);
+                setCodeFrequency(params);
+
+
             }
 
         }
@@ -71,10 +79,8 @@ function setRecommend(recommend) {
     // });
 }
 
-function setRadar(radarChart) {
-
-    //add radar graph
-    var radar_repo =echarts.init(document.getElementById("repoRadar"));
+function setRadar(radar_repo,radarChart) {
+    
     var lineStyle = {
         normal: {
             width: 1,
@@ -82,9 +88,8 @@ function setRadar(radarChart) {
         }
     }
     option = {
-        backgroundColor: '#161627',
+        // backgroundColor: 'white',
         tooltip:{
-
         },
         radar:{
             indicator:[
@@ -141,8 +146,214 @@ function setRadar(radarChart) {
         ]
     };
     radar_repo.setOption(option);
+    radar_repo.hideLoading();
+    window.onresize = radar_repo.resize;
 }
 
+
+function setContributorsCommit(params) {
+    
+    var fatherNode = document.getElementById('contributorsCommit');
+    var url_contributrorsCommit = "/repo/"+params+"/graph/commit_by_contributor";
+    function addNode(item) {
+        var node = document.createElement("div");
+        node.style.height = "20em";
+        fatherNode.appendChild(node);
+        var chart = echarts.init(node);
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            title: {
+                left: 'center',
+                text: item.contributorName,
+            },
+            legend: {
+                top: 'bottom',
+                data:['意向']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: item.field
+            },
+            yAxis: {
+                type: 'value',
+                boundaryGap: [0, '100%']
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 0,
+                end: 100
+            }, {
+                start: 0,
+                end: 100
+            }],
+            series: [
+                {
+                    name:'commits time',
+                    type:'line',
+                    smooth:true,
+                    symbol: 'none',
+                    sampling: 'average',
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(255, 70, 131)'
+                        }
+                    },
+                    areaStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgb(255, 158, 68)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255, 70, 131)'
+                            }])
+                        }
+                    },
+                    data: item.value
+                }
+            ]
+        };
+        chart.setOption(option);
+        window.onresize = chart.resize;
+    }
+
+
+    $.get(url_contributrorsCommit,function (list) {
+        addNode(list['all']);
+        for (var index in list){
+            if(index!='all'){
+                addNode(list[index]);
+            }
+        }
+    });
+
+}
+
+function setCodeFrequency(params) {
+    var url_codeFrequency = "/repo/"+params+"/graph/code_frequency";
+    var node = document.getElementById("codeFrequency");
+    var chart = echarts.init(node);
+    chart.showLoading();
+    $.get(url_codeFrequency,function (codeFrequency) {
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            title: {
+                left: 'center',
+                text: 'codeFrequency',
+            },
+            legend: {
+                top: 'bottom',
+                data:['意向']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: codeFrequency.field
+            },
+            yAxis: {
+                type: 'value',
+                boundaryGap: [0, '100%']
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 0,
+                end: 100
+            }, {
+                start: 0,
+                end: 100
+            }],
+            series: [
+                {
+                    name:'commits time',
+                    type:'line',
+                    smooth:true,
+                    symbol: 'none',
+                    sampling: 'average',
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(255, 70, 131)'
+                        }
+                    },
+                    areaStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgb(255, 158, 68)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255, 70, 131)'
+                            }])
+                        }
+                    },
+                    data: codeFrequency.add
+                },
+                {
+                    name:'commits time',
+                    type:'line',
+                    smooth:true,
+                    symbol: 'none',
+                    sampling: 'average',
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(31, 58, 147)'
+                        }
+                    },
+                    areaStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgb(255, 158, 68)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(255, 70, 131)'
+                            }])
+                        }
+                    },
+                    data: codeFrequency.delete
+                },
+            ]
+        };
+        chart.setOption(option);
+        chart.hideLoading();
+        window.onresize = chart.resize;
+    });
+
+
+}
+
+function punchCard() {
+    
+}
 
 function wrongUrl() {
     alert("wrong url");

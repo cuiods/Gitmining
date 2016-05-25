@@ -2,8 +2,8 @@
  * Created by darxan on 2016/5/15.
  */
 var location_port = '';
-var descritopmLength = 63;
-var descritopmLengthEachLine = 39;
+var descriptionLength = 63;
+var descriptionLengthEachLine = 39;
 var nameLength = 10;
 
 var RepoList = {
@@ -22,7 +22,7 @@ var RepoList = {
         {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
-            owner.text (n.ownerName.substr(0,descritopmLengthEachLine));
+            owner.text (n.ownerName.substr(0,descriptionLengthEachLine));
             owner.attr ('href','/html/html/userDetail.html?ownerName='+n.ownerName);
 
             var repo = tempGrid.find('.reponame').eq(0);
@@ -33,9 +33,9 @@ var RepoList = {
             tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
             tempGrid.find('.mask').eq(0).attr  ( 'href',repoHref);
             var description = n.description;
-            if(description.length>descritopmLength){
-                description = description.substr(0,descritopmLength)+"...";
-            }else if(description.length<descritopmLengthEachLine){
+            if(description.length>descriptionLength){
+                description = description.substr(0,descriptionLength)+"...";
+            }else if(description.length<descriptionLengthEachLine){
                 description = description+"<br><br>";
             }
             tempGrid.find('.description').eq(0).html (description);
@@ -64,15 +64,24 @@ var RepoList = {
 $(document).ready(
     function () {
         RepoList.init();
-        var url = location_port+'/repo/list'+"?pageNum=1";
-        $.get(url,function (object) {
-            RepoList.updateData(object.repoList);
+        
+        
+        $.jqPaginator('#paginator', {
+            totalPages: 100,
+            visiblePages: 10,
+            currentPage: 1,
+            onPageChange: function (num, type) {
+                jumpPage(num);
+            }
         });
     }
 );
 
-function jumpPage() {
-
+function jumpPage(pageNum) {
+    var url = location_port+'/repo/list'+"?pageNum="+pageNum;
+    $.get(url,function (object) {
+        RepoList.updateData(object.repoList);
+    });
 }
 
 function compare() {
