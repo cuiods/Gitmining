@@ -15,7 +15,11 @@ public interface SecRepoDaoService {
                                                boolean isDesc, String filterType, String language,
                                                String createYear);
 
+    public long getSearchCount(String keyword, String filterType, String language, String createYear);
+
     public List<SecRepoEntity> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum);
+
+    public long getTotalCount();
 
     public SecRepoEntity getRepoBasicInfo(String owner, String repoName);
 
@@ -83,7 +87,7 @@ public interface SecRepoDaoService {
      * get the count of repos created in each the year
      * @return
      */
-    public long getStatsCreateTime();
+    public List<Object[]> getStatsCreateTime();
 
     /**
      * get the count of repos has fork count between min and max
@@ -106,7 +110,7 @@ public interface SecRepoDaoService {
      * @param maxResults
      * @return
      */
-    public List getStatsLanguage(int maxResults);
+    public List<Object[]> getStatsLanguage(int maxResults);
 
     /**
      * statistic for repo size

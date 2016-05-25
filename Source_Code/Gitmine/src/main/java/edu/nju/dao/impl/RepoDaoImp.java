@@ -57,7 +57,6 @@ public class RepoDaoImp implements RepoDaoService{
             case Repo_Fork:hql+="order by numFork ";break;
             case Repo_Subcri:hql+="order by numSubscriber ";break;
             case Repo_Contri:hql+="order by numContributor ";break;
-            case Repo_Colla:hql+="order by numCollaborator ";break;
             case Repo_Update:hql+="order by updateAt ";break;
             default:hql+="order by name ";break;
         }
@@ -154,7 +153,6 @@ public class RepoDaoImp implements RepoDaoService{
             case Repo_Fork:query = session.createQuery("from TblRepo order by numFork "+order);break;
             case Repo_Subcri:query = session.createQuery("from TblRepo order by numSubscriber "+order);break;
             case Repo_Contri:query = session.createQuery("from TblRepo order by numContributor "+order);break;
-            case Repo_Colla:query = session.createQuery("from TblRepo order by numCollaborator "+order);break;
             case Repo_Update:query = session.createQuery("from TblRepo order by updateAt "+order);break;
             default:query = session.createQuery("from TblRepo order by name "+order);break;
         }

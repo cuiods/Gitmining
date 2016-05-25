@@ -85,6 +85,15 @@ public class DataUpdater {
         session.close();
         return list.size() > 0;
     }
+
+    public List<String> getAllDescription(){
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT description FROM sec_repo WHERE description <> ''");
+        List<String> list = query.list();
+        session.close();
+        return list;
+    }
+
 //
 //    public void saveRepo(SecRepoEntity repoEntity){
 //        Session session =sessionFactory.openSession();
