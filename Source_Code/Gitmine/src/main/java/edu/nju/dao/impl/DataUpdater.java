@@ -21,7 +21,8 @@ public class DataUpdater {
     @Resource
     private SessionFactory sessionFactory;
 
-    public void saveEntity(Object entity){
+    public boolean saveEntity(Object entity){
+        boolean result = false;
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try{
@@ -38,6 +39,7 @@ public class DataUpdater {
 
             session.flush();
             transaction.commit();
+            result = true;
         }catch (Exception e){
             e.printStackTrace();
             if (transaction!=null){
@@ -46,7 +48,42 @@ public class DataUpdater {
         } finally {
             session.close();
         }
+        return result;
+    }
 
+    public void deleteLastRepo(String username){
+        Session session = sessionFactory.openSession();
+        SQLQuery query0 = session.createSQLQuery("SELECT max(name) FROM sec_repo WHERE owner = :own ");
+        query0.setString("own", username);
+        List<String> list = query0.list();
+        if (list.size()>0){
+            String repo = list.get(0);
+            SQLQuery query = session.createSQLQuery("DELETE FROM sec_repo WHERE owner = :owne AND name = :repo");
+            query.setString("owne", username);
+            query.setString("repo",repo);
+            query.executeUpdate();
+        }
+
+        session.close();
+    }
+
+    //public void deleteRepo(String )
+
+    public List<String> getNoRepoUsers(){
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT login FROM sec_user WHERE public_repos > 0 AND login NOT IN (SELECT DISTINCT owner FROM sec_repo) ORDER BY followers DESC LIMIT 1");
+        List<String> list = query.list();
+        session.close();
+        return list;
+    }
+
+    public boolean existUser(String username){
+        Session session =sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT login FROM sec_user WHERE login = :log");
+        query.setString("log",username);
+        List list = query.list();
+        session.close();
+        return list.size() > 0;
     }
 //
 //    public void saveRepo(SecRepoEntity repoEntity){

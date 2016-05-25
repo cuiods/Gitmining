@@ -40,23 +40,25 @@ var UserList={
 
 $(document).ready(
     function () {
+        $().UItoTop({ easingType: 'easeOutQuart' });
         UserList.init();
-        var url = '/user/list'+"?pageNum=1";
+        var url = "/user/list"+"?pageNum=1";
         $.get(url,function (object) {
 
             UserList.updateData(object.userList);
+            $.jqPaginator('#pagination1', {
+                totalPages: object.totalPage,
+                visiblePages: 8,
+                currentPage: 1,
+                onPageChange: function (current) {
+                    jumpPage(current);
+                }
+
+            });
         });
-        // $.ajax({
-        //     type:'GET',
-        //     url:'/user/list',
-        //     data:{pageNum:'1'};
-        //     success:function(data){
-        //         UserList.updateData(data.repoList);
-        //     }
-        //     error:function(){
-        //         alert("unknown error in controller !");
-        //     }
-        // })
+
+        
+        
     }
 );
 
@@ -116,6 +118,15 @@ function search(){
         },
         success:function(searchList){
             UserList.updateData(searchList);
+            $.jqPaginator('#pagination1', {
+                totalPages: 100,
+                visiblePages: 8,
+                currentPage: 1,
+                onPageChange: function (current) {
+                    jumpSearchPage(current);
+                }
+
+            });
         },
         error:function(){
             alert("wrong!");
@@ -123,4 +134,35 @@ function search(){
     })
     
     
+}
+
+function jumpPage(current){
+    var url='/user/list?pageNum='+current;
+    $.get(url,function(object){
+        UserList.updateData(object.userList);
+    })
+}
+
+function jumpSearchPage(current){
+    var keyword = $('#keyword').val();
+    var sortElement= findCheckedSortType();
+    var sortBy = sortElement.attr("sortType");
+    var isReverse = sortElement.attr("isReverse");
+    var page = 1;
+    $.ajax({
+        type:'GET',
+        url:'/user/search',
+        data:{
+            keyword:keyword,
+            sortType:sortBy,
+            reverse:isReverse,
+            pageNum:current,
+        },
+        success:function(searchList){
+            UserList.updateData(searchList);
+        },
+        error:function(){
+            alert("wrong!");
+        }
+    })
 }

@@ -2,38 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Statistic</title>
-    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/repo-label.css">
+    <title>Repo Popularity</title>
+    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/login.js"></script>
-    <link href="../../css/login.css" rel="stylesheet"/>
-    <script src="../../js/bootstrap.js"></script>
-    <!--Echart js file-->
-    <script src="../../plugin/echarts/echarts.min.js"></script>
-    <script src="../../js/userstatistic.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/login.js"></script>
+    <link href="/css/login.css" rel="stylesheet"/>
     <!-- Custom Theme files -->
-    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
     <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <meta name="keywords" content="Github, Github analysis, gitmining, Gitmining, Github data analysis" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
     <!--webfont-->
     <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
-
-    <script type="text/javascript" src="../../js/move-top.js"></script>
-    <script type="text/javascript" src="../../js/easing.js"></script>
+    <script type="text/javascript" src="/js/move-top.js"></script>
+    <script type="text/javascript" src="/js/easing.js"></script>
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
                 event.preventDefault();
                 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+            });
+            $("#login").click(function (event) {
+                alert("good!");
             });
         });
     </script>
@@ -76,27 +73,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="clearfix"></div>
         <div class="banner-info row center-block">
-            <h1><a href="/html/html/user_statistic.html">User Statistic</a></h1>
+            <h1><a href="/html/html/repo_statistic.html">Popularity</a></h1>
         </div>
     </div>
 </div>
 <!-- header-section-ends -->
 
-<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="gra-repos" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
-<div id="gra-gists" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
-<div id="gra-follower" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
-<div id="gra-create" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
-<div id="gra-email" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
-<div id="gra-company" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
-<div id="gra-type" style="width: 75% ;height:500%;margin-left: auto;
-margin-right: auto;"></div>
+<!--statistic-->
 
 <!-- content-section-starts -->
 <div class="content">
@@ -104,7 +87,6 @@ margin-right: auto;"></div>
         <div class="gallery-head" id="portfolio">
 
 
-            <!-- content-section-ends -->
             <!-- content-section-ends -->
             <div class="get-in-touch">
                 <div class="container">
