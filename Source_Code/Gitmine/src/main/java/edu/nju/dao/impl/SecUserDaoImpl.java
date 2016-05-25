@@ -169,7 +169,7 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<Object[]> getStatsUserType() {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT type, count(*) FROM sec_user GROUP BY type");
+        SQLQuery query = session.createSQLQuery("SELECT sec_user.type, count(*) FROM sec_user WHERE sec_user.type <> '' GROUP BY type");
         List<Object[]> list = query.list();
         session.close();
         return list;

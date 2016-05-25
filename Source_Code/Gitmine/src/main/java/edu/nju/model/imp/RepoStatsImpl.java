@@ -1,6 +1,7 @@
 package edu.nju.model.imp;
 
 import edu.nju.dao.service.RepoDaoService;
+import edu.nju.dao.service.SecRepoDaoService;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoStatsService;
 import org.springframework.stereotype.Service;
@@ -18,60 +19,54 @@ import java.util.List;
 public class RepoStatsImpl implements RepoStatsService {
 
     @Resource
-    private RepoDaoService repoDaoImpl;
+    private SecRepoDaoService secRepoDaoService;
 
     @Override
     public SimpleChart statsCreateTime() {
-        String [] years = {"before 2008","2008","2009","2010","2011","2012","2013","after 2013"};
-        long [] value = new long[years.length];
-        Calendar from = Calendar.getInstance();
-        Calendar to = Calendar.getInstance();
-        from.set(1000, Calendar.JANUARY, 1, 0, 0, 0);
-        to.set(2008, Calendar.DECEMBER, 31, 23, 59,59);
-        value[0] = repoDaoImpl.getStatsCreateTime(from, to);
-        for (int i = 2008;i<=2013;i++){
-            from.set(Calendar.YEAR, i);
-            to.set(Calendar.YEAR, i);
-            value[i-2007] = repoDaoImpl.getStatsCreateTime(from, to);
+        List<Object[]> list = secRepoDaoService.getStatsCreateTime();
+        int years = list.size();
+        String [] field = new String[years];
+        long [] value = new long[years];
+        for (int i=0;i<years;i++){
+            Object [] year = list.get(i);
+            field[i] = year[0].toString();
+            value[i] = Long.valueOf(year[1].toString());
         }
-        from.set(Calendar.YEAR, 2014);
-        to.setTime(new Date());
-        value[value.length-1] = repoDaoImpl.getStatsCreateTime(from, to);
-        return new SimpleChart(years, value);
+        return new SimpleChart(field,value);
     }
 
     @Override
     public SimpleChart statsForkCount() {
-        String [] field = {"0~50","50~100","100~150","150~200","200~250","250~300","300~350",
-                "350~400","400~450","450~500",">=500"};
+        String [] field = {"0~10","10~20","20~30","30~40","40~50","50~60","60~70",
+                "70~80","80~90","90~100",">=100"};
         long [] value = new long[field.length];
 
-        int step = 50;
+        int step = 10;
         for (int i=0;i<field.length-1;i++){
-            value[i] = repoDaoImpl.getStatsFork(step*i, step*(i+1)-1);
+            value[i] = secRepoDaoService.getStatsFork(step*i, step*(i+1)-1);
         }
-        value[value.length-1] = repoDaoImpl.getStatsFork(step*(value.length-1), Integer.MAX_VALUE);
+        value[value.length-1] = secRepoDaoService.getStatsFork(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 
     @Override
     public SimpleChart statsStarCount() {
-        String [] field = {"0~500","500~1000","1000~1500","1500~2000","2000~2500","2500~3000",
-                "3000~3500","3500~4000",">=4000"};
+        String [] field = {"0~50","50~100","100~150","150~200","200~250","250~300",
+                "300~350","350~400",">=400"};
         long [] value = new long[field.length];
 
-        int step = 500;
+        int step = 50;
         for (int i=0;i<field.length-1;i++){
-            value[i] = repoDaoImpl.getStatsStar(step*i, step*(i+1)-1);
+            value[i] = secRepoDaoService.getStatsStar(step*i, step*(i+1)-1);
         }
-        value[value.length-1] = repoDaoImpl.getStatsStar(step*(value.length-1), Integer.MAX_VALUE);
+        value[value.length-1] = secRepoDaoService.getStatsStar(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 
     @Override
     public SimpleChart statsLanguage() {
         int maxResults = 10;
-        List list = repoDaoImpl.getStatsLanguage(maxResults);
+        List list = secRepoDaoService.getStatsLanguage(maxResults);
         int actualRsults = list.size();
         String [] field = new String[actualRsults];
         long [] value = new long[actualRsults];
@@ -85,15 +80,15 @@ public class RepoStatsImpl implements RepoStatsService {
 
     @Override
     public SimpleChart statsSize(){
-        String [] field = {"0~2000","2000~4000","4000~6000","6000~8000","8000~10000","10000~12000",
-                "12000~14000","14000~16000","16000~18000","18000~20000",">=20000"};
+        String [] field = {"0~200","200~400","400~600","600~800","800~1000","1000~1200",
+                "1200~1400","1400~1600","1600~1800","1800~2000",">=2000"};
         long [] value = new long[field.length];
 
-        int step = 2000;
+        int step = 200;
         for (int i=0;i<field.length-1;i++){
-            value[i] = repoDaoImpl.getStatsSize(step*i, step*(i+1)-1);
+            value[i] = secRepoDaoService.getStatsSize(step*i, step*(i+1)-1);
         }
-        value[value.length-1] = repoDaoImpl.getStatsSize(step*(value.length-1), Integer.MAX_VALUE);
+        value[value.length-1] = secRepoDaoService.getStatsSize(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 }

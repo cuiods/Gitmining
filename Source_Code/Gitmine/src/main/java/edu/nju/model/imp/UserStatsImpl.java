@@ -1,5 +1,6 @@
 package edu.nju.model.imp;
 
+import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.dao.service.UserDaoService;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.UserStatsService;
@@ -19,14 +20,19 @@ import java.util.List;
 public class UserStatsImpl implements UserStatsService {
 
     @Resource
-    private UserDaoService userDaoImpl;
+    private SecUserDaoService secUserDaoService;
 
     @Override
     public SimpleChart statsUserType() {
-        String [] field = {"User", "Organization"};
-        long [] value = new long[field.length];
-        value[0] = userDaoImpl.getStatsUserType((byte)0);
-        value[1] = userDaoImpl.getStatsUserType((byte)1);
+        List<Object[]> list = secUserDaoService.getStatsUserType();
+        int size = list.size();
+        String [] field = new String[size];
+        long [] value = new long[size];
+        for (int i=0;i<size;i++){
+            Object[] item = list.get(i);
+            field[i] = item[0].toString();
+            value[i] = Long.valueOf(item[1].toString());
+        }
         return new SimpleChart(field, value);
     }
 
@@ -36,9 +42,9 @@ public class UserStatsImpl implements UserStatsService {
         long [] value = new long[field.length];
         int step = 20;
         for (int i=0;i<value.length-1;i++){
-            value[i] = userDaoImpl.getStatsUserOwnRepo(i*step, step*(i+1)-1);
+            value[i] = secUserDaoService.getStatsUserOwnRepo(i*step, step*(i+1)-1);
         }
-        value[value.length-1] = userDaoImpl.getStatsUserOwnRepo(step*(value.length-1), Integer.MAX_VALUE);
+        value[value.length-1] = secUserDaoService.getStatsUserOwnRepo(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 
@@ -49,9 +55,9 @@ public class UserStatsImpl implements UserStatsService {
         long [] value = new long[field.length];
         int step = 10;
         for (int i=0;i<value.length-1;i++){
-            value[i] = userDaoImpl.getStatsUserGist(i*step, step*(i+1)-1);
+            value[i] = secUserDaoService.getStatsUserGist(i*step, step*(i+1)-1);
         }
-        value[value.length-1] = userDaoImpl.getStatsUserGist(step*(value.length-1), Integer.MAX_VALUE);
+        value[value.length-1] = secUserDaoService.getStatsUserGist(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 
@@ -62,36 +68,30 @@ public class UserStatsImpl implements UserStatsService {
         long [] value = new long[field.length];
         int step = 10;
         for (int i=0;i<value.length-1;i++){
-            value[i] = userDaoImpl.getStatsUserFollower(i*step, step*(i+1)-1);
+            value[i] = secUserDaoService.getStatsUserFollower(i*step, step*(i+1)-1);
         }
-        value[value.length-1] = userDaoImpl.getStatsUserFollower(step*(value.length-1), Integer.MAX_VALUE);
+        value[value.length-1] = secUserDaoService.getStatsUserFollower(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 
     @Override
     public SimpleChart statsUserCreateTime() {
-        String [] years = {"before 2008","2008","2009","2010","2011","2012","2013","after 2013"};
-        long [] value = new long[years.length];
-        Calendar from = Calendar.getInstance();
-        Calendar to = Calendar.getInstance();
-        from.set(1000, Calendar.JANUARY, 1, 0, 0, 0);
-        to.set(2008, Calendar.DECEMBER, 31, 23, 59,59);
-        value[0] = userDaoImpl.getStatsCreateTime(from, to);
-        for (int i = 2008;i<=2013;i++){
-            from.set(Calendar.YEAR, i);
-            to.set(Calendar.YEAR, i);
-            value[i-2007] = userDaoImpl.getStatsCreateTime(from, to);
+        List<Object[]> list = secUserDaoService.getStatsCreateTime();
+        int years = list.size();
+        String [] field = new String[years];
+        long [] value = new long[years];
+        for (int i=0;i<years;i++){
+            Object [] year = list.get(i);
+            field[i] = year[0].toString();
+            value[i] = Long.valueOf(year[1].toString());
         }
-        from.set(Calendar.YEAR, 2014);
-        to.setTime(new Date());
-        value[value.length-1] = userDaoImpl.getStatsCreateTime(from, to);
-        return new SimpleChart(years, value);
+        return new SimpleChart(field,value);
     }
 
     @Override
     public SimpleChart statsUserEmail() {
         int maxResults = 10;
-        List list = userDaoImpl.getStatsEmail(maxResults);
+        List list = secUserDaoService.getStatsEmail(maxResults);
         int actualResults = list.size();
         String [] field = new String[actualResults];
         long [] value = new long[actualResults];
@@ -106,7 +106,7 @@ public class UserStatsImpl implements UserStatsService {
     @Override
     public SimpleChart statsUserCompany() {
         int maxResults = 10;
-        List list = userDaoImpl.getStatsCompany(maxResults);
+        List list = secUserDaoService.getStatsCompany(maxResults);
         int actualResults = list.size();
         String [] field = new String[actualResults];
         long [] value = new long[actualResults];

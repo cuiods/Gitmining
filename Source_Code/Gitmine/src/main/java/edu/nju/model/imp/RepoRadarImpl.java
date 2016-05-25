@@ -2,6 +2,8 @@ package edu.nju.model.imp;
 
 import edu.nju.common.json.JsonNodeParser;
 import edu.nju.dao.service.RepoDaoService;
+import edu.nju.dao.service.SecRepoDaoService;
+import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.CommitChart;
 import edu.nju.model.pojo.RadarChart;
@@ -18,7 +20,7 @@ import java.util.Map;
 @Service
 public class RepoRadarImpl {
 
-    private RepoDaoService repoDaoImpl;
+    private SecRepoDaoService repoDaoImpl;
 
     @Resource
     private JsonNodeParser jsonNodeParser;
@@ -35,7 +37,7 @@ public class RepoRadarImpl {
     private double maxLogActive;
 
     @Autowired
-    public RepoRadarImpl(RepoDaoService repoDaoImpl){
+    public RepoRadarImpl(SecRepoDaoService repoDaoImpl){
         this.repoDaoImpl = repoDaoImpl;
 //        minLogSize = Math.log(repoDaoImpl.getMinRepoSize()+1);
         minLogSize = 0;
@@ -45,23 +47,23 @@ public class RepoRadarImpl {
         maxLogFork = Math.log(repoDaoImpl.getMaxRepoFork()+1);
 //        minLogPopular = Math.log(repoDaoImpl.getMinRepoPopular()+1);
         minLogPopular = 0;
-        maxLogPopular = Math.log(repoDaoImpl.getMaxRepoPopular()+1);
+        maxLogPopular = Math.log(repoDaoImpl.getMaxRepoStar()+1);
 //        minLogComplex = Math.log(repoDaoImpl.getMinRepoComplex()+1);
         minLogComplex = 0;
-        maxLogComplex = Math.log(repoDaoImpl.getMaxRepoComplex()+1);
+        maxLogComplex = Math.log(repoDaoImpl.getMaxRepoContriCount()+1);
 //        minLogActive = Math.log(repoDaoImpl.getMinActive()+1);
         minLogActive = 0;
-        maxLogActive = Math.log(repoDaoImpl.getMaxActive()+1);
+        maxLogActive = Math.log(repoDaoImpl.getMaxCommitCount()+1);
     }
 
     public RadarChart getRepoRadar(String ownername, String reponame){
         String [] field = {"size", "fork", "popular", "complex", "active"};
         double [] value = new double[field.length];
-        TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
+        SecRepoEntity repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
         if (repo != null){
             value[0] = (Math.log(repo.getSize()+1)-minLogSize)/(maxLogSize-minLogSize);
-            value[1] = (Math.log(repo.getNumFork()+1)-minLogFork)/(maxLogFork-minLogFork);
-            value[2] = (Math.log(repo.getNumStar()+repo.getNumSubscriber()+1)-minLogPopular)/(maxLogPopular-minLogPopular);
+            value[1] = (Math.log(repo.getForkCount()+1)-minLogFork)/(maxLogFork-minLogFork);
+            value[2] = (Math.log(repo.getStarCount()+1)-minLogPopular)/(maxLogPopular-minLogPopular);
             value[3] = getRadarComplex(ownername, reponame);
             value[4] = getRadarActive(ownername, reponame);
         }
@@ -124,7 +126,7 @@ public class RepoRadarImpl {
             return 1.0;
         }
 
-        double complex = repoDaoImpl.getRepoComplex(ownername, reponame);
+        double complex = repoDaoImpl.getRepoContriCount(ownername, reponame);
         return (Math.log(complex+1)-minLogComplex)/(maxLogComplex-minLogComplex);
     }
 
@@ -134,31 +136,8 @@ public class RepoRadarImpl {
             return 1.0;
         }
 
-        Map<String,CommitChart> map = jsonNodeParser.getCommitByContributors(ownername, reponame);
-        CommitChart chart = map.get("all");
-        if (chart != null){
-            long allCommit = chart.getCommitCount();
-            double result = (Math.log(allCommit+1)-minLogActive)/(maxLogActive-minLogActive);
-            return (result>1)?1.0:result;
-        }
-        else {
-            return 0;
-        }
+        double commitCount = repoDaoImpl.getRepoCommitCount(ownername, reponame);
+        return (Math.log(commitCount+1)-minLogActive)/(maxLogActive-minLogActive);
     }
 
-    public RepoDaoService getRepoDaoImpl() {
-        return repoDaoImpl;
-    }
-
-    public void setRepoDaoImpl(RepoDaoService repoDaoImpl) {
-        this.repoDaoImpl = repoDaoImpl;
-    }
-
-    public JsonNodeParser getJsonNodeParser() {
-        return jsonNodeParser;
-    }
-
-    public void setJsonNodeParser(JsonNodeParser jsonNodeParser) {
-        this.jsonNodeParser = jsonNodeParser;
-    }
 }

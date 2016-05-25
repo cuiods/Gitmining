@@ -24,7 +24,7 @@ public class RepoRadarImplTest {
 
     @Test
     public void getRepoRadar() throws Exception {
-        RadarChart chart = repoRadarImpl.getRepoRadar("rubinius", "rubinius");
+        RadarChart chart = repoRadarImpl.getRepoRadar("mojombo", "god");
         assertNotNull(chart);
         String [] field = chart.getField();
         double [] value = chart.getValue();

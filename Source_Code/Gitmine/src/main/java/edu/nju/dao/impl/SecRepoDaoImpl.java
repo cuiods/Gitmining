@@ -393,6 +393,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         Session session =sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery("SELECT repo.language, count(*) AS num FROM sec_repo repo " +
                 "GROUP BY repo.language ORDER BY num DESC " );
+        query.setMaxResults(maxResults);
         List<Object[]> list = query.list();
         session.close();
         return list;

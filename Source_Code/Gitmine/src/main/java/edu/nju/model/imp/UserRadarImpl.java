@@ -1,6 +1,8 @@
 package edu.nju.model.imp;
 
+import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.dao.service.UserDaoService;
+import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,7 @@ import javax.annotation.Resource;
 @Service
 public class UserRadarImpl {
 
-    private UserDaoService userDaoImpl;
-
+    private SecUserDaoService secUserDaoService;
 
     private double maxRepo;
     private double minRepo;
@@ -26,35 +27,35 @@ public class UserRadarImpl {
     private double minFollower;
     private double maxActive;
     private double minActive;
-    private double maxValue;
-    private double minValue;
+    private double maxFollowing;
+    private double minFollowing;
 
     @Autowired
-    public UserRadarImpl(UserDaoService userDaoImpl) {
-        this.userDaoImpl = userDaoImpl;
+    public UserRadarImpl(SecUserDaoService secUserDaoService) {
+        this.secUserDaoService = secUserDaoService;
 
-        maxRepo = Math.log(userDaoImpl.getMaxRepos()+1);
+        maxRepo = Math.log(secUserDaoService.getMaxRepos()+1);
         minRepo=0;
-        maxGist = Math.log(userDaoImpl.getMaxGists()+1);
+        maxGist = Math.log(secUserDaoService.getMaxGists()+1);
         minGist = 0;
-        maxFollower = Math.log(userDaoImpl.getMaxFollower()+1);
+        maxFollower = Math.log(secUserDaoService.getMaxFollower()+1);
         minFollower = 0;
-        maxActive = Math.log(userDaoImpl.getMaxUserContribute()+1);
+        maxActive = Math.log(secUserDaoService.getMaxUserContribute()+1);
         minActive = 0;
-        maxValue = Math.log(userDaoImpl.getMaxUserValue()+1);
-        minValue = 0;
+        maxFollowing = Math.log(secUserDaoService.getMaxUserFollowing()+1);
+        minFollowing = 0;
     }
 
     public RadarChart getUserRadar(String username){
-        String [] field = {"repository", "gist", "follower", "active", "value"};
+        String [] field = {"repository", "gist", "follower", "active", "following"};
         double [] value = new double[field.length];
-        TblUser user = userDaoImpl.findUserByLoginName(username);
+        SecUserEntity user = secUserDaoService.getUserBasicInfo(username);
         if (user!=null){
-            value[0] = (Math.log(user.getPublicRepo()+1)-minRepo)/(maxRepo-minRepo);
-            value[1] = (Math.log(user.getPublicGist()+1)-minGist)/(maxGist-minGist);
-            value[2] = (Math.log(user.getFollower()+1)-minFollower)/(maxFollower-minFollower);
-            value[3] = (Math.log(userDaoImpl.getUserContribute(username)+1)-minActive)/(maxActive-minActive);
-            value[4] = (Math.log(userDaoImpl.getUserValue(username)+1)-minValue)/(maxValue-minValue);
+            value[0] = (Math.log(user.getPublicRepos()+1)-minRepo)/(maxRepo-minRepo);
+            value[1] = (Math.log(user.getPublicGists()+1)-minGist)/(maxGist-minGist);
+            value[2] = (Math.log(user.getFollowers()+1)-minFollower)/(maxFollower-minFollower);
+            value[3] = (Math.log(secUserDaoService.getUserContribute(username)+1)-minActive)/(maxActive-minActive);
+            value[4] = (Math.log(user.getFollowing()+1)-minFollowing)/(maxFollowing-minFollowing);
         }
         else {  //return all 0.0
 
