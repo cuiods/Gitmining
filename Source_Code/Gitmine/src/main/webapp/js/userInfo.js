@@ -148,7 +148,6 @@ function jumpSearchPage(current){
     var sortElement= findCheckedSortType();
     var sortBy = sortElement.attr("sortType");
     var isReverse = sortElement.attr("isReverse");
-    var page = 1;
     $.ajax({
         type:'GET',
         url:'/user/search',
@@ -165,4 +164,35 @@ function jumpSearchPage(current){
             alert("wrong!");
         }
     })
+}
+
+function compare(obj){
+    var gridList = $(".news-grid");
+    var url = '/userCompare.html?';
+    var compList = new Array();
+    $.each(gridList,function(i,grid){
+        var checkbox = gridList.find('.checkbox').eq(0);
+        alert(typeof(checkbox));
+        alert(checkbox.attr('checked'));
+        if(checkbox.attr('checked')){
+            
+            var len = compList.length;
+            compList[len] = gridList.find('.userName').eq(0).val();
+        }
+    });
+
+    var length = compList.length;
+    if(length <= 1){
+        alert("Please choose at least two users to compare!")
+    }else{
+        $.each(compList,function(j,user){
+            if(j==(length-1)){
+                url += ('user'+j+'='+user);
+            }else{
+                url += ('user'+j+'='+user+'&');
+            }
+        })
+    }
+
+    $(obj).attr('href',url);
 }
