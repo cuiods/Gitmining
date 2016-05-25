@@ -21,17 +21,23 @@ public class RepoPopuDaoImp implements RepoPopuService {
     @Override
     public Map<String,List> statPopuLanguage() {
         Session session = sessionFactory.openSession();
-        Query query1 = session.createQuery("select language from TblRepo group by language order by count(*) desc ");
-        query1.setMaxResults(16);
+        Query query1 = session.createQuery("select language from SecRepoEntity where language!='' group by language order by count(*) desc ");
+        query1.setMaxResults(10);
         List<String> languages = query1.list();
-        Query query = session.createQuery("select numStar from TblRepo where language=? ");
+        Query query = session.createQuery("select starCount from SecRepoEntity where language=?");
         query.setFirstResult(0);
-        query.setMaxResults(1000);
+        query.setMaxResults(100);
         Map<String,List> lists = new HashMap<>(languages.size());
         for (int i = 0; i < languages.size(); i++) {
             query.setString(0,languages.get(i));
+            if (languages.get(i).contains("-")) {
+                languages.set(i,languages.get(i).replace('-','_'));
+                lists.put(languages.get(i),query.list());
+                continue;
+            }
             lists.put(languages.get(i),query.list());
         }
+        lists.put("language",languages);
         return lists;
     }
 }
