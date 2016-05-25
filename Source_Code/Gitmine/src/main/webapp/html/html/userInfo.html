@@ -124,28 +124,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class=" container news" id="news">
     <div class=" col-md-9">
         <div>
-            <div class="news-text" style="float:left;display:inline-block">
+            <div class="news-text col-md-12" style="float:left;display:inline-block">
+
                 <h3 style="float:left">Users</h3>
-                <ul class="nav nav-tabs " style="margin-top: 6em">
+                <div>
+                <ul class="nav nav-tabs " style="margin-top: 6em" >
 
                     <li><a href="javascript:void(0)" sortType = "user_name" ischecked="true" isReverse = "false"
-                           onclick="sort(this)" class="active">
-                        NAME &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                               onclick="sort(this)" class="active">
+                            NAME &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
                     <li><a href="javascript:void(0)" sortType = "user_repo" ischecked="false" isReverse = "false"
-                           onclick="sort(this)" class="active">
-                        REPOS &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                               onclick="sort(this)" class="active">
+                            REPOS &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
                     <li><a href="javascript:void(0)" sortType = "user_following" ischecked="false" isReverse = "false"
-                           onclick="sort(this)" class="active">
-                        FOLLOWING &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                               onclick="sort(this)" class="active">
+                            FOLLOWING &nbsp;<span class="glyphicon glyphicon-arrow-down"></span></a></li>
                     <li><a href="javascript:void(0)" sortType = "user_followed" ischecked="false" isReverse = "false"
-                           onclick="sort(this)" class="active">
-                        FOLLOWED &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                               onclick="sort(this)" class="active">
+                            FOLLOWED &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
                     <li><a href="javascript:void(0)" sortType = "user_create" ischecked="false" isReverse = "false"
-                           onclick="sort(this)" class="active">
-                        CREATE &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
-
-
+                               onclick="sort(this)" class="active">
+                            CREATE &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
                 </ul>
+                    <h4><a href="#" onclick="compare(this)" style="float:right">compare</a></h4>
+                </div>
+
             </div>
 
         </div>
@@ -155,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div>
                     <a href="single.html" style="display: inline-block;float:left" class="userName">User Name</a>
                     <!--<button class=" glyphicon glyphicon-heart-empty" style="display: inline-block; background: transparent; border: none;color: purple"/>-->
-                    <input type="radio" class="radio" style="float:right">
+                    <input type="checkbox" class="checkbox" name="compare" style="float:right">
 
                 </div>
                 <div class="clearfix"></div>
