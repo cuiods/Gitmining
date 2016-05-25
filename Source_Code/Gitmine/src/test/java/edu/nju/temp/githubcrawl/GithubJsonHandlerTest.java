@@ -15,9 +15,13 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 public class GithubJsonHandlerTest {
-
     @Resource
     private GithubJsonHandler handler;
+
+    @Test
+    public void loopNoRepoUsers() throws Exception {
+        //handler.loopNoRepoUsers();
+    }
 
     @Test
     public void trverse() throws Exception {
