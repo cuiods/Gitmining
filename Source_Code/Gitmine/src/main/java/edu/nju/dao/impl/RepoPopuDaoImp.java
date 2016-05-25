@@ -14,7 +14,7 @@ import java.util.*;
  * @author cuihao
  */
 @Repository
-public class RepoPopuImp implements RepoPopuService {
+public class RepoPopuDaoImp implements RepoPopuService {
     @Resource
     private SessionFactory sessionFactory;
 

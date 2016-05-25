@@ -20,7 +20,7 @@ import java.util.Map;
 public class RepoPopuTest {
 
     @Resource
-    private RepoPopuImp repoPopuImp;
+    private RepoPopuDaoImp repoPopuImp;
 
     @Test
     public void RepoPopuStatTest() {
