@@ -16,14 +16,14 @@ public class RepoVO {
     private String updateAt;
     private int numStar;
     private int numFork;
-    private int numSubscriber;
+    private int numWatcher;
 
     public RepoVO() {
     }
 
     public RepoVO(String ownerName, String ownerAvatarUrl, String reponame, int size, String description,
                   String language, String url, String createAt, String updateAt, int numStar, int numFork,
-                  int numSubscriber) {
+                  int numWatcher) {
         this.ownerName = ownerName;
         this.ownerAvatarUrl = ownerAvatarUrl;
         this.reponame = reponame;
@@ -35,7 +35,7 @@ public class RepoVO {
         this.updateAt = updateAt;
         this.numStar = numStar;
         this.numFork = numFork;
-        this.numSubscriber = numSubscriber;
+        this.numWatcher = numWatcher;
     }
 
     public String getOwnerName() {
@@ -126,11 +126,11 @@ public class RepoVO {
         this.numFork = numFork;
     }
 
-    public int getNumSubscriber() {
-        return numSubscriber;
+    public int getNumWatcher() {
+        return numWatcher;
     }
 
-    public void setNumSubscriber(int numSubscriber) {
-        this.numSubscriber = numSubscriber;
+    public void setNumWatcher(int numWatcher) {
+        this.numWatcher = numWatcher;
     }
 }

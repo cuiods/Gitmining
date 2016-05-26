@@ -4,7 +4,10 @@ import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.common.VOConvertor;
+import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.dao.service.UserDaoService;
+import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
@@ -25,7 +28,7 @@ import java.util.List;
 public class UserModelImpl implements UserModelService {
 
     @Resource
-    private UserDaoService userDaoImpl;
+    private SecUserDaoService userDaoImpl;
 
     @Resource
     private VOConvertor voConvertor;
@@ -47,14 +50,24 @@ public class UserModelImpl implements UserModelService {
     }
 
     @Override
-    public List<RepoVO> getRelatedRepo(String username) {
+    public List<RepoVO> getContributeRepo(String username) {
         // at most 10 repos, order by star
-        List<TblRepo> ownRepos = userDaoImpl.getUserOwnRepos(username,SortType.Repo_Star,0,10);
+        List<SecRepoEntity> contriRepos = userDaoImpl.getUserContributerRepos(username);
+        //todo use user's hobby to resort the result!!!!!
+
+
+
         List<RepoVO> repoVOs = new ArrayList<>();
-        for (TblRepo tblRepo:ownRepos){
-            repoVOs.add(voConvertor.convert(tblRepo));
+        for (SecRepoEntity repoEntity: contriRepos){
+            repoVOs.add(voConvertor.convert(repoEntity));
         }
         return repoVOs;
+    }
+
+    @Override
+    public List<RepoVO> getSubscribeRepo(String username){
+        //todo
+        return null;
     }
 
     public List<UserVO> getPopularUser() {
@@ -63,16 +76,16 @@ public class UserModelImpl implements UserModelService {
         boolean isDesc = true;
         int offset = 0;//todo change recommend each time
         int maxNum = Const.ITEMS_PER_PAGE;
-        List<TblUser> tblUsers = userDaoImpl.getUsers(sortType, isDesc, offset, maxNum);
-        for (TblUser tblUser: tblUsers){
-            result.add(voConvertor.convert(tblUser));
+        List<SecUserEntity> userEntityList = userDaoImpl.getUsers(sortType, isDesc, offset, maxNum);
+        for (SecUserEntity userEntity: userEntityList){
+            result.add(voConvertor.convert(userEntity));
         }
         return result;
     }
 
     @Override
     public int getTotalPage() {
-        long totalCount = userDaoImpl.getUserTotalCount();
+        long totalCount = userDaoImpl.getTotalCount();
         int page = (int)totalCount/Const.ITEMS_PER_PAGE;
         if (totalCount%Const.ITEMS_PER_PAGE > 0){
             page++;
@@ -82,10 +95,10 @@ public class UserModelImpl implements UserModelService {
 
     @Override
     public List<UserVO> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum) {
-        List<TblUser> tblUsers = userDaoImpl.getUsers(sortType,isDesc,offset,maxNum);
+        List<SecUserEntity> userEntityList = userDaoImpl.getUsers(sortType,isDesc,offset,maxNum);
         List<UserVO> userVOs = new ArrayList<>();
-        for (TblUser tblUser: tblUsers){
-            userVOs.add(voConvertor.convert(tblUser));
+        for (SecUserEntity userEntity: userEntityList){
+            userVOs.add(voConvertor.convert(userEntity));
         }
         return userVOs;
     }
@@ -97,28 +110,21 @@ public class UserModelImpl implements UserModelService {
             offset = 0;
         }
         SortType type = SortTypeBuilder.getSortType(sortType);
-        List<TblUser> tblUsers = userDaoImpl.searchUserByLoginName(keyword,type,reverse,offset,Const.ITEMS_PER_PAGE);
+        List<SecUserEntity> userEntityList = userDaoImpl.getSearchResult(keyword,type,reverse,offset,Const.ITEMS_PER_PAGE);
         List<UserVO> userVOs = new ArrayList<>();
-        for (TblUser tblUser:tblUsers){
-            userVOs.add(voConvertor.convert(tblUser));
+        for (SecUserEntity userEntity:userEntityList){
+            userVOs.add(voConvertor.convert(userEntity));
         }
         return userVOs;
     }
 
     public UserVO getUserBasicInfo(String username) {
-        TblUser tblUser = userDaoImpl.findUserByLoginName(username);
-        return voConvertor.convert(tblUser);
+        SecUserEntity userEntity = userDaoImpl.getUserBasicInfo(username);
+        return voConvertor.convert(userEntity);
     }
 
     public RadarChart getUserRadarChart(String username) {
         return userRadar.getUserRadar(username);
     }
 
-    public UserDaoService getUserDaoImpl() {
-        return userDaoImpl;
-    }
-
-    public void setUserDaoImpl(UserDaoService userDaoImpl) {
-        this.userDaoImpl = userDaoImpl;
-    }
 }

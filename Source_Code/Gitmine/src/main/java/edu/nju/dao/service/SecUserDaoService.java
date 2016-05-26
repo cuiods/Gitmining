@@ -59,7 +59,7 @@ public interface SecUserDaoService {
      * @return list of repo names
      *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<Object[]> getUserSubscribeRepos(String login);
+    public List<SecRepoEntity> getUserSubscribeRepos(String login);
 
     /**
      * get related contributor
@@ -67,7 +67,7 @@ public interface SecUserDaoService {
      * @return list of repo names
      *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<Object[]> getUserContributerRepos(String login);
+    public List<SecRepoEntity> getUserContributerRepos(String login);
 
     /**
      * get the count of user or organization

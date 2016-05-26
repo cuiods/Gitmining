@@ -36,12 +36,18 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         if ((createYear!=null)&&(!createYear.isEmpty())){
             hql+="and date_format(createAt,'%Y') = :create) ";
         }
-        switch (type) {
-            case Repo_Star:hql+="order by starCount ";break;
-            case Repo_Fork:hql+="order by forkCount ";break;
-            case Repo_Watch:hql+="order by watchersCount ";break;
-            case Repo_Update:hql+="order by updateAt ";break;
-            default:hql+="order by name ";break;
+        if (type!=null){
+            switch (type) {
+                case Repo_Star:hql+="order by starCount ";break;
+                case Repo_Fork:hql+="order by forkCount ";break;
+                case Repo_Watch:hql+="order by watchersCount ";break;
+                case Repo_Update:hql+="order by updateAt ";break;
+                case Repo_Name:hql+="order by name ";
+                default:hql+="order by name ";break;
+            }
+        }
+        else{
+            hql+="order by name ";
         }
         hql += isDesc?"desc":"asc";
         Query query = session.createQuery(hql);
@@ -104,12 +110,17 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         Session session = sessionFactory.openSession();
         Query query = null;
         String order = isDesc?"desc":"asc";
-        switch (sortType) {
-            case Repo_Star:query = session.createQuery("from SecRepoEntity order by starCount "+order);break;
-            case Repo_Fork:query = session.createQuery("from SecRepoEntity order by forkCount "+order);break;
-            case Repo_Watch:query = session.createQuery("from SecRepoEntity order by starCount "+order);break;
-            case Repo_Update:query = session.createQuery("from SecRepoEntity order by updateAt "+order);break;
-            default:query = session.createQuery("from SecRepoEntity order by name "+order);break;
+        if (sortType!=null){
+            switch (sortType) {
+                case Repo_Star:query = session.createQuery("from SecRepoEntity order by starCount "+order);break;
+                case Repo_Fork:query = session.createQuery("from SecRepoEntity order by forkCount "+order);break;
+                case Repo_Watch:query = session.createQuery("from SecRepoEntity order by starCount "+order);break;
+                case Repo_Update:query = session.createQuery("from SecRepoEntity order by updateAt "+order);break;
+                default:query = session.createQuery("from SecRepoEntity order by name "+order);break;
+            }
+        }
+        else {
+            query = session.createQuery("from SecRepoEntity order by name "+order);
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);

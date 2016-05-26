@@ -101,7 +101,7 @@ public class UserController {
         UserVO userVO = userModelImpl.getUserBasicInfo(username);
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
         List<UserVO> relatedUser = userModelImpl.getRelatedUser(username);
-        List<RepoVO> relatedRepo = userModelImpl.getRelatedRepo(username);
+        List<RepoVO> relatedRepo = userModelImpl.getContributeRepo(username);
 
         map.put("basicInfo",userVO);
         map.put("radarChart",radarChart);
