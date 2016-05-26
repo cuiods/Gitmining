@@ -2,6 +2,90 @@
  * Created by cuihao on 2016/5/25.
  */
 $(document).ready(function () {
+    var popu_star = echarts.init(document.getElementById('gra-popularity-star'));
+    popu_star.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/popularity/star",
+        success:function (stardata) {
+            var dataAll = [
+                stardata.fork,
+                stardata.watcher
+            ];
+
+            var markLineOpt = {
+                animation: false,
+                label: {
+                    normal: {
+                        formatter: 'y = 0.5 * x + 3',
+                        textStyle: {
+                            align: 'right'
+                        }
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                tooltip: {
+                    formatter: 'y = 0.5 * x + 3'
+                },
+                data: [[{
+                    coord: [0, 3],
+                    symbol: 'none'
+                }, {
+                    coord: [20, 13],
+                    symbol: 'none'
+                }]]
+            };
+
+            option = {
+                title: {
+                    text: 'Star with fork and watcher number',
+                    x: 'center',
+                    y: 0
+                },
+                grid: [
+                    {x: '7%', y: '7%', width: '38%', height: '70%'},
+                    {x2: '7%', y: '7%', width: '38%', height: '70%'}
+                ],
+                tooltip: {
+                    formatter: 'Group {a}: ({c})'
+                },
+                xAxis: [
+                    {gridIndex: 0, min:0, max:1000},
+                    {gridIndex: 1, min:0, max:1000}
+                ],
+                yAxis: [
+                    {gridIndex: 0, min:0, max:200},
+                    {gridIndex: 1, min:0, max:1000}
+                ],
+                series: [
+                    {
+                        name: 'fork',
+                        type: 'scatter',
+                        xAxisIndex: [0],
+                        yAxisIndex: [0],
+                        data: dataAll[0],
+                        markLine: markLineOpt
+                    },
+                    {
+                        name: 'watcher',
+                        type: 'scatter',
+                        xAxisIndex: [1],
+                        yAxisIndex: [1],
+                        data: dataAll[1],
+                        markLine: markLineOpt
+                    }
+                ]
+            };
+
+            popu_star.hideLoading();
+            popu_star.setOption(option);
+        }
+    });
+
     var popu_language = echarts.init(document.getElementById('gra-popularity-language'));
     popu_language.showLoading();
     $.ajax({
@@ -23,7 +107,7 @@ $(document).ready(function () {
             option = {
                 title: [
                     {
-                        text: 'Popularity with language',
+                        text: 'Popularity with language: popular repositories star numbers',
                         left: 'center',
                     },
                     {
@@ -55,13 +139,13 @@ $(document).ready(function () {
                     type: 'category',
                     data: ['JavaScript','Ruby','Python','CSS','PHP','Objective_C','C','Java','Go','Shell'],
                     boundaryGap: true,
-                    // nameGap: 30,
-                    // splitArea: {
-                    //     show: false
-                    // },
-                    // // axisLabel: {
-                    // //     formatter: 'expr {value}'
-                    // // },
+                    //nameGap: 30,
+                    splitArea: {
+                        show: false
+                    },
+                    axisLabel: {
+                        formatter: '{value}'
+                    },
                      splitLine: {
                          show: false
                      }
@@ -81,12 +165,12 @@ $(document).ready(function () {
                         tooltip: {
                             formatter: function (param) {
                                 return [
-                                    'Experiment ' + param.name + ': ',
-                                    'upper: ' + param.data[0],
-                                    'Q1: ' + param.data[1],
+                                    'Language ' + param.name + ': ',
+                                    'upper: ' + param.data[4],
+                                    'Q1: ' + param.data[3],
                                     'median: ' + param.data[2],
-                                    'Q3: ' + param.data[3],
-                                    'lower: ' + param.data[4]
+                                    'Q3: ' + param.data[1],
+                                    'lower: ' + param.data[0]
                                 ].join('<br/>')
                             }
                         }

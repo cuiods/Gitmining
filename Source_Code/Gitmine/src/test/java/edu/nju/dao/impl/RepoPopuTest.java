@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by cuihao on 2016/5/24.
+ * popularity stat test
+ * @author cuihao
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
@@ -29,5 +30,12 @@ public class RepoPopuTest {
         for (int i = 0; i < languages.size(); i++) {
             System.out.println(languages.get(i)+"---"+maps.get("lan"+i));
         }
+    }
+
+    @Test
+    public void RepoStarRelation() {
+        Map<String,List> map = repoPopuImp.statStarRelation();
+        System.out.println(map.get("fork"));
+        System.out.println(map.get("watcher"));
     }
 }
