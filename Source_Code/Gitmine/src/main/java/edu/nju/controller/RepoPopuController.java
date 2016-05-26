@@ -24,4 +24,10 @@ public class RepoPopuController {
     public Map<String,List> statLanguagePopu() {
         return repoPopuModelService.statLanguagePopularity();
     }
+
+    @RequestMapping("/star")
+    @ResponseBody
+    public Map<String, List> statStar() {
+        return repoPopuModelService.statStarRelation();
+    }
 }

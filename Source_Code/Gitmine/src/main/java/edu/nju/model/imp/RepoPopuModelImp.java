@@ -20,4 +20,9 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     public Map<String, List> statLanguagePopularity() {
         return repoPopuImp.statPopuLanguage();
     }
+
+    @Override
+    public Map<String, List> statStarRelation() {
+        return repoPopuImp.statStarRelation();
+    }
 }
