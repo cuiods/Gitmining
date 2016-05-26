@@ -9,16 +9,16 @@ $(document).ready(function () {
         url: "/popularity/language",
         success:function (lan) {
             var data = echarts.dataTool.prepareBoxplotData([
-                lan.JavaScript,
-                lan.Ruby,
-                lan.Python,
-                lan.CSS,
-                lan.PHP,
-                lan.Objective_C,
-                lan.C,
-                lan.Java,
-                lan.Go,
-                lan.Shell
+                lan.lan0,
+                lan.lan1,
+                lan.lan2,
+                lan.lan3,
+                lan.lan4,
+                lan.lan5,
+                lan.lan6,
+                lan.lan7,
+                lan.lan8,
+                lan.lan9
             ]);
             option = {
                 title: [

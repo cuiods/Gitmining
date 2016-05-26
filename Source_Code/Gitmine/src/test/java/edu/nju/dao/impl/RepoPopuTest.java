@@ -27,7 +27,7 @@ public class RepoPopuTest {
         Map<String,List> maps = repoPopuImp.statPopuLanguage();
         List<String> languages = maps.get("language");
         for (int i = 0; i < languages.size(); i++) {
-            System.out.println(languages.get(i)+"---"+maps.get(languages.get(i)));
+            System.out.println(languages.get(i)+"---"+maps.get("lan"+i));
         }
     }
 }
