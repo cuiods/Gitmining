@@ -168,16 +168,14 @@ function jumpSearchPage(current){
 
 function compare(obj){
     var gridList = $(".news-grid");
-    var url = '/userCompare.html?';
+    var url = 'userCompare.html?';
     var compList = new Array();
     $.each(gridList,function(i,grid){
-        var checkbox = gridList.find('.checkbox').eq(0);
-        alert(typeof(checkbox));
-        alert(checkbox.attr('checked'));
-        if(checkbox.attr('checked')){
-            
+        var gridItem = $(".news-grid").eq(i);
+        var checkbox = gridItem.find('.checkbox').eq(0);
+        if(checkbox.is(':checked')){
             var len = compList.length;
-            compList[len] = gridList.find('.userName').eq(0).val();
+            compList[len] = gridItem.find('.userName').eq(0).text();
         }
     });
 

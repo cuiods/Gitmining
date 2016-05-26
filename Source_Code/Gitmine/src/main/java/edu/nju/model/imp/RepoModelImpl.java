@@ -112,13 +112,13 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     @Override
-    public long getSearchPage(String keyword, String filterType, String language, String createYear) {
+    public int getSearchPage(String keyword, String filterType, String language, String createYear) {
         long count = repoDaoImpl.getSearchCount(keyword,filterType,language,createYear);
         long page = count/Const.ITEMS_PER_PAGE;
         if (count%Const.ITEMS_PER_PAGE != 0){
             page++;
         }
-        return page;
+        return (int)page;
     }
 
     public RepoVO getRepoBasicInfo(String ownername, String reponame) {
