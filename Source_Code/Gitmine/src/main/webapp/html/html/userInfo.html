@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../../css/repo-label.css">
     <link rel="stylesheet" href="../../css/userCompare.css">
     <script src="../../js/login.js"></script>
+    <!--Echart js file-->
+    <script src="../../plugin/echarts/echarts.min.js"></script>
 
     <link href="../../css/login.css" rel="stylesheet"/>
     <script src="../../js/bootstrap.js"></script>
@@ -148,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             CREATE &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
                 </ul>
                     <!--<h4><a href="#" onclick="compare(this)" style="float:right">compare</a></h4>-->
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#compareModal" style="float:right">compare</button>
+                    <button class="btn btn-primary" onclick="addCol()" style="float:right">compare</button>
                 </div>
 
             </div>
@@ -278,78 +280,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h4 class="modal-title" id="myModalLabel">Compare Users</h4>
             </div>
             <div class="modal-body">
-                <table class="bordered">
+                <table id="compareTable" class="bordered">
                     <thead>
 
                     <tr>
                         <th>attributes</th>
-                        <th>userName1</th>
-                        <th>userName2</th>
+
 
                     </tr>
                     </thead>
                     <tr>
                         <td>publicRepos</td>
-                        <td>The Shawshank Redemption</td>
 
-                        <td>1994</td>
                     </tr>
                     <tr>
                         <td>publicGists</td>
-                        <td>The Godfather</td>
-                        <td>1972</td>
+
                     </tr>
                     <tr>
 
                         <td>followers</td>
-                        <td>The Godfather: Part II</td>
-                        <td>1974</td>
+
                     </tr>
                     <tr>
                         <td>followings</td>
-                        <td>The Good, the Bad and the Ugly</td>
-                        <td>1966</td>
+
 
                     </tr>
                     <tr>
                         <td>bio</td>
-                        <td>Pulp Fiction</td>
-                        <td>1994</td>
+
                     </tr>
                     <tr>
                         <td>type</td>
-                        <td>12 Angry Men</td>
 
-                        <td>1957</td>
                     </tr>
                     <tr>
                         <td>location</td>
-                        <td>Schindler's List</td>
-                        <td>1993</td>
+
                     </tr>
                     <tr>
 
                         <td>company</td>
-                        <td>One Flew Over the Cuckoo's Nest</td>
-                        <td>1975</td>
+
                     </tr>
                     <tr>
                         <td>createAt</td>
-                        <td>The Dark Knight</td>
 
-                        <td>2008</td>
                     </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>The Lord of the Rings: The Return of the King</td>
-                        <td>2003</td>
-                    </tr>
+
 
                 </table>
             </div>
+            <hr>
+            <div >
+                <h4 style="margin-left:15px">Radar Graph</h4>
+                <center>
+                <div id="compareRadar" style="width: 550px;height:400px;"></div>
+                </center>
+                <div class="clearfix"> </div>
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+
             </div>
         </div>
     </div>

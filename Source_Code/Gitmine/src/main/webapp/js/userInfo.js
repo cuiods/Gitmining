@@ -2,7 +2,8 @@
  * Created by yyy on 2016/5/18.
  */
 
-var locationPort = 'http://localhost'
+var locationPort = 'http://localhost';
+var nowUserList;
 var UserList={
     init:function(){
         this.gridsFather = $("#listStart");
@@ -10,16 +11,17 @@ var UserList={
         this.clear = $("<div class=\"clearfix\"> </div>" );
     },
     updateData:function(userlist){
+        nowUserList = userlist;
         this.gridsFather.empty();
         var _this = this;
         $.each(userlist,function(i,user){
             var tempGrid = _this.lastGrid.clone(true);
             var userName = tempGrid.find(".userName").eq(0);
-            userName.text(user.name);
-            userName.attr('href','userDetail.html?userName='+user.name);
+            userName.text(user.login);
+            userName.attr('href','userDetail.html?userName='+user.login);
 
             var imageUrl = tempGrid.find(".imageUrl").eq(0);
-            imageUrl.attr('href','userDetail.html?userName='+user.name);
+            imageUrl.attr('href','userDetail.html?userName='+user.login);
             var image = tempGrid.find(".header_user").eq(0);
             image.attr('src',user.avatarUrl);
 
@@ -57,6 +59,10 @@ $(document).ready(
             });
         });
 
+        //remove the added cols to the modal
+        $('#compareModal').on('hidden.bs.modal',function(){
+            $('.newCol').remove();
+        });
         
         
     }
@@ -166,9 +172,11 @@ function jumpSearchPage(current){
     })
 }
 
-function compare(obj){
+
+
+function addCol(){
+    //get the chosen users' name
     var gridList = $(".news-grid");
-    var url = 'userCompare.html?';
     var compList = new Array();
     $.each(gridList,function(i,grid){
         var gridItem = $(".news-grid").eq(i);
@@ -179,18 +187,171 @@ function compare(obj){
         }
     });
 
-    var length = compList.length;
-    if(length <= 1){
-        alert("Please choose at least two users to compare!")
-    }else{
-        $.each(compList,function(j,user){
-            if(j==(length-1)){
-                url += ('user'+j+'='+user);
-            }else{
-                url += ('user'+j+'='+user+'&');
-            }
-        })
+    if(compList.length<=1){
+        alert('please choose at least two users to compare!');
+        return;
     }
 
-    $(obj).attr('href',url);
+    $.each(compList,function(i,user){
+        var userDetail = null;
+        $.each(nowUserList,function(k,nowUser){
+            if(nowUser.login == user){
+                userDetail = nowUser;
+                return false;
+            }
+        });
+        var attrList = new Array();
+        attrList[0] = userDetail.login;
+        attrList[1] = userDetail.publicRepo;
+        attrList[2] = userDetail.publicGist;
+        attrList[3] = userDetail.follower;
+        attrList[4] = userDetail.following;
+        attrList[5] = userDetail.bio;
+        attrList[6] = userDetail.type;
+        attrList[7] = userDetail.location;
+        attrList[8] = userDetail.company;
+        attrList[9] = userDetail.createAt;
+        addColCommon($('#compareTable tr'),attrList);
+
+    })
+
+    //prepare for radar chart
+    var compInfo = new Array();
+    var field = new Array();
+    $.each(compList,function(i,compUser){
+        $.ajax({
+            method:'GET',
+            url:'/user/'+compUser,
+            success:function(userResult){
+                compInfo=userResult.radarChart.value;
+
+                field = userResult.radarChart.field;
+                
+            },
+            error: function(){
+                alert("wrong!");
+            }
+        })
+    })
+
+    //radar chart really begins!
+    var radar_compare =echarts.init(document.getElementById("compareRadar"));
+    var lineStyle = {
+        normal: {
+            width: 1,
+            opacity: 0.5
+        }
+    }
+    option = {
+        backgroundColor: '#161627',
+        tooltip:{
+
+        },
+        radar:{
+            indicator:[
+                {name: field[0], max:1},
+                {name: field[1], max:1},
+                {name: field[2], max:1},
+                {name: field[3], max:1},
+                {name: field[4], max:1}
+
+            ],
+            shape: "circle",
+            splitNumber:5,
+            name:{
+                textStyle:{
+                    color:'rgb(238,197,102)'
+                }
+            },
+            splitLine:{
+                lineStyle:{
+                    color:[
+                        'rgba(238, 197, 102, 0.1)', 'rgba(238, 197, 102, 0.2)',
+                        'rgba(238, 197, 102, 0.4)', 'rgba(238, 197, 102, 0.6)',
+                        'rgba(238, 197, 102, 0.8)', 'rgba(238, 197, 102, 1)'
+                    ].reverse()
+                }
+            },
+            splitArea:{
+                show:false
+            },
+            axisLine:{
+                lineStyle:{
+                    color:'rgba(238,197,102,0.5)'
+                }
+            }
+        },
+        series:[
+            {
+                name: 'userRadar',
+                type: 'radar',
+                lineStyle: lineStyle,
+                data: [[0.6,0.8,0.9,0.4,0.5]],
+                symbol: 'none',
+                itemStyle: {
+                    normal: {
+                        color: '#F9713C'
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        opacity: 0.3
+                    }
+                }
+            },
+        ]
+    };
+
+    radar_compare.setOption(option);
+
+    //radar chart ends!
+
+
+
+
+    $('#compareModal').modal();
+
+
 }
+function addColCommon(obj,dataList){
+    obj.each(function(j,attr){
+        var trHtml = $(this).html();
+        if(j==0){
+            trHtml += '<th class="newCol">'+dataList[j]+'</th>'
+        }else {
+            trHtml += '<td class="newCol">'+dataList[j]+'</td>';
+        }
+        $(this).html(trHtml);
+    });
+}
+
+
+// function compare(obj){
+//     var gridList = $(".news-grid");
+//     var url = 'userCompare.html?';
+//     var compList = new Array();
+//     $.each(gridList,function(i,grid){
+//         var gridItem = $(".news-grid").eq(i);
+//         var checkbox = gridItem.find('.checkbox').eq(0);
+//         if(checkbox.is(':checked')){
+//             var len = compList.length;
+//             compList[len] = gridItem.find('.userName').eq(0).text();
+//         }
+//     });
+//
+//     var length = compList.length;
+//     if(length <= 1){
+//         alert("Please choose at least two users to compare!")
+//     }else{
+//         $.each(compList,function(j,user){
+//             if(j==(length-1)){
+//                 url += ('user'+j+'='+user);
+//             }else{
+//                 url += ('user'+j+'='+user+'&');
+//             }
+//         })
+//     }
+//
+//     $(obj).attr('href',url);
+// }
+
