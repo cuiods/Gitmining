@@ -23,7 +23,7 @@ public class RepoLabelUpdaterTest {
 
     @Test
     public void saveOrUpdateLabel() throws Exception {
-        updater.saveOrUpdateLabel("aasm","aasm","web and interface and LINUX hhhh");
+        //updater.saveOrUpdateLabel("aasm","aasm","web and interface and LINUX hhhh");
     }
 
 }
