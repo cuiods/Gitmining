@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UserInfo</title>
+    <script src="../../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+    <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../css/repo-label.css">
+    <script src="../../js/login.js"></script>
+
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <script src="../../js/bootstrap.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="../../js/userInfo.js"></script>
+
+    <!-- Custom Theme files -->
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!--webfont-->
+    <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="../../js/move-top.js"></script>
+    <script type="text/javascript" src="../../js/easing.js"></script>
+    <script type="text/javascript" src="../../js/jqPaginator1.js"></script>
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+            });
+        });
+    </script>
+    <style>
+        .radio-toolbar label {
+            display:inline-block;
+            background-color:#ddd;
+            padding:4px 11px;
+            font-family:Arial;
+            font-size:16px;
+        }
+
+        .radio-toolbar input[type="radio"] {
+            display:none;
+
+        }
+        .radio-toolbar input[type="radio"]:checked + label {
+            background-color: royalblue;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- header-section-starts -->
+<div class="about-header-banner">
+    <div class="container">
+        <div class="home">
+            <a href="/html/index.html"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="header-top">
+            <div class="social-icons">
+                <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
+                <!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
+
+            </div>
+            <span class="menu"><img src="../../images/nav.png" alt=""/></span>
+            <div class="top-menu">
+                <ul>
+                    <nav class="cl-effect-13">
+                        <!--TODO : 	更换导航目录-->
+                        <li><a href="/html/about.html">About</a></li>
+                        <li><a href="/html/html/userInfo.html" title="users search" class="active">USERS</a></li>
+                        <li><a href="/html/html/user_statistic.html" title="users statistic">U-STAT</a></li>
+                        <li><a href="/html/html/repo.html" title="repositories search">REPOS</a></li>
+                        <li><a href="/html/html/repo_statistic.html" title="repositories' statistic">R-STAT</a></li>
+                    </nav>
+                </ul>
+            </div>
+            <!-- script for menu -->
+            <script>
+                $( "span.menu" ).click(function() {
+                    $( ".top-menu ul" ).slideToggle( 300, function() {
+                        // Animation complete.
+                    });
+                });
+            </script>
+            <!-- //script for menu -->
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="banner-info text-center">
+            <h1 ><a >Compare</a></h1>
+        </div>
+
+    </div>
+</div>
+<!-- header-section-ends -->
+
+
+
+
+
+
+</body>
+</html>
