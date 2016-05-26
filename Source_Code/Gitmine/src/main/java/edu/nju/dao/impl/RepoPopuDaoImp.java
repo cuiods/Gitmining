@@ -37,16 +37,20 @@ public class RepoPopuDaoImp implements RepoPopuService {
     }
 
     @Override
-    public Map<String, List> statStarRelation() {
+    public Map<String, List> statStarRelation(int max) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select new list(starCount,forkCount) from SecRepoEntity where starCount<1000 and forkCount<200");
-        query.setFirstResult((int)(Math.random()*10000));
-        query.setMaxResults(100);
+        if (max > 0) {
+            query.setFirstResult((int)(Math.random()*10000));
+            query.setMaxResults(max);
+        }
         Map<String, List> result = new HashMap<>();
         result.put("fork",query.list());
         query = session.createQuery("select new list(starCount,watchersCount) from SecRepoEntity where starCount<1000");
-        query.setFirstResult((int)(Math.random()*10000));
-        query.setMaxResults(100);
+        if (max > 0) {
+            query.setFirstResult((int)(Math.random()*10000));
+            query.setMaxResults(max);
+        }
         result.put("watcher",query.list());
         return result;
     }

@@ -1,12 +1,16 @@
 package edu.nju.controller;
 
 import edu.nju.model.service.RepoPopuModelService;
+import edu.nju.model.service.RepoStatsService;
+import edu.nju.model.statistic.RegressionLine;
+import edu.nju.model.statistic.StarRegressionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +21,8 @@ import java.util.Map;
 @RequestMapping("/popularity")
 public class RepoPopuController {
     @Resource
-    public RepoPopuModelService repoPopuModelService;
+    private RepoPopuModelService repoPopuModelService;
+
 
     @RequestMapping("/language")
     @ResponseBody

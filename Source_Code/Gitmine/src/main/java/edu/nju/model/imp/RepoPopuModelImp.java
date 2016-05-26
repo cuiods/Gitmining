@@ -2,19 +2,25 @@ package edu.nju.model.imp;
 
 import edu.nju.dao.service.RepoPopuService;
 import edu.nju.model.service.RepoPopuModelService;
+import edu.nju.model.statistic.RegressionLine;
+import edu.nju.model.statistic.StarRegressionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by cuihao on 2016/5/25.
+ * repository star stat
+ * @author cuihao
  */
 @Service
 public class RepoPopuModelImp implements RepoPopuModelService {
     @Resource
     private RepoPopuService repoPopuImp;
+    @Resource
+    private StarRegressionService starRegressionService;
 
     @Override
     public Map<String, List> statLanguagePopularity() {
@@ -23,6 +29,22 @@ public class RepoPopuModelImp implements RepoPopuModelService {
 
     @Override
     public Map<String, List> statStarRelation() {
-        return repoPopuImp.statStarRelation();
+        return statStarRelation(200);
+    }
+
+    @Override
+    public Map<String, List> statStarRelation(int max) {
+        Map<String, List> star = repoPopuImp.statStarRelation(max);
+        List list = new ArrayList<>();
+        RegressionLine line = starRegressionService.getForkRegression();
+        list.add("y = "+line.getA1()+"x + "+line.getA0());
+        list.add((int) line.getA0());
+        list.add((int) (line.getA1()*1000+line.getA0()));
+        line = starRegressionService.getWatcherRegression();
+        list.add("y = "+line.getA1()+"x + "+line.getA0());
+        list.add((int) line.getA0());
+        list.add((int) (line.getA1()*1000+line.getA0()));
+        star.put("stat",list);
+        return star;
     }
 }

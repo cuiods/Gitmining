@@ -24,5 +24,5 @@ public interface RepoPopuService {
      * <li>with collaborator</li>
      * <li>with commit</li>
      */
-    Map<String,List> statStarRelation();
+    Map<String,List> statStarRelation(int max);
 }

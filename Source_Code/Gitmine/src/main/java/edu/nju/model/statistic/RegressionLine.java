@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 /**
  * File        : DataPoint.java
- * Author      : zhouyujie
- * Date        : 2012-01-11 16:00:00
+ * @author cuihao
  * Description : Java实现一元线性回归的算法，回归线实现类，(可实现统计指标的预测)
  */
 public class RegressionLine {
@@ -196,13 +195,14 @@ public class RegressionLine {
         xy[0] = (int) dataPoint.x + "";
         xy[1] = (int) dataPoint.y + "";
         if (dataPoint.x != 0 && dataPoint.y != 0) {
-            System.out.print(xy[0] + ",");
-            System.out.println(xy[1]);
+//            System.out.print(xy[0] + ",");
+//            System.out.println(xy[1]);
 
             try {
                 // System.out.println("n:"+n);
                 listX.add(pn, xy[0]);
                 listY.add(pn, xy[1]);
+                ++pn;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -213,7 +213,6 @@ public class RegressionLine {
              * listY.get(n));
              */
         }
-        ++pn;
         coefsValid = false;
     }
 

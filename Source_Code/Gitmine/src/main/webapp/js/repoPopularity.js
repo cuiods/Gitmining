@@ -12,12 +12,13 @@ $(document).ready(function () {
                 stardata.fork,
                 stardata.watcher
             ];
+            var statdata = stardata.stat;
 
             var markLineOpt = {
                 animation: false,
                 label: {
                     normal: {
-                        formatter: 'y = 0.5 * x + 3',
+                        formatter: statdata[0],
                         textStyle: {
                             align: 'right'
                         }
@@ -32,10 +33,37 @@ $(document).ready(function () {
                     formatter: 'y = 0.5 * x + 3'
                 },
                 data: [[{
-                    coord: [0, 3],
+                    coord: [0, statdata[1]],
                     symbol: 'none'
                 }, {
-                    coord: [20, 13],
+                    coord: [1000, statdata[2]],
+                    symbol: 'none'
+                }]]
+            };
+
+            var markLineOpt2 = {
+                animation: false,
+                label: {
+                    normal: {
+                        formatter: statdata[3],
+                        textStyle: {
+                            align: 'right'
+                        }
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                tooltip: {
+                    formatter: 'y = 0.5 * x + 3'
+                },
+                data: [[{
+                    coord: [0, statdata[4]],
+                    symbol: 'none'
+                }, {
+                    coord: [1000, statdata[5]],
                     symbol: 'none'
                 }]]
             };
@@ -76,7 +104,7 @@ $(document).ready(function () {
                         xAxisIndex: [1],
                         yAxisIndex: [1],
                         data: dataAll[1],
-                        markLine: markLineOpt
+                        markLine: markLineOpt2
                     }
                 ]
             };

@@ -2,8 +2,7 @@ package edu.nju.model.statistic;
 
 /**
  * File        : DataPoint.java
- * Author      : zhouyujie
- * Date        : 2012-01-11 16:00:00
+ * @author cuihao
  * Description : Java实现一元线性回归的算法，座标点实体类，(可实现统计指标的预测)
  */
 public class DataPoint {

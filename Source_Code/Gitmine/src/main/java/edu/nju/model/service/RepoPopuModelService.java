@@ -9,4 +9,5 @@ import java.util.Map;
 public interface RepoPopuModelService {
     Map<String, List> statLanguagePopularity();
     Map<String, List> statStarRelation();
+    Map<String, List> statStarRelation(int max);
 }

@@ -34,7 +34,7 @@ public class RepoPopuTest {
 
     @Test
     public void RepoStarRelation() {
-        Map<String,List> map = repoPopuImp.statStarRelation();
+        Map<String,List> map = repoPopuImp.statStarRelation(100);
         System.out.println(map.get("fork"));
         System.out.println(map.get("watcher"));
     }
