@@ -25,4 +25,12 @@ public interface RepoPopuService {
      * <li>with commit</li>
      */
     Map<String,List> statStarRelation(int max);
+
+    /**
+     * stat rate of each language of repositories whose star number > 500
+     * @return
+     *  <li>lan: list of languages</li>
+     *  <li>rate: rate of each language</li>
+     */
+    Map<String, List> statLanguageRate();
 }

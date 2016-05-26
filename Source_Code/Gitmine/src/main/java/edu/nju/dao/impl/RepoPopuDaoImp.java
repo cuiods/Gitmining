@@ -54,4 +54,17 @@ public class RepoPopuDaoImp implements RepoPopuService {
         result.put("watcher",query.list());
         return result;
     }
+
+    /**
+     * stat rate of each language of repositories whose star number > 500
+     *
+     * @return <li>lan: list of languages</li>
+     * <li>rate: rate of each language</li>
+     */
+    @Override
+    public Map<String, List> statLanguageRate() {
+        Map<String, List> map = new HashMap<>();
+        Session session = sessionFactory.openSession();
+        return null;
+    }
 }
