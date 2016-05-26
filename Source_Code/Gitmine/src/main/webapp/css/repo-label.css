@@ -7,20 +7,21 @@
     /*border-bottom-width: 1px;*/
     /*border-bottom-style: dashed;*/
     /*border-bottom-color: rgb(210, 210, 210);*/
-    padding: 10px;
     margin: 0 auto;
-
+    padding-top: 10px;
 
     word-wrap: break-word;
     word-break: normal;
 
 }
 
-.label{
-    margin-left: 40px;
+.radio-toolbar > .label{
+    margin-left: 20px;
+    margin-top: 5px;
 }
 
 .labels{
     padding: 0px;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
