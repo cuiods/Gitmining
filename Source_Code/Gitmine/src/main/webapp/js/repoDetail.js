@@ -232,9 +232,8 @@ function setContributorsCommit(params) {
         chart.setOption(option);
         window.onresize = chart.resize;
     }
-
-
     $.get(url_contributrorsCommit,function (list) {
+        // console.log(list);
         addNode(list['all']);
         for (var index in list){
             if(index!='all'){
@@ -251,6 +250,7 @@ function setCodeFrequency(params) {
     var chart = echarts.init(node);
     chart.showLoading();
     $.get(url_codeFrequency,function (codeFrequency) {
+        // console.log(codeFrequency);
         option = {
             tooltip: {
                 trigger: 'axis',

@@ -2,8 +2,8 @@
  * Created by darxan on 2016/5/15.
  */
 var location_port = '';
-var descriptionLength = 63;
-var descriptionLengthEachLine = 39;
+var descriptionLength = 60;
+var descriptionLengthEachLine = 20;
 var nameLength = 10;
 
 var RepoList = {
@@ -22,7 +22,7 @@ var RepoList = {
         {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
-            owner.text (n.ownerName.substr(0,descriptionLengthEachLine));
+            owner.text (n.ownerName.substr(0,nameLength));
             owner.attr ('href','/html/html/userDetail.html?ownerName='+n.ownerName);
 
             var repo = tempGrid.find('.reponame').eq(0);
@@ -32,12 +32,21 @@ var RepoList = {
             repo.attr ('href',repoHref);
             tempGrid.find('.ownerAvatarUrl').eq(0).attr  ( 'src',n.ownerAvatarUrl);
             tempGrid.find('.mask').eq(0).attr  ( 'href',repoHref);
+
             var description = n.description;
-            if(description.length>descriptionLength){
-                description = description.substr(0,descriptionLength)+"...";
-            }else if(description.length<descriptionLengthEachLine){
-                description = description+"<br><br>";
+            var line1 = description.substr(0,descriptionLengthEachLine);
+            console.log(description.substr(0,35));
+            var line2 = description.substr(descriptionLengthEachLine,descriptionLengthEachLine);
+            if(line2.replace(/(^\s*)|(\s*$)/g, "").length==0){
+                description = line1+"<br/><br/>";
+            }else {
+                description = line1+"<br/>"+line2;
             }
+            // if(description.length>descriptionLength){
+            //     description = description.substr(0,descriptionLength)+"...";
+            // }else if(description.length<descriptionLengthEachLine){
+            //     description = description+"<br><br>";
+            // }
             tempGrid.find('.description').eq(0).html (description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
