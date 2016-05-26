@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
     <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../../css/repo-label.css">
+    <link rel="stylesheet" href="../../css/userCompare.css">
     <script src="../../js/login.js"></script>
 
     <link href="../../css/login.css" rel="stylesheet"/>
@@ -146,7 +147,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                onclick="sort(this)" class="active">
                             CREATE &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
                 </ul>
-                    <h4><a href="#" onclick="compare(this)" style="float:right">compare</a></h4>
+                    <!--<h4><a href="#" onclick="compare(this)" style="float:right">compare</a></h4>-->
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#compareModal" style="float:right">compare</button>
                 </div>
 
             </div>
@@ -261,6 +263,98 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </div>
 <!-- //news -->
+
+<!--compare modal start-->
+
+
+<div class="modal fade " id="compareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Compare Users</h4>
+            </div>
+            <div class="modal-body">
+                <table class="bordered">
+                    <thead>
+
+                    <tr>
+                        <th>attributes</th>
+                        <th>userName1</th>
+                        <th>userName2</th>
+
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>publicRepos</td>
+                        <td>The Shawshank Redemption</td>
+
+                        <td>1994</td>
+                    </tr>
+                    <tr>
+                        <td>publicGists</td>
+                        <td>The Godfather</td>
+                        <td>1972</td>
+                    </tr>
+                    <tr>
+
+                        <td>followers</td>
+                        <td>The Godfather: Part II</td>
+                        <td>1974</td>
+                    </tr>
+                    <tr>
+                        <td>followings</td>
+                        <td>The Good, the Bad and the Ugly</td>
+                        <td>1966</td>
+
+                    </tr>
+                    <tr>
+                        <td>bio</td>
+                        <td>Pulp Fiction</td>
+                        <td>1994</td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>12 Angry Men</td>
+
+                        <td>1957</td>
+                    </tr>
+                    <tr>
+                        <td>location</td>
+                        <td>Schindler's List</td>
+                        <td>1993</td>
+                    </tr>
+                    <tr>
+
+                        <td>company</td>
+                        <td>One Flew Over the Cuckoo's Nest</td>
+                        <td>1975</td>
+                    </tr>
+                    <tr>
+                        <td>createAt</td>
+                        <td>The Dark Knight</td>
+
+                        <td>2008</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>The Lord of the Rings: The Return of the King</td>
+                        <td>2003</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--compare modal end-->
 
 
 
