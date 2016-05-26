@@ -29,11 +29,18 @@ public interface UserModelService {
     public List<UserVO> getRelatedUser(String username);
 
     /**
-     * get the related repositories for the given user, such as own repos or contribute repos
+     * get the contribute repositories for the given user
      * @param username
      * @return
      */
-    public List<RepoVO> getRelatedRepo(String username);
+    public List<RepoVO> getContributeRepo(String username);
+
+    /**
+     * get the subscribe repos for the given user
+     * @param username
+     * @return
+     */
+    public List<RepoVO> getSubscribeRepo(String username);
 
     /**
      * get the user has the most followers

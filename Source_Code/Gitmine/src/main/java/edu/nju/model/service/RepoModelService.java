@@ -71,7 +71,7 @@ public interface RepoModelService {
      * @param createYear
      * @return
      */
-    public int getSearchPage(String keyword, String filterType, String language, String createYear);
+    public long getSearchPage(String keyword, String filterType, String language, String createYear);
 
     /**
      * get the basic information of a repo

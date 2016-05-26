@@ -38,7 +38,7 @@ public class UserModelImplTest {
 
     @Test
     public void getRelatedRepo() throws Exception {
-        List<RepoVO> list = userModel.getRelatedRepo("jquery");
+        List<RepoVO> list = userModel.getContributeRepo("mojombo");
         assertNotNull(list);
         assertTrue(list.size()>0);
     }
@@ -71,14 +71,14 @@ public class UserModelImplTest {
 
     @Test
     public void getUserBasicInfo() throws Exception {
-        UserVO vo = userModel.getUserBasicInfo("jquery");
+        UserVO vo = userModel.getUserBasicInfo("mojombo");
         assertNotNull(vo);
-        assertTrue(vo.getLogin().equals("jquery"));
+        assertTrue(vo.getLogin().equals("mojombo"));
     }
 
     @Test
     public void getUserRadarChart() throws Exception {
-        RadarChart chart = userModel.getUserRadarChart("jquery");
+        RadarChart chart = userModel.getUserRadarChart("mojombo");
         assertNotNull(chart);
     }
 

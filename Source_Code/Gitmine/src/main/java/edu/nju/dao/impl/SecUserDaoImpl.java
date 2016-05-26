@@ -62,12 +62,17 @@ public class SecUserDaoImpl implements SecUserDaoService {
         Query query = session.createQuery(hql);
         query.setString("k1","%"+keyword+"%");
         query.setString("k2","%"+keyword+"%");
-        switch (sortType){
-            case User_Follored:query.setString("o1","followers");break;
-            case User_Folloring:query.setString("o1","following");break;
-            case User_Repos:query.setString("o1", "publicRepos");break;
-            case User_Update:query.setString("o1","updateAt");break;
-            default:query.setString("o1","login");
+        if (sortType!=null){
+            switch (sortType){
+                case User_Follored:query.setString("o1","followers");break;
+                case User_Folloring:query.setString("o1","following");break;
+                case User_Repos:query.setString("o1", "publicRepos");break;
+                case User_Update:query.setString("o1","updateAt");break;
+                default:query.setString("o1","login");
+            }
+        }
+        else {
+            query.setString("o1","login");
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
@@ -132,12 +137,17 @@ public class SecUserDaoImpl implements SecUserDaoService {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("from SecRepoEntity where owner = :own order by :o1");
         query.setString("own",login);
-        switch (sortType){
-            case Repo_Star:query.setString("o1","starCount");break;
-            case Repo_Watch:query.setString("o1","watchersCount");break;
-            case Repo_Fork:query.setString("o1", "forkCount");break;
-            case Repo_Update:query.setString("o1","updateAt");break;
-            default:query.setString("o1","name");
+        if (sortType!=null){
+            switch (sortType){
+                case Repo_Star:query.setString("o1","starCount");break;
+                case Repo_Watch:query.setString("o1","watchersCount");break;
+                case Repo_Fork:query.setString("o1", "forkCount");break;
+                case Repo_Update:query.setString("o1","updateAt");break;
+                default:query.setString("o1","name");
+            }
+        }
+        else {
+            query.setString("o1","name");
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
@@ -147,21 +157,21 @@ public class SecUserDaoImpl implements SecUserDaoService {
     }
 
     @Override
-    public List<Object[]> getUserSubscribeRepos(String login) {
+    public List<SecRepoEntity> getUserSubscribeRepos(String login) {
         Session session  = sessionFactory.openSession();
-        SQLQuery query  = session.createSQLQuery("SELECT repo_owner, repo_name FROM sec_subscriber WHERE subscriber = :log");
+        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecSubscriberEntity where subscriber = :log)");
         query.setString("log", login);
-        List<Object[]> list = query.list();
+        List<SecRepoEntity> list = query.list();
         session.close();
         return list;
     }
 
     @Override
-    public List<Object[]> getUserContributerRepos(String login) {
+    public List<SecRepoEntity> getUserContributerRepos(String login) {
         Session session  = sessionFactory.openSession();
-        SQLQuery query  = session.createSQLQuery("SELECT repo_owner, repo_name FROM sec_contributor WHERE contributor = :log");
+        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecContributorEntity where contributor = :log)");
         query.setString("log", login);
-        List<Object[]> list = query.list();
+        List<SecRepoEntity> list = query.list();
         session.close();
         return list;
     }

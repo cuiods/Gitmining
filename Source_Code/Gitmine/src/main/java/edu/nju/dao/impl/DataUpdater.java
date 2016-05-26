@@ -86,10 +86,10 @@ public class DataUpdater {
         return list.size() > 0;
     }
 
-    public List<String> getAllDescription(){
+    public List<Object[]> getAllDescription(){
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT description FROM sec_repo WHERE description <> ''");
-        List<String> list = query.list();
+        SQLQuery query = session.createSQLQuery("SELECT name, description FROM sec_repo WHERE description <> ''");
+        List<Object[]> list = query.list();
         session.close();
         return list;
     }

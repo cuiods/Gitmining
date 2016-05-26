@@ -24,11 +24,14 @@ public class CrawlLauncher {
     public void saveDescriptionToFile(){
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/applicationContext.xml");
         DataUpdater dataUpdater = (DataUpdater)context.getBean(DataUpdater.class);
-        List<String> description = dataUpdater.getAllDescription();
+        List<Object[]> description = dataUpdater.getAllDescription();
         File file = new File("src/main/java/edu/nju/temp/description.txt");
         try {
             PrintStream stream = new PrintStream(file);
-            description.forEach(stream::println);
+            for (Object[] item:description){
+                stream.print(item[0]+" ");
+                stream.println(item[1]);
+            }
             stream.close();
         } catch (IOException e) {
             e.printStackTrace();

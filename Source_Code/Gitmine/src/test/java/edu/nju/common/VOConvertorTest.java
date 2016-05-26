@@ -1,8 +1,12 @@
 package edu.nju.common;
 
+import edu.nju.dao.impl.SecRepoDaoImpl;
+import edu.nju.dao.impl.SecUserDaoImpl;
 import edu.nju.dao.impl.UserDaoImp;
 import edu.nju.dao.service.RepoDaoService;
 import edu.nju.dao.service.UserDaoService;
+import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RepoVO;
@@ -28,27 +32,27 @@ public class VOConvertorTest {
     private VOConvertor voConvertor;
 
     @Resource
-    private UserDaoService userDaoImp;
+    private SecUserDaoImpl secUserDaoImpl;
 
     @Resource
-    private RepoDaoService repoDaoImpl;
+    private SecRepoDaoImpl secRepoDaoImpl;
 
     @Test
     public void convert() throws Exception {
-        TblUser tblUser = userDaoImp.findUserByLoginName("jquery");
+        SecUserEntity tblUser = secUserDaoImpl.getUserBasicInfo("mojombo");
         UserVO userVO = voConvertor.convert(tblUser);
         assertNotNull(userVO);
-        assertTrue(userVO.getLogin().equals(tblUser.getLoginName()));
-        System.out.println("time: "+userVO.getCreateAt());
+        assertTrue(userVO.getLogin().equals(tblUser.getLogin()));
+        //System.out.println("time: "+userVO.getCreateAt());
     }
 
     @Test
     public void convert1() throws Exception {
-        TblRepo tblRepo = repoDaoImpl.getRepoBasicInfo("jquery","jquery");
+        SecRepoEntity tblRepo = secRepoDaoImpl.getRepoBasicInfo("mojombo","grit");
         RepoVO repoVO = voConvertor.convert(tblRepo);
         assertNotNull(repoVO);
         assertFalse(repoVO.getOwnerAvatarUrl().isEmpty());
-        System.out.println("time : "+repoVO.getCreateAt());
+        //System.out.println("time : "+repoVO.getCreateAt());
     }
 
 }

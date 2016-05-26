@@ -1,6 +1,9 @@
 package edu.nju.common;
 
+import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.dao.service.UserDaoService;
+import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RepoVO;
@@ -18,37 +21,37 @@ import java.text.SimpleDateFormat;
 public class VOConvertor {
 
     @Resource
-    private UserDaoService userDaoImpl;
+    private SecUserDaoService userDaoImpl;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
-    public RepoVO convert(TblRepo tblRepo){
-        if (tblRepo == null){
+    public RepoVO convert(SecRepoEntity repoEntity){
+        if (repoEntity == null){
             return null;
         }
-        String avatar = userDaoImpl.getUserAvatar(tblRepo.getOwnerName());
+        String avatar = userDaoImpl.getUserAvatar(repoEntity.getOwner());
         //String createAt = timeTranslator.transUnixTime(tblRepo.getCreateAt().getTime());
         //String updateAt = timeTranslator.transUnixTime(tblRepo.getUpdateAt().getTime());
-        String createAt = dateFormat.format(tblRepo.getCreateAt());
-        String updateAt = dateFormat.format(tblRepo.getUpdateAt());
-        RepoVO vo = new RepoVO(tblRepo.getOwnerName(),avatar,tblRepo.getName(),tblRepo.getSize(),tblRepo.getDescription(),
-                tblRepo.getLanguage(),tblRepo.getUrl(),createAt,updateAt,tblRepo.getNumStar(),tblRepo.getNumFork(),
-                tblRepo.getNumSubscriber());
+        String createAt = dateFormat.format(repoEntity.getCreateAt());
+        String updateAt = dateFormat.format(repoEntity.getUpdateAt());
+        RepoVO vo = new RepoVO(repoEntity.getOwner(),avatar,repoEntity.getName(),repoEntity.getSize(),repoEntity.getDescription(),
+                repoEntity.getLanguage(),repoEntity.getHtmlUrl(),createAt,updateAt,repoEntity.getStarCount(),repoEntity.getForkCount(),
+                repoEntity.getWatchersCount());
         return vo;
     }
 
-    public UserVO convert(TblUser tblUser){
-        if (tblUser == null){
+    public UserVO convert(SecUserEntity userEntity){
+        if (userEntity == null){
             return null;
         }
 //        String createAt = timeTranslator.transUnixTime(tblUser.getCreateAt().getTime());
 //        String updateAt = timeTranslator.transUnixTime(tblUser.getUpdateAt().getTime());
-        String createAt = dateFormat.format(tblUser.getCreateAt());
-        String updateAt = dateFormat.format(tblUser.getUpdateAt());
-        String type = (tblUser.getType()==0)?"User":"Organization";
-        UserVO vo = new UserVO(tblUser.getLoginName(),tblUser.getName(),tblUser.getAvatarUrl(),tblUser.getBlog(),
-                tblUser.getEmail(),tblUser.getLocation(),tblUser.getCompany(),tblUser.getBio(),type,tblUser.getPublicRepo(),
-                tblUser.getPublicGist(),tblUser.getFollower(),tblUser.getFollowing(),createAt,updateAt);
+        String createAt = dateFormat.format(userEntity.getCreateAt());
+        String updateAt = dateFormat.format(userEntity.getUpdateAt());
+
+        UserVO vo = new UserVO(userEntity.getLogin(),userEntity.getName(),userEntity.getAvatarUrl(),userEntity.getBlog(),
+                userEntity.getEmail(),userEntity.getLocation(),userEntity.getCompany(),userEntity.getBio(),userEntity.getType(),userEntity.getPublicRepos(),
+                userEntity.getPublicGists(),userEntity.getFollowers(),userEntity.getFollowing(),createAt,updateAt);
 
         return vo;
     }
