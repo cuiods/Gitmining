@@ -1,6 +1,5 @@
 package edu.nju.dao.impl;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,6 +10,8 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.*;
+
 /**
  * popularity stat test
  * @author cuihao
@@ -18,13 +19,11 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 @Transactional
-public class RepoPopuTest {
-
+public class RepoPopuDaoImpTest {
     @Resource
     private RepoPopuDaoImp repoPopuImp;
-
     @Test
-    public void RepoPopuStatTest() {
+    public void statPopuLanguage() throws Exception {
         Map<String,List> maps = repoPopuImp.statPopuLanguage();
         List<String> languages = maps.get("language");
         for (int i = 0; i < languages.size(); i++) {
@@ -33,9 +32,18 @@ public class RepoPopuTest {
     }
 
     @Test
-    public void RepoStarRelation() {
+    public void statStarRelation() throws Exception {
         Map<String,List> map = repoPopuImp.statStarRelation(100);
         System.out.println(map.get("fork"));
         System.out.println(map.get("watcher"));
     }
+
+    @Test
+    public void statLanguageRate() throws Exception {
+        List<List> lists = repoPopuImp.statLanguageRate();
+        for (List list: lists) {
+            System.out.println(list.get(0)+"----"+list.get(1));
+        }
+    }
+
 }

@@ -54,4 +54,19 @@ public class RepoPopuDaoImp implements RepoPopuService {
         result.put("watcher",query.list());
         return result;
     }
+
+    /**
+     * stat rate of each language of repositories whose star number > 500
+     *
+     * @return <li>lan: list of languages</li>
+     * <li>rate: rate of each language</li>
+     */
+    @Override
+    public List<List> statLanguageRate() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select new list(language,count(*)) from SecRepoEntity where starCount>300 and language!='' group by language order by count(*) desc ");
+        query.setMaxResults(12);
+        List<List> lists = query.list();
+        return lists;
+    }
 }
