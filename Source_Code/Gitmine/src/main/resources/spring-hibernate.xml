@@ -66,6 +66,8 @@
                 <value>edu.nju.entity.SecContributorEntity</value>
                 <value>edu.nju.entity.SecSubscriberEntity</value>
                 <value>edu.nju.entity.SecStarEntity</value>
+                <value>edu.nju.entity.SecRepoLabelEntity</value>
+                <value>edu.nju.entity.SecRegisterLabelEntity</value>
             </list>
         </property>
     </bean>

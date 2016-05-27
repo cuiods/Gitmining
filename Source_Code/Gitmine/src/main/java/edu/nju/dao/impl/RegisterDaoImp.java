@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.dao.service.RegisterDaoService;
 import edu.nju.entity.RegisterLabel;
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.TblRegister;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,9 +23,6 @@ public class RegisterDaoImp implements RegisterDaoService {
     @Resource
     private SessionFactory sessionFactory;
 
-    public Session getSession() {
-        return sessionFactory.openSession();
-    }
     /**
      * used in register
      *
@@ -32,18 +30,24 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @return whether exist the user
      */
     public boolean existName(String name) {
-        Query query = getSession().createQuery("from TblRegister where loginName=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblRegister where loginName=?");
         query.setString(0,name);
-        if (query.list().size()>0) return true;
+        List list = query.list();
+        session.close();
+        if (list.size()>0) return true;
         return false;
     }
 
     @Override
     public boolean existUser(String username, String email) {
-        Query query = getSession().createQuery("from TblRegister where loginName=? or email=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblRegister where loginName=? or email=?");
         query.setString(0, username);
         query.setString(1, email);
-        if (query.list().size() > 0) return true;
+        List list = query.list();
+        session.close();
+        if (list.size() > 0) return true;
         return false;
     }
 
@@ -55,10 +59,13 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @return TblRegister
      */
     public boolean login(String userName, String password) {
-        Query query = getSession().createQuery("from TblRegister where loginName=? and password=?");
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from TblRegister where loginName=? and password=?");
         query.setString(0,userName);
         query.setString(1,password);
-        if (query.list().size()>0) return true;
+        List list = query.list();
+        session.close();
+        if (list.size()>0) return true;
         return false;
     }
 
@@ -70,16 +77,27 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @return isSucceed
      */
     public boolean register(String userName, String passWord, String email) {
+        Session session = sessionFactory.openSession();
         TblRegister register = new TblRegister();
         register.setLoginName(userName);
         register.setPassword(passWord);
         register.setEmail(email);
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(register);
-        session.flush();
-        transaction.commit();
-        return true;
+        Transaction transaction = null;
+        boolean result = false;
+        try{
+            transaction = session.beginTransaction();
+            session.save(register);
+            session.flush();
+            transaction.commit();
+            result = true;
+        } catch (Exception  e){
+            if (transaction !=null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return result;
     }
 
     /**
@@ -88,12 +106,14 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @param userName username of the register
      * @return registerLabel
      */
-    public RegisterLabel getRegisterInterest(String userName) {
-        Query query = getSession().createQuery("from RegisterLabel where register=?");
+    public SecRegisterLabelEntity getRegisterInterest(String userName) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from SecRegisterLabelEntity where registerLogin=?");
         query.setString(0,userName);
-        List<RegisterLabel> registerLabels = query.list();
-        if (registerLabels.size()>0) {
-            return registerLabels.get(0);
+        List<SecRegisterLabelEntity> list = query.list();
+        session.close();
+        if (list.size()>0) {
+            return list.get(0);
         }
         return null;
     }
@@ -104,12 +124,24 @@ public class RegisterDaoImp implements RegisterDaoService {
      * @param registerLabel
      * @return is succeed.
      */
-    public boolean saveRegisterInterest(RegisterLabel registerLabel) {
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(registerLabel);
-        session.flush();
-        transaction.commit();
-        return true;
+    public boolean saveOrUpdateRegisterInterest(SecRegisterLabelEntity registerLabel) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        boolean result = false;
+        try{
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(registerLabel);
+            session.flush();
+            transaction.commit();
+            result = true;
+        } catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+
+        return result;
     }
 }

@@ -1199,7 +1199,7 @@ Socket.IO Sockets for the rest of us
 Socket.IO-node Sockets for the rest of us (in Node.js)
 routicle totally experimental racc based router
 smurf Rails plugin to automatically minify JavaScript and CSS when their bundles get cached
-crockbot IRC bot in node.js that speaks Douglas Crockford facts from http://crockfordfacts.com/ 
+crockbot IRC bot in node.js that speaks Douglas Crockford facts from http://crockfordfacts.com/
 the-little-mler All the ML code examples from the book "The Little MLer"
 node-growl growl unobtrusive notification system for nodejs
 tsunami-online-mapping-system cs472 senior project
@@ -3021,7 +3021,7 @@ chrome-reproduction This is to reproduce a chrome bug
 node-marak Your very own marak
 npm a package manager for node
 npmjs.org The couchdb setup for registry.npmjs.org and search.npmjs.org
-stats JavaScript source statistics with simple API & CLI written with node.js 
+stats JavaScript source statistics with simple API & CLI written with node.js
 jquery.tmpl jQuery.tmpl for Hem
 404 A creepy, and somewhat disturbing, 404 page
 node-detective Find all calls to require() no matter how crazily nested using a proper walk of the AST
@@ -3510,7 +3510,7 @@ evaluate A version of eval for R that returns more information about what happen
 filed Simplified file library.
 CouchDBAttachmentUploader Upload attachments straight to a CouchDB database from PhoneGap
 youtube-instant Real-time YouTube video surfing.
-node-graphite A node.js client for graphite. 
+node-graphite A node.js client for graphite.
 Kinect-Keylight Kinect version of @hakimel 's Keylight
 javascript-hooker Monkey-patch (hook) functions for debugging and stuff.
 commander.js node.js command-line interfaces made easy

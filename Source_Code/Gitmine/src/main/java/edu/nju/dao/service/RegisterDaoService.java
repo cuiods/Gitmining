@@ -1,6 +1,7 @@
 package edu.nju.dao.service;
 
 import edu.nju.entity.RegisterLabel;
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.TblRegister;
 
 /**
@@ -45,7 +46,7 @@ public interface RegisterDaoService {
      * @return
      *      registerLabel
      */
-    public RegisterLabel getRegisterInterest(String userName);
+    public SecRegisterLabelEntity getRegisterInterest(String userName);
 
     /**
      * save register labels
@@ -53,5 +54,5 @@ public interface RegisterDaoService {
      * @return
      *      is succeed.
      */
-    public boolean saveRegisterInterest(RegisterLabel registerLabel);
+    public boolean saveOrUpdateRegisterInterest(SecRegisterLabelEntity registerLabel);
 }

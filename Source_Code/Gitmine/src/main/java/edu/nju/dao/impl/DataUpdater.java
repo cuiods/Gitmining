@@ -1,11 +1,9 @@
 package edu.nju.dao.impl;
 
 import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecRepoLabelEntity;
 import edu.nju.entity.SecUserEntity;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -88,7 +86,7 @@ public class DataUpdater {
 
     public List<Object[]> getAllDescription(){
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT name, description FROM sec_repo WHERE description <> ''");
+        SQLQuery query = session.createSQLQuery("SELECT id, name, description FROM sec_repo WHERE id NOT IN (SELECT repo_id FROM sec_repo_label)");
         List<Object[]> list = query.list();
         session.close();
         return list;

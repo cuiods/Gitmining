@@ -28,6 +28,21 @@ public interface SecRepoDaoService {
     public List<String> getRepoSubscriber(String owner, String repoName);
 
     /**
+     * get the repos similar to the given repo
+     * @param ownername
+     * @param reponame
+     * @return
+     */
+    public List<SecRepoEntity> getRelatedRepo(String ownername, String reponame);
+
+    /**
+     * get the repos which match the users hobbies best
+     * @param register
+     * @return
+     */
+    public List<SecRepoEntity> getRecommendRepo(String register);
+
+    /**
      * get the max size of all repos
      * @return
      */

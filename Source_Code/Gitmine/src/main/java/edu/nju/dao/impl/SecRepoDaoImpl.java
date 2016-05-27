@@ -180,6 +180,21 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     }
 
     @Override
+    public List<SecRepoEntity> getRelatedRepo(String ownername, String reponame) {
+        //todo
+        Session session = sessionFactory.openSession();
+
+        session.close();
+        return null;
+    }
+
+    @Override
+    public List<SecRepoEntity> getRecommendRepo(String register) {
+        //todo
+        return null;
+    }
+
+    @Override
     public double getMaxRepoSize() {
         Session session = sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery("SELECT max(repo.size) from sec_repo repo");
