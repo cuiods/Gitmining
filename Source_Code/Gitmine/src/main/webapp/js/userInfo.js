@@ -218,14 +218,30 @@ function addCol(){
     //prepare for radar chart
     var compInfo = new Array();
     var field = new Array();
+    var len = compList.length;
+    var count=0;
+    console.log(compList.length);
     $.each(compList,function(i,compUser){
+
         $.ajax({
             method:'GET',
             url:'/user/'+compUser,
             success:function(userResult){
-                compInfo=userResult.radarChart.value;
+                count++;
+                compInfo.push(
+                    
+                        {   name: compList[i],
+                            value:userResult.radarChart.value,
+                        }
+                    
+                );
 
-                field = userResult.radarChart.field;
+                if(count == len) {
+                    field = userResult.radarChart.field;
+                    var obj = document.getElementById('compareRadar');
+                    drawRadarChart(obj,compList,field,compInfo);
+
+                }
                 
             },
             error: function(){
@@ -234,16 +250,39 @@ function addCol(){
         })
     })
 
+    $('#compareModal').modal();
+
+
+
+
+}
+function addColCommon(obj,dataList){
+    obj.each(function(j,attr){
+        var trHtml = $(this).html();
+        if(j==0){
+            trHtml += '<th class="newCol">'+dataList[j]+'</th>'
+        }else {
+            trHtml += '<td class="newCol">'+dataList[j]+'</td>';
+        }
+        $(this).html(trHtml);
+    });
+}
+
+function drawRadarChart(obj,legendArea,field,data){
     //radar chart really begins!
-    var radar_compare =echarts.init(document.getElementById("compareRadar"));
+    var radar_compare =echarts.init(obj);
     var lineStyle = {
         normal: {
             width: 1,
-            opacity: 0.5
+            opacity: 0.5,
+            color:'#F9713C'
         }
     }
     option = {
         backgroundColor: '#161627',
+        legend:{
+            data: legendArea,
+        },
         tooltip:{
 
         },
@@ -286,43 +325,28 @@ function addCol(){
                 name: 'userRadar',
                 type: 'radar',
                 lineStyle: lineStyle,
-                data: [[0.6,0.8,0.9,0.4,0.5]],
+                itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: data,
                 symbol: 'none',
-                itemStyle: {
-                    normal: {
-                        color: '#F9713C'
-                    }
-                },
-                areaStyle: {
-                    normal: {
-                        opacity: 0.3
-                    }
-                }
+                // itemStyle: {
+                //     normal: {
+                //         color: '#F9713C'
+                //     }
+                // },
+                // areaStyle: {
+                //     normal: {
+                //         opacity: 0.3
+                //     }
+                // }
             },
         ]
     };
 
+    radar_compare.hideLoading();
     radar_compare.setOption(option);
+    return radar_compare;
 
     //radar chart ends!
-
-
-
-
-    $('#compareModal').modal();
-
-
-}
-function addColCommon(obj,dataList){
-    obj.each(function(j,attr){
-        var trHtml = $(this).html();
-        if(j==0){
-            trHtml += '<th class="newCol">'+dataList[j]+'</th>'
-        }else {
-            trHtml += '<td class="newCol">'+dataList[j]+'</td>';
-        }
-        $(this).html(trHtml);
-    });
 }
 
 
