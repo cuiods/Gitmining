@@ -35,4 +35,10 @@ public class RepoPopuController {
     public Map<String, List> statStar() {
         return repoPopuModelService.statStarRelation();
     }
+
+    @RequestMapping("/languageRate")
+    @ResponseBody
+    public Map<String, List> statLanguageRate() {
+        return repoPopuModelService.statLanguageRate();
+    }
 }

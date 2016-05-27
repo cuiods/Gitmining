@@ -1,5 +1,6 @@
 /**
- * Created by cuihao on 2016/5/25.
+ * get popularity statistic chart
+ * @author cuihao
  */
 $(document).ready(function () {
     var popu_star = echarts.init(document.getElementById('gra-popularity-star'));
@@ -30,7 +31,7 @@ $(document).ready(function () {
                     }
                 },
                 tooltip: {
-                    formatter: 'y = 0.5 * x + 3'
+                    formatter: statdata[0]
                 },
                 data: [[{
                     coord: [0, statdata[1]],
@@ -57,7 +58,7 @@ $(document).ready(function () {
                     }
                 },
                 tooltip: {
-                    formatter: 'y = 0.5 * x + 3'
+                    formatter: statdata[3]
                 },
                 data: [[{
                     coord: [0, statdata[4]],
@@ -212,6 +213,73 @@ $(document).ready(function () {
             };
             popu_language.hideLoading();
             popu_language.setOption(option);
+        }
+    });
+
+    var popu_lanrate = echarts.init(document.getElementById('gra-popularity-lanrate'));
+    popu_lanrate.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/popularity/languageRate",
+        success:function (rate) {
+            option = {
+                title : {
+                    text: 'Language rate of repositorys whose star number > 300',
+                    subtext: 'Data from Github',
+                    x:'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    data:rate.language
+                },
+                series: [
+                    {
+                        name:'language rate:',
+                        type:'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:[
+                            {value:rate.count[0], name:rate.language[0]},
+                            {value:rate.count[1], name:rate.language[1]},
+                            {value:rate.count[2], name:rate.language[2]},
+                            {value:rate.count[3], name:rate.language[3]},
+                            {value:rate.count[4], name:rate.language[4]},
+                            {value:rate.count[5], name:rate.language[5]},
+                            {value:rate.count[6], name:rate.language[6]},
+                            {value:rate.count[7], name:rate.language[7]},
+                            {value:rate.count[8], name:rate.language[8]},
+                            {value:rate.count[9], name:rate.language[9]},
+                            {value:rate.count[10], name:rate.language[10]},
+                            {value:rate.count[11], name:rate.language[11]}
+                        ]
+                    }
+                ]
+            };
+            popu_lanrate.hideLoading();
+            popu_lanrate.setOption(option);
         }
     });
 });

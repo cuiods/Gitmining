@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,5 +47,21 @@ public class RepoPopuModelImp implements RepoPopuModelService {
         list.add((int) (line.getA1()*1000+line.getA0()));
         star.put("stat",list);
         return star;
+    }
+
+    @Override
+    public Map<String, List> statLanguageRate() {
+        List<List> lists = repoPopuImp.statLanguageRate();
+        List<String> language = new ArrayList<>(lists.size());
+        List<Long> count = new ArrayList<>(lists.size());
+        for (int i = 0; i < lists.size(); i++) {
+            List list = lists.get(i);
+            language.add((String) list.get(0));
+            count.add((Long) list.get(1));
+        }
+        Map<String,List> map = new HashMap<>();
+        map.put("language",language);
+        map.put("count",count);
+        return map;
     }
 }

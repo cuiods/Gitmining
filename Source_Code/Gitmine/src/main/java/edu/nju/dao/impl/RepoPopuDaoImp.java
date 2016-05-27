@@ -62,9 +62,11 @@ public class RepoPopuDaoImp implements RepoPopuService {
      * <li>rate: rate of each language</li>
      */
     @Override
-    public Map<String, List> statLanguageRate() {
-        Map<String, List> map = new HashMap<>();
+    public List<List> statLanguageRate() {
         Session session = sessionFactory.openSession();
-        return null;
+        Query query = session.createQuery("select new list(language,count(*)) from SecRepoEntity where starCount>300 and language!='' group by language order by count(*) desc ");
+        query.setMaxResults(12);
+        List<List> lists = query.list();
+        return lists;
     }
 }

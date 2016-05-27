@@ -32,5 +32,5 @@ public interface RepoPopuService {
      *  <li>lan: list of languages</li>
      *  <li>rate: rate of each language</li>
      */
-    Map<String, List> statLanguageRate();
+    List<List> statLanguageRate();
 }
