@@ -30,7 +30,7 @@ $(document).ready(
                 
                 setContributorsCommit(params);
                 setCodeFrequency(params);
-
+                punchCard(params);
 
             }
 
@@ -233,7 +233,8 @@ function setContributorsCommit(params) {
         window.onresize = chart.resize;
     }
     $.get(url_contributrorsCommit,function (list) {
-        // console.log(list);
+        console.log("contributors:");
+        console.log(list);
         addNode(list['all']);
         for (var index in list){
             if(index!='all'){
@@ -250,7 +251,8 @@ function setCodeFrequency(params) {
     var chart = echarts.init(node);
     chart.showLoading();
     $.get(url_codeFrequency,function (codeFrequency) {
-        // console.log(codeFrequency);
+        console.log("code frequency:");
+        console.log(codeFrequency);
         option = {
             tooltip: {
                 trigger: 'axis',
@@ -351,8 +353,83 @@ function setCodeFrequency(params) {
 
 }
 
-function punchCard() {
-    
+function punchCard(params) {
+    var url_codeFrequency = "/repo/"+params+"/graph/punch_card";
+    var node = document.getElementById("punchCard");
+    var chart = echarts.init(node);
+    chart.showLoading();
+   $.get(url_codeFrequency,function (punchCard) {
+
+        var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
+            '7a', '8a', '9a','10a','11a',
+            '12p', '1p', '2p', '3p', '4p', '5p',
+            '6p', '7p', '8p', '9p', '10p', '11p'];
+        var days = ['Saturday', 'Friday', 'Thursday',
+            'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+
+        var data = punchCard.map(function (item) {
+            return [item[1], item[0], item[2]];
+        });
+
+        option = {
+            title: {
+                text: 'Punch Card of Github',
+                link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
+            },
+            legend: {
+                data: ['Punch Card'],
+                left: 'right'
+            },
+            tooltip: {
+                position: 'top',
+                formatter: function (params) {
+                    return params.value[2] + ' commits in ' + hours[params.value[0]] + ' of ' + days[params.value[1]];
+                }
+            },
+            grid: {
+                left: 2,
+                bottom: 10,
+                right: 10,
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: hours,
+                boundaryGap: false,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ddd',
+                        type: 'dashed'
+                    }
+                },
+                axisLine: {
+                    show: false
+                }
+            },
+            yAxis: {
+                type: 'category',
+                data: days,
+                axisLine: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Punch Card',
+                type: 'scatter',
+                symbolSize: function (val) {
+                    return val[2] * 2;
+                },
+                data: data,
+                animationDelay: function (idx) {
+                    return idx * 5;
+                }
+            }]
+        };
+        chart.setOption(option);
+        chart.hideLoading();
+        window.onresize = chart.resize;
+   });
 }
 
 function wrongUrl() {

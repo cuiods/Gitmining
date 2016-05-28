@@ -51,7 +51,7 @@ var RepoList = {
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
 
-            tempGrid.find('.numSubscriber').eq(0).text  ( n.numSubscriber);
+            tempGrid.find('.numSubscriber').eq(0).text  ( n.numWatcher);
             tempGrid.find('.numFork').eq(0).text  ( n.numFork);
             tempGrid.find('.numStar').eq(0).text   ( n.numStar);
 
