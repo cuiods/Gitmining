@@ -1,6 +1,7 @@
 package edu.nju.model.imp;
 
 import edu.nju.dao.service.RegisterDaoService;
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.model.service.LoginModelService;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,13 @@ public class LoginModelImpl implements LoginModelService{
 
     @Override
     public boolean register(String webUsername, String password, String email) {
-        if (registerDaoImpl.existName(webUsername)){
+        if (registerDaoImpl.existUser(webUsername, email)){
             return false;
         }
-        registerDaoImpl.register(webUsername, password, email);
-        return true;
+        else {
+            return registerDaoImpl.register(webUsername, password, email);
+        }
+
     }
 
     @Override
@@ -33,12 +36,18 @@ public class LoginModelImpl implements LoginModelService{
         return registerDaoImpl.login(webUsername, password);
     }
 
-
-    public RegisterDaoService getRegisterDaoImpl() {
-        return registerDaoImpl;
+    @Override
+    public boolean starRepo(String ownername, String reponame, String webUsername) {
+        return false;
     }
 
-    public void setRegisterDaoImpl(RegisterDaoService registerDaoImpl) {
-        this.registerDaoImpl = registerDaoImpl;
+    @Override
+    public boolean unstarRepo(String ownername, String reponame, String webUsername) {
+        return false;
+    }
+
+    @Override
+    public boolean initHobby(SecRegisterLabelEntity labelEntity) {
+        return registerDaoImpl.saveOrUpdateRegisterInterest(labelEntity);
     }
 }

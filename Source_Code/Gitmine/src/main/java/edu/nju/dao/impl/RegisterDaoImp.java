@@ -4,10 +4,7 @@ import edu.nju.dao.service.RegisterDaoService;
 import edu.nju.entity.RegisterLabel;
 import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.TblRegister;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -31,8 +28,8 @@ public class RegisterDaoImp implements RegisterDaoService {
      */
     public boolean existName(String name) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from TblRegister where loginName=?");
-        query.setString(0,name);
+        SQLQuery query = session.createSQLQuery("SELECT * FROM tbl_register WHERE login_name = :login");
+        query.setString("login",name);
         List list = query.list();
         session.close();
         if (list.size()>0) return true;
@@ -42,9 +39,9 @@ public class RegisterDaoImp implements RegisterDaoService {
     @Override
     public boolean existUser(String username, String email) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from TblRegister where loginName=? or email=?");
-        query.setString(0, username);
-        query.setString(1, email);
+        SQLQuery query = session.createSQLQuery("SELECT * FROM tbl_register WHERE login_name = :login OR email = :email");
+        query.setString("login", username);
+        query.setString("email", email);
         List list = query.list();
         session.close();
         if (list.size() > 0) return true;

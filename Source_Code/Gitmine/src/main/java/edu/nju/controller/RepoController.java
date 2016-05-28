@@ -8,6 +8,7 @@ import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.service.LoginModelService;
 import edu.nju.model.service.RepoModelService;
 import edu.nju.model.service.RepoStatsService;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,9 @@ public class RepoController {
 
     @Resource
     private RepoStatsService repoStatsImpl;
+
+    @Resource
+    private LoginModelService loginModelImpl;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
@@ -113,14 +117,28 @@ public class RepoController {
 
     @RequestMapping(value = "/star", method = RequestMethod.POST)
     @ResponseBody
-    public boolean star(@RequestParam String ownername,@RequestParam String reponame){
-        return true;
+    public boolean star(@RequestParam String ownername,@RequestParam String reponame,
+                        HttpSession session){
+        if (session.getAttribute("webUsername") == null){   //not logined yet
+            return false;
+        }
+        else {
+            String webUsername = session.getAttribute("wenUsername").toString();
+            return loginModelImpl.starRepo(ownername,reponame,webUsername);
+        }
     }
 
     @RequestMapping(value = "/unstar", method = RequestMethod.POST)
     @ResponseBody
-    public boolean unStar(@RequestParam String ownername,@RequestParam String reponame){
-        return true;
+    public boolean unStar(@RequestParam String ownername,@RequestParam String reponame,
+                          HttpSession session){
+        if (session.getAttribute("webUsername") == null){   //not logined yet
+            return false;
+        }
+        else {
+            String webUsername = session.getAttribute("wenUsername").toString();
+            return loginModelImpl.unstarRepo(ownername,reponame,webUsername);
+        }
     }
 
     @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/graph/commit_by_contributor", method = RequestMethod.GET)

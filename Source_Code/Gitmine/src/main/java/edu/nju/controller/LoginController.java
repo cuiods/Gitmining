@@ -20,7 +20,7 @@ public class LoginController {
     @Resource
     private LoginModelService loginModelImpl;
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @RequestMapping(value = "/register")
     @ResponseBody
     public boolean register(@RequestParam String username, @RequestParam String password,
                             @RequestParam String email){
@@ -37,43 +37,37 @@ public class LoginController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
-    public String login(@RequestParam String username, @RequestParam String password,
+    public boolean login(@RequestParam String username, @RequestParam String password,
                         HttpSession session){
         boolean loginResult = loginModelImpl.login(username, password);
         if (loginResult){
             //add user information to session scope for aop to use
-            session.setAttribute("username", username);
+            session.setAttribute("webUsername", username);
         }
-        return loginResult?username:"";
+        return loginResult;
     }
 
     @RequestMapping("/name")
     @ResponseBody
     public String getLoginName(HttpSession session){
-        Object user = session.getAttribute("username");
+        Object user = session.getAttribute("webUsername");
         if (user!=null) return (String) user;
         else return "";
     }
 
     @RequestMapping(value = "/interest", method = RequestMethod.GET)
-    public String selectHobby(Model model){
-        List<String> list = new ArrayList<String>();
-        model.addAttribute("list", list);
+    @ResponseBody
+    public String selectHobby(){
+        //todo
         return "selectHobby";
     }
 
     @RequestMapping(value = "/interest", method = RequestMethod.POST)
+    @ResponseBody
     public String submitHobby(@RequestParam List list, Model model){
         //todo set hobby to database
 
         return "redirect:/repo/home";
     }
 
-    public LoginModelService getLoginModelImpl() {
-        return loginModelImpl;
-    }
-
-    public void setLoginModelImpl(LoginModelService loginModelImpl) {
-        this.loginModelImpl = loginModelImpl;
-    }
 }
