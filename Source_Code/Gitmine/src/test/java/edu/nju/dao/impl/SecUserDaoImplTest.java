@@ -59,12 +59,12 @@ public class SecUserDaoImplTest {
 
     @Test
     public void getUserSubscribeRepos() throws Exception {
-        userDao.getUserSubscribeRepos("mojombo");
+        userDao.getUserSubscribeRepos("mojombo",5);
     }
 
     @Test
     public void getUserContributerRepos() throws Exception {
-        userDao.getUserContributerRepos("mojombo");
+        userDao.getUserContributeRepos("mojombo",5);
     }
 
     @Test

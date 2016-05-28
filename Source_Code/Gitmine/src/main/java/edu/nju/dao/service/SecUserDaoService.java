@@ -55,19 +55,18 @@ public interface SecUserDaoService {
 
     /**
      *
-     * get related repositories
+     * get subscribed repositories, order by star
+     * @param maxResults the count of repos will returned
      * @return list of repo names
-     *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<SecRepoEntity> getUserSubscribeRepos(String login);
+    public List<SecRepoEntity> getUserSubscribeRepos(String login,int maxResults);
 
     /**
-     * get related contributor
+     * get contributed repositories, order by star
      * @param login
      * @return list of repo names
-     *  [[ownerName, repoName],[ownerName, repoName]]
      */
-    public List<SecRepoEntity> getUserContributerRepos(String login);
+    public List<SecRepoEntity> getUserContributeRepos(String login,int maxResults);
 
     /**
      * get the count of user or organization

@@ -17,8 +17,8 @@ public class CrawlLauncher {
     public static void main(String [] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/applicationContext.xml");
         GithubJsonHandler handler = (GithubJsonHandler)context.getBean(GithubJsonHandler.class);
-        //handler.loopNoRepoUsers();
-        handler.initRepoLabel();
+        handler.loopNoRepoUsers();
+        //handler.initRepoLabel();
 
         //new CrawlLauncher().saveDescriptionToFile();
     }

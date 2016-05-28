@@ -100,14 +100,24 @@ public class UserController {
         Map<String,Object> map = new HashMap<>();
         UserVO userVO = userModelImpl.getUserBasicInfo(username);
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
-        List<UserVO> relatedUser = userModelImpl.getRelatedUser(username);
-        List<RepoVO> relatedRepo = userModelImpl.getContributeRepo(username);
 
         map.put("basicInfo",userVO);
         map.put("radarChart",radarChart);
-        map.put("relatedUser",relatedUser);
-        map.put("relatedRepo", relatedRepo);
         return map;
+    }
+
+    @RequestMapping(value = "/{username:.+}/contribute")
+    @ResponseBody
+    public List getUserContribute(@PathVariable("username") String username,
+                                  @RequestParam(required = false,defaultValue = "5") int maxResults){
+        return userModelImpl.getContributeRepo(username, maxResults);
+    }
+
+    @RequestMapping(value = "/{username:.+}/subscribe")
+    @ResponseBody
+    public List getUserSubscribe(@PathVariable("username") String username,
+                                 @RequestParam(required = false,defaultValue = "5")int maxResults){
+        return userModelImpl.getSubscribeRepo(username,maxResults);
     }
 
     @RequestMapping(value = "/statistic/type")

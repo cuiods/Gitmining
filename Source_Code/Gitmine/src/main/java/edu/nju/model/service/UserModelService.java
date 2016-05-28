@@ -4,6 +4,7 @@ import edu.nju.common.SortType;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
+import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 
 import java.util.List;
@@ -33,14 +34,14 @@ public interface UserModelService {
      * @param username
      * @return
      */
-    public List<RepoVO> getContributeRepo(String username);
+    public List<SimpleRepoVO> getContributeRepo(String username, int maxResults);
 
     /**
      * get the subscribe repos for the given user
      * @param username
      * @return
      */
-    public List<RepoVO> getSubscribeRepo(String username);
+    public List<SimpleRepoVO> getSubscribeRepo(String username,int maxResults);
 
     /**
      * get the user has the most followers

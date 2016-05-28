@@ -7,6 +7,7 @@ import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RepoVO;
+import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,16 @@ public class VOConvertor {
     private SecUserDaoService userDaoImpl;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+    public SimpleRepoVO simpleConvert(SecRepoEntity repoEntity){
+        if (repoEntity == null){
+            return null;
+        }
+        String createAt = dateFormat.format(repoEntity.getCreateAt());
+        String updateAt = dateFormat.format(repoEntity.getUpdateAt());
+        return new SimpleRepoVO(repoEntity.getOwner(),repoEntity.getName(),repoEntity.getSize(),repoEntity.getDescription(),
+                repoEntity.getLanguage(),createAt,updateAt,repoEntity.getStarCount(),repoEntity.getForkCount(),repoEntity.getWatchersCount());
+    }
 
     public RepoVO convert(SecRepoEntity repoEntity){
         if (repoEntity == null){

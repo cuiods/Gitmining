@@ -157,9 +157,11 @@ public class SecUserDaoImpl implements SecUserDaoService {
     }
 
     @Override
-    public List<SecRepoEntity> getUserSubscribeRepos(String login) {
+    public List<SecRepoEntity> getUserSubscribeRepos(String login,int maxResults) {
         Session session  = sessionFactory.openSession();
-        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecSubscriberEntity where subscriber = :log)");
+        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecSubscriberEntity where subscriber = :log) order by starCount desc ");
+        query.setFirstResult(0);
+        query.setMaxResults(maxResults);
         query.setString("log", login);
         List<SecRepoEntity> list = query.list();
         session.close();
@@ -167,9 +169,11 @@ public class SecUserDaoImpl implements SecUserDaoService {
     }
 
     @Override
-    public List<SecRepoEntity> getUserContributerRepos(String login) {
+    public List<SecRepoEntity> getUserContributeRepos(String login,int maxResults) {
         Session session  = sessionFactory.openSession();
-        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecContributorEntity where contributor = :log)");
+        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecContributorEntity where contributor = :log) order by starCount desc ");
+        query.setFirstResult(0);
+        query.setMaxResults(maxResults);
         query.setString("log", login);
         List<SecRepoEntity> list = query.list();
         session.close();

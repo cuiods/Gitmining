@@ -12,6 +12,7 @@ import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
+import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.UserModelService;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ import java.util.List;
 public class UserModelImpl implements UserModelService {
 
     @Resource
-    private SecUserDaoService userDaoImpl;
+    private SecUserDaoService userDao;
 
     @Resource
     private VOConvertor voConvertor;
@@ -50,34 +51,36 @@ public class UserModelImpl implements UserModelService {
     }
 
     @Override
-    public List<RepoVO> getContributeRepo(String username) {
-        // at most 10 repos, order by star
-        List<SecRepoEntity> contriRepos = userDaoImpl.getUserContributerRepos(username);
+    public List<SimpleRepoVO> getContributeRepo(String username, int maxResults) {
+        List<SecRepoEntity> contriRepos = userDao.getUserContributeRepos(username,maxResults);
         //todo use user's hobby to resort the result!!!!!
 
-
-
-        List<RepoVO> repoVOs = new ArrayList<>();
+        List<SimpleRepoVO> repoVOs = new ArrayList<>();
         for (SecRepoEntity repoEntity: contriRepos){
-            repoVOs.add(voConvertor.convert(repoEntity));
+            repoVOs.add(voConvertor.simpleConvert(repoEntity));
         }
         return repoVOs;
     }
 
     @Override
-    public List<RepoVO> getSubscribeRepo(String username){
-        //todo
-        return null;
+    public List<SimpleRepoVO> getSubscribeRepo(String username,int maxResults){
+        List<SecRepoEntity> subscribeRepos = userDao.getUserSubscribeRepos(username,maxResults);
+        List<SimpleRepoVO> vos = new ArrayList<>();
+        for (SecRepoEntity repo:subscribeRepos){
+            vos.add(voConvertor.simpleConvert(repo));
+        }
+        return vos;
     }
 
+    @Override
     public List<UserVO> getPopularUser() {
         List<UserVO> result = new ArrayList<>();
         SortType sortType = SortType.User_Follored;
         boolean isDesc = true;
         int offset = 0;//todo change recommend each time
         int maxNum = Const.ITEMS_PER_PAGE;
-        List<SecUserEntity> userEntityList = userDaoImpl.getUsers(sortType, isDesc, offset, maxNum);
-        for (SecUserEntity userEntity: userEntityList){
+        List<SecUserEntity> userEntityList = userDao.getUsers(sortType, isDesc, offset, maxNum);
+        for (SecUserEntity userEntity : userEntityList) {
             result.add(voConvertor.convert(userEntity));
         }
         return result;
@@ -85,7 +88,7 @@ public class UserModelImpl implements UserModelService {
 
     @Override
     public int getTotalPage() {
-        long totalCount = userDaoImpl.getTotalCount();
+        long totalCount = userDao.getTotalCount();
         int page = (int)totalCount/Const.ITEMS_PER_PAGE;
         if (totalCount%Const.ITEMS_PER_PAGE > 0){
             page++;
@@ -95,7 +98,7 @@ public class UserModelImpl implements UserModelService {
 
     @Override
     public List<UserVO> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum) {
-        List<SecUserEntity> userEntityList = userDaoImpl.getUsers(sortType,isDesc,offset,maxNum);
+        List<SecUserEntity> userEntityList = userDao.getUsers(sortType,isDesc,offset,maxNum);
         List<UserVO> userVOs = new ArrayList<>();
         for (SecUserEntity userEntity: userEntityList){
             userVOs.add(voConvertor.convert(userEntity));
@@ -110,7 +113,7 @@ public class UserModelImpl implements UserModelService {
             offset = 0;
         }
         SortType type = SortTypeBuilder.getSortType(sortType);
-        List<SecUserEntity> userEntityList = userDaoImpl.getSearchResult(keyword,type,reverse,offset,Const.ITEMS_PER_PAGE);
+        List<SecUserEntity> userEntityList = userDao.getSearchResult(keyword,type,reverse,offset,Const.ITEMS_PER_PAGE);
         List<UserVO> userVOs = new ArrayList<>();
         for (SecUserEntity userEntity:userEntityList){
             userVOs.add(voConvertor.convert(userEntity));
@@ -119,7 +122,7 @@ public class UserModelImpl implements UserModelService {
     }
 
     public UserVO getUserBasicInfo(String username) {
-        SecUserEntity userEntity = userDaoImpl.getUserBasicInfo(username);
+        SecUserEntity userEntity = userDao.getUserBasicInfo(username);
         return voConvertor.convert(userEntity);
     }
 

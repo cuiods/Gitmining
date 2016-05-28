@@ -3,6 +3,7 @@ package edu.nju.model.imp;
 import edu.nju.common.SortType;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
+import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,6 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 public class UserModelImplTest {
-
     @Resource
     private UserModelImpl userModel;
 
@@ -37,17 +37,22 @@ public class UserModelImplTest {
     }
 
     @Test
-    public void getRelatedRepo() throws Exception {
-        List<RepoVO> list = userModel.getContributeRepo("mojombo");
+    public void getPopularUser() throws Exception {
+        List<UserVO> list  = userModel.getPopularUser();
         assertNotNull(list);
         assertTrue(list.size()>0);
     }
 
     @Test
-    public void getPopularUser() throws Exception {
-        List<UserVO> list  = userModel.getPopularUser();
-        assertNotNull(list);
-        assertTrue(list.size()>0);
+    public void getContributeRepo() throws Exception {
+        List<SimpleRepoVO> repos = userModel.getContributeRepo("mojombo",5);
+        assertTrue(repos.size() == 5);
+    }
+
+    @Test
+    public void getSubscribeRepo() throws Exception {
+        List<SimpleRepoVO> repos = userModel.getSubscribeRepo("mojombo",5);
+        assertTrue(repos.size() <= 5);
     }
 
     @Test
