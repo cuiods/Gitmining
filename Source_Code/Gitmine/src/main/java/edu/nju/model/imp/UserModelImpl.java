@@ -10,10 +10,7 @@ import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.RadarChart;
-import edu.nju.model.pojo.RepoVO;
-import edu.nju.model.pojo.SimpleRepoVO;
-import edu.nju.model.pojo.UserVO;
+import edu.nju.model.pojo.*;
 import edu.nju.model.service.UserModelService;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +42,16 @@ public class UserModelImpl implements UserModelService {
         return null;
     }
 
-    public List<UserVO> getRelatedUser(String username) {
-        //todo
-        return null;
+    public SimpleChart getRelatedUser(String username, int limitResults) {
+        List<Object[]> list = userDao.getRelatedUser(username,limitResults);
+        String [] field = new String[list.size()];
+        long [] value = new long[list.size()];
+        for (int i = 0; i<list.size();i++){
+            Object[] item = list.get(i);
+            field[i] = item[0].toString();
+            value[i] = Long.valueOf(item[1].toString());
+        }
+        return new SimpleChart(field,value);
     }
 
     @Override

@@ -18,7 +18,6 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 @Transactional
 public class SecUserDaoImplTest {
-
     @Resource
     private SecUserDaoImpl userDao;
 
@@ -43,6 +42,11 @@ public class SecUserDaoImplTest {
     }
 
     @Test
+    public void getRelatedUser() throws Exception {
+        userDao.getRelatedUser("mojombo",30);
+    }
+
+    @Test
     public void getTotalCount() throws Exception {
         userDao.getTotalCount();
     }
@@ -63,7 +67,7 @@ public class SecUserDaoImplTest {
     }
 
     @Test
-    public void getUserContributerRepos() throws Exception {
+    public void getUserContributeRepos() throws Exception {
         userDao.getUserContributeRepos("mojombo",5);
     }
 

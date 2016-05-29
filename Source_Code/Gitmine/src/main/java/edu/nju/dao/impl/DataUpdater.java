@@ -69,7 +69,7 @@ public class DataUpdater {
 
     public List<String> getNoRepoUsers(){
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT login FROM sec_user WHERE public_repos > 0 AND login NOT IN (SELECT DISTINCT owner FROM sec_repo) ORDER BY followers DESC LIMIT 1");
+        SQLQuery query = session.createSQLQuery("SELECT login FROM sec_user WHERE public_repos > 0 AND login NOT IN (SELECT DISTINCT owner FROM sec_repo) ORDER BY update_at DESC LIMIT 1");
         List<String> list = query.list();
         session.close();
         return list;

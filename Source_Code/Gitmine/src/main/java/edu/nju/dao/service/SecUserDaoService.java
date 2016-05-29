@@ -69,6 +69,14 @@ public interface SecUserDaoService {
     public List<SecRepoEntity> getUserContributeRepos(String login,int maxResults);
 
     /**
+     * get the users that have contributed to the same repo with the given user
+     * @param username
+     * @param limitResults
+     * @return
+     */
+    public List<Object[]> getRelatedUser(String username, int limitResults);
+
+    /**
      * get the count of user or organization
      * @return
      */

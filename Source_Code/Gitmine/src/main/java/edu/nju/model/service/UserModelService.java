@@ -2,10 +2,7 @@ package edu.nju.model.service;
 
 import edu.nju.common.SortType;
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.RadarChart;
-import edu.nju.model.pojo.RepoVO;
-import edu.nju.model.pojo.SimpleRepoVO;
-import edu.nju.model.pojo.UserVO;
+import edu.nju.model.pojo.*;
 
 import java.util.List;
 
@@ -27,7 +24,7 @@ public interface UserModelService {
      * @param username
      * @return
      */
-    public List<UserVO> getRelatedUser(String username);
+    public SimpleChart getRelatedUser(String username, int limitResults);
 
     /**
      * get the contribute repositories for the given user
