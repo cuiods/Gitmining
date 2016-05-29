@@ -1,14 +1,14 @@
 package edu.nju.dao.impl;
 
 import edu.nju.dao.service.RegisterDaoService;
-import edu.nju.entity.RegisterLabel;
+import edu.nju.entity.RegisterStarRepoEntity;
 import edu.nju.entity.SecRegisterLabelEntity;
+import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.TblRegister;
 import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -64,6 +64,67 @@ public class RegisterDaoImp implements RegisterDaoService {
         session.close();
         if (list.size()>0) return true;
         return false;
+    }
+
+    @Override
+    public boolean starRepo(String webUsername, String ownername, String reponame) {
+        Session session =sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("INSERT INTO register_star_repo (web_username, repo_name, repo_owner) VALUES (:web, :rname, :owner)");
+        query.setString("web",webUsername);
+        query.setString("rname",reponame);
+        query.setString("owner",ownername);
+        boolean result = false;
+        try{
+            query.executeUpdate();
+            result = true;
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public boolean unstarRepo(String webUsername, String ownername, String reponame) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("DELETE FROM register_star_repo WHERE web_username = :web AND repo_owner = :owner AND repo_name = :rname");
+        query.setString("web",webUsername);
+        query.setString("owner",ownername);
+        query.setString("rname", reponame);
+        boolean result = false;
+        try{
+            query.executeUpdate();
+            result = true;
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+
+    }
+
+    @Override
+    public long getSaredRepoCount(String webUsername) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM register_star_repo WHERE web_username = :web");
+        query.setString("web",webUsername);
+        List list = query.list();
+        session.close();
+        return Long.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public List<SecRepoEntity> getStaredRepos(String webUsername,int offset, int maxResults) {
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("from SecRepoEntity where (owner, name) in (SELECT repoOwner,repoName FROM RegisterStarRepoEntity WHERE webUsername = :web) ");
+        query.setString("web",webUsername);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxResults);
+        List<SecRepoEntity> list = query.list();
+        session.close();
+        return list;
     }
 
     /**

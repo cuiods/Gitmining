@@ -1,5 +1,6 @@
 package edu.nju.controller;
 
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.model.service.LoginModelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +24,16 @@ public class LoginController {
     @RequestMapping(value = "/register")
     @ResponseBody
     public boolean register(@RequestParam String username, @RequestParam String password,
-                            @RequestParam String email){
-        return loginModelImpl.register(username, password, email);
+                            @RequestParam String email,
+                            HttpSession session){
+        boolean result = loginModelImpl.register(username, password, email);
+        if (result){
+            session.setAttribute("webUsername",username);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
@@ -55,19 +64,18 @@ public class LoginController {
         else return "";
     }
 
-    @RequestMapping(value = "/interest", method = RequestMethod.GET)
-    @ResponseBody
-    public String selectHobby(){
-        //todo
-        return "selectHobby";
-    }
+//    @RequestMapping(value = "/interest", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String selectHobby(){
+//
+//        return "selectHobby";
+//    }
 
-    @RequestMapping(value = "/interest", method = RequestMethod.POST)
+    @RequestMapping(value = "/hobby", method = RequestMethod.POST)
     @ResponseBody
-    public String submitHobby(@RequestParam List list, Model model){
+    public boolean submitHobby(@RequestBody SecRegisterLabelEntity labelEntity){
         //todo set hobby to database
-
-        return "redirect:/repo/home";
+        return loginModelImpl.initHobby(labelEntity);
     }
 
 }

@@ -37,16 +37,6 @@ public class LoginModelImpl implements LoginModelService{
     }
 
     @Override
-    public boolean starRepo(String ownername, String reponame, String webUsername) {
-        return false;
-    }
-
-    @Override
-    public boolean unstarRepo(String ownername, String reponame, String webUsername) {
-        return false;
-    }
-
-    @Override
     public boolean initHobby(SecRegisterLabelEntity labelEntity) {
         return registerDaoImpl.saveOrUpdateRegisterInterest(labelEntity);
     }

@@ -8,6 +8,7 @@ import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.service.HobbyModelService;
 import edu.nju.model.service.LoginModelService;
 import edu.nju.model.service.RepoModelService;
 import edu.nju.model.service.RepoStatsService;
@@ -36,7 +37,7 @@ public class RepoController {
     private RepoStatsService repoStatsImpl;
 
     @Resource
-    private LoginModelService loginModelImpl;
+    private HobbyModelService hobbyModelImpl;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
@@ -60,6 +61,7 @@ public class RepoController {
         return result;
     }
 
+    //todo change total page, remove to a new method
     @RequestMapping(value = "/list")
     @ResponseBody
     public Map list(@RequestParam int pageNum,
@@ -124,7 +126,7 @@ public class RepoController {
         }
         else {
             String webUsername = session.getAttribute("wenUsername").toString();
-            return loginModelImpl.starRepo(ownername,reponame,webUsername);
+            return hobbyModelImpl.starRepo(ownername,reponame,webUsername);
         }
     }
 
@@ -137,7 +139,7 @@ public class RepoController {
         }
         else {
             String webUsername = session.getAttribute("wenUsername").toString();
-            return loginModelImpl.unstarRepo(ownername,reponame,webUsername);
+            return hobbyModelImpl.unstarRepo(ownername,reponame,webUsername);
         }
     }
 
