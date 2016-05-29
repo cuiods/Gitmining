@@ -26,16 +26,18 @@ $(document).ready(function() {
             document.getElementById("bio").innerHTML=data.basicInfo.bio;
             document.getElementById("createTime").innerHTML=data.basicInfo.createAt;
             document.getElementById("updateTime").innerHTML=data.basicInfo.updateAt;
-            //add related repos
-            var relatedRepo = document.getElementById("relatedRepo");
-            $.each(data.relatedRepo,function(){
-                var node = document.createElement("a");
-                relatedRepo.appendChild(node);
-                node.href = "repoDetail.html?repoName="+this.reponame;
-                node.innerHTML = this.ownerName+"/"+this.reponame;
-                $(node).addClass("list-group-item");
+            //add contribute repos
+            
+            var contributeObj = $('#contributeRepo');
+            var contributeLast = contributeObj.find('.new-group-item').eq(0);
+            addRelatedRepo(contributeObj,contributeLast,userName.innerHTML,'contribute');
 
-            });
+            var subscribeObj = $('#subscribeRepo');
+            var subscribeLast = subscribeObj.find('.new-group-item').eq(0);
+            addRelatedRepo(subscribeObj,subscribeLast,userName.innerHTML,'subscribe');
+
+
+            
             //add radar graph
             var radar_user =echarts.init(document.getElementById("userRadar"));
             var lineStyle = {
@@ -103,111 +105,8 @@ $(document).ready(function() {
                     },
                 ]
             };
-            // alert(data.radarChart.field);
-
 
             radar_user.setOption(option);
-
-            
-            //add similar users
-            /*
-            wrap1_div
-                image_div
-                    image
-                wrap2_div
-                    updateLabel
-                    br
-                    name_cherish
-                        name
-                        cherish
-                    clear
-                    attr_div
-                        repo_icon repo_num
-                        following_icon following_num
-                        followed_icon followed_num
-                    br
-                    detail
-                clear
-             */
-            var similarUsers = document.getElementById("similarUsers");
-            $.each(data.relatedUser,function(){
-                var clear = $("<div class=\"clearfix\"> </div>" );
-                var lineChange = $("<br>");
-
-                var wrap1_div = document.createElement("div");
-                wrap1_div.className="recent-posts-info";
-                similarUsers.appendChild(wrap1_div);
-                //header_image
-                var image_div = document.createElement("div");
-                $(image_div).addClass("posts-left");
-                $(image_div).addClass("sngl-img");
-                var image = document.createElement("img");
-                image.src=this.basicInfo.avatarUrl;
-                image_div.appendChild(image);
-                wrap1_div.appendChild(image_div);
-                //
-                var wrap2_div = document.createElement("div");
-                wrap2_div.className="posts-right";
-                wrap1_div.appendChild(wrap2_div);
-
-                var updateLabel = document.createElement("label");
-                updateLabel.innerHTML = this.basicInfo.updateAt;
-                wrap2_div.appendChild(updateLabel);
-                wrap2_div.appendChild(lineChange.clone(true));
-
-                var name_cherish = document.createElement("div");
-                wrap2_div.appendChild(name_cherish);
-                var name = document.createElement("h5");
-                name.style.cssText="float:left;font-size:20px";
-                name.innerHTML = this.basicInfo.login;
-                name_cherish.appendChild(name);
-                var cherish = document.createElement("button");
-                $(cherish).addClass("glyphicon icon-heart-empty icon-large iconStyle");
-                $(cherish).click(function(){
-                    //to do after
-                    
-                    $(cherish).removeClass("icon-heart-empty").addClass("icon-heart");
-
-                })
-                name_cherish.appendChild(cherish);
-                
-                wrap2_div.appendChild(clear.clone(true));
-                
-                var attr_div = document.createElement("div");
-                wrap2_div.appendChild(attr_div);
-
-                var repo_icon = document.createElement("span");
-                $(repo_icon).addClass("glyphicon glyphicon-apple iconStyle");
-                var repo_num = document.createElement("span");
-                repo_num.innerHTML = this.basicInfo.publicRepo;
-                var following_icon = document.createElement("span");
-                $(following_icon).addClass("glyphicon glyphicon-apple iconStyle");
-                var following_num = document.createElement("span");
-                following_num.innerHTML = this.basicInfo.following;
-                var followed_icon = document.createElement("span");
-                $(followed_icon).addClass("glyphicon glyphicon-apple iconStyle");
-                var followed_num = document.createElement("span");
-                followed_num.innerHTML = this.basicInfo.follower;
-
-                attr_div.appendChild(repo_icon);
-                attr_div.appendChild(repo_num);
-                attr_div.appendChild(following_icon);
-                attr_div.appendChild(following_num);
-                attr_div.appendChild(followed_icon);
-                attr_div.appendChild(followed_num);
-
-                wrap2_div.appendChild(lineChange.clone(true));
-
-                var detail = document.createElement("a");
-                $(detail).addClass("btn btn-primary hvr-rectangle-in");
-                detail.href = 'userDetail.html?userName='+name.innerHTML;
-                detail.innerHTML = "Read Detail";
-                wrap2_div.appendChild(detail);
-
-                wrap1_div.appendChild(clear.clone(true));
-
-                
-            });
 
 
         },
@@ -224,6 +123,34 @@ $(document).ready(function() {
 function cherish(){
 
 };
+
+function addRelatedRepo(fatherGrid,lastGrid,userName,relateType){
+    fatherGrid.empty();
+    console.log('/user/'+userName+'/'+relateType);
+    $.ajax({
+        type:'GET',
+        url:'/user/'+userName+'/'+relateType,
+        success:function(repoList){
+            $.each(repoList,function(i,repo){
+                console.log(repo);
+                var tempGrid = lastGrid.clone(true);
+                tempGrid.find('.repo_name').eq(0).text(repo.reponame);
+                tempGrid.find('.repo_description').eq(0).text(repo.description);
+                tempGrid.find('.repo_fork').eq(0).text(repo.numFork);
+                tempGrid.find('.repo_star').eq(0).text(repo.numStar);
+                tempGrid.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.name);
+                fatherGrid.append(tempGrid);
+                fatherGrid.append('<br>')
+            })
+        },
+        error:function(){
+            alert("wrong!");
+        }
+        
+            
+    })
+    
+}
 
 //to get the parameter transfered by url
 function getQueryString(name) {
