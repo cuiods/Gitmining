@@ -1,6 +1,13 @@
+.news-grid{
+    border-width: 1px;
+    border-style: solid;
+    border-color:white ;
+    background: #F7F7F7;
+}
 .news-grids :hover{
     background: lightgoldenrodyellow;
 }
+
 .description{
     word-break:break-all;
     color: #777;

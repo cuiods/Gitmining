@@ -11,6 +11,7 @@
     <script src="../../js/bootstrap.js"></script>
     <script type="text/javascript" src="../../plugin/paginator/js/jqPaginator.js"></script>
 
+    <script type="text/javascript" src="../../plugin/echarts/echarts.min.js"></script>
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
@@ -24,6 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
     <link href="../../css/repo.css" rel="stylesheet" type="text/css">
+    <link href="../../css/repoCompare.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
     <script type="text/javascript" src="../../js/repo-list.js"></script>
@@ -122,7 +124,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!--search labels starts-->
             <div class=" labels center-block visible-lg visible-md">
 
-
                 <div class="radio-toolbar radio-toolbar-language">
                     <input type="radio" id="all" name="radios0" value="true">
                     <label class="label" for="all">all</label>
@@ -164,8 +165,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <!--search labels end-->
 
-            <a href="javascript:void(0)" onclick="compare(this)" class="active" style="display: inline;float: right">
-                COMPARE &nbsp; </a>
+            <button href="javascript:void(0)" onclick="compare()" class="active"  style="display: inline;float: right">
+                COMPARE &nbsp; </button>
 
             <!-- header-section-starts -->
             <ul class="nav nav-tabs " style="margin-top: 1em">
@@ -193,9 +194,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="news-grids" id="news-grids">
             <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
                 <a href="single.html" class="reponame" style="display: inline-block">Integer</a>
-                <p class="description"> ..........</p>
+                <p class="repoDescription"> ..........</p>
                 <div style="display: inline-block; width: 100%">
-                    <span  class="createAt" style="display: inline-block;float: left">8.00 - 10.00 | JUN 09,2014</span>
+                    <span  class="updateAt" style="display: none;float: left">8.00 - 10.00 | JUN 09,2014</span>
                     <input  type="checkbox" class="checkbox" name="compare"  value="fullname" style="display: inline-block;float: right"/>
                 </div>
 
@@ -203,6 +204,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <img src="https://avatars.githubusercontent.com/u/11437641?v=3"
                          class="img-responsive zoom-img ownerAvatarUrl" alt=""  style="width: 70%;height: 70%"/></a>
                 <div class="news-info">
+                    <div style="float: right;">
+                        <a href="javascript:void(0)" class="ownerName" style="display: block;">loading...</a>
+                        <!--<span style=" font-size: 5px;display: block" class="createAt"> 8.00 - 10.00 | JUN 09,2014</span>-->
+                    </div>
                     <div class="numbers">
                         <button class=" glyphicon glyphicon-headphones" style="display: inline-block; background: transparent; border: none;color: purple"/>
                         <span class="numSubscriber">...</span>
@@ -212,8 +217,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span class="numStar">...</span>
                     </div>
                     <div style="float: right;">
-                    <a href="javascript:void(0)" class="ownerName" style="display: block;">loading...</a>
-                    <span style=" font-size: 5px;display: block" class="updateAt"> 8.00 - 10.00 | JUN 09,2014</span>
+                    <!--<a href="javascript:void(0)" class="ownerName" style="display: block;">loading...</a>-->
+                    <span style=" font-size: 5px;display: block" class="createAt"> 8.00 - 10.00 | JUN 09,2014</span>
                     </div>
 
                 </div>
@@ -435,5 +440,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 
+
+
+<div class="modal fade " id="compareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Compare Repos</h4>
+            </div>
+            <div class="modal-body">
+                <table id="compareTable" class="bordered">
+                    <thead>
+
+                    <tr>
+                        <th>reponame</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>size</td>
+                    </tr>
+                    <tr>
+                        <td>description</td>
+                    </tr>
+                    <tr>
+                        <td>language</td>
+                    </tr>
+                    <tr>
+                        <td>createAt</td>
+                    </tr>
+
+                    <tr>
+                        <td>updateAt</td>
+                    </tr>
+                    <tr>
+                        <td>numStar</td>
+                    </tr>
+                    <tr>
+                        <td>numFork</td>
+                    </tr>
+                    <tr>
+                        <td>numWatcher</td>
+                    </tr>
+                </table>
+            </div>
+            <hr>
+            <div >
+                <h4 style="margin-left:15px">Radar Graph</h4>
+                <center>
+                    <div id="compareRadar" style="width: 550px;height:400px;"></div>
+                </center>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--compare modal end-->
 </body>
 </html>

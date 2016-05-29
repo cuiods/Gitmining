@@ -23,7 +23,7 @@ var RepoList = {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
             owner.text (n.ownerName.substr(0,nameLength));
-            owner.attr ('href','/html/html/userDetail.html?ownerName='+n.ownerName);
+            owner.attr ('href','/html/html/userDetail.html?userName='+n.ownerName);
 
             var repo = tempGrid.find('.reponame').eq(0);
             repo.text (n.reponame.substr(0,nameLength));
@@ -35,7 +35,6 @@ var RepoList = {
 
             var description = n.description;
             var line1 = description.substr(0,descriptionLengthEachLine);
-            console.log(description.substr(0,35));
             var line2 = description.substr(descriptionLengthEachLine,descriptionLengthEachLine);
             if(line2.replace(/(^\s*)|(\s*$)/g, "").length==0){
                 description = line1+"<br/><br/>";
@@ -47,7 +46,7 @@ var RepoList = {
             // }else if(description.length<descriptionLengthEachLine){
             //     description = description+"<br><br>";
             // }
-            tempGrid.find('.description').eq(0).html (description);
+            tempGrid.find('.repoDescription').eq(0).html (description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);
 
@@ -65,7 +64,6 @@ var RepoList = {
             }
 
         });
-        console.log(_this.checkboxes);
     },
 
 };
@@ -94,7 +92,96 @@ function jumpPage(pageNum) {
 }
 
 function compare() {
-    console.log(RepoList.checkboxes);
+
+    /**
+     * @param obj
+     * @param legendArea
+     * @param field
+     * @param data
+     * @returns {*}
+     */
+    function drawRadarChart(obj,legendArea,field,data){
+        //radar chart really begins!
+        var radar_compare =echarts.init(obj);
+        var lineStyle = {
+            normal: {
+                width: 1,
+                opacity: 0.5,
+                color:'#F9713C'
+            }
+        }
+        option = {
+            backgroundColor: '#161627',
+            legend:{
+                data: legendArea,
+            },
+            tooltip:{
+
+            },
+            radar:{
+                indicator:[
+                    {name: field[0], max:1},
+                    {name: field[1], max:1},
+                    {name: field[2], max:1},
+                    {name: field[3], max:1},
+                    {name: field[4], max:1}
+
+                ],
+                shape: "circle",
+                splitNumber:5,
+                name:{
+                    textStyle:{
+                        color:'rgb(238,197,102)'
+                    }
+                },
+                splitLine:{
+                    lineStyle:{
+                        color:[
+                            'rgba(238, 197, 102, 0.1)', 'rgba(238, 197, 102, 0.2)',
+                            'rgba(238, 197, 102, 0.4)', 'rgba(238, 197, 102, 0.6)',
+                            'rgba(238, 197, 102, 0.8)', 'rgba(238, 197, 102, 1)'
+                        ].reverse()
+                    }
+                },
+                splitArea:{
+                    show:false
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:'rgba(238,197,102,0.5)'
+                    }
+                }
+            },
+            series:[
+                {
+                    name: 'userRadar',
+                    type: 'radar',
+                    lineStyle: lineStyle,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    data: data,
+                    symbol: 'none',
+                    // itemStyle: {
+                    //     normal: {
+                    //         color: '#F9713C'
+                    //     }
+                    // },
+                    // areaStyle: {
+                    //     normal: {
+                    //         opacity: 0.3
+                    //     }
+                    // }
+                },
+            ]
+        };
+
+        radar_compare.hideLoading();
+        radar_compare.setOption(option);
+        return radar_compare;
+
+        //radar chart ends!
+    }
+
+    //find the checked boxes, saved in selected array
     var selected = new Array();
     for(var index in RepoList.checkboxes){
        var item = RepoList.checkboxes[index];
@@ -102,8 +189,54 @@ function compare() {
            selected.push(item.attr("name"));
        }
     }
+    function jsonToArray(object) {
+        var result = new Array(object.length)
+        result[0] = object.reponame
+        result[1] = object.size
+        result[2] = object.description
+        result[3] = object.language
+        result[4] = object.createAt
+        result[5] = object.updateAt
+        result[6] = object.numStar
+        result[7] = object.numFork
+        result[8] = object.numWatcher
+        return result;
+    };
+    var field = null;
+    var compList = new Array();
+    var compInfo = new Array();
+    $.each(selected,function (i,repoFullName) {
+        var url = "/repo/"+repoFullName;
+        $.ajax({url:url,async:false,success:function (info) {
+            field = info.radarChart.field;
+            compList.push(repoFullName);
+            compInfo.push(
 
-    window.open('/html/compare/compare-repos?'+selected.join("/"));
+                {   name: repoFullName,
+                    value:info.radarChart.value,
+                }
+
+            );
+            addColCommon($('#compareTable tr'),jsonToArray(info.basicInfo));
+        }});
+    });
+    var obj = document.getElementById('compareRadar');
+    
+    drawRadarChart(obj,compList,field,compInfo);
+    $('#compareModal').modal();
+}
+
+
+function addColCommon(obj,dataList){
+    obj.each(function(j,attr){
+        var trHtml = $(this).html();
+        if(j==0){
+            trHtml += '<th class="newCol">'+dataList[j]+'</th>'
+        }else {
+            trHtml += '<td class="newCol">'+dataList[j]+'</td>';
+        }
+        $(this).html(trHtml);
+    });
 }
 
 function search(page) {
