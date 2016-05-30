@@ -149,6 +149,12 @@
           <version>2.7.4</version>
       </dependency>
 
+      <dependency>
+          <groupId>com.squareup.okhttp3</groupId>
+          <artifactId>okhttp</artifactId>
+          <version>3.3.1</version>
+      </dependency>
+
       <!-- jackson end -->
 
       <dependency>

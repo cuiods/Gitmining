@@ -90,7 +90,7 @@ public class RepoModelImplTest {
 
     @Test
     public void getCommitByContributor() throws Exception {
-        Map<String,CommitChart> map = repoModelImpl.getCommitByContributor("jquery","jquery");
+        Map<String,CommitChart> map = repoModelImpl.getCommitByContributor("defunkt","starling");
         assertNotNull(map.get("all"));
         System.out.println("all contributor's commit : "+map.get("all").getValue().length);
     }

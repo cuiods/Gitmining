@@ -81,6 +81,66 @@ public class RepoControllerTest {
     }
 
     @Test
+    public void list() throws Exception {
+
+    }
+
+    @Test
+    public void getRepoInfo() throws Exception {
+
+    }
+
+    @Test
+    public void star() throws Exception {
+
+    }
+
+    @Test
+    public void unStar() throws Exception {
+
+    }
+
+    @Test
+    public void getRepoCommitByContributor() throws Exception {
+
+    }
+
+    @Test
+    public void getRepoCodeFrequency() throws Exception {
+
+    }
+
+    @Test
+    public void getRepoCommitByTime() throws Exception {
+
+    }
+
+    @Test
+    public void statRepoCreateTime() throws Exception {
+
+    }
+
+    @Test
+    public void statRepoSize() throws Exception {
+
+    }
+
+    @Test
+    public void statRepoLanguage() throws Exception {
+
+    }
+
+    @Test
+    public void statRepoStar() throws Exception {
+
+    }
+
+    @Test
+    public void statRepoFork() throws Exception {
+
+    }
+
+    @Test
     public void getSearchResult() throws Exception {
         String keyword = "rubinius";
         String sortType = "star";
