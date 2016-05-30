@@ -354,12 +354,11 @@ function setCodeFrequency(params) {
 }
 
 function punchCard(params) {
-    var url_codeFrequency = "/repo/"+params+"/graph/punch_card";
+    var url_punchCard = "/repo/"+params+"/graph/punch_card";
     var node = document.getElementById("punchCard");
     var chart = echarts.init(node);
     chart.showLoading();
-   $.get(url_codeFrequency,function (punchCard) {
-
+   $.get(url_punchCard,function (punchCard) {
         var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
             '7a', '8a', '9a','10a','11a',
             '12p', '1p', '2p', '3p', '4p', '5p',

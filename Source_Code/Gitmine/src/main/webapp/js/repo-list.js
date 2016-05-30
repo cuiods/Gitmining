@@ -68,21 +68,6 @@ var RepoList = {
 
 };
 
-$(document).ready(
-    function () {
-        RepoList.init();
-        
-        
-        $.jqPaginator('#paginator', {
-            totalPages: 100,
-            visiblePages: 10,
-            currentPage: 1,
-            onPageChange: function (num, type) {
-                jumpPage(num);
-            }
-        });
-    }
-);
 
 function jumpPage(pageNum) {
     var url = location_port+'/repo/list'+"?pageNum="+pageNum;
@@ -91,96 +76,121 @@ function jumpPage(pageNum) {
     });
 }
 
-function compare() {
-
-    /**
-     * @param obj
-     * @param legendArea
-     * @param field
-     * @param data
-     * @returns {*}
-     */
-    function drawRadarChart(obj,legendArea,field,data){
-        //radar chart really begins!
-        var radar_compare =echarts.init(obj);
-        var lineStyle = {
-            normal: {
-                width: 1,
-                opacity: 0.5,
-                color:'#F9713C'
-            }
+/**
+ * @param obj
+ * @param legendArea
+ * @param field
+ * @param data
+ * @returns {*}
+ */
+function drawRadarChart(obj,legendArea,field,data){
+    //radar chart really begins!
+    var radar_compare =echarts.init(obj);
+    var lineStyle = {
+        normal: {
+            width: 1,
+            opacity: 0.5,
+            color:'#F9713C'
         }
-        option = {
-            backgroundColor: '#161627',
-            legend:{
-                data: legendArea,
-            },
-            tooltip:{
+    }
+    option = {
+        backgroundColor: '#161627',
+        legend:{
+            data: legendArea,
+        },
+        tooltip:{
 
-            },
-            radar:{
-                indicator:[
-                    {name: field[0], max:1},
-                    {name: field[1], max:1},
-                    {name: field[2], max:1},
-                    {name: field[3], max:1},
-                    {name: field[4], max:1}
+        },
+        radar:{
+            indicator:[
+                {name: field[0], max:1},
+                {name: field[1], max:1},
+                {name: field[2], max:1},
+                {name: field[3], max:1},
+                {name: field[4], max:1}
 
-                ],
-                shape: "circle",
-                splitNumber:5,
-                name:{
-                    textStyle:{
-                        color:'rgb(238,197,102)'
-                    }
-                },
-                splitLine:{
-                    lineStyle:{
-                        color:[
-                            'rgba(238, 197, 102, 0.1)', 'rgba(238, 197, 102, 0.2)',
-                            'rgba(238, 197, 102, 0.4)', 'rgba(238, 197, 102, 0.6)',
-                            'rgba(238, 197, 102, 0.8)', 'rgba(238, 197, 102, 1)'
-                        ].reverse()
-                    }
-                },
-                splitArea:{
-                    show:false
-                },
-                axisLine:{
-                    lineStyle:{
-                        color:'rgba(238,197,102,0.5)'
-                    }
+            ],
+            shape: "circle",
+            splitNumber:5,
+            name:{
+                textStyle:{
+                    color:'rgb(238,197,102)'
                 }
             },
-            series:[
-                {
-                    name: 'userRadar',
-                    type: 'radar',
-                    lineStyle: lineStyle,
-                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    data: data,
-                    symbol: 'none',
-                    // itemStyle: {
-                    //     normal: {
-                    //         color: '#F9713C'
-                    //     }
-                    // },
-                    // areaStyle: {
-                    //     normal: {
-                    //         opacity: 0.3
-                    //     }
-                    // }
-                },
-            ]
-        };
+            splitLine:{
+                lineStyle:{
+                    color:[
+                        'rgba(238, 197, 102, 0.1)', 'rgba(238, 197, 102, 0.2)',
+                        'rgba(238, 197, 102, 0.4)', 'rgba(238, 197, 102, 0.6)',
+                        'rgba(238, 197, 102, 0.8)', 'rgba(238, 197, 102, 1)'
+                    ].reverse()
+                }
+            },
+            splitArea:{
+                show:false
+            },
+            axisLine:{
+                lineStyle:{
+                    color:'rgba(238,197,102,0.5)'
+                }
+            }
+        },
+        series:[
+            {
+                name: 'userRadar',
+                type: 'radar',
+                lineStyle: lineStyle,
+                itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: data,
+                symbol: 'none',
+                // itemStyle: {
+                //     normal: {
+                //         color: '#F9713C'
+                //     }
+                // },
+                // areaStyle: {
+                //     normal: {
+                //         opacity: 0.3
+                //     }
+                // }
+            },
+        ]
+    };
 
-        radar_compare.hideLoading();
-        radar_compare.setOption(option);
-        return radar_compare;
+    radar_compare.hideLoading();
+    radar_compare.setOption(option);
+    return radar_compare;
 
-        //radar chart ends!
-    }
+    //radar chart ends!
+}
 
+function jsonToArray(object) {
+    var result = new Array(object.length)
+    result[0] = object.reponame
+    result[1] = object.size
+    result[2] = object.description
+    result[3] = object.language
+    result[4] = object.createAt
+    result[5] = object.updateAt
+    result[6] = object.numStar
+    result[7] = object.numFork
+    result[8] = object.numWatcher
+    return result;
+};
+
+
+var CoapareTable = {
+    init: function () {
+        this.compareTableFather = $("#compareTableFather");
+        this.compareTableBodeReserve = $(".compareTable").clone(true);
+    },
+    reInit: function () {
+        this.compareTableFather.empty();
+        this.compareTableFather.append(this.compareTableBodeReserve.clone(true));
+    },
+};
+
+function compare() {
     //find the checked boxes, saved in selected array
     var selected = new Array();
     for(var index in RepoList.checkboxes){
@@ -189,39 +199,24 @@ function compare() {
            selected.push(item.attr("name"));
        }
     }
-    function jsonToArray(object) {
-        var result = new Array(object.length)
-        result[0] = object.reponame
-        result[1] = object.size
-        result[2] = object.description
-        result[3] = object.language
-        result[4] = object.createAt
-        result[5] = object.updateAt
-        result[6] = object.numStar
-        result[7] = object.numFork
-        result[8] = object.numWatcher
-        return result;
-    };
     var field = null;
     var compList = new Array();
     var compInfo = new Array();
+    CoapareTable.reInit();
     $.each(selected,function (i,repoFullName) {
         var url = "/repo/"+repoFullName;
         $.ajax({url:url,async:false,success:function (info) {
             field = info.radarChart.field;
             compList.push(repoFullName);
-            compInfo.push(
-
-                {   name: repoFullName,
+            compInfo.push({
+                name: repoFullName,
                     value:info.radarChart.value,
-                }
-
+            }
             );
-            addColCommon($('#compareTable tr'),jsonToArray(info.basicInfo));
+            addColCommon($('.compareTable tr'),jsonToArray(info.basicInfo));
         }});
     });
     var obj = document.getElementById('compareRadar');
-    
     drawRadarChart(obj,compList,field,compInfo);
     $('#compareModal').modal();
 }
@@ -375,3 +370,19 @@ function generateFilterList() {
         document.write(label);
     }
 }
+
+
+$(document).ready(
+    function () {
+        RepoList.init();
+        CoapareTable.init();
+        $.jqPaginator('#paginator', {
+            totalPages: 100,
+            visiblePages: 10,
+            currentPage: 1,
+            onPageChange: function (num, type) {
+                jumpPage(num);
+            }
+        });
+    }
+);
