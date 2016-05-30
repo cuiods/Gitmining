@@ -1276,6 +1276,28 @@ a.list-group-item:hover, a.list-group-item:focus {
   color: #F4F1F1 !important;
   background-color: rgba(158, 147, 107, 1) !important;
 }
+
+.list-group-item:hover, .list-group-item:focus {
+	text-decoration-color: #F4F1F1 !important;
+	color: #F4F1F1 !important;
+	background-color: rgba(158, 147, 107, 1) !important;
+}
+.new-group-item{
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	margin-bottom: -1px;
+	color:#F4F1F1 !important;
+	background-color: rgba(158, 147, 107, 1) !important;
+	border: 1px solid #ddd;
+}
+
+a.new-group-item:hover,a.new-group-item:focus{
+	color: #F4F1F1 !important;
+	background-color: rgba(158, 147, 107, 1) !important;
+}
+
+
 .posts-left{
   float: left;
   margin-right: 14px;

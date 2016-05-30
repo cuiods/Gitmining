@@ -2,7 +2,10 @@ package edu.nju.dao.service;
 
 import edu.nju.entity.RegisterLabel;
 import edu.nju.entity.SecRegisterLabelEntity;
+import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.TblRegister;
+
+import java.util.List;
 
 /**
  * login and register
@@ -55,4 +58,36 @@ public interface RegisterDaoService {
      *      is succeed.
      */
     public boolean saveOrUpdateRegisterInterest(SecRegisterLabelEntity registerLabel);
+
+    /**
+     * star for a repo
+     * @param webUsername
+     * @param ownername
+     * @param reponame
+     * @return
+     */
+    public boolean starRepo(String webUsername, String ownername, String reponame);
+
+    /**
+     * unstar for a repo
+     * @param webUsername
+     * @param ownername
+     * @param reponame
+     * @return
+     */
+    public boolean unstarRepo(String webUsername, String ownername, String reponame);
+
+    /**
+     * get the repos stared by the user before
+     * @param webUsername
+     * @return
+     */
+    public List<SecRepoEntity> getStaredRepos(String webUsername, int offset, int maxResults);
+
+    /**
+     * get the count of a web user stared repos
+     * @param webUsername
+     * @return
+     */
+    public long getSaredRepoCount(String webUsername);
 }

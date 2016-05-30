@@ -19,8 +19,4 @@ public interface LoginModelService {
      */
     public boolean initHobby(SecRegisterLabelEntity labelEntity);
 
-    public boolean starRepo(String ownername,String reponame,String webUsername);
-
-    public boolean unstarRepo(String ownername, String reponame,String webUsername);
-
 }
