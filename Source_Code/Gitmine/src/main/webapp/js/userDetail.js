@@ -140,7 +140,7 @@ function addRelatedRepo(fatherGrid,lastGrid,userName,relateType){
                 tempGrid.find('.repo_star').eq(0).text(repo.numStar);
                 tempGrid.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.name);
                 fatherGrid.append(tempGrid);
-                fatherGrid.append('<br>')
+                fatherGrid.append('<br>');
             })
         },
         error:function(){

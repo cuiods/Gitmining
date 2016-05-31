@@ -87,6 +87,8 @@ function sort(obj){
         originCheck.attr("ischecked" ,"false");
         obj.attr("ischecked" , "true");
     }
+    // alert("what is wrong");
+
     search();
 }
 
@@ -109,6 +111,7 @@ function findCheckedSortType() {
 
 function search(){
     var keyword = $('#keyword').val();
+    console.log($('#keyword').val());
     var sortElement= findCheckedSortType();
     var sortBy = sortElement.attr("sortType");
     var isReverse = sortElement.attr("isReverse");
@@ -123,6 +126,7 @@ function search(){
             pageNum:page,
         },
         success:function(searchList){
+
             UserList.updateData(searchList);
             $.jqPaginator('#pagination1', {
                 totalPages: 100,
