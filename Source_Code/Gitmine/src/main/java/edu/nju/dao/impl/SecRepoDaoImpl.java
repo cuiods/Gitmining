@@ -3,10 +3,8 @@ package edu.nju.dao.impl;
 import edu.nju.common.SortType;
 import edu.nju.dao.service.SecRepoDaoService;
 import edu.nju.entity.SecRepoEntity;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import edu.nju.entity.SecRepoLabelEntity;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -183,8 +181,70 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     public List<SecRepoEntity> getRelatedRepo(String ownername, String reponame) {
         //todo
         Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+            SQLQuery query1 = session.createSQLQuery("SELECT id FROM sec_repo WHERE owner = :own AND name = :nam");
+            query1.setString("own",ownername);
+            query1.setString("nam",reponame);
+            long id = Long.valueOf(query1.list().get(0).toString());
+            Query query2 = session.createQuery("from SecRepoLabelEntity where repoId = :id");
+            query2.setLong("id",id);
+            SecRepoLabelEntity label = (SecRepoLabelEntity) query2.list().get(0);
+            SQLQuery query3 = session.createSQLQuery("SELECT repo_id FROM sec_repo_label WHERE repo_id <> ? ORDER BY " +
+                    "(node_js*?+javascript*?+library*?+ruby*?+web*?+api*?+vim*?+plugin*?+rust*?+app*?+client*?+server*?" +
+                    "+json*?+framework*?+python*?+browser*?+rails*?+css*?+android*?+jquery*?+html*?+test*?+php*?+command*?" +
+                    "+tool*?+demo*?+wrapper*?+ios*?+linux*?+windows*?+os_x*?+django*?+google*?+generator*?+docker*?+image*?+template*?) DESC ");
+            query3.setLong(1,id);
+            query3.setInteger(2,label.getNodeJs());
+            query3.setInteger(3,label.getJavascript());
+            query3.setInteger(4,label.getLibrary());
+            query3.setInteger(5,label.getRuby());
+            query3.setInteger(6,label.getWeb());
+            query3.setInteger(7,label.getApi());
+            query3.setInteger(8,label.getVim());
+            query3.setInteger(9,label.getPlugin());
+            query3.setInteger(10,label.getRust());
+            query3.setInteger(11,label.getApp());
+            query3.setInteger(12,label.getClient());
+            query3.setInteger(13,label.getServer());
+            query3.setInteger(14,label.getJson());
+            query3.setInteger(15,label.getFramework());
+            query3.setInteger(16,label.getPython());
+            query3.setInteger(17,label.getBrowser());
+            query3.setInteger(18,label.getRails());
+            query3.setInteger(19,label.getCss());
+            query3.setInteger(20,label.getAndroid());
+            query3.setInteger(21,label.getJquery());
+            query3.setInteger(22,label.getHtml());
+            query3.setInteger(23,label.getTest());
+            query3.setInteger(24,label.getPhp());
+            query3.setInteger(25,label.getCommand());
+            query3.setInteger(26,label.getTool());
+            query3.setInteger(27,label.getDemo());
+            query3.setInteger(28,label.getWrapper());
+            query3.setInteger(29,label.getIos());
+            query3.setInteger(30,label.getLinux());
+            query3.setInteger(31,label.getWindows());
+            query3.setInteger(32,label.getOsX());
+            query3.setInteger(33,label.getDjango());
+            query3.setInteger(34,label.getGoogle());
+            query3.setInteger(35,label.getGenerator());
+            query3.setInteger(36,label.getDocker());
+            query3.setInteger(37,label.getImage());
+            query3.setInteger(38,label.getTemplate());
 
-        session.close();
+            query3.setMaxResults(5);
+            List<Long> id_list = query3.list();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
         return null;
     }
 

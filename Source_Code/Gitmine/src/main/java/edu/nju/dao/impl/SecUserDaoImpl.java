@@ -55,25 +55,25 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<SecUserEntity> getSearchResult(String keyword, SortType sortType, boolean isDesc, int offset, int maxNum) {
         Session session = sessionFactory.openSession();
-        String hql = "from SecUserEntity where login like :k1 or name like :k2 order by :o1 ";
+        String hql = "from SecUserEntity where login like :k1 or name like :k2 order by ";
+        if (sortType!=null){
+            switch (sortType){
+                case User_Follored:hql+="followers ";break;
+                case User_Folloring:hql+="following ";break;
+                case User_Repos:hql+="publicRepos ";break;
+                case User_Update:hql+="updateAt ";break;
+                default:hql+="login ";
+            }
+        }
+        else {
+            hql+="login ";
+        }
         if (isDesc){
             hql+="desc";
         }
         Query query = session.createQuery(hql);
         query.setString("k1","%"+keyword+"%");
         query.setString("k2","%"+keyword+"%");
-        if (sortType!=null){
-            switch (sortType){
-                case User_Follored:query.setString("o1","followers");break;
-                case User_Folloring:query.setString("o1","following");break;
-                case User_Repos:query.setString("o1", "publicRepos");break;
-                case User_Update:query.setString("o1","updateAt");break;
-                default:query.setString("o1","login");
-            }
-        }
-        else {
-            query.setString("o1","login");
-        }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
         List<SecUserEntity> list = query.list();
