@@ -11,7 +11,7 @@ var json  =   [
                 "depends" : [
                     "db_table_15",
                     "db_table_14",
-                    "db_table_1"
+                    "db_table_1",
                 ]
             }, {
                 "type"    : "view",
@@ -656,7 +656,7 @@ var json  =   [
                 ]
             }
         ];
-var data   = new Array();;
+var data   = new Array();
 var errors = new Array();
 
 for(index in json){

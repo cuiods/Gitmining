@@ -4,10 +4,7 @@ import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblUser;
-import edu.nju.model.pojo.RadarChart;
-import edu.nju.model.pojo.RepoVO;
-import edu.nju.model.pojo.SimpleChart;
-import edu.nju.model.pojo.UserVO;
+import edu.nju.model.pojo.*;
 import edu.nju.model.service.UserModelService;
 import edu.nju.model.service.UserStatsService;
 import org.springframework.stereotype.Controller;
@@ -125,6 +122,12 @@ public class UserController {
     public List getUserSubscribe(@PathVariable("username") String username,
                                  @RequestParam(required = false,defaultValue = "5")int maxResults){
         return userModelImpl.getSubscribeRepo(username,maxResults);
+    }
+
+    @RequestMapping(value = "/{username:.+}/relationGraph")
+    @ResponseBody
+    public List<RelationVO> getRelationGraph(@PathVariable("username") String username){
+        return userModelImpl.getRelationGraph(username);
     }
 
     @RequestMapping(value = "/statistic/type")

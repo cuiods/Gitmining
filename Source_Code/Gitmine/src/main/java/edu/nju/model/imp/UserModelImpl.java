@@ -11,6 +11,7 @@ import edu.nju.entity.SecUserEntity;
 import edu.nju.entity.TblRepo;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.*;
+import edu.nju.model.service.RelationsModelService;
 import edu.nju.model.service.UserModelService;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,9 @@ public class UserModelImpl implements UserModelService {
 
     @Resource
     private UserRadarImpl userRadar;
+
+    @Resource
+    private RelationsModelService relationsModelService;
 
     public UserModelImpl() {
     }
@@ -134,4 +138,7 @@ public class UserModelImpl implements UserModelService {
         return userRadar.getUserRadar(username);
     }
 
+    public List<RelationVO> getRelationGraph(String username){
+        return relationsModelService.getRelationsByUser(username);
+    }
 }

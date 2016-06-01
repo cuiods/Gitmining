@@ -84,4 +84,11 @@ public interface UserModelService {
      */
     public RadarChart getUserRadarChart(String username);
 
+    /**
+     * get the repos and users which shared some project.
+     * @param username
+     * @return
+     */
+    public List<RelationVO> getRelationGraph( String username);
+
 }
