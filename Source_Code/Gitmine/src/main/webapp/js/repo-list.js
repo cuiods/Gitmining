@@ -363,6 +363,15 @@ function generateFilterList() {
         "ui",
         "dataBase"
     );
+    generateLabels(list);
+}
+
+function generateYears() {
+    var list = new Array(
+    );
+    generateLabels(list);
+}
+function generateLabels() {
     for(var i in list){
         var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\"radios0\" value=\"false\">";
         var label = " <label class=\"label\" for=\"" +list[i] + "\">" +list[i] + "</label>";
