@@ -3,7 +3,8 @@ var interestLabel = {
 	management:0, linux:0, windows:0, interFace:0, os:0, server:0, tool:0,
 	plugin:0,   json:0,  tempLate:0, library:0, ui:0, dataBase:0
 };
-var labelFather = $('.radio-toolbar');
+// var labelFather = $('#interestLabel');
+
 
 
 $(function(){
@@ -164,7 +165,29 @@ $(document).ready(function() {
 	//for interest labels
 	initInterestLabel();
 	
-	// $('#finishInterest').click(finishChosen(interestLabel));
+	$('#finishInterest').click(function(){
+		// var checkList = $('#interestLabel').find('.checkLabel');
+		var i=0;
+		$.each(interestLabel,function(key,value){
+			var checkbox = $('#interestLabel').find('.checkLabel').eq(i);
+			i++;
+			if(checkbox.is(":checked")){
+				interestLabel[key] = 1;
+			}
+		});
+
+		var hobby = $.toJSON(interestLabel);
+		console.log(hobby);
+		$.ajax({
+			type:'GET',
+			url:'/hobby',
+			data: hobby,
+			error:function(){
+				alert("failed!");
+			}
+		})
+
+	});
 
 });
 
@@ -174,36 +197,20 @@ $(document).ready(function() {
 
 function initInterestLabel(){
 	var i=0;
-	console.log(labelFather.attr("isMe"));
+
 	$.each(interestLabel,function(key,value){
 
-		interestLabel[i] = 0;i++;
+		interestLabel[key] = 0;
+		// console.log(interestLabel[key]);
 
 		var check = "<input type=\"checkbox\" id=\"" +key+ "\" class=\"checkLabel\" value=\"false\">";
 		var label = "<label class=\"label\" for=\"" +key + "\">" +key + "</label>";
 
-		// console.log(check);
-		// console.log(label);
+		$("#interestLabel").append(check);
+		$("#interestLabel").append(label);
 
 
-		labelFather.append(check);
-		labelFather.append(label);
-
-		if(i==19)
-			console.log(labelFather.find('.checkLabel').length);
-		// console.log("anythingWrong?");
 	})
 };
 
-function finishChosen(interestLabel){
-	var checkList = labelFather.find('.checkLabel');
-	$.each(checkList,function(i,check_i){
-		var checkbox = labelFather.find('.checkLabel').eq(i);
-		if(checkbox.is(":checked")){
-			console.log(interestLabel[i]);
-			interestLabel[i] = 1;
-		}
-	});
-	
-}
 
