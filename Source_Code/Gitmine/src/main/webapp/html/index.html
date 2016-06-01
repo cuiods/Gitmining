@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>Home</title>
-<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="../css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="../css/registerLabel.css">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.js"></script>
@@ -345,7 +346,70 @@
 			<!--注册end-->
 		</div>
 	</div>
-	<!-- footer-section -->
+
+	<!-- interestModal -->
+
+	<div class="modal fade" id="interestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Please Check on Your Interest</h4>
+				</div>
+				<div class="modal-body">
+					<div class="radio-toolbar radio-toolbar-filter">
+						<input type="checkbox" id="check1" name="check1" value="false" >
+						<label class="label " for="check1" >web</label>
+						<input type="checkbox" id="check2" name="check2" value="false" >
+						<label class="label" for="check2">app</label>
+						<input type="checkbox" id="check3" name="check3" value="false" >
+						<label class="label" for="check3">api</label>
+						<input type="checkbox" id="check4" name="radios1" value="false" >
+						<label class="label" for="check4">framework</label>
+						<input type="checkbox" id="check5" name="radios1" value="false" >
+						<label class="label" for="check5">cms</label>
+						<input type="checkbox" id="check6" name="radios1" value="false" >
+						<label class="label" for="check6">django</label>
+						<input type="checkbox"  name="check1" value="false" >
+						<label class="label " for="check1" >web</label>
+						<input type="checkbox"  name="check2" value="false" >
+						<label class="label" for="check2">app</label>
+						<input type="checkbox"  name="check3" value="false" >
+						<label class="label" for="check3">api</label>
+						<input type="checkbox"  name="radios1" value="false" >
+						<label class="label" for="check4">framework</label>
+						<input type="checkbox"  name="radios1" value="false" >
+						<label class="label" for="check5">cms</label>
+						<input type="checkbox"  name="radios1" value="false" >
+						<label class="label" for="check6">django</label>
+						<input type="checkbox"  name="check1" value="false" >
+						<label class="label " for="check1" >web</label>
+						<input type="checkbox"  name="check2" value="false" >
+						<label class="label" for="check2">app</label>
+						<input type="checkbox"  name="check3" value="false" >
+						<label class="label" for="check3">api</label>
+						<input type="checkbox"  name="radios1" value="false" >
+						<label class="label" for="check4">framework</label>
+						<input type="checkbox"  name="radios1" value="false" >
+						<label class="label" for="check5">cms</label>
+						<input type="checkbox"  name="radios1" value="false" >
+						<label class="label" for="check6">django</label>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" style="color:#fff">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--interestModal ends-->
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 				/*

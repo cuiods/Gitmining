@@ -64,6 +64,7 @@ $(document).ready(function() {
 		success:function (result) {
 			if (result.length>2) {
 				$("#login-href").html(result);
+				$('#login-href').attr('href','#interestModal');
 			}
 		}
 	});
