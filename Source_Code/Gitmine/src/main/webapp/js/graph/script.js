@@ -656,34 +656,36 @@ var json  =   [
                 ]
             }
         ];
-var data   = new Array();
+var data   = new Array();;
 var errors = new Array();
 
-$.each(json,function (i,obj) {
-    data[obj['name']] = obj;
-});
+for(index in json){
+    var temp = json[index]['name'];
+    data[temp] = json[index];
+}
+for (index in data){
+    var obj = data[index];
+    obj['dependedOnBy'] = new Array();
+}
+for(index in data){
 
-$.each(data,function (i,obj) {
-    obj['dependedOnBy'] = array();
-});
-
-$.each(data,function (i,obj) {
-    $.each(obj,function (i,name) {
+    var obj = data[index];
+    var depends = obj['depends'];
+    for(key in depends){
+        var name = depends[key];
         if(data['name']){
             data[name]['dependedOnBy'].push(obj['name']);
-            console.log(data[name]['dependedOnBy']);
-            console.log(obj['name']);
         }else{
-            error.push(
-                "Unrecognized dependency: '$obj[name]' depends on '$name'"
-            );
-        }
-    })
-});
+            errors.push("Unrecognized dependency: '$obj[name]' depends on '$name'");
+        };
+    }
+};
 
-$.each(data,function (i,obj) {
-    obj['docs'] = "=--------=";
-})
+for (key in data){
+    var obj = data[key];
+    obj['docs'] = "<p>just for show</p>";
+}
+
 
 
 $(function() {
@@ -691,7 +693,7 @@ $(function() {
 
     isIE = $.browser.msie;
 
-    graph.data = data.data;
+    graph.data = data;
     drawGraph();
     //
     // d3.json(config.jsonUrl, function(data) {
@@ -735,10 +737,13 @@ function drawGraph() {
         .css('height', config.graph.height + 'px');
     graph.width  = $('#graph').width()  - graph.margin.left - graph.margin.right;
     graph.height = $('#graph').height() - graph.margin.top  - graph.margin.bottom;
+
+
     $('#graph').css('display', display);
 
     for (var name in graph.data) {
         var obj = graph.data[name];
+        console.log(obj);
         obj.positionConstraints = [];
         obj.linkStrength        = 1;
 
