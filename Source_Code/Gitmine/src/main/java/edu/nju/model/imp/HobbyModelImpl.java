@@ -4,8 +4,9 @@ import edu.nju.common.Const;
 import edu.nju.common.VOConvertor;
 import edu.nju.dao.service.RegisterDaoService;
 import edu.nju.entity.SecRepoEntity;
-import edu.nju.model.pojo.RepoVO;
+import edu.nju.entity.SecUserEntity;
 import edu.nju.model.pojo.SimpleRepoVO;
+import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.HobbyModelService;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,7 @@ public class HobbyModelImpl implements HobbyModelService {
 
     @Override
     public boolean unstarRepo(String ownername, String reponame, String webUsername) {
-        boolean result = registerDaoService.unstarRepo(webUsername,ownername,reponame);
+        boolean result = registerDaoService.unStarRepo(webUsername,ownername,reponame);
         if (result){
             //todo change register label value in database
         }
@@ -44,8 +45,38 @@ public class HobbyModelImpl implements HobbyModelService {
     }
 
     @Override
-    public int getTotalStarPage(String webUsername) {
-        long cnt = registerDaoService.getSaredRepoCount(webUsername);
+    public int getTotalRepoStarPage(String webUsername) {
+        long cnt = registerDaoService.getStaredRepoCount(webUsername);
+        int page = (int)cnt/Const.ITEMS_PER_PAGE;
+        if (cnt%Const.ITEMS_PER_PAGE > 0){
+            page ++;
+        }
+        return page;
+    }
+
+    @Override
+    public boolean starUser(String username, String webUsername) {
+        return registerDaoService.starUser(username,webUsername);
+    }
+
+    @Override
+    public boolean unStarUser(String username, String webUsername) {
+        return registerDaoService.unStarUser(username,webUsername);
+    }
+
+    @Override
+    public List<UserVO> getStaredUsers(String webUsername, int page) {
+        List<SecUserEntity> list = registerDaoService.getStaredUsers(webUsername,(page-1)* Const.ITEMS_PER_PAGE,Const.ITEMS_PER_PAGE);
+        List<UserVO> vos = new ArrayList<>();
+        for (SecUserEntity userEntity: list){
+            vos.add(voConvertor.convert(userEntity));
+        }
+        return vos;
+    }
+
+    @Override
+    public int getTotalUserStarPage(String webUsername) {
+        long cnt = registerDaoService.getStaredUserCount(webUsername);
         int page = (int)cnt/Const.ITEMS_PER_PAGE;
         if (cnt%Const.ITEMS_PER_PAGE > 0){
             page ++;

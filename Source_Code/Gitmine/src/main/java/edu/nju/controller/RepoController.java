@@ -8,6 +8,7 @@ import edu.nju.entity.TblRepo;
 import edu.nju.model.pojo.RadarChart;
 import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleChart;
+import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.service.HobbyModelService;
 import edu.nju.model.service.LoginModelService;
 import edu.nju.model.service.RepoModelService;
@@ -107,7 +108,7 @@ public class RepoController {
     public Map<String, Object> getRepoInfo(@PathVariable String ownername, @PathVariable String reponame) {
         RepoVO basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
         RadarChart radarChart = repoModelImpl.getRepoRadarChart(ownername, reponame);
-        List<RepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
+        List<SimpleRepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
 
         Map<String, Object> repoDetailInfo = new HashMap<>();
         repoDetailInfo.put("basicInfo", basicInfo);

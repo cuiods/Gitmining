@@ -1,9 +1,6 @@
 package edu.nju.dao.service;
 
-import edu.nju.entity.RegisterLabel;
-import edu.nju.entity.SecRegisterLabelEntity;
-import edu.nju.entity.SecRepoEntity;
-import edu.nju.entity.TblRegister;
+import edu.nju.entity.*;
 
 import java.util.List;
 
@@ -75,7 +72,7 @@ public interface RegisterDaoService {
      * @param reponame
      * @return
      */
-    public boolean unstarRepo(String webUsername, String ownername, String reponame);
+    public boolean unStarRepo(String webUsername, String ownername, String reponame);
 
     /**
      * get the repos stared by the user before
@@ -89,5 +86,13 @@ public interface RegisterDaoService {
      * @param webUsername
      * @return
      */
-    public long getSaredRepoCount(String webUsername);
+    public long getStaredRepoCount(String webUsername);
+
+    public boolean starUser(String username, String webUsername);
+
+    public boolean unStarUser(String useraname, String webUsername);
+
+    public List<SecUserEntity> getStaredUsers(String webUsername, int offset, int maxResults);
+
+    public long getStaredUserCount(String webUsername);
 }

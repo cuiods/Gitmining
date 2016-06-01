@@ -170,4 +170,24 @@ public class SecRepoDaoImplTest {
         assertTrue(cnt>0);
     }
 
+    @Test
+    public void getSearchCount() throws Exception {
+
+    }
+
+    @Test
+    public void getTotalCount() throws Exception {
+
+    }
+
+    @Test
+    public void getRelatedRepo() throws Exception {
+        List list = repoDao.getRelatedRepo("mrdoob","three.js");
+    }
+
+    @Test
+    public void getRecommendRepo() throws Exception {
+
+    }
+
 }

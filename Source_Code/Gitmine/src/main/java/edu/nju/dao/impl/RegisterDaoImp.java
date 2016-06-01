@@ -1,10 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.dao.service.RegisterDaoService;
-import edu.nju.entity.RegisterStarRepoEntity;
-import edu.nju.entity.SecRegisterLabelEntity;
-import edu.nju.entity.SecRepoEntity;
-import edu.nju.entity.TblRegister;
+import edu.nju.entity.*;
 import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
@@ -86,7 +83,7 @@ public class RegisterDaoImp implements RegisterDaoService {
     }
 
     @Override
-    public boolean unstarRepo(String webUsername, String ownername, String reponame) {
+    public boolean unStarRepo(String webUsername, String ownername, String reponame) {
         Session session = sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery("DELETE FROM register_star_repo WHERE web_username = :web AND repo_owner = :owner AND repo_name = :rname");
         query.setString("web",webUsername);
@@ -106,7 +103,65 @@ public class RegisterDaoImp implements RegisterDaoService {
     }
 
     @Override
-    public long getSaredRepoCount(String webUsername) {
+    public boolean starUser(String username, String webUsername) {
+        Session session =sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("INSERT INTO register_star_user (web_username, username) VALUES (:web, :uname)");
+        query.setString("web",webUsername);
+        query.setString("uname",username);
+        boolean result = false;
+        try{
+            query.executeUpdate();
+            result = true;
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public boolean unStarUser(String useraname, String webUsername) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("DELETE FROM register_star_user WHERE web_username = :web AND username = :uname");
+        query.setString("web",webUsername);
+        query.setString("uname",useraname);
+        boolean result = false;
+        try{
+            query.executeUpdate();
+            result = true;
+        } catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public List<SecUserEntity> getStaredUsers(String webUsername, int offset, int maxResults) {
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("from SecUserEntity where name in (SELECT username FROM RegisterStarUserEntity WHERE webUsername = :web) ");
+        query.setString("web",webUsername);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxResults);
+        List<SecUserEntity> list = query.list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public long getStaredUserCount(String webUsername) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM register_star_user WHERE web_username = :web");
+        query.setString("web",webUsername);
+        List list = query.list();
+        session.close();
+        return Long.valueOf(list.get(0).toString());
+    }
+
+    @Override
+    public long getStaredRepoCount(String webUsername) {
         Session session = sessionFactory.openSession();
         SQLQuery query = session.createSQLQuery("SELECT count(*) FROM register_star_repo WHERE web_username = :web");
         query.setString("web",webUsername);

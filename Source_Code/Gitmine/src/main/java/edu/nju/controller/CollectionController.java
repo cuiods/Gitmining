@@ -1,6 +1,7 @@
 package edu.nju.controller;
 
 import edu.nju.model.pojo.SimpleRepoVO;
+import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.HobbyModelService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,18 @@ public class CollectionController {
         else {
             String webUsername = session.getAttribute("webUsername").toString();
             return hobbyModelService.getStaredRepos(webUsername,page);
+        }
+    }
+
+    @RequestMapping(value = "/users")
+    @ResponseBody
+    public List<UserVO> getFavoriteUsers(@RequestParam(required = false,defaultValue = "1") int page, HttpSession session){
+        if (session.getAttribute("webUsername") == null){
+            return new ArrayList<UserVO>();
+        }
+        else {
+            String webUsername = session.getAttribute("webUsername").toString();
+            return hobbyModelService.getStaredUsers(webUsername,page);
         }
     }
 }
