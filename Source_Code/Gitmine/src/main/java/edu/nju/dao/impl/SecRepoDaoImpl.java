@@ -8,6 +8,8 @@ import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -182,6 +184,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         //todo
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
+        List<SecRepoEntity> repoEntityList = new ArrayList<>();
         try{
             transaction = session.beginTransaction();
             SQLQuery query1 = session.createSQLQuery("SELECT id FROM sec_repo WHERE owner = :own AND name = :nam");
@@ -191,51 +194,68 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             Query query2 = session.createQuery("from SecRepoLabelEntity where repoId = :id");
             query2.setLong("id",id);
             SecRepoLabelEntity label = (SecRepoLabelEntity) query2.list().get(0);
-            SQLQuery query3 = session.createSQLQuery("SELECT repo_id FROM sec_repo_label WHERE repo_id <> ? ORDER BY " +
-                    "(node_js*?+javascript*?+library*?+ruby*?+web*?+api*?+vim*?+plugin*?+rust*?+app*?+client*?+server*?" +
-                    "+json*?+framework*?+python*?+browser*?+rails*?+css*?+android*?+jquery*?+html*?+test*?+php*?+command*?" +
-                    "+tool*?+demo*?+wrapper*?+ios*?+linux*?+windows*?+os_x*?+django*?+google*?+generator*?+docker*?+image*?+template*?) DESC ");
-            query3.setLong(1,id);
-            query3.setInteger(2,label.getNodeJs());
-            query3.setInteger(3,label.getJavascript());
-            query3.setInteger(4,label.getLibrary());
-            query3.setInteger(5,label.getRuby());
-            query3.setInteger(6,label.getWeb());
-            query3.setInteger(7,label.getApi());
-            query3.setInteger(8,label.getVim());
-            query3.setInteger(9,label.getPlugin());
-            query3.setInteger(10,label.getRust());
-            query3.setInteger(11,label.getApp());
-            query3.setInteger(12,label.getClient());
-            query3.setInteger(13,label.getServer());
-            query3.setInteger(14,label.getJson());
-            query3.setInteger(15,label.getFramework());
-            query3.setInteger(16,label.getPython());
-            query3.setInteger(17,label.getBrowser());
-            query3.setInteger(18,label.getRails());
-            query3.setInteger(19,label.getCss());
-            query3.setInteger(20,label.getAndroid());
-            query3.setInteger(21,label.getJquery());
-            query3.setInteger(22,label.getHtml());
-            query3.setInteger(23,label.getTest());
-            query3.setInteger(24,label.getPhp());
-            query3.setInteger(25,label.getCommand());
-            query3.setInteger(26,label.getTool());
-            query3.setInteger(27,label.getDemo());
-            query3.setInteger(28,label.getWrapper());
-            query3.setInteger(29,label.getIos());
-            query3.setInteger(30,label.getLinux());
-            query3.setInteger(31,label.getWindows());
-            query3.setInteger(32,label.getOsX());
-            query3.setInteger(33,label.getDjango());
-            query3.setInteger(34,label.getGoogle());
-            query3.setInteger(35,label.getGenerator());
-            query3.setInteger(36,label.getDocker());
-            query3.setInteger(37,label.getImage());
-            query3.setInteger(38,label.getTemplate());
+            SQLQuery query3 = session.createSQLQuery("SELECT id,owner,sec_repo.name,html_url,description,sec_repo.size,star_count,watchers_count,sec_repo.language," +
+                    "fork_count,create_at,update_at FROM sec_repo JOIN sec_repo_label ON id = repo_id WHERE repo_id <> :id ORDER BY " +
+                    "(node_js*:nodejs+javascript*:js+library*:li+ruby*:ruby+web*:we+api*:api+vim*:vim+plugin*:plugin+rust*:rust+app*:app+client*:client+server*:server" +
+                    "+json*:json+framework*:frame+python*:py+browser*:browser+rails*:rails+css*:css+android*:android+jquery*:jquery+html*:html+test*:test+php*:php+command*:com" +
+                    "+tool*:tool+demo*:demo+wrapper*:wrapper+ios*:ios+linux*:linux+windows*:win+os_x*:osx+django*:django+google*:google+generator*:gen+docker*:docker+image*:img+template*:tem) DESC ");
+            query3.setLong("id",id);
+            query3.setInteger("nodejs",label.getNodeJs());
+            query3.setInteger("js",label.getJavascript());
+            query3.setInteger("li",label.getLibrary());
+            query3.setInteger("ruby",label.getRuby());
+            query3.setInteger("we",label.getWeb());
+            query3.setInteger("api",label.getApi());
+            query3.setInteger("vim",label.getVim());
+            query3.setInteger("plugin",label.getPlugin());
+            query3.setInteger("rust",label.getRust());
+            query3.setInteger("app",label.getApp());
+            query3.setInteger("client",label.getClient());
+            query3.setInteger("server",label.getServer());
+            query3.setInteger("json",label.getJson());
+            query3.setInteger("frame",label.getFramework());
+            query3.setInteger("py",label.getPython());
+            query3.setInteger("browser",label.getBrowser());
+            query3.setInteger("rails",label.getRails());
+            query3.setInteger("css",label.getCss());
+            query3.setInteger("android",label.getAndroid());
+            query3.setInteger("jquery",label.getJquery());
+            query3.setInteger("html",label.getHtml());
+            query3.setInteger("test",label.getTest());
+            query3.setInteger("php",label.getPhp());
+            query3.setInteger("com",label.getCommand());
+            query3.setInteger("tool",label.getTool());
+            query3.setInteger("demo",label.getDemo());
+            query3.setInteger("wrapper",label.getWrapper());
+            query3.setInteger("ios",label.getIos());
+            query3.setInteger("linux",label.getLinux());
+            query3.setInteger("win",label.getWindows());
+            query3.setInteger("osx",label.getOsX());
+            query3.setInteger("django",label.getDjango());
+            query3.setInteger("google",label.getGoogle());
+            query3.setInteger("gen",label.getGenerator());
+            query3.setInteger("docker",label.getDocker());
+            query3.setInteger("img",label.getImage());
+            query3.setInteger("tem",label.getTemplate());
 
             query3.setMaxResults(5);
-            List<Long> id_list = query3.list();
+            List<Object[]> list = query3.list();
+            for (Object[] item:list){
+                SecRepoEntity entity = new SecRepoEntity();
+                entity.setId(Long.valueOf(item[0].toString()));
+                entity.setOwner(item[1].toString());
+                entity.setName(item[2].toString());
+                entity.setHtmlUrl(item[3].toString());
+                entity.setDescription(item[4].toString());
+                entity.setSize((Integer)item[5]);
+                entity.setStarCount((Integer)item[6]);
+                entity.setWatchersCount((Integer)item[7]);
+                entity.setLanguage(item[8].toString());
+                entity.setForkCount((Integer) item[9]);
+                entity.setCreateAt((Timestamp)item[10]);
+                entity.setUpdateAt((Timestamp)item[11]);
+                repoEntityList.add(entity);
+            }
 
         } catch (Exception e){
             e.printStackTrace();
@@ -245,7 +265,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         } finally {
             session.close();
         }
-        return null;
+        return repoEntityList;
     }
 
     @Override

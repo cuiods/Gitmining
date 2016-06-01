@@ -38,7 +38,7 @@ public interface RepoModelService {
      * @param reponame
      * @return
      */
-    public List<RepoVO> getRelatedRepo(String ownername, String reponame);
+    public List<SimpleRepoVO> getRelatedRepo(String ownername, String reponame);
 
     /**
      * get the user po list in the order specified by parameter <tt>sortType</tt>

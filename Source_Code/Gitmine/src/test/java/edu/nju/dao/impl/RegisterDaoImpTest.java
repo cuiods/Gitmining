@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 @Transactional
 public class RegisterDaoImpTest {
 
+
     @Resource
     private RegisterDaoImp registerDaoImp;
 
@@ -46,7 +47,7 @@ public class RegisterDaoImpTest {
 
     @Test
     public void unstarRepo() throws Exception {
-        assertTrue(registerDaoImp.unstarRepo("harry","mojombo","grit"));
+        assertTrue(registerDaoImp.unStarRepo("harry","mojombo","grit"));
     }
 
     @Test
@@ -72,4 +73,33 @@ public class RegisterDaoImpTest {
 
     }
 
+    @Test
+    public void unStarRepo() throws Exception {
+
+    }
+
+    @Test
+    public void starUser() throws Exception {
+        boolean re = registerDaoImp.starUser("mojombo","harry");
+    }
+
+    @Test
+    public void unStarUser() throws Exception {
+
+    }
+
+    @Test
+    public void getStaredUsers() throws Exception {
+
+    }
+
+    @Test
+    public void getStaredUserCount() throws Exception {
+
+    }
+
+    @Test
+    public void getStaredRepoCount() throws Exception {
+
+    }
 }

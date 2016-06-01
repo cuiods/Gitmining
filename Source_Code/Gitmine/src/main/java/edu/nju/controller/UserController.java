@@ -172,11 +172,4 @@ public class UserController {
         return userStatsImpl.statsUserCompany();
     }
 
-    public UserModelService getUserModelImpl() {
-        return userModelImpl;
-    }
-
-    public void setUserModelImpl(UserModelService userModelImpl) {
-        this.userModelImpl = userModelImpl;
-    }
 }

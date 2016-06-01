@@ -65,10 +65,13 @@ public class RepoModelImpl implements RepoModelService {
         return page;
     }
 
-    public List<RepoVO> getRelatedRepo(String ownername, String reponame) {
-        //todo
-
-        return null;
+    public List<SimpleRepoVO> getRelatedRepo(String ownername, String reponame) {
+        List<SimpleRepoVO> vos = new ArrayList<>();
+        List<SecRepoEntity> entities = repoDaoImpl.getRelatedRepo(ownername,reponame);
+        for (SecRepoEntity entity: entities){
+            vos.add(voConvertor.simpleConvert(entity));
+        }
+        return vos;
     }
 
     @Override
