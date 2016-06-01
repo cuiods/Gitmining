@@ -63,6 +63,8 @@ $(document).ready(
         $('#compareModal').on('hidden.bs.modal',function(){
             $('.newCol').remove();
         });
+
+
         
         
     }
@@ -354,32 +356,41 @@ function drawRadarChart(obj,legendArea,field,data){
 }
 
 
-// function compare(obj){
-//     var gridList = $(".news-grid");
-//     var url = 'userCompare.html?';
-//     var compList = new Array();
-//     $.each(gridList,function(i,grid){
-//         var gridItem = $(".news-grid").eq(i);
-//         var checkbox = gridItem.find('.checkbox').eq(0);
-//         if(checkbox.is(':checked')){
-//             var len = compList.length;
-//             compList[len] = gridItem.find('.userName').eq(0).text();
-//         }
-//     });
-//
-//     var length = compList.length;
-//     if(length <= 1){
-//         alert("Please choose at least two users to compare!")
-//     }else{
-//         $.each(compList,function(j,user){
-//             if(j==(length-1)){
-//                 url += ('user'+j+'='+user);
-//             }else{
-//                 url += ('user'+j+'='+user+'&');
-//             }
-//         })
-//     }
-//
-//     $(obj).attr('href',url);
-// }
+function cherish(obj,fatherType,dataStr){
+    obj = $(obj);
+    var fatherGrid = obj.parents(fatherType).eq(0);
+    var dataObj = fatherGrid.find(dataStr).eq(0);
+    $.ajax({
+        type:'POST',
+        url:'/user/star',
+        data:{userName:dataObj.text()},
+        success:function(){
+            obj.removeClass('icon-heart-empty').addClass('icon-heart');
+            obj.attr('title','click to unCherish');
+            obj.click(function(){
+                unCherish(obj,fatherType,dataStr);
+            })
+        }
+        
+    })
+}
+
+function unCherish(obj,fatherType,dataStr){
+    obj = $(obj);
+    var fatherGrid = obj.parents(fatherType).eq(0);
+    var dataObj = fatherGrid.find(dataStr).eq(0);
+    $.ajax({
+        type:'POST',
+        url:'/user/unStar',
+        data:{userName:dataObj.text()},
+        success:function(){
+            obj.removeClass('icon-heart').addClass('icon-heart-empty');
+            obj.attr('title','click to cherish');
+            obj.click(function(){
+                cherish(obj,fatherType,dataStr);
+            })
+        }
+
+    })
+}
 

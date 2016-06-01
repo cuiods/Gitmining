@@ -145,7 +145,7 @@ $(document).ready(function() {
 	
 	$("#login_btn").click(function () {
 		$.ajax({
-			type:"GET",
+			type:"POST",
 			url:"/login/login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
