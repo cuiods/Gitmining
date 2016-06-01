@@ -1,3 +1,11 @@
+var interestLabel = {
+	web:0, app:0, api:0, framework:0, cms:0, django:0, emacs:0,
+	management:0, linux:0, windows:0, interFace:0, os:0, server:0, tool:0,
+	plugin:0,   json:0,  tempLate:0, library:0, ui:0, dataBase:0
+};
+var labelFather = $('.radio-toolbar');
+
+
 $(function(){
 	
 	$('#switch_qlogin').click(function(){
@@ -152,4 +160,50 @@ $(document).ready(function() {
 		});
 	});
 
+
+	//for interest labels
+	initInterestLabel();
+	
+	// $('#finishInterest').click(finishChosen(interestLabel));
+
 });
+
+//initailize the interest Labels
+
+
+
+function initInterestLabel(){
+	var i=0;
+	console.log(labelFather.attr("isMe"));
+	$.each(interestLabel,function(key,value){
+
+		interestLabel[i] = 0;i++;
+
+		var check = "<input type=\"checkbox\" id=\"" +key+ "\" class=\"checkLabel\" value=\"false\">";
+		var label = "<label class=\"label\" for=\"" +key + "\">" +key + "</label>";
+
+		// console.log(check);
+		// console.log(label);
+
+
+		labelFather.append(check);
+		labelFather.append(label);
+
+		if(i==19)
+			console.log(labelFather.find('.checkLabel').length);
+		// console.log("anythingWrong?");
+	})
+};
+
+function finishChosen(interestLabel){
+	var checkList = labelFather.find('.checkLabel');
+	$.each(checkList,function(i,check_i){
+		var checkbox = labelFather.find('.checkLabel').eq(i);
+		if(checkbox.is(":checked")){
+			console.log(interestLabel[i]);
+			interestLabel[i] = 1;
+		}
+	});
+	
+}
+
