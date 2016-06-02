@@ -107,12 +107,12 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping(value = "/{username:.+}/relatedUser")
-    @ResponseBody
-    public SimpleChart getRelatedUsers(@PathVariable("username") String username,
-                                       @RequestParam(required = false,defaultValue = "30")int limitResulsts){
-        return userModelImpl.getRelatedUser(username, limitResulsts);
-    }
+//    @RequestMapping(value = "/{username:.+}/relatedUser")
+//    @ResponseBody
+//    public SimpleChart getRelatedUsers(@PathVariable("username") String username,
+//                                       @RequestParam(required = false,defaultValue = "30")int limitResulsts){
+//        return userModelImpl.getRelatedUser(username, limitResulsts);
+//    }
 
     @RequestMapping(value = "/{username:.+}/contribute")
     @ResponseBody
@@ -130,8 +130,9 @@ public class UserController {
 
     @RequestMapping(value = "/{username:.+}/relationGraph")
     @ResponseBody
-    public List<RelationVO> getRelationGraph(@PathVariable("username") String username){
-        return userModelImpl.getRelationGraph(username);
+    public List<RelationVO> getRelationGraph(@PathVariable("username") String username,
+                                             @RequestParam(required = false,defaultValue = "10") int maxResults){
+        return userModelImpl.getRelatedUser(username,maxResults);
     }
 
     @RequestMapping(value = "/statistic/type")
