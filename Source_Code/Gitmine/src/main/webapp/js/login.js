@@ -1,7 +1,10 @@
 var interestLabel = {
-	web:0, app:0, api:0, framework:0, cms:0, django:0, emacs:0,
-	management:0, linux:0, windows:0, interFace:0, os:0, server:0, tool:0,
-	plugin:0,   json:0,  tempLate:0, library:0, ui:0, dataBase:0
+	registerLogin:$('#login-href').text(),nodeJs:0, javascript:0, library:0, ruby:0, web:0, api:0, vim:0,
+	plugin:0, rust:0, app:0, client:0, server:0, json:0, framework:0,
+	python:0, browser:0, rails:0, css:0, android:0, jquery:0, html:0,
+	test:0, php:0, command:0, tool:0, demo:0, wrapper:0, ios:0,
+	linux:0, windows:0, osX:0, django:0, google:0, generator:0, docker:0,
+	image:0, template:0
 };
 // var labelFather = $('#interestLabel');
 
@@ -66,13 +69,14 @@ function getParam(pname) {
 var pwdmin = 6;
 
 $(document).ready(function() {
-
 	$.ajax({
 		type:"GET",
 		url:"/login/name",
 		success:function (result) {
 			if (result.length>2) {
 				$("#login-href").html(result);
+				// $("#interestModal").modal();
+				// $('#login-href').attr('href','html/personal.html');
 				$('#login-href').attr('href','#interestModal');
 			}
 		}
@@ -145,7 +149,7 @@ $(document).ready(function() {
 	
 	$("#login_btn").click(function () {
 		$.ajax({
-			type:"POST",
+			type:"GET",
 			url:"/login/login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
@@ -169,19 +173,25 @@ $(document).ready(function() {
 		// var checkList = $('#interestLabel').find('.checkLabel');
 		var i=0;
 		$.each(interestLabel,function(key,value){
-			var checkbox = $('#interestLabel').find('.checkLabel').eq(i);
-			i++;
-			if(checkbox.is(":checked")){
-				interestLabel[key] = 1;
+			if(i==0){
+
+			}else{
+				var checkbox = $('#interestLabel').find('.checkLabel').eq(i-1);
+				if(checkbox.is(":checked")){
+					interestLabel[key] = 1;
+				}
 			}
+			i++;
 		});
 
+		console.log(interestLabel);
 		var hobby = $.toJSON(interestLabel);
 		console.log(hobby);
 		$.ajax({
-			type:'GET',
-			url:'/hobby',
+			type:'POST',
+			url:'/login/hobby',
 			data: hobby,
+			dataType:'json',
 			error:function(){
 				alert("failed!");
 			}
@@ -199,16 +209,21 @@ function initInterestLabel(){
 	var i=0;
 
 	$.each(interestLabel,function(key,value){
+		if(i==0){
+			interestLabel[key] = $('#login-href').text();
+			console.log($('#login-href').text());
+			i++;
+		}else {
+			interestLabel[key] = 0;
+			// console.log(interestLabel[key]);
 
-		interestLabel[key] = 0;
-		// console.log(interestLabel[key]);
+			var check = "<input type=\"checkbox\" id=\"" + key + "\" class=\"checkLabel\" value=\"false\">";
+			var label = "<label class=\"label\" for=\"" + key + "\">" + key + "</label>";
 
-		var check = "<input type=\"checkbox\" id=\"" +key+ "\" class=\"checkLabel\" value=\"false\">";
-		var label = "<label class=\"label\" for=\"" +key + "\">" +key + "</label>";
+			$("#interestLabel").append(check);
+			$("#interestLabel").append(label);
 
-		$("#interestLabel").append(check);
-		$("#interestLabel").append(label);
-
+		}
 
 	})
 };
