@@ -2,6 +2,7 @@ package edu.nju.dao.service;
 
 import edu.nju.common.SortType;
 import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecRepoLabelEntity;
 
 import java.util.List;
 
@@ -41,6 +42,8 @@ public interface SecRepoDaoService {
      * @return
      */
     public List<SecRepoEntity> getRecommendRepo(String register);
+
+    public SecRepoLabelEntity getRepoLabel(String ownername, String reponame);
 
     /**
      * get the max size of all repos

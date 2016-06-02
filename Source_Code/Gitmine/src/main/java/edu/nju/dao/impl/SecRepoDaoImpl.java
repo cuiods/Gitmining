@@ -181,7 +181,6 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
 
     @Override
     public List<SecRepoEntity> getRelatedRepo(String ownername, String reponame) {
-        //todo
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         List<SecRepoEntity> repoEntityList = new ArrayList<>();
@@ -271,6 +270,13 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     @Override
     public List<SecRepoEntity> getRecommendRepo(String register) {
         //todo
+        return null;
+    }
+
+    @Override
+    public SecRepoLabelEntity getRepoLabel(String ownername, String reponame) {
+        Session session = sessionFactory.openSession();
+        //Query query = session.createQuery("from SecRepoLabel")
         return null;
     }
 
