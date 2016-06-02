@@ -73,9 +73,17 @@ public class LoginController {
 
     @RequestMapping(value = "/hobby", method = RequestMethod.POST)
     @ResponseBody
-    public boolean submitHobby(@RequestBody SecRegisterLabelEntity labelEntity){
-        //todo set hobby to database
-        return loginModelImpl.initHobby(labelEntity);
+    public boolean submitHobby(@RequestBody SecRegisterLabelEntity labelEntity,
+                               HttpSession session){
+
+        if (session.getAttribute("webUsername") == null){
+            return  false;
+        }
+        else {
+            String webUsername = session.getAttribute("webUsername").toString();
+            labelEntity.setRegisterLogin(webUsername);
+            return loginModelImpl.initHobby(labelEntity);
+        }
     }
 
 }
