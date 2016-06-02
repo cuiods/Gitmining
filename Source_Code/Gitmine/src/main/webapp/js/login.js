@@ -76,8 +76,8 @@ $(document).ready(function() {
 			if (result.length>2) {
 				$("#login-href").html(result);
 				// $("#interestModal").modal();
-				// $('#login-href').attr('href','html/personal.html');
-				$('#login-href').attr('href','#interestModal');
+				$('#login-href').attr('href','html/html/personal.html');
+				// $('#login-href').attr('href','#interestModal');
 			}
 		}
 	});
@@ -122,8 +122,9 @@ $(document).ready(function() {
 			url: "/login/register",
 			data: { username:$("#user").val(),password:$("#passwd").val(),email:$("#email_input").val()}, <!--要传递的数据--> 			<!--接受数据的格式-->
 			success: function(result) {
-				console.log("succeed! please login again !");
-				location.href = "";
+				alert("succeed! please login again !");
+				console.log("hhhhhh");
+				$('#myModal').modal('hide');
 				$("#interestModal").modal();
 			},
 			error: function () {
@@ -155,6 +156,7 @@ $(document).ready(function() {
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
 				location.href = "";
+
 			},
 			error:function () {
 				alert("error!");
@@ -189,6 +191,7 @@ $(document).ready(function() {
 			url:'/login/hobby',
 			data: hobby,
 			dataType:'json',
+			contentType:'application/json; charset=gbk',
 			error:function(){
 				alert("failed!");
 			}

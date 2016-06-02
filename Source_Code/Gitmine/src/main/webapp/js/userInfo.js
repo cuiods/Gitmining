@@ -357,38 +357,41 @@ function drawRadarChart(obj,legendArea,field,data){
 
 
 function cherish(obj,fatherType,dataStr){
-    obj = $(obj);
-    var fatherGrid = obj.parents(fatherType).eq(0);
+    var objJQ = $(obj);
+    var fatherGrid = objJQ.parents(fatherType).eq(0);
     var dataObj = fatherGrid.find(dataStr).eq(0);
+    // console.log(dataObj.text());
     $.ajax({
         type:'POST',
         url:'/user/star',
-        data:{userName:dataObj.text()},
+        data:{username:dataObj.text()},
         success:function(){
-            obj.removeClass('icon-heart-empty').addClass('icon-heart');
-            obj.attr('title','click to unCherish');
-            obj.click(function(){
+            objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
+            objJQ.attr('title','click to unCherish');
+            objJQ.unbind('click').click(function(){
                 unCherish(obj,fatherType,dataStr);
             })
+            // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
         }
         
     })
 }
 
 function unCherish(obj,fatherType,dataStr){
-    obj = $(obj);
-    var fatherGrid = obj.parents(fatherType).eq(0);
+    var objJQ = $(obj);
+    var fatherGrid = objJQ.parents(fatherType).eq(0);
     var dataObj = fatherGrid.find(dataStr).eq(0);
     $.ajax({
         type:'POST',
         url:'/user/unStar',
-        data:{userName:dataObj.text()},
+        data:{username:dataObj.text()},
         success:function(){
-            obj.removeClass('icon-heart').addClass('icon-heart-empty');
-            obj.attr('title','click to cherish');
-            obj.click(function(){
+            objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
+            objJQ.attr('title','click to cherish');
+            objJQ.unbind('click').click(function(){
                 cherish(obj,fatherType,dataStr);
             })
+            // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
         }
 
     })
