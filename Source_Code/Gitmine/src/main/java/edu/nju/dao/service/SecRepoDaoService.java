@@ -41,7 +41,7 @@ public interface SecRepoDaoService {
      * @param register
      * @return
      */
-    public List<SecRepoEntity> getRecommendRepo(String register);
+    public List<SecRepoEntity> getRecommendRepo(String register,int offset, int maxResults);
 
     public SecRepoLabelEntity getRepoLabel(String ownername, String reponame);
 

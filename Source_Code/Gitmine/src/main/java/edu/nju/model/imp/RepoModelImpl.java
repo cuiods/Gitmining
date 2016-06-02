@@ -35,18 +35,22 @@ public class RepoModelImpl implements RepoModelService {
     @Resource
     private VOConvertor voConvertor;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
-
     public RepoModelImpl() {
     }
 
-    public List<RepoVO> getRecommendRepo(String webUsername) {
-        //todo
-        return null;
+    @Override
+    public List<RepoVO> getRecommendRepo(String webUsername, int offset, int maxResults) {
+        List<SecRepoEntity> repoEntityList = repoDaoImpl.getRecommendRepo(webUsername,offset,maxResults);
+        List<RepoVO> voList = new ArrayList<>();
+        for (SecRepoEntity entity:repoEntityList){
+            voList.add(voConvertor.convert(entity));
+        }
+        return voList;
     }
 
-    public List<RepoVO> getPopularRepo() {
-        List<SecRepoEntity> repoList = repoDaoImpl.getRepos(SortType.Repo_Star, true, 0, 5);
+    @Override
+    public List<RepoVO> getPopularRepo(int offset, int maxResults) {
+        List<SecRepoEntity> repoList = repoDaoImpl.getRepos(SortType.Repo_Star, true, offset, maxResults);
         List<RepoVO> voList = new ArrayList<>();
         for (SecRepoEntity repo: repoList){
             RepoVO vo = voConvertor.convert(repo);

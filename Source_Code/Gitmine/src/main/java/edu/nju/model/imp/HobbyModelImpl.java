@@ -32,15 +32,17 @@ public class HobbyModelImpl implements HobbyModelService {
     @Resource
     private VOConvertor voConvertor;
 
+    @Resource
+    private LabelCalculator calculator;
+
     @Override
     public boolean starRepo(String ownername, String reponame, String webUsername) {
         boolean result = registerDaoService.starRepo(webUsername,ownername,reponame);
         if (result){
-            //todo change register label value in database
             SecRepoLabelEntity repoLabelEntity = repoDaoService.getRepoLabel(ownername,reponame);
             SecRegisterLabelEntity registerLabelEntity = registerDaoService.getRegisterInterest(webUsername);
             if (repoLabelEntity != null){
-
+                registerDaoService.saveOrUpdateRegisterInterest(calculator.starRepoCompute(registerLabelEntity,repoLabelEntity));
             }
         }
         return result;
@@ -50,7 +52,11 @@ public class HobbyModelImpl implements HobbyModelService {
     public boolean unstarRepo(String ownername, String reponame, String webUsername) {
         boolean result = registerDaoService.unStarRepo(webUsername,ownername,reponame);
         if (result){
-            //todo change register label value in database
+            SecRepoLabelEntity repoLabelEntity = repoDaoService.getRepoLabel(ownername,reponame);
+            SecRegisterLabelEntity registerLabelEntity = registerDaoService.getRegisterInterest(webUsername);
+            if (repoLabelEntity != null){
+                registerDaoService.saveOrUpdateRegisterInterest(calculator.unstarRepoCompute(registerLabelEntity,repoLabelEntity));
+            }
         }
         return result;
     }

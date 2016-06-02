@@ -45,7 +45,7 @@ public class SecUserDaoImplTest {
 
     @Test
     public void getRelatedUser() throws Exception {
-        List<Object[]> users = userDao.getRelatedUser("mojombo");
+        List<Object[]> users = userDao.getRelatedUser("mojombo",10);
         for (Object[] item:users){
             System.out.println(item[0]+"-------->"+item[1]);
         }
