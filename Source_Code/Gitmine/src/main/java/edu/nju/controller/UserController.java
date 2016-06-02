@@ -5,6 +5,7 @@ import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.*;
+import edu.nju.model.service.HobbyModelService;
 import edu.nju.model.service.UserModelService;
 import edu.nju.model.service.UserStatsService;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Resource
     private UserStatsService userStatsImpl;
+
+    @Resource
+    private HobbyModelService hobbyModelImpl;
 
     public UserController() {
     }
@@ -171,12 +175,27 @@ public class UserController {
     public SimpleChart statUserCompany(){
         return userStatsImpl.statsUserCompany();
     }
-
-    public UserModelService getUserModelImpl() {
-        return userModelImpl;
+    @RequestMapping(value = "/star")
+    @ResponseBody
+    public boolean starUser(@RequestParam String username, HttpSession session){
+        if (session.getAttribute("webUsername") == null){
+            return false;
+        }
+        else {
+            String webUsername = session.getAttribute("webUsername").toString();
+            return hobbyModelImpl.starUser(username,webUsername);
+        }
     }
 
-    public void setUserModelImpl(UserModelService userModelImpl) {
-        this.userModelImpl = userModelImpl;
+    @RequestMapping(value = "/unstar")
+    @ResponseBody
+    public boolean unstarUser(@RequestParam String username, HttpSession session){
+        if (session.getAttribute("webUsername") == null){
+            return false;
+        }
+        else {
+            String webUsername = session.getAttribute("webUsername").toString();
+            return hobbyModelImpl.unStarUser(username,webUsername);
+        }
     }
 }
