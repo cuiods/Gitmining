@@ -77,7 +77,7 @@ public class RepoModelImplTest {
 
     @Test
     public void getRepoBasicInfo() throws Exception {
-        RepoVO vo = repoModelImpl.getRepoBasicInfo("klen",".vim");
+        RepoVO vo = repoModelImpl.getRepoBasicInfo("mojombo","grit");
         assertNotNull(vo);
     }
 
