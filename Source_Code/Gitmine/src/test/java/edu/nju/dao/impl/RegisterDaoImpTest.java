@@ -90,7 +90,7 @@ public class RegisterDaoImpTest {
 
     @Test
     public void getStaredUsers() throws Exception {
-
+        registerDaoImp.getStaredUsers("harry",0,10);
     }
 
     @Test
