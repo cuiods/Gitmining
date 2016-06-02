@@ -118,8 +118,9 @@ $(document).ready(function() {
 			url: "/login/register",
 			data: { username:$("#user").val(),password:$("#passwd").val(),email:$("#email_input").val()}, <!--要传递的数据--> 			<!--接受数据的格式-->
 			success: function(result) {
-				alert("succeed! please login again !");
+				console.log("succeed! please login again !");
 				location.href = "";
+				$("#interestModal").modal();
 			},
 			error: function () {
 				alert("unknown error.");
@@ -149,11 +150,7 @@ $(document).ready(function() {
 			url:"/login/login",
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
-				if (result.length>0) {
-					location.href = "";
-				} else {
-					alert("name or password error!");
-				}
+				location.href = "";
 			},
 			error:function () {
 				alert("error!");
