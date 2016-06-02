@@ -11,9 +11,17 @@ public class RelationVO {
     private String name;
     private List<String> depends;
 
+
+
     public static final String REPO = "repo";
     public static final String USER = "user";
 
+    /**
+     * @param group
+     * @param type
+     * @param name
+     * @param depends
+     */
     public RelationVO(String group, String type, String name, List<String> depends) {
         this.group = group;
         this.type = type;

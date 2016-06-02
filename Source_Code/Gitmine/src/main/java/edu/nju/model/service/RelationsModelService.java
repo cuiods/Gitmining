@@ -13,7 +13,7 @@ public interface RelationsModelService {
      * @param username
      * @return
      */
-    public List<RelationVO> getRelationsByUser(String username);
+    public List<RelationVO> getRelationsByUser(final String username);
 
     /**
      *  get the repos and users having relations with  {ownername}/{reponame}
@@ -21,5 +21,5 @@ public interface RelationsModelService {
      * @param reponame
      * @return
      */
-    public List<RelationVO> getRelationsByRepo(String ownername, String reponame);
+    public List<RelationVO> getRelationsByRepo(final String ownername,final String reponame);
 }
