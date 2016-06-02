@@ -169,9 +169,10 @@ public class SecUserDaoImpl implements SecUserDaoService {
     }
 
     @Override
-    public List<Object[]> getRelatedUser(String username, int limitResults) {
+    public List<Object[]> getRelatedUser(String username,int limitResults) {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT contributor, count(*) AS num FROM sec_contributor t1 RIGHT JOIN (SELECT t2.repo_owner, t2.repo_name FROM sec_contributor t2 WHERE t2.contributor = :param1) AS t3 ON t3.repo_owner = t1.repo_owner AND t3.repo_name = t1.repo_name WHERE t1.contributor <> :param2 GROUP BY contributor ORDER BY num DESC");
+        //SQLQuery query = session.createSQLQuery("SELECT contributor, count(*) AS num FROM sec_contributor t1 RIGHT JOIN (SELECT t2.repo_owner, t2.repo_name FROM sec_contributor t2 WHERE t2.contributor = :param1) AS t3 ON t3.repo_owner = t1.repo_owner AND t3.repo_name = t1.repo_name WHERE contributor <> :param2 GROUP BY contributor ORDER BY num DESC");
+        SQLQuery query = session.createSQLQuery("SELECT contributor, group_concat(concat(t3.repo_owner,'/',t3.repo_name) ) FROM sec_contributor t1 RIGHT JOIN (SELECT t2.repo_owner, t2.repo_name FROM sec_contributor t2 WHERE t2.contributor = :param1) AS t3 ON t3.repo_owner = t1.repo_owner AND t3.repo_name = t1.repo_name WHERE contributor <> :param2 GROUP BY contributor ORDER BY count(*) DESC ");
         query.setString("param1",username);
         query.setString("param2",username);
         query.setMaxResults(limitResults);

@@ -46,16 +46,26 @@ public class UserModelImpl implements UserModelService {
         return null;
     }
 
-    public SimpleChart getRelatedUser(String username, int limitResults) {
+    public List<RelationVO> getRelatedUser(String username, int limitResults) {
         List<Object[]> list = userDao.getRelatedUser(username,limitResults);
-        String [] field = new String[list.size()];
-        long [] value = new long[list.size()];
-        for (int i = 0; i<list.size();i++){
-            Object[] item = list.get(i);
-            field[i] = item[0].toString();
-            value[i] = Long.valueOf(item[1].toString());
+        List<RelationVO> relationVOList = new ArrayList<>();
+        RelationVO root = new RelationVO(username,"user",username,new ArrayList<>());
+        relationVOList.add(root);
+        List<String> userDepends = new ArrayList<>();
+        userDepends.add(username);
+        for (Object[] item:list){
+            String group = item[0].toString();
+            String [] repos = item[1].toString().split(",");
+
+            List<String> repoDepends = new ArrayList<>();
+            repoDepends.add(group);
+            relationVOList.add(new RelationVO(group,"user",group,userDepends));
+            for (String repo: repos){
+                relationVOList.add(new RelationVO(group,"repo",repo,repoDepends));
+            }
         }
-        return new SimpleChart(field,value);
+
+        return relationVOList;
     }
 
     @Override
@@ -138,7 +148,4 @@ public class UserModelImpl implements UserModelService {
         return userRadar.getUserRadar(username);
     }
 
-    public List<RelationVO> getRelationGraph(String username){
-        return relationsModelService.getRelationsByUser(username);
-    }
 }

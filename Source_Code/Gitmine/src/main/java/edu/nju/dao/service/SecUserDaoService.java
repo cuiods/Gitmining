@@ -71,7 +71,6 @@ public interface SecUserDaoService {
     /**
      * get the users that have contributed to the same repo with the given user
      * @param username
-     * @param limitResults
      * @return
      */
     public List<Object[]> getRelatedUser(String username, int limitResults);

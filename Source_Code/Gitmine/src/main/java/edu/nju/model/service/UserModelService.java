@@ -24,7 +24,7 @@ public interface UserModelService {
      * @param username
      * @return
      */
-    public SimpleChart getRelatedUser(String username, int limitResults);
+    public List<RelationVO> getRelatedUser(String username, int limitResults);
 
     /**
      * get the contribute repositories for the given user
@@ -83,12 +83,5 @@ public interface UserModelService {
      * @return
      */
     public RadarChart getUserRadarChart(String username);
-
-    /**
-     * get the repos and users which shared some project.
-     * @param username
-     * @return
-     */
-    public List<RelationVO> getRelationGraph( String username);
 
 }

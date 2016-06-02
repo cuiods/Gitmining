@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -43,7 +45,10 @@ public class SecUserDaoImplTest {
 
     @Test
     public void getRelatedUser() throws Exception {
-        userDao.getRelatedUser("mojombo",30);
+        List<Object[]> users = userDao.getRelatedUser("mojombo");
+        for (Object[] item:users){
+            System.out.println(item[0]+"-------->"+item[1]);
+        }
     }
 
     @Test

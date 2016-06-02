@@ -3,7 +3,10 @@ package edu.nju.model.imp;
 import edu.nju.common.Const;
 import edu.nju.common.VOConvertor;
 import edu.nju.dao.service.RegisterDaoService;
+import edu.nju.dao.service.SecRepoDaoService;
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecRepoLabelEntity;
 import edu.nju.entity.SecUserEntity;
 import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
@@ -24,6 +27,9 @@ public class HobbyModelImpl implements HobbyModelService {
     private RegisterDaoService registerDaoService;
 
     @Resource
+    private SecRepoDaoService repoDaoService;
+
+    @Resource
     private VOConvertor voConvertor;
 
     @Override
@@ -31,6 +37,11 @@ public class HobbyModelImpl implements HobbyModelService {
         boolean result = registerDaoService.starRepo(webUsername,ownername,reponame);
         if (result){
             //todo change register label value in database
+            SecRepoLabelEntity repoLabelEntity = repoDaoService.getRepoLabel(ownername,reponame);
+            SecRegisterLabelEntity registerLabelEntity = registerDaoService.getRegisterInterest(webUsername);
+            if (repoLabelEntity != null){
+
+            }
         }
         return result;
     }
