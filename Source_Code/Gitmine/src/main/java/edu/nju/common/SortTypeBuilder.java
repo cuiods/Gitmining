@@ -14,6 +14,7 @@ public class SortTypeBuilder {
             case "repo_update": sortType = SortType.Repo_Update;break;
             case "repo_watcher": sortType = SortType.Repo_Watch;break;
             case "repo_name": sortType = SortType.Repo_Name;break;
+            case "hobby_match": sortType = SortType.Hobby_Match;break;
             case "user_followed": sortType = SortType.User_Follored;break;
             case "user_following": sortType = SortType.User_Folloring;break;
             case "user_ownrepos": sortType = SortType.User_Repos;break;

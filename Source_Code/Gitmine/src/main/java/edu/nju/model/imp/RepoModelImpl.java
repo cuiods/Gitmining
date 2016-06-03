@@ -90,7 +90,8 @@ public class RepoModelImpl implements RepoModelService {
     }
 
     public List<RepoVO> getSearchResult(String keyword, String sortType, String filterType,
-                                         String language, String createYear, int pageNum, boolean reverse) {
+                                         String language, String createYear, int pageNum,
+                                        boolean reverse, String webUsername) {
 
         if (filterType.toLowerCase().equals("all")){
             filterType = null;
@@ -105,10 +106,15 @@ public class RepoModelImpl implements RepoModelService {
             offset = 0;
         }
         int maxNum = Const.ITEMS_PER_PAGE;
-
         SortType sort = SortTypeBuilder.getSortType(sortType);
-        List<SecRepoEntity> list = repoDaoImpl.getSearchResult(keyword, offset, maxNum, sort, reverse, filterType,
-                language, createYear);
+        List<SecRepoEntity> list;
+        if ((sort == SortType.Hobby_Match)&&(webUsername !=null)&&(!webUsername.isEmpty())){
+            list = repoDaoImpl.searchWithLogin(webUsername,keyword,offset,maxNum,filterType,language,createYear);
+        }
+        else {
+            list = repoDaoImpl.getSearchResult(keyword, offset, maxNum, sort, reverse, filterType,
+                    language, createYear);
+        }
 
         List<RepoVO> voList = new ArrayList<>();
 

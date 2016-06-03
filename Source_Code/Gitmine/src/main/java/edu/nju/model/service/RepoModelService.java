@@ -61,7 +61,8 @@ public interface RepoModelService {
      * @return
      */
     public List<RepoVO> getSearchResult(String keyword, String sortType, String filterType,
-                                         String language, String createYear, int pageNum, boolean reverse);
+                                         String language, String createYear, int pageNum,
+                                        boolean reverse, String webUsername);
 
     /**
      * get the total page of the search result

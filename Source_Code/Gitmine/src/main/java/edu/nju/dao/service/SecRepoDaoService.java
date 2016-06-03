@@ -16,6 +16,20 @@ public interface SecRepoDaoService {
                                                boolean isDesc, String filterType, String language,
                                                String createYear);
 
+    /**
+     * this method user contextual search to match user's hobby
+     * @param webUsername
+     * @param keyword
+     * @param offset
+     * @param maxResult
+     * @param filter
+     * @param language
+     * @param createYear
+     * @return
+     */
+    public List<SecRepoEntity> searchWithLogin(String webUsername,String keyword,int offset,int maxResult,String filter,
+                                               String language,String createYear);
+
     public long getSearchCount(String keyword, String filterType, String language, String createYear);
 
     public List<SecRepoEntity> getRepos(SortType sortType, boolean isDesc, int offset, int maxNum);

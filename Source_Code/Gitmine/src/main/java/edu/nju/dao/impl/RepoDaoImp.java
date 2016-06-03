@@ -55,8 +55,6 @@ public class RepoDaoImp implements RepoDaoService{
         switch (type) {
             case Repo_Star:hql+="order by numStar ";break;
             case Repo_Fork:hql+="order by numFork ";break;
-            case Repo_Subcri:hql+="order by numSubscriber ";break;
-            case Repo_Contri:hql+="order by numContributor ";break;
             case Repo_Update:hql+="order by updateAt ";break;
             default:hql+="order by name ";break;
         }
@@ -151,8 +149,6 @@ public class RepoDaoImp implements RepoDaoService{
         switch (sortType) {
             case Repo_Star:query = session.createQuery("from TblRepo order by numStar "+order);break;
             case Repo_Fork:query = session.createQuery("from TblRepo order by numFork "+order);break;
-            case Repo_Subcri:query = session.createQuery("from TblRepo order by numSubscriber "+order);break;
-            case Repo_Contri:query = session.createQuery("from TblRepo order by numContributor "+order);break;
             case Repo_Update:query = session.createQuery("from TblRepo order by updateAt "+order);break;
             default:query = session.createQuery("from TblRepo order by name "+order);break;
         }
