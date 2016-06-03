@@ -11,4 +11,5 @@ public interface RepoPopuModelService {
     Map<String, List> statStarRelation();
     Map<String, List> statStarRelation(int max);
     Map<String, List> statLanguageRate();
+    List<List> statLanguageYearRate();
 }

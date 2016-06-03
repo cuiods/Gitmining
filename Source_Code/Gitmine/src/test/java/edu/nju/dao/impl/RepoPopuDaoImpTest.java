@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 @Transactional
 public class RepoPopuDaoImpTest {
+
     @Resource
     private RepoPopuDaoImp repoPopuImp;
     @Test
@@ -43,6 +44,14 @@ public class RepoPopuDaoImpTest {
         List<List> lists = repoPopuImp.statLanguageRate();
         for (List list: lists) {
             System.out.println(list.get(0)+"----"+list.get(1));
+        }
+    }
+
+    @Test
+    public void statLanguageYearRate() throws Exception {
+        List<List> lists = repoPopuImp.statLanguageYearRate();
+        for (int i = 0; i < lists.size(); i++) {
+            System.out.println("----"+lists.get(i));
         }
     }
 

@@ -170,4 +170,128 @@ $(document).ready(function () {
             popu_lanrate.setOption(option);
         }
     });
+
+    var language_yearRate = echarts.init(document.getElementById('gra-popularity-rateyear'));
+    language_yearRate.showLoading();
+    $.ajax({
+        type: "GET",
+        url:"/popularity/languageYearRate",
+        success:function (yeardata) {
+            option = {
+                title: {
+                    text: 'Number of repositories created each year',
+                    x: 'center'
+                },
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:yeardata[0]
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis : [
+                    {
+                        type : 'category',
+                        boundaryGap : false,
+                        data : ['2008','2009','2010','2011','2012','2013','2014','2015','2016']
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        name: yeardata[0][0],
+                        type:'line',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        areaStyle: {normal: {}},
+                        data:yeardata[1]
+                    },
+                    {
+                        name:yeardata[0][1],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[2]
+                    },
+                    {
+                        name:yeardata[0][2],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[3]
+                    },
+                    {
+                        name:yeardata[0][3],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[4]
+                    },
+                    {
+                        name:yeardata[0][4],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[5]
+                    },
+                    {
+                        name:yeardata[0][5],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[6]
+                    },
+                    {
+                        name:yeardata[0][6],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[7]
+                    },
+                    {
+                        name:yeardata[0][7],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[8]
+                    },
+                    {
+                        name:yeardata[0][8],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[9]
+                    },
+                    {
+                        name:yeardata[0][9],
+                        type:'line',
+                        stack: '总量',
+                        areaStyle: {normal: {}},
+                        data:yeardata[10]
+                    }
+                ]
+            };
+            language_yearRate.hideLoading();
+            language_yearRate.setOption(option);
+        }
+    });
 });

@@ -33,4 +33,10 @@ public interface RepoPopuService {
      *  <li>rate: rate of each language</li>
      */
     List<List> statLanguageRate();
+
+    /**
+     * stat rate of each language of repositories created each year
+     * @return
+     */
+    List<List> statLanguageYearRate();
 }

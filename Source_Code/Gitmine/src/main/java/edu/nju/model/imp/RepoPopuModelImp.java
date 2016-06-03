@@ -64,4 +64,9 @@ public class RepoPopuModelImp implements RepoPopuModelService {
         map.put("count",count);
         return map;
     }
+
+    @Override
+    public List<List> statLanguageYearRate() {
+        return repoPopuImp.statLanguageYearRate();
+    }
 }

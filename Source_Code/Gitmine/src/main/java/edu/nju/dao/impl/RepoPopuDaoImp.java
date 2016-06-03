@@ -69,4 +69,25 @@ public class RepoPopuDaoImp implements RepoPopuService {
         List<List> lists = query.list();
         return lists;
     }
+
+    /**
+     * stat rate of each language of repositories created each year
+     *
+     * @return
+     */
+    @Override
+    public List<List> statLanguageYearRate() {
+        List<List> data = new ArrayList<>(11);
+        Session session = sessionFactory.openSession();
+        Query query1 = session.createQuery("select language from SecRepoEntity where language!='' group by language order by count(*) desc ");
+        query1.setMaxResults(10);
+        List<String> languages = query1.list();
+        data.add(languages);
+        Query query2 = session.createSQLQuery("select count(*) from sec_repo as repo where repo.language=:lan and YEAR(repo.create_at) > 2007 GROUP BY YEAR(repo.create_at)");
+        for (int i = 0; i < languages.size(); i++) {
+            query2.setString("lan",languages.get(i));
+            data.add(query2.list());
+        }
+        return data;
+    }
 }
