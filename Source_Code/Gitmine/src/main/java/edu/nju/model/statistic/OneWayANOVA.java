@@ -1,6 +1,5 @@
 package edu.nju.model.statistic;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -14,35 +13,35 @@ public class OneWayANOVA {
     /**
      * correction term
      */
-    private BigDecimal C = BigDecimal.ZERO;
+    private double C = 0;
     /**
      * total sum of squares
      */
-    private BigInteger Qt = BigInteger.ZERO;
+    private double Qt = 0;
     /**
      * total sum of variances
      */
-    private BigInteger St = BigInteger.ZERO;
+    private double St = 0;
     /**
      * sum of data squares of different levels
      */
-    private BigInteger Qa = BigInteger.ZERO;
+    private double Qa = 0;
     /**
      * sum of data variances of different levels
      */
-    private BigInteger Sa = BigInteger.ZERO;
+    private double Sa = 0;
     /**
      * sum of horizontal variances
      */
-    private BigInteger Se = BigInteger.ZERO;
+    private double Se = 0;
     /**
      * unbiased estimation Va
      */
-    private BigInteger Va = BigInteger.ZERO;
+    private double Va = 0;
     /**
      * unbiased estimation Ve
      */
-    private BigInteger Ve = BigInteger.ZERO;
+    private double Ve = 0;
 
     public OneWayANOVA(List<List<Integer>> data) {
         this.data = data;
@@ -53,16 +52,32 @@ public class OneWayANOVA {
      * @return
      *      F value of analysis
      */
-    public int doAnalysis() {
-        return 0;
+    public double doAnalysis() {
+        initialize();
+        if (Ve != 0) {
+            return Va / Ve;
+        }
+        return -1;
     }
 
     private void initialize() {
+        C = Qt = St = Qa = Sa = Se = Va = Ve = 0;
+        long count = 0;
         for (List<Integer> list : data) {
+            double temp = 0;
             for (Integer integer: list) {
-                C.add(BigDecimal.valueOf(integer));
+                C = C + integer.doubleValue();
+                temp = temp + integer.doubleValue();
+                Qt = Qt + Math.pow(integer,2);
+                count++;
             }
+            Qa = Qa + Math.pow(temp, 2) / list.size();
         }
-        C = C.pow(2);
+        C = Math.pow(C, 2) / count;
+        St = Qt - C;
+        Sa = Qa - C;
+        Se = St - Sa;
+        Va = Sa / (data.size() - 1);
+        Ve = Se / (count - data.size());
     }
 }
