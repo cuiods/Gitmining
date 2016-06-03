@@ -1,5 +1,6 @@
 package edu.nju.dao.impl;
 
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.SecRepoEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +43,7 @@ public class RegisterDaoImpTest {
 
     @Test
     public void starRepo() throws Exception {
-        assertTrue(registerDaoImp.starRepo("harry","defunkt","ambition"));
+        assertTrue(registerDaoImp.starRepo("harry","mojombo","grit"));
     }
 
     @Test
@@ -65,17 +66,19 @@ public class RegisterDaoImpTest {
 
     @Test
     public void getRegisterInterest() throws Exception {
-
+        registerDaoImp.getRegisterInterest("hhhhhh");
     }
 
     @Test
     public void saveOrUpdateRegisterInterest() throws Exception {
-
+        SecRegisterLabelEntity entity = new SecRegisterLabelEntity();
+        entity.setTemplate(2.0);
+        registerDaoImp.saveOrUpdateRegisterInterest(entity);
     }
 
     @Test
     public void unStarRepo() throws Exception {
-
+        assertTrue(registerDaoImp.unStarRepo("harry","defunkt","ambition"));
     }
 
     @Test
@@ -95,11 +98,11 @@ public class RegisterDaoImpTest {
 
     @Test
     public void getStaredUserCount() throws Exception {
-
+        System.out.println(registerDaoImp.getStaredUserCount("harry"));
     }
 
     @Test
     public void getStaredRepoCount() throws Exception {
-
+        System.out.println(registerDaoImp.getStaredRepoCount("harry"));
     }
 }

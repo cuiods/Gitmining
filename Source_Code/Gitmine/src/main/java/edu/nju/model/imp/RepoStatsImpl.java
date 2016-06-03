@@ -1,14 +1,11 @@
 package edu.nju.model.imp;
 
-import edu.nju.dao.service.RepoDaoService;
 import edu.nju.dao.service.SecRepoDaoService;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoStatsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

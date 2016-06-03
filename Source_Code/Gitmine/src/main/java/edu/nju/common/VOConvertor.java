@@ -1,11 +1,8 @@
 package edu.nju.common;
 
 import edu.nju.dao.service.SecUserDaoService;
-import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.SecUserEntity;
-import edu.nju.entity.TblRepo;
-import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;

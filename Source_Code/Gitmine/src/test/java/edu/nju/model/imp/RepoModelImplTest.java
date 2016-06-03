@@ -67,7 +67,7 @@ public class RepoModelImplTest {
 
     @Test
     public void getSearchResult() throws Exception {
-        List<RepoVO> list = repoModelImpl.getSearchResult("a","repo_star","linux","","",1,true);
+        List<RepoVO> list = repoModelImpl.getSearchResult("a","repo_star","linux","","",1,true,"hhh");
         assertNotNull(list);
         assertTrue(list.size()>0);
         System.out.println(list.get(0).getReponame()+"   "+list.get(0).getDescription());

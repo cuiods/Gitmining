@@ -1,15 +1,11 @@
 package edu.nju.model.imp;
 
 import edu.nju.dao.service.SecUserDaoService;
-import edu.nju.dao.service.UserDaoService;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.UserStatsService;
-import org.hibernate.annotations.Source;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

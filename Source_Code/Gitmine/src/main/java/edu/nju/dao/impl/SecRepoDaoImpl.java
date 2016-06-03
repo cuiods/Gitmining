@@ -23,9 +23,118 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     private SessionFactory sessionFactory;
 
     @Override
+    public List<SecRepoEntity> searchWithLogin(String webUsername, String keyword, int offset, int maxResult, String filter, String language, String createYear) {
+        Session session =sessionFactory.openSession();
+        Transaction transaction = null;
+        List<SecRepoEntity> entityList = new ArrayList<>();
+        try{
+            transaction = session.beginTransaction();
+            Query query1 = session.createQuery("from SecRegisterLabelEntity where registerLogin = :webName");
+            query1.setString("webName",webUsername);
+            SecRegisterLabelEntity label = (SecRegisterLabelEntity) query1.list().get(0);
+
+            String sql = "SELECT id,owner,sec_repo.name,html_url,description,sec_repo.size,star_count,watchers_count,sec_repo.language," +
+                    "fork_count,create_at,update_at FROM sec_repo JOIN sec_repo_label ON id = repo_id WHERE (sec_repo.name LIKE :k1 OR description LIKE :k2) ";
+            if ((filter!=null)&&(!filter.isEmpty())){
+                sql+="AND description LIKE :filter ";
+            }
+            if ((language!=null)&&(!language.isEmpty())){
+                sql+="AND language = :lan ";
+            }
+            if ((createYear!=null)&&(!createYear.isEmpty())){
+                sql+="and date_format(createAt,'%Y') = :createY) ";
+            }
+
+            sql+=("ORDER BY (node_js*:nodejs+javascript*:js+library*:li+ruby*:ruby+web*:we+api*:api+vim*:vim+plugin*:plugin+rust*:rust+app*:app+client*:client+server*:server" +
+                    "+json*:json+framework*:frame+python*:py+browser*:browser+rails*:rails+css*:css+android*:android+jquery*:jquery+html*:html+test*:test+php*:php+command*:com" +
+                    "+tool*:tool+demo*:demo+wrapper*:wrapper+ios*:ios+linux*:linux+windows*:win+os_x*:osx+django*:django+google*:google+generator*:gen+docker*:docker+image*:img+template*:tem) DESC ");
+
+            SQLQuery query2 = session.createSQLQuery(sql);
+            query2.setString("k1","%"+keyword+"%");
+            query2.setString("k2","%"+keyword+"%");
+            if ((filter!=null)&&(!filter.isEmpty())){
+                query2.setString("filter", "%"+filter+"%");
+            }
+            if ((language!=null)&&(!language.isEmpty())){
+                query2.setString("lan", language);
+            }
+            if ((createYear!=null)&&(!createYear.isEmpty())){
+                query2.setString("createY",createYear);
+            }
+            query2.setDouble("nodejs",label.getNodeJs());
+            query2.setDouble("js",label.getJavascript());
+            query2.setDouble("li",label.getLibrary());
+            query2.setDouble("ruby",label.getRuby());
+            query2.setDouble("we",label.getWeb());
+            query2.setDouble("api",label.getApi());
+            query2.setDouble("vim",label.getVim());
+            query2.setDouble("plugin",label.getPlugin());
+            query2.setDouble("rust",label.getRust());
+            query2.setDouble("app",label.getApp());
+            query2.setDouble("client",label.getClient());
+            query2.setDouble("server",label.getServer());
+            query2.setDouble("json",label.getJson());
+            query2.setDouble("frame",label.getFramework());
+            query2.setDouble("py",label.getPython());
+            query2.setDouble("browser",label.getBrowser());
+            query2.setDouble("rails",label.getRails());
+            query2.setDouble("css",label.getCss());
+            query2.setDouble("android",label.getAndroid());
+            query2.setDouble("jquery",label.getJquery());
+            query2.setDouble("html",label.getHtml());
+            query2.setDouble("test",label.getTest());
+            query2.setDouble("php",label.getPhp());
+            query2.setDouble("com",label.getCommand());
+            query2.setDouble("tool",label.getTool());
+            query2.setDouble("demo",label.getDemo());
+            query2.setDouble("wrapper",label.getWrapper());
+            query2.setDouble("ios",label.getIos());
+            query2.setDouble("linux",label.getLinux());
+            query2.setDouble("win",label.getWindows());
+            query2.setDouble("osx",label.getOsX());
+            query2.setDouble("django",label.getDjango());
+            query2.setDouble("google",label.getGoogle());
+            query2.setDouble("gen",label.getGenerator());
+            query2.setDouble("docker",label.getDocker());
+            query2.setDouble("img",label.getImage());
+            query2.setDouble("tem",label.getTemplate());
+
+            query2.setFirstResult(offset);
+            query2.setMaxResults(maxResult);
+
+            List<Object[]> list = query2.list();
+            for (Object[] item:list){
+                SecRepoEntity entity = new SecRepoEntity();
+                entity.setId(Long.valueOf(item[0].toString()));
+                entity.setOwner(item[1].toString());
+                entity.setName(item[2].toString());
+                entity.setHtmlUrl(item[3].toString());
+                entity.setDescription(item[4].toString());
+                entity.setSize((Integer)item[5]);
+                entity.setStarCount((Integer)item[6]);
+                entity.setWatchersCount((Integer)item[7]);
+                entity.setLanguage(item[8].toString());
+                entity.setForkCount((Integer) item[9]);
+                entity.setCreateAt((Timestamp)item[10]);
+                entity.setUpdateAt((Timestamp)item[11]);
+                entityList.add(entity);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+
+        return entityList;
+    }
+
+    @Override
     public List<SecRepoEntity> getSearchResult(String keyword, int offset, int maxNum, SortType type, boolean isDesc, String filterType, String language, String createYear) {
 
-        //todo add rank strategy and put the best result at the begin
         Session session =sessionFactory.openSession();
         String hql = "from SecRepoEntity where (name like :k1 or description like :k2) ";
         if ((filterType!=null)&&(!filterType.isEmpty())){
@@ -35,7 +144,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             hql+="and language = :lan ";
         }
         if ((createYear!=null)&&(!createYear.isEmpty())){
-            hql+="and date_format(createAt,'%Y') = :create) ";
+            hql+="and date_format(createAt,'%Y') = :create ";
         }
         if (type!=null){
             switch (type) {
@@ -81,7 +190,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             sql+="and language = :lan ";
         }
         if ((createYear!=null)&&(!createYear.isEmpty())){
-            sql+="and date_format(createAt,'%Y') = :create) ";
+            sql+="and date_format(create_at,'%Y') = :createY ";
         }
 
         SQLQuery query = session.createSQLQuery(sql);
@@ -94,7 +203,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             query.setString("lan", language);
         }
         if ((createYear!=null)&&(!createYear.isEmpty())){
-            query.setString("create",createYear);
+            query.setString("createY",createYear);
         }
         List list = query.list();
         session.close();

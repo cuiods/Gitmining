@@ -56,6 +56,18 @@ public class LoginController {
         return loginResult;
     }
 
+    @RequestMapping(value = "/logout")
+    @ResponseBody
+    public boolean logout(HttpSession session){
+        if (session.getAttribute("webUsername") != null){
+            session.removeAttribute("webUsername");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     @RequestMapping("/name")
     @ResponseBody
     public String getLoginName(HttpSession session){

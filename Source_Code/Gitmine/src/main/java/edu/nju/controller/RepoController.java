@@ -13,6 +13,7 @@ import edu.nju.model.service.HobbyModelService;
 import edu.nju.model.service.LoginModelService;
 import edu.nju.model.service.RepoModelService;
 import edu.nju.model.service.RepoStatsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,8 @@ import java.util.Map;
 @RequestMapping("/repo")
 public class RepoController {
 
-    @Resource
+    private static int totalPage = 0;
+
     private RepoModelService repoModelImpl;
 
     @Resource
@@ -40,14 +42,17 @@ public class RepoController {
     @Resource
     private HobbyModelService hobbyModelImpl;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @Autowired
+    public RepoController(RepoModelService repoModelImpl){
+        this.repoModelImpl = repoModelImpl;
+        this.totalPage = repoModelImpl.getTotalPage();
+    }
+
+    @RequestMapping(value = "/recommend")
     @ResponseBody
-    public Map home(@RequestParam(required = false,defaultValue = "0") int offset,
+    public List<RepoVO> home(@RequestParam(required = false,defaultValue = "0") int offset,
                     @RequestParam(required = false,defaultValue = "5") int maxResults,
                     HttpSession session){
-        //todo get current user from session scope and generate recommend content
-
-        Map<String, Object> result = new HashMap<>();
 
         List<RepoVO> recommend;
         if (session.getAttribute("webUsername") == null){
@@ -57,21 +62,16 @@ public class RepoController {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = repoModelImpl.getRecommendRepo(webUsername,offset,maxResults);
         }
-        List<RepoVO> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
-        result.put("repoList", mainList);
-        result.put("recommend", recommend);
 
-        return result;
+        return recommend;
     }
 
-    //todo change total page, remove to a new method
     @RequestMapping(value = "/list")
     @ResponseBody
     public Map list(@RequestParam int pageNum,
                     @RequestParam(required = false, defaultValue = "repo_name") String sortType,
                     @RequestParam(required = false, defaultValue = "false") boolean isDesc){
         Map<String,Object> map = new HashMap<>();
-        long totalPage = repoModelImpl.getTotalPage();
         List<RepoVO> repoList = null;
         if (pageNum<=totalPage){
             SortType type = SortTypeBuilder.getSortType(sortType);
@@ -81,7 +81,7 @@ public class RepoController {
             if (pageNum<1)  pageNum=1;
             repoList = repoModelImpl.getRepos(type, isDesc, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
         }
-        map.put("totalPage", 10);
+        map.put("totalPage", totalPage);
         map.put("currentPage", pageNum);
         map.put("repoList", repoList);
         return map;
@@ -89,19 +89,30 @@ public class RepoController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     @ResponseBody
-    public List<RepoVO> getSearchResult(@RequestParam String keyword,
+    public Map getSearchResult(@RequestParam String keyword,
                                         @RequestParam(required = false, defaultValue = "") String filterType,
                                         @RequestParam(required = false, defaultValue = "") String language,
                                         @RequestParam(required = false, defaultValue = "") String createYear,
                                         @RequestParam int pageNum,
-                                        @RequestParam(required = false, defaultValue = "repo_name") String sortType,
-                                        @RequestParam(required = false, defaultValue = "false") boolean reverse){
+                                        @RequestParam(required = false, defaultValue = "hobby_match") String sortType,
+                                        @RequestParam(required = false, defaultValue = "true") boolean reverse,
+                                        @RequestParam boolean isKeyChanged,
+                                        HttpSession session){
+        String webUsername = null;
+        if (session.getAttribute("webUsername") != null){
+            webUsername = session.getAttribute("webUsername").toString();
+        }
         List<RepoVO> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType,
-                language, createYear, pageNum, reverse);
-
-        //todo use the web user hobby to resort the result and put the items match the user hobby on the top
-
-        return resultList;
+                language, createYear, pageNum, reverse, webUsername);
+        int totalSearchPage = -1;
+        if (isKeyChanged){
+            totalSearchPage = repoModelImpl.getSearchPage(keyword,filterType,language,createYear);
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("totalPage",totalSearchPage);
+        map.put("currentPage",pageNum);
+        map.put("repoList",resultList);
+        return map;
     }
 
 

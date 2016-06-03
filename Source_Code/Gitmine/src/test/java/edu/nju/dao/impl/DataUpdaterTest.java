@@ -35,4 +35,23 @@ public class DataUpdaterTest {
 //        updater.saveEntity(userEntity);
     }
 
+    @Test
+    public void deleteLastRepo() throws Exception {
+
+    }
+
+    @Test
+    public void getNoRepoUsers() throws Exception {
+
+    }
+
+    @Test
+    public void existUser() throws Exception {
+
+    }
+
+    @Test
+    public void getAllDescription() throws Exception {
+
+    }
 }

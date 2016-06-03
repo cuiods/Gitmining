@@ -22,15 +22,19 @@ import static org.junit.Assert.*;
 @Transactional
 public class SecRepoDaoImplTest {
 
+
     @Resource
     private SecRepoDaoImpl repoDao;
 
     @Test
     public void getSearchResult() throws Exception {
-        List<SecRepoEntity> list = repoDao.getSearchResult("a",0,10, SortType.Repo_Star,true,"","Java","2016");
+        List<SecRepoEntity> list = repoDao.getSearchResult("a",0,100, SortType.Repo_Star,true,"","Javascript","");
         assertNotNull(list);
         assertTrue(list.size()>0);
-        System.out.println("===========search===========>>>"+list.get(0).getName());
+        int cnt = 0;
+        for(SecRepoEntity entity:list){
+            System.out.println(cnt++ + entity.getName());
+        }
     }
 
     @Test
@@ -172,12 +176,12 @@ public class SecRepoDaoImplTest {
 
     @Test
     public void getSearchCount() throws Exception {
-
+        repoDao.getSearchCount("ab","","Ruby","2015");
     }
 
     @Test
     public void getTotalCount() throws Exception {
-
+        repoDao.getTotalCount();
     }
 
     @Test
@@ -187,7 +191,23 @@ public class SecRepoDaoImplTest {
 
     @Test
     public void getRecommendRepo() throws Exception {
+        List<SecRepoEntity> list = repoDao.getRecommendRepo("hhhhhh",0,10);
+        for (SecRepoEntity entity:list){
+            System.out.println(entity.getName());
+        }
+    }
 
+    @Test
+    public void searchWithLogin() throws Exception {
+        List<SecRepoEntity> list = repoDao.searchWithLogin("hhhhhh","a",0,10,"","java","");
+        for (SecRepoEntity entity:list){
+            System.out.println(entity.getName());
+        }
+    }
+
+    @Test
+    public void getRepoLabel() throws Exception {
+        repoDao.getRepoLabel("mojombo","grit");
     }
 
 }
