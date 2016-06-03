@@ -5,13 +5,9 @@ import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.common.VOConvertor;
 import edu.nju.dao.service.SecUserDaoService;
-import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.SecUserEntity;
-import edu.nju.entity.TblRepo;
-import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.*;
-import edu.nju.model.service.RelationsModelService;
 import edu.nju.model.service.UserModelService;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +30,6 @@ public class UserModelImpl implements UserModelService {
 
     @Resource
     private UserRadarImpl userRadar;
-
-    @Resource
-    private RelationsModelService relationsModelService;
 
     public UserModelImpl() {
     }

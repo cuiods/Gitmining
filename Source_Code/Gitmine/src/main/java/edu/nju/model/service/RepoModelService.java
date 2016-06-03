@@ -18,13 +18,13 @@ public interface RepoModelService {
      * @param webUsername
      * @return
      */
-    public List<RepoVO> getRecommendRepo(String webUsername);
+    public List<RepoVO> getRecommendRepo(String webUsername,int offset, int maxResults);
 
     /**
      * if there is no logined user, recommend the most popular repos
      * @return
      */
-    public List<RepoVO> getPopularRepo();
+    public List<RepoVO> getPopularRepo(int offset, int maxResults);
 
     /**
      * get the total count of page of all repos

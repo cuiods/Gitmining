@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
 import edu.nju.dao.service.SecRepoDaoService;
+import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.SecRepoLabelEntity;
 import org.hibernate.*;
@@ -268,9 +269,87 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     }
 
     @Override
-    public List<SecRepoEntity> getRecommendRepo(String register) {
-        //todo
-        return null;
+    public List<SecRepoEntity> getRecommendRepo(String register, int offset, int maxResults) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        List<SecRepoEntity> repoEntityList = new ArrayList<>();
+        try{
+            transaction = session.beginTransaction();
+            Query query1 = session.createQuery("from SecRegisterLabelEntity where registerLogin = :register");
+            query1.setString("register",register);
+            SecRegisterLabelEntity label = (SecRegisterLabelEntity) query1.list().get(0);
+            SQLQuery query3 = session.createSQLQuery("SELECT id,owner,sec_repo.name,html_url,description,sec_repo.size,star_count,watchers_count,sec_repo.language," +
+                    "fork_count,create_at,update_at FROM sec_repo JOIN sec_repo_label ON id = repo_id ORDER BY " +
+                    "(node_js*:nodejs+javascript*:js+library*:li+ruby*:ruby+web*:we+api*:api+vim*:vim+plugin*:plugin+rust*:rust+app*:app+client*:client+server*:server" +
+                    "+json*:json+framework*:frame+python*:py+browser*:browser+rails*:rails+css*:css+android*:android+jquery*:jquery+html*:html+test*:test+php*:php+command*:com" +
+                    "+tool*:tool+demo*:demo+wrapper*:wrapper+ios*:ios+linux*:linux+windows*:win+os_x*:osx+django*:django+google*:google+generator*:gen+docker*:docker+image*:img+template*:tem) DESC ");
+            query3.setDouble("nodejs",label.getNodeJs());
+            query3.setDouble("js",label.getJavascript());
+            query3.setDouble("li",label.getLibrary());
+            query3.setDouble("ruby",label.getRuby());
+            query3.setDouble("we",label.getWeb());
+            query3.setDouble("api",label.getApi());
+            query3.setDouble("vim",label.getVim());
+            query3.setDouble("plugin",label.getPlugin());
+            query3.setDouble("rust",label.getRust());
+            query3.setDouble("app",label.getApp());
+            query3.setDouble("client",label.getClient());
+            query3.setDouble("server",label.getServer());
+            query3.setDouble("json",label.getJson());
+            query3.setDouble("frame",label.getFramework());
+            query3.setDouble("py",label.getPython());
+            query3.setDouble("browser",label.getBrowser());
+            query3.setDouble("rails",label.getRails());
+            query3.setDouble("css",label.getCss());
+            query3.setDouble("android",label.getAndroid());
+            query3.setDouble("jquery",label.getJquery());
+            query3.setDouble("html",label.getHtml());
+            query3.setDouble("test",label.getTest());
+            query3.setDouble("php",label.getPhp());
+            query3.setDouble("com",label.getCommand());
+            query3.setDouble("tool",label.getTool());
+            query3.setDouble("demo",label.getDemo());
+            query3.setDouble("wrapper",label.getWrapper());
+            query3.setDouble("ios",label.getIos());
+            query3.setDouble("linux",label.getLinux());
+            query3.setDouble("win",label.getWindows());
+            query3.setDouble("osx",label.getOsX());
+            query3.setDouble("django",label.getDjango());
+            query3.setDouble("google",label.getGoogle());
+            query3.setDouble("gen",label.getGenerator());
+            query3.setDouble("docker",label.getDocker());
+            query3.setDouble("img",label.getImage());
+            query3.setDouble("tem",label.getTemplate());
+
+            query3.setFirstResult(offset);
+            query3.setMaxResults(maxResults);
+            List<Object[]> list = query3.list();
+            for (Object[] item:list){
+                SecRepoEntity entity = new SecRepoEntity();
+                entity.setId(Long.valueOf(item[0].toString()));
+                entity.setOwner(item[1].toString());
+                entity.setName(item[2].toString());
+                entity.setHtmlUrl(item[3].toString());
+                entity.setDescription(item[4].toString());
+                entity.setSize((Integer)item[5]);
+                entity.setStarCount((Integer)item[6]);
+                entity.setWatchersCount((Integer)item[7]);
+                entity.setLanguage(item[8].toString());
+                entity.setForkCount((Integer) item[9]);
+                entity.setCreateAt((Timestamp)item[10]);
+                entity.setUpdateAt((Timestamp)item[11]);
+                repoEntityList.add(entity);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return repoEntityList;
     }
 
     @Override

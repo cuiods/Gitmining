@@ -28,12 +28,15 @@ public class RepoModelImplTest {
 
     @Test
     public void getRecommendRepo() throws Exception {
-
+        List<RepoVO> list = repoModelImpl.getRecommendRepo("hhhhhh",0,10);
+        for (RepoVO vo:list){
+            System.out.println(vo.getOwnerName()+"--->"+vo.getReponame());
+        }
     }
 
     @Test
     public void getPopularRepo() throws Exception {
-        List<RepoVO> list = repoModelImpl.getPopularRepo();
+        List<RepoVO> list = repoModelImpl.getPopularRepo(0,10);
         assertNotNull(list);
         assertTrue(list.size()>0);
         for (RepoVO vo:list){

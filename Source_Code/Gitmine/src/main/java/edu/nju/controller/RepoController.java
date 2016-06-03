@@ -42,18 +42,20 @@ public class RepoController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     @ResponseBody
-    public Map home(HttpSession session){
+    public Map home(@RequestParam(required = false,defaultValue = "0") int offset,
+                    @RequestParam(required = false,defaultValue = "5") int maxResults,
+                    HttpSession session){
         //todo get current user from session scope and generate recommend content
 
         Map<String, Object> result = new HashMap<>();
 
         List<RepoVO> recommend;
         if (session.getAttribute("webUsername") == null){
-            recommend = repoModelImpl.getPopularRepo();
+            recommend = repoModelImpl.getPopularRepo(offset,maxResults);
         }
         else {
             String webUsername = (String) session.getAttribute("webUsername");
-            recommend = repoModelImpl.getRecommendRepo(webUsername);
+            recommend = repoModelImpl.getRecommendRepo(webUsername,offset,maxResults);
         }
         List<RepoVO> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
         result.put("repoList", mainList);
