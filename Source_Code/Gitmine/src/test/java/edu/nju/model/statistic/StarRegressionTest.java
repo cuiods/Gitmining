@@ -1,8 +1,5 @@
-package edu.nju.model.imp;
+package edu.nju.model.statistic;
 
-import edu.nju.model.statistic.DataPoint;
-import edu.nju.model.statistic.RegressionLine;
-import edu.nju.model.statistic.StarRegressionService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,19 +7,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import static org.junit.Assert.*;
+
 /**
- * repo popular statistic
+ * star regression test
+ * @author cuihao
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
-public class StatisticTest {
+public class StarRegressionTest {
 
     @Resource
     private StarRegressionService regressionService;
 
     @Test
-    public void regressionLineTest() {
+    public void getForkRegression() throws Exception {
         System.out.println(regressionService.getForkRegression());
+    }
+
+    @Test
+    public void getWatcherRegression() throws Exception {
         System.out.println(regressionService.getWatcherRegression());
 //        RegressionLine line = new RegressionLine();
 //
@@ -37,4 +41,5 @@ public class StatisticTest {
 //                + line.getA0());
 //        System.out.println("误差：     R^2 = " + line.getR());
     }
+
 }
