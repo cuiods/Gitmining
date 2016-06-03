@@ -1,17 +1,13 @@
 package edu.nju.model.imp;
 
 import edu.nju.common.json.JsonNodeParser;
-import edu.nju.dao.service.RepoDaoService;
 import edu.nju.dao.service.SecRepoDaoService;
 import edu.nju.entity.SecRepoEntity;
-import edu.nju.entity.TblRepo;
-import edu.nju.model.pojo.CommitChart;
 import edu.nju.model.pojo.RadarChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Map;
 
 /**
  * Created by Harry on 2016/5/16.

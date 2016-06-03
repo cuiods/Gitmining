@@ -1,14 +1,10 @@
 package edu.nju.model.imp;
 
 import edu.nju.dao.service.SecUserDaoService;
-import edu.nju.dao.service.UserDaoService;
 import edu.nju.entity.SecUserEntity;
-import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.RadarChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * Created by Harry on 2016/5/16.

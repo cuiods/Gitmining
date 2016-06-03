@@ -48,14 +48,11 @@ public class RepoController {
         this.totalPage = repoModelImpl.getTotalPage();
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/recommend")
     @ResponseBody
-    public Map home(@RequestParam(required = false,defaultValue = "0") int offset,
+    public List<RepoVO> home(@RequestParam(required = false,defaultValue = "0") int offset,
                     @RequestParam(required = false,defaultValue = "5") int maxResults,
                     HttpSession session){
-        //todo get current user from session scope and generate recommend content
-
-        Map<String, Object> result = new HashMap<>();
 
         List<RepoVO> recommend;
         if (session.getAttribute("webUsername") == null){
@@ -65,14 +62,10 @@ public class RepoController {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = repoModelImpl.getRecommendRepo(webUsername,offset,maxResults);
         }
-        List<RepoVO> mainList = repoModelImpl.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE);
-        result.put("repoList", mainList);
-        result.put("recommend", recommend);
 
-        return result;
+        return recommend;
     }
 
-    //todo change total page, remove to a new method
     @RequestMapping(value = "/list")
     @ResponseBody
     public Map list(@RequestParam int pageNum,
