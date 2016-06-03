@@ -74,9 +74,9 @@ $(document).ready(function() {
 		url:"/login/name",
 		success:function (result) {
 			if (result.length>2) {
-				$("#login-href").html(result);
+				$("#login-href-text").html(result);
 				// $("#interestModal").modal();
-				$('#login-href').attr('href','html/html/personal.html');
+				$('#login-href-text').attr('href','html/html/personal.html');
 				// $('#login-href').attr('href','#interestModal');
 			}
 		}
@@ -156,7 +156,6 @@ $(document).ready(function() {
 			data: { username:$("#u").val(),password:$("#p").val()},
 			success:function (result) {
 				location.href = "";
-
 			},
 			error:function () {
 				alert("error!");
@@ -241,23 +240,23 @@ $(function() {
 		$elem.find('img')
 			.stop(true)
 			.animate({
-				'width':'170px',
-				'height':'170px',
+				'width':'120px',
+				'height':'40px',
 				'left':'0px'
 			},400,'easeOutBack')
 			.andSelf()
 			.find('.sdt_wrap')
 			.stop(true)
-			.animate({'top':'140px'},500,'easeOutBack')
+			.animate({'top':'80px'},500,'easeOutBack')
 			.andSelf()
 			.find('.sdt_active')
 			.stop(true)
-			.animate({'height':'170px'},300,function(){
+			.animate({'height':'120px'},300,function(){
 				var $sub_menu = $elem.find('.sdt_box');
 				if($sub_menu.length){
-					var left = '170px';
+					var left = '130px';
 					if($elem.parent().children().length == $elem.index()+1)
-						left = '-170px';
+						left = '-130px';
 					$sub_menu.show().animate({'left':left},200);
 				}
 			});
@@ -279,6 +278,6 @@ $(function() {
 			.andSelf()
 			.find('.sdt_wrap')
 			.stop(true)
-			.animate({'top':'25px'},500);
+			.animate({'top':'10px'},500);
 	});
 });

@@ -179,7 +179,6 @@ i.googlepluse{
 	font-weight:400;
 	font-size:17px;
 	text-decoration:none;
-	margin:0 20px;
 	font-family: 'Oswald', sans-serif;
 }
 #login-href:hover{
@@ -2731,7 +2730,7 @@ span.menu {
 		padding: 0.35em 8px;
 		width: 89.5%;
 	}
-	.social-icons i {
+	.social-icons i ul{
 		width: 30px;
 		height: 30px;
 		background-size: 250px;
@@ -3386,17 +3385,17 @@ ul.sdt_menu{
 	display: inline-block;
 	list-style: none;
 	font-family:"Myriad Pro", "Trebuchet MS", sans-serif;
-	font-size:14px;
-	width:1020px;
+	font-size:12px;
+	width:120px;
 }
 ul.sdt_menu a{
 	text-decoration:none;
 	outline:none;
 }
 ul.sdt_menu li{
-	float:left;
-	width:170px;
-	height:85px;
+	float:right;
+	width:120px;
+	height:40px;
 	position:relative;
 	cursor:pointer;
 }
@@ -3404,8 +3403,8 @@ ul.sdt_menu li > a{
 	position:absolute;
 	top:0px;
 	left:0px;
-	width:170px;
-	height:85px;
+	width:120px;
+	height:40px;
 	z-index:12;
 	background:transparent url(../images/overlay.png) no-repeat bottom right;
 	-moz-box-shadow:0px 0px 2px #000 inset;
@@ -3426,17 +3425,17 @@ ul.sdt_menu li a img{
 }
 ul.sdt_menu li span.sdt_wrap{
 	position:absolute;
-	top:25px;
+	top:10px;
 	left:0px;
-	width:170px;
-	height:60px;
+	width:120px;
+	height:30px;
 	z-index:15;
 }
 ul.sdt_menu li span.sdt_active{
 	position:absolute;
 	background:#111;
-	top:85px;
-	width:170px;
+	top:20px;
+	width:120px;
 	height:0px;
 	left:0px;
 	z-index:14;
@@ -3447,13 +3446,13 @@ ul.sdt_menu li span.sdt_active{
 ul.sdt_menu li span span.sdt_link,
 ul.sdt_menu li span span.sdt_descr,
 ul.sdt_menu li div.sdt_box a{
-	margin-left:15px;
+	margin-left:35px;
 	text-transform:uppercase;
 	text-shadow:1px 1px 1px #000;
 }
 ul.sdt_menu li span span.sdt_link{
 	color:#fff;
-	font-size:24px;
+	font-size:18px;
 	float:left;
 	clear:both;
 }
@@ -3461,30 +3460,33 @@ ul.sdt_menu li span span.sdt_descr{
 	color:#0B75AF;
 	float:right;
 	clear:both;
-	width:155px; /*For dumbass IE7*/
+	width:110px; /*For dumbass IE7*/
 	font-size:10px;
 	letter-spacing:1px;
 }
 ul.sdt_menu li div.sdt_box{
 	display:block;
 	position:absolute;
-	width:170px;
+	width:130px;
 	overflow:hidden;
-	height:170px;
-	top:85px;
+	height:100px;
+	top:40px;
 	left:0px;
 	display:none;
 	background:#000;
 }
 ul.sdt_menu li div.sdt_box a{
-	float:right;
+	float:left;
 	clear:both;
-	line-height:30px;
-	color:#0B75AF;
+	line-height:40px;
+	color:#fcf8e3;
 }
 ul.sdt_menu li div.sdt_box a:first-child{
-	margin-top:15px;
+	margin-top:5px;
 }
 ul.sdt_menu li div.sdt_box a:hover{
 	color:#fff;
+}
+ul.sdt_menu {
+	display: inline-block;
 }
