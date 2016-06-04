@@ -135,31 +135,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="radio-toolbar radio-toolbar-filter">
                     <input type="radio" id="radio10" name="radios1" value="false" >
                     <label class="label" for="radio10">All</label>
-                    <input type="radio" id="radio11" name="radios1" value="false" >
-                    <label class="label" for="radio11">2015</label>
-                    <input type="radio" id="radio12" name="radios1" value="false" >
-                    <label class="label" for="radio12">2014</label>
-                    <input type="radio" id="radio13" name="radios1" value="false" >
-                    <label class="label" for="radio13">2013</label>
-                    <input type="radio" id="radio14" name="radios1" value="false" >
-                    <label class="label" for="radio14">2012</label>
-                    <input type="radio" id="radio15" name="radios1" value="false" >
-                    <label class="label" for="radio15">2011</label>
+                    <script>
+                        generateFilterYears();
+                    </script>
                 </div>
 
                 <div class="radio-toolbar radio-toolbar-year">
                     <input type="radio" id="radio20" name="radios2" value="false" >
                     <label class="label" for="radio20">All</label>
-                    <input type="radio" id="radio21" name="radios2" value="false" >
-                    <label class="label" for="radio21">默认标签</label>
-                    <input type="radio" id="radio22" name="radios2" value="false" >
-                    <label class="label" for="radio22">默认标签</label>
-                    <input type="radio" id="radio23" name="radios2" value="false" >
-                    <label class="label" for="radio23">默认标签</label>
-                    <input type="radio" id="radio24" name="radios2" value="false" >
-                    <label class="label" for="radio24">默认标签</label>
-                    <input type="radio" id="radio25" name="radios2" value="false" >
-                    <label class="label" for="radio25">默认标签</label>
+                    <script>
+                        genetateFileterLanguage();
+                    </script>
                 </div>
 
             </div>
@@ -183,9 +169,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li><a href="javascript:void(0)" sortType = "repo_update" ischecked="false" isReverse = "false"
                        onclick="onclickFunction(this)" class="active">
                     RECENTLY &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
-                <li><a href="javascript:void(0)" sortType = "repo_contribute" ischecked="false" isReverse = "false"
+                <li><a href="javascript:void(0)" sortType = "hobby_match" ischecked="false" isReverse = "false"
                        onclick="onclickFunction(this)" class="active">
-                    CONTRIBUTORS &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                    HOBBTMATCH &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
 
             </ul>
             <!-- header-section-ends -->
@@ -230,29 +216,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 
     <!-- recommend -->
-    <div class="col-md-3 recommend " data-wow-delay="0.4s" >
+    <div class="col-md-3 recommend " id="recommends" data-wow-delay="0.4s" >
 
-        <div class="">
-            <a href="single.html">Integer vitae ligula sed lectus</a>
+        <div class="recommend" style="margin-bottom: 10px">
+            <a class="repoHref repoName" href="#">...</a>
             <br/>
-            <span>8.00 - 10.00 | JUN 09,2014</span>
-            <a class="mask" href="single.html"><img src="../../images/img1.jpg" class="img-responsive zoom-img img-circle" alt="" /></a>
+            <span class="glyphicon glyphicon-calendar"></span>
+             update at
+            <span class="updateAt">.........</span>
+            <div class="numbers">
+                <button class=" glyphicon glyphicon-headphones" style="display: inline-block; background: transparent; border: none;color: purple"/>
+                <span class="numSubscriber">...</span>
+                <button class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: purple"/>
+                <span class="numFork">...</span>
+                <button class=" glyphicon glyphicon-star" style="display: inline-block; background: transparent; border: none;color: purple"/>
+                <span class="numStar">...</span>
+            </div>
+            <a class="mask repoHref" href="#"><img class="ownerAvatarUrl" src="#" class="img-responsive zoom-img img-circle" alt="exception" style="width: 80%"/></a>
             <div class="news-info">
-                <p>Pellentesque ut urna eu mauris scele risque auctor volutpat et massa pers piciis iste natus scele risque auctor volutpat et massa.</p>
-                <a class="button" href="single.html"><img src="../../images/read.png" alt=""></a>
+                <p class="repoDescription">.....................................................................................................</p>
+                <div style="float: right">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    created at
+                    <span class="createAt">.......</span>
+                </div>
+                <br/>
+                <a class="button repoHref " href="#"><img src="../../images/read.png" alt=""></a>
+                <a class="ownerName" style="float: right">...</a>
             </div>
         </div>
 
-        <div class="">
-            <a href="single.html">Integer vitae ligula sed lectus</a>
-            <br/>
-            <span>8.00 - 10.00 | JUN 09,2014</span>
-            <a class="mask" href="single.html"><img src="../../images/img1.jpg" class="img-responsive zoom-img img-circle" alt="" /></a>
-            <div class="news-info">
-                <p>Pellentesque ut urna eu mauris scele risque auctor volutpat et massa pers piciis iste natus scele risque auctor volutpat et massa.</p>
-                <a class="button" href="single.html"><img src="../../images/read.png" alt=""></a>
-            </div>
-        </div>
+
 
     </div>
 
@@ -414,7 +408,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="footer">
                 <div class="container">
                     <div class="copyright text-center">
-                        <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+                        <p>Copyright &copy; 2016.team CODE FAIRY All rights reserved.More information <a href="http://www.cssmoban.com/" target="_blank" title="CODE FAIRY">CODE FAIRY</a> - Collect from <a href="http://www.cssmoban.com/" title="CODE FAIRY" target="_blank">CODE FAIRYU</a></p>
                     </div>
                 </div>
             </div>

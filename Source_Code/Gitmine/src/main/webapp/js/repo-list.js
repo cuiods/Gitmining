@@ -68,6 +68,41 @@ var RepoList = {
 
 };
 
+var RecommendList = {
+    init : function () {
+        this.recommendsFather = $('#recommends');
+        this.recommendReserved = this.recommendsFather.find('.recommend').eq(0);
+    },
+    generateRecommends : function (objects) {
+        var _this = this;
+        _this.recommendsFather.empty();
+        $.each(objects,function (i,element) {
+            var recommendNode = _this.recommendReserved.clone(true);
+            var userHref = '/html/html/userDetail.html?userName='+element.ownerName;
+            var repoHref = '/html/html/repo-detail.html?'+element.ownerName+"/"+element.reponame;
+
+            var repoName = recommendNode.find(".repoName");
+            repoName.attr("href",repoHref);
+            repoName.text(element.reponame);
+
+            var owner = recommendNode.find('.ownerName').eq(0);
+            owner.text (element.ownerName.substr(0,nameLength));
+            owner.attr ('href','/html/html/userDetail.html?userName='+element.ownerName);
+
+            recommendNode.find('.createAt').text (element.createAt);
+            recommendNode.find('.updateAt').text (element.updateAt);
+            
+            recommendNode.find('.ownerAvatarUrl').attr ("src",element.ownerAvatarUrl);
+            recommendNode.find('.repoDescription').eq(0).text (element.description);
+
+            recommendNode.find('.numSubscriber').text  ( element.numWatcher);
+            recommendNode.find('.numFork').text  ( element.numFork);
+            recommendNode.find('.numStar').text   ( element.numStar);
+            _this.recommendsFather.append(recommendNode);
+        });
+    },
+}
+
 
 function jumpPage(pageNum) {
     var url = location_port+'/repo/list'+"?pageNum="+pageNum;
@@ -340,7 +375,7 @@ function findCheckedSortType() {
  *
  */
 function generateFilterList() {
-    var list = new Array(
+    var list = [
         "web",
         "app",
         "api",
@@ -362,16 +397,34 @@ function generateFilterList() {
         "library",
         "ui",
         "dataBase"
-    );
+    ];
     generateLabels(list);
 }
 
-function generateYears() {
-    var list = new Array(
-    );
+function generateFilterYears() {
+    var list = [
+        '2011',
+        '2012',
+        '2013',
+        '2014',
+        '2015',
+    ];
     generateLabels(list);
 }
-function generateLabels() {
+
+function genetateFileterLanguage() {
+    var list = [
+        'java',
+        'ruby',
+        'python',
+        'c',
+        'javascript'
+    ];
+    generateLabels(list);
+}
+
+function generateLabels(list) {
+    
     for(var i in list){
         var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\"radios0\" value=\"false\">";
         var label = " <label class=\"label\" for=\"" +list[i] + "\">" +list[i] + "</label>";
@@ -385,6 +438,11 @@ $(document).ready(
     function () {
         RepoList.init();
         CoapareTable.init();
+        RecommendList.init();
+        var recommendURL = '/repo/recommend'+"?pageNum="+0;
+        $.get(recommendURL,function (data) {
+           RecommendList.generateRecommends(data)
+        });
         $.jqPaginator('#paginator', {
             totalPages: 100,
             visiblePages: 10,
