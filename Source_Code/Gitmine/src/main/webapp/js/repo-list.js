@@ -105,10 +105,7 @@ var RecommendList = {
 
 
 function jumpPage(pageNum) {
-    var url = location_port+'/repo/list'+"?pageNum="+pageNum;
-    $.get(url,function (object) {
-        RepoList.updateData(object.repoList);
-    });
+    search(pageNum,false);
 }
 
 /**
@@ -269,7 +266,7 @@ function addColCommon(obj,dataList){
     });
 }
 
-function search(page) {
+function search(page,isKeyChanged) {
 
     var key = $('#key').val();
     var label_language = findCheckedRadio($('.radio-toolbar-language').eq(0));
@@ -287,6 +284,7 @@ function search(page) {
         pageNum:page,
         sortType:sort_by,
         reverse:isReverse,
+        isKeyChanged:isKeyChanged
     }
     console.log(data);
     var url = location_port+"/repo/search";
@@ -330,7 +328,7 @@ function onclickFunction(obj) {
         originCheck.attr("ischecked" ,"false");
         obj.attr("ischecked" , "true");
     }
-    search(1);
+    search(1,false);
 }
 
 
