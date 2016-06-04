@@ -152,7 +152,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
                 case Repo_Fork:hql+="order by forkCount ";break;
                 case Repo_Watch:hql+="order by watchersCount ";break;
                 case Repo_Update:hql+="order by updateAt ";break;
-                case Repo_Name:hql+="order by name ";
+                case Repo_Name:hql+="order by name ";break;
                 default:hql+="order by name ";break;
             }
         }

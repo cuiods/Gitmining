@@ -12,13 +12,14 @@ var RepoList = {
         this.gridsFather =  $("#news-grids");
         this.lastGrid = this.gridsFather.children(".news-grid").eq(0);
         this.clear = $("<div class=\"clearfix\"> </div>" );
+        this.totalPages = 0;
         // this.gridsFather.empty();
     },
     updateData: function (object) {
         this.gridsFather.empty();
         var _this = this;
         _this.checkboxes = new Array(object.length);
-        $.each(object, function (i, n)
+        $.each(object.repoList, function (i, n)
         {
             var tempGrid = _this.lastGrid.clone(true);
             var owner = tempGrid.find('.ownerName').eq(0);
@@ -64,6 +65,14 @@ var RepoList = {
             }
 
         });
+        if(object.totalPage>0){
+
+            RepoList.totalPages = object.totalPage;
+            $('#paginator').jqPaginator('option', {
+                totalPages: object.totalPage,
+                currentPage:object.currentPage
+            });
+        }
     },
 
 };
@@ -105,7 +114,7 @@ var RecommendList = {
 
 
 function jumpPage(pageNum) {
-    search(pageNum,false);
+    search(pageNum,RepoList.totalPages==0);
 }
 
 /**
@@ -286,10 +295,12 @@ function search(page,isKeyChanged) {
         reverse:isReverse,
         isKeyChanged:isKeyChanged
     }
+    console.log("para");
     console.log(data);
     var url = location_port+"/repo/search";
     $.post(url,data,function (object) {
         console.log(object);
+        RepoList.totalPages = isKeyChanged?0:RepoList.totalPages;
         RepoList.updateData(object);
     });
 }
@@ -432,6 +443,7 @@ function generateLabels(list) {
 }
 
 
+
 $(document).ready(
     function () {
         RepoList.init();
@@ -442,7 +454,7 @@ $(document).ready(
            RecommendList.generateRecommends(data)
         });
         $.jqPaginator('#paginator', {
-            totalPages: 100,
+            totalPages: 10,
             visiblePages: 10,
             currentPage: 1,
             onPageChange: function (num, type) {
