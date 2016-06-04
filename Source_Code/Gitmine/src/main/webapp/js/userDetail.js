@@ -138,7 +138,7 @@ function addRelatedRepo(fatherGrid,lastGrid,userName,relateType){
                 tempGrid.find('.repo_description').eq(0).text(repo.description);
                 tempGrid.find('.repo_fork').eq(0).text(repo.numFork);
                 tempGrid.find('.repo_star').eq(0).text(repo.numStar);
-                tempGrid.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.name);
+                tempGrid.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.reponame);
                 fatherGrid.append(tempGrid);
                 fatherGrid.append('<br>');
             })
