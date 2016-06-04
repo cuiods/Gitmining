@@ -45,4 +45,10 @@ public interface RepoPopuService {
      * @return
      */
     List<List> statLanguageRateYear();
+
+    /**
+     * stat distribution of follows of popular repositories
+     * @return
+     */
+    List statSpecialFollower();
 }

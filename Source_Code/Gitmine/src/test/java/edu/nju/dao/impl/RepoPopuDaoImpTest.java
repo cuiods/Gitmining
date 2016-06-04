@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 @Transactional
 public class RepoPopuDaoImpTest {
+
     @Resource
     private RepoPopuDaoImp repoPopuImp;
     @Test
@@ -60,6 +61,12 @@ public class RepoPopuDaoImpTest {
         for (int i = 0; i < lists.size(); i++) {
             System.out.println("----"+lists.get(i));
         }
+    }
+
+    @Test
+    public void statSpecialFollower() throws Exception {
+        List list = repoPopuImp.statSpecialFollower();
+        System.out.println(list.get(0));
     }
 
 
