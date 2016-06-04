@@ -51,4 +51,11 @@ public interface RepoPopuService {
      * @return
      */
     List statSpecialFollower();
+
+    /**
+     * stat repository distribution of different fields
+     * @return
+     *      list of repository number of different fields
+     */
+    List statFields();
 }

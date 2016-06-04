@@ -69,5 +69,13 @@ public class RepoPopuDaoImpTest {
         System.out.println(list.get(0));
     }
 
+    @Test
+    public void statFields() throws Exception {
+        List list = repoPopuImp.statFields();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("---"+list.get(i));
+        }
+    }
+
 
 }

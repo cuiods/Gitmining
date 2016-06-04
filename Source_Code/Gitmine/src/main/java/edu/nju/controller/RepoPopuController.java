@@ -53,4 +53,10 @@ public class RepoPopuController {
     public List<List> statLanguageRateYear() {
         return repoPopuModelService.statLanguageRateYear();
     }
+
+    @RequestMapping("/fieldNumber")
+    @ResponseBody
+    public List statFieldNumber() {
+        return repoPopuModelService.statFieldNumber();
+    }
 }

@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.dao.service.RepoPopuService;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
             lists.put("lan"+i,query.list());
         }
         lists.put("language",languages);
+        session.close();
         return lists;
     }
 
@@ -52,6 +54,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
             query.setMaxResults(max);
         }
         result.put("watcher",query.list());
+        session.close();
         return result;
     }
 
@@ -67,6 +70,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
         Query query = session.createQuery("select new list(language,count(*)) from SecRepoEntity where starCount>300 and language!='' group by language order by count(*) desc ");
         query.setMaxResults(12);
         List<List> lists = query.list();
+        session.close();
         return lists;
     }
 
@@ -88,6 +92,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
             query2.setString("lan",languages.get(i));
             data.add(query2.list());
         }
+        session.close();
         return data;
     }
 
@@ -114,6 +119,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
             }
             data.add(thisYear);
         }
+        session.close();
         return data;
     }
 
@@ -130,5 +136,43 @@ public class RepoPopuDaoImp implements RepoPopuService {
                 "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
                 "WHERE Repo.star_count > 1000 and U.followers> 0 and U.followers < 10 ");
         return query.list();
+    }
+
+    /**
+     * stat repository distribution of different fields
+     *
+     * @return list of repository number of different fields
+     */
+    @Override
+    public List statFields() {
+        Session session = sessionFactory.openSession();
+        List longs = new ArrayList<>();
+        //regexp
+        SQLQuery query = session.createSQLQuery("select count(*) from sec_repo where description REGEXP :keyword ");
+        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)javascript($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)ruby($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)rust($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)server($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
+        longs.add(query.list().get(0));
+        return longs;
     }
 }
