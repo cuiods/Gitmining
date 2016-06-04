@@ -59,4 +59,16 @@ public class RepoPopuController {
     public List statFieldNumber() {
         return repoPopuModelService.statFieldNumber();
     }
+
+    @RequestMapping("/fieldNumberBox")
+    @ResponseBody
+    public List statFieldNumberBox() {
+        return repoPopuModelService.statFieldNumberBox();
+    }
+
+    @RequestMapping("/fieldCreate")
+    @ResponseBody
+    public List statFieldCreateAt() {
+        return repoPopuModelService.statFieldCreateAt();
+    }
 }

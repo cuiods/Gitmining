@@ -50,7 +50,7 @@ public interface RepoPopuService {
      * stat distribution of follows of popular repositories
      * @return
      */
-    List statSpecialFollower();
+    List statSpecialFollower(int min, int max);
 
     /**
      * stat repository distribution of different fields
@@ -58,4 +58,16 @@ public interface RepoPopuService {
      *      list of repository number of different fields
      */
     List statFields();
+
+    /**
+     * popular repositories of different fields
+     * @return
+     */
+    List<List> statFieldBox();
+
+    /**
+     * field create time statistic.
+     * @return
+     */
+    List<List> statFieldCreateTime();
 }

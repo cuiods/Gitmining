@@ -79,4 +79,18 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     public List statFieldNumber() {
         return repoPopuImp.statFields();
     }
+
+    @Override
+    public List<List> statFieldNumberBox() {
+        return repoPopuImp.statFieldBox();
+    }
+
+    @Override
+    public List<List> statFieldCreateAt() {
+        List<List> lists = repoPopuImp.statFieldCreateTime();
+        for (List list:lists) {
+            while (list.size() < 9) list.add(0,0);
+        }
+        return lists;
+    }
 }

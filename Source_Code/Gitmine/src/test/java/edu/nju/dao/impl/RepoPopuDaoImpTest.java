@@ -65,8 +65,11 @@ public class RepoPopuDaoImpTest {
 
     @Test
     public void statSpecialFollower() throws Exception {
-        List list = repoPopuImp.statSpecialFollower();
-        System.out.println(list.get(0));
+        List list = repoPopuImp.statSpecialFollower(0,0);
+        for (int i = 0; i < list.size(); i++) {
+            Object[] objects = (Object[]) list.get(i);
+            System.out.println("fork:"+objects[0] + "  number:"+objects[1]);
+        }
     }
 
     @Test
@@ -77,5 +80,19 @@ public class RepoPopuDaoImpTest {
         }
     }
 
+    @Test
+    public void statFieldBox() throws Exception {
+        List<List> lists = repoPopuImp.statFieldBox();
+        for (int i = 0; i < lists.size(); i++) {
+            System.out.println(lists.get(i));
+        }
+    }
 
+    @Test
+    public void statFieldCreateTime() throws Exception {
+        List<List> lists = repoPopuImp.statFieldCreateTime();
+        for (int i = 0; i < lists.size(); i++) {
+            System.out.println(lists.get(i));
+        }
+    }
 }
