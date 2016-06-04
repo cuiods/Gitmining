@@ -14,4 +14,6 @@ public interface RepoPopuModelService {
     List<List> statLanguageYearRate();
     List<List> statLanguageRateYear();
     List statFieldNumber();
+    List<List> statFieldNumberBox();
+    List<List> statFieldCreateAt();
 }

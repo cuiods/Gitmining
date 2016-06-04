@@ -129,13 +129,15 @@ public class RepoPopuDaoImp implements RepoPopuService {
      * @return
      */
     @Override
-    public List statSpecialFollower() {
+    public List statSpecialFollower(int min, int max) {
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("SELECT COUNT(*) FROM sec_repo AS Repo " +
-                "LEFT JOIN sec_contributor AS Contri ON Repo.name = Contri.repo_name " +
+        Query query = session.createSQLQuery("SELECT FLOOR(U.followers/10),COUNT(*) FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
                 "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
-                "WHERE Repo.star_count > 1000 and U.followers> 0 and U.followers < 10 ");
-        return query.list();
+                "WHERE Repo.star_count > 1000 GROUP BY FLOOR(U.followers/10) ");
+        List list =  query.list();
+        session.close();
+        return list;
     }
 
     /**
@@ -173,6 +175,80 @@ public class RepoPopuDaoImp implements RepoPopuService {
         longs.add(query.list().get(0));
         query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
         longs.add(query.list().get(0));
+        session.close();
+        return longs;
+    }
+
+    @Override
+    public List<List> statFieldBox() {
+        Session session = sessionFactory.openSession();
+        List<List> longs = new ArrayList<>();
+        //regexp
+        SQLQuery query = session.createSQLQuery("select star_count from sec_repo where description REGEXP :keyword ORDER BY star_count DESC LIMIT 20,100 ");
+        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)javascript($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)ruby($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)rust($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)server($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        session.close();
+        return longs;
+    }
+
+    /**
+     * field create time statistic.
+     *
+     * @return
+     */
+    @Override
+    public List<List> statFieldCreateTime() {
+        Session session = sessionFactory.openSession();
+        List<List> longs = new ArrayList<>();
+        //regexp
+        SQLQuery query = session.createSQLQuery("select COUNT(*) from sec_repo as Repo where description REGEXP :keyword AND YEAR(Repo.create_at)>=2008 GROUP BY YEAR(Repo.create_at) ");
+        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)javascript($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)ruby($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)rust($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)server($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        session.close();
         return longs;
     }
 }
