@@ -35,6 +35,20 @@ public class GithubReader {
         this.objectMapper = new ObjectMapper();
     }
 
+    public JsonNode getSearchArray(String url, int page){
+        JsonNode node = null;
+        try {
+            node = objectMapper.readTree(new URL(url+getAuth().replace("?client_id","&client_id")+"&page="+page));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return node;
+    }
+
     public JsonNode traverseUsers(long since){
         JsonNode node = null;
         String url = userHeader+getAuth()+"&since"+since;
