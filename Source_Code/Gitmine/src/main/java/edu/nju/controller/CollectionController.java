@@ -1,5 +1,6 @@
 package edu.nju.controller;
 
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.HobbyModelService;
@@ -25,7 +26,7 @@ public class CollectionController {
 
     @RequestMapping(value = "/repos")
     @ResponseBody
-    public List<SimpleRepoVO> getFavoriteRepos(@RequestParam(required = false,defaultValue = "1") int page, HttpSession session){
+    public List<RepoVO> getFavoriteRepos(@RequestParam(required = false,defaultValue = "1") int page, HttpSession session){
         if (session.getAttribute("webUsername") == null){
             return new ArrayList<>();
         }

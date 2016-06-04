@@ -8,6 +8,7 @@ import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.SecRepoLabelEntity;
 import edu.nju.entity.SecUserEntity;
+import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 import edu.nju.model.service.HobbyModelService;
@@ -102,11 +103,11 @@ public class HobbyModelImpl implements HobbyModelService {
     }
 
     @Override
-    public List<SimpleRepoVO> getStaredRepos(String webUsername, int page) {
+    public List<RepoVO> getStaredRepos(String webUsername, int page) {
         List<SecRepoEntity> list = registerDaoService.getStaredRepos(webUsername,(page-1)* Const.ITEMS_PER_PAGE,Const.ITEMS_PER_PAGE);
-        List<SimpleRepoVO> vos = new ArrayList<>();
+        List<RepoVO> vos = new ArrayList<>();
         for (SecRepoEntity repoEntity: list){
-            vos.add(voConvertor.simpleConvert(repoEntity));
+            vos.add(voConvertor.convert(repoEntity));
         }
         return vos;
     }

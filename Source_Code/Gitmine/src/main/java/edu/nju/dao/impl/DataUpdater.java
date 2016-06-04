@@ -86,7 +86,7 @@ public class DataUpdater {
 
     public List<Object[]> getAllDescription(){
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT id, name, description FROM sec_repo WHERE id NOT IN (SELECT repo_id FROM sec_repo_label)");
+        SQLQuery query = session.createSQLQuery("SELECT name, description FROM sec_repo ");
         List<Object[]> list = query.list();
         session.close();
         return list;

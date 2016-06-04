@@ -24,7 +24,7 @@ public interface HobbyModelService {
      * @param webUsername
      * @return
      */
-    public List<SimpleRepoVO> getStaredRepos(String webUsername, int page);
+    public List<RepoVO> getStaredRepos(String webUsername, int page);
 
     public List<UserVO> getStaredUsers(String webUsername, int page);
 

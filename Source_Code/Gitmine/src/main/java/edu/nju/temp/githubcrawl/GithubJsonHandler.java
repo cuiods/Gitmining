@@ -26,11 +26,54 @@ public class GithubJsonHandler {
 
     private final String commonRepoUrl = "https://api.github.com/repos/";
     private final String commonUserUrl = "https://api.github.com/users/";
+    private final String orgUrl = "https://api.github.com/search/users?q=type:org&sort=followers&order=desc";
 
 //    private final String [] popularLanguage = {"javascript","ruby","python","c","css","php","shell","html",
 //            "objective-c","java","c++","go","r","c#","perl"};
 
     public GithubJsonHandler(){
+
+    }
+
+    public void addOrgs(){
+        File file = new File("src/main/java/edu/nju/temp/current_org_page.txt");
+        int page = 1;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            page = Integer.valueOf(reader.readLine());
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        while (true){
+            JsonNode node = reader.getSearchArray(orgUrl,page);
+            page++;
+            try{
+                FileWriter writer = new FileWriter(file);
+                writer.write(page);
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (node == null){
+                break;
+            }
+            else if (node.get("items").size()<=0){
+                break;
+            } else {
+                JsonNode items = node.get("items");
+                for (JsonNode element:items){
+                    String login = element.get("login").asText();
+                    if (addUser(login)){
+                        addRepos(commonUserUrl+login+"/repos");
+                    }
+                }
+            }
+        }
 
     }
 
@@ -247,7 +290,7 @@ public class GithubJsonHandler {
 //
 //    }
 
-    public void addUser(String username){
+    public boolean addUser(String username){
 
         if (!updater.existUser(username)){
             String url = commonUserUrl+username;
@@ -283,7 +326,9 @@ public class GithubJsonHandler {
                 userEntity.setUpdateAt(Timestamp.valueOf(updateStr.substring(0,updateStr.length()-1).replace('T',' ')));
                 updater.saveEntity(userEntity);
             }
+            return true;
         }
+        return false;
     }
 
     public void addRepos(String reposUrl){
