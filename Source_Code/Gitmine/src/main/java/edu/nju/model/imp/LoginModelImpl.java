@@ -26,7 +26,13 @@ public class LoginModelImpl implements LoginModelService{
             return false;
         }
         else {
-            return registerDaoImpl.register(webUsername, password, email);
+            boolean result = registerDaoImpl.register(webUsername, password, email);
+            if (result){
+                SecRegisterLabelEntity labelEntity = new SecRegisterLabelEntity();
+                labelEntity.setRegisterLogin(webUsername);
+                registerDaoImpl.saveOrUpdateRegisterInterest(labelEntity);
+            }
+            return result;
         }
 
     }

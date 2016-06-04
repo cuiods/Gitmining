@@ -21,11 +21,13 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 public class RepoPopuModelImpTest {
+
     @Resource
     private RepoPopuModelService repoPopuModelService;
+
     @Test
     public void statStarRelation() throws Exception {
-
+        repoPopuModelService.statStarRelation(200);
     }
 
     @Test
@@ -34,5 +36,11 @@ public class RepoPopuModelImpTest {
         Assert.assertTrue(map.get("language")!=null&&map.get("count")!=null
                 &&map.get("language").size()==map.get("count").size());
     }
+
+    @Test
+    public void statLanguagePopularity() throws Exception {
+
+    }
+
 
 }

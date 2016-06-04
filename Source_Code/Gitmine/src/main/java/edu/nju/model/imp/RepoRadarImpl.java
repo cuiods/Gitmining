@@ -68,55 +68,7 @@ public class RepoRadarImpl {
         }
         return new RadarChart(field, value);
     }
-/*
-    private double getRadarSize(String ownername, String reponame){
-        TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
-        if (repo != null){
 
-            if (maxLogSize == minLogFork){
-                return 1.0;
-            }
-
-            int size = repo.getSize();
-            return (Math.log(size+1)-minLogSize)/(maxLogSize-minLogSize);
-        }
-        else {
-            return 0;
-        }
-    }
-
-    private double getRadarFork(String ownername, String reponame){
-        TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
-        if (repo != null){
-
-            if (maxLogFork == minLogFork){
-                return 1.0;
-            }
-
-            int forkCount = repo.getNumFork();
-            return (Math.log(forkCount+1)-minLogFork)/(maxLogFork-minLogFork);
-        }
-        else {
-            return 0;
-        }
-    }
-
-    private double getRadarPopular(String ownername, String reponame){
-        TblRepo repo = repoDaoImpl.getRepoBasicInfo(ownername, reponame);
-        if (repo != null){
-
-            if (maxLogPopular == minLogPopular){
-                return 1.0;
-            }
-
-            int popular = repo.getNumStar()+repo.getNumSubscriber();
-            return (Math.log(popular+1)-minLogPopular)/(maxLogPopular-minLogPopular);
-        }
-        else {
-            return 0;
-        }
-    }
-*/
     private double getRadarComplex(String ownername, String reponame){
         if (maxLogComplex == minLogComplex) {
             return 1.0;
