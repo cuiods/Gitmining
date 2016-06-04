@@ -26,12 +26,49 @@ public class GithubJsonHandler {
 
     private final String commonRepoUrl = "https://api.github.com/repos/";
     private final String commonUserUrl = "https://api.github.com/users/";
+    private final String orgUrl = "https://api.github.com/search/users?q=type:org&sort=followers&order=desc&page=";
 
 //    private final String [] popularLanguage = {"javascript","ruby","python","c","css","php","shell","html",
 //            "objective-c","java","c++","go","r","c#","perl"};
 
     public GithubJsonHandler(){
 
+    }
+
+    public void addOrgs(){
+        File file = new File("src/main/java/edu/nju/temp/current_org.txt");
+        String username = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            username = reader.readLine();
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if ((username!=null)&&(!username.isEmpty())){
+            //delete the last repo inserted
+            updater.deleteLastRepo(username);
+        }
+
+        do {
+            if ((username!=null)&&(!username.isEmpty())){
+                try{
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(username);
+                    writer.flush();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                addUser(username);
+                addRepos(commonUserUrl+username+"/repos");
+                System.out.println("========================"+username+" done=============================");
+            }
+
+        } while (true);
     }
 
     public void loopNoRepoUsers(){

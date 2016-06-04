@@ -36,7 +36,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             String sql = "SELECT id,owner,sec_repo.name,html_url,description,sec_repo.size,star_count,watchers_count,sec_repo.language," +
                     "fork_count,create_at,update_at FROM sec_repo JOIN sec_repo_label ON id = repo_id WHERE (sec_repo.name LIKE :k1 OR description LIKE :k2) ";
             if ((filter!=null)&&(!filter.isEmpty())){
-                sql+="AND description LIKE :filter ";
+                sql+="AND description regexp :filter ";
             }
             if ((language!=null)&&(!language.isEmpty())){
                 sql+="AND language = :lan ";
@@ -53,7 +53,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             query2.setString("k1","%"+keyword+"%");
             query2.setString("k2","%"+keyword+"%");
             if ((filter!=null)&&(!filter.isEmpty())){
-                query2.setString("filter", "%"+filter+"%");
+                query2.setString("filter", "(^| +)"+filter+"($| +|[^a-zA-Z])");
             }
             if ((language!=null)&&(!language.isEmpty())){
                 query2.setString("lan", language);
@@ -138,7 +138,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         Session session =sessionFactory.openSession();
         String hql = "from SecRepoEntity where (name like :k1 or description like :k2) ";
         if ((filterType!=null)&&(!filterType.isEmpty())){
-            hql+="and description like :filter ";
+            hql+="and description regexp :filter ";
         }
         if ((language!=null)&&(!language.isEmpty())){
             hql+="and language = :lan ";
@@ -164,7 +164,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         query.setString("k1","%"+keyword+"%");
         query.setString("k2","%"+keyword+"%");
         if ((filterType!=null)&&(!filterType.isEmpty())){
-            query.setString("filter", "%"+filterType+"%");
+            query.setString("filter", "(^| +)"+filterType+"($| +|[^a-zA-Z])");
         }
         if ((language!=null)&&(!language.isEmpty())){
             query.setString("lan", language);
@@ -184,7 +184,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         Session session =sessionFactory.openSession();
         String sql = "SELECT count(*) from sec_repo where (sec_repo.name like :k1 or description like :k2) ";
         if ((filterType!=null)&&(!filterType.isEmpty())){
-            sql+="and description like :filter ";
+            sql+="and description regexp :filter ";
         }
         if ((language!=null)&&(!language.isEmpty())){
             sql+="and language = :lan ";
@@ -197,7 +197,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         query.setString("k1","%"+keyword+"%");
         query.setString("k2","%"+keyword+"%");
         if ((filterType!=null)&&(!filterType.isEmpty())){
-            query.setString("filter", "%"+filterType+"%");
+            query.setString("filter", "(^| +)"+filterType+"($| +|[^a-zA-Z])");
         }
         if ((language!=null)&&(!language.isEmpty())){
             query.setString("lan", language);
