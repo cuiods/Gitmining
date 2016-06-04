@@ -69,4 +69,9 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     public List<List> statLanguageYearRate() {
         return repoPopuImp.statLanguageYearRate();
     }
+
+    @Override
+    public List<List> statLanguageRateYear() {
+        return repoPopuImp.statLanguageRateYear();
+    }
 }
