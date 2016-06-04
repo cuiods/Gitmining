@@ -52,7 +52,7 @@ public class RepoModelImplTest {
 
     @Test
     public void getRelatedRepo() throws Exception {
-
+        repoModelImpl.getRelatedRepo("mojombo","grit");
     }
 
     @Test
@@ -75,7 +75,7 @@ public class RepoModelImplTest {
 
     @Test
     public void getSearchPage() throws Exception {
-        //int page = repoModelImpl.getSearchPage("a","linux","java")
+        int page = repoModelImpl.getSearchPage("a","linux","java","2015");
     }
 
     @Test

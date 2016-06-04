@@ -34,9 +34,9 @@ public class UserStatsImpl implements UserStatsService {
 
     @Override
     public SimpleChart statsUserRepo() {
-        String [] field = {"0~20","20~40","40~60","60~80","80~100",">=100"};
+        String [] field = {"0~9","10~19","20~29","30~39","40~49","50~59","60~69","70~79","80~89","90~99",">=100"};
         long [] value = new long[field.length];
-        int step = 20;
+        int step = 10;
         for (int i=0;i<value.length-1;i++){
             value[i] = secUserDaoService.getStatsUserOwnRepo(i*step, step*(i+1)-1);
         }
@@ -46,10 +46,10 @@ public class UserStatsImpl implements UserStatsService {
 
     @Override
     public SimpleChart statsUserGist() {
-        String [] field = {"0~10","10~20","20~30","30~40","40~50","50~60","60~70",
-                "70~80","80~90","90~100",">=100"};
+        String [] field = {"0~1","2~3","4~5","6~7","8~9","10~11","12~13",
+                "14~15","16~17","18~19",">=20"};
         long [] value = new long[field.length];
-        int step = 10;
+        int step = 2;
         for (int i=0;i<value.length-1;i++){
             value[i] = secUserDaoService.getStatsUserGist(i*step, step*(i+1)-1);
         }
@@ -59,10 +59,10 @@ public class UserStatsImpl implements UserStatsService {
 
     @Override
     public SimpleChart statsUserFollower() {
-        String [] field = {"0~10","10~20","20~30","30~40","40~50","50~60","60~70",
-                "70~80","80~90","90~100",">=100"};
+        String [] field = {"0~4","5~9","10~14","15~19","20~24","25~29","30~34",
+                "35~39","40~44","45~49",">=50"};
         long [] value = new long[field.length];
-        int step = 10;
+        int step = 5;
         for (int i=0;i<value.length-1;i++){
             value[i] = secUserDaoService.getStatsUserFollower(i*step, step*(i+1)-1);
         }

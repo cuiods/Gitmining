@@ -697,12 +697,12 @@ $(function() {
     resize();
 
     isIE = $.browser.msie;
-    var name = "mojombo";
-    var url = "/user/"+name+"/relationGraph";
+    var name = getQueryString('userName');
+    var url = "/user/"+name+"/relationGraph?maxResults=5";
     $.get(url,function (object) {
         init(object);
     });
-    // init(json)
+     // init(json)
 
 
     $('#docs-close').on('click', function() {
@@ -743,7 +743,7 @@ function drawGraph() {
 
     for (var name in graph.data) {
         var obj = graph.data[name];
-        console.log(obj);
+
         obj.positionConstraints = [];
         obj.linkStrength        = 1;
 
