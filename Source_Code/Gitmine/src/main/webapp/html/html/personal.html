@@ -26,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
+    <script src="../../js/personal.js"></script>
     <!--<script type="text/javascript" src="../../js/userDetail.js"></script>-->
     <!--/script-->
     <script type="text/javascript">
@@ -83,190 +84,140 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="personalInfo " style="margin-left: 100px;margin-top:10px">
     <h3 >Cherished Repositories</h3>
     <hr >
-    <div class="cherished_repo">
-        <div class="repoItem ">
-            <img class="col-md-2" src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-10" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName/RepoName</h5>
-                    <label style="display:block">updated at June 5, 2015</label>
-                    <p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai
-                    hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa
-                    abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>
-
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span id="repo1">123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="following1">123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="followed1">123</span>
-                        <button class="glyphicon icon-heart icon-large" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                    </div><br><br>
-                </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <hr >
-    <div class="cherished_repo">
-        <div class="repoItem ">
-            <img class="col-md-2" src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-10" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName/RepoName</h5>
-                    <label style="display:block">updated at June 5, 2015</label>
-                    <p >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai
-                        hello,hello, very good repo,very good,hhhhhhhhhhhhhhh<br>hhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa
+    <div id="repoFather">
+        <div class="cherished_repo">
+            <div class="repoItem ">
+                <img class="col-md-2 repoImg" src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-10" >
+                    <div >
+                        <h5 class="ownRepo" style="font-size:20px;color:#a6192e">UserName/RepoName</h5>
+                        <label class="updateTime" style="display:block">updated at June 5, 2015</label>
+                        <p class="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai
+                        hello,hello, very good repo,very good,hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa
                         abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>
 
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span >123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span >123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span >123</span>
-                    </div><br><br>
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-earphone iconStyle" />
+                            <span class="subscribe">123</span>
+                            <span class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class="fork">123</span>
+                            <span class=" glyphicon glyphicon-star-empty" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class="star">123</span>
+                            <button class="glyphicon icon-heart icon-large repoCherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                        </div><br><br>
+                    </div>
+                    <a href="#" class="btn btn-primary hvr-rectangle-in repoDetail">Read Detail</a>
                 </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <hr >
-    <div class="cherished_repo">
-        <div class="repoItem ">
-            <img class="col-md-2" src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-10" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName/RepoName</h5>
-                    <label style="display:block">updated at June 5, 2015</label>
-                    <p >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai
-                        hello,hello, very good repo,very good,hhhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa
-                        abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>
-
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span >123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span >123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span >123</span>
-                    </div><br><br>
-                </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="clearfix"></div>
-    <hr>
-    <h3 >Cherished GitUsers</h3>
-    <hr >
-    <div class="cherished_repo">
-        <div class="repoItem col-md-6" style="float:left">
-            <img  src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-8" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName</h5>
-                    <label style="display:block">created at June 5, 2015</label>
-                    <label style="display:block">updated at June 5, 2015</label><br>
-                    <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
-                        <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
-                        <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span id="repo">123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="following">123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="followed">123</span>
-                        <button class="glyphicon icon-heart icon-large" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                    </div><br><br>
-                </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
-            </div>
-        </div>
-
-        <div class="repoItem col-md-6" style="float:left">
-            <img  src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-8" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName</h5>
-                    <label style="display:block">created at June 5, 2015</label>
-                    <label style="display:block">updated at June 5, 2015</label><br>
-                    <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
-                    <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
-                    <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span id="repo2">123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="following2">123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="followed2">123</span>
-
-                    </div><br><br>
-                </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
             </div>
         </div>
         <div class="clearfix"></div>
-        <hr>
+        <hr >
+    </div>
+    <h3 >Cherished GitUsers</h3>
+    <hr >
+    <div id="userFather">
+        <div id="cherished_user">
+            <div class="userItem col-md-6" style="float:left">
+                <img  class="userImg" src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-8" >
+                    <div >
+                        <h5 class="userName" style="font-size:20px;color:#a6192e">UserName</h5>
+                        <label style="display:block" class="createTime">created at June 5, 2015</label>
+                        <label style="display:block" class="updateTime">updated at June 5, 2015</label><br>
+                        <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
+                            <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
+                            <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-apple iconStyle" />
+                            <span class="repo">123</span>
+                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class="following">123</span>
+                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class="followed">123</span>
+                            <button class="glyphicon icon-heart icon-large cherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                        </div><br><br>
+                    </div>
 
-        <div class="repoItem col-md-6" style="float:left">
-            <img  src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-8" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName</h5>
-                    <label style="display:block">created at June 5, 2015</label>
-                    <label style="display:block">updated at June 5, 2015</label><br>
-                    <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
-                    <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
-                    <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span id="repo3">123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="following3">123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="followed3">123</span>
-                    </div><br><br>
+                    <a href="#" class="btn btn-primary hvr-rectangle-in userDetail">Read Detail</a>
                 </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
             </div>
-        </div>
 
-        <div class="repoItem col-md-6" style="float:left">
-            <img  src="../../images/img16.jpg" style="float:left"/>
-            <div style="float:right" class="col-md-8" >
-                <div >
-                    <h5  style="font-size:20px;color:#a6192e">UserName</h5>
-                    <label style="display:block">created at June 5, 2015</label>
-                    <label style="display:block">updated at June 5, 2015</label><br>
-                    <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
-                    <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
-                    <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
-                    <div style="float:left">
-                        <span class=" glyphicon glyphicon-apple iconStyle" />
-                        <span id="repo4">123</span>
-                        <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="following4">123</span>
-                        <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
-                        <span id="followed4">123</span>
-                    </div><br><br>
+            <div class="userItem col-md-6" style="float:left">
+                <img  src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-8" >
+                    <div >
+                        <h5  style="font-size:20px;color:#a6192e">UserName</h5>
+                        <label style="display:block">created at June 5, 2015</label>
+                        <label style="display:block">updated at June 5, 2015</label><br>
+                        <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
+                        <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
+                        <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-apple iconStyle" />
+                            <span id="repo2">123</span>
+                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span id="following2">123</span>
+                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span id="followed2">123</span>
+
+                        </div><br><br>
+                    </div>
+
+                    <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
                 </div>
-
-                <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
             </div>
+            <div class="clearfix"></div>
+            <hr>
+
+            <div class="repoItem col-md-6" style="float:left">
+                <img  src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-8" >
+                    <div >
+                        <h5  style="font-size:20px;color:#a6192e">UserName</h5>
+                        <label style="display:block">created at June 5, 2015</label>
+                        <label style="display:block">updated at June 5, 2015</label><br>
+                        <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
+                        <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
+                        <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-apple iconStyle" />
+                            <span id="repo3">123</span>
+                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span id="following3">123</span>
+                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span id="followed3">123</span>
+                        </div><br><br>
+                    </div>
+
+                    <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
+                </div>
+            </div>
+
+            <div class="repoItem col-md-6" style="float:left">
+                <img  src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-8" >
+                    <div >
+                        <h5  style="font-size:20px;color:#a6192e">UserName</h5>
+                        <label style="display:block">created at June 5, 2015</label>
+                        <label style="display:block">updated at June 5, 2015</label><br>
+                        <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
+                        <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
+                        <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-apple iconStyle" />
+                            <span id="repo4">123</span>
+                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span id="following4">123</span>
+                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span id="followed4">123</span>
+                        </div><br><br>
+                    </div>
+
+                    <a href="#" class="btn btn-primary hvr-rectangle-in">Read Detail</a>
+                </div>
+            </div>
+
+            <hr>
         </div>
 
 
@@ -282,6 +233,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!---->
 
-<script src="../../js/personal.js"></script>
+
 </body>
 </html>
