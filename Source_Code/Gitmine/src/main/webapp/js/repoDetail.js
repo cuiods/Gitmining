@@ -370,11 +370,18 @@ function punchCard(params) {
             return [item[1], item[0], item[2]];
         });
         var count = 0;
-        for(index in data){
-            count = count+data[index][2];
+        //  for(index in data){
+        //      count = count+data[index][2];
+        //  }
+        // count = count/1000;
+        var max = 0;
+        for(index in  data){
+           var temp = data[index][2];
+           if(max<temp){
+               max = temp;
+           }
         }
-       count = count/1000;
-
+        count = max;
         option = {
             title: {
                 text: 'Punch Card of Github',
@@ -422,7 +429,7 @@ function punchCard(params) {
                 name: 'Punch Card',
                 type: 'scatter',
                 symbolSize: function (val) {
-                    return val[2] * count;
+                    return val[2] * 2;
                 },
                 data: data,
                 animationDelay: function (idx) {
