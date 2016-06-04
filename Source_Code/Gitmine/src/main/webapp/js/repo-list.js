@@ -295,6 +295,8 @@ function search(page,isKeyChanged) {
         reverse:isReverse,
         isKeyChanged:isKeyChanged
     }
+    console.log("para");
+    console.log(data);
     var url = location_port+"/repo/search";
     $.post(url,data,function (object) {
         console.log(object);
