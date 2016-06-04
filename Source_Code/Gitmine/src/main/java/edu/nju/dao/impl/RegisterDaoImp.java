@@ -141,7 +141,7 @@ public class RegisterDaoImp implements RegisterDaoService {
     @Override
     public List<SecUserEntity> getStaredUsers(String webUsername, int offset, int maxResults) {
         Session session =sessionFactory.openSession();
-        Query query = session.createQuery("from SecUserEntity where name in (SELECT username FROM RegisterStarUserEntity WHERE webUsername = :web) ");
+        Query query = session.createQuery("from SecUserEntity where login in (SELECT username FROM RegisterStarUserEntity WHERE webUsername = :web) ");
         query.setString("web",webUsername);
         query.setFirstResult(offset);
         query.setMaxResults(maxResults);

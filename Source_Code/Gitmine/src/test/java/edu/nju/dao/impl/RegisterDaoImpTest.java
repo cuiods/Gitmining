@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.entity.SecRegisterLabelEntity;
 import edu.nju.entity.SecRepoEntity;
+import edu.nju.entity.SecUserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -93,7 +94,10 @@ public class RegisterDaoImpTest {
 
     @Test
     public void getStaredUsers() throws Exception {
-        registerDaoImp.getStaredUsers("harry",0,10);
+        List<SecUserEntity> list = registerDaoImp.getStaredUsers("hhhhhh",0,10);
+        for (SecUserEntity entity:list){
+            System.out.println(entity.getName()+"------------------");
+        }
     }
 
     @Test
