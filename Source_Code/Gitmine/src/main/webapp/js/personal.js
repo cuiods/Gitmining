@@ -75,7 +75,7 @@ var UserList={
     init:function(){
         this.gridsFather = $('#cherished_user');
         this.lastGrid = $('.userItem').eq(0);
-        this.clear = $("<div class=\"clearfix\"> </div>" );
+        this.clear = $("<div class=\"clearfix\"></div>" );
         this.hr = $('<hr>');
     },
     updateList:function(userList){
@@ -85,12 +85,12 @@ var UserList={
             var tempGrid = _this.lastGrid.clone(true);
             tempGrid.find('.userImg').eq(0).attr('src',user.avatarUrl);
             tempGrid.find('.userName').eq(0).text(user.login);
-            tempGrid.find('.createTime').eq(0).text(user.createAt);
-            tempGrid.find('.updateTime').eq(0).text(user.updateAt);
+            tempGrid.find('.createTime').eq(0).text("created at "+user.createAt);
+            tempGrid.find('.updateTime').eq(0).text("updated at "+user.updateAt);
             tempGrid.find('.repo').eq(0).text(user.publicRepo);
             tempGrid.find('.following').eq(0).text(user.following);
             tempGrid.find('.followed').eq(0).text(user.follower);
-            tempGrid.find('.userDetail').eq(0).attr('href','userDetail.html?'+user.login);
+            tempGrid.find('.userDetail').eq(0).attr('href','userDetail.html?userName='+user.login);
             _this.gridsFather.append(tempGrid);
             if(i%2==1){
                 _this.gridsFather.append(_this.clear.clone(true));
