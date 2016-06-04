@@ -62,21 +62,22 @@ function setBasicInfo(basicInfo) {
 }
 
 function setRecommend(recommend) {
-    // console.log(recommend);
-    // var fatherNode = $('#recommendRepos');
-    // var recommendNode = fatherNode.find('#recommend-item');
-    // fatherNode.empty();
-    // $.each(recommend,function (i,item) {
-    //     var newNode = recommendNode.clone();
-    //     newNode.find("#recommend_ownerAvatarUrl").attr('src',item.ownerAvatarUrl);
-    //     newNode.find("#recommend_updateAt").attr('src',item.updateAt);
-    //     newNode.find("#recommend_description").attr('src',item.description);
-    //     newNode.find("#recommend_numStar").text(item.numStar);
-    //     newNode.find("#recommend_numFork").text(item.numFork);
-    //     newNode.find("#recommend_numSubscriber").text(item.numSubscriber);
-    //
-    //     fatherNode.add(newNode);
-    // });
+    console.log("recommend:")
+    console.log(recommend);
+    var fatherNode = $('#recommendRepos');
+    var recommendNode = fatherNode.find('.new-group-item').clone(true);
+    fatherNode.empty();
+    $.each(recommend,function (i,repo) {
+        var newNode = recommendNode.clone(true);
+
+        newNode.find('.repo_name').eq(0).text(repo.reponame);
+        newNode.find('.repo_description').eq(0).text(repo.description);
+        newNode.find('.repo_fork').eq(0).text(repo.numFork);
+        newNode.find('.repo_star').eq(0).text(repo.numStar);
+        newNode.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.reponame);
+        fatherNode.append(newNode);
+        fatherNode.append('<br>');
+    });
 }
 
 function setRadar(radar_repo,radarChart) {
