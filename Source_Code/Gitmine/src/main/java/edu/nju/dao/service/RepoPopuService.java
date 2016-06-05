@@ -77,5 +77,17 @@ public interface RepoPopuService {
      */
     List<List> statFollowerRate();
 
+    /**
+     * complex statistic
+     * @param min
+     * @param max
+     * @return
+     */
     List<Object[]> statFollowerSuper(int min, int max);
+
+    /**
+     * just for 'group by case' test
+     * @return
+     */
+    List<Object[]> refactorTest();
 }

@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.util.*;
 
 /**
@@ -150,31 +151,23 @@ public class RepoPopuDaoImp implements RepoPopuService {
         Session session = sessionFactory.openSession();
         List longs = new ArrayList<>();
         //regexp
-        SQLQuery query = session.createSQLQuery("select count(*) from sec_repo where description REGEXP :keyword ");
-        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)javascript($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)ruby($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)rust($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)server($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
-        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
-        longs.add(query.list().get(0));
+        SQLQuery query = session.createSQLQuery("select count(*) from sec_repo GROUP BY (CASE WHEN description REGEXP '(^| +)node.js($| +|[^a-zA-Z])' THEN 0 " +
+                "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 1 " +
+                "WHEN description REGEXP '(^| +)library($| +|[^a-zA-Z])' THEN 2 " +
+                "WHEN description REGEXP '(^| +)ruby($| +|[^a-zA-Z])' THEN 3 " +
+                "WHEN description REGEXP '(^| +)web($| +|[^a-zA-Z])' THEN 4 " +
+                "WHEN description REGEXP '(^| +)api($| +|[^a-zA-Z])' THEN 5 " +
+                "WHEN description REGEXP '(^| +)vim($| +|[^a-zA-Z])' THEN 6 " +
+                "WHEN description REGEXP '(^| +)plugin($| +|[^a-zA-Z])' THEN 7 " +
+                "WHEN description REGEXP '(^| +)rust($| +|[^a-zA-Z])' THEN 8 " +
+                "WHEN description REGEXP '(^| +)app($| +|[^a-zA-Z])' THEN 9 " +
+                "WHEN description REGEXP '(^| +)server($| +|[^a-zA-Z])' THEN 10 " +
+                "WHEN description REGEXP '(^| +)json($| +|[^a-zA-Z])' THEN 11 ELSE 12 END ) ");
+        List<BigInteger> list = query.list();
+        for (int i = 0; i < list.size()-1; i++) {
+            BigInteger bigInteger = list.get(i);
+            longs.add(bigInteger.intValue());
+        }
         session.close();
         return longs;
     }
@@ -223,31 +216,33 @@ public class RepoPopuDaoImp implements RepoPopuService {
         Session session = sessionFactory.openSession();
         List<List> longs = new ArrayList<>();
         //regexp
-        SQLQuery query = session.createSQLQuery("select COUNT(*) from sec_repo as Repo where description REGEXP :keyword AND YEAR(Repo.create_at)>=2008 GROUP BY YEAR(Repo.create_at) ");
-        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)javascript($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)ruby($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)rust($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)server($| +|[^a-zA-Z])");
-        longs.add(query.list());
-        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
-        longs.add(query.list());
+        Query query = session.createSQLQuery("SELECT COUNT(CASE WHEN YEAR(create_at)=2008 THEN 1 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2009 THEN 2 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2010 THEN 3 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2011 THEN 4 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2012 THEN 5 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2013 THEN 6 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2014 THEN 7 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2015 THEN 8 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2016 THEN 9 END) " +
+                "FROM sec_repo GROUP BY " +
+                "(CASE WHEN description REGEXP '(^| +)node.js($| +|[^a-zA-Z])' THEN 10 " +
+                "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 11 " +
+                "WHEN description REGEXP '(^| +)library($| +|[^a-zA-Z])' THEN 12 " +
+                "WHEN description REGEXP '(^| +)ruby($| +|[^a-zA-Z])' THEN 13 " +
+                "WHEN description REGEXP '(^| +)web($| +|[^a-zA-Z])' THEN 14 " +
+                "WHEN description REGEXP '(^| +)api($| +|[^a-zA-Z])' THEN 15 " +
+                "WHEN description REGEXP '(^| +)vim($| +|[^a-zA-Z])' THEN 16 " +
+                "WHEN description REGEXP '(^| +)plugin($| +|[^a-zA-Z])' THEN 17 " +
+                "WHEN description REGEXP '(^| +)rust($| +|[^a-zA-Z])' THEN 18 " +
+                "WHEN description REGEXP '(^| +)app($| +|[^a-zA-Z])' THEN 19 " +
+                "WHEN description REGEXP '(^| +)server($| +|[^a-zA-Z])' THEN 20 " +
+                "WHEN description REGEXP '(^| +)json($| +|[^a-zA-Z])' THEN 21 ELSE 22 END ) ");
+        List<Object[]> list = query.list();
+        for (int i = 0; i < list.size()-1; i++) {
+            Object[] objects = list.get(i);
+            longs.add(Arrays.asList(objects));
+        }
         session.close();
         return longs;
     }
@@ -290,6 +285,23 @@ public class RepoPopuDaoImp implements RepoPopuService {
         List list =  query.list();
         session.close();
         return list;
+    }
+
+    /**
+     * just for 'group by case' test
+     *
+     * @return
+     */
+    @Override
+    public List<Object[]> refactorTest() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("SELECT COUNT(CASE WHEN YEAR(create_at)=2008 THEN 1 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2009 THEN 2 END), " +
+                "COUNT(CASE WHEN YEAR(create_at)=2010 THEN 3 END) " +
+                "FROM sec_repo GROUP BY (CASE WHEN description REGEXP '(^| +)node.js($| +|[^a-zA-Z])' THEN 1 " +
+                "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 2 ) ");
+        List<Object[]> objects = query.list();
+        return objects;
     }
 
 }

@@ -76,7 +76,7 @@ public class RepoPopuDaoImpTest {
     public void statFields() throws Exception {
         List list = repoPopuImp.statFields();
         for (int i = 0; i < list.size(); i++) {
-            System.out.println("---"+list.get(i));
+            System.out.println(i+"---"+list.get(i));
         }
     }
 
@@ -107,6 +107,17 @@ public class RepoPopuDaoImpTest {
     @Test
     public void statFollowerSuper() throws Exception {
         List<Object[]> list = repoPopuImp.statFollowerSuper(10,100);
+        for (Object[] objects: list) {
+            for (int i = 0; i < objects.length; i++) {
+                System.out.print(objects[i]+",");
+            }
+            System.out.println();
+        }
+    }
+
+    @Test
+    public void refactorTest() throws Exception {
+        List<Object[]> list = repoPopuImp.refactorTest();
         for (Object[] objects: list) {
             for (int i = 0; i < objects.length; i++) {
                 System.out.print(objects[i]+",");
