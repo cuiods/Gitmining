@@ -1,15 +1,15 @@
 package edu.nju.controller;
 
+import edu.nju.common.Const;
 import edu.nju.entity.SecRegisterLabelEntity;
+import edu.nju.model.service.HobbyModelService;
 import edu.nju.model.service.LoginModelService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 /**
  * Created by cuihao on 2016/5/4.
@@ -20,6 +20,9 @@ public class LoginController {
 
     @Resource
     private LoginModelService loginModelImpl;
+
+    @Resource
+    private HobbyModelService hobbyModelService;
 
     @RequestMapping(value = "/register")
     @ResponseBody
@@ -52,6 +55,20 @@ public class LoginController {
         if (loginResult){
             //add user information to session scope for aop to use
             session.setAttribute("webUsername", username);
+            HashSet<String> staredRepo = hobbyModelService.getStaredReponame(username);
+            HashSet<String> staredUser = hobbyModelService.getStaredUsername(username);
+            int staredRepoPage = staredRepo.size()/ Const.ITEMS_PER_PAGE;
+            if (staredRepo.size()%Const.ITEMS_PER_PAGE > 0){
+                staredRepoPage++;
+            }
+            int staredUserPage = staredUser.size()/Const.ITEMS_PER_PAGE;
+            if (staredUser.size()%Const.ITEMS_PER_PAGE > 0){
+                staredUserPage++;
+            }
+            session.setAttribute("staredRepo",staredRepo);
+            session.setAttribute("staredUser",staredUser);
+            session.setAttribute("staredRepoPage",staredRepoPage);
+            session.setAttribute("staredUserPage",staredUserPage);
         }
         return loginResult;
     }

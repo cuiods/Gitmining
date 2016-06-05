@@ -21,6 +21,7 @@ public class UserVO {
     private int following;
     private String createAt;
     private String updateAt;
+    private boolean isStared = false;
 
     public UserVO() {
     }
@@ -163,5 +164,13 @@ public class UserVO {
 
     public void setUpdateAt(String updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public boolean isStared() {
+        return isStared;
+    }
+
+    public void setStared(boolean stared) {
+        isStared = stared;
     }
 }

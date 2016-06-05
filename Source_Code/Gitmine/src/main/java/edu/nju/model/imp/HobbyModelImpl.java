@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -110,5 +111,22 @@ public class HobbyModelImpl implements HobbyModelService {
             vos.add(voConvertor.convert(repoEntity));
         }
         return vos;
+    }
+
+    @Override
+    public HashSet<String> getStaredReponame(String webUsername) {
+        List<Object[]> list = registerDaoService.getStaredReponame(webUsername);
+        HashSet<String> set = new HashSet<>();
+        for (Object[] item:list){
+            set.add(item[0]+"/"+item[1]);
+        }
+        return set;
+    }
+
+    @Override
+    public HashSet<String> getStaredUsername(String webUsername) {
+        List<String> list = registerDaoService.getStaredUsername(webUsername);
+        HashSet<String> set = new HashSet<>(list);
+        return set;
     }
 }

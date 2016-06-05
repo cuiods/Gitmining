@@ -4,7 +4,10 @@ import edu.nju.model.pojo.RepoVO;
 import edu.nju.model.pojo.SimpleRepoVO;
 import edu.nju.model.pojo.UserVO;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Harry on 2016/5/29.
@@ -36,4 +39,8 @@ public interface HobbyModelService {
     public int getTotalRepoStarPage(String webUsername);
 
     public int getTotalUserStarPage(String webUsername);
+
+    public HashSet<String> getStaredReponame(String webUsername);
+
+    public HashSet<String> getStaredUsername(String webUsername);
 }

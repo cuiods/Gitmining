@@ -17,6 +17,7 @@ public class RepoVO {
     private int numStar;
     private int numFork;
     private int numWatcher;
+    private boolean isStared = false;
 
     public RepoVO() {
     }
@@ -132,5 +133,13 @@ public class RepoVO {
 
     public void setNumWatcher(int numWatcher) {
         this.numWatcher = numWatcher;
+    }
+
+    public boolean isStared() {
+        return isStared;
+    }
+
+    public void setStared(boolean stared) {
+        isStared = stared;
     }
 }
