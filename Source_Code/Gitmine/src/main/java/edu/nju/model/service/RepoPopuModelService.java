@@ -21,4 +21,5 @@ public interface RepoPopuModelService {
     List statSpecialFollower();
     List statsCompareFollower();
     List<List> statSpecialFollowRate();
+    Map<String,List> statFollowerSuper();
 }

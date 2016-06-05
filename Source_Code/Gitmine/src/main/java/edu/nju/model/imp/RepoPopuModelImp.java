@@ -131,4 +131,35 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     public List<List> statSpecialFollowRate() {
         return repoPopuImp.statFollowerRate();
     }
+
+    @Override
+    public Map<String, List> statFollowerSuper() {
+        Map<String,List> map = new HashMap<>();
+        List<Object[]> bigInteger1 = repoPopuImp.statFollowerSuper(0,10);
+        List<Object[]> bigInteger2 = repoPopuImp.statFollowerSuper(10,100);
+        List<Object[]> bigInteger3 = repoPopuImp.statFollowerSuper(100,Integer.MAX_VALUE);
+        List<List> lists1 = new ArrayList<>(9);
+        List<List> lists2 = new ArrayList<>(9);
+        List<List> lists3 = new ArrayList<>(9);
+        for (int i = 0; i < bigInteger1.size(); i++) {
+            Object[] objects1 = bigInteger1.get(i);
+            Object[] objects2 = bigInteger2.get(i);
+            Object[] objects3 = bigInteger3.get(i);
+            List l1 = new ArrayList<>(6);
+            List l2 = new ArrayList<>(6);
+            List l3 = new ArrayList<>(6);
+            for (int j = 0; j < objects1.length; j++) {
+                l1.add(((BigInteger)objects1[j]).intValue());
+                l2.add(((BigInteger)objects2[j]).intValue());
+                l3.add(((BigInteger)objects3[j]).intValue());
+            }
+            lists1.add(l1);
+            lists2.add(l2);
+            lists3.add(l3);
+        }
+        map.put("little",lists1);
+        map.put("middle",lists2);
+        map.put("large",lists3);
+        return map;
+    }
 }

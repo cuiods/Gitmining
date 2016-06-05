@@ -76,4 +76,6 @@ public interface RepoPopuService {
      * @return
      */
     List<List> statFollowerRate();
+
+    List<Object[]> statFollowerSuper(int min, int max);
 }

@@ -53,4 +53,12 @@ public class RepoPopuModelImpTest {
         System.out.println(repoPopuModelService.statsCompareFollower());
     }
 
+    @Test
+    public void statFollowerSuper() throws Exception {
+        Map<String,List> map = repoPopuModelService.statFollowerSuper();
+        System.out.println(map.get("little"));
+        System.out.println(map.get("middle"));
+        System.out.println(map.get("large"));
+    }
+
 }
