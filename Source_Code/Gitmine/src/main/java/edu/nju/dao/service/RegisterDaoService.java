@@ -95,4 +95,8 @@ public interface RegisterDaoService {
     public List<SecUserEntity> getStaredUsers(String webUsername, int offset, int maxResults);
 
     public long getStaredUserCount(String webUsername);
+
+    public List<Object[]> getStaredReponame(String webUsername);
+
+    public List<String> getStaredUsername(String webUsername);
 }
