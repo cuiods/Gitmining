@@ -700,7 +700,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     @Override
     public List<Object[]> getStatsLanguage(int maxResults) {
         Session session =sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT repo.language, count(*) AS num FROM sec_repo repo " +
+        SQLQuery query = session.createSQLQuery("SELECT repo.language, count(*) AS num FROM sec_repo repo WHERE repo.language <> '' " +
                 "GROUP BY repo.language ORDER BY num DESC " );
         query.setMaxResults(maxResults);
         List<Object[]> list = query.list();
