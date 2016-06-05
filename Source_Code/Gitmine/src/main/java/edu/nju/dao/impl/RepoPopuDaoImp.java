@@ -251,4 +251,23 @@ public class RepoPopuDaoImp implements RepoPopuService {
         session.close();
         return longs;
     }
+
+    /**
+     * stat user follower of popular repository
+     * @return
+     */
+    @Override
+    public List<List> statFollowerRate() {
+        Session session = sessionFactory.openSession();
+        List list = new ArrayList<>();
+        Query query = session.createSQLQuery("SELECT COUNT(*) FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
+                "WHERE Repo.star_count > 1000 GROUP BY U.followers > 10 ORDER BY COUNT(*) DESC LIMIT 0,2");
+        list.add(query.list());
+        query = session.createSQLQuery("SELECT COUNT(*) FROM sec_user AS secUser GROUP BY secUser.followers>10 ORDER BY COUNT(*) DESC LIMIT 0,2");
+        list.add(query.list());
+        session.close();
+        return list;
+    }
 }

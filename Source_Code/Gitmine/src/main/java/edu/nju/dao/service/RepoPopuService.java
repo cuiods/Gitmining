@@ -70,4 +70,10 @@ public interface RepoPopuService {
      * @return
      */
     List<List> statFieldCreateTime();
+
+    /**
+     * stat user follower of popular repository
+     * @return
+     */
+    List<List> statFollowerRate();
 }

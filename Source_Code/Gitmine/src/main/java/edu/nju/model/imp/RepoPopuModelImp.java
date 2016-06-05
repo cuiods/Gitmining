@@ -126,4 +126,9 @@ public class RepoPopuModelImp implements RepoPopuModelService {
         list.add(count);
         return list;
     }
+
+    @Override
+    public List<List> statSpecialFollowRate() {
+        return repoPopuImp.statFollowerRate();
+    }
 }

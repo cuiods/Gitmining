@@ -83,4 +83,10 @@ public class RepoPopuController {
     public List statCompareFollower() {
         return repoPopuModelService.statsCompareFollower();
     }
+
+    @RequestMapping("/personRate")
+    @ResponseBody
+    public List<List> statFollowerRate() {
+        return repoPopuModelService.statSpecialFollowRate();
+    }
 }

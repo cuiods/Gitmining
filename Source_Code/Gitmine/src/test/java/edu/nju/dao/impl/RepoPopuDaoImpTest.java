@@ -95,4 +95,12 @@ public class RepoPopuDaoImpTest {
             System.out.println(lists.get(i));
         }
     }
+
+    @Test
+    public void statFollowerRate() throws Exception {
+        List<List> lists = repoPopuImp.statFollowerRate();
+        for (List list:lists) {
+            System.out.println(list);
+        }
+    }
 }

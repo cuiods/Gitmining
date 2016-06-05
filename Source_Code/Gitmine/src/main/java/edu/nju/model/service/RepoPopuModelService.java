@@ -20,4 +20,5 @@ public interface RepoPopuModelService {
     List<List> statFieldCreateAt();
     List statSpecialFollower();
     List statsCompareFollower();
+    List<List> statSpecialFollowRate();
 }

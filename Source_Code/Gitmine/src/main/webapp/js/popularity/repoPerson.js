@@ -111,4 +111,67 @@ $(document).ready(function () {
             person_follower2.setOption(option);
         }
     });
+
+    var person_rate = echarts.init(document.getElementById('gra-person-rate'));
+    person_rate.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/popularity/personRate",
+        success:function (persondata) {
+            option = {
+                title : {
+                    text: 'Rate of user whose followers > 10',
+                    subtext: 'Data from Github',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    x : 'center',
+                    y : 'bottom',
+                    data:['follower<=10','follower>10']
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {
+                            show: true,
+                            type: ['pie', 'funnel']
+                        },
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'contributor of popular repositories',
+                        type:'pie',
+                        radius : [20, 110],
+                        center : ['25%', 200],
+                        data:[
+                            {value:persondata[0][0], name:'follower<=10'},
+                            {value:persondata[0][1], name:'follower>10'}
+                        ]
+                    },
+                    {
+                        name:'common users of Github',
+                        type:'pie',
+                        radius : [20, 110],
+                        center : ['75%', 200],
+                        data:[
+                            {value:persondata[1][0], name:'follower<=10'},
+                            {value:persondata[1][1], name:'follower>10'}
+                        ]
+                    }
+                ]
+            };
+            person_rate.hideLoading();
+            person_rate.setOption(option);
+        }
+    });
 });
