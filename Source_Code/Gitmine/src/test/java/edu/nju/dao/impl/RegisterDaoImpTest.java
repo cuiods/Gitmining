@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
 @Transactional
 public class RegisterDaoImpTest {
 
-
     @Resource
     private RegisterDaoImp registerDaoImp;
 
@@ -108,5 +107,21 @@ public class RegisterDaoImpTest {
     @Test
     public void getStaredRepoCount() throws Exception {
         System.out.println(registerDaoImp.getStaredRepoCount("harry"));
+    }
+
+    @Test
+    public void getStaredReponame() throws Exception {
+        List<Object[]> list = registerDaoImp.getStaredReponame("harry14");
+        for (Object[] item:list){
+            System.out.println(item[0]+"---"+item[1]);
+        }
+    }
+
+    @Test
+    public void getStaredUsername() throws Exception {
+        List<String> list = registerDaoImp.getStaredUsername("harry14");
+        for (String s:list){
+            System.out.println(s);
+        }
     }
 }

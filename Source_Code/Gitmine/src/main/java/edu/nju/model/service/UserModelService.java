@@ -52,6 +52,8 @@ public interface UserModelService {
      */
     public int getTotalPage();
 
+    public int getSearchPage(String keyword);
+
     /**
      * get the user list
      * @param sortType

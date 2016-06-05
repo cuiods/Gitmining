@@ -8,6 +8,7 @@ import edu.nju.model.pojo.*;
 import edu.nju.model.service.HobbyModelService;
 import edu.nju.model.service.UserModelService;
 import edu.nju.model.service.UserStatsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +28,8 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    @Resource
+    private int totalPage = 0;
+
     private UserModelService userModelImpl;
 
     @Resource
@@ -35,7 +38,10 @@ public class UserController {
     @Resource
     private HobbyModelService hobbyModelImpl;
 
-    public UserController() {
+    @Autowired
+    public UserController(UserModelService userModelImpl) {
+        this.userModelImpl = userModelImpl;
+        this.totalPage = userModelImpl.getTotalPage();
     }
 
     @RequestMapping(value = "/home")
@@ -48,7 +54,15 @@ public class UserController {
         List<UserVO> recommend;
         if (session.getAttribute("webUsername") == null){
             recommend = userModelImpl.getPopularUser();
+
+            HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+            for (UserVO vo:recommend){
+                if (staredUser.contains(vo.getLogin())){
+                    vo.setStared(true);
+                }
+            }
         }
+
         else {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = userModelImpl.getRecommendUser(webUsername);
@@ -64,7 +78,8 @@ public class UserController {
     @ResponseBody
     public Map list(@RequestParam int pageNum,
                     @RequestParam(required = false, defaultValue = "user_name") String sortType,
-                    @RequestParam(required = false, defaultValue = "false") boolean isDesc){
+                    @RequestParam(required = false, defaultValue = "false") boolean isDesc,
+                    HttpSession session){
         Map<String,Object> map = new HashMap<>();
         long totalPage = userModelImpl.getTotalPage();
         List<UserVO> userVOs = null;
@@ -75,8 +90,16 @@ public class UserController {
             }
             if (pageNum<1)  pageNum=1;
             userVOs = userModelImpl.getUsers(type,isDesc,(pageNum-1)*Const.ITEMS_PER_PAGE,Const.ITEMS_PER_PAGE);
+            if (session.getAttribute("webUsername") != null){
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                for (UserVO vo:userVOs){
+                    if (staredUser.contains(vo.getLogin())){
+                        vo.setStared(true);
+                    }
+                }
+            }
         }
-        map.put("totalPage", 10);
+        map.put("totalPage", totalPage);
         map.put("currentPage", pageNum);
         map.put("userList", userVOs);
         return map;
@@ -84,15 +107,30 @@ public class UserController {
 
     @RequestMapping(value = "/search")
     @ResponseBody
-    public List<UserVO> getSearchResult(@RequestParam String keyword,
-                                  @RequestParam(required = false, defaultValue = "user_name") String sortType,
-                                  @RequestParam(required = false,defaultValue = "false") boolean reverse,
-                                  @RequestParam int pageNum){
+    public Map getSearchResult(@RequestParam String keyword,
+                                        @RequestParam(required = false, defaultValue = "user_name") String sortType,
+                                        @RequestParam(required = false,defaultValue = "false") boolean reverse,
+                                        @RequestParam int pageNum,
+                                        @RequestParam boolean isKeyChanged,
+                                        HttpSession session){
         List<UserVO> resultList = userModelImpl.getSearchResult(keyword,sortType,pageNum,reverse);
-
-        //todo sort according to the web user's hobbies
-
-        return resultList;
+        if (session.getAttribute("webUsername") != null){
+            HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+            for (UserVO vo:resultList){
+                if (staredUser.contains(vo.getLogin())){
+                    vo.setStared(true);
+                }
+            }
+        }
+        int totalSearchPage = -1;
+        if (isKeyChanged){
+            totalSearchPage = userModelImpl.getSearchPage(keyword);
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("totalPage",totalSearchPage);
+        map.put("currentPage",pageNum);
+        map.put("userList",resultList);
+        return map;
     }
 
     @RequestMapping(value = "/{username:.+}")

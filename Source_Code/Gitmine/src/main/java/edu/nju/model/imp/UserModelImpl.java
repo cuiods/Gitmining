@@ -108,6 +108,16 @@ public class UserModelImpl implements UserModelService {
     }
 
     @Override
+    public int getSearchPage(String keyword) {
+        long cnt = userDao.getSearchCount(keyword);
+        int page = (int)cnt/Const.ITEMS_PER_PAGE;
+        if (cnt%Const.ITEMS_PER_PAGE > 0){
+            page ++;
+        }
+        return page;
+    }
+
+    @Override
     public List<UserVO> getUsers(SortType sortType, boolean isDesc, int offset, int maxNum) {
         List<SecUserEntity> userEntityList = userDao.getUsers(sortType,isDesc,offset,maxNum);
         List<UserVO> userVOs = new ArrayList<>();

@@ -115,11 +115,18 @@ public class HobbyModelImpl implements HobbyModelService {
 
     @Override
     public HashSet<String> getStaredReponame(String webUsername) {
-        return null;
+        List<Object[]> list = registerDaoService.getStaredReponame(webUsername);
+        HashSet<String> set = new HashSet<>();
+        for (Object[] item:list){
+            set.add(item[0]+"/"+item[1]);
+        }
+        return set;
     }
 
     @Override
     public HashSet<String> getStaredUsername(String webUsername) {
-        return null;
+        List<String> list = registerDaoService.getStaredUsername(webUsername);
+        HashSet<String> set = new HashSet<>(list);
+        return set;
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ import java.util.Map;
 @RequestMapping("/repo")
 public class RepoController {
 
-    private static int totalPage = 0;
+    private int totalPage = 0;
 
     private RepoModelService repoModelImpl;
 
@@ -57,6 +58,13 @@ public class RepoController {
         List<RepoVO> recommend;
         if (session.getAttribute("webUsername") == null){
             recommend = repoModelImpl.getPopularRepo(offset,maxResults);
+            HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+            for (RepoVO vo:recommend){
+                if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
+                    vo.setStared(true);
+                }
+            }
+
         }
         else {
             String webUsername = (String) session.getAttribute("webUsername");
@@ -81,7 +89,14 @@ public class RepoController {
             }
             if (pageNum<1)  pageNum=1;
             repoList = repoModelImpl.getRepos(type, isDesc, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
-
+            if (session.getAttribute("webUsername") != null){
+                HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+                for (RepoVO vo:repoList){
+                    if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
+                        vo.setStared(true);
+                    }
+                }
+            }
         }
         map.put("totalPage", totalPage);
         map.put("currentPage", pageNum);
@@ -106,6 +121,14 @@ public class RepoController {
         }
         List<RepoVO> resultList = repoModelImpl.getSearchResult(keyword, sortType, filterType,
                 language, createYear, pageNum, reverse, webUsername);
+        if (session.getAttribute("webUsername") != null){
+            HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+            for (RepoVO vo:resultList){
+                if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
+                    vo.setStared(true);
+                }
+            }
+        }
         int totalSearchPage = -1;
         if (isKeyChanged){
             totalSearchPage = repoModelImpl.getSearchPage(keyword,filterType,language,createYear);

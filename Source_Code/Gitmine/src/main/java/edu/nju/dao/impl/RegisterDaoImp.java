@@ -271,6 +271,10 @@ public class RegisterDaoImp implements RegisterDaoService {
     @Override
     public List<String> getStaredUsername(String webUsername) {
         Session session = sessionFactory.openSession();
-        return null;
+        SQLQuery query = session.createSQLQuery("SELECT username FROM register_star_user WHERE web_username = :web");
+        query.setString("web",webUsername);
+        List<String> list = query.list();
+        session.close();
+        return list;
     }
 }
