@@ -42,5 +42,15 @@ public class RepoPopuModelImpTest {
 
     }
 
+    @Test
+    public void statSpecialFollower() throws Exception {
+        System.out.println(repoPopuModelService.statSpecialFollower());
+    }
+
+    @Test
+    public void statsCompareFollower() throws Exception {
+        System.out.println(repoPopuModelService.statSpecialFollower());
+        System.out.println(repoPopuModelService.statsCompareFollower());
+    }
 
 }

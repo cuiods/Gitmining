@@ -129,7 +129,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
      * @return
      */
     @Override
-    public List statSpecialFollower(int min, int max) {
+    public List statSpecialFollower() {
         Session session = sessionFactory.openSession();
         Query query = session.createSQLQuery("SELECT FLOOR(U.followers/10),COUNT(*) FROM sec_repo AS Repo " +
                 "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +

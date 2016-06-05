@@ -1,12 +1,16 @@
 package edu.nju.model.imp;
 
 import edu.nju.dao.service.RepoPopuService;
+import edu.nju.dao.service.SecUserDaoService;
+import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoPopuModelService;
 import edu.nju.model.statistic.RegressionLine;
 import edu.nju.model.statistic.StarRegressionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +26,8 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     private RepoPopuService repoPopuImp;
     @Resource
     private StarRegressionService starRegressionService;
+    @Resource
+    private SecUserDaoService secUserDaoService;
 
     @Override
     public Map<String, List> statLanguagePopularity() {
@@ -92,5 +98,32 @@ public class RepoPopuModelImp implements RepoPopuModelService {
             while (list.size() < 9) list.add(0,0);
         }
         return lists;
+    }
+
+    @Override
+    public List statSpecialFollower() {
+        List list = new ArrayList<>(11);
+        List data = repoPopuImp.statSpecialFollower();
+        for (int i = 1; i <= 10; i++) {
+            Object[] objects = (Object[]) data.get(i);
+            list.add(((BigInteger)objects[1]).intValue());
+        }
+        int count = 0;
+        for (int i = 11; i < data.size(); i++) {
+            count += ((BigInteger)((Object[])data.get(i))[1]).intValue();
+        }
+        list.add(count);
+        return list;
+    }
+
+    @Override
+    public List statsCompareFollower() {
+        List<Long> list = new ArrayList<>(11);
+        for (int i = 0; i < 10; i++) {
+            list.add(secUserDaoService.getStatsUserFollower(i*10,(i+1)*10));
+        }
+        long count = secUserDaoService.getStatsUserFollower(100, Integer.MAX_VALUE);
+        list.add(count);
+        return list;
     }
 }

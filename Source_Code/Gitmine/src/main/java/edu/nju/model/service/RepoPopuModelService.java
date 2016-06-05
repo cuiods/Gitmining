@@ -1,5 +1,7 @@
 package edu.nju.model.service;
 
+import edu.nju.model.pojo.SimpleChart;
+
 import java.util.List;
 import java.util.Map;
 
@@ -16,4 +18,6 @@ public interface RepoPopuModelService {
     List statFieldNumber();
     List<List> statFieldNumberBox();
     List<List> statFieldCreateAt();
+    List statSpecialFollower();
+    List statsCompareFollower();
 }

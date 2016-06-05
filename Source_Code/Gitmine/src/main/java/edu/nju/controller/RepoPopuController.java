@@ -71,4 +71,16 @@ public class RepoPopuController {
     public List statFieldCreateAt() {
         return repoPopuModelService.statFieldCreateAt();
     }
+
+    @RequestMapping("/personFollower")
+    @ResponseBody
+    public List statSpecailFollower() {
+        return repoPopuModelService.statSpecialFollower();
+    }
+
+    @RequestMapping("/personCompare")
+    @ResponseBody
+    public List statCompareFollower() {
+        return repoPopuModelService.statsCompareFollower();
+    }
 }

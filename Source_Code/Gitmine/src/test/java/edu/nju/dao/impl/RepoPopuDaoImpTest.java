@@ -65,10 +65,10 @@ public class RepoPopuDaoImpTest {
 
     @Test
     public void statSpecialFollower() throws Exception {
-        List list = repoPopuImp.statSpecialFollower(0,0);
+        List list = repoPopuImp.statSpecialFollower();
         for (int i = 0; i < list.size(); i++) {
             Object[] objects = (Object[]) list.get(i);
-            System.out.println("fork:"+objects[0] + "  number:"+objects[1]);
+            System.out.println("fork:"+objects[0] + "  number:"+objects[1]+" class: "+objects[1].getClass().getName());
         }
     }
 
