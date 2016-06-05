@@ -89,4 +89,11 @@ public class RepoPopuController {
     public List<List> statFollowerRate() {
         return repoPopuModelService.statSpecialFollowRate();
     }
+
+    @RequestMapping("/personSuper")
+    @ResponseBody
+    public Map<String,List> statFollowerSuper() {
+        return repoPopuModelService.statFollowerSuper();
+    }
+
 }

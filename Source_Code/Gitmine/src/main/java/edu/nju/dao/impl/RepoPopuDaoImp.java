@@ -270,4 +270,26 @@ public class RepoPopuDaoImp implements RepoPopuService {
         session.close();
         return list;
     }
+
+    @Override
+    public List<Object[]> statFollowerSuper(int min, int max) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("SELECT COUNT(CASE WHEN Repo.star_count<2000 THEN 1 END)," +
+                "COUNT(CASE WHEN Repo.star_count>=2000 AND Repo.star_count<3000 THEN 2 END)," +
+                "COUNT(CASE WHEN Repo.star_count>=3000 AND Repo.star_count<4000 THEN 3 END)," +
+                "COUNT(CASE WHEN Repo.star_count>=4000 AND Repo.star_count<5000 THEN 4 END)," +
+                "COUNT(CASE WHEN Repo.star_count>=5000 AND Repo.star_count<6000 THEN 5 END)," +
+                "COUNT(CASE WHEN Repo.star_count>=6000 THEN 6 END) " +
+                "FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
+                "WHERE Repo.star_count>1000 AND U.followers>=:minValue AND U.followers<:maxValue AND YEAR(Repo.create_at)>2007 " +
+                "GROUP BY YEAR(Repo.create_at) ");
+        query.setInteger("minValue",min);
+        query.setInteger("maxValue",max);
+        List list =  query.list();
+        session.close();
+        return list;
+    }
+
 }

@@ -103,4 +103,15 @@ public class RepoPopuDaoImpTest {
             System.out.println(list);
         }
     }
+
+    @Test
+    public void statFollowerSuper() throws Exception {
+        List<Object[]> list = repoPopuImp.statFollowerSuper(10,100);
+        for (Object[] objects: list) {
+            for (int i = 0; i < objects.length; i++) {
+                System.out.print(objects[i]+",");
+            }
+            System.out.println();
+        }
+    }
 }
