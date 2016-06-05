@@ -154,7 +154,7 @@ public class RepoController {
             return false;
         }
         else {
-            String webUsername = session.getAttribute("wenUsername").toString();
+            String webUsername = session.getAttribute("webUsername").toString();
             return hobbyModelImpl.unstarRepo(ownername,reponame,webUsername);
         }
     }
