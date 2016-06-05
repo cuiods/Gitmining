@@ -70,7 +70,8 @@ public class RepoController {
     @ResponseBody
     public Map list(@RequestParam int pageNum,
                     @RequestParam(required = false, defaultValue = "repo_name") String sortType,
-                    @RequestParam(required = false, defaultValue = "false") boolean isDesc){
+                    @RequestParam(required = false, defaultValue = "false") boolean isDesc,
+                    HttpSession session){
         Map<String,Object> map = new HashMap<>();
         List<RepoVO> repoList = null;
         if (pageNum<=totalPage){
@@ -80,6 +81,7 @@ public class RepoController {
             }
             if (pageNum<1)  pageNum=1;
             repoList = repoModelImpl.getRepos(type, isDesc, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
+
         }
         map.put("totalPage", totalPage);
         map.put("currentPage", pageNum);
@@ -131,7 +133,7 @@ public class RepoController {
         return repoDetailInfo;
     }
 
-    @RequestMapping(value = "/star", method = RequestMethod.POST)
+    @RequestMapping(value = "/star")
     @ResponseBody
     public boolean star(@RequestParam String ownername,@RequestParam String reponame,
                         HttpSession session){
@@ -139,12 +141,12 @@ public class RepoController {
             return false;
         }
         else {
-            String webUsername = session.getAttribute("wenUsername").toString();
+            String webUsername = session.getAttribute("webUsername").toString();
             return hobbyModelImpl.starRepo(ownername,reponame,webUsername);
         }
     }
 
-    @RequestMapping(value = "/unstar", method = RequestMethod.POST)
+    @RequestMapping(value = "/unstar")
     @ResponseBody
     public boolean unStar(@RequestParam String ownername,@RequestParam String reponame,
                           HttpSession session){

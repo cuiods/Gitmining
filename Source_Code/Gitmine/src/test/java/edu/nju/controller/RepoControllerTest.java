@@ -92,7 +92,7 @@ public class RepoControllerTest {
 
     @Test
     public void star() throws Exception {
-
+        //mockMvc.perform(post("/repo/star?ownername='mojombo'&reponame='god'").sessionAttr("webUsername","hhhhhh")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
