@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../../css/repo-label.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../../js/jquery.min.js"></script>
+    <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <script src="../../js/login.js"></script>
     <link href="../../css/login.css" rel="stylesheet"/>
     <script src="../../js/bootstrap.js"></script>
@@ -29,6 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
     <script type="text/javascript" src="../../js/repo-list.js"></script>
+    <script type="text/javascript" src="../../js/cherish.js"></script>
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -179,7 +181,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <div class="news-grids" id="news-grids">
             <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
-                <a href="single.html" class="reponame" style="display: inline-block">Integer</a>
+                <div>
+                    <a href="single.html" class="reponame" style="display: inline-block;float:left">Integer</a>
+                    <button class="glyphicon icon-heart-empty icon-large userCherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e;float:right;margin-top:5px" onclick="onRepoClick(this,'.news-grid','.ownerName .reponame','/repo/star','/repo/unstar')"/>
+                </div>
+                <div class="clearfix"></div>
                 <p class="repoDescription"> ..........</p>
                 <div style="display: inline-block; width: 100%">
                     <span  class="updateAt" style="display: none;float: left">8.00 - 10.00 | JUN 09,2014</span>

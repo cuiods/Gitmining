@@ -27,6 +27,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
     <script src="../../js/personal.js"></script>
+    <script src="../../js/cherish.js"></script>
+    <script type="text/javascript" src="../../js/jqPaginator1.js"></script>
     <!--<script type="text/javascript" src="../../js/userDetail.js"></script>-->
     <!--/script-->
     <script type="text/javascript">
@@ -97,11 +99,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>
 
                         <div style="float:left">
-                            <span class=" glyphicon glyphicon-earphone iconStyle" />
+                            <span class=" glyphicon glyphicon-earphone iconStyle" title="subscribers"/>
                             <span class="subscribe">123</span>
-                            <span class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="forks"/>
                             <span class="fork">123</span>
-                            <span class=" glyphicon glyphicon-star-empty" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class=" glyphicon glyphicon-star-empty" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="stars"/>
                             <span class="star">123</span>
                             <button class="glyphicon icon-heart icon-large repoCherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
                         </div><br><br>
@@ -113,6 +115,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"></div>
         <hr >
     </div>
+    <div class="pagination" id="pagination1" style="float:right"></div>
+    <div class="clearfix"></div>
+    <hr>
     <h3 >Cherished GitUsers</h3>
     <hr >
     <div id="userFather">
@@ -128,13 +133,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
                             <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
                         <div style="float:left">
-                            <span class=" glyphicon glyphicon-apple iconStyle" />
+                            <span class=" glyphicon glyphicon-apple iconStyle" title="public repositories"/>
                             <span class="repo">123</span>
-                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="followings"/>
                             <span class="following">123</span>
-                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="followers"/>
                             <span class="followed">123</span>
-                            <button class="glyphicon icon-heart icon-large cherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                            <button class="glyphicon icon-heart icon-large userCherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e" onclick="onCherishClick(this,'.userItem','.userName','/user/star','/user/unStar')"/>
                         </div><br><br>
                     </div>
 

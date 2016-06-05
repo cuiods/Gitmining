@@ -25,11 +25,22 @@ $(document).ready(
             data:{},
             success:function(repoList){
                 RepoList.updateList(repoList);
+                $.jqPaginator('#pagination1', {
+                    totalPages: 10,
+                    visiblePages: 8,
+                    currentPage: 1,
+                    // onPageChange: function (current) {
+                    //     jumpPage(current);
+                    // }
+
+                });
             },
             error:function(){
                 alert('wrong');
             }
         });
+
+
         $.ajax({
             type:'GET',
             url:'/favorite/users',
