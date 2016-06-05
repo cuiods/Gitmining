@@ -135,9 +135,18 @@ public class UserController {
 
     @RequestMapping(value = "/{username:.+}")
     @ResponseBody
-    public Map getUserInfo(@PathVariable String username){
+    public Map getUserInfo(@PathVariable String username,
+                           HttpSession session){
         Map<String,Object> map = new HashMap<>();
         UserVO userVO = userModelImpl.getUserBasicInfo(username);
+        if (session.getAttribute("webUsername") != null){
+            HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+
+            if (staredUser.contains(userVO.getLogin())){
+                userVO.setStared(true);
+            }
+
+        }
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
 
         map.put("basicInfo",userVO);

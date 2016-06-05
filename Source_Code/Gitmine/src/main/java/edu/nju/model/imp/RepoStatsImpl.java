@@ -34,11 +34,11 @@ public class RepoStatsImpl implements RepoStatsService {
 
     @Override
     public SimpleChart statsForkCount() {
-        String [] field = {"0~10","10~20","20~30","30~40","40~50","50~60","60~70",
-                "70~80","80~90","90~100",">=100"};
+        String [] field = {"0~1","2~3","4~5","6~7","8~9","10~11","12~13",
+                "14~15",">=16"};
         long [] value = new long[field.length];
 
-        int step = 10;
+        int step = 2;
         for (int i=0;i<field.length-1;i++){
             value[i] = secRepoDaoService.getStatsFork(step*i, step*(i+1)-1);
         }
@@ -48,11 +48,11 @@ public class RepoStatsImpl implements RepoStatsService {
 
     @Override
     public SimpleChart statsStarCount() {
-        String [] field = {"0~50","50~100","100~150","150~200","200~250","250~300",
-                "300~350","350~400",">=400"};
+        String [] field = {"0~9","10~19","20~29","30~39","40~49","50~59",
+                "60~69","70~79","80~89","90~99",">=100"};
         long [] value = new long[field.length];
 
-        int step = 50;
+        int step = 10;
         for (int i=0;i<field.length-1;i++){
             value[i] = secRepoDaoService.getStatsStar(step*i, step*(i+1)-1);
         }
@@ -78,7 +78,8 @@ public class RepoStatsImpl implements RepoStatsService {
     @Override
     public SimpleChart statsSize(){
         String [] field = {"0~200","200~400","400~600","600~800","800~1000","1000~1200",
-                "1200~1400","1400~1600","1600~1800","1800~2000",">=2000"};
+                "1200~1400","1400~1600","1600~1800","1800~2000","2000~2200","2200~2400",
+                "2400~2600","2600~2800","2800~3000",">=3000"};
         long [] value = new long[field.length];
 
         int step = 200;
