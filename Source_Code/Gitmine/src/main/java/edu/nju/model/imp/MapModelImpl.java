@@ -1,5 +1,11 @@
 package edu.nju.model.imp;
 
+import edu.nju.dao.service.LocationDaoService;
+import edu.nju.dao.service.SecUserDaoService;
+import edu.nju.entity.UserCountryEntity;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,32 +14,51 @@ import java.util.Map;
  * Created by darxan on 2016/6/6.
  */
 public class MapModelImpl {
-    
+
+    @Resource
+    private LocationDaoService locationDaoService;
+    @Resource
+    private SecUserDaoService secUserDaoService;
+
     public Map<String,Integer> getUserDistribution(){
         if(distribution==null){
-            _calculateDistribution();
+            _readDistribution();
         }
         return distribution;
     }
 
-    private synchronized void  _calculateDistribution(){
+    private synchronized void  _readDistribution(){
+        if(distribution==null){
+            userCountryEntities = locationDaoService.getStatCountry();
+            distribution = new HashMap<>(countries.length);
+            userCountryEntities.forEach((userCountryEntity->
+                distribution.put(userCountryEntity.getCountry(),userCountryEntity.getNumber())
+            ));
+        }
+    }
+
+    public void recalculate(){
         distribution = new HashMap<>(countries.length);
-        List<String> locations = null;
+        userCountryEntities = new ArrayList<>(countries.length);
+        final List<String> locations = secUserDaoService.getAllUserLocation();
         locations.forEach((location)->{match(location);});
     }
 
 
-    private void match(String location){
+    private void match(final String location){
         assert distribution!=null;
         if(isChinese(location)){
-
+        }else if(isAmerican(location)){
         }
     }
 
 
+    private void increment(String location){
 
-    public static void main(String args){
-        System.out.println();
+    }
+
+    public static void main(String args[]){
+
     }
 
 
@@ -42,7 +67,7 @@ public class MapModelImpl {
     }
 
     // 根据Unicode编码完美的判断中文汉字和符号
-    private  boolean _isChinese(char c) {
+    private  static boolean _isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
         if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
@@ -54,7 +79,7 @@ public class MapModelImpl {
     }
 
     // 完整的判断中文汉字和符号
-    public  boolean isChinese(String strName) {
+    public  static boolean isChinese(String strName) {
         char[] ch = strName.toCharArray();
         for (int i = 0; i < ch.length; i++) {
             char c = ch[i];
@@ -66,6 +91,7 @@ public class MapModelImpl {
     }
 
 
+    private List<UserCountryEntity> userCountryEntities = null;
     private static Map<String,Integer> distribution = null;
     private static final String stringChina = "china";
     private static final String stringAmerica = "United States of America";
