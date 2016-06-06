@@ -125,4 +125,35 @@ public class RepoPopuDaoImpTest {
             System.out.println();
         }
     }
+
+    @Test
+    public void variableLanguage() throws Exception {
+        List<List> lists = repoPopuImp.variableLanguage();
+        for (List list:lists) {
+            System.out.println(list+"-------"+list.size());
+        }
+    }
+
+    @Test
+    public void variableFields() throws Exception {
+        List<List> lists = repoPopuImp.variableFields();
+        for (List list:lists) {
+            System.out.println(list+"-------"+list.size());
+        }
+    }
+
+    @Test
+    public void variablePerson() throws Exception {
+        List<List> lists = repoPopuImp.variablePerson();
+        for (List list:lists) {
+            for (int i = 0; i < list.size(); i++) {
+                Object[] objects = (Object[]) list.get(i);
+                for (int j = 0; j < objects.length; j++) {
+                    System.out.print(objects[j]+",");
+                }
+                System.out.print("\n");
+            }
+            System.out.print("===================================================");
+        }
+    }
 }

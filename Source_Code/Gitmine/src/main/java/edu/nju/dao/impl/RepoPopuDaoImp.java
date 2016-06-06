@@ -15,6 +15,7 @@ import java.util.*;
  * stat relationship between language and popularity
  * @author cuihao
  */
+@SuppressWarnings("JpaQueryApiInspection")
 @Repository
 public class RepoPopuDaoImp implements RepoPopuService {
     @Resource
@@ -288,6 +289,77 @@ public class RepoPopuDaoImp implements RepoPopuService {
     }
 
     /**
+     * follower statistic used to do one-way ANOVA
+     *
+     * @return {xij}
+     */
+    @Override
+    public List<List> variableLanguage() {
+        List<List> lists = new ArrayList<>();
+        Session session = sessionFactory.openSession();
+        Query query2 = session.createQuery("select language from SecRepoEntity group by language order by count(*) desc ");
+        query2.setMaxResults(8);
+        List<String> lans = query2.list();
+        Query query = session.createQuery("select starCount from SecRepoEntity where language=:lan and createAt<'2013-12-30' order by updateAt desc ");
+        query.setMaxResults(100);
+        for (String lan: lans) {
+            query.setString("lan",lan);
+            lists.add(query.list());
+        }
+        session.close();
+        return lists;
+    }
+
+    /**
+     * fields statistic used to do one-way ANOVA
+     *
+     * @return {xij}
+     */
+    @Override
+    public List<List> variableFields() {
+        Session session = sessionFactory.openSession();
+        List<List> longs = new ArrayList<>();
+        //regexp
+        SQLQuery query = session.createSQLQuery("select star_count from sec_repo where YEAR(create_at)<=2013 AND description REGEXP :keyword ORDER BY update_at DESC LIMIT 0,100 ");
+        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        session.close();
+        return longs;
+    }
+
+    /**
+     * person statistic used to do one-way statistic
+     *
+     * @return {xij}
+     */
+    @Override
+    public List<List> variablePerson() {
+        Session session = sessionFactory.openSession();
+        List list = new ArrayList<>();
+        Query query = session.createSQLQuery("SELECT Repo.owner,Repo.name,Repo.star_count FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor AND U.followers>100 " +
+                "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name HAVING COUNT(*)>200 ORDER BY YEAR(Repo.update_at) LIMIT 0,100");
+        list.add(query.list());
+        session.close();
+        return list;
+    }
+
+    /**
      * just for 'group by case' test
      *
      * @return
@@ -301,6 +373,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
                 "FROM sec_repo GROUP BY (CASE WHEN description REGEXP '(^| +)node.js($| +|[^a-zA-Z])' THEN 1 " +
                 "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 2 ) ");
         List<Object[]> objects = query.list();
+        session.close();
         return objects;
     }
 

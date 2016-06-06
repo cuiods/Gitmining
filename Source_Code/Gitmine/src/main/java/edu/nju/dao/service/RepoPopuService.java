@@ -80,14 +80,39 @@ public interface RepoPopuService {
     /**
      * complex statistic
      * @param min
+     *      min follower number
      * @param max
+     *      max follower number
      * @return
+     *      [2008:(1000~2000,...,>6000),...,2016:(1000~2000,...,>2000)]
      */
     List<Object[]> statFollowerSuper(int min, int max);
 
     /**
+     * follower statistic used to do one-way ANOVA
+     * @return
+     *      {xij}
+     */
+    List<List> variableLanguage();
+
+    /**
+     * fields statistic used to do one-way ANOVA
+     * @return
+     *      {xij}
+     */
+    List<List> variableFields();
+
+    /**
+     * person statistic used to do one-way statistic
+     * @return
+     *      {xij}
+     */
+    List<List> variablePerson();
+
+    /**
      * just for 'group by case' test
      * @return
+     *      [[2008,2009,...,2016],[2008,2009,...,2016]]
      */
     List<Object[]> refactorTest();
 }
