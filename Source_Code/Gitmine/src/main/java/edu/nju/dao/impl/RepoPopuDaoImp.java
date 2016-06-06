@@ -294,8 +294,8 @@ public class RepoPopuDaoImp implements RepoPopuService {
      * @return {xij}
      */
     @Override
-    public List<List> variableLanguage() {
-        List<List> lists = new ArrayList<>();
+    public List<List<Integer>> variableLanguage() {
+        List<List<Integer>> lists = new ArrayList<>();
         Session session = sessionFactory.openSession();
         Query query2 = session.createQuery("select language from SecRepoEntity group by language order by count(*) desc ");
         query2.setMaxResults(8);
@@ -316,9 +316,9 @@ public class RepoPopuDaoImp implements RepoPopuService {
      * @return {xij}
      */
     @Override
-    public List<List> variableFields() {
+    public List<List<Integer>> variableFields() {
         Session session = sessionFactory.openSession();
-        List<List> longs = new ArrayList<>();
+        List<List<Integer>> longs = new ArrayList<>();
         //regexp
         SQLQuery query = session.createSQLQuery("select star_count from sec_repo where YEAR(create_at)<=2013 AND description REGEXP :keyword ORDER BY update_at DESC LIMIT 0,100 ");
         query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
@@ -347,7 +347,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
      * @return {xij}
      */
     @Override
-    public List<List> variablePerson() {
+    public List<List<Integer>> variablePerson() {
         Session session = sessionFactory.openSession();
         List list = new ArrayList<>();
         Query query = session.createSQLQuery("SELECT Repo.star_count FROM sec_repo AS Repo " +

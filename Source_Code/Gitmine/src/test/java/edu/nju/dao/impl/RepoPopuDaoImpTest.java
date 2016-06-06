@@ -128,7 +128,7 @@ public class RepoPopuDaoImpTest {
 
     @Test
     public void variableLanguage() throws Exception {
-        List<List> lists = repoPopuImp.variableLanguage();
+        List<List<Integer>> lists = repoPopuImp.variableLanguage();
         for (List list:lists) {
             System.out.println(list+"-------"+list.size());
         }
@@ -136,7 +136,7 @@ public class RepoPopuDaoImpTest {
 
     @Test
     public void variableFields() throws Exception {
-        List<List> lists = repoPopuImp.variableFields();
+        List<List<Integer>> lists = repoPopuImp.variableFields();
         for (List list:lists) {
             System.out.println(list+"-------"+list.size());
         }
@@ -144,7 +144,7 @@ public class RepoPopuDaoImpTest {
 
     @Test
     public void variablePerson() throws Exception {
-        List<List> lists = repoPopuImp.variablePerson();
+        List<List<Integer>> lists = repoPopuImp.variablePerson();
         for (List list:lists) {
             System.out.println(list.size()+"-------"+list);
         }

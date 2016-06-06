@@ -93,21 +93,21 @@ public interface RepoPopuService {
      * @return
      *      {xij}
      */
-    List<List> variableLanguage();
+    List<List<Integer>> variableLanguage();
 
     /**
      * fields statistic used to do one-way ANOVA
      * @return
      *      {xij}
      */
-    List<List> variableFields();
+    List<List<Integer>> variableFields();
 
     /**
      * person statistic used to do one-way statistic
      * @return
      *      {xij}
      */
-    List<List> variablePerson();
+    List<List<Integer>> variablePerson();
 
     /**
      * just for 'group by case' test
