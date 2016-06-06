@@ -6,6 +6,7 @@ import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblUser;
 import edu.nju.model.pojo.*;
 import edu.nju.model.service.HobbyModelService;
+import edu.nju.model.service.MapModelService;
 import edu.nju.model.service.UserModelService;
 import edu.nju.model.service.UserStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class UserController {
 
     @Resource
     private UserStatsService userStatsImpl;
+
+    @Resource
+    private MapModelService mapModelService;
 
     @Resource
     private HobbyModelService hobbyModelImpl;
@@ -222,6 +226,12 @@ public class UserController {
     @ResponseBody
     public SimpleChart statUserCompany(){
         return userStatsImpl.statsUserCompany();
+    }
+
+    @RequestMapping(value = "/statistic/distribution")
+    @ResponseBody
+    public Map<String,Integer> statUserDistribution(){
+        return mapModelService.getUserDistribution();
     }
     @RequestMapping(value = "/star")
     @ResponseBody

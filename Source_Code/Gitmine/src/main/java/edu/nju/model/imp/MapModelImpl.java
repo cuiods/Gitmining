@@ -1,10 +1,10 @@
 package edu.nju.model.imp;
 
-import edu.nju.dao.impl.LocationDaoImpl;
-import edu.nju.dao.impl.SecUserDaoImpl;
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.entity.UserCountryEntity;
+import edu.nju.model.service.MapModelService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -15,7 +15,8 @@ import java.util.Map;
 /**
  * Created by darxan on 2016/6/6.
  */
-public class MapModelImpl {
+@Service
+public class MapModelImpl implements MapModelService{
 
     @Resource
     private LocationDaoService locationDaoService;
@@ -39,7 +40,7 @@ public class MapModelImpl {
         }
     }
 
-    public void recalculate(){
+    public Map<String,Integer> recalculate(){
         distribution = new HashMap<>(countries.length);
 
         final List<String> locations = secUserDaoService.getAllUserLocation();
@@ -55,6 +56,7 @@ public class MapModelImpl {
             entity.setNumber(number==null?0:number);
         }
         locationDaoService.saveCountry(userCountryEntities);
+        return distribution;
     }
 
 
@@ -114,7 +116,7 @@ public class MapModelImpl {
     }
 
     // 根据Unicode编码完美的判断中文汉字和符号
-    private  static boolean _isChinese(char c) {
+    private   boolean _isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
         if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B
@@ -126,7 +128,7 @@ public class MapModelImpl {
     }
 
     // 完整的判断中文汉字和符号
-    public  static boolean isChinese(String location) {
+    private    boolean isChinese(String location) {
         for(String state:provinceChina){
             if(location.contains(state)){
                 return true;
