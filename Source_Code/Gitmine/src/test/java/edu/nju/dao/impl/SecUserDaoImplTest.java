@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 @Transactional
 public class SecUserDaoImplTest {
+
     @Resource
     private SecUserDaoImpl userDao;
 
@@ -31,6 +32,14 @@ public class SecUserDaoImplTest {
     @Test
     public void getUserAvatar() throws Exception {
         userDao.getUserAvatar("mojombo");
+    }
+
+    @Test
+    public void getAllUserLocation() throws Exception {
+        List<String> list = userDao.getAllUserLocation();
+//        for (String s:list){
+//            System.out.println(s);
+//        }
     }
 
     @Test

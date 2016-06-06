@@ -53,6 +53,15 @@ public class SecUserDaoImpl implements SecUserDaoService {
     }
 
     @Override
+    public List<String> getAllUserLocation() {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT location FROM sec_user WHERE location <> '' ");
+        List<String> list = query.list();
+        session.close();
+        return list;
+    }
+
+    @Override
     public List<SecUserEntity> getSearchResult(String keyword, SortType sortType, boolean isDesc, int offset, int maxNum) {
         Session session = sessionFactory.openSession();
         String hql = "from SecUserEntity where login like :k1 or name like :k2 order by ";

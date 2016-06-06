@@ -26,7 +26,7 @@ public class GithubJsonHandler {
 
     private final String commonRepoUrl = "https://api.github.com/repos/";
     private final String commonUserUrl = "https://api.github.com/users/";
-    private final String orgUrl = "https://api.github.com/search/users?q=type:org&sort=followers&order=desc";
+    private final String orgUrl = "https://api.github.com/organizations";
 
 //    private final String [] popularLanguage = {"javascript","ruby","python","c","css","php","shell","html",
 //            "objective-c","java","c++","go","r","c#","perl"};
@@ -49,11 +49,11 @@ public class GithubJsonHandler {
         }
 
         while (true){
-            JsonNode node = reader.getSearchArray(orgUrl,page);
+            JsonNode node = reader.getArrayNode(orgUrl,page);
             page++;
             try{
                 FileWriter writer = new FileWriter(file);
-                writer.write(page);
+                writer.write(page+"");
                 writer.flush();
                 writer.close();
             } catch (IOException e) {
@@ -62,14 +62,14 @@ public class GithubJsonHandler {
             if (node == null){
                 break;
             }
-            else if (node.get("items").size()<=0){
+            else if (node.size()<=0){
                 break;
             } else {
-                JsonNode items = node.get("items");
-                for (JsonNode element:items){
+
+                for (JsonNode element:node) {
                     String login = element.get("login").asText();
-                    if (addUser(login)){
-                        addRepos(commonUserUrl+login+"/repos");
+                    if (addUser(login)) {
+                        addRepos(commonUserUrl + login + "/repos");
                     }
                 }
             }

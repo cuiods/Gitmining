@@ -26,6 +26,12 @@ public interface SecUserDaoService {
     public String getUserAvatar(String login);
 
     /**
+     * get all the location of all user
+     * @return
+     */
+    public List<String> getAllUserLocation();
+
+    /**
      * search users
      * @param keyword
      * @param sortType
