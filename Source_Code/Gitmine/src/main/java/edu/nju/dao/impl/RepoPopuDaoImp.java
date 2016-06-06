@@ -317,7 +317,28 @@ public class RepoPopuDaoImp implements RepoPopuService {
      */
     @Override
     public List<List> variableFields() {
-        return null;
+        Session session = sessionFactory.openSession();
+        List<List> longs = new ArrayList<>();
+        //regexp
+        SQLQuery query = session.createSQLQuery("select star_count from sec_repo where YEAR(create_at)<=2013 AND description REGEXP :keyword ORDER BY update_at DESC LIMIT 0,100 ");
+        query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)web($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)api($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)vim($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)plugin($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)json($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        query.setString("keyword","(^| +)app($| +|[^a-zA-Z])");
+        longs.add(query.list());
+        session.close();
+        return longs;
     }
 
     /**
@@ -327,7 +348,15 @@ public class RepoPopuDaoImp implements RepoPopuService {
      */
     @Override
     public List<List> variablePerson() {
-        return null;
+        Session session = sessionFactory.openSession();
+        List list = new ArrayList<>();
+        Query query = session.createSQLQuery("SELECT Repo.owner,Repo.name,Repo.star_count FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor AND U.followers>100 " +
+                "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name HAVING COUNT(*)>200 ORDER BY YEAR(Repo.update_at) LIMIT 0,100");
+        list.add(query.list());
+        session.close();
+        return list;
     }
 
     /**
