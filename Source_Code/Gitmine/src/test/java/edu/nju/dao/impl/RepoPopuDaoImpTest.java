@@ -125,4 +125,22 @@ public class RepoPopuDaoImpTest {
             System.out.println();
         }
     }
+
+    @Test
+    public void variableLanguage() throws Exception {
+        List<List> lists = repoPopuImp.variableLanguage();
+        for (List list:lists) {
+            System.out.println(list+"-------"+list.size());
+        }
+    }
+
+    @Test
+    public void variableFields() throws Exception {
+
+    }
+
+    @Test
+    public void variablePerson() throws Exception {
+
+    }
 }

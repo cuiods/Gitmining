@@ -15,6 +15,7 @@ import java.util.*;
  * stat relationship between language and popularity
  * @author cuihao
  */
+@SuppressWarnings("JpaQueryApiInspection")
 @Repository
 public class RepoPopuDaoImp implements RepoPopuService {
     @Resource
@@ -288,6 +289,48 @@ public class RepoPopuDaoImp implements RepoPopuService {
     }
 
     /**
+     * follower statistic used to do one-way ANOVA
+     *
+     * @return {xij}
+     */
+    @Override
+    public List<List> variableLanguage() {
+        List<List> lists = new ArrayList<>();
+        Session session = sessionFactory.openSession();
+        Query query2 = session.createQuery("select language from SecRepoEntity group by language order by count(*) desc ");
+        query2.setMaxResults(8);
+        List<String> lans = query2.list();
+        Query query = session.createQuery("select starCount from SecRepoEntity where language=:lan and createAt<'2013-12-30' order by updateAt desc ");
+        query.setMaxResults(100);
+        for (String lan: lans) {
+            query.setString("lan",lan);
+            lists.add(query.list());
+        }
+        session.close();
+        return lists;
+    }
+
+    /**
+     * fields statistic used to do one-way ANOVA
+     *
+     * @return {xij}
+     */
+    @Override
+    public List<List> variableFields() {
+        return null;
+    }
+
+    /**
+     * person statistic used to do one-way statistic
+     *
+     * @return {xij}
+     */
+    @Override
+    public List<List> variablePerson() {
+        return null;
+    }
+
+    /**
      * just for 'group by case' test
      *
      * @return
@@ -301,6 +344,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
                 "FROM sec_repo GROUP BY (CASE WHEN description REGEXP '(^| +)node.js($| +|[^a-zA-Z])' THEN 1 " +
                 "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 2 ) ");
         List<Object[]> objects = query.list();
+        session.close();
         return objects;
     }
 
