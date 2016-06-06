@@ -1,5 +1,7 @@
 package edu.nju.model.imp;
 
+import edu.nju.dao.impl.LocationDaoImpl;
+import edu.nju.dao.impl.SecUserDaoImpl;
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.entity.UserCountryEntity;
@@ -39,30 +41,75 @@ public class MapModelImpl {
 
     public void recalculate(){
         distribution = new HashMap<>(countries.length);
-        userCountryEntities = new ArrayList<>(countries.length);
+
         final List<String> locations = secUserDaoService.getAllUserLocation();
         locations.forEach((location)->{match(location);});
+
+
+        //transfer map to entity
+        userCountryEntities = new ArrayList<>(countries.length);
+        for (String location:countries) {
+            UserCountryEntity entity = new UserCountryEntity();
+            entity.setCountry(location);
+            Integer number = distribution.get(location);
+            entity.setNumber(number==null?0:number);
+        }
+        locationDaoService.saveCountry(userCountryEntities);
     }
 
 
     private void match(final String location){
         assert distribution!=null;
         if(isChinese(location)){
+            _increment(stringChina);
+            System.out.print("China: ");
         }else if(isAmerican(location)){
+            _increment(stringAmerica);
+            System.out.print("America: ");
+        }else{
+            _increment(_gerMostMatchCountry(location));
+            System.out.print("other: ");
         }
+        System.out.println(location);
     }
 
 
-    private void increment(String location){
-
+    /**
+     * if location==null no operation
+     * or else increment the value correspondingly to the {location} in map:disctribution.
+     * @param location
+     */
+    private void _increment(String location){
+        if(location!=null){
+            Integer number = distribution.get(location);
+            distribution.put(location,number==null?1:number +1);
+        }
+        
     }
 
-    public static void main(String args[]){
 
+
+    /**
+     * 
+     * @param location
+     * @return if exists one and only one country match,return the country's name,or reutn null.  
+     */
+    private String _gerMostMatchCountry(String location){
+        ArrayList<String> result = new ArrayList<>();
+        for(String country:countries){
+            if(location.contains(country)){
+                result.add(country);
+            }
+        }
+        return result.size()==0?null:result.get(0);
     }
-
 
     private boolean isAmerican(String location){
+        for(String state:statesAmerica){
+            if(location.contains(state)){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -79,8 +126,13 @@ public class MapModelImpl {
     }
 
     // 完整的判断中文汉字和符号
-    public  static boolean isChinese(String strName) {
-        char[] ch = strName.toCharArray();
+    public  static boolean isChinese(String location) {
+        for(String state:provinceChina){
+            if(location.contains(state)){
+                return true;
+            }
+        }
+        char[] ch = location.toCharArray();
         for (int i = 0; i < ch.length; i++) {
             char c = ch[i];
             if (_isChinese(c)) {
@@ -273,5 +325,98 @@ public class MapModelImpl {
                  "South Africa",
                  "Zambia",
                  "Zimbabwe",
+    };
+
+    private static final String[] statesAmerica = {
+            "America",
+            "Alabama",
+            "Alaska",
+            "Arizona",
+            "Arkansas",
+            "California",
+            "Colorado",
+            "Connectict",
+            "Delaware",
+            "Florida",
+            "Georgia",
+            "Hawaii",
+            "Idaho",
+            "Illinois",
+            "Indiana",
+            "Iowa",
+            "Kansas",
+            "Kentucky",
+            "Lousiana",
+            "Maine",
+            "Maryland",
+            "Massachusetts",
+            "Michigan",
+            "Minnesota",
+            "Mississippi",
+            "Missouri",
+            "Montana",
+            "Nebraska",
+            "Nevada",
+            "New Hampshire",
+            "New Jersey",
+            "New Mexico",
+            "New York",
+            "North Carolina",
+            "North Dakota",
+            "Ohio",
+            "Oklahoma",
+            "Oregon",
+            "Pennsylvania",
+            "Rhode Island",
+            "South Carolina",
+            "South Dakota",
+            "Tennessee",
+            "Texas",
+            "Utah",
+            "Vermont",
+            "Virginia",
+            "Washington",
+            "West Virginia",
+            "Wisconsin",
+            "Wyoming",
+    };
+
+
+    private static final String[] provinceChina = {
+            "China",
+            "Anhui",
+            "Beijing",
+            "Chongqing",
+            "Fujian",
+            "Gansu",
+            "Guangdong",
+            "Guangxi",
+            "Guizhou",
+            "Hainan",
+            "Hebei",
+            "Heilongjiang",
+            "Henan",
+            "Hong Kong",
+            "Hubei",
+            "Hunan",
+            "Jiangsu",
+            "Jiangxi",
+            "Jilin",
+            "Liaoning",
+            "Macau",
+            "Inner Mongol (Neimenggu)",
+            "Ningxia",
+            "Qinghai",
+            "Shandong",
+            "Shanxi",
+            "Shanxi",
+            "Shanghai",
+            "Sichuan",
+            "Taiwan",
+            "Tianjin",
+            "Tibet      (Xizang)",
+            "Sinkiang(Xinjiang)",
+            "Yunnan",
+            "Zhejiang",
     };
 }
