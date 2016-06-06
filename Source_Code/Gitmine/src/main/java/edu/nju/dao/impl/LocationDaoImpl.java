@@ -2,10 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.entity.UserCountryEntity;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -30,13 +27,26 @@ public class LocationDaoImpl implements LocationDaoService {
     }
 
     @Override
-    public void saveCountry(UserCountryEntity entity) {
+    public void saveCountry(List<UserCountryEntity> entities) {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("INSERT INTO user_country (country, number) VALUES (:cou, :val) ");
-        query.setString("cou",entity.getCountry());
-        query.setInteger("val",entity.getNumber());
-        query.executeUpdate();
-        session.close();
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+            for (UserCountryEntity entity:entities){
+                SQLQuery query = session.createSQLQuery("INSERT INTO user_country (country, number) VALUES (:cou, :val) ");
+                query.setString("cou",entity.getCountry());
+                query.setInteger("val",entity.getNumber());
+                query.executeUpdate();
+            }
+            transaction.commit();
+        } catch (HibernateException e){
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
     }
 
     @Override

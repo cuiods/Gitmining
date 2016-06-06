@@ -18,10 +18,10 @@ public interface LocationDaoService {
 
     /**
      * save or update a country's user count
-     * @param entity
+     * @param entities
      * @return
      */
-    public void saveCountry(UserCountryEntity entity);
+    public void saveCountry(List<UserCountryEntity> entities);
 
     /**
      * delete a country

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -33,14 +34,17 @@ public class LocationDaoImplTest {
     }
 
     @Test
-    public void saveOrUpdateCountry() throws Exception {
+    public void saveCountry() throws Exception {
+//        List<UserCountryEntity> list = new ArrayList<>();
 //        UserCountryEntity entity = new UserCountryEntity();
 //        entity.setCountry("USA");
 //        entity.setNumber(100);
-//        locationDao.saveCountry(entity);
-//        entity.setCountry("China");
-//        entity.setNumber(999);
-//        locationDao.saveCountry(entity);
+//        list.add(entity);
+//        UserCountryEntity entity1 = new UserCountryEntity();
+//        entity1.setCountry("China");
+//        entity1.setNumber(999);
+//        list.add(entity1);
+//        locationDao.saveCountry(list);
     }
 
     @Test
