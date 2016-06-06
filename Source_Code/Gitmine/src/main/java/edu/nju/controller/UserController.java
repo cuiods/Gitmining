@@ -230,7 +230,7 @@ public class UserController {
 
     @RequestMapping(value = "/statistic/distribution")
     @ResponseBody
-    public Map<String,Integer> statUserDistribution(){
+    public List<MapVO> statUserDistribution(){
         return mapModelService.getUserDistribution();
     }
     @RequestMapping(value = "/star")

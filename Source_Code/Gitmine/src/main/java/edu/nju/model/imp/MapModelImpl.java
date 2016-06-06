@@ -3,6 +3,7 @@ package edu.nju.model.imp;
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.entity.UserCountryEntity;
+import edu.nju.model.pojo.MapVO;
 import edu.nju.model.service.MapModelService;
 import org.springframework.stereotype.Service;
 
@@ -23,54 +24,66 @@ public class MapModelImpl implements MapModelService{
     @Resource
     private SecUserDaoService secUserDaoService;
 
-    public Map<String,Integer> getUserDistribution(){
-        if(distribution==null){
+    private List<MapVO> countriesDistributionVOS;
+
+    public List<MapVO> getUserDistribution(){
+        if(userCountryEntities==null){
             _readDistribution();
         }
-        return distribution;
+        if(countriesDistributionVOS==null){
+            synchronized (this){
+                if(countriesDistributionVOS==null){
+                    countriesDistributionVOS = new ArrayList<>(countries.length);
+                    userCountryEntities.forEach(po->countriesDistributionVOS.add(new MapVO(po)));
+                }
+            }
+        }
+        return countriesDistributionVOS;
     }
 
+
     private synchronized void  _readDistribution(){
-        if(distribution==null){
+        if(userCountryEntities==null){
             userCountryEntities = locationDaoService.getStatCountry();
-            distribution = new HashMap<>(countries.length);
-            userCountryEntities.forEach((userCountryEntity->
-                distribution.put(userCountryEntity.getCountry(),userCountryEntity.getNumber())
-            ));
         }
     }
 
-    public Map<String,Integer> recalculate(){
+    public void recalculate(){
         distribution = new HashMap<>(countries.length);
-
         final List<String> locations = secUserDaoService.getAllUserLocation();
-        locations.forEach((location)->{match(location);});
-
-
+        locations.forEach( location->match(location) );
         //transfer map to entity
         userCountryEntities = new ArrayList<>(countries.length);
-        for (String location:countries) {
+        for ( String location:countries) {
             UserCountryEntity entity = new UserCountryEntity();
             entity.setCountry(location);
             Integer number = distribution.get(location);
             entity.setNumber(number==null?0:number);
+            userCountryEntities.add(entity);
         }
+        locationDaoService.deleteAllCountries();
         locationDaoService.saveCountry(userCountryEntities);
-        return distribution;
+        return;
     }
 
 
+    /**
+     *
+     * @param location location must be lower case.
+     */
     private void match(final String location){
-        assert distribution!=null;
-        if(isChinese(location)){
+
+        String lowerCase = location.toLowerCase();
+        if(isChinese(lowerCase)){
             _increment(stringChina);
             System.out.print("China: ");
-        }else if(isAmerican(location)){
+        }else if(isAmerican(lowerCase)){
             _increment(stringAmerica);
             System.out.print("America: ");
         }else{
-            _increment(_gerMostMatchCountry(location));
-            System.out.print("other: ");
+            String country = _gerMostMatchCountry(lowerCase);
+            _increment(country);
+            System.out.print(country+": ");
         }
         System.out.println(location);
     }
@@ -93,19 +106,25 @@ public class MapModelImpl implements MapModelService{
 
     /**
      * 
-     * @param location
-     * @return if exists one and only one country match,return the country's name,or reutn null.  
+     * @param location must be lower case
+     * @return if exists one and only one country match,return the country's name,or reutn null.
+     * return String case sensitive.
      */
     private String _gerMostMatchCountry(String location){
-        ArrayList<String> result = new ArrayList<>();
-        for(String country:countries){
-            if(location.contains(country)){
-                result.add(country);
+        ArrayList<Integer> result = new ArrayList<>();
+        for (int i = 0; i < countries.length; i++) {
+            if(location.contains(countriesLowerCase[i])){
+                result.add(i);
             }
         }
-        return result.size()==0?null:result.get(0);
+        return result.size()==1?countries[result.get(0)]:null;
     }
 
+    /**
+     *
+     * @param location lowercase please.
+     * @return
+     */
     private boolean isAmerican(String location){
         for(String state:statesAmerica){
             if(location.contains(state)){
@@ -128,6 +147,11 @@ public class MapModelImpl implements MapModelService{
     }
 
     // 完整的判断中文汉字和符号
+
+    /**
+     * @param location lowercase please.
+     * @return
+     */
     private    boolean isChinese(String location) {
         for(String state:provinceChina){
             if(location.contains(state)){
@@ -147,9 +171,11 @@ public class MapModelImpl implements MapModelService{
 
     private List<UserCountryEntity> userCountryEntities = null;
     private static Map<String,Integer> distribution = null;
-    private static final String stringChina = "china";
+    private static final String stringChina = "China";
+    private static final String stringChinaLowerCase = stringChina.toLowerCase();
     private static final String stringAmerica = "United States of America";
-    private final String[] countries = {
+    private static final String stringAmericaLowerCase = stringAmerica.toLowerCase();
+    private static final String[] countries = {
                  "Afghanistan",
                  "Angola",
                  "Albania",
@@ -329,96 +355,103 @@ public class MapModelImpl implements MapModelService{
                  "Zimbabwe",
     };
 
+    private static final   String[] countriesLowerCase;
+    static {
+        countriesLowerCase = new String[countries.length];
+        for (int i = 0; i < countries.length; i++) {
+            countriesLowerCase[i] = countries[i].toLowerCase();
+        }
+    }
     private static final String[] statesAmerica = {
-            "America",
-            "Alabama",
-            "Alaska",
-            "Arizona",
-            "Arkansas",
-            "California",
-            "Colorado",
-            "Connectict",
-            "Delaware",
-            "Florida",
-            "Georgia",
-            "Hawaii",
-            "Idaho",
-            "Illinois",
-            "Indiana",
-            "Iowa",
-            "Kansas",
-            "Kentucky",
-            "Lousiana",
-            "Maine",
-            "Maryland",
-            "Massachusetts",
-            "Michigan",
-            "Minnesota",
-            "Mississippi",
-            "Missouri",
-            "Montana",
-            "Nebraska",
-            "Nevada",
-            "New Hampshire",
-            "New Jersey",
-            "New Mexico",
-            "New York",
-            "North Carolina",
-            "North Dakota",
-            "Ohio",
-            "Oklahoma",
-            "Oregon",
-            "Pennsylvania",
-            "Rhode Island",
-            "South Carolina",
-            "South Dakota",
-            "Tennessee",
-            "Texas",
-            "Utah",
-            "Vermont",
-            "Virginia",
-            "Washington",
-            "West Virginia",
-            "Wisconsin",
-            "Wyoming",
+            "america",
+            "alabama",
+            "alaska",
+            "arizona",
+            "arkansas",
+            "california",
+            "colorado",
+            "connectict",
+            "delaware",
+            "florida",
+            "georgia",
+            "hawaii",
+            "idaho",
+            "illinois",
+            "indiana",
+            "iowa",
+            "kansas",
+            "kentucky",
+            "lousiana",
+            "maine",
+            "maryland",
+            "massachusetts",
+            "michigan",
+            "minnesota",
+            "mississippi",
+            "missouri",
+            "montana",
+            "nebraska",
+            "nevada",
+            "new hampshire",
+            "new jersey",
+            "new mexico",
+            "new york",
+            "north carolina",
+            "north dakota",
+            "ohio",
+            "oklahoma",
+            "oregon",
+            "pennsylvania",
+            "rhode island",
+            "south carolina",
+            "south dakota",
+            "tennessee",
+            "texas",
+            "utah",
+            "vermont",
+            "virginia",
+            "washington",
+            "west virginia",
+            "wisconsin",
+            "wyoming",
     };
 
 
     private static final String[] provinceChina = {
-            "China",
-            "Anhui",
-            "Beijing",
-            "Chongqing",
-            "Fujian",
-            "Gansu",
-            "Guangdong",
-            "Guangxi",
-            "Guizhou",
-            "Hainan",
-            "Hebei",
-            "Heilongjiang",
-            "Henan",
-            "Hong Kong",
-            "Hubei",
-            "Hunan",
-            "Jiangsu",
-            "Jiangxi",
-            "Jilin",
-            "Liaoning",
-            "Macau",
-            "Inner Mongol (Neimenggu)",
-            "Ningxia",
-            "Qinghai",
-            "Shandong",
-            "Shanxi",
-            "Shanxi",
-            "Shanghai",
-            "Sichuan",
-            "Taiwan",
-            "Tianjin",
-            "Tibet      (Xizang)",
-            "Sinkiang(Xinjiang)",
-            "Yunnan",
-            "Zhejiang",
+            "china",
+            "anhui",
+            "beijing",
+            "chongqing",
+            "fujian",
+            "gansu",
+            "guangdong",
+            "guangxi",
+            "guizhou",
+            "hainan",
+            "hebei",
+            "heilongjiang",
+            "henan",
+            "hong kong",
+            "hubei",
+            "hunan",
+            "jiangsu",
+            "jiangxi",
+            "jilin",
+            "liaoning",
+            "macau",
+            "inner mongol (neimenggu)",
+            "ningxia",
+            "qinghai",
+            "shandong",
+            "shanxi",
+            "shanxi",
+            "shanghai",
+            "sichuan",
+            "taiwan",
+            "tianjin",
+            "tibet      (xizang)",
+            "sinkiang(xinjiang)",
+            "yunnan",
+            "zhejiang",
     };
 }

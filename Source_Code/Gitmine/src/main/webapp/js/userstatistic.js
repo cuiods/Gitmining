@@ -406,3 +406,68 @@ $(document).ready(function () {
         }
     });
 });
+
+/**
+ * by daixinyan
+ * about user distribution in map.
+ */
+$(document).ready(function () {
+    var url = "/user/statistic/distribution";
+    $.get(url,function (data) {
+        option = {
+            title: {
+                text: 'World Population (2010)',
+                subtext: 'from United Nations, Total population, both sexes combined, as of 1 July (thousands)',
+                sublink: '#',
+                left: 'center',
+                top: 'top'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    var value = (params.value + '').split('.');
+                    value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+                    return params.seriesName + '<br/>' + params.name + ' : ' + value;
+                }
+            },
+            toolbox: {
+                show: true,
+                orient: 'vertical',
+                left: 'right',
+                top: 'center',
+                feature: {
+                    dataView: {readOnly: false},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            visualMap: {
+                min: 0,
+                max: 10000,
+                text:['High','Low'],
+                realtime: false,
+                calculable: true,
+                color: ['orangered','yellow','lightskyblue']
+            },
+            series: [
+                {
+                    name: 'Github User Distribution',
+                    type: 'map',
+                    mapType: 'world',
+                    roam: true,
+                    itemStyle:{
+                        emphasis:{label:{show:true}}
+                    },
+                    data:data
+                }
+            ]
+        };
+
+        var myChart_create = echarts.init(document.getElementById('map'));
+        myChart_create.showLoading();
+        myChart_create.setOption(option);
+        myChart_create.hideLoading();
+        window.onresize = myChart_create.resize;
+    });
+
+});
