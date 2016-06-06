@@ -350,10 +350,20 @@ public class RepoPopuDaoImp implements RepoPopuService {
     public List<List> variablePerson() {
         Session session = sessionFactory.openSession();
         List list = new ArrayList<>();
-        Query query = session.createSQLQuery("SELECT Repo.owner,Repo.name,Repo.star_count FROM sec_repo AS Repo " +
+        Query query = session.createSQLQuery("SELECT Repo.star_count FROM sec_repo AS Repo " +
                 "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
-                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor AND U.followers>100 " +
-                "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name HAVING COUNT(*)>200 ORDER BY YEAR(Repo.update_at) LIMIT 0,100");
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
+                "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name " +
+                "HAVING COUNT(CASE WHEN followers>100 THEN 1 END)=:pValue ORDER BY Repo.update_at DESC LIMIT 0,100");
+        for (int i = 0; i < 7; i++) {
+            query.setInteger("pValue",i);
+            list.add(query.list());
+        }
+        query = session.createSQLQuery("SELECT Repo.star_count FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
+                "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name " +
+                "HAVING COUNT(CASE WHEN followers>100 THEN 1 END)>=7 ORDER BY Repo.update_at DESC LIMIT 0,100");
         list.add(query.list());
         session.close();
         return list;

@@ -146,14 +146,7 @@ public class RepoPopuDaoImpTest {
     public void variablePerson() throws Exception {
         List<List> lists = repoPopuImp.variablePerson();
         for (List list:lists) {
-            for (int i = 0; i < list.size(); i++) {
-                Object[] objects = (Object[]) list.get(i);
-                for (int j = 0; j < objects.length; j++) {
-                    System.out.print(objects[j]+",");
-                }
-                System.out.print("\n");
-            }
-            System.out.print("===================================================");
+            System.out.println(list.size()+"-------"+list);
         }
     }
 }
