@@ -301,7 +301,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
         query2.setMaxResults(8);
         List<String> lans = query2.list();
         Query query = session.createQuery("select starCount from SecRepoEntity where language=:lan and createAt<'2013-12-30' order by updateAt desc ");
-        query.setMaxResults(100);
+        query.setMaxResults(121);
         for (String lan: lans) {
             query.setString("lan",lan);
             lists.add(query.list());
@@ -320,7 +320,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
         Session session = sessionFactory.openSession();
         List<List<Integer>> longs = new ArrayList<>();
         //regexp
-        SQLQuery query = session.createSQLQuery("select star_count from sec_repo where YEAR(create_at)<=2013 AND description REGEXP :keyword ORDER BY update_at DESC LIMIT 0,100 ");
+        SQLQuery query = session.createSQLQuery("select star_count from sec_repo where YEAR(create_at)<=2013 AND description REGEXP :keyword ORDER BY update_at DESC LIMIT 0,121 ");
         query.setString("keyword", "(^| +)node.js($| +|[^a-zA-Z])");
         longs.add(query.list());
         query.setString("keyword","(^| +)library($| +|[^a-zA-Z])");
@@ -354,7 +354,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
                 "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
                 "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
                 "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name " +
-                "HAVING COUNT(CASE WHEN followers>100 THEN 1 END)=:pValue ORDER BY Repo.update_at DESC LIMIT 0,100");
+                "HAVING COUNT(CASE WHEN followers>100 THEN 1 END)=:pValue ORDER BY Repo.update_at DESC LIMIT 0,121");
         for (int i = 0; i < 7; i++) {
             query.setInteger("pValue",i);
             list.add(query.list());
@@ -363,7 +363,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
                 "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
                 "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
                 "WHERE YEAR(Repo.create_at)<=2013 GROUP BY Repo.owner,Repo.name " +
-                "HAVING COUNT(CASE WHEN followers>100 THEN 1 END)>=7 ORDER BY Repo.update_at DESC LIMIT 0,100");
+                "HAVING COUNT(CASE WHEN followers>100 THEN 1 END)>=7 ORDER BY Repo.update_at DESC LIMIT 0,121");
         list.add(query.list());
         session.close();
         return list;

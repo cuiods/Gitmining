@@ -22,4 +22,7 @@ public interface RepoPopuModelService {
     List statsCompareFollower();
     List<List> statSpecialFollowRate();
     Map<String,List> statFollowerSuper();
+    List vaLanguage();
+    List vaField();
+    List vaPerson();
 }

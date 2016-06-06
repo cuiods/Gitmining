@@ -96,4 +96,22 @@ public class RepoPopuController {
         return repoPopuModelService.statFollowerSuper();
     }
 
+    @RequestMapping("/vaLanguage")
+    @ResponseBody
+    public List vaLanguage() {
+        return repoPopuModelService.vaLanguage();
+    }
+
+    @RequestMapping("/vaField")
+    @ResponseBody
+    public List vaField() {
+        return repoPopuModelService.vaField();
+    }
+
+    @RequestMapping("/vaPerson")
+    @ResponseBody
+    public List vaPerson() {
+        return repoPopuModelService.vaPerson();
+    }
+
 }

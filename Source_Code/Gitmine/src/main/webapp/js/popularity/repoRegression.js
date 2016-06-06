@@ -1,5 +1,5 @@
 /**
- * Created by cuihao on 2016/6/3.
+ * show statistic
  */
 $(document).ready(function () {
     var popu_star = echarts.init(document.getElementById('gra-popularity-star'));
@@ -111,6 +111,30 @@ $(document).ready(function () {
 
             popu_star.hideLoading();
             popu_star.setOption(option);
+        }
+    });
+
+    $.ajax({
+        type:"GET",
+        url:"/popularity/vaLanguage",
+        success:function(data){
+            $("#one-way-language").html("F value: "+data[0]);
+        }
+    });
+
+    $.ajax({
+        type:"GET",
+        url:"/popularity/vaField",
+        success:function(data){
+            $("#one-way-field").html("F value: "+data[0]);
+        }
+    });
+
+    $.ajax({
+        type:"GET",
+        url:"/popularity/vaPerson",
+        success:function(data){
+            $("#one-way-person").html("F value: "+data[0]);
         }
     });
 })

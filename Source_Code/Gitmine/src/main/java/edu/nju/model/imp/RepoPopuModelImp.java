@@ -4,6 +4,7 @@ import edu.nju.dao.service.RepoPopuService;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.model.pojo.SimpleChart;
 import edu.nju.model.service.RepoPopuModelService;
+import edu.nju.model.statistic.OneWayANOVA;
 import edu.nju.model.statistic.RegressionLine;
 import edu.nju.model.statistic.StarRegressionService;
 import org.springframework.stereotype.Service;
@@ -161,5 +162,26 @@ public class RepoPopuModelImp implements RepoPopuModelService {
         map.put("middle",lists2);
         map.put("large",lists3);
         return map;
+    }
+
+    @Override
+    public List vaLanguage() {
+        List list = new ArrayList<>();
+        list.add(new OneWayANOVA(repoPopuImp.variableLanguage()).doAnalysis());
+        return list;
+    }
+
+    @Override
+    public List vaField() {
+        List list = new ArrayList<>();
+        list.add(new OneWayANOVA(repoPopuImp.variableFields()).doAnalysis());
+        return list;
+    }
+
+    @Override
+    public List vaPerson() {
+        List list = new ArrayList<>();
+        list.add(new OneWayANOVA(repoPopuImp.variablePerson()).doAnalysis());
+        return list;
     }
 }
