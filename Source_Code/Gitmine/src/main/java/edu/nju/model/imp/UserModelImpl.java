@@ -39,6 +39,7 @@ public class UserModelImpl implements UserModelService {
         return null;
     }
 
+    @Override
     public List<RelationVO> getRelatedUser(String username, int limitResults) {
         List<Object[]> list = userDao.getRelatedUser(username,limitResults);
         List<RelationVO> relationVOList = new ArrayList<>();
@@ -142,13 +143,27 @@ public class UserModelImpl implements UserModelService {
         return userVOs;
     }
 
+    @Override
     public UserVO getUserBasicInfo(String username) {
         SecUserEntity userEntity = userDao.getUserBasicInfo(username);
         return voConvertor.convert(userEntity);
     }
 
+    @Override
     public RadarChart getUserRadarChart(String username) {
         return userRadar.getUserRadar(username);
     }
 
+    @Override
+    public SimpleChart getUserLanguage(String login) {
+        List<Object []> list = userDao.getUserLanguage(login);
+        String [] field = new String[list.size()];
+        long [] value = new long[list.size()];
+        for (int i=0;i<list.size();i++){
+            Object [] item = list.get(i);
+            field[i] = item[0].toString();
+            value[i] = Long.valueOf(item[1].toString());
+        }
+        return new SimpleChart(field,value);
+    }
 }

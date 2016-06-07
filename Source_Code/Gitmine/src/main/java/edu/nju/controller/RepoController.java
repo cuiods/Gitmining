@@ -182,7 +182,12 @@ public class RepoController {
         }
         else {
             String webUsername = session.getAttribute("webUsername").toString();
-            return hobbyModelImpl.starRepo(ownername,reponame,webUsername);
+            boolean result = hobbyModelImpl.starRepo(ownername,reponame,webUsername);
+            if (result){
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                staredUser.add(ownername+"/"+reponame);
+            }
+            return result;
         }
     }
 
@@ -195,7 +200,12 @@ public class RepoController {
         }
         else {
             String webUsername = session.getAttribute("webUsername").toString();
-            return hobbyModelImpl.unstarRepo(ownername,reponame,webUsername);
+            boolean result = hobbyModelImpl.unstarRepo(ownername,reponame,webUsername);
+            if (result){
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                staredUser.remove(ownername+"/"+reponame);
+            }
+            return result;
         }
     }
 
