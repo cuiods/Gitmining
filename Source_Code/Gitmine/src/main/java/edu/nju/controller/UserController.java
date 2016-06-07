@@ -259,7 +259,7 @@ public class UserController {
         }
         else {
             String webUsername = session.getAttribute("webUsername").toString();
-            boolean result = hobbyModelImpl.starUser(username,webUsername);
+            boolean result = hobbyModelImpl.unStarUser(username,webUsername);
             if (result){
                 HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
                 staredUser.remove(username);

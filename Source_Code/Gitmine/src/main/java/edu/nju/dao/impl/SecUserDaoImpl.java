@@ -25,8 +25,8 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<Object[]> getUserLanguage(String login) {
         Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("");
 
-        //todo
         return null;
     }
 
