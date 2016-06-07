@@ -49,6 +49,13 @@ public class RepoController {
         this.totalPage = repoModelImpl.getTotalPage();
     }
 
+    @RequestMapping(value = "/languages")
+    @ResponseBody
+    public List<String> getAllLanguages(){
+        //todo
+        return null;
+    }
+
     @RequestMapping(value = "/recommend")
     @ResponseBody
     public List<RepoVO> home(@RequestParam(required = false,defaultValue = "0") int offset,
@@ -129,7 +136,7 @@ public class RepoController {
                 }
             }
         }
-        int totalSearchPage = -1;
+        int totalSearchPage = 0;
         if (isKeyChanged){
             totalSearchPage = repoModelImpl.getSearchPage(keyword,filterType,language,createYear);
         }
