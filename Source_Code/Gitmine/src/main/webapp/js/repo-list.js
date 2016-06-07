@@ -47,6 +47,12 @@ var RepoList = {
             // }else if(description.length<descriptionLengthEachLine){
             //     description = description+"<br><br>";
             // }
+
+            console.log(n.isStared);
+
+            var cherish = tempGrid.find('.cherish');
+            cherishPresent(n.isStared,cherish);
+
             tempGrid.find('.repoDescription').eq(0).html (description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);

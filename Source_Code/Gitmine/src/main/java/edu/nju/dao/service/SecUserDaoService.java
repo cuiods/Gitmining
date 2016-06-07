@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface SecUserDaoService {
 
+    public List<Object []> getUserLanguage(String login);
+
     /**
      * get user info
      * @param login

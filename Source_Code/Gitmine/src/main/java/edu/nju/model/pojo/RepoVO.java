@@ -135,11 +135,11 @@ public class RepoVO {
         this.numWatcher = numWatcher;
     }
 
-    public boolean isStared() {
+    public boolean getIsStared() {
         return isStared;
     }
 
-    public void setStared(boolean stared) {
+    public void setIsStared(boolean stared) {
         isStared = stared;
     }
 }

@@ -49,6 +49,13 @@ public class RepoController {
         this.totalPage = repoModelImpl.getTotalPage();
     }
 
+    @RequestMapping(value = "/languages")
+    @ResponseBody
+    public List<String> getAllLanguages(){
+        //todo
+        return null;
+    }
+
     @RequestMapping(value = "/recommend")
     @ResponseBody
     public List<RepoVO> home(@RequestParam(required = false,defaultValue = "0") int offset,
@@ -61,7 +68,7 @@ public class RepoController {
             HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
             for (RepoVO vo:recommend){
                 if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
-                    vo.setStared(true);
+                    vo.setIsStared(true);
                 }
             }
 
@@ -93,7 +100,7 @@ public class RepoController {
                 HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
                 for (RepoVO vo:repoList){
                     if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
-                        vo.setStared(true);
+                        vo.setIsStared(true);
                     }
                 }
             }
@@ -125,11 +132,11 @@ public class RepoController {
             HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
             for (RepoVO vo:resultList){
                 if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
-                    vo.setStared(true);
+                    vo.setIsStared(true);
                 }
             }
         }
-        int totalSearchPage = -1;
+        int totalSearchPage = 0;
         if (isKeyChanged){
             totalSearchPage = repoModelImpl.getSearchPage(keyword,filterType,language,createYear);
         }
@@ -151,7 +158,7 @@ public class RepoController {
             HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
 
             if (staredRepo.contains(basicInfo.getOwnerName()+"/"+basicInfo.getReponame())){
-                basicInfo.setStared(true);
+                basicInfo.setIsStared(true);
             }
 
         }
