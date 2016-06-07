@@ -147,7 +147,7 @@ public class UserController {
         if (session.getAttribute("webUsername") != null){
             HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
 
-            if (staredUser.contains(userVO.getLogin())){
+            if ((staredUser!=null)&&(staredUser.contains(userVO.getLogin()))){
                 userVO.setIsStared(true);
             }
 

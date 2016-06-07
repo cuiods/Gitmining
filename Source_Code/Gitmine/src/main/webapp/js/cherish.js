@@ -42,7 +42,7 @@ function unCherish(obj,fatherType,dataStr,unStarUrl,starUrl){
     var fatherGrid = objJQ.parents(fatherType).eq(0);
     var dataObj = fatherGrid.find(dataStr).eq(0);
     $.ajax({
-        type:'POST',
+        type:'GET',
         url:unStarUrl,
         data:{username:dataObj.text()},
         success:function(){
@@ -120,4 +120,14 @@ function unCherish_repo(obj,fatherType,dataStr,unStarUrl,starUrl){
         }
 
     })
+}
+
+function cherishPresent(isCherished,obj){
+    if(isCherished){
+        obj.removeClass('icon-heart-empty').addClass('icon-heart');
+        obj.attr('title','click to cancel cherish');
+    }else{
+        obj.removeClass('icon-heart').addClass('icon-heart-empty');
+        obj.attr('title','click to cherish');
+    }
 }

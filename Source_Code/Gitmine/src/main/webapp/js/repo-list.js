@@ -49,14 +49,10 @@ var RepoList = {
             // }
 
             console.log(n.isStared);
+
             var cherish = tempGrid.find('.cherish');
-            if(n.isStared){
-                cherish.removeClass('icon-heart-empty').addClass('icon-heart');
-                cherish.attr('title','click to cancel cherish');
-            }else{
-                cherish.find('.cherish').removeClass('icon-heart').addClass('icon-heart-empty');
-                cherish.attr('title','click to cherish');
-            }
+            cherishPresent(n.isStared,cherish);
+
             tempGrid.find('.repoDescription').eq(0).html (description);
             tempGrid.find('.createAt').eq(0).text (n.createAt);
             tempGrid.find('.updateAt').eq(0).text (n.updateAt);

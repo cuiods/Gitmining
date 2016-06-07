@@ -18,21 +18,15 @@ var UserList={
             var tempGrid = _this.lastGrid.clone(true);
             var userName = tempGrid.find(".userName").eq(0);
             userName.text(user.login);
-            userName.attr('href','userDetail.html?userName='+user.login);
+            userName.attr('href','userDetail.html?userName='+user.login+'/basic');
 
             var imageUrl = tempGrid.find(".imageUrl").eq(0);
-            imageUrl.attr('href','userDetail.html?userName='+user.login);
+            imageUrl.attr('href','userDetail.html?userName='+user.login+'/basic');
             var image = tempGrid.find(".header_user").eq(0);
             image.attr('src',user.avatarUrl);
 
             var cherish = tempGrid.find('.cherish');
-            if(user.isStared){
-                cherish.removeClass('icon-heart-empty').addClass('icon-heart');
-                cherish.attr('title','click to cancel cherish');
-            }else{
-                cherish.find('.cherish').removeClass('icon-heart').addClass('icon-heart-empty');
-                cherish.attr('title','click to cherish');
-            }
+            cherishPresent(user.isStared,cherish);
 
             tempGrid.find('.create').eq(0).text('create at:  '+user.createAt);
             tempGrid.find('.update').eq(0).text('update at:  '+user.updateAt);
@@ -142,7 +136,7 @@ function search(){
             UserList.updateData(data.userList);
             console.log(data.totalPage);
             $.jqPaginator('#pagination1', {
-                totalPages: 20,
+                totalPages: data.totalPage,
                 visiblePages: 8,
                 currentPage: 1,
                 onPageChange: function (current) {
