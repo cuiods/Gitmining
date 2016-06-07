@@ -25,6 +25,15 @@ var UserList={
             var image = tempGrid.find(".header_user").eq(0);
             image.attr('src',user.avatarUrl);
 
+            var cherish = tempGrid.find('.cherish');
+            if(user.isStared){
+                cherish.removeClass('icon-heart-empty').addClass('icon-heart');
+                cherish.attr('title','click to cancel cherish');
+            }else{
+                cherish.find('.cherish').removeClass('icon-heart').addClass('icon-heart-empty');
+                cherish.attr('title','click to cherish');
+            }
+
             tempGrid.find('.create').eq(0).text('create at:  '+user.createAt);
             tempGrid.find('.update').eq(0).text('update at:  '+user.updateAt);
             tempGrid.find('.repo').eq(0).text(user.publicRepo);
@@ -126,12 +135,14 @@ function search(){
             sortType:sortBy,
             reverse:isReverse,
             pageNum:page,
+            isKeyChanged:true,
         },
-        success:function(searchList){
+        success:function(data){
 
-            UserList.updateData(searchList);
+            UserList.updateData(data.userList);
+            console.log(data.totalPage);
             $.jqPaginator('#pagination1', {
-                totalPages: 100,
+                totalPages: 20,
                 visiblePages: 8,
                 currentPage: 1,
                 onPageChange: function (current) {
@@ -168,9 +179,10 @@ function jumpSearchPage(current){
             sortType:sortBy,
             reverse:isReverse,
             pageNum:current,
+            isKeyChanged:false,
         },
-        success:function(searchList){
-            UserList.updateData(searchList);
+        success:function(data){
+            UserList.updateData(data.userList);
         },
         error:function(){
             alert("wrong!");
