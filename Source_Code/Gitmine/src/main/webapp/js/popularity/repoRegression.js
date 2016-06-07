@@ -114,6 +114,48 @@ $(document).ready(function () {
         }
     });
 
+    var popu_follower = echarts.init(document.getElementById('gra-popularity-follower'));
+    popu_follower.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/popularity/followerRegression",
+        success:function (stardata2) {
+            var mydata = stardata2;
+
+            option = {
+                title: {
+                    text: 'Star with sum of followers of contributors',
+                    x: 'center',
+                    y: 0
+                },
+                grid: [
+                    {x: '7%', y: '7%', width: '76%', height: '70%'}
+                ],
+                tooltip: {
+                    formatter: 'Group {a}: ({c})'
+                },
+                xAxis: [
+                    {gridIndex: 0, min:0, max:5000}
+                ],
+                yAxis: [
+                    {gridIndex: 0, min:0, max:200}
+                ],
+                series: [
+                    {
+                        name: 'fork',
+                        type: 'scatter',
+                        xAxisIndex: [0],
+                        yAxisIndex: [0],
+                        data: mydata
+                    }
+                ]
+            };
+
+            popu_follower.hideLoading();
+            popu_follower.setOption(option);
+        }
+    });
+
     $.ajax({
         type:"GET",
         url:"/popularity/vaLanguage",

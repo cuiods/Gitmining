@@ -184,4 +184,10 @@ public class RepoPopuModelImp implements RepoPopuModelService {
         list.add(new OneWayANOVA(repoPopuImp.variablePerson()).doAnalysis());
         return list;
     }
+
+    @Override
+    public List<Object[]> regressionFollower() {
+        List<Object[]> list = repoPopuImp.followerRegression(1000);
+        return list;
+    }
 }

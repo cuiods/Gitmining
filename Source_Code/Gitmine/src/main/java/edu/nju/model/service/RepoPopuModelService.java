@@ -25,4 +25,5 @@ public interface RepoPopuModelService {
     List vaLanguage();
     List vaField();
     List vaPerson();
+    List<Object[]> regressionFollower();
 }

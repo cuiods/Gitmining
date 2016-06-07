@@ -149,4 +149,16 @@ public class RepoPopuDaoImpTest {
             System.out.println(list.size()+"-------"+list);
         }
     }
+
+    @Test
+    public void followerRegression() throws Exception {
+        List<Object[]> list = repoPopuImp.followerRegression(1000);
+        for (int i = 0; i < list.size(); i++) {
+            Object[] objects = list.get(i);
+            for (Object object:objects) {
+                System.out.print(object+"+class:"+object.getClass().getName()+",");
+            }
+            System.out.print("\n");
+        }
+    }
 }

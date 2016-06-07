@@ -115,4 +115,11 @@ public interface RepoPopuService {
      *      [[2008,2009,...,2016],[2008,2009,...,2016]]
      */
     List<Object[]> refactorTest();
+
+    /**
+     * follower, star regression
+     * @return
+     *      [(sum(follower),star)]
+     */
+    List<Object[]> followerRegression(int max);
 }

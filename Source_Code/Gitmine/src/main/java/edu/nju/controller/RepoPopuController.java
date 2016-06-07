@@ -114,4 +114,10 @@ public class RepoPopuController {
         return repoPopuModelService.vaPerson();
     }
 
+    @RequestMapping("/followerRegression")
+    @ResponseBody
+    public List<Object[]> followerRegression() {
+        return repoPopuModelService.regressionFollower();
+    }
+
 }

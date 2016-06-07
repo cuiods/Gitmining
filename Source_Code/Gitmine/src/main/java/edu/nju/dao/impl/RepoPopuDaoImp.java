@@ -387,4 +387,21 @@ public class RepoPopuDaoImp implements RepoPopuService {
         return objects;
     }
 
+    /**
+     * follower, star regression
+     * @return [(sum(follower), star)]
+     */
+    @Override
+    public List<Object[]> followerRegression(int max) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("SELECT SUM(U.followers),Repo.star_count FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
+                "GROUP BY Repo.owner,Repo.name HAVING sum(U.followers) < 5000 AND Repo.star_count < 200 AND Repo.star_count > 1 ");
+        query.setMaxResults(max);
+        List<Object[]> list = query.list();
+        session.close();
+        return list;
+    }
+
 }
