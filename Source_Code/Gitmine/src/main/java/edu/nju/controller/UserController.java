@@ -126,7 +126,7 @@ public class UserController {
                 }
             }
         }
-        int totalSearchPage = -1;
+        int totalSearchPage = 0;
         if (isKeyChanged){
             totalSearchPage = userModelImpl.getSearchPage(keyword);
             System.out.println("the total page is "+totalSearchPage);
