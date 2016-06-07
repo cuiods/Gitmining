@@ -138,7 +138,7 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping(value = "/{username:.+}")
+    @RequestMapping(value = "/{username:.+}/basic")
     @ResponseBody
     public Map getUserInfo(@PathVariable String username,
                            HttpSession session){
