@@ -55,13 +55,8 @@ public class CollectionController {
             return 0;
         }
         else {
-            Object page = session.getAttribute("staredRepoPage");
-            if (page == null) {
-                return 0;
-            }
-            else {
-                return (int)page;
-            }
+            String webUsername = session.getAttribute("webUsername").toString();
+            return hobbyModelService.getTotalRepoStarPage(webUsername);
         }
     }
 
@@ -72,13 +67,8 @@ public class CollectionController {
             return 0;
         }
         else {
-            Object page = session.getAttribute("staredUserPage");
-            if (page == null) {
-                return 0;
-            }
-            else {
-                return (int)page;
-            }
+            String webUsername = session.getAttribute("webUsername").toString();
+            return hobbyModelService.getTotalUserStarPage(webUsername);
         }
     }
 }
