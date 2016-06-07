@@ -85,7 +85,6 @@ public class UserController {
                     @RequestParam(required = false, defaultValue = "false") boolean isDesc,
                     HttpSession session){
         Map<String,Object> map = new HashMap<>();
-        long totalPage = userModelImpl.getTotalPage();
         List<UserVO> userVOs = null;
         if (pageNum<=totalPage){
             SortType type = SortTypeBuilder.getSortType(sortType);
@@ -103,7 +102,7 @@ public class UserController {
                 }
             }
         }
-        map.put("totalPage", totalPage);
+        map.put("totalPage", this.totalPage);
         map.put("currentPage", pageNum);
         map.put("userList", userVOs);
         return map;
@@ -243,7 +242,12 @@ public class UserController {
         }
         else {
             String webUsername = session.getAttribute("webUsername").toString();
-            return hobbyModelImpl.starUser(username,webUsername);
+            boolean result = hobbyModelImpl.starUser(username,webUsername);
+            if (result){
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                staredUser.add(username);
+            }
+            return result;
         }
     }
 
@@ -255,7 +259,12 @@ public class UserController {
         }
         else {
             String webUsername = session.getAttribute("webUsername").toString();
-            return hobbyModelImpl.unStarUser(username,webUsername);
+            boolean result = hobbyModelImpl.starUser(username,webUsername);
+            if (result){
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                staredUser.remove(username);
+            }
+            return result;
         }
     }
 }

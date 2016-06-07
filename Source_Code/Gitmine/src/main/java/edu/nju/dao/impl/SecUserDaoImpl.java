@@ -23,6 +23,14 @@ public class SecUserDaoImpl implements SecUserDaoService {
     private SessionFactory sessionFactory;
 
     @Override
+    public List<Object[]> getUserLanguage(String login) {
+        Session session = sessionFactory.openSession();
+
+        //todo
+        return null;
+    }
+
+    @Override
     public SecUserEntity getUserBasicInfo(String login) {
         Session session =sessionFactory.openSession();
         Query query = session.createQuery("from SecUserEntity u where u.login = :log");
