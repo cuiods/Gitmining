@@ -233,6 +233,7 @@ public class UserController {
     public List<MapVO> statUserDistribution(){
         return mapModelService.getUserDistribution();
     }
+
     @RequestMapping(value = "/star")
     @ResponseBody
     public boolean starUser(@RequestParam String username, HttpSession session){

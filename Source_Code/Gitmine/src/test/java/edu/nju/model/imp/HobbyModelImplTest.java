@@ -26,7 +26,7 @@ public class HobbyModelImplTest {
 
     @Test
     public void unstarRepo() throws Exception {
-
+        //hobbyModel.unStarUser("mojombo","hhhhhh");
     }
 
     @Test
