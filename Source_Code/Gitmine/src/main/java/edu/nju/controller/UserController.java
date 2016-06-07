@@ -152,9 +152,11 @@ public class UserController {
 
         }
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
+        SimpleChart languageChart = userModelImpl.getUserLanguage(username);
 
         map.put("basicInfo",userVO);
         map.put("radarChart",radarChart);
+        map.put("languageChart",languageChart);
         return map;
     }
 

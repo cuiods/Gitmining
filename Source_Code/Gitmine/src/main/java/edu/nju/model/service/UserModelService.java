@@ -86,4 +86,11 @@ public interface UserModelService {
      */
     public RadarChart getUserRadarChart(String username);
 
+    /**
+     * get the frequent usage of language for a user
+     * @param login
+     * @return
+     */
+    public SimpleChart getUserLanguage(String login);
+
 }
