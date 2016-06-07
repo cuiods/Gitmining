@@ -47,4 +47,38 @@ public class CollectionController {
             return hobbyModelService.getStaredUsers(webUsername,page);
         }
     }
+
+    @RequestMapping(value = "/repoPage")
+    @ResponseBody
+    public int getStaredRepoPage(HttpSession session){
+        if (session.getAttribute("webUsername") == null){
+            return 0;
+        }
+        else {
+            Object page = session.getAttribute("staredRepoPage");
+            if (page == null) {
+                return 0;
+            }
+            else {
+                return (int)page;
+            }
+        }
+    }
+
+    @RequestMapping(value = "/userPage")
+    @ResponseBody
+    public int getStaredUserPage(HttpSession session){
+        if (session.getAttribute("webUsername") == null){
+            return 0;
+        }
+        else {
+            Object page = session.getAttribute("staredUserPage");
+            if (page == null) {
+                return 0;
+            }
+            else {
+                return (int)page;
+            }
+        }
+    }
 }

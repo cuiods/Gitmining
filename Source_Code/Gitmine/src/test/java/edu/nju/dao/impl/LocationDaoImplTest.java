@@ -44,6 +44,10 @@ public class LocationDaoImplTest {
 //        entity1.setCountry("China");
 //        entity1.setNumber(999);
 //        list.add(entity1);
+//        UserCountryEntity entity2 = new UserCountryEntity();
+//        entity2.setCountry("UK");
+//        entity2.setNumber(111);
+//        list.add(entity2);
 //        locationDao.saveCountry(list);
     }
 
