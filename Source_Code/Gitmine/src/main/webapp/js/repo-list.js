@@ -27,7 +27,7 @@ var RepoList = {
             owner.attr ('href','/html/html/userDetail.html?userName='+n.ownerName);
 
             var repo = tempGrid.find('.reponame').eq(0);
-            repo.text (n.reponame.substr(0,nameLength));
+            repo.text (n.reponame);
 
             var repoHref = '/html/html/repo-detail.html?'+n.ownerName+"/"+n.reponame;
             repo.attr ('href',repoHref);
