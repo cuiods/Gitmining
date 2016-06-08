@@ -11,9 +11,11 @@ $(document).ready(function() {
 
     $.ajax({
         type:'GET',
-        url:'/user/'+userName.innerHTML,
+        url:'/user/'+userName.innerHTML+'/basic',
         success:function(data){
-
+            console.log(data.basicInfo.isStared);
+            cherishPresent(data.basicInfo.isStared,$('#cherish'));
+            onIdCherishClick($('#cherish'),userName.innerHTML,'/user/star','/user/unstar');
             document.getElementById("header_url").src=data.basicInfo.avatarUrl;
             document.getElementById("userDetail_repos").innerHTML=data.basicInfo.publicRepo;
             document.getElementById("userDetail_following").innerHTML=data.basicInfo.following;
@@ -132,7 +134,6 @@ function addRelatedRepo(fatherGrid,lastGrid,userName,relateType){
         url:'/user/'+userName+'/'+relateType,
         success:function(repoList){
             $.each(repoList,function(i,repo){
-                console.log(repo);
                 var tempGrid = lastGrid.clone(true);
                 tempGrid.find('.repo_name').eq(0).text(repo.reponame);
                 tempGrid.find('.repo_description').eq(0).text(repo.description);

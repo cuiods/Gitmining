@@ -18,6 +18,28 @@ $(document).ready(
 
         RepoList.init();
         UserList.init();
+        var repoPage = 0;
+        var userPage = 0;
+        $.ajax({
+            type:'GET',
+            url:'/favorite/repoPage',
+            success:function(totalPage){
+                repoPage=totalPage;
+            },
+            error:function(){
+                alert('get repoPage wrong!');
+            }
+        });
+        $.ajax({
+            type:'GET',
+            url:'/favorite/userPage',
+            success:function(totalPage){
+                userPage = totalPage;
+            },
+            error:function(){
+                alert('get userPage wrong!');
+            }
+        })
 
         $.ajax({
             type:'GET',
@@ -26,17 +48,17 @@ $(document).ready(
             success:function(repoList){
                 RepoList.updateList(repoList);
                 $.jqPaginator('#pagination1', {
-                    totalPages: 10,
+                    totalPages: repoPage,
                     visiblePages: 8,
                     currentPage: 1,
-                    // onPageChange: function (current) {
-                    //     jumpPage(current);
-                    // }
+                    onPageChange: function (current) {
+                        jumpRepoPage(current);
+                    }
 
                 });
             },
             error:function(){
-                alert('wrong');
+                alert('get repoList wrong!');
             }
         });
 
@@ -47,13 +69,54 @@ $(document).ready(
             data:{},
             success:function(userList){
                 UserList.updateList(userList);
+                $.jqPaginator('#paginationUser', {
+                    totalPages: userPage,
+                    visiblePages: 8,
+                    currentPage: 1,
+                    onPageChange: function (current) {
+                        jumpUserPage(current);
+                    }
+
+                });
             },
             error:function(){
-                alert('wrong');
+                alert('get userList wrong!');
             }
         })
     }
 );
+
+function jumpRepoPage(current){
+    $.ajax({
+        type:'GET',
+        url:'/favorite/repos',
+        data:{page:current},
+        success:function(repoList){
+            console.log(current);
+            $.each(repoList,function(i,repo){
+                console.log(repo.ownerName);
+            })
+            RepoList.updateList(repoList);
+        },
+        error:function(){
+            alert('jumpPage get repos wrong!');
+        }
+    })
+};
+
+function jumpUserPage(current){
+    $.ajax({
+        type:'GET',
+        url:'/favorite/users',
+        data:{page:current},
+        success:function(userList){
+            UserList.updateList(userList);
+        },
+        error:function(){
+            alert('jumpPage get users wrong!');
+        }
+    })
+};
 
 var RepoList={
     init:function(){
@@ -110,4 +173,8 @@ var UserList={
         });
 
     }
+};
+
+function personalRepoCherish(){
+
 }

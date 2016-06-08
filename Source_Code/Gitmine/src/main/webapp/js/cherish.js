@@ -32,6 +32,9 @@ function cherish(obj,fatherType,dataStr,starUrl,unStarUrl){
                 unCherish(obj,fatherType,dataStr,unStarUrl,starUrl);
             })
             // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
+        },
+        error:function(){
+            alert('cherish wrong');
         }
 
     })
@@ -52,6 +55,9 @@ function unCherish(obj,fatherType,dataStr,unStarUrl,starUrl){
                 cherish(obj,fatherType,dataStr,starUrl,unStarUrl);
             })
             // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
+        },
+        error:function(){
+            alert('unCherish wrong');
         }
 
     })
@@ -122,6 +128,7 @@ function unCherish_repo(obj,fatherType,dataStr,unStarUrl,starUrl){
     })
 }
 
+//used to show the heart is full or empty
 function cherishPresent(isCherished,obj){
     if(isCherished){
         obj.removeClass('icon-heart-empty').addClass('icon-heart');
@@ -131,3 +138,57 @@ function cherishPresent(isCherished,obj){
         obj.attr('title','click to cherish');
     }
 }
+
+function onIdCherishClick(objJQ,data,starUrl,unStarUrl){
+    if(objJQ.hasClass('icon-heart-empty')){
+        objJQ.unbind('click').click(function(){
+            IdCherish(objJQ,data,starUrl,unStarUrl);
+        });
+
+    }else{
+        objJQ.unbind('click').click(function(){
+            unIdCherish(objJQ,data,unStarUrl,starUrl);
+        });
+
+    }
+}
+function IdCherish(objJQ,data,starUrl,unStarUrl){
+    $.ajax({
+        type:'GET',
+        url:starUrl,
+        data:{username:data},
+        success:function(){
+            objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
+            objJQ.attr('title','click to unCherish');
+            objJQ.unbind('click').click(function(){
+                unIdCherish(objJQ,data,unStarUrl,starUrl);
+            })
+            // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
+        },
+        error:function(){
+            alert('idCherish wrong!');
+        }
+
+    })
+}
+
+function unIdCherish(objJQ,data,unStarUrl,starUrl){
+    $.ajax({
+        type:'GET',
+        url:unStarUrl,
+        data:{username:data},
+        success:function(){
+            objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
+            objJQ.attr('title','click to cherish');
+            objJQ.unbind('click').click(function(){
+                IdCherish(objJQ,data,starUrl,unStarUrl);
+            })
+            // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
+        },
+        error:function(){
+            alert('unIdCherish wrong!');
+        }
+
+    })
+};
+

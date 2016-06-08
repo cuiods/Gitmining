@@ -18,13 +18,15 @@ var UserList={
             var tempGrid = _this.lastGrid.clone(true);
             var userName = tempGrid.find(".userName").eq(0);
             userName.text(user.login);
-            userName.attr('href','userDetail.html?userName='+user.login+'/basic');
+            userName.attr('href','userDetail.html?userName='+user.login);
 
             var imageUrl = tempGrid.find(".imageUrl").eq(0);
-            imageUrl.attr('href','userDetail.html?userName='+user.login+'/basic');
+            imageUrl.attr('href','userDetail.html?userName='+user.login);
             var image = tempGrid.find(".header_user").eq(0);
             image.attr('src',user.avatarUrl);
 
+            console.log(user.login);
+            console.log(user.isStared);
             var cherish = tempGrid.find('.cherish');
             cherishPresent(user.isStared,cherish);
 
