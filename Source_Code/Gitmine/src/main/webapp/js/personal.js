@@ -2,6 +2,8 @@
  * Created by lenovo on 2016/6/2.
  */
 
+var currentRepoPage = 1;
+var currentUserPage = 1;
 $(document).ready(
     function(){
         $.ajax({
@@ -25,6 +27,7 @@ $(document).ready(
             url:'/favorite/repoPage',
             success:function(totalPage){
                 repoPage=totalPage;
+                console.log('repoPage is '+repoPage);
             },
             error:function(){
                 alert('get repoPage wrong!');
@@ -35,12 +38,15 @@ $(document).ready(
             url:'/favorite/userPage',
             success:function(totalPage){
                 userPage = totalPage;
+                console.log('userPage is '+userPage);
             },
             error:function(){
                 alert('get userPage wrong!');
             }
         })
 
+        currentRepoPage = 1;
+        currentUserPage = 1;
         $.ajax({
             type:'GET',
             url:'/favorite/repos',
@@ -52,6 +58,7 @@ $(document).ready(
                     visiblePages: 8,
                     currentPage: 1,
                     onPageChange: function (current) {
+                        currentRepoPage = current;
                         jumpRepoPage(current);
                     }
 
@@ -74,6 +81,7 @@ $(document).ready(
                     visiblePages: 8,
                     currentPage: 1,
                     onPageChange: function (current) {
+                        currentUserPage = current;
                         jumpUserPage(current);
                     }
 
@@ -92,10 +100,7 @@ function jumpRepoPage(current){
         url:'/favorite/repos',
         data:{page:current},
         success:function(repoList){
-            console.log(current);
-            $.each(repoList,function(i,repo){
-                console.log(repo.ownerName);
-            })
+
             RepoList.updateList(repoList);
         },
         error:function(){
@@ -138,6 +143,10 @@ var RepoList={
             tempGrid.find('.fork').eq(0).text(repo.numFork);
             tempGrid.find('.star').eq(0).text(repo.numStar);
             tempGrid.find('.repoDetail').eq(0).attr('href','repo.html?'+repo.ownerName+'/'+repo.reponame);
+
+            var repoCherish = tempGrid.find('.repoCherish').eq(0);
+            unCherishRepo(repoCherish,repo.ownerName,repo.reponame);
+
             _this.gridsFather.append(tempGrid);
             _this.gridsFather.append(_this.clear.clone(true));
             _this.gridsFather.append(_this.hr.clone(true));
@@ -165,7 +174,11 @@ var UserList={
             tempGrid.find('.following').eq(0).text(user.following);
             tempGrid.find('.followed').eq(0).text(user.follower);
             tempGrid.find('.userDetail').eq(0).attr('href','userDetail.html?userName='+user.login);
+            var userCherish = tempGrid.find('.userCherish').eq(0);
+
+            unCherishUser(userCherish,user.login);
             _this.gridsFather.append(tempGrid);
+
             if(i%2==1){
                 _this.gridsFather.append(_this.clear.clone(true));
                 _this.gridsFather.append(_this.hr.clone(true));
@@ -175,6 +188,70 @@ var UserList={
     }
 };
 
-function personalRepoCherish(){
+function unCherishRepo(obj,owner_name,repo_name){
+    obj.unbind('click').click(function(){
+        $.ajax({
+            type:'GET',
+            url:'/repo/unstar',
+            data:{ownername:owner_name,reponame:repo_name},
+            success:function(ok){
+                if(ok){
+                    $.ajax({
+                        type:'GET',
+                        url:'/favorite/repoPage',
+                        success:function(total){
+                            if(total>=currentRepoPage){
+                                jumpRepoPage(currentRepoPage);
+                            }else{
+                                $.jqPaginator('#pagination1', {
+                                    totalPages: total,
+                                    visiblePages: 8,
+                                    currentPage: total,
+                                    onPageChange: function (current) {
+                                        currentRepoPage = current;
+                                        jumpRepoPage(current);
+                                    }
+                                });
+                            }
+                        }
+                    })
+                }
+            }
+        })
 
+    })
+};
+
+function unCherishUser(obj,user_name){
+    obj.unbind('click').click(function(){
+        $.ajax({
+            type:'GET',
+            url:'/user/unstar',
+            data:{username:user_name},
+            success:function(ok){
+                if(ok){
+                    $.ajax({
+                        type:'GET',
+                        url:'/favorite/userPage',
+                        success:function(total){
+                            if(currentUserPage<=total){
+                                jumpUserPage(currentUserPage);
+                            }else{
+                                $.jqPaginator('#paginationUser', {
+                                    totalPages: total,
+                                    visiblePages: 8,
+                                    currentPage: total,
+                                    onPageChange: function (current) {
+                                        currentUserPage = current;
+                                        jumpUserPage(current);
+                                    }
+
+                                });
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    })
 }
