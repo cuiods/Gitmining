@@ -96,7 +96,7 @@ function sort(obj){
     }
     // alert("what is wrong");
 
-    search();
+    search(true);
 }
 
 //used to ensure which sortType is choosed
@@ -116,7 +116,7 @@ function findCheckedSortType() {
     return type;
 }
 
-function search(){
+function search(keyChange){
     var keyword = $('#keyword').val();
     console.log($('#keyword').val());
     var sortElement= findCheckedSortType();
@@ -131,7 +131,7 @@ function search(){
             sortType:sortBy,
             reverse:isReverse,
             pageNum:page,
-            isKeyChanged:true,
+            isKeyChanged:keyChange,
         },
         success:function(data){
 

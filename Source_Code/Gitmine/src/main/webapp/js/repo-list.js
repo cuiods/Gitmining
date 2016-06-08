@@ -61,6 +61,9 @@ var RepoList = {
             tempGrid.find('.numFork').eq(0).text  ( n.numFork);
             tempGrid.find('.numStar').eq(0).text   ( n.numStar);
 
+            var cherishRepo = tempGrid.find('.cherish').eq(0);
+            onRepoClick_(cherishRepo,n.ownerName,n.reponame,'/repo/star','/repo/unstar');
+
             _this.gridsFather.append(tempGrid);
 
             var checkbox = tempGrid.find(".checkbox").eq(0);
