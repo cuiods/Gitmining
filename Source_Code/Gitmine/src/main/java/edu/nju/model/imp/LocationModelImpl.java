@@ -8,11 +8,18 @@ import java.awt.*;
 public class LocationModelImpl {
 
 
-    public void geoCode(String location){
-
+    public void generateLocations(){
+        //select user list<> whoes location is still null
+        //be careful the limit rate.
+        //for each element of the list,
+            //get location and save.
     }
 
-    public void calculateDistance(){
+    public void getNeighbors(String user){
+        //by user's country, or if it's too bigger,choose its province
+        //get all the user's  in this country/province
+        //calculate distance.
+        //show in map
     }
 
 
@@ -23,8 +30,11 @@ public class LocationModelImpl {
         private static final String form = "json";
         private static final String apiKey = "";
 
-        public String getURL(String location){
+        private String _getURL(String location){
             return null;
+        }
+
+        public void geoCode(String location){
         }
     }
 
