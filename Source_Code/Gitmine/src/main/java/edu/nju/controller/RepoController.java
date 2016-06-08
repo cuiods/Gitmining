@@ -184,7 +184,7 @@ public class RepoController {
             String webUsername = session.getAttribute("webUsername").toString();
             boolean result = hobbyModelImpl.starRepo(ownername,reponame,webUsername);
             if (result){
-                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredRepo");
                 staredUser.add(ownername+"/"+reponame);
             }
             return result;
@@ -202,7 +202,7 @@ public class RepoController {
             String webUsername = session.getAttribute("webUsername").toString();
             boolean result = hobbyModelImpl.unstarRepo(ownername,reponame,webUsername);
             if (result){
-                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
+                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredRepo");
                 staredUser.remove(ownername+"/"+reponame);
             }
             return result;
