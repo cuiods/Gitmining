@@ -1,11 +1,14 @@
 package edu.nju.model.imp;
 
+import edu.nju.model.pojo.RepoVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -56,7 +59,10 @@ public class HobbyModelImplTest {
 
     @Test
     public void getStaredRepos() throws Exception {
-        hobbyModel.getStaredRepos("harry14",1);
+        List<RepoVO> list = hobbyModel.getStaredRepos("harry14",2);
+        for (RepoVO vo:list){
+            System.out.println(vo.getReponame());
+        }
     }
 
 }

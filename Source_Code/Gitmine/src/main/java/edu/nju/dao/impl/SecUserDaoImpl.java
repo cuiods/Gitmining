@@ -138,8 +138,9 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public long getSearchCount(String keyword) {
         Session session =sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user WHERE login LIKE :log");
-        query.setString("log",keyword);
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user WHERE login LIKE :log OR name LIKE :log1");
+        query.setString("log","%"+keyword+"%");
+        query.setString("log1","%"+keyword+"%");
         List list = query.list();
         session.close();
         if (list.size()>0){

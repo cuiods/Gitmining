@@ -53,10 +53,10 @@ public class RegisterDaoImpTest {
 
     @Test
     public void getStaredRepos() throws Exception {
-        List<SecRepoEntity> list = registerDaoImp.getStaredRepos("harry",0,10);
+        List<SecRepoEntity> list = registerDaoImp.getStaredRepos("harry14",16,16);
         assertTrue(list.size()>0);
-        SecRepoEntity entity = list.get(0);
-        System.out.println(entity.getOwner()+"-->"+entity.getName()+"-->"+entity.getLanguage()+"===");
+        for (SecRepoEntity entity:list)
+            System.out.println(entity.getOwner()+"-->"+entity.getName()+"-->"+entity.getLanguage()+"===");
     }
 
     @Test
