@@ -23,11 +23,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../../css/graph/style.css">
     <link rel="stylesheet" href="../../css/graph/svg.css">
+    <link rel="stylesheet" href="../../css/bubbleChart.css">
 
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
     <script type="text/javascript" src="../../js/userDetail.js"></script>
     <script type="text/javascript" src="../../js/cherish.js"></script>
+
+    <!--relation-->
+    <script src="../../plugin/jquery/jquery.browser.min.js"></script>
+    <script src="../../plugin/d3/d3.v3.min.js"></script>
+    <script src="../../js/graph/colorbrewer.js"></script>
+    <script src="../../js/graph/geometry.js"></script>
+    <!--relattion-->
+
+    <!--bubble-->
+    <script src="../../plugin/d3/d3-transform.js"></script>
+    <script src="../../plugin/bubbleChart/ext-array.js"></script>
+    <script src="../../plugin/bubbleChart/misc.js"></script>
+    <script src="../../plugin/bubbleChart/micro-observer.js"></script>
+    <script src="../../plugin/bubbleChart/microplugin.js"></script>
+    <script src="../../plugin/bubbleChart/bubble-chart.js"></script>
+    <script src="../../plugin/bubbleChart/central-click.js"></script>
+    <script src="../../plugin/bubbleChart/lines.js"></script>
+    <script src="../../js/bubbleChart.js"></script>
+    <!--bubble-->
+
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -124,6 +145,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div id="userRadar" style="width: 600px;height:400px;"></div>
                     <div class="clearfix"> </div>
                 </div>
+                <br><br>
+                <div class="admin-text">
+                    <h4>Language Bubble Chart</h4>
+                    <div id="userLanguage" class="bubbleChart" style="width: 600px;height:400px;"></div>
+                    <div class="clearfix"> </div>
+                </div>
 
                 <hr>
 
@@ -150,10 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
                         <!--<script src="../../plugin/jquery/jquery.min.js"></script>-->
-                        <script src="../../plugin/jquery/jquery.browser.min.js"></script>
-                        <script src="../../plugin/d3/d3.v3.min.js"></script>
-                        <script src="../../js/graph/colorbrewer.js"></script>
-                        <script src="../../js/graph/geometry.js"></script>
+
                         <script>
                             var config =
                             {
