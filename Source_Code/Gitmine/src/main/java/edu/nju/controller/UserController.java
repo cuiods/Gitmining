@@ -169,16 +169,40 @@ public class UserController {
 
     @RequestMapping(value = "/{username:.+}/contribute")
     @ResponseBody
-    public List getUserContribute(@PathVariable("username") String username,
-                                  @RequestParam(required = false,defaultValue = "5") int maxResults){
-        return userModelImpl.getContributeRepo(username, maxResults);
+    public List<SimpleRepoVO> getUserContribute(@PathVariable("username") String username,
+                                  @RequestParam(required = false,defaultValue = "5") int maxResults,
+                                                HttpSession session){
+        List<SimpleRepoVO> list = userModelImpl.getContributeRepo(username, maxResults);
+        if (session.getAttribute("webUsername") != null){
+            HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+
+            for (SimpleRepoVO simpleVO: list){
+                if (staredRepo.contains(simpleVO.getOwnerName()+"/"+simpleVO.getReponame())){
+                    simpleVO.setIsStared(true);
+                }
+            }
+
+        }
+        return list;
     }
 
     @RequestMapping(value = "/{username:.+}/subscribe")
     @ResponseBody
-    public List getUserSubscribe(@PathVariable("username") String username,
-                                 @RequestParam(required = false,defaultValue = "5")int maxResults){
-        return userModelImpl.getSubscribeRepo(username,maxResults);
+    public List<SimpleRepoVO> getUserSubscribe(@PathVariable("username") String username,
+                                               @RequestParam(required = false,defaultValue = "5")int maxResults,
+                                               HttpSession session){
+        List<SimpleRepoVO> list = userModelImpl.getSubscribeRepo(username,maxResults);
+        if (session.getAttribute("webUsername") != null){
+            HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+
+            for (SimpleRepoVO simpleVO: list){
+                if (staredRepo.contains(simpleVO.getOwnerName()+"/"+simpleVO.getReponame())){
+                    simpleVO.setIsStared(true);
+                }
+            }
+
+        }
+        return list;
     }
 
     @RequestMapping(value = "/{username:.+}/relationGraph")

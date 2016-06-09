@@ -154,16 +154,21 @@ public class RepoController {
                                            @PathVariable String reponame,
                                            HttpSession session) {
         RepoVO basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
+        List<SimpleRepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
         if (session.getAttribute("webUsername") != null){
             HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
 
             if (staredRepo.contains(basicInfo.getOwnerName()+"/"+basicInfo.getReponame())){
                 basicInfo.setIsStared(true);
             }
+            for (SimpleRepoVO simpleVO: relatedRepo){
+                if (staredRepo.contains(simpleVO.getOwnerName()+"/"+simpleVO.getReponame())){
+                    simpleVO.setIsStared(true);
+                }
+            }
 
         }
         RadarChart radarChart = repoModelImpl.getRepoRadarChart(ownername, reponame);
-        List<SimpleRepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
 
         Map<String, Object> repoDetailInfo = new HashMap<>();
         repoDetailInfo.put("basicInfo", basicInfo);
