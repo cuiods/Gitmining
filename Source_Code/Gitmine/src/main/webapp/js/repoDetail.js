@@ -58,6 +58,11 @@ function setBasicInfo(basicInfo) {
     numbers.find("#numSubscriber").text(basicInfo.numSubscriber);
     numbers.find("#size").text(basicInfo.size);
 
+    var cherish = numbers.find('#cherish');
+    console.log(basicInfo.isStared);
+    cherishPresent(basicInfo.isStared,cherish);
+    onRepoClick_(cherish,basicInfo.ownerName,basicInfo.reponame,'/repo/star','/repo/unstar');
+
     header.attr("src",basicInfo.ownerAvatarUrl);
 }
 
@@ -70,11 +75,15 @@ function setRecommend(recommend) {
     $.each(recommend,function (i,repo) {
         var newNode = recommendNode.clone(true);
 
-        newNode.find('.repo_name').eq(0).text(repo.reponame);
+        newNode.find('.repo_name').eq(0).text(repo.ownerName+'/'+repo.reponame);
         newNode.find('.repo_description').eq(0).text(repo.description);
         newNode.find('.repo_fork').eq(0).text(repo.numFork);
         newNode.find('.repo_star').eq(0).text(repo.numStar);
         newNode.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.reponame);
+        var cherish_rec = newNode.find('.repo_cherish').eq(0);
+        console.log(repo.isStared);
+        cherishPresent(repo.isStared,cherish_rec);
+        onRepoClick_(cherish_rec,repo.ownerName,repo.reponame,'/repo/star','/repo/unstar');
         fatherNode.append(newNode);
         fatherNode.append('<br>');
     });
