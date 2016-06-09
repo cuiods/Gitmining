@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.entity.UserCountryEntity;
+import edu.nju.entity.UserLocationEntity;
 import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
@@ -64,5 +65,66 @@ public class LocationDaoImpl implements LocationDaoService {
         SQLQuery query = session.createSQLQuery("DELETE FROM user_country ");
         query.executeUpdate();
         session.close();
+    }
+
+    @Override
+    public List<Object[]> getAllUserLocation() {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT login, location FROM sec_user ");
+        List<Object[]> list = query.list();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public boolean insert(UserLocationEntity entity) {
+        Session session = sessionFactory.openSession();
+        boolean result = false;
+        SQLQuery query = session.createSQLQuery("INSERT INTO user_location (login,country,location,longitude,latitude) VALUES (:log, :cou, :loc, :lon, :lat)");
+        query.setString("log",entity.getLogin());
+        query.setString("cou",entity.getCountry());
+        query.setString("loc",entity.getLocation());
+        query.setDouble("lon",entity.getLongitude());
+        query.setDouble("lat",entity.getLatitude());
+        try{
+            query.executeUpdate();
+            result = true;
+        }catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public boolean update(UserLocationEntity entity) {
+        Session session = sessionFactory.openSession();
+        boolean result = false;
+        SQLQuery query = session.createSQLQuery("UPDATE user_location SET country = :cou, location = :loc, longitude = :lon, latitude = :lat WHERE login = :log");
+        query.setString("log",entity.getLogin());
+        query.setString("cou",entity.getCountry());
+        query.setString("loc",entity.getLocation());
+        query.setDouble("lon",entity.getLongitude());
+        query.setDouble("lat",entity.getLatitude());
+        try{
+            query.executeUpdate();
+            result = true;
+        }catch (HibernateException e){
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
+
+    @Override
+    public List<UserLocationEntity> getEntityByCountry(String country) {
+        Session session =sessionFactory.openSession();
+        Query query = session.createQuery("from UserLocationEntity  where country = :cou ");
+        query.setString("cou",country);
+        List<UserLocationEntity> list = query.list();
+        session.close();
+        return list;
     }
 }

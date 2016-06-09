@@ -37,11 +37,32 @@ public interface LocationDaoService {
 
     //================以下是有经纬度的location接口===========================//
 
-//    /**
-//     * get all the location from sec_user table
-//     * @return a list of object[], each object[] has 2 elements, object[0] is user
-//     *          login, object[1] is location.
-//     */
-//    public List<Object[]> getAllUserLocation();
+    /**
+     * get all the location from sec_user table
+     * @return a list of object[], each object[] has 2 elements, object[0] is user
+     *          login, object[1] is location.
+     */
+    public List<Object[]> getAllUserLocation();
+
+    /**
+     * insert a record into table user_location
+     * @param entity
+     * @return
+     */
+    public boolean insert(UserLocationEntity entity);
+
+    /**
+     * update a record in table user_location
+     * @param entity
+     * @return
+     */
+    public boolean update(UserLocationEntity entity);
+
+    /**
+     * get all the entities of s specific country
+     * @param country
+     * @return
+     */
+    public List<UserLocationEntity> getEntityByCountry(String country);
 
 }

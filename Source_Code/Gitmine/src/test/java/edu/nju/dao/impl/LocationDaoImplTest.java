@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.entity.UserCountryEntity;
+import edu.nju.entity.UserLocationEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -59,6 +60,41 @@ public class LocationDaoImplTest {
     @Test
     public void deleteAllCountries() throws Exception {
         //locationDao.deleteAllCountries();
+    }
+
+    @Test
+    public void getAllUserLocation() throws Exception {
+
+    }
+
+    @Test
+    public void insert() throws Exception {
+//        UserLocationEntity entity = new UserLocationEntity();
+//        entity.setLogin("mojombo");
+//        entity.setCountry("USA");
+//        entity.setLocation("kdkdkdkdkkd");
+//        entity.setLongitude(12.22);
+//        entity.setLatitude(88.22);
+//        locationDao.insert(entity);
+    }
+
+    @Test
+    public void update() throws Exception {
+//        UserLocationEntity entity = new UserLocationEntity();
+//        entity.setLogin("mojombo");
+//        entity.setCountry("USA");
+//        entity.setLocation("after update");
+//        entity.setLongitude(0.01);
+//        entity.setLatitude(88.22);
+//        locationDao.update(entity);
+    }
+
+    @Test
+    public void getEntityByCountry() throws Exception {
+        List<UserLocationEntity> list = locationDao.getEntityByCountry("China");
+        for (UserLocationEntity entity:list){
+            System.out.println(entity.getCountry()+"---------"+entity.getLogin());
+        }
     }
 
 }
