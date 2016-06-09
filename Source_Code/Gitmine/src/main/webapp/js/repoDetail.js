@@ -39,6 +39,9 @@ $(document).ready(
 );
 
 function setBasicInfo(basicInfo) {
+    $('#own_repo').text(basicInfo.ownerName+'/'+basicInfo.reponame);
+
+
     var numbers = $("#numbers");
     var descriptions = $("#descriptions");
     var header = $("#ownerAvatarUrl");
