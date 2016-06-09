@@ -65,19 +65,17 @@ public class RepoController {
         List<RepoVO> recommend;
         if (session.getAttribute("webUsername") == null){
             recommend = repoModelImpl.getPopularRepo(offset,maxResults);
-            HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
-            for (RepoVO vo:recommend){
-                if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
-                    vo.setIsStared(true);
-                }
-            }
-
         }
         else {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = repoModelImpl.getRecommendRepo(webUsername,offset,maxResults);
         }
-
+        HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+        for (RepoVO vo:recommend){
+            if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
+                vo.setIsStared(true);
+            }
+        }
         return recommend;
     }
 
@@ -189,8 +187,8 @@ public class RepoController {
             String webUsername = session.getAttribute("webUsername").toString();
             boolean result = hobbyModelImpl.starRepo(ownername,reponame,webUsername);
             if (result){
-                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredRepo");
-                staredUser.add(ownername+"/"+reponame);
+                HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+                staredRepo.add(ownername+"/"+reponame);
             }
             return result;
         }
@@ -207,8 +205,8 @@ public class RepoController {
             String webUsername = session.getAttribute("webUsername").toString();
             boolean result = hobbyModelImpl.unstarRepo(ownername,reponame,webUsername);
             if (result){
-                HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredRepo");
-                staredUser.remove(ownername+"/"+reponame);
+                HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+                staredRepo.remove(ownername+"/"+reponame);
             }
             return result;
         }
