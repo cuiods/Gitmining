@@ -140,6 +140,12 @@ function addRelatedRepo(fatherGrid,lastGrid,userName,relateType){
                 tempGrid.find('.repo_fork').eq(0).text(repo.numFork);
                 tempGrid.find('.repo_star').eq(0).text(repo.numStar);
                 tempGrid.find('.repo_detail').eq(0).attr('href','repo-detail.html?'+repo.ownerName+'/'+repo.reponame);
+
+                var repo_cherish = tempGrid.find('.repo_cherish').eq(0);
+                console.log(repo.isStared);
+                console.log(repo.ownerName+' '+repo.reponame);
+                cherishPresent(repo.isStared,repo_cherish);
+                onRepoClick_(repo_cherish,repo.ownerName,repo.reponame,'/repo/star','/repo/unstar');
                 fatherGrid.append(tempGrid);
                 fatherGrid.append('<br>');
             })

@@ -116,6 +116,10 @@ var RecommendList = {
             recommendNode.find('.numSubscriber').text  ( element.numWatcher);
             recommendNode.find('.numFork').text  ( element.numFork);
             recommendNode.find('.numStar').text   ( element.numStar);
+
+            var cherish_rec = recommendNode.find('.cherish').eq(0);
+            cherishPresent(element.isStared);
+            onRepoClick_(cherish_rec,element.ownerName,element.reponame,'/repo/star','/repo/unstar');
             _this.recommendsFather.append(recommendNode);
         });
     },
