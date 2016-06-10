@@ -24,9 +24,7 @@ var UserList={
             imageUrl.attr('href','userDetail.html?userName='+user.login);
             var image = tempGrid.find(".header_user").eq(0);
             image.attr('src',user.avatarUrl);
-
-            console.log(user.login);
-            console.log(user.isStared);
+            
             var cherish = tempGrid.find('.cherish');
             cherishPresent(user.isStared,cherish);
 
@@ -68,6 +66,16 @@ $(document).ready(
         $('#compareModal').on('hidden.bs.modal',function(){
             $('.newCol').remove();
         });
+
+        //recommend
+        RecList.init();
+        $.ajax({
+            type:'GET',
+            url:'/user/recommend',
+            success:function(recList){
+                RecList.updateList(recList);
+            }
+        })
 
 
         
@@ -364,44 +372,34 @@ function drawRadarChart(obj,legendArea,field,data){
 }
 
 
-// function cherish(obj,fatherType,dataStr){
-//     var objJQ = $(obj);
-//     var fatherGrid = objJQ.parents(fatherType).eq(0);
-//     var dataObj = fatherGrid.find(dataStr).eq(0);
-//     // console.log(dataObj.text());
-//     $.ajax({
-//         type:'POST',
-//         url:'/user/star',
-//         data:{username:dataObj.text()},
-//         success:function(){
-//             objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
-//             objJQ.attr('title','click to unCherish');
-//             objJQ.unbind('click').click(function(){
-//                 unCherish(obj,fatherType,dataStr);
-//             })
-//             // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
-//         }
-//
-//     })
-// }
-//
-// function unCherish(obj,fatherType,dataStr){
-//     var objJQ = $(obj);
-//     var fatherGrid = objJQ.parents(fatherType).eq(0);
-//     var dataObj = fatherGrid.find(dataStr).eq(0);
-//     $.ajax({
-//         type:'POST',
-//         url:'/user/unStar',
-//         data:{username:dataObj.text()},
-//         success:function(){
-//             objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
-//             objJQ.attr('title','click to cherish');
-//             objJQ.unbind('click').click(function(){
-//                 cherish(obj,fatherType,dataStr);
-//             })
-//             // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
-//         }
-//
-//     })
-// }
+var RecList={
+    init:function(){
+        this.gridsFather = $("#recPart");
+        this.lastGrid = $(".recItem").eq(0);
+        this.clear = $("<div class=\"clearfix\"> </div>" );
+    },
+    updateList:function(recList){
+        this.gridsFather.empty();
+        var _this = this;
+        $.each(recList,function(i,user){
+            var tempGrid = _this.lastGrid.clone(true);
+            tempGrid.find('.repo').eq(0).text(user.publicRepo);
+            tempGrid.find('.following').eq(0).text(user.following);
+            tempGrid.find('.followed').eq(0).text(user.follower);
+            
+            var cherish_rec = tempGrid.find('.cherish').eq(0);
+            cherishPresent(user.isStared,cherish_rec);
+            onIdCherishClick(cherish_rec,user.login,'/user/star','/user/unstar');
 
+            var background = tempGrid.find('.ch-img-1').eq(0);
+            background.css('background-image','url('+user.avatarUrl+')');
+
+            tempGrid.find('.userName').eq(0).text(user.login);
+            tempGrid.find('.createAt').eq(0).text('Create At '+user.createAt);
+            tempGrid.find('.detail').eq(0).attr('href','userDetail.html?userName='+user.login);
+
+            _this.gridsFather.append(tempGrid);
+
+        })
+    }
+}
