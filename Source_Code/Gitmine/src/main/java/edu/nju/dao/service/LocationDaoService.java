@@ -65,4 +65,14 @@ public interface LocationDaoService {
      */
     public List<UserLocationEntity> getEntityByCountry(String country);
 
+    /**
+     * get the users whose location between the given longitude and latitude
+     * @param longitudeLow
+     * @param longitudeHigh
+     * @param latitudeLow
+     * @param latitudeHigh
+     * @return
+     */
+    public List<UserLocationEntity> filterByArea(long longitudeLow,long longitudeHigh,long latitudeLow,long latitudeHigh);
+
 }

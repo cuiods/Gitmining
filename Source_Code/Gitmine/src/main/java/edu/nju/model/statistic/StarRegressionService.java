@@ -1,6 +1,5 @@
 package edu.nju.model.statistic;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 /**
  * star fork watchers service

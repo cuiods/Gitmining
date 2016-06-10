@@ -48,17 +48,20 @@ public class UserController {
         this.totalPage = userModelImpl.getTotalPage();
     }
 
-    @RequestMapping(value = "/home")
+    @RequestMapping(value = "/recommend")
     @ResponseBody
-    public Map home(HttpSession session){
-        //todo get current user from session scope and generate recommend content
-
-        Map<String, Object> result = new HashMap<>();
+    public List<UserVO> recommend(@RequestParam(required = false,defaultValue = "0") int offset,
+                    @RequestParam(required = false,defaultValue = "5") int maxResults,
+                    HttpSession session){
 
         List<UserVO> recommend;
         if (session.getAttribute("webUsername") == null){
-            recommend = userModelImpl.getPopularUser();
+            recommend = userModelImpl.getPopularUser(offset,maxResults);
+        }
 
+        else {
+            String webUsername = (String) session.getAttribute("webUsername");
+            recommend = userModelImpl.getRecommendUser(webUsername,offset,maxResults);
             HashSet<String> staredUser = (HashSet<String>) session.getAttribute("staredUser");
             for (UserVO vo:recommend){
                 if (staredUser.contains(vo.getLogin())){
@@ -67,15 +70,7 @@ public class UserController {
             }
         }
 
-        else {
-            String webUsername = (String) session.getAttribute("webUsername");
-            recommend = userModelImpl.getRecommendUser(webUsername);
-        }
-        List<UserVO> mainList = userModelImpl.getUsers(SortType.User_Name,false,0,Const.ITEMS_PER_PAGE);
-        result.put("userList", mainList);
-        result.put("recommend", recommend);
-
-        return result;
+        return recommend;
     }
 
     @RequestMapping(value = "/list")

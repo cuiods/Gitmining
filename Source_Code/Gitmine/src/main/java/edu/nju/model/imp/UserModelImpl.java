@@ -34,9 +34,18 @@ public class UserModelImpl implements UserModelService {
     public UserModelImpl() {
     }
 
-    public List<UserVO> getRecommendUser(String webUsername) {
-        //todo
-        return null;
+    public List<UserVO> getRecommendUser(String webUsername, int offset, int maxResults) {
+        List<SecUserEntity> list = userDao.getRecommendUser(webUsername,offset,maxResults);
+        List<UserVO> voList = new ArrayList<>();
+        for (SecUserEntity entity:list){
+            voList.add(voConvertor.convert(entity));
+        }
+        int size = list.size();
+        if (size<Const.RECOMMEND_COUNT){
+            List<UserVO> popUsers = getPopularUser(offset,maxResults-size);
+            voList.addAll(popUsers);
+        }
+        return voList;
     }
 
     @Override
@@ -85,13 +94,11 @@ public class UserModelImpl implements UserModelService {
     }
 
     @Override
-    public List<UserVO> getPopularUser() {
+    public List<UserVO> getPopularUser(int offset,int maxResults) {
         List<UserVO> result = new ArrayList<>();
         SortType sortType = SortType.User_Follored;
         boolean isDesc = true;
-        int offset = 0;//todo change recommend each time
-        int maxNum = Const.ITEMS_PER_PAGE;
-        List<SecUserEntity> userEntityList = userDao.getUsers(sortType, isDesc, offset, maxNum);
+        List<SecUserEntity> userEntityList = userDao.getUsers(sortType, isDesc, offset, maxResults);
         for (SecUserEntity userEntity : userEntityList) {
             result.add(voConvertor.convert(userEntity));
         }

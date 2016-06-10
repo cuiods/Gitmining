@@ -17,7 +17,7 @@ public interface UserModelService {
      * @param webUsername
      * @return
      */
-    public List<UserVO> getRecommendUser(String webUsername);
+    public List<UserVO> getRecommendUser(String webUsername,int offset,int maxResults);
 
     /**
      * get the user similar to the given user
@@ -44,7 +44,7 @@ public interface UserModelService {
      * get the user has the most followers
      * @return
      */
-    public List<UserVO> getPopularUser();
+    public List<UserVO> getPopularUser(int offset,int maxResults);
 
     /**
      * get the total page count of all users

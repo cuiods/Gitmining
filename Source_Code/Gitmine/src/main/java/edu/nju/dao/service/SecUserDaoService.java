@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface SecUserDaoService {
 
+    public List<SecUserEntity> getRecommendUser(String webUsername,int offset,int maxResults);
+
     public List<Object []> getUserLanguage(String login);
 
     /**

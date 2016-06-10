@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.common.SortType;
+import edu.nju.entity.SecUserEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,8 +22,22 @@ import static org.junit.Assert.*;
 @Transactional
 public class SecUserDaoImplTest {
 
+
     @Resource
     private SecUserDaoImpl userDao;
+
+    @Test
+    public void getRecommendUser() throws Exception {
+        List<SecUserEntity> list = userDao.getRecommendUser("harry14",0,10);
+        for (SecUserEntity entity:list){
+            System.out.println(entity.getName());
+        }
+    }
+
+    @Test
+    public void getUserLanguage() throws Exception {
+        userDao.getUserLanguage("harry14");
+    }
 
     @Test
     public void getUserBasicInfo() throws Exception {

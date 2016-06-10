@@ -127,4 +127,17 @@ public class LocationDaoImpl implements LocationDaoService {
         session.close();
         return list;
     }
+
+    @Override
+    public List<UserLocationEntity> filterByArea(long longitudeLow, long longitudeHigh, long latitudeLow, long latitudeHigh) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from UserLocationEntity where longitude >= :longlow and longitude <= :longhigh and latitude >= :latlow and latitude <= :lathigh ");
+        query.setLong("longlow",longitudeLow);
+        query.setLong("longhigh",longitudeHigh);
+        query.setLong("latlow",latitudeLow);
+        query.setLong("lathigh",latitudeHigh);
+        List<UserLocationEntity> list = query.list();
+        session.close();
+        return list;
+    }
 }

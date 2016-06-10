@@ -49,16 +49,9 @@ public class RepoController {
         this.totalPage = repoModelImpl.getTotalPage();
     }
 
-    @RequestMapping(value = "/languages")
-    @ResponseBody
-    public List<String> getAllLanguages(){
-        //todo
-        return null;
-    }
-
     @RequestMapping(value = "/recommend")
     @ResponseBody
-    public List<RepoVO> home(@RequestParam(required = false,defaultValue = "0") int offset,
+    public List<RepoVO> recommend(@RequestParam(required = false,defaultValue = "0") int offset,
                     @RequestParam(required = false,defaultValue = "5") int maxResults,
                     HttpSession session){
 
@@ -69,11 +62,11 @@ public class RepoController {
         else {
             String webUsername = (String) session.getAttribute("webUsername");
             recommend = repoModelImpl.getRecommendRepo(webUsername,offset,maxResults);
-        }
-        HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
-        for (RepoVO vo:recommend){
-            if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
-                vo.setIsStared(true);
+            HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
+            for (RepoVO vo:recommend){
+                if (staredRepo.contains(vo.getOwnerName()+"/"+vo.getReponame())){
+                    vo.setIsStared(true);
+                }
             }
         }
         return recommend;

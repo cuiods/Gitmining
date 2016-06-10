@@ -64,7 +64,7 @@ public class LocationDaoImplTest {
 
     @Test
     public void getAllUserLocation() throws Exception {
-
+        locationDao.getAllUserLocation();
     }
 
     @Test
@@ -96,5 +96,11 @@ public class LocationDaoImplTest {
             System.out.println(entity.getCountry()+"---------"+entity.getLogin());
         }
     }
+
+    @Test
+    public void filterByArea() throws Exception {
+        List<UserLocationEntity> list = locationDao.filterByArea(-1,1,-1,1);
+    }
+
 
 }

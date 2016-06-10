@@ -11,6 +11,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,41 @@ public class SecUserDaoImpl implements SecUserDaoService {
 
     @Resource
     private SessionFactory sessionFactory;
+
+    @Override
+    public List<SecUserEntity> getRecommendUser(String webUsername, int offset, int maxResults) {
+        Session session = sessionFactory.openSession();
+        SQLQuery query = session.createSQLQuery("SELECT id,login,avatar_url,html_url,type,name,company,blog,location,email,bio,public_repos,public_gists,followers,following,create_at,update_at FROM (SELECT web_username, count(*) AS num FROM ((SELECT username FROM register_star_user WHERE web_username = :web1 ) AS A LEFT JOIN register_star_user B ON A.username = B.username) GROUP BY  web_username) AS C LEFT JOIN register_star_user D ON C.web_username = D.web_username LEFT JOIN sec_user ON D.username = sec_user.login WHERE D.username NOT IN (SELECT username FROM register_star_user WHERE web_username = :web2 ) ORDER BY num DESC, followers DESC");
+        query.setString("web1",webUsername);
+        query.setString("web2",webUsername);
+        query.setFirstResult(offset);
+        query.setMaxResults(maxResults);
+        List<Object[]> list = query.list();
+        session.close();
+        List<SecUserEntity> entities = new ArrayList<>();
+        for (Object[] item:list){
+            SecUserEntity entity = new SecUserEntity();
+            entity.setId(Long.valueOf(item[0].toString()));
+            entity.setLogin(item[1].toString());
+            entity.setAvatarUrl(item[2].toString());
+            entity.setHtmlUrl(item[3].toString());
+            entity.setType(item[4].toString());
+            entity.setName(item[5].toString());
+            entity.setCompany(item[6].toString());
+            entity.setBlog(item[7].toString());
+            entity.setLocation(item[8].toString());
+            entity.setEmail(item[9].toString());
+            entity.setBio(item[10].toString());
+            entity.setPublicRepos((int)item[11]);
+            entity.setPublicGists((int)item[12]);
+            entity.setFollowers((int)item[13]);
+            entity.setFollowing((int)item[14]);
+            entity.setCreateAt((Timestamp)item[15]);
+            entity.setUpdateAt((Timestamp)item[16]);
+            entities.add(entity);
+        }
+        return entities;
+    }
 
     @Override
     public List<Object[]> getUserLanguage(String login) {

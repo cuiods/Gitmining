@@ -23,22 +23,26 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 public class UserModelImplTest {
+
     @Resource
     private UserModelImpl userModel;
 
     @Test
     public void getRecommendUser() throws Exception {
-        //todo
+        List<UserVO> list = userModel.getRecommendUser("harry14",0,10);
+        for (UserVO vo:list){
+            System.out.println(vo.getLogin());
+        }
     }
 
     @Test
     public void getRelatedUser() throws Exception {
-        //todo
+        userModel.getRelatedUser("mojombo",5);
     }
 
     @Test
     public void getPopularUser() throws Exception {
-        List<UserVO> list  = userModel.getPopularUser();
+        List<UserVO> list  = userModel.getPopularUser(0,10);
         assertNotNull(list);
         assertTrue(list.size()>0);
     }
@@ -85,6 +89,16 @@ public class UserModelImplTest {
     public void getUserRadarChart() throws Exception {
         RadarChart chart = userModel.getUserRadarChart("mojombo");
         assertNotNull(chart);
+    }
+
+    @Test
+    public void getSearchPage() throws Exception {
+        assertTrue(userModel.getSearchPage("mo") > 0);
+    }
+
+    @Test
+    public void getUserLanguage() throws Exception {
+        userModel.getUserLanguage("mojombo");
     }
 
 }
