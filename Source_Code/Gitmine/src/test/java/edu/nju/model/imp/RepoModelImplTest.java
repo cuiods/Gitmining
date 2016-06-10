@@ -86,7 +86,7 @@ public class RepoModelImplTest {
 
     @Test
     public void getRepoRadarChart() throws Exception {
-        RadarChart chart = repoModelImpl.getRepoRadarChart("rubinius","rubinius");
+        RadarChart chart = repoModelImpl.getRepoRadarChart("mojombo","grit");
         assertNotNull(chart);
         assertTrue(chart.getValue().length == 5);
     }

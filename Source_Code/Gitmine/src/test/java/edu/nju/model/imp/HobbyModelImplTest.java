@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 public class HobbyModelImplTest {
 
+
     @Resource
     private HobbyModelImpl hobbyModel;
 
@@ -63,6 +64,16 @@ public class HobbyModelImplTest {
         for (RepoVO vo:list){
             System.out.println(vo.getReponame());
         }
+    }
+
+    @Test
+    public void getStaredReponame() throws Exception {
+        hobbyModel.getStaredReponame("harry14");
+    }
+
+    @Test
+    public void getStaredUsername() throws Exception {
+        hobbyModel.getStaredUsername("harry14");
     }
 
 }

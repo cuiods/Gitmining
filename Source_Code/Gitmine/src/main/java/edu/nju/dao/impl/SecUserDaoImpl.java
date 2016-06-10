@@ -215,13 +215,31 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<SecRepoEntity> getUserSubscribeRepos(String login,int maxResults) {
         Session session  = sessionFactory.openSession();
-        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecSubscriberEntity where subscriber = :log) order by starCount desc ");
+        //Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecSubscriberEntity where subscriber = :log) order by starCount desc ");
+        SQLQuery query = session.createSQLQuery("SELECT id,owner,name,html_url,description,size,star_count,watchers_count,language,fork_count,create_at,update_at FROM ((SELECT repo_owner, repo_name FROM sec_subscriber WHERE subscriber = :login ) AS A LEFT JOIN sec_repo B ON A.repo_owner = B.owner AND A.repo_name = B.name) ORDER BY star_count DESC ");
+        query.setString("login", login);
         query.setFirstResult(0);
         query.setMaxResults(maxResults);
-        query.setString("log", login);
-        List<SecRepoEntity> list = query.list();
+        List<Object[]> list = query.list();
         session.close();
-        return list;
+        List<SecRepoEntity> entities = new ArrayList<>();
+        for (Object[] item:list){
+            SecRepoEntity entity = new SecRepoEntity();
+            entity.setId(Long.valueOf(item[0].toString()));
+            entity.setOwner(item[1].toString());
+            entity.setName(item[2].toString());
+            entity.setHtmlUrl(item[3].toString());
+            entity.setDescription(item[4].toString());
+            entity.setSize((int)item[5]);
+            entity.setStarCount((int)item[6]);
+            entity.setWatchersCount((int)item[7]);
+            entity.setLanguage(item[8].toString());
+            entity.setForkCount((int)item[9]);
+            entity.setCreateAt((Timestamp)item[10]);
+            entity.setUpdateAt((Timestamp)item[11]);
+            entities.add(entity);
+        }
+        return entities;
     }
 
     @Override
@@ -240,13 +258,30 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<SecRepoEntity> getUserContributeRepos(String login,int maxResults) {
         Session session  = sessionFactory.openSession();
-        Query query  = session.createQuery("from SecRepoEntity e where (e.owner, e.name) in (select repoOwner, repoName from SecContributorEntity where contributor = :log) order by starCount desc ");
+        SQLQuery query = session.createSQLQuery("SELECT id,owner,name,html_url,description,size,star_count,watchers_count,language,fork_count,create_at,update_at FROM ((SELECT repo_owner, repo_name FROM sec_contributor WHERE contributor = :login ) AS A LEFT JOIN sec_repo B ON A.repo_owner = B.owner AND A.repo_name = B.name) ORDER BY star_count DESC ");
+        query.setString("login", login);
         query.setFirstResult(0);
         query.setMaxResults(maxResults);
-        query.setString("log", login);
-        List<SecRepoEntity> list = query.list();
+        List<Object[]> list = query.list();
         session.close();
-        return list;
+        List<SecRepoEntity> entities = new ArrayList<>();
+        for (Object[] item:list){
+            SecRepoEntity entity = new SecRepoEntity();
+            entity.setId(Long.valueOf(item[0].toString()));
+            entity.setOwner(item[1].toString());
+            entity.setName(item[2].toString());
+            entity.setHtmlUrl(item[3].toString());
+            entity.setDescription(item[4].toString());
+            entity.setSize((int)item[5]);
+            entity.setStarCount((int)item[6]);
+            entity.setWatchersCount((int)item[7]);
+            entity.setLanguage(item[8].toString());
+            entity.setForkCount((int)item[9]);
+            entity.setCreateAt((Timestamp)item[10]);
+            entity.setUpdateAt((Timestamp)item[11]);
+            entities.add(entity);
+        }
+        return entities;
     }
 
     @Override

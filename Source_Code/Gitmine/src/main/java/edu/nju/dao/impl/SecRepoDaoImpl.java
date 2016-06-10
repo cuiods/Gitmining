@@ -136,31 +136,31 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     public List<SecRepoEntity> getSearchResult(String keyword, int offset, int maxNum, SortType type, boolean isDesc, String filterType, String language, String createYear) {
 
         Session session =sessionFactory.openSession();
-        String hql = "from SecRepoEntity where (name like :k1 or description like :k2) ";
+        String sql = "SELECT id,owner,name,html_url,description,size,star_count,watchers_count,language,fork_count,create_at,update_at FROM sec_repo where (name like :k1 or description like :k2) ";
         if ((filterType!=null)&&(!filterType.isEmpty())){
-            hql+="and description regexp :filter ";
+            sql+="and description regexp :filter ";
         }
         if ((language!=null)&&(!language.isEmpty())){
-            hql+="and language = :lan ";
+            sql+="and language = :lan ";
         }
         if ((createYear!=null)&&(!createYear.isEmpty())){
-            hql+="and date_format(createAt,'%Y') = :create ";
+            sql+="and date_format(createAt,'%Y') = :create ";
         }
         if (type!=null){
             switch (type) {
-                case Repo_Star:hql+="order by starCount ";break;
-                case Repo_Fork:hql+="order by forkCount ";break;
-                case Repo_Watch:hql+="order by watchersCount ";break;
-                case Repo_Update:hql+="order by updateAt ";break;
-                case Repo_Name:hql+="order by name ";break;
-                default:hql+="order by name ";break;
+                case Repo_Star:sql+="order by star_count ";break;
+                case Repo_Fork:sql+="order by fork_count ";break;
+                case Repo_Watch:sql+="order by watchers_count ";break;
+                case Repo_Update:sql+="order by update_at ";break;
+                case Repo_Name:sql+="order by name ";break;
+                default:sql+="order by name ";break;
             }
         }
         else{
-            hql+="order by name ";
+            sql+="order by name ";
         }
-        hql += isDesc?"desc":"asc";
-        Query query = session.createQuery(hql);
+        sql += isDesc?"desc":"asc";
+        SQLQuery query = session.createSQLQuery(sql);
         query.setString("k1","%"+keyword+"%");
         query.setString("k2","%"+keyword+"%");
         if ((filterType!=null)&&(!filterType.isEmpty())){
@@ -174,9 +174,26 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         }
         query.setFirstResult(offset);
         query.setMaxResults(maxNum);
-        List<SecRepoEntity> list = query.list();
+        List<Object[]> list = query.list();
         session.close();
-        return list;
+        List<SecRepoEntity> entities = new ArrayList<>();
+        for (Object[] item:list){
+            SecRepoEntity entity = new SecRepoEntity();
+            entity.setId(Long.valueOf(item[0].toString()));
+            entity.setOwner(item[1].toString());
+            entity.setName(item[2].toString());
+            entity.setHtmlUrl(item[3].toString());
+            entity.setDescription(item[4].toString());
+            entity.setSize((int)item[5]);
+            entity.setStarCount((int)item[6]);
+            entity.setWatchersCount((int)item[7]);
+            entity.setLanguage(item[8].toString());
+            entity.setForkCount((int)item[9]);
+            entity.setCreateAt((Timestamp)item[10]);
+            entity.setUpdateAt((Timestamp)item[11]);
+            entities.add(entity);
+        }
+        return entities;
     }
 
     @Override

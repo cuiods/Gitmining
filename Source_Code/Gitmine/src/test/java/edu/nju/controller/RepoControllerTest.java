@@ -38,6 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 public class RepoControllerTest {
 
+
     private MockMvc mockMvc;
 
     private RepoVO mockRepo;
@@ -68,21 +69,19 @@ public class RepoControllerTest {
     }
 
     @Test
-    public void home() throws Exception {
-//        when(repoModelService.getPopularRepo()).thenReturn(mockRepoList);
-//        when(repoModelService.getRepos(SortType.Repo_Name, false, 0, Const.ITEMS_PER_PAGE)).thenReturn(mockRepoList);
-
-        mockMvc.perform(get("/repo/home")).andDo(print()).andExpect(status().isOk());
+    public void recommend() throws Exception {
+        mockMvc.perform(get("/repo/recommend")).andDo(print()).andExpect(status().isOk());
+        //mockMvc.perform(get("/repo/recommend").sessionAttr("webUsername","harry14")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
     public void getRepos() throws Exception{
-        mockMvc.perform(get("/repo/list?pageNum=1")).andDo(print()).andExpect(status().isOk());
+
     }
 
     @Test
     public void list() throws Exception {
-
+        mockMvc.perform(get("/repo/list?pageNum=1")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
@@ -142,7 +141,7 @@ public class RepoControllerTest {
 
     @Test
     public void getSearchResult() throws Exception {
-        String keyword = "rubinius";
+        String keyword = "ru";
         String sortType = "star";
         String filterType = "";
         String language = "";
@@ -154,13 +153,14 @@ public class RepoControllerTest {
 //                language,year,pageNum,reverse)).thenReturn(mockRepoList);
 
         mockMvc.perform(post("/repo/search")
-                        .param("keyword", "rubinius")
+                        .param("keyword", "mo")
                         .param("sortType", "star")
                         .param("filterType", "")
                         .param("language", "")
                         .param("createYear", "")
                         .param("pageNum", "1")
-                        .param("reverse", "true")).andDo(print())
+                        .param("reverse", "true")
+                        .param("isKeyChanged","true")).andDo(print())
                 .andExpect(status().isOk());
 
 
@@ -170,7 +170,7 @@ public class RepoControllerTest {
     public void getRepoBasicInfo() throws Exception {
 //        when(repoModelService.getRepoBasicInfo("rubinius", "rubinius")).thenReturn(mockRepo);
 
-        mockMvc.perform(post("/repo/rubinius/rubinius")).andDo(print()).andExpect(status().isOk());
+        mockMvc.perform(get("/repo/mojombo/grit")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test

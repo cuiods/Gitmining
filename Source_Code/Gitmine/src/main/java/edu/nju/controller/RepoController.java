@@ -102,7 +102,7 @@ public class RepoController {
         return map;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @RequestMapping(value = "/search")
     @ResponseBody
     public Map getSearchResult(@RequestParam String keyword,
                                         @RequestParam(required = false, defaultValue = "") String filterType,
