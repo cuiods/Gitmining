@@ -110,6 +110,19 @@ $(document).ready(function() {
 
             radar_user.setOption(option);
 
+            var language = document.getElementById('userLanguage');
+            var chart = data.languageChart;
+            var dataArray= new Array();
+            $.each(chart.field,function(i,n){
+                dataArray.push(
+                    {
+                        value:chart.value[i],name:chart.field[i]
+                    }
+                )
+            })
+            drawLanguageChart(language,dataArray);
+
+
 
         },
         error:function(){
@@ -152,7 +165,8 @@ function addRelatedRepo(fatherGrid,lastGrid,userName,relateType){
         },
         error:function(){
             alert("wrong!");
-        }
+        },
+        
         
             
     })
@@ -164,6 +178,74 @@ function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
+}
+
+function drawLanguageChart(obj,data){
+    var languageChart = echarts.init(obj);
+    option = {
+        backgroundColor: '#2c343c',
+
+        title: {
+            text: '',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
+
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+
+        visualMap: {
+            show: false,
+            min: 80,
+            max: 600,
+            inRange: {
+                colorLightness: [0, 1]
+            }
+        },
+        series : [
+            {
+                name:'language using',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:data.sort(function (a, b) { return a.value - b.value}),
+                roseType: 'angle',
+                label: {
+                    normal: {
+                        textStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 0.3)'
+                        },
+                        smooth: 0.2,
+                        length: 10,
+                        length2: 20
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#c23531',
+                        shadowBlur: 200,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    languageChart.hideLoading();
+    languageChart.setOption(option);
+    return languageChart;
 }
 
 

@@ -2,6 +2,42 @@
  * Created by lenovo on 2016/6/10.
  */
 $(document).ready(function () {
+
+    var languageData = new Array();
+    var languageChart = null;
+    console.log($('#userName').text());
+    $.ajax({
+        type:'GET',
+        url:'/user/'+$('#userName').text()+'/basic',
+        success:function(data){
+            languageChart = data.languageChart;
+
+            console.log(languageChart.field);
+            console.log(languageChart.value);
+            $.each(languageChart.field,function(i,field){
+                if(i<9) {
+                    languageData.push(
+                        {
+                            text: languageChart.field[i], count: languageChart.value[i].toString(),
+                        }
+                    );
+                }
+            });
+
+            console.log(languageData);
+            console.log([
+                {text: languageChart.field[0], count: languageChart.value[0]},
+                {text: languageChart.field[1], count: languageChart.value[1]},
+                {text: languageChart.field[2], count: languageChart.value[2]},
+                {text: languageChart.field[3], count: languageChart.value[3]},
+                {text: languageChart.field[4], count: languageChart.value[4]},
+                {text: languageChart.field[5], count: languageChart.value[5]},
+                {text: languageChart.field[6], count: languageChart.value[6]},
+                {text: languageChart.field[7], count: languageChart.value[7]},
+                {text: languageChart.field[8], count: languageChart.value[8]},
+            ]);
+        }
+    })
     var bubbleChart = new d3.svg.BubbleChart({
         supportResponsive: true,
         //container: => use @default
@@ -14,18 +50,20 @@ $(document).ready(function () {
         //intersectDelta: use @default
         //intersectInc: use @default
         //circleColor: use @default
+
         data: {
-            items: [
-                {text: "Java", count: "236"},
-                {text: ".Net", count: "382"},
-                {text: "Php", count: "170"},
-                {text: "Ruby", count: "123"},
-                {text: "D", count: "12"},
-                {text: "Python", count: "170"},
-                {text: "C/C++", count: "382"},
-                {text: "Pascal", count: "10"},
-                {text: "Something", count: "170"},
-            ],
+            items: 
+                [
+                    {text: languageChart.field[0], count: languageChart.value[0].toString()},
+                    {text: languageChart.field[1], count: languageChart.value[1].toString()},
+                    {text: languageChart.field[2], count: languageChart.value[2].toString()},
+                    {text: languageChart.field[3], count: languageChart.value[3].toString()},
+                    {text: languageChart.field[4], count: languageChart.value[4].toString()},
+                    {text: languageChart.field[5], count: languageChart.value[5].toString()},
+                    {text: languageChart.field[6], count: languageChart.value[6].toString()},
+                    {text: languageChart.field[7], count: languageChart.value[7].toString()},
+                    {text: languageChart.field[8], count: languageChart.value[8].toString()},
+                ],
             eval: function (item) {return item.count;},
             classed: function (item) {return item.text.split(" ").join("");}
         },
