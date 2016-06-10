@@ -1,11 +1,23 @@
 package edu.nju.model.imp;
 
+import edu.nju.dao.service.LocationDaoService;
+import edu.nju.dao.service.SecUserDaoService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.awt.*;
 
 /**
  * Created by darxan on 2016/6/8.
  */
+@Service
 public class LocationModelImpl {
+
+    @Resource
+    private LocationDaoService locationDaoService;
+
+    @Resource
+    private SecUserDaoService secUserDaoService;
 
 
     public void generateLocations(){
@@ -14,6 +26,7 @@ public class LocationModelImpl {
         //for each element of the list,
             //get location and save.
     }
+
 
     public void getNeighbors(String user){
         //by user's country, or if it's too bigger,choose its province
@@ -38,7 +51,7 @@ public class LocationModelImpl {
         }
     }
 
-    private class Calculator{
+    private class Calculator {
         private static final double EARTH_RADIUS = 6378.137;//地球半径
         private  double _rad(double d)
         {
