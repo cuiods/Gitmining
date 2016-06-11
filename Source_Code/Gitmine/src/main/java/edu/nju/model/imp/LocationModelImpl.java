@@ -2,10 +2,13 @@ package edu.nju.model.imp;
 
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.dao.service.SecUserDaoService;
+import edu.nju.entity.UserLocationEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by darxan on 2016/6/8.
@@ -20,15 +23,37 @@ public class LocationModelImpl {
     private SecUserDaoService secUserDaoService;
 
 
+    private List<UserLocationEntity> entityList;
+
     public void generateLocations(){
         //select user list<> whoes location is still null
+        List<Object[]> userNameLocations
+                = locationDaoService.getAllUserLocation();
+        entityList = new ArrayList<>(userNameLocations.size());
         //be careful the limit rate.
         //for each element of the list,
             //get location and save.
+        try{
+            for(Object[] array: userNameLocations){
+                _generateAndSave(array);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
+    private void _generateAndSave(Object[] array) throws Exception{
+        UserLocationEntity userLocationEntity
+                = LocationGetter.geoCode(array[0],array[1]);
+        entityList.add(userLocationEntity);
+    }
 
     public void getNeighbors(String user){
+        double latitudeUpper = 0;
+        double latitudeDown = 0;
+        double longtitudeUpper = 0;
+        double longtitudeDown = 0;
+        List<UserLocationEntity> neighbors = null;
         //by user's country, or if it's too bigger,choose its province
         //get all the user's  in this country/province
         //calculate distance.
@@ -36,18 +61,20 @@ public class LocationModelImpl {
     }
 
 
-    private class LocationGetter{
+    private static class LocationGetter{
         private static final String geocodeUrl =
                 "http://maps.google.com/maps/api/geocode/json?sensor=false&address=langtang&language=en";
         private static final String language = "en";
         private static final String form = "json";
         private static final String apiKey = "";
 
-        private String _getURL(String location){
+        private static String _getURL(String location){
             return null;
         }
 
-        public void geoCode(String location){
+        public static UserLocationEntity geoCode(Object name,Object location){
+            UserLocationEntity userLocationEntity = new UserLocationEntity();
+            return userLocationEntity;
         }
     }
 

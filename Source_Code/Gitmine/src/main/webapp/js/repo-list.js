@@ -68,12 +68,15 @@ var RepoList = {
 
             var checkbox = tempGrid.find(".checkbox").eq(0);
             checkbox.attr("name",n.ownerName+"/"+n.reponame);
-             _this.checkboxes.push(checkbox);
+             _this.checkboxes[i] = (checkbox);
             if(i%4==3){
                 _this.gridsFather.append(_this.clear.clone(true));
             }
 
         });
+        
+        console.log(_this.checkboxes);
+        
         if(object.totalPage>0){
 
             RepoList.totalPages = object.totalPage;
@@ -247,9 +250,13 @@ var CoapareTable = {
 function compare() {
     //find the checked boxes, saved in selected array
     var selected = new Array();
+    console.log(RepoList.checkboxes);
     for(var index in RepoList.checkboxes){
+       
        var item = RepoList.checkboxes[index];
-       if(item.prop("checked")){
+        console.log(index);
+        console.log(item);
+        if(item.prop("checked")){
            selected.push(item.attr("name"));
        }
     }

@@ -416,7 +416,7 @@ $(document).ready(function () {
     $.get(url,function (data) {
         option = {
             title: {
-                text: 'World Population (2010)',
+                text: 'Word Githuber distribution.',
                 subtext: 'from United Nations, Total population, both sexes combined, as of 1 July (thousands)',
                 sublink: '#',
                 left: 'center',
