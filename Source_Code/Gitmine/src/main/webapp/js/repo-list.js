@@ -260,6 +260,10 @@ function compare() {
            selected.push(item.attr("name"));
        }
     }
+    if(selected.length<2){
+        alert("no selected");
+        return;
+    }
     var field = null;
     var compList = new Array();
     var compInfo = new Array();
@@ -303,6 +307,7 @@ function search(page,isKeyChanged) {
     var label_filterType = findCheckedRadio($('.radio-toolbar-filter').eq(0));
     var sort = findCheckedSortType();
     var sort_by = sort.attr("sortType");
+    console.log(sort_by);
     var isReverse = sort.attr("isReverse");
 
     var data = {
@@ -344,20 +349,30 @@ function findCheckedRadio(toolbar) {
  */
 function onclickFunction(obj) {
     var originCheck = findCheckedSortType();
+    var originCheckType = originCheck.attr("sortType");
     var obj = $(obj);
-    if(originCheck.attr("sortType")==obj.attr('sortType')){
+    var nowCheckTyep = obj.attr('sortType');
+    if(originCheckType==nowCheckTyep){
 
-        if(obj.attr("isReverse")=="true"){
-            obj.attr("isReverse" , "false");
-            obj.children("span").attr("class", "glyphicon glyphicon-arrow-down");
-        }else{
-            obj.attr("isReverse" , "true");
-            obj.children("span").attr("class",  "glyphicon glyphicon-arrow-up");
+        if(originCheckType!='hobby_match'){
+            if(obj.attr("isReverse")=="true"){
+                obj.attr("isReverse" , "false");
+                obj.children("span").attr("class", "glyphicon glyphicon-arrow-up");
+            }else{
+                obj.attr("isReverse" , "true");
+                obj.children("span").attr("class",  "glyphicon glyphicon-arrow-down");
+            };
+        }else {
+            return;
         };
 
     }else{
         originCheck.attr("ischecked" ,"false");
+        originCheck.children("span").attr("class",  "glyphicon glyphicon-minus");
+        
         obj.attr("ischecked" , "true");
+        obj.attr("isReverse" , "true");
+        obj.children("span").attr("class",  "glyphicon glyphicon-arrow-down");
     }
     search(1,false);
 }
