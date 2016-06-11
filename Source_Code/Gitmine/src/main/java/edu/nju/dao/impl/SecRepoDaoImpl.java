@@ -664,7 +664,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
         query.setString("nam",reponame);
         List list = query.list();
         session.close();
-        if (list.size()>0){
+        if ((list.size()>0)&&(list.get(0) != null)){
             return Double.valueOf(list.get(0).toString());
         }
         else {

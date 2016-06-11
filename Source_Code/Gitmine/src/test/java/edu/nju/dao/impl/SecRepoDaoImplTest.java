@@ -47,7 +47,7 @@ public class SecRepoDaoImplTest {
 
     @Test
     public void getRepoBasicInfo() throws Exception {
-        SecRepoEntity entity = repoDao.getRepoBasicInfo("mojombo","god");
+        SecRepoEntity entity = repoDao.getRepoBasicInfo("jpoler","-");
         assertNotNull(entity);
         System.out.println("=================basic info==============>>>"+entity.getHtmlUrl());
     }
@@ -140,7 +140,7 @@ public class SecRepoDaoImplTest {
 
     @Test
     public void getRepoCommitCount() throws Exception {
-        double cnt = repoDao.getRepoCommitCount("mojombo","grit");
+        double cnt = repoDao.getRepoCommitCount("jpoler","-");
         System.out.println("=================commit count==============>>>"+cnt);
     }
 
