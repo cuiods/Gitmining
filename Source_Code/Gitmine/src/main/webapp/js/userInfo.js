@@ -86,6 +86,7 @@ $(document).ready(
 function sort(obj){
 
     var originCheck = findCheckedSortType();
+    console.log(originCheck);
     var obj = $(obj);
     if(originCheck.attr("sortType")==obj.attr('sortType')){
 
@@ -100,7 +101,11 @@ function sort(obj){
 
     }else{
         originCheck.attr("ischecked" ,"false");
+        originCheck.children("span").attr("class",  "glyphicon glyphicon-minus");
+
         obj.attr("ischecked" , "true");
+        obj.attr("isReverse" , "true");
+        obj.children("span").attr("class",  "glyphicon glyphicon-arrow-up");
     }
     // alert("what is wrong");
 

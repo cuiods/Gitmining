@@ -311,9 +311,9 @@ function search(page,isKeyChanged) {
     var isReverse = sort.attr("isReverse");
 
     var data = {
-        // filterType:label_filterType,
-        // language:label_language,
-        // createYear:label_year,
+        filterType:label_filterType,
+        language:label_language,
+        createYear:label_year,
         keyword:key,
         pageNum:page,
         sortType:sort_by,
@@ -334,10 +334,11 @@ function search(page,isKeyChanged) {
 //$（'element'）.children('')返回的是JQuery对象还是DOM对象??
 function findCheckedRadio(toolbar) {
     var radios = toolbar.children('input');
-    var label = 'all';
+    var label = '';
     radios.each(
         function (i,n) {
-            if(n.ischecked='true'){
+            console.log(n.checked)
+            if(n.checked==true){
                 label =  n.value;
             }
         }
@@ -442,7 +443,7 @@ function generateFilterList() {
         "ui",
         "dataBase"
     ];
-    generateLabels(list);
+    generateLabels(list,'filter');
 }
 
 function generateFilterYears() {
@@ -453,7 +454,7 @@ function generateFilterYears() {
         '2014',
         '2015',
     ];
-    generateLabels(list);
+    generateLabels(list,'year');
 }
 
 function genetateFileterLanguage() {
@@ -464,26 +465,32 @@ function genetateFileterLanguage() {
         'c',
         'javascript'
     ];
-    generateLabels(list);
+    generateLabels(list,'language');
 }
 
-function generateLabels(list) {
+function generateLabels(list,name) {
     
     for(var i in list){
-        var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\"radios0\" value=\"false\">";
+        var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\""+name+"\" value=\""+list[i]+"\">";
         var label = " <label class=\"label\" for=\"" +list[i] + "\">" +list[i] + "</label>";
         document.write(radio);
         document.write(label);
     }
 }
 
-
+function addOnChangeListener () {
+    $('.radio-toolbar > input').change (function () {
+        alert("one");
+       search(1,true);
+    });
+}
 
 $(document).ready(
     function () {
         RepoList.init();
         CoapareTable.init();
         RecommendList.init();
+        addOnChangeListener();
         var recommendURL = '/repo/recommend'+"?pageNum="+0;
         $.get(recommendURL,function (data) {
            RecommendList.generateRecommends(data)
