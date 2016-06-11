@@ -144,7 +144,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
             sql+="and language = :lan ";
         }
         if ((createYear!=null)&&(!createYear.isEmpty())){
-            sql+="and date_format(createAt,'%Y') = :create ";
+            sql+="and date_format(create_at,'%Y') = :create ";
         }
         if (type!=null){
             switch (type) {

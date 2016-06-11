@@ -28,7 +28,7 @@ public class SecRepoDaoImplTest {
 
     @Test
     public void getSearchResult() throws Exception {
-        List<SecRepoEntity> list = repoDao.getSearchResult("a",0,100, SortType.Repo_Star,true,"","Javascript","");
+        List<SecRepoEntity> list = repoDao.getSearchResult("a",0,100, SortType.Repo_Star,true,"Linux","C","2014");
         assertNotNull(list);
         assertTrue(list.size()>0);
         int cnt = 0;
