@@ -323,7 +323,7 @@ function search(page,isKeyChanged) {
     console.log("para");
     console.log(data);
     var url = location_port+"/repo/search";
-    $.post(url,data,function (object) {
+    $.get(url,data,function (object) {
         console.log(object);
         RepoList.totalPages = isKeyChanged?0:RepoList.totalPages;
         RepoList.updateData(object);

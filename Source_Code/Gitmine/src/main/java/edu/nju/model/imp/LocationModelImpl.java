@@ -6,6 +6,8 @@ import edu.nju.entity.UserLocationEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,18 +65,28 @@ public class LocationModelImpl {
 
     private static class LocationGetter{
         private static final String geocodeUrl =
-                "http://maps.google.com/maps/api/geocode/json?sensor=false&address=langtang&language=en";
+                "http://maps.google.com/maps/api/geocode/json?sensor=false";
         private static final String language = "en";
         private static final String form = "json";
         private static final String apiKey = "";
 
         private static String _getURL(String location){
-            return null;
+            return geocodeUrl+"&address="+location+"&language="+language;
         }
 
         public static UserLocationEntity geoCode(Object name,Object location){
             UserLocationEntity userLocationEntity = new UserLocationEntity();
             return userLocationEntity;
+        }
+    }
+
+    public static void main(String[] args){
+        try{
+            String location = "maps.google.com/maps/api/geocode/json?sensor=false&address=江苏&language=en";
+            URL url = new URL(location);
+            System.out.println(url.getContent());
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
