@@ -6,7 +6,9 @@ import edu.nju.entity.UserLocationEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,26 +67,37 @@ public class LocationModelImpl {
 
     private static class LocationGetter{
         private static final String geocodeUrl =
-                "http://maps.google.com/maps/api/geocode/json?sensor=false";
-        private static final String language = "en";
-        private static final String form = "json";
-        private static final String apiKey = "";
+                "http://dev.virtualearth.net/REST/v1/Locations?";
 
+        private static final String[] keys = {
+            "AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-"
+        };
+        private static int i = -1;
+        public static String _getKey(){
+            i = (i+1)%keys.length;
+            return keys[i];
+        }
         private static String _getURL(String location){
-            return geocodeUrl+"&address="+location+"&language="+language;
+            return geocodeUrl+"&locality="+location+"&key="+_getKey();
         }
 
-        public static UserLocationEntity geoCode(Object name,Object location){
+        public static UserLocationEntity geoCode(Object name,Object location) throws IOException{
             UserLocationEntity userLocationEntity = new UserLocationEntity();
+            URL url = new URL(_getURL(location.toString()));
+
             return userLocationEntity;
         }
     }
 
     public static void main(String[] args){
         try{
-            String location = "maps.google.com/maps/api/geocode/json?sensor=false&address=江苏&language=en";
+            String location = "http://dev.virtualearth.net/REST/v1/Locations?locality=nanjing&key=AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-";
             URL url = new URL(location);
-            System.out.println(url.getContent());
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line;
+            while (( line = bufferedReader.readLine())!=null){
+                System.out.println(line);
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
