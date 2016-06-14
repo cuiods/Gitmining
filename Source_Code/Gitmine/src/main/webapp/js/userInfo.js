@@ -398,6 +398,7 @@ var RecList={
 
             var background = tempGrid.find('.ch-img-1').eq(0);
             background.css('background-image','url('+user.avatarUrl+')');
+            background.css('background-size','150px');
 
             tempGrid.find('.userName').eq(0).text(user.login);
             tempGrid.find('.createAt').eq(0).text('Create At '+user.createAt);
