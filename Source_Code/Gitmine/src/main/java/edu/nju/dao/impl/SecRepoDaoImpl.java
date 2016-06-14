@@ -481,7 +481,7 @@ public class SecRepoDaoImpl implements SecRepoDaoService {
     @Override
     public SecRepoLabelEntity getRepoLabel(String ownername, String reponame) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from SecRepoLabelEntity where repoId in (select id from SecRepoEntity where owner = :own and name = :nam)");
+        Query query = session.createQuery("from SecRepoLabelEntity where repoId = (select id from SecRepoEntity where owner = :own and name = :nam)");
         query.setString("own",ownername);
         query.setString("nam",reponame);
         List<SecRepoLabelEntity> list = query.list();

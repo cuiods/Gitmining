@@ -64,7 +64,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setNodeJs(double nodeJs) {
-        this.nodeJs = nodeJs;
+        this.nodeJs = (nodeJs>=0?nodeJs:0);
     }
 
     @Basic
@@ -74,7 +74,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setJavascript(double javascript) {
-        this.javascript = javascript;
+        this.javascript = (javascript>=0?javascript:0);
     }
 
     @Basic
@@ -84,7 +84,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setLibrary(double library) {
-        this.library = library;
+        this.library = (library>=0?library:0);
     }
 
     @Basic
@@ -94,7 +94,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setRuby(double ruby) {
-        this.ruby = ruby;
+        this.ruby = (ruby>=0?ruby:0);
     }
 
     @Basic
@@ -104,7 +104,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setWeb(double web) {
-        this.web = web;
+        this.web = (web>=0?web:0);
     }
 
     @Basic
@@ -124,7 +124,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setVim(double vim) {
-        this.vim = vim;
+        this.vim = (vim>=0?vim:0);
     }
 
     @Basic
@@ -134,7 +134,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setPlugin(double plugin) {
-        this.plugin = plugin;
+        this.plugin = (plugin>=0?plugin:0);
     }
 
     @Basic
@@ -144,7 +144,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setRust(double rust) {
-        this.rust = rust;
+        this.rust = (rust>=0?rust:0);
     }
 
     @Basic
@@ -154,7 +154,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setApp(double app) {
-        this.app = app;
+        this.app = (app>=0?app:0);
     }
 
     @Basic
@@ -164,7 +164,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setClient(double client) {
-        this.client = client;
+        this.client = (client>=0?client:0);
     }
 
     @Basic
@@ -174,7 +174,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setServer(double server) {
-        this.server = server;
+        this.server = (server>=0?server:0);
     }
 
     @Basic
@@ -184,7 +184,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setJson(double json) {
-        this.json = json;
+        this.json = (json>=0?json:0);
     }
 
     @Basic
@@ -194,7 +194,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setFramework(double framework) {
-        this.framework = framework;
+        this.framework = (framework>=0?framework:0);
     }
 
     @Basic
@@ -204,7 +204,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setPython(double python) {
-        this.python = python;
+        this.python = (python>=0?python:0);
     }
 
     @Basic
@@ -214,7 +214,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setBrowser(double browser) {
-        this.browser = browser;
+        this.browser = (browser>=0?browser:0);
     }
 
     @Basic
@@ -224,7 +224,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setRails(double rails) {
-        this.rails = rails;
+        this.rails = (rails>=0?rails:0);
     }
 
     @Basic
@@ -234,7 +234,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setCss(double css) {
-        this.css = css;
+        this.css = (css>=0?css:0);
     }
 
     @Basic
@@ -244,7 +244,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setAndroid(double android) {
-        this.android = android;
+        this.android = (android>=0?android:0);
     }
 
     @Basic
@@ -254,7 +254,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setJquery(double jquery) {
-        this.jquery = jquery;
+        this.jquery = (jquery>=0?jquery:0);
     }
 
     @Basic
@@ -264,7 +264,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setHtml(double html) {
-        this.html = html;
+        this.html = (html>=0?html:0);
     }
 
     @Basic
@@ -274,7 +274,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setTest(double test) {
-        this.test = test;
+        this.test = (test>=0?test:0);
     }
 
     @Basic
@@ -284,7 +284,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setPhp(double php) {
-        this.php = php;
+        this.php = (php>=0?php:0);
     }
 
     @Basic
@@ -294,7 +294,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setCommand(double command) {
-        this.command = command;
+        this.command = (command>=0?command:0);
     }
 
     @Basic
@@ -304,7 +304,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setTool(double tool) {
-        this.tool = tool;
+        this.tool = (tool>=0?tool:0);
     }
 
     @Basic
@@ -314,7 +314,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setDemo(double demo) {
-        this.demo = demo;
+        this.demo = (demo>=0?demo:0);
     }
 
     @Basic
@@ -324,7 +324,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setWrapper(double wrapper) {
-        this.wrapper = wrapper;
+        this.wrapper = (wrapper>=0?wrapper:0);
     }
 
     @Basic
@@ -334,7 +334,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setIos(double ios) {
-        this.ios = ios;
+        this.ios = (ios>=0?ios:0);
     }
 
     @Basic
@@ -344,7 +344,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setLinux(double linux) {
-        this.linux = linux;
+        this.linux = (linux>=0?linux:0);
     }
 
     @Basic
@@ -354,7 +354,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setWindows(double windows) {
-        this.windows = windows;
+        this.windows = (windows>=0?windows:0);
     }
 
     @Basic
@@ -364,7 +364,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setOsX(double osX) {
-        this.osX = osX;
+        this.osX = (osX>=0?osX:0);
     }
 
     @Basic
@@ -374,7 +374,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setDjango(double django) {
-        this.django = django;
+        this.django = (django>=0?django:0);
     }
 
     @Basic
@@ -384,7 +384,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setGoogle(double google) {
-        this.google = google;
+        this.google = (google>=0?google:0);
     }
 
     @Basic
@@ -394,7 +394,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setGenerator(double generator) {
-        this.generator = generator;
+        this.generator = (generator>=0?generator:0);
     }
 
     @Basic
@@ -404,7 +404,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setDocker(double docker) {
-        this.docker = docker;
+        this.docker = (docker>=0?docker:0);
     }
 
     @Basic
@@ -414,7 +414,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setImage(double image) {
-        this.image = image;
+        this.image = (image>=0?image:0);
     }
 
     @Basic
@@ -424,7 +424,7 @@ public class SecRegisterLabelEntity {
     }
 
     public void setTemplate(double template) {
-        this.template = template;
+        this.template = (template>=0?template:0);
     }
 
     @Override
