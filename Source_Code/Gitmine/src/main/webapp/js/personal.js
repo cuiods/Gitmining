@@ -215,6 +215,8 @@ function unCherishRepo(obj,owner_name,repo_name){
                             }
                         }
                     })
+                }else{
+                    alert("Do you login?");
                 }
             }
         })
@@ -250,6 +252,8 @@ function unCherishUser(obj,user_name){
                             }
                         }
                     })
+                }else{
+                    alert("Do you really login ?");
                 }
             }
         })

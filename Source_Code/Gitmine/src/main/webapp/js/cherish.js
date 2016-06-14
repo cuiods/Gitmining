@@ -25,12 +25,16 @@ function cherish(obj,fatherType,dataStr,starUrl,unStarUrl){
         type:'POST',
         url:starUrl,
         data:{username:dataObj.text()},
-        success:function(){
-            objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
-            objJQ.attr('title','click to unCherish');
-            objJQ.unbind('click').click(function(){
-                unCherish(obj,fatherType,dataStr,unStarUrl,starUrl);
-            })
+        success:function(ok){
+            if(ok) {
+                objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
+                objJQ.attr('title', 'click to unCherish');
+                objJQ.unbind('click').click(function () {
+                    unCherish(obj, fatherType, dataStr, unStarUrl, starUrl);
+                })
+            }else{
+                userlogin();
+            }
             // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
         },
         error:function(){
@@ -48,12 +52,16 @@ function unCherish(obj,fatherType,dataStr,unStarUrl,starUrl){
         type:'GET',
         url:unStarUrl,
         data:{username:dataObj.text()},
-        success:function(){
-            objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
-            objJQ.attr('title','click to cherish');
-            objJQ.unbind('click').click(function(){
-                cherish(obj,fatherType,dataStr,starUrl,unStarUrl);
-            })
+        success:function(ok){
+            if(ok) {
+                objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
+                objJQ.attr('title', 'click to cherish');
+                objJQ.unbind('click').click(function () {
+                    cherish(obj, fatherType, dataStr, starUrl, unStarUrl);
+                });
+            }else{
+                userlogin();
+            }
             // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
         },
         error:function(){
@@ -86,6 +94,8 @@ function cherish_repo_(obj,user_name,repo_name,starUrl,unStarUrl){
                 obj.unbind('click').click(function(){
                     unCherish_repo_(obj,user_name,repo_name,unStarUrl,starUrl);
                 })
+            }else{
+                userlogin();
             }
         }
     })
@@ -104,6 +114,8 @@ function unCherish_repo_(obj,user_name,repo_name,unStarUrl,starUrl){
                 obj.unbind('click').click(function(){
                     cherish_repo_(obj,user_name,repo_name,starUrl,unStarUrl);
                 })
+            }else{
+                userlogin();
             }
         }
     })
@@ -203,12 +215,16 @@ function IdCherish(objJQ,data,starUrl,unStarUrl){
         type:'GET',
         url:starUrl,
         data:{username:data},
-        success:function(){
-            objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
-            objJQ.attr('title','click to unCherish');
-            objJQ.unbind('click').click(function(){
-                unIdCherish(objJQ,data,unStarUrl,starUrl);
-            })
+        success:function(ok){
+            if(ok) {
+                objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
+                objJQ.attr('title', 'click to unCherish');
+                objJQ.unbind('click').click(function () {
+                    unIdCherish(objJQ, data, unStarUrl, starUrl);
+                })
+            }else{
+                userlogin();
+            }
             // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
         },
         error:function(){
@@ -223,12 +239,16 @@ function unIdCherish(objJQ,data,unStarUrl,starUrl){
         type:'GET',
         url:unStarUrl,
         data:{username:data},
-        success:function(){
-            objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
-            objJQ.attr('title','click to cherish');
-            objJQ.unbind('click').click(function(){
-                IdCherish(objJQ,data,starUrl,unStarUrl);
-            })
+        success:function(ok){
+            if(ok) {
+                objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
+                objJQ.attr('title', 'click to cherish');
+                objJQ.unbind('click').click(function () {
+                    IdCherish(objJQ, data, starUrl, unStarUrl);
+                })
+            }else{
+                userlogin();
+            }
             // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
         },
         error:function(){
@@ -237,4 +257,8 @@ function unIdCherish(objJQ,data,unStarUrl,starUrl){
 
     })
 };
+
+function userlogin(){
+    alert("please login in !");
+}
 
