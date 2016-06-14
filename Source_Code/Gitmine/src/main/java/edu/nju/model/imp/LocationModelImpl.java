@@ -1,5 +1,7 @@
 package edu.nju.model.imp;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.entity.UserLocationEntity;
@@ -37,19 +39,20 @@ public class LocationModelImpl {
         //be careful the limit rate.
         //for each element of the list,
             //get location and save.
-        try{
-            for(Object[] array: userNameLocations){
-                _generateAndSave(array);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
+
+        for(Object[] array: userNameLocations){
+            _generateAndSave(array);
         }
+
     }
 
-    private void _generateAndSave(Object[] array) throws Exception{
+    private boolean _generateAndSave(Object[] array){
         UserLocationEntity userLocationEntity
                 = LocationGetter.geoCode(array[0],array[1]);
-        entityList.add(userLocationEntity);
+        if(userLocationEntity==null){
+            return false;
+        }
+        return entityList.add(userLocationEntity);
     }
 
     public void getNeighbors(String user){
@@ -81,26 +84,66 @@ public class LocationModelImpl {
             return geocodeUrl+"&locality="+location+"&key="+_getKey();
         }
 
-        public static UserLocationEntity geoCode(Object name,Object location) throws IOException{
+        public static UserLocationEntity geoCode(Object name,Object location) {
             UserLocationEntity userLocationEntity = new UserLocationEntity();
-            URL url = new URL(_getURL(location.toString()));
 
+            URL url;
+            try{
+                url = new URL(_getURL(location.toString()));
+            }catch (IOException e){
+                return null;
+            }
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode;
+            try {
+                jsonNode = objectMapper.readTree(url);
+            }catch (IOException e){
+                return null;
+            }
+            JsonNode status = jsonNode.get("statusDescription");
+
+
+            if(status==null||!status.asText().equals("OK")){
+                System.out.println("status is not okay!");
+                return null;
+            }
+            JsonNode resources = jsonNode.get("resourceSets").get(0).get("resources");
+            if(resources==null||resources.size()==0){
+                System.out.println("no macth position");
+                return null;
+            }
+            else if(resources.size()>1){
+                System.out.println("conflict position.");
+                return null;
+            }
+
+            JsonNode resource = resources.get(0);
+            userLocationEntity.setCountry(resource.get("address").get("countryRegion").asText());
+            userLocationEntity.setLocation(resource.get("name").asText());
+
+            userLocationEntity.setLogin(name.toString());
+
+            JsonNode coordinates = resource.get("point").get("coordinates");
+
+            userLocationEntity.setLatitude(coordinates.get(1).asDouble());
+            userLocationEntity.setLongitude(coordinates.get(0).asDouble());
             return userLocationEntity;
         }
     }
 
     public static void main(String[] args){
-        try{
-            String location = "http://dev.virtualearth.net/REST/v1/Locations?locality=nanjing&key=AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-";
-            URL url = new URL(location);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(url.openStream()));
-            String line;
-            while (( line = bufferedReader.readLine())!=null){
-                System.out.println(line);
-            }
-        }catch (IOException e){
-            e.printStackTrace();
+
+        UserLocationEntity userLocationEntity =
+                LocationModelImpl.LocationGetter.geoCode("","jiangsu,nanjing");
+        if(userLocationEntity==null){
+            return;
         }
+        System.out.println(userLocationEntity.getCountry());
+        System.out.println(userLocationEntity.getLocation());
+        System.out.println(userLocationEntity.getLongitude());
+        System.out.println(userLocationEntity.getLatitude());
+
     }
 
     private class Calculator {
