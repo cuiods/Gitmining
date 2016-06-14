@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PersonalInfo</title>
+    <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="../../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/login.js"></script>
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <!--Echart js file-->
+    <script src="../../plugin/echarts/echarts.min.js"></script>
+    <!--js file-->
+
+    <!-- Custom Theme files -->
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--webfont-->
+    <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="../../js/move-top.js"></script>
+    <script type="text/javascript" src="../../js/easing.js"></script>
+    <script src="../../js/personal.js"></script>
+    <script src="../../js/cherish.js"></script>
+    <script type="text/javascript" src="../../js/jqPaginator1.js"></script>
+    <!--<script type="text/javascript" src="../../js/userDetail.js"></script>-->
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- header-section-starts -->
+<div class="about-header-banner">
+        <div class="container">
+        <div class="home">
+            <a href="index.html"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="header-top">
+            <div class="social-icons">
+                <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
+                <!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
+
+            </div>
+            <span class="menu"><img src="../../images/nav.png" alt=""/></span>
+            <div class="top-menu">
+                <ul>
+                    <nav class="cl-effect-13">
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="userInfo.html">User</a></li>
+                        <li><a href="user_statistic.html">U-STAT</a></li>
+                        <li><a href="repo.html">Repo</a></li>
+                        <li><a href="repo_statistic.html">R-STAT</a></li>
+                    </nav>
+                </ul>
+            </div>
+            <!-- script for menu -->
+            <script>
+                $( "span.menu" ).click(function() {
+                    $( ".top-menu ul" ).slideToggle( 300, function() {
+                        // Animation complete.
+                    });
+                });
+            </script>
+            <!-- //script for menu -->
+        </div>
+        <div class="clearfix"></div>
+        <div class="banner-info text-center">
+            <h1 ><a href="hhh" id="personalName">Cuiods</a></h1>
+        </div>
+    </div>
+</div>
+<!-- header-section-ends -->
+<!-- content-section-starts -->
+<div class="personalInfo " style="margin-left: 100px;margin-top:10px">
+    <h3 >Cherished Repositories</h3>
+    <hr >
+    <div id="repoFather">
+        <div class="cherished_repo">
+            <div class="repoItem ">
+                <img class="col-md-2 repoImg" src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-10" >
+                    <div >
+                        <h5 class="ownRepo" style="font-size:20px;color:#a6192e">UserName/RepoName</h5>
+                        <label class="updateTime" style="display:block">updated at June 5, 2015</label>
+                        <p class="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai
+                        hello,hello, very good repo,very good,hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa
+                        abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>
+
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-earphone iconStyle" title="subscribers"/>
+                            <span class="subscribe">123</span>
+                            <span class=" glyphicon glyphicon-download-alt" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="forks"/>
+                            <span class="fork">123</span>
+                            <span class=" glyphicon glyphicon-star-empty" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="stars"/>
+                            <span class="star">123</span>
+                            <button class="glyphicon icon-heart icon-large repoCherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                        </div><br><br>
+                    </div>
+                    <a href="#" class="btn btn-primary hvr-rectangle-in repoDetail">Read Detail</a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr >
+    </div>
+    <div class="pagination" id="pagination1" style="float:right"></div>
+    <div class="clearfix"></div>
+    <hr>
+    <h3 >Cherished GitUsers</h3>
+    <hr >
+    <div id="userFather">
+        <div id="cherished_user">
+            <div class="userItem col-md-6" style="float:left">
+                <img  class="col-md-4 userImg" src="../../images/img16.jpg" style="float:left"/>
+                <div style="float:right" class="col-md-8" >
+                    <div >
+                        <h5 class="userName" style="font-size:20px;color:#a6192e">UserName</h5>
+                        <label style="display:block" class="createTime">created at June 5, 2015</label>
+                        <label style="display:block" class="updateTime">updated at June 5, 2015</label><br>
+                        <!--<p id="description" >cuiods, dongbenchao, daixinyan, yuangyangyang, yiwankuai,yiwamkuai-->
+                            <!--hello,hello, very good repo,very good,hhhhhhhhhhhhh<br>hhhhhhhhhhhhhhhhh,hao sha,haosha,haosha,aaaaaaaaaaaaa-->
+                            <!--abcdefgdhsfjdhg,lkdsjgkljglkdsj</p><br>-->
+                        <div style="float:left">
+                            <span class=" glyphicon glyphicon-apple iconStyle" title="public repositories"/>
+                            <span class="repo">123</span>
+                            <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="followings"/>
+                            <span class="following">123</span>
+                            <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #a6192e" title="followers"/>
+                            <span class="followed">123</span>
+                            <button class="glyphicon icon-heart icon-large userCherish" title="click to cancel" style="display: inline-block; background: transparent; border: none;color: #a6192e" />
+                        </div><br><br>
+                    </div>
+
+                    <a href="#" class="btn btn-primary hvr-rectangle-in userDetail">Read Detail</a>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <hr>
+        </div>
+        <div class="pagination" id="paginationUser" style="float:right"></div>
+        <div class="clearfix"></div>
+        <hr>
+
+    </div>
+    <div class="clearfix"></div>
+
+
+
+</div>
+<!-- content-section-ends -->
+
+
+<a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!---->
+
+
+</body>
+</html>

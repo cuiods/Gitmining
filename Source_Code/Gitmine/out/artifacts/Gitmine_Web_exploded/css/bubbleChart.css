@@ -1,0 +1,8 @@
+.bubbleChart {
+    width: 110%;
+    height: 100%;
+    margin: 0px 100px auto auto;
+}
+.bubbleChart svg{
+    background: #000000;
+}

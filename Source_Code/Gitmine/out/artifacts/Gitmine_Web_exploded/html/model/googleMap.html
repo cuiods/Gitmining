@@ -1,0 +1,38 @@
+<html>
+<head>
+    <script
+            src="../../plugin/google/googleMap.js">
+    </script>
+
+    <script>
+        var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+
+        function initialize()
+        {
+            var mapProp = {
+                center:myCenter,
+                zoom:5,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            var marker=new google.maps.Marker({
+                position:myCenter,
+                title:'user',
+//                icon:'https://avatars.githubusercontent.com/u/11437641?v=3'
+            });
+            marker.setMap(map);
+            google.maps.event.addListener(marker,'click',function() {
+                map.setZoom(9);
+                map.setCenter(marker.getPosition());
+            });
+        }
+
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+
+<body>
+<div id="googleMap" style="width:500px;height:380px;"></div>
+</body>
+</html>

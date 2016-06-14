@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UserInfo</title>
+    <script src="../../js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+    <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../../css/repo-label.css">
+    <link rel="stylesheet" href="../../css/userCompare.css">
+    <script src="../../js/login.js"></script>
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <!--Echart js file-->
+    <script src="../../plugin/echarts/echarts.min.js"></script>
+
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <script src="../../js/bootstrap.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="../../js/userInfo.js"></script>
+
+    <!-- Custom Theme files -->
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gardening Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!--webfont-->
+    <link href='http://fonts.useso.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Niconne' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript" src="../../js/move-top.js"></script>
+    <script type="text/javascript" src="../../js/easing.js"></script>
+    <script type="text/javascript" src="../../js/jqPaginator1.js"></script>
+    <script type="text/javascript" src="../../js/cherish.js"></script>
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+            });
+        });
+    </script>
+    <style>
+        .radio-toolbar label {
+            display:inline-block;
+            background-color:#ddd;
+            padding:4px 11px;
+            font-family:Arial;
+            font-size:16px;
+        }
+
+        .radio-toolbar input[type="radio"] {
+            display:none;
+
+        }
+        .radio-toolbar input[type="radio"]:checked + label {
+            background-color: royalblue;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- header-section-starts -->
+<div class="about-header-banner">
+    <div class="container">
+        <div class="home">
+            <a href="/html/index.html"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="header-top">
+            <div class="social-icons">
+                <a id="login-href" data-toggle="modal" href="#myModal"><i class="googlepluse"></i></a>
+                <!--<button class="glyphicon glyphicon-log-in login-button"  ></button>-->
+
+            </div>
+            <span class="menu"><img src="../../images/nav.png" alt=""/></span>
+            <div class="top-menu">
+                <ul>
+                    <nav class="cl-effect-13">
+                        <!--TODO : 	更换导航目录-->
+                        <li><a href="/html/about.html">About</a></li>
+                        <li><a href="/html/html/userInfo.html" title="users search" class="active">USERS</a></li>
+                        <li><a href="/html/html/user_statistic.html" title="users statistic">U-STAT</a></li>
+                        <li><a href="/html/html/repo.html" title="repositories search">REPOS</a></li>
+                        <li><a href="/html/html/repo_statistic.html" title="repositories' statistic">R-STAT</a></li>
+                    </nav>
+                </ul>
+            </div>
+            <!-- script for menu -->
+            <script>
+                $( "span.menu" ).click(function() {
+                    $( ".top-menu ul" ).slideToggle( 300, function() {
+                        // Animation complete.
+                    });
+                });
+            </script>
+            <!-- //script for menu -->
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="banner-info row center-block">
+
+            <div class="col-md-3"> </div>
+            <!--<div class="col-lg-6">-->
+            <div class="input-group col-md-6 ">
+                <input type="text" class="form-control" placeholder="Search for..." id="keyword">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button" id="searchButton" onclick="search(true)">Search</button>
+						</span>
+            </div><!-- /input-group -->
+            <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
+            <div class="col-md-3"> </div>
+        </div>
+
+    </div>
+</div>
+<!-- header-section-ends -->
+
+
+
+
+<!-- news -->
+<div class=" container news" id="news">
+    <div class=" col-md-9">
+        <div>
+            <div class="news-text col-md-12" style="float:left;display:inline-block">
+
+                <h3 style="float:left">Users</h3>
+                <div>
+                <ul class="nav nav-tabs " style="margin-top: 6em" >
+
+                    <li><a href="javascript:void(0)" sortType = "user_name" ischecked="false" isReverse = "false"
+                               onclick="sort(this)" class="active">
+                            NAME &nbsp;  <span class="glyphicon glyphicon-minus"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_ownrepos" ischecked="false" isReverse = "false"
+                               onclick="sort(this)" class="active">
+                            REPOS &nbsp;<span class="glyphicon glyphicon-minus"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_following" ischecked="false" isReverse = "false"
+                               onclick="sort(this)" class="active">
+                            FOLLOWING &nbsp;<span class="glyphicon glyphicon-minus"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_followed" ischecked="true" isReverse = "false"
+                               onclick="sort(this)" class="active">
+                            FOLLOWED &nbsp;  <span class="glyphicon glyphicon-arrow-down"></span></a></li>
+                    <li><a href="javascript:void(0)" sortType = "user_update" ischecked="false" isReverse = "false"
+                               onclick="sort(this)" class="active">
+                            CREATE &nbsp;  <span class="glyphicon glyphicon-minus"></span></a></li>
+                </ul>
+                    <!--<h4><a href="#" onclick="compare(this)" style="float:right">compare</a></h4>-->
+                    <button class="btn btn-primary" onclick="addCol()" style="float:right">compare</button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="news-grids" id="listStart">
+            <div class="col-md-3 news-grid wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
+                <div>
+                    <a href="single.html" style="display: inline-block;float:left" class="userName">User Name</a>
+                    <!--<button class=" glyphicon glyphicon-heart-empty" style="display: inline-block; background: transparent; border: none;color: purple"/>-->
+                    <input type="checkbox" class="checkbox" name="compare" style="float:right">
+
+                </div>
+                <div class="clearfix"></div>
+                <a class="mask imageUrl" href="userDetail.html?userName=rubinius" id="imageUrl"><img src="../../images/img1.jpg" class="img-responsive zoom-img header_user" alt="" id="header_user" style="width:70%;height: 70%"/></a>
+                <div class="news-info">
+                    <ul>
+                        <li><span class="create" style="float:left">created at: &nbsp&nbsp 2001.11.04</span></li><br>
+                        <li><button class=" glyphicon icon-heart-empty icon-large cherish" style="display: inline-block;background: transparent; border: none;color: #a6192e;float:right" title="click to cherish" onclick="onCherishClick(this,'.news-grid','.userName','/user/star','/user/unstar')"/></li><br>
+                        <li><span class="update" style="float:left">updated at: &nbsp&nbsp 2016.03.04</span></li>
+                    </ul>
+                    <div >
+                        <div class="clearfix"></div>
+                       <button class=" glyphicon glyphicon-apple " style="display: inline-block; background: transparent; border: none;color: purple" title="own Repos"/><span class="repo">123</span>&nbsp&nbsp&nbsp&nbsp
+                       <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple" title="following Num"/><span class="following">123</span>&nbsp&nbsp&nbsp&nbsp
+                       <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple" title="followed Num"/><span class="followed">123</span>&nbsp&nbsp&nbsp&nbsp
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagination" id="pagination1" style="float:right"></div>
+    </div>
+
+
+    <!-- recommend -->
+    <div class="col-md-3 recommend " data-wow-delay="0.4s" >
+        <div class="news-text">
+            <h3>You may interest</h3><br>
+        </div>
+        <div id="recPart">
+            <div class="recItem">
+                <div class="news-info">
+                    <div style="float:left">
+                        <button class=" glyphicon glyphicon-apple " style="display: inline-block; background: transparent; border: none;color: purple"/><span class="repo">456</span>
+                        <button class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: purple"/><span class="following">123</span>
+                        <button class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: purple"/><span class="followed">123</span>
+                    </div>
+                    <div style="float:right">
+                        <button class=" glyphicon icon-heart-empty icon-large cherish" style="display: inline-block; background: transparent; border: none;color: #a6192e"/>
+                    </div>
+                </div>
+                <ul class="ch-grid">
+                    <li>
+                        <div class="ch-item ch-img-1">
+                            <div class="ch-info">
+                                <h4 class="userName">UserName</h4>
+                                <p><span class="createAt">created At 1996.12.23</span> <a class="detail" href="#">View for detail</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <br>
+            </div>
+
+
+        </div>
+
+
+    </div>
+<!-- //news -->
+
+<!--compare modal start-->
+
+
+<div class="modal fade " id="compareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Compare Users</h4>
+            </div>
+            <div class="modal-body">
+                <table id="compareTable" class="bordered">
+                    <thead>
+
+                    <tr>
+                        <th>attributes</th>
+
+
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>publicRepos</td>
+
+                    </tr>
+                    <tr>
+                        <td>publicGists</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>followers</td>
+
+                    </tr>
+                    <tr>
+                        <td>followings</td>
+
+
+                    </tr>
+                    <tr>
+                        <td>bio</td>
+
+                    </tr>
+                    <tr>
+                        <td>type</td>
+
+                    </tr>
+                    <tr>
+                        <td>location</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>company</td>
+
+                    </tr>
+                    <tr>
+                        <td>createAt</td>
+
+                    </tr>
+
+
+                </table>
+            </div>
+            <hr>
+            <div >
+                <h4 style="margin-left:15px">Radar Graph</h4>
+                <center>
+                <div id="compareRadar" style="width: 550px;height:400px;"></div>
+                </center>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--compare modal end-->
+
+
+
+<!-- content-section-starts -->
+<div class="content">
+    <div class="container">
+        <div class="gallery-head" id="portfolio">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="login" style="margin-top:50px;">  <!--整个登陆小面板-->
+
+                    <div class="header">   <!--登陆头（登陆、注册）-->
+                        <div class="switch" id="switch">
+                            <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">Login</a>
+                            <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">Register</a>  <!--tabindex规定了tab键控制的次序-->
+
+                            <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+
+                        <!--登录-->
+                        <div class="web_login" id="web_login">
+
+
+                            <div class="login-box">
+
+
+                                <div class="login_form">
+                                    <form action="" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                                        <input type="hidden" name="did" value="0"/>
+                                        <input type="hidden" name="to" value="log"/>
+                                        <div class="uinArea" id="uinArea">
+                                            <label class="input-tips" for="u">ID:</label>
+                                            <div class="inputOuter" id="uArea">
+
+                                                <input type="text" id="u" name="username" class="inputstyle"/>
+                                            </div>
+                                        </div>
+                                        <div class="pwdArea" id="pwdArea">
+                                            <label class="input-tips" for="p">PW:</label>
+                                            <div class="inputOuter" id="pArea">
+
+                                                <input type="password" id="p" name="p" class="inputstyle"/>
+                                            </div>
+                                        </div>
+
+                                        <div style="padding-left:50px;margin-top:20px;"><input id="login_btn" type="button" value="Login" style="width:150px;" class="button_blue"/></div>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!--登录end-->
+                    </div>
+
+                    <!--注册-->
+                    <div class="qlogin" id="qlogin" style="display: none; ">
+
+                        <div class="web_login"><form name="form2" id="regUser" accept-charset="utf-8"  action="" method="post">
+                            <input type="hidden" name="to" value="reg"/>
+                            <input type="hidden" name="did" value="0"/>
+                            <ul class="reg_form" id="reg-ul">
+                                <div id="userCue" class="cue">Please pay attention to format.</div>
+                                <li>
+
+                                    <label for="user"  class="input-tips2">ID:</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="user" name="user" maxlength="16" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="passwd" class="input-tips2">Password:</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd"  name="passwd" maxlength="16" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <label for="passwd2" class="input-tips2">Confirm:</label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2" />
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="email_input" class="input-tips2">Email:</label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="email_input" name="email" maxlength="50" class="inputstyle2"/>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <div class="inputArea">
+                                        <input type="button" id="reg"  style="margin-top:10px;margin-left:85px;" class="button_blue" value="Sign up"/> <a href="#" class="zcxy" target="_blank">agreement</a>
+                                    </div>
+
+                                </li><div class="cl"></div>
+                            </ul></form>
+
+
+                        </div>
+
+
+                    </div>
+                    <!--注册end-->
+                </div>
+            </div>
+            <!-- footer-section -->
+            <script type="text/javascript">
+                $(document).ready(function() {
+
+
+
+
+                });
+
+
+
+            </script>
+            <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+            <!---->
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

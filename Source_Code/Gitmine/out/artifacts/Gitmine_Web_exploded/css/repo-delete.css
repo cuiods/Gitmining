@@ -1,0 +1,163 @@
+
+.title{
+    font-size: 18px;
+    white-space:nowrap;
+    overflow: hidden;
+    line-height: 20px;
+    height: 20px;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    color: #0f0f0f;
+}
+.title:hover{
+    color: #BF55EC;
+}
+
+.list-item-right-description{
+    height: 50px;
+    font-size: 13px;
+    line-height: 10px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    word-wrap: break-word;
+    word-break: normal;
+    color: #95A5A6;
+}
+
+.list-item-right-bottom span{
+
+    color: #BF55EC;
+}
+
+.list-item-right-bottom{
+    position: relative;
+    overflow: hidden;
+    /*height: 25px;*/
+    /*padding-bottom: 10px;*/
+}
+
+.list-item-right-numbers{
+    float: left;
+}
+.digital{
+    overflow: hidden;
+}
+.list-item-right-time{
+    float: right;
+}
+
+.list-item{
+    position: relative;
+    height: 120px;
+    width: 100%;
+    background-color:white;
+    border-bottom: dashed 1px #D2D2D2;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: rgb(210, 210, 210);
+    padding: 0;
+}
+
+.compare{
+    float: right;
+    width: 50px;
+    margin:auto auto;
+    padding-top: 40px;
+    margin: 0;
+    padding-left: 10px;
+}
+.recommend-item-left{
+    position: relative;
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 80px;
+    padding-top: 5px;
+}
+
+.recommend-item-right{
+    position: relative;
+    float: left;
+    width:200px;
+    margin-left: 15px;
+    margin-top: 5px;
+    height: 100%;
+    padding: 0;
+}
+
+.list-item-right{
+    position: relative;
+    float: left;
+    width:400px;
+    margin-left: 15px;
+    height: 100%;
+    padding: 0;
+}
+
+
+.list-item-left{
+    
+    position: relative;
+    float: left;
+    margin: 0;
+    height: 100%;
+    width: 100px;
+    padding-top: 5px;
+    /*background: black;*/
+}
+
+.list-item:hover{
+    background: #ECF0F1;
+}
+
+.list{
+    position: relative;
+    float: left;
+    background: transparent;
+     width: 600px;
+    margin: auto;
+    padding: 0;
+
+}
+
+.main-right{
+    position: relative;
+    float: left;
+    width:300px;
+    margin:auto 20px;
+    padding: 0;
+    background: transparent;
+}
+
+.main{
+    position: relative;
+    width: 1000px;
+    margin:100px auto;
+    padding: 0;
+}
+
+/*on the right*/
+
+.recommend-head{
+
+}
+
+.recommend{
+
+}
+
+.recommend-item{
+    position: relative;
+    height: 100px;
+    width: 100%;
+    background-color:white;
+    border-bottom: dashed 1px #D2D2D2;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: rgb(210, 210, 210);
+    padding: 0;
+}
+
+.recommend-item:hover{
+    background: #ECF0F1;
+}

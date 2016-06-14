@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 实例 - 标签页（Tab）插件</title>
+    <link href="../../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../../plugin/jquery/jquery.min.js"></script>
+    <script src="../../plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../plugin/jquery/jquery.easytabs.min.js"></script>
+    <script src="../../plugin/jquery/jquery.hashchange.min.js"></script>
+    <style>
+        .etabs { margin: 0; padding: 0; }
+        .tab { display: inline-block; zoom:1; *display:inline; background: #eee; border: solid 1px #999; border-bottom: none; -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; }
+        .tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }
+        .tab a:hover { text-decoration: underline; }
+        .tab.active { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
+        .tab a.active { font-weight: bold; }
+        .tab-container .panel-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
+    </style>
+</head>
+<body>
+<div>
+
+    <div style="width: 100%">
+        hah
+    </div>
+    <div style="width: 100%">
+        hah
+    </div>
+    <div style="width: 100%">
+        hah
+    </div>
+    <div id="tab-container" class="tab-container">
+    <ul class='etabs'>
+        <li class='tab'><a href="#tabs1-html">标签一</a></li>
+        <li class='tab'><a href="#tabs1-js">标签二</a></li>
+    </ul>
+    <div id="tabs1-html">
+        标签一的内容
+    </div>
+    <div id="tabs1-js">
+        标签二的内容
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#tab-container').easytabs({
+                animate: false
+            });
+        });
+    </script>
+</div>
+</div>
+
+</body>
+</html>

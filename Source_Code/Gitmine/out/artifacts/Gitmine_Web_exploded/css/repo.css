@@ -1,0 +1,20 @@
+.news-grid{
+    border-width: 1px;
+    border-style: solid;
+    border-color:white ;
+    background: #F7F7F7;
+}
+.news-grids :hover{
+    background: lightgoldenrodyellow;
+}
+
+.description{
+    word-break:break-all;
+    color: #777;
+    font-size: 13px;
+    padding: 0;
+}
+.ownerName{
+    padding: 0;
+    font-size: 15px;
+}

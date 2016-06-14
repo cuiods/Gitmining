@@ -1,0 +1,27 @@
+.radio-toolbar{
+
+    position: relative;
+
+    background-color:white;
+    border-bottom: dashed 1px #D2D2D2;
+    /*border-bottom-width: 1px;*/
+    /*border-bottom-style: dashed;*/
+    /*border-bottom-color: rgb(210, 210, 210);*/
+    margin: 0 auto;
+    padding-top: 10px;
+
+    word-wrap: break-word;
+    word-break: normal;
+
+}
+
+.radio-toolbar > .label{
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.labels{
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,21 @@
+.radio-toolbar label {
+    display:inline-block;
+    background-color:#ddd;
+    padding:10px 16px;
+    font-family:Arial;
+    font-size:16px;
+}
+
+.radio-toolbar input[type="checkbox"] {
+    display:none;
+
+}
+.radio-toolbar input[type="checkbox"]:checked + label {
+    background-color: royalblue;
+    opacity: 0.8;
+}
+
+.radio-toolbar > .label{
+    margin-left: 20px;
+    margin-top: 5px;
+}
