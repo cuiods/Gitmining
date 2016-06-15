@@ -2,7 +2,31 @@
  * Created by yyy on 2016/5/18.
  */
 
+var currentLooation = undefined;
+function loadMapScenario(){
+    var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        credentials: 'AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-'
+    });
+    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+        var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+        var requestOptions = new Microsoft.Maps.Search.GeocodeRequestOptions();
+        requestOptions.bounds = map.getBounds();
+        requestOptions.where = currentLooation==undefined?"beijing":currentLooation;
+        requestOptions.callback = function (answer, userData) {
+            map.setView({ bounds: answer.results[0].bestView });
+            console.log(answer.results[0].location);
+            map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
 
+            var pushpin = new Microsoft.Maps.Pushpin(
+                new Microsoft.Maps.Location(32.049781799316406,118.76598358154297),
+                { text: 'U', title: 'daixinyan' }
+            );
+            map.entities.push(pushpin);
+        };
+        searchManager.geocode(requestOptions);
+    });
+
+}
 $(document).ready(function() {
     var userName=document.getElementById("userName");
     userName.innerHTML=getQueryString('userName');
@@ -29,6 +53,7 @@ $(document).ready(function() {
             document.getElementById("createTime").innerHTML=data.basicInfo.createAt;
             document.getElementById("updateTime").innerHTML=data.basicInfo.updateAt;
             //add contribute repos
+            currentLooation = (data.basicInfo.location);
             
             var contributeObj = $('#contributeRepo');
             var contributeLast = contributeObj.find('.new-group-item').eq(0);

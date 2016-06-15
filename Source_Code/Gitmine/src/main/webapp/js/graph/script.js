@@ -223,7 +223,15 @@
                 continue;
             }
             var obj = data[key];
-            obj['docs'] = "<p>just for show</p>";
+            console.log(obj);
+            if(obj['type']==='user'){
+                obj['docs'] = "<a href=\"/html/html/userDetail.html?userName=" +obj['name']+"\">"
+                    +obj['name']+"</a>";
+            }else {
+                obj['docs'] = "<a href=\"/html/html/repo-detail.html?" +obj['name']+"\">"
+                    +obj['name']+"</a>";
+            }
+
         }
         graph.data = data;
         drawGraph();
