@@ -5,13 +5,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.dao.service.LocationDaoService;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.entity.UserLocationEntity;
+import edu.nju.temp.githubcrawl.GithubJsonHandler;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.swing.text.html.parser.Entity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +41,24 @@ public class LocationModelImpl {
         //select user list<> whoes location is still null
         List<Object[]> userNameLocations
                 = locationDaoService.getAllUserLocation();
+        System.out.println("get all locations");
         entityList = new ArrayList<>(userNameLocations.size());
         //be careful the limit rate.
         //for each element of the list,
             //get location and save.
 
+        int i = 0;
         for(Object[] array: userNameLocations){
-            _generateAndSave(array);
+
+            boolean result = _generateAndSave(array);
+            System.out.println(array[0]);
+            System.out.println(array[1]);
+            System.out.println(i);
+            if(!result){
+                break;
+            }
+
+            i++;
         }
 
     }
@@ -52,10 +69,11 @@ public class LocationModelImpl {
         if(userLocationEntity==null){
             return false;
         }
-        return entityList.add(userLocationEntity);
+        entityList.add(userLocationEntity);
+        return locationDaoService.insert(userLocationEntity);
     }
 
-    public void getNeighbors(String user){
+    public void getNeighbors(double latitude,double longtitude){
         double latitudeUpper = 0;
         double latitudeDown = 0;
         double longtitudeUpper = 0;
@@ -81,7 +99,14 @@ public class LocationModelImpl {
             return keys[i];
         }
         private static String _getURL(String location){
-            return geocodeUrl+"&locality="+location+"&key="+_getKey();
+
+            try{
+                String urlEncode =  geocodeUrl+"&locality="+URLEncoder.encode(location, "UTF-8")+"&key="+_getKey();
+                return urlEncode;
+            }catch (UnsupportedEncodingException e){
+                e.printStackTrace();
+            }
+            return null;
         }
 
         public static UserLocationEntity geoCode(Object name,Object location) {
@@ -91,6 +116,7 @@ public class LocationModelImpl {
             try{
                 url = new URL(_getURL(location.toString()));
             }catch (IOException e){
+                e.printStackTrace();
                 return null;
             }
 
@@ -99,24 +125,22 @@ public class LocationModelImpl {
             try {
                 jsonNode = objectMapper.readTree(url);
             }catch (IOException e){
+                e.printStackTrace();
                 return null;
             }
             JsonNode status = jsonNode.get("statusDescription");
 
 
             if(status==null||!status.asText().equals("OK")){
-                System.out.println("status is not okay!");
+                System.err.println("status is not okay!");
                 return null;
             }
             JsonNode resources = jsonNode.get("resourceSets").get(0).get("resources");
             if(resources==null||resources.size()==0){
-                System.out.println("no macth position");
+                System.err.println("no macth position");
                 return null;
             }
-            else if(resources.size()>1){
-                System.out.println("conflict position.");
-                return null;
-            }
+
 
             JsonNode resource = resources.get(0);
             userLocationEntity.setCountry(resource.get("address").get("countryRegion").asText());
@@ -134,15 +158,10 @@ public class LocationModelImpl {
 
     public static void main(String[] args){
 
-        UserLocationEntity userLocationEntity =
-                LocationModelImpl.LocationGetter.geoCode("","jiangsu,nanjing");
-        if(userLocationEntity==null){
-            return;
-        }
-        System.out.println(userLocationEntity.getCountry());
-        System.out.println(userLocationEntity.getLocation());
-        System.out.println(userLocationEntity.getLongitude());
-        System.out.println(userLocationEntity.getLatitude());
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/applicationContext.xml");
+        LocationModelImpl handler = (LocationModelImpl)context.getBean(LocationModelImpl.class);
+       handler.generateLocations();
 
     }
 
