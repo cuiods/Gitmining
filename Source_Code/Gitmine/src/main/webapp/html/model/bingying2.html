@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="text/javascript" src="http://dev.ditu.live.com/mapcontrol/mapcontrol.ashx?v=6.2"></script>
+
+    <script type="text/javascript">
+        var map = null;
+
+        var LA = new VELatLong(34.0540, -118.2370);
+
+        var pinPoint = null;
+        var pinPixel = null;
+
+        function GetMap()
+        {
+            map = new VEMap('myMap');
+            map.LoadMap(LA, 14, VEMapStyle.Road, false, VEMapMode.Mode2D, true, 1);
+
+            AddPin();
+        }
+
+
+        function AddPin()
+        {
+            // Add a new pushpin to the center of the map.
+            pinPoint = map.GetCenter();
+            pinPixel = map.LatLongToPixel(pinPoint);
+            map.AddPushpin(pinPoint);
+        }
+    </script>
+</head>
+<body onload="GetMap();">
+<div id='myMap' style="position:relative; width:400px; height:400px;"></div>
+</body>
+</html>
