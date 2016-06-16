@@ -4,11 +4,9 @@ import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
 import edu.nju.entity.TblUser;
+import edu.nju.entity.UserLocationEntity;
 import edu.nju.model.pojo.*;
-import edu.nju.model.service.HobbyModelService;
-import edu.nju.model.service.MapModelService;
-import edu.nju.model.service.UserModelService;
-import edu.nju.model.service.UserStatsService;
+import edu.nju.model.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +39,9 @@ public class UserController {
 
     @Resource
     private HobbyModelService hobbyModelImpl;
+
+    @Resource
+    private LocationModelService locationModelService;
 
     @Autowired
     public UserController(UserModelService userModelImpl) {
@@ -148,11 +149,23 @@ public class UserController {
         }
         RadarChart radarChart = userModelImpl.getUserRadarChart(username);
         SimpleChart languageChart = userModelImpl.getUserLanguage(username);
+        List<UserLocationEntity> neighbors = this.locationModelService.getNeighbors(username);
 
         map.put("basicInfo",userVO);
         map.put("radarChart",radarChart);
         map.put("languageChart",languageChart);
+        map.put("neighbors",neighbors);
         return map;
+    }
+
+
+    @RequestMapping(value = "/neighbors")
+    @ResponseBody
+    public List<UserLocationEntity> getNerghbors(@RequestParam String name,
+                                                 @RequestParam double longitude,
+                                                 @RequestParam double latitude,
+                                                 HttpSession session){
+        return locationModelService.getNeighbors(name,longitude,latitude);
     }
 
 //    @RequestMapping(value = "/{username:.+}/relatedUser")

@@ -610,7 +610,7 @@
                         bounds.y2 = box.y + box.height;
                     }
                     if(bounds.x1==bounds.x2&&bounds.y1==bounds.y2){
-                        alert("wrong");
+                        console.log("some thing wrong in graph");
                     }
                     first = false;
                 }).attr('text-anchor', 'middle');

@@ -73,6 +73,6 @@ public interface LocationDaoService {
      * @param latitudeHigh
      * @return
      */
-    public List<UserLocationEntity> filterByArea(long longitudeLow,long longitudeHigh,long latitudeLow,long latitudeHigh);
+    public List<UserLocationEntity> filterByArea(double longitudeLow,double longitudeHigh,double latitudeLow,double latitudeHigh);
 
 }
