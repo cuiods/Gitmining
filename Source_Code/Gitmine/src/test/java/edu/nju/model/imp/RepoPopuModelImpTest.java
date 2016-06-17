@@ -78,7 +78,7 @@ public class RepoPopuModelImpTest {
 
     @Test
     public void popularRate() throws Exception {
-        System.out.println(repoPopuModelService.popularRate("collectiveidea","audited"));
+        System.out.println(repoPopuModelService.popularRate("netguru","capistrano-docker"));
     }
 
 }

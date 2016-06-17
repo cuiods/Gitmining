@@ -7,6 +7,7 @@ import edu.nju.model.statistic.StarRegressionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -114,22 +115,28 @@ public class RepoPopuController {
         return repoPopuModelService.vaPerson();
     }
 
-    @RequestMapping("/vaLanguage")
+    @RequestMapping("/vaLanguageData")
     @ResponseBody
     public List<List<Integer>> vaLanguageData() {
         return repoPopuModelService.vaLanguageData();
     }
 
-    @RequestMapping("/vaField")
+    @RequestMapping("/vaFieldData")
     @ResponseBody
     public List<List<Integer>> vaFieldData() {
         return repoPopuModelService.vaFieldData();
     }
 
-    @RequestMapping("/vaPerson")
+    @RequestMapping("/vaPersonData")
     @ResponseBody
     public List<List<Integer>> vaPersonData() {
         return repoPopuModelService.vaPersonData();
+    }
+
+    @RequestMapping("/rate")
+    @ResponseBody
+    public double popuRate(@RequestParam String repoOwner, @RequestParam String repoName) {
+        return repoPopuModelService.popularRate(repoOwner,repoName);
     }
 
     @RequestMapping("/followerRegression")

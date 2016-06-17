@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -213,8 +214,10 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     public double popularRate(String repoOwner, String repoName) {
         double[] theta = repoPopuImp.getClassification();
         double[] X = repoPopuImp.getClassificationXs(repoOwner,repoName);
-        System.out.println(-(theta[0]+theta[1]*X[0]+theta[2]*X[1]));
         double result = 1.0 / (1.0 + Math.exp(-(theta[0]+theta[1]*X[0]+theta[2]*X[1])));
+        result = result*100;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        decimalFormat.format(result);
         return result;
     }
 }
