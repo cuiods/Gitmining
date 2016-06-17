@@ -404,4 +404,31 @@ public class RepoPopuDaoImp implements RepoPopuService {
         return list;
     }
 
+    @Override
+    public double getViaLanguage() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select dataOne from StaData where name='viaLanguage' ");
+        double result = (double) query.list().get(0);
+        session.close();
+        return result;
+    }
+
+    @Override
+    public double getViaField() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select dataOne from StaData where name='viaField' ");
+        double result = (double) query.list().get(0);
+        session.close();
+        return result;
+    }
+
+    @Override
+    public double getViaPerson() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select dataOne from StaData where name='viaPerson' ");
+        double result = (double) query.list().get(0);
+        session.close();
+        return result;
+    }
+
 }

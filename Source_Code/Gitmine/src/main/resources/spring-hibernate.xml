@@ -72,6 +72,7 @@
                 <value>edu.nju.entity.RegisterStarUserEntity</value>
                 <value>edu.nju.entity.UserCountryEntity</value>
                 <value>edu.nju.entity.UserLocationEntity</value>
+                <value>edu.nju.entity.StaData</value>
             </list>
         </property>
     </bean>

@@ -167,22 +167,40 @@ public class RepoPopuModelImp implements RepoPopuModelService {
     @Override
     public List vaLanguage() {
         List list = new ArrayList<>();
-        list.add(new OneWayANOVA(repoPopuImp.variableLanguage()).doAnalysis());
+        //list.add(new OneWayANOVA(repoPopuImp.variableLanguage()).doAnalysis());
+        list.add(repoPopuImp.getViaLanguage());
         return list;
+    }
+
+    @Override
+    public List<List<Integer>> vaLanguageData() {
+        return repoPopuImp.variableLanguage();
     }
 
     @Override
     public List vaField() {
         List list = new ArrayList<>();
-        list.add(new OneWayANOVA(repoPopuImp.variableFields()).doAnalysis());
+        //list.add(new OneWayANOVA(repoPopuImp.variableFields()).doAnalysis());
+        list.add(repoPopuImp.getViaField());
         return list;
+    }
+
+    @Override
+    public List<List<Integer>> vaFieldData() {
+        return repoPopuImp.variableFields();
     }
 
     @Override
     public List vaPerson() {
         List list = new ArrayList<>();
-        list.add(new OneWayANOVA(repoPopuImp.variablePerson()).doAnalysis());
+        //list.add(new OneWayANOVA(repoPopuImp.variablePerson()).doAnalysis());
+        list.add(repoPopuImp.getViaPerson());
         return list;
+    }
+
+    @Override
+    public List<List<Integer>> vaPersonData() {
+        return repoPopuImp.variablePerson();
     }
 
     @Override

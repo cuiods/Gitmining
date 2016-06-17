@@ -122,4 +122,8 @@ public interface RepoPopuService {
      *      [(sum(follower),star)]
      */
     List<Object[]> followerRegression(int max);
+
+    double getViaLanguage();
+    double getViaField();
+    double getViaPerson();
 }

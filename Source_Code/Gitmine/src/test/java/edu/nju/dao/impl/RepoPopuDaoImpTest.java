@@ -161,4 +161,19 @@ public class RepoPopuDaoImpTest {
             System.out.print("\n");
         }
     }
+
+    @Test
+    public void getViaLanguage() throws Exception {
+        System.out.println(repoPopuImp.getViaLanguage());
+    }
+
+    @Test
+    public void getViaField() throws Exception {
+        System.out.println(repoPopuImp.getViaField());
+    }
+
+    @Test
+    public void getViaPerson() throws Exception {
+        System.out.println(repoPopuImp.getViaPerson());
+    }
 }

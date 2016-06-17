@@ -23,7 +23,10 @@ public interface RepoPopuModelService {
     List<List> statSpecialFollowRate();
     Map<String,List> statFollowerSuper();
     List vaLanguage();
+    List<List<Integer>> vaLanguageData();
     List vaField();
+    List<List<Integer>> vaFieldData();
     List vaPerson();
+    List<List<Integer>> vaPersonData();
     List<Object[]> regressionFollower();
 }

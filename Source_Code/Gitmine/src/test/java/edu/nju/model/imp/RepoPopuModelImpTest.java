@@ -61,4 +61,19 @@ public class RepoPopuModelImpTest {
         System.out.println(map.get("large"));
     }
 
+    @Test
+    public void vaLanguage() throws Exception {
+        System.out.println(repoPopuModelService.vaLanguage());
+    }
+
+    @Test
+    public void vaField() throws Exception {
+        System.out.println(repoPopuModelService.vaField());
+    }
+
+    @Test
+    public void vaPerson() throws Exception {
+        System.out.println(repoPopuModelService.vaPerson());
+    }
+
 }
