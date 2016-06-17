@@ -1,6 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.dao.service.RepoPopuService;
+import edu.nju.entity.StaData;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -381,7 +383,7 @@ public class RepoPopuDaoImp implements RepoPopuService {
                 "COUNT(CASE WHEN YEAR(create_at)=2009 THEN 2 END), " +
                 "COUNT(CASE WHEN YEAR(create_at)=2010 THEN 3 END) " +
                 "FROM sec_repo GROUP BY (CASE WHEN description REGEXP '(^| +)node.js($| +|[^a-zA-Z])' THEN 1 " +
-                "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 2 ) ");
+                "WHEN description REGEXP '(^| +)javascript($| +|[^a-zA-Z])' THEN 2 END ) ");
         List<Object[]> objects = query.list();
         session.close();
         return objects;
@@ -430,5 +432,39 @@ public class RepoPopuDaoImp implements RepoPopuService {
         session.close();
         return result;
     }
+
+    @Override
+    public double[] getClassification() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery(" from StaData where name='classification' ");
+        StaData data = (StaData) query.list().get(0);
+        double[] doubles = new double[]{data.getDataOne(),data.getDataTwo(),data.getDataThree()};
+        session.close();
+        return doubles;
+    }
+
+    @Override
+    public double[] getClassificationXs(String repoOwner, String repoName) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createSQLQuery("SELECT SUM(U.followers),AVG(U.followers) FROM sec_repo AS Repo " +
+                "LEFT JOIN sec_contributor AS Contri ON (Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name)" +
+                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
+                "WHERE Repo.owner=:repoOwner AND Repo.name=:repoName ");
+        query.setString("repoOwner",repoOwner);
+        query.setString("repoName",repoName);
+        Object[] objects = (Object[]) query.list().get(0);
+        double[] doubles = new double[]{0,0};
+        if (objects[0]!=null) {
+            BigDecimal bigDecimal = (BigDecimal) objects[0];
+            doubles[0] = bigDecimal.doubleValue();
+        }
+        if (objects[1]!=null) {
+            BigDecimal bigDecimal = (BigDecimal) objects[1];
+            doubles[1] = bigDecimal.doubleValue();
+        }
+        session.close();
+        return doubles;
+    }
+
 
 }

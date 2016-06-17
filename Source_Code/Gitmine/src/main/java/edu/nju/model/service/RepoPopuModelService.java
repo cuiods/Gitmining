@@ -29,4 +29,5 @@ public interface RepoPopuModelService {
     List vaPerson();
     List<List<Integer>> vaPersonData();
     List<Object[]> regressionFollower();
+    double popularRate(String repoOwner, String repoName);
 }

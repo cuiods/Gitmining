@@ -114,6 +114,24 @@ public class RepoPopuController {
         return repoPopuModelService.vaPerson();
     }
 
+    @RequestMapping("/vaLanguage")
+    @ResponseBody
+    public List<List<Integer>> vaLanguageData() {
+        return repoPopuModelService.vaLanguageData();
+    }
+
+    @RequestMapping("/vaField")
+    @ResponseBody
+    public List<List<Integer>> vaFieldData() {
+        return repoPopuModelService.vaFieldData();
+    }
+
+    @RequestMapping("/vaPerson")
+    @ResponseBody
+    public List<List<Integer>> vaPersonData() {
+        return repoPopuModelService.vaPersonData();
+    }
+
     @RequestMapping("/followerRegression")
     @ResponseBody
     public List<Object[]> followerRegression() {

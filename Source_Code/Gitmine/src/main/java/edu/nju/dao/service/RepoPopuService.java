@@ -126,4 +126,8 @@ public interface RepoPopuService {
     double getViaLanguage();
     double getViaField();
     double getViaPerson();
+
+    double[] getClassification();
+
+    double[] getClassificationXs(String repoOwner, String repoName);
 }

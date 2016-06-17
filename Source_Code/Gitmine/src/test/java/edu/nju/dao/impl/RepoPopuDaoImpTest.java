@@ -176,4 +176,14 @@ public class RepoPopuDaoImpTest {
     public void getViaPerson() throws Exception {
         System.out.println(repoPopuImp.getViaPerson());
     }
+
+    @Test
+    public void getClassification() throws Exception {
+        System.out.println(repoPopuImp.getClassification()[0]);
+    }
+
+    @Test
+    public void getClassificationXs() throws Exception {
+        System.out.println(repoPopuImp.getClassificationXs("wycats","jspec")[0]);
+    }
 }

@@ -76,4 +76,9 @@ public class RepoPopuModelImpTest {
         System.out.println(repoPopuModelService.vaPerson());
     }
 
+    @Test
+    public void popularRate() throws Exception {
+        System.out.println(repoPopuModelService.popularRate("collectiveidea","audited"));
+    }
+
 }
