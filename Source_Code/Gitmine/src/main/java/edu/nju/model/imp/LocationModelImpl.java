@@ -35,6 +35,7 @@ public class LocationModelImpl implements LocationModelService{
             userLocationEntity.setLatitude(latitude);
             userLocationEntity.setLocation("");
             userLocationEntity.setCountry("");
+            locationDaoService.insert(userLocationEntity);
         }
        return _getNeibors(longtitude,latitude);
     }

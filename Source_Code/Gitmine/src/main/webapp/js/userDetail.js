@@ -17,23 +17,31 @@ function loadMapScenario(){
         requestOptions.bounds = map.getBounds();
         requestOptions.where = currentLooation==undefined?"beijing":currentLooation;
         requestOptions.callback = function (answer, userData) {
-            console.log(answer.results[0]);
             map.setView({ bounds: answer.results[0].bestView });
-            console.log(answer.results[0].location);
             map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
 
+
+            
             function addNeighbors(neighbors) {
                 $.each(neighbors,function (i,neighbor) {
-                    var pushpin = new Microsoft.Maps.Pushpin(
-                        new Microsoft.Maps.Location(neighbor.longitude,neighbor.latitude),
+                    
+                    var pin = new Microsoft.Maps.Pushpin(
+                        new Microsoft.Maps.Location(neighbor.latitude ,neighbor.longitude),
                         { text: 'U', title: neighbor.login }
                     );
-                    map.entities.push(pushpin);
+                    map.entities.push(pin);
+                    console.log(pin);
+                    Microsoft.Maps.Events.addHandler(
+                        pin,
+                        'click',
+                        function (args) {
+                            window.location.href = '/html/html/userDetail.html?userName='+neighbor.login;
+                        });
                 });
             }
 
             if(userInfoData.neighbors!=null){
-                addNeighbors(userInfoData.neighbors);
+                 addNeighbors(userInfoData.neighbors);
             }else{
                 var name = userInfoData.basicInfo.login;
                 var longitude = answer.results[0].location.longitude;

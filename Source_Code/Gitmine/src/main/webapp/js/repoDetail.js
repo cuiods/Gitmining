@@ -395,12 +395,13 @@ function setCodeFrequency(params) {
 
 }
 
+
 function punchCard(params) {
     var url_punchCard = "/repo/"+params+"/graph/punch_card";
     var node = document.getElementById("punchCard");
     var chart = echarts.init(node);
     chart.showLoading();
-   $.get(url_punchCard,function (punchCard) {
+    $.get(url_punchCard,function (punchCard) {
         var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
             '7a', '8a', '9a','10a','11a',
             '12p', '1p', '2p', '3p', '4p', '5p',
@@ -412,93 +413,83 @@ function punchCard(params) {
             return [item[1], item[0], item[2]];
         });
 
-       var count = 0;
-       var max = 0;
-       var min = 100000;
-       for(index in data){
-           var size = data[index][2];
-           count = count+size;
-           if(max<size){
-               max = size;
-           }
-           if(min>size){
-               min = size;
-           }
-       }
-       count =Math.sqrt(count);
-       if(count<1){
-           count = 1;
-       }
-       var rate = 5/count+2/(1+max)+1;
-       if((max<15&&count<400)){
-           rate++
-       }if((max<5&&count<40)){
-           rate++
-       }if(max>30&&count>10000&&rate>1){
-           rate--;
-       }if(max>50&&count>100000&&rate>1){
-           rate--;
-       }
-       option = {
-           title: {
-               text: 'Punch Card of Github',
-               link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
-           },
-           legend: {
-               data: ['Punch Card'],
-               left: 'right'
-           },
-           tooltip: {
-               position: 'top',
-               formatter: function (params) {
-                   return params.value[2] + ' commits in ' + hours[params.value[0]] + ' of ' + days[params.value[1]];
-               }
-           },
-           grid: {
-               left: 2,
-               bottom: 10,
-               right: 10,
-               containLabel: true
-           },
-           xAxis: {
-               type: 'category',
-               data: hours,
-               boundaryGap: false,
-               splitLine: {
-                   show: true,
-                   lineStyle: {
-                       color: '#ddd',
-                       type: 'dashed'
-                   }
-               },
-               axisLine: {
-                   show: false
-               }
-           },
-           yAxis: {
-               type: 'category',
-               data: days,
-               axisLine: {
-                   show: false
-               }
-           },
-           series: [{
-               name: 'Punch Card',
-               type: 'scatter',
-               symbolSize: function (val) {
-                   return val[2] * rate;
-               },
-               data: data,
-               animationDelay: function (idx) {
-                   return idx * 5;
-               }
-           }]
-       };
-       chart.setOption(option);
-       chart.hideLoading();
-       window.onresize = chart.resize;
-   });
+        var count = 0;
+        var max = 0;
+        var min = 100000;
+        for(index in data){
+            var size = data[index][2];
+            count = count+size;
+            if(max<size){
+                max = size;
+            }
+            if(min>size){
+                min = size;
+            }
+        }
+        function getRidos(size) {
+            return 25*size/(1+max);
+        }
+        option = {
+            title: {
+                text: 'Punch Card of Github',
+                link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
+            },
+            legend: {
+                data: ['Punch Card'],
+                left: 'right'
+            },
+            tooltip: {
+                position: 'top',
+                formatter: function (params) {
+                    return params.value[2] + ' commits in ' + hours[params.value[0]] + ' of ' + days[params.value[1]];
+                }
+            },
+            grid: {
+                left: 2,
+                bottom: 10,
+                right: 10,
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                data: hours,
+                boundaryGap: false,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ddd',
+                        type: 'dashed'
+                    }
+                },
+                axisLine: {
+                    show: false
+                }
+            },
+            yAxis: {
+                type: 'category',
+                data: days,
+                axisLine: {
+                    show: false
+                }
+            },
+            series: [{
+                name: 'Punch Card',
+                type: 'scatter',
+                symbolSize: function (val) {
+                    return getRidos(val[2] );
+                },
+                data: data,
+                animationDelay: function (idx) {
+                    return idx * 5;
+                }
+            }]
+        };
+        chart.setOption(option);
+        chart.hideLoading();
+        window.onresize = chart.resize;
+    });
 }
+
 
 function wrongUrl() {
     alert("wrong url");
