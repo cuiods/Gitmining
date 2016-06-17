@@ -60,7 +60,12 @@ $(document).ready(function () {
                             {value:data.value[1], name:data.field[1]},
                             {value:data.value[2], name:data.field[2]},
                             {value:data.value[3], name:data.field[3]},
-                            {value:data.value[4], name:data.field[4]}
+                            {value:data.value[4], name:data.field[4]},
+                            {value:data.value[5], name:data.field[5]},
+                            {value:data.value[6], name:data.field[6]},
+                            {value:data.value[7], name:data.field[7]},
+                            {value:data.value[8], name:data.field[8]},
+                            {value:data.value[9], name:data.field[9]}
                         ],
                         itemStyle: {
                             emphasis: {
