@@ -179,4 +179,6 @@ $(document).ready(function () {
             $("#one-way-person").html("F value: "+data[0]);
         }
     });
+
+    
 })
