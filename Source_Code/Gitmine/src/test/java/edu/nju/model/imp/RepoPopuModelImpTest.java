@@ -81,4 +81,19 @@ public class RepoPopuModelImpTest {
         System.out.println(repoPopuModelService.popularRate("netguru","capistrano-docker"));
     }
 
+    @Test
+    public void vaLanguageData() throws Exception {
+        System.out.println(repoPopuModelService.vaLanguageData());
+    }
+
+    @Test
+    public void vaFieldData() throws Exception {
+        System.out.println(repoPopuModelService.vaFieldData());
+    }
+
+    @Test
+    public void vaPersonData() throws Exception {
+        System.out.println(repoPopuModelService.vaPersonData());
+    }
+
 }

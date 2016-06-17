@@ -180,5 +180,127 @@ $(document).ready(function () {
         }
     });
 
+    $.ajax({
+        type:"GET",
+        url:"/popularity/vaLanguageData",
+        success:function(ldata){
+            $('#regression-language').highcharts({
+
+                chart: {
+                    type: 'boxplot'
+                },
+
+                title: {
+                    text: 'Star Distribution with Different Languages'
+                },
+
+                legend: {
+                    enabled: false
+                },
+
+                xAxis: {
+                    categories: ['JavaScript','Ruby','Python','CSS','PHP','Objective_C','C','Java'],
+                    title: {
+                        text: 'Language No.'
+                    }
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'Observations'
+                    }
+                },
+
+                series: [{
+                    name: 'Observations',
+                    data: ldata,
+                    tooltip: {
+                        headerFormat: '<em>Language {point.key}</em><br/>'
+                    }
+                }, {
+                    name: 'Outlier',
+                    color: Highcharts.getOptions().colors[0],
+                    type: 'scatter',
+                    data: [ // x, y positions where 0 is the first category
+                        [0, 644],
+                        [4, 718],
+                        [4, 951],
+                        [4, 969]
+                    ],
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observation: {point.y}'
+                    }
+                }]
+
+            });
+        }
+    });
+
+    $.ajax({
+        type:"GET",
+        url:"/popularity/vaFieldData",
+        success:function(ldata){
+            $('#regression-field').highcharts({
+
+                chart: {
+                    type: 'boxplot'
+                },
+
+                title: {
+                    text: 'Star Distribution with Different Fields'
+                },
+
+                legend: {
+                    enabled: false
+                },
+
+                xAxis: {
+                    categories: ['node.js','javascript','library','ruby','web','api','vim','plugin'],
+                    title: {
+                        text: 'Field No.'
+                    }
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'Observations'
+                    }
+                },
+
+                series: [{
+                    name: 'Observations',
+                    data: ldata,
+                    tooltip: {
+                        headerFormat: '<em>Language {point.key}</em><br/>'
+                    }
+                }, {
+                    name: 'Outlier',
+                    color: Highcharts.getOptions().colors[0],
+                    type: 'scatter',
+                    data: [ // x, y positions where 0 is the first category
+                        [0, 644],
+                        [4, 718],
+                        [4, 951],
+                        [4, 969]
+                    ],
+                    marker: {
+                        fillColor: 'white',
+                        lineWidth: 1,
+                        lineColor: Highcharts.getOptions().colors[0]
+                    },
+                    tooltip: {
+                        pointFormat: 'Observation: {point.y}'
+                    }
+                }]
+
+            });
+        }
+    });
+
     
 })

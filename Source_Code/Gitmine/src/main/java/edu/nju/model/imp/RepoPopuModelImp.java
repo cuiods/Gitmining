@@ -13,10 +13,7 @@ import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigInteger;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * repository star stat
@@ -175,7 +172,20 @@ public class RepoPopuModelImp implements RepoPopuModelService {
 
     @Override
     public List<List<Integer>> vaLanguageData() {
-        return repoPopuImp.variableLanguage();
+        List<List<Integer>> integers = repoPopuImp.variableLanguage();
+        List<List<Integer>> result = new ArrayList<>();
+        for (List<Integer> integers1 : integers) {
+            List<Integer> tempResult = new ArrayList<>();
+            Collections.sort(integers1);
+            int length = integers1.size();
+            tempResult.add(integers1.get(0));
+            tempResult.add(integers1.get(length/4));
+            tempResult.add(integers1.get(length/2));
+            tempResult.add(integers1.get(3*length/4));
+            tempResult.add(integers1.get(length-10));
+            result.add(tempResult);
+        }
+        return result;
     }
 
     @Override
@@ -188,7 +198,20 @@ public class RepoPopuModelImp implements RepoPopuModelService {
 
     @Override
     public List<List<Integer>> vaFieldData() {
-        return repoPopuImp.variableFields();
+        List<List<Integer>> integers = repoPopuImp.variableFields();
+        List<List<Integer>> result = new ArrayList<>();
+        for (List<Integer> integers1 : integers) {
+            List<Integer> tempResult = new ArrayList<>();
+            Collections.sort(integers1);
+            int length = integers1.size();
+            tempResult.add(integers1.get(0));
+            tempResult.add(integers1.get(length/4));
+            tempResult.add(integers1.get(length/2));
+            tempResult.add(integers1.get(3*length/4));
+            tempResult.add(integers1.get(length-10));
+            result.add(tempResult);
+        }
+        return result;
     }
 
     @Override
@@ -201,7 +224,20 @@ public class RepoPopuModelImp implements RepoPopuModelService {
 
     @Override
     public List<List<Integer>> vaPersonData() {
-        return repoPopuImp.variablePerson();
+        List<List<Integer>> integers = repoPopuImp.variablePerson();
+        List<List<Integer>> result = new ArrayList<>();
+        for (List<Integer> integers1 : integers) {
+            List<Integer> tempResult = new ArrayList<>();
+            Collections.sort(integers1);
+            int length = integers1.size();
+            tempResult.add(integers1.get(0));
+            tempResult.add(integers1.get(length/4));
+            tempResult.add(integers1.get(length/2));
+            tempResult.add(integers1.get(3*length/4));
+            tempResult.add(integers1.get(length-10));
+            result.add(tempResult);
+        }
+        return result;
     }
 
     @Override
