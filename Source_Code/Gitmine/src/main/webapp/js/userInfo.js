@@ -28,6 +28,8 @@ var UserList={
             var cherish = tempGrid.find('.cherish');
             cherishPresent(user.isStared,cherish);
 
+            onIdCherishClick(cherish,user.login,'/user/star','/user/unstar');
+
             tempGrid.find('.create').eq(0).text('create at:  '+user.createAt);
             tempGrid.find('.update').eq(0).text('update at:  '+user.updateAt);
             tempGrid.find('.repo').eq(0).text(user.publicRepo);
@@ -93,10 +95,10 @@ function sort(obj){
 
         if(obj.attr("isReverse")=="true"){
             obj.attr("isReverse" , "false");
-            obj.children("span").attr("class", "glyphicon glyphicon-arrow-down");
+            obj.children("span").attr("class", "glyphicon glyphicon-arrow-up");
         }else{
             obj.attr("isReverse" , "true");
-            obj.children("span").attr("class",  "glyphicon glyphicon-arrow-up");
+            obj.children("span").attr("class",  "glyphicon glyphicon-arrow-down");
         };
 
     }else{
@@ -105,7 +107,7 @@ function sort(obj){
 
         obj.attr("ischecked" , "true");
         obj.attr("isReverse" , "true");
-        obj.children("span").attr("class",  "glyphicon glyphicon-arrow-up");
+        obj.children("span").attr("class",  "glyphicon glyphicon-arrow-down");
     }
     // alert("what is wrong");
 
@@ -161,7 +163,7 @@ function search(keyChange){
             });
         },
         error:function(){
-            alert("wrong!");
+            alert("userInfo search wrong!");
         }
     })
     
@@ -194,7 +196,7 @@ function jumpSearchPage(current){
             UserList.updateData(data.userList);
         },
         error:function(){
-            alert("wrong!");
+            alert("userInfo jumpPage wrong!");
         }
     })
 }
@@ -252,7 +254,7 @@ function addCol(){
 
         $.ajax({
             method:'GET',
-            url:'/user/'+compUser,
+            url:'/user/'+compUser+'/basic',
             success:function(userResult){
                 count++;
                 compInfo.push(
@@ -272,7 +274,7 @@ function addCol(){
                 
             },
             error: function(){
-                alert("wrong!");
+                alert("userInfo compare addCol wrong!");
             }
         })
     })
