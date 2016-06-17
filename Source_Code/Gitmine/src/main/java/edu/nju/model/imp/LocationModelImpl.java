@@ -27,12 +27,21 @@ public class LocationModelImpl implements LocationModelService{
     }
 
     public List<UserLocationEntity>  getNeighbors(String name,double longtitude ,double latitude){
+        UserLocationEntity userLocationEntity = locationDaoService.getUserLocationEntity(name);
+        if(userLocationEntity==null){
+            userLocationEntity = new UserLocationEntity();
+            userLocationEntity.setLogin(name);
+            userLocationEntity.setLongitude(longtitude);
+            userLocationEntity.setLatitude(latitude);
+            userLocationEntity.setLocation("");
+            userLocationEntity.setCountry("");
+        }
        return _getNeibors(longtitude,latitude);
     }
 
 
     public List<UserLocationEntity>  getNeighbors(String name){
-        UserLocationEntity userLocationEntity = null;
+        UserLocationEntity userLocationEntity = locationDaoService.getUserLocationEntity(name);
         if(userLocationEntity==null){
             return null;
         }

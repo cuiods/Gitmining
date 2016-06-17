@@ -35,14 +35,6 @@ function loadMapScenario(){
             if(userInfoData.neighbors!=null){
                 addNeighbors(userInfoData.neighbors);
             }else{
-                // var a = [
-                //     {
-                //         longitude:20,
-                //         latitude:115,
-                //         login:"cuishen",
-                //     }
-                // ];
-                // addNeighbors(a);
                 var name = userInfoData.basicInfo.login;
                 var longitude = answer.results[0].location.longitude;
                 var latitude = answer.results[0].location.latitude;

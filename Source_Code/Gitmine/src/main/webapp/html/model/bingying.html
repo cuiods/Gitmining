@@ -29,6 +29,15 @@
                         { text: 'U', title: 'daixinyan' }
                         );
                 map.entities.push(pushpin);
+
+
+                Microsoft.Maps.Events.addHandler(
+                        pushpin,
+                        'click',
+                        function (args) {
+                           console.log(args.target.entity.title);
+
+                        });
             };
             searchManager.geocode(requestOptions);
         });
