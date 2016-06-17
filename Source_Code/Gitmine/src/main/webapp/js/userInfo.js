@@ -52,7 +52,9 @@ $(document).ready(
         var url = "/user/list"+"?pageNum=1";
         $.get(url,function (object) {
 
+            // $('#listStart').showLoading();
             UserList.updateData(object.userList);
+            // $('#listStart').hideLoading();
             $.jqPaginator('#pagination1', {
                 totalPages: object.totalPage,
                 visiblePages: 8,

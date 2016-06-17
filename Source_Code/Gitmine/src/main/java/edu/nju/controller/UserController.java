@@ -130,6 +130,7 @@ public class UserController {
         map.put("totalPage",totalSearchPage);
         map.put("currentPage",pageNum);
         map.put("userList",resultList);
+        System.out.println("out!");
         return map;
     }
 
