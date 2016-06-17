@@ -21,13 +21,22 @@ public class LocationModelImpl implements LocationModelService{
 
     private static final double WIDTH = 5;
 
-    public List<UserLocationEntity>  getNeighbors(String name,double longtitude ,double latitude){
+
+    private List<UserLocationEntity> _getNeibors(double longtitude ,double latitude){
         return locationDaoService.filterByArea(longtitude-WIDTH,longtitude+WIDTH,latitude-WIDTH,latitude+WIDTH);
+    }
+
+    public List<UserLocationEntity>  getNeighbors(String name,double longtitude ,double latitude){
+       return _getNeibors(longtitude,latitude);
     }
 
 
     public List<UserLocationEntity>  getNeighbors(String name){
-        return null;
+        UserLocationEntity userLocationEntity = null;
+        if(userLocationEntity==null){
+            return null;
+        }
+        return _getNeibors(userLocationEntity.getLongitude(),userLocationEntity.getLatitude());
     }
 
 }
