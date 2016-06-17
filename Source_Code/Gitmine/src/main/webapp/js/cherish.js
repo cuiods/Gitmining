@@ -8,68 +8,74 @@
 //urlStr: /user/star
 //oppoUrl: /user/unStar
 
-function onCherishClick(obj,fatherType,dataStr,starUrl,unStarUrl){
-    var objJQ = $(obj);
-    if(objJQ.hasClass('icon-heart-empty')){
-        cherish(obj,fatherType,dataStr,starUrl,unStarUrl);
-    }else{
-        unCherish(obj,fatherType,dataStr,unStarUrl,starUrl);
-    }
-}
-function cherish(obj,fatherType,dataStr,starUrl,unStarUrl){
-    var objJQ = $(obj);
-    var fatherGrid = objJQ.parents(fatherType).eq(0);
-    var dataObj = fatherGrid.find(dataStr).eq(0);
-    // console.log(dataObj.text());
-    $.ajax({
-        type:'POST',
-        url:starUrl,
-        data:{username:dataObj.text()},
-        success:function(ok){
-            if(ok) {
-                objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
-                objJQ.attr('title', 'click to unCherish');
-                objJQ.unbind('click').click(function () {
-                    unCherish(obj, fatherType, dataStr, unStarUrl, starUrl);
-                })
-            }else{
-                userlogin();
-            }
-            // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
-        },
-        error:function(){
-            alert('cherish wrong');
-        }
-
-    })
-}
-
-function unCherish(obj,fatherType,dataStr,unStarUrl,starUrl){
-    var objJQ = $(obj);
-    var fatherGrid = objJQ.parents(fatherType).eq(0);
-    var dataObj = fatherGrid.find(dataStr).eq(0);
-    $.ajax({
-        type:'GET',
-        url:unStarUrl,
-        data:{username:dataObj.text()},
-        success:function(ok){
-            if(ok) {
-                objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
-                objJQ.attr('title', 'click to cherish');
-                objJQ.unbind('click').click(function () {
-                    cherish(obj, fatherType, dataStr, starUrl, unStarUrl);
-                });
-            }else{
-                userlogin();
-            }
-            // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
-        },
-        error:function(){
-            alert('unCherish wrong');
-        }
-
-    })
-}
+// function onCherishClick(obj,fatherType,dataStr,starUrl,unStarUrl){
+//     var objJQ = $(obj);
+//     if(objJQ.hasClass('icon-heart-empty')){
+//         cherish(obj,fatherType,dataStr,starUrl,unStarUrl);
+//     }else{
+//         unCherish(obj,fatherType,dataStr,unStarUrl,starUrl);
+//     }
+// }
+// function cherish(obj,fatherType,dataStr,starUrl,unStarUrl){
+//     console.log("one time");
+//     var objJQ = $(obj);
+//     var fatherGrid = objJQ.parents(fatherType).eq(0);
+//     var dataObj = fatherGrid.find(dataStr).eq(0);
+//     // console.log(dataObj.text());
+//     $.ajax({
+//         type:'POST',
+//         url:starUrl,
+//         data:{username:dataObj.text()},
+//         success:function(ok){
+//             console.log(dataObj.text()+' '+ok);
+//             if(ok) {
+//                 console.log("i am ok");
+//                 objJQ.removeClass('icon-heart-empty').addClass('icon-heart');
+//                 objJQ.attr('title', 'click to unCherish');
+//                 objJQ.unbind('click').click(function () {
+//                     // console.log("un cherish");
+//                     unCherish(obj, fatherType, dataStr, unStarUrl, starUrl);
+//                 });
+//             }else{
+//                 // console.log(ok);
+//                 userlogin();
+//             }
+//             console.log("here?");
+//             // obj.addEventListener('click',unCherish(obj,fatherType,dataStr),false);
+//         },
+//         error:function(){
+//             alert('cherish wrong');
+//         }
+//
+//     })
+// }
+//
+// function unCherish(obj,fatherType,dataStr,unStarUrl,starUrl){
+//     var objJQ = $(obj);
+//     var fatherGrid = objJQ.parents(fatherType).eq(0);
+//     var dataObj = fatherGrid.find(dataStr).eq(0);
+//     $.ajax({
+//         type:'GET',
+//         url:unStarUrl,
+//         data:{username:dataObj.text()},
+//         success:function(ok){
+//             if(ok) {
+//                 objJQ.removeClass('icon-heart').addClass('icon-heart-empty');
+//                 objJQ.attr('title', 'click to cherish');
+//                 objJQ.unbind('click').click(function () {
+//                     cherish(obj, fatherType, dataStr, starUrl, unStarUrl);
+//                 });
+//             }else{
+//                 userlogin();
+//             }
+//             // obj.addEventListener('click',cherish(obj,fatherType,dataStr),false);
+//         },
+//         error:function(){
+//             alert('unCherish wrong');
+//         }
+//
+//     })
+// }
 
 function onRepoClick_(obj,user_name,repo_name,starUrl,unStarUrl){
     obj.unbind('click').click(function(){
