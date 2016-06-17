@@ -76,7 +76,7 @@ public class RepoController {
     @ResponseBody
     public Map list(@RequestParam int pageNum,
                     @RequestParam(required = false, defaultValue = "repo_name") String sortType,
-                    @RequestParam(required = false, defaultValue = "false") boolean isDesc,
+                    @RequestParam(required = false, defaultValue = "false") boolean reverse,
                     HttpSession session){
         Map<String,Object> map = new HashMap<>();
         List<RepoVO> repoList = null;
@@ -86,7 +86,7 @@ public class RepoController {
                 type = SortType.Repo_Name;
             }
             if (pageNum<1)  pageNum=1;
-            repoList = repoModelImpl.getRepos(type, isDesc, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
+            repoList = repoModelImpl.getRepos(type, reverse, (pageNum-1)*Const.ITEMS_PER_PAGE, Const.ITEMS_PER_PAGE);
             if (session.getAttribute("webUsername") != null){
                 HashSet<String> staredRepo = (HashSet<String>) session.getAttribute("staredRepo");
                 for (RepoVO vo:repoList){
@@ -113,6 +113,10 @@ public class RepoController {
                                         @RequestParam(required = false, defaultValue = "true") boolean reverse,
                                         @RequestParam boolean isKeyChanged,
                                         HttpSession session){
+        if ((keyword.isEmpty())&&(filterType.isEmpty())&&(language.isEmpty())&&(createYear.isEmpty())){
+            return list(pageNum,sortType,reverse,session);
+        }
+
         String webUsername = null;
         if (session.getAttribute("webUsername") != null){
             webUsername = session.getAttribute("webUsername").toString();

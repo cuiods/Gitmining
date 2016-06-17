@@ -67,13 +67,29 @@ public class LocationDaoImpl implements LocationDaoService {
         session.close();
     }
 
+
+
     @Override
     public List<Object[]> getAllUserLocation() {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT login, location FROM sec_user ");
+        SQLQuery query = session.createSQLQuery("SELECT login, location FROM sec_user A WHERE login NOT IN (SELECT login FROM user_location ) ");
         List<Object[]> list = query.list();
         session.close();
         return list;
+    }
+
+    @Override
+    public UserLocationEntity getUserLocationEntity(String login) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from UserLocationEntity where login = :log");
+        query.setString("log",login);
+        List<UserLocationEntity> list = query.list();
+        if (list.size() > 0){
+            return list.get(0);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override

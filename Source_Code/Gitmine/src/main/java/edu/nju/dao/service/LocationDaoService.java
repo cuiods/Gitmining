@@ -45,6 +45,13 @@ public interface LocationDaoService {
     public List<Object[]> getAllUserLocation();
 
     /**
+     * get the location entity by login name
+     * @param login
+     * @return
+     */
+    public UserLocationEntity getUserLocationEntity(String login);
+
+    /**
      * insert a record into table user_location
      * @param entity
      * @return
