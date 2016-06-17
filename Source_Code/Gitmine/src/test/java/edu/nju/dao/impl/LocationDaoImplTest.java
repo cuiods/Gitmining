@@ -22,7 +22,6 @@ import static org.junit.Assert.*;
 @ContextConfiguration("classpath*:/META-INF/applicationContext.xml")
 @Transactional
 public class LocationDaoImplTest {
-
     @Resource
     private LocationDaoImpl locationDao;
 
@@ -65,6 +64,15 @@ public class LocationDaoImplTest {
     @Test
     public void getAllUserLocation() throws Exception {
         locationDao.getAllUserLocation();
+    }
+
+    @Test
+    public void getUserLocationEntity() throws Exception {
+        UserLocationEntity entity = locationDao.getUserLocationEntity("sunny");
+        if (entity != null){
+
+            System.out.println(entity.getCountry());
+        }
     }
 
     @Test
