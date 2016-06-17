@@ -14,11 +14,40 @@ $(document).ready(
         }else{
             var params = fullName.substr(index+1);
             var names = params.split("/");
-
-            
             if(names.length<2){
                 wrongUrl();
             }else{
+                var rate_chart = echarts.init(document.getElementById('gra-popular-rate'));
+                rate_chart.showLoading();
+                $.ajax({
+                    type:"GET",
+                    url:"/popularity/rate",
+                    data: { repoOwner:names[0],repoName:names[1]},
+                    success:function (rateData) {
+                        rateData = Math.floor(rateData * 100) / 100
+                        option = {
+                            tooltip : {
+                                formatter: "{a} <br/>{b} : {c}%"
+                            },
+                            toolbox: {
+                                feature: {
+                                    restore: {},
+                                    saveAsImage: {}
+                                }
+                            },
+                            series: [
+                                {
+                                    name: 'Probability',
+                                    type: 'gauge',
+                                    detail: {formatter:'{value}%'},
+                                    data: [{value:rateData, name: 'Popular'}]
+                                }
+                            ]
+                        };
+                        rate_chart.hideLoading();
+                        rate_chart.setOption(option);
+                    }
+                });
                 var url = location_port+"/repo/"+params;
                 var radar_repo =echarts.init(document.getElementById("repoRadar"));
                 radar_repo.showLoading();
