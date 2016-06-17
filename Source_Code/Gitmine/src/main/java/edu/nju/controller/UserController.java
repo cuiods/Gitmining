@@ -80,6 +80,7 @@ public class UserController {
                     @RequestParam(required = false, defaultValue = "user_name") String sortType,
                     @RequestParam(required = false, defaultValue = "false") boolean isDesc,
                     HttpSession session){
+        System.out.println("sort:==================="+sortType);
         Map<String,Object> map = new HashMap<>();
         List<UserVO> userVOs = null;
         if (pageNum<=totalPage){
