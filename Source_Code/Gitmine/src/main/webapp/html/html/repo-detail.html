@@ -2,13 +2,17 @@
 <html>
 <head>
     <title>RepoDetail</title>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="../../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../plugin/loading/jquery.showLoading.min.js"></script>
+
     <link href="../../img/logo.png" type=image/x-icon rel="shortcut icon" />
     <link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="../../plugin/fontawesome/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="../../plugin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../js/jquery.min.js"></script>
+
     <!-- Custom Theme files -->
     <link href="../../css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- Custom Theme files -->
@@ -23,9 +27,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='../../css/repoDetail.css' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
+
     <script type="text/javascript" src="../../js/repoDetail.js"></script>
     <script type="text/javascript" src="../../plugin/echarts/echarts.min.js"></script>
     <script type="text/javascript" src="../../js/cherish.js"></script>
+
+
+    <link href="../../plugin/loading/showLoading.css">
     <!--<script src="../../plugin/jquery/jquery.easytabs.min.js"></script>-->
     <!--<script src="../../plugin/jquery/jquery.hashchange.min.js"></script>-->
     <!--/script-->
@@ -38,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
 </head>
-<body>
+<body id="loading">
 <!-- header-section-starts -->
 <div class="about-header-banner">
     <div class="container">
@@ -205,9 +213,9 @@ margin-right: auto;"></div>
                                 <div style="float:left">
 
                                     <span class=" glyphicon glyphicon-map-marker" style="display: inline-block; background: transparent; border: none;color: #fff"/>
-                                    <span class="repo_fork">123</span>
+                                    <span class="repo_fork">...</span>
                                     <span class=" glyphicon glyphicon-thumbs-up" style="display: inline-block; background: transparent; border: none;color: #fff"/>
-                                    <span class="repo_star">123</span><br>
+                                    <span class="repo_star">...</span><br>
                                 </div>
                                 <a href="#" class="btn btn-primary hvr-rectangle-in repo_detail" style="float:right;position:relative;margin-top:-8px">Read Detail</a>
                             </div>

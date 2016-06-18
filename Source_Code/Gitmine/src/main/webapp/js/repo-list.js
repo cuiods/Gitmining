@@ -421,27 +421,43 @@ function findCheckedSortType() {
  */
 function generateFilterList() {
     var list = [
+        "node.js",
+        "javascript",
+        "library",
+        "ruby",
         "web",
-        "app",
         "api",
+        "vim",
+        "plugin",
+        "rust",
+        "app",
+        "client",
+        "server",
+        "json",
         "framework",
-        "cms",
-        "django",
-        "emacs",
-        "mac",
-        "management",
+        "python",
+        "browser",
+        "rails",
+        "css",
+        "android",
+        "jquery",
+        "html",
+        "test",
+        "php",
+        "command",
+        "tool",
+        "demo",
+        "wrapper",
+        "ios",
         "linux",
         "windows",
-        "interFace",
-        "os",
-        "server",
-        "tool",
-        "plugin",
-        "json",
-        "tempLate",
-        "library",
-        "ui",
-        "dataBase"
+        "os_x",
+        "django",
+        "google",
+        "generator",
+        "docker",
+        "image",
+        "template"
     ];
     generateLabels(list,'filter');
 }
@@ -463,9 +479,16 @@ function genetateFileterLanguage() {
         'ruby',
         'python',
         'c',
-        'javascript'
+        'javascript',
+        'Perl',
+        'lua',
+        'Erlang',
+        'PHP',
+        'Lisp',
+        'Scala',
     ];
     generateLabels(list,'language');
+    
 }
 
 function generateLabels(list,name) {
@@ -478,15 +501,36 @@ function generateLabels(list,name) {
     }
 }
 
+function reGenerateLabels(list,name, divClass) {
+    var fatherNode = $(divClass);
+    var node1 = fatherNode.children().eq(0);
+    var node2 = fatherNode.children().eq(1);
+    fatherNode.empty();
+
+    fatherNode.append(node1);
+    fatherNode.append(node2);
+    for(var i in list){
+        var radio = " <input type=\"radio\" id=\"" +list[i] + "\" name=\""+name+"\" value=\""+list[i]+"\">";
+        var label = " <label class=\"label\" for=\"" +list[i] + "\">" +list[i] + "</label>";
+        fatherNode.append($(radio));
+        fatherNode.append($(label));
+    }
+}
+
 function addOnChangeListener () {
     $('.radio-toolbar > input').change (function () {
-        alert("one");
        search(1,true);
     });
 }
 
 $(document).ready(
     function () {
+        var languageURL = "/repo/statistic/language";
+        $.get(languageURL,function (simplechart) {
+            console.log(simplechart);
+            reGenerateLabels(simplechart.field,'language','.radio-toolbar-language'); 
+        });
+
         RepoList.init();
         CoapareTable.init();
         RecommendList.init();

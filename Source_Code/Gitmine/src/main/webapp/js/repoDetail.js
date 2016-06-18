@@ -8,14 +8,16 @@ $(document).ready(
         
         var fullName = location.search;
         var index = location.search.indexOf("?");
-
+        $('#loading').showLoading();
         if(index==-1){
             wrongUrl();
         }else{
             var params = fullName.substr(index+1);
             var names = params.split("/");
+            console.log(names);
             if(names.length<2){
                 wrongUrl();
+                $('#loading').hideLoading();
             }else{
                 var rate_chart = echarts.init(document.getElementById('gra-popular-rate'));
                 rate_chart.showLoading();
@@ -24,6 +26,7 @@ $(document).ready(
                     url:"/popularity/rate",
                     data: { repoOwner:names[0],repoName:names[1]},
                     success:function (rateData) {
+                        $('#loading').hideLoading();
                         rateData = Math.floor(rateData * 100) / 100
                         option = {
                             tooltip : {
@@ -52,6 +55,7 @@ $(document).ready(
                 var radar_repo =echarts.init(document.getElementById("repoRadar"));
                 radar_repo.showLoading();
                 $.get(url,function (object) {
+                    console.log(object);
                     setBasicInfo(object.basicInfo);
                     setRecommend(object.relatedRepo);
                     setRadar(radar_repo,object.radarChart);
