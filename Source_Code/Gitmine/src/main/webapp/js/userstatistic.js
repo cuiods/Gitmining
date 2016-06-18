@@ -496,7 +496,7 @@ $(document).ready(function () {
                     }
                 },
                 tooltip: {
-                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                    pointFormat: ' range: {point.x} <br> follower: {point.y}'
                 },
                 plotOptions: {
                     area: {
