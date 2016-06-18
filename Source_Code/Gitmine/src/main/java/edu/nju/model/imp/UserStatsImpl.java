@@ -35,12 +35,12 @@ public class UserStatsImpl implements UserStatsService {
     @Override
     public SimpleChart statsUserRepo() {
         String [] field = {"0~9","10~19","20~29","30~39","40~49","50~59","60~69","70~79","80~89","90~99",">=100"};
-        long [] value = new long[field.length];
-        int step = 10;
-        for (int i=0;i<value.length-1;i++){
-            value[i] = secUserDaoService.getStatsUserOwnRepo(i*step, step*(i+1)-1);
-        }
-        value[value.length-1] = secUserDaoService.getStatsUserOwnRepo(step*(value.length-1), Integer.MAX_VALUE);
+        long [] value = secUserDaoService.getStatsUserOwnRepo();
+//        int step = 10;
+//        for (int i=0;i<value.length-1;i++){
+//            value[i] = secUserDaoService.getStatsUserOwnRepo(i*step, step*(i+1)-1);
+//        }
+//        value[value.length-1] = secUserDaoService.getStatsUserOwnRepo(step*(value.length-1), Integer.MAX_VALUE);
         return new SimpleChart(field, value);
     }
 
@@ -48,12 +48,7 @@ public class UserStatsImpl implements UserStatsService {
     public SimpleChart statsUserGist() {
         String [] field = {"0~1","2~3","4~5","6~7","8~9","10~11","12~13",
                 "14~15","16~17","18~19",">=20"};
-        long [] value = new long[field.length];
-        int step = 2;
-        for (int i=0;i<value.length-1;i++){
-            value[i] = secUserDaoService.getStatsUserGist(i*step, step*(i+1)-1);
-        }
-        value[value.length-1] = secUserDaoService.getStatsUserGist(step*(value.length-1), Integer.MAX_VALUE);
+        long [] value = secUserDaoService.getStatsUserFollower();
         return new SimpleChart(field, value);
     }
 
@@ -61,12 +56,7 @@ public class UserStatsImpl implements UserStatsService {
     public SimpleChart statsUserFollower() {
         String [] field = {"0~4","5~9","10~14","15~19","20~24","25~29","30~34",
                 "35~39","40~44","45~49",">=50"};
-        long [] value = new long[field.length];
-        int step = 5;
-        for (int i=0;i<value.length-1;i++){
-            value[i] = secUserDaoService.getStatsUserFollower(i*step, step*(i+1)-1);
-        }
-        value[value.length-1] = secUserDaoService.getStatsUserFollower(step*(value.length-1), Integer.MAX_VALUE);
+        long [] value = secUserDaoService.getStatsUserFollower();
         return new SimpleChart(field, value);
     }
 
