@@ -3,19 +3,26 @@
  */
 
 
-
+var isMapEverInited =false;
 var userInfoData = undefined;
 function loadMapScenario(){
+    
     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
         credentials: 'Ak84CuIJYo828Ii3n714qYMPp6T1PDOGd2mVCqGZyle9KKLtytu7B_D8atBRtRoj'
     });
     Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
 
-        var currentLooation = userInfoData.basicInfo.location;;
+        if(userInfoData==undefined){
+            return;
+        }
+        var currentLooation = userInfoData.basicInfo.location;
+        if(currentLooation=="" || currentLooation==null || currentLooation==undefined){
+            currentLooation = "nanjing";
+        }
         var searchManager = new Microsoft.Maps.Search.SearchManager(map);
         var requestOptions = new Microsoft.Maps.Search.GeocodeRequestOptions();
         requestOptions.bounds = map.getBounds();
-        requestOptions.where = currentLooation==undefined?"beijing":currentLooation;
+        requestOptions.where =                 currentLooation;
         requestOptions.callback = function (answer, userData) {
             console.log(answer);
             map.setView({ bounds: answer.results[0].bestView });
@@ -57,6 +64,7 @@ function loadMapScenario(){
                     addNeighbors(object);
                 });
             }
+            isMapEverInited = true;
 
         };
         searchManager.geocode(requestOptions);
@@ -75,7 +83,6 @@ $(document).ready(function() {
         url:'/user/'+userName.innerHTML+'/basic',
         success:function(data){
             userInfoData = data;
-            console.log(data.basicInfo.isStared);
             cherishPresent(data.basicInfo.isStared,$('#cherish'));
             onIdCherishClick($('#cherish'),userName.innerHTML,'/user/star','/user/unstar');
             document.getElementById("header_url").src=data.basicInfo.avatarUrl;
@@ -185,7 +192,10 @@ $(document).ready(function() {
             drawLanguageChart(language,dataArray);
 
 
-
+            if(!isMapEverInited){
+                loadMapScenario();
+            }
+            console.log(data.basicInfo.isStared);
         },
         error:function(){
             alert("controller return result unknown error!");
