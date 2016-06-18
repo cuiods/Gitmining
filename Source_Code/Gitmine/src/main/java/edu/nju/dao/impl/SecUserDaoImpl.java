@@ -60,7 +60,8 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<Object[]> getUserLanguage(String login) {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT language,count(*) AS num FROM ((SELECT repo_owner, repo_name FROM sec_contributor WHERE contributor = 'defunkt') AS C JOIN sec_repo R ON C.repo_owner = R.owner AND C.repo_name = R.name) WHERE language <> '' GROUP BY language ORDER BY num DESC");
+        SQLQuery query = session.createSQLQuery("SELECT language,count(*) AS num FROM ((SELECT repo_owner, repo_name FROM sec_contributor WHERE contributor = :log) AS C JOIN sec_repo R ON C.repo_owner = R.owner AND C.repo_name = R.name) WHERE language <> '' GROUP BY language ORDER BY num DESC");
+        query.setString("log",login);
         List<Object []> list = query.list();
         session.close();
         return list;
