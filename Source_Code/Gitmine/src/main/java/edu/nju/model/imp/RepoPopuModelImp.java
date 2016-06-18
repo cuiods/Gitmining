@@ -117,12 +117,12 @@ public class RepoPopuModelImp implements RepoPopuModelService {
 
     @Override
     public List statsCompareFollower() {
-        List<Long> list = new ArrayList<>(11);
-        for (int i = 0; i < 10; i++) {
-            list.add(secUserDaoService.getStatsUserFollower(i*10,(i+1)*10));
+        List<Long> list = new ArrayList<>();
+        long [] result = secUserDaoService.getStatsUserFollower();
+        for (int i = 0; i < result.length; i++) {
+            list.add(result[i]);
         }
-        long count = secUserDaoService.getStatsUserFollower(100, Integer.MAX_VALUE);
-        list.add(count);
+
         return list;
     }
 

@@ -107,17 +107,17 @@ public class SecUserDaoImplTest {
 
     @Test
     public void getStatsUserOwnRepo() throws Exception {
-        userDao.getStatsUserOwnRepo(10,100);
+        userDao.getStatsUserOwnRepo();
     }
 
     @Test
     public void getStatsUserGist() throws Exception {
-        userDao.getStatsUserGist(10,100);
+        userDao.getStatsUserGist();
     }
 
     @Test
     public void getStatsUserFollower() throws Exception {
-        userDao.getStatsUserFollower(10,100);
+        userDao.getStatsUserFollower();
     }
 
     @Test
