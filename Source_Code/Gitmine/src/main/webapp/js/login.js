@@ -138,10 +138,9 @@ $(document).ready(function() {
 			data: { username:$("#user").val(),password:$("#passwd").val(),email:$("#email_input").val()}, <!--要传递的数据--> 			<!--接受数据的格式-->
 			success: function(result) {
 				if(result){
-
-					$('#interestModal').modal();
 					$('#myModal').modal('hide');
-					console.log('ajax call here');
+					$('#interestModal').modal();
+					$('#login-href-text').text($('#user').val());
 				}else{
 					alert("please try again!");
 				}
@@ -256,7 +255,6 @@ function initInterestLabel(){
 		}
 
 	})
-	console.log('init interest modal end !');
 };
 
 $(function() {

@@ -8,6 +8,10 @@
     <link href="../../plugin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="../../css/repo-label.css">
     <link rel="stylesheet" href="../../css/userCompare.css">
+
+    <link rel="stylesheet" href="../../css/registerLabel.css">
+    <script src="../../js/jquery.json.js"></script>
+
     <script src="../../js/login.js"></script>
     <link href="../../css/login.css" rel="stylesheet"/>
     <!--Echart js file-->
@@ -331,7 +335,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--compare modal end-->
 
+    <!-- interestModal -->
 
+    <div class="modal fade" id="interestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" >Please Check on Your Interest</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="radio-toolbar radio-toolbar-filter" id="interestLabel" isMe="crazy">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="finishInterest" class="btn btn-primary" data-dismiss="modal" style="color:#fff">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--interestModal ends-->
 
 <!-- content-section-starts -->
 <div class="content">
