@@ -4,6 +4,7 @@
 
 var locationPort = 'http://localhost';
 var nowUserList;
+var $list = null;
 var UserList={
     init:function(){
         this.gridsFather = $("#listStart");
@@ -47,20 +48,25 @@ var UserList={
 
 $(document).ready(
     function () {
+        $list = jQuery('#listStart');
         $().UItoTop({ easingType: 'easeOutQuart' });
         UserList.init();
         var url = "/user/list"+"?pageNum=1";
-        $.get(url,function (object) {
 
-            // $('#listStart').showLoading();
+        var i = 1000000000;
+        while(i>0){i--};
+        $.get(url,function (object) {
             UserList.updateData(object.userList);
-            // $('#listStart').hideLoading();
+
             $.jqPaginator('#pagination1', {
                 totalPages: object.totalPage,
                 visiblePages: 8,
                 currentPage: 1,
                 onPageChange: function (current) {
+
+
                     jumpPage(current);
+
                 }
 
             });
@@ -77,7 +83,9 @@ $(document).ready(
             type:'GET',
             url:'/user/recommend',
             success:function(recList){
+
                 RecList.updateList(recList);
+
             }
         })
 
@@ -113,7 +121,9 @@ function sort(obj){
     }
     // alert("what is wrong");
 
+
     search(true);
+
 }
 
 //used to ensure which sortType is choosed
@@ -159,7 +169,9 @@ function search(keyChange){
                 visiblePages: 8,
                 currentPage: 1,
                 onPageChange: function (current) {
+
                     jumpSearchPage(current);
+                    
                 }
 
             });
