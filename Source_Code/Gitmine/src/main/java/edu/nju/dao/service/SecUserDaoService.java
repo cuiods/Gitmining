@@ -93,27 +93,21 @@ public interface SecUserDaoService {
 
     /**
      * get the count of users who has repos between min and max
-     * @param min
-     * @param max
      * @return
      */
-    public long getStatsUserOwnRepo(int min, int max);
+    public long[] getStatsUserOwnRepo();
 
     /**
      * get the count of users who has gists between min and max
-     * @param min
-     * @param max
      * @return
      */
-    public long getStatsUserGist(int min, int max);
+    public long[] getStatsUserGist();
 
     /**
      * get the count if users who has repos between min and max
-     * @param min
-     * @param max
      * @return
      */
-    public long getStatsUserFollower(int min, int max);
+    public long[] getStatsUserFollower();
 
     /**
      * get the count of users create int a year

@@ -4,13 +4,11 @@ import edu.nju.common.SortType;
 import edu.nju.dao.service.SecUserDaoService;
 import edu.nju.entity.SecRepoEntity;
 import edu.nju.entity.SecUserEntity;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +60,8 @@ public class SecUserDaoImpl implements SecUserDaoService {
     @Override
     public List<Object[]> getUserLanguage(String login) {
         Session session = sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT language,count(*) AS num FROM ((SELECT repo_owner, repo_name FROM sec_contributor WHERE contributor = 'defunkt') AS C JOIN sec_repo R ON C.repo_owner = R.owner AND C.repo_name = R.name) WHERE language <> '' GROUP BY language ORDER BY num DESC");
+        SQLQuery query = session.createSQLQuery("SELECT language,count(*) AS num FROM ((SELECT repo_owner, repo_name FROM sec_contributor WHERE contributor = :log) AS C JOIN sec_repo R ON C.repo_owner = R.owner AND C.repo_name = R.name) WHERE language <> '' GROUP BY language ORDER BY num DESC");
+        query.setString("log",login);
         List<Object []> list = query.list();
         session.close();
         return list;
@@ -300,36 +299,84 @@ public class SecUserDaoImpl implements SecUserDaoService {
     }
 
     @Override
-    public long getStatsUserOwnRepo(int min, int max) {
+    public long[] getStatsUserOwnRepo() {
         Session session =sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user WHERE public_repos >= :m1 AND public_repos < :m2");
-        query.setInteger("m1",min);
-        query.setInteger("m2",max);
-        List list = query.list();
+        long[] result = new long[11];
+
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user GROUP BY " +
+                    "(CASE WHEN public_repos>=0 AND public_repos<10 THEN 1 " +
+                    "WHEN public_repos>=10 AND public_repos<20 THEN 2 " +
+                    "WHEN public_repos>=20 AND public_repos<30 THEN 3 " +
+                    "WHEN public_repos>=30 AND public_repos<40 THEN 4 " +
+                    "WHEN public_repos>=40 AND public_repos<50 THEN 5 " +
+                    "WHEN public_repos>=50 AND public_repos<60 THEN 6 " +
+                    "WHEN public_repos>=60 AND public_repos<70 THEN 7 " +
+                    "WHEN public_repos>=70 AND public_repos<80 THEN 8 " +
+                    "WHEN public_repos>=80 AND public_repos<90 THEN 9 " +
+                    "WHEN public_repos>=90 AND public_repos<100 THEN 10 " +
+                    "ELSE 11 END )");
+
+        List<BigInteger> list = query.list();
         session.close();
-        return Long.valueOf(list.get(0).toString());
+        for (int i = 0; i < list.size(); i++) {
+            BigInteger bigInteger = list.get(i);
+            result[i] = bigInteger.longValue();
+        }
+        return result;
     }
 
     @Override
-    public long getStatsUserGist(int min, int max) {
+    public long[] getStatsUserGist() {
         Session session =sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user WHERE public_gists >= :m1 AND public_gists < :m2");
-        query.setInteger("m1",min);
-        query.setInteger("m2",max);
-        List list = query.list();
+        long[] result = new long[11];
+
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user GROUP BY " +
+                "(CASE WHEN public_gists>=0 AND public_gists<=1 THEN 1 " +
+                "WHEN public_gists>=2 AND public_gists<=3 THEN 2 " +
+                "WHEN public_gists>=4 AND public_gists<=5 THEN 3 " +
+                "WHEN public_gists>=6 AND public_gists<=7 THEN 4 " +
+                "WHEN public_gists>=8 AND public_gists<=9 THEN 5 " +
+                "WHEN public_gists>=10 AND public_gists<=11 THEN 6 " +
+                "WHEN public_gists>=12 AND public_gists<=13 THEN 7 " +
+                "WHEN public_gists>=14 AND public_gists<=15 THEN 8 " +
+                "WHEN public_gists>=16 AND public_gists<=17 THEN 9 " +
+                "WHEN public_gists>=18 AND public_gists<=19 THEN 10 " +
+                "ELSE 11 END )");
+
+        List<BigInteger> list = query.list();
         session.close();
-        return Long.valueOf(list.get(0).toString());
+        for (int i = 0; i < list.size(); i++) {
+            BigInteger bigInteger = list.get(i);
+            result[i] = bigInteger.longValue();
+        }
+        return result;
     }
 
     @Override
-    public long getStatsUserFollower(int min, int max) {
+    public long[] getStatsUserFollower() {
         Session session =sessionFactory.openSession();
-        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user WHERE followers >= :m1 AND followers < :m2");
-        query.setInteger("m1",min);
-        query.setInteger("m2",max);
-        List list = query.list();
+        long[] result = new long[11];
+
+        SQLQuery query = session.createSQLQuery("SELECT count(*) FROM sec_user GROUP BY " +
+                "(CASE WHEN followers>=0 AND followers<5 THEN 1 " +
+                "WHEN followers>=5 AND followers<10 THEN 2 " +
+                "WHEN followers>=10 AND followers<15 THEN 3 " +
+                "WHEN followers>=15 AND followers<20 THEN 4 " +
+                "WHEN followers>=20 AND followers<=25 THEN 5 " +
+                "WHEN followers>=25 AND followers<=30 THEN 6 " +
+                "WHEN followers>=30 AND followers<=35 THEN 7 " +
+                "WHEN followers>=35 AND followers<=40 THEN 8 " +
+                "WHEN followers>=40 AND followers<=45 THEN 9 " +
+                "WHEN followers>=45 AND followers<=50 THEN 10 " +
+                "ELSE 11 END )");
+
+        List<BigInteger> list = query.list();
         session.close();
-        return Long.valueOf(list.get(0).toString());
+        for (int i = 0; i < list.size(); i++) {
+            BigInteger bigInteger = list.get(i);
+            result[i] = bigInteger.longValue();
+        }
+        return result;
     }
 
     @Override
