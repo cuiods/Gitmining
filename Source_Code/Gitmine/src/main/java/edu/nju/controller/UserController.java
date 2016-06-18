@@ -43,6 +43,9 @@ public class UserController {
     @Resource
     private LocationModelService locationModelService;
 
+    @Resource
+    private  LongTailModelService longTailModelService;
+
     @Autowired
     public UserController(UserModelService userModelImpl) {
         this.userModelImpl = userModelImpl;
@@ -262,6 +265,18 @@ public class UserController {
     @ResponseBody
     public SimpleChart statUserCompany(){
         return userStatsImpl.statsUserCompany();
+    }
+
+    @RequestMapping(value = "/statistic/twenty")
+    @ResponseBody
+    public long[] statTwenty(){
+        return longTailModelService.twentyEightyRate();
+    }
+
+    @RequestMapping(value = "/statistic/followerLong")
+    @ResponseBody
+    public List<Integer> statFollowerLong(){
+        return longTailModelService.longtailDistribution();
     }
 
     @RequestMapping(value = "/statistic/distribution")

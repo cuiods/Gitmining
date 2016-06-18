@@ -405,6 +405,121 @@ $(document).ready(function () {
             window.onresize = myChart_type.resize;
         }
     });
+
+    var twenty = echarts.init(document.getElementById('gra-twenty'));
+    twenty.showLoading();
+    $.ajax({
+        type:"GET",
+        url:"/user/statistic/twenty",
+        success:function (persondata) {
+            option = {
+                title : {
+                    text: 'Pareto distribution',
+                    subtext: 'Data from Github',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {
+                            show: true,
+                            type: ['pie', 'funnel']
+                        },
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'Pareto distribution: sum of followers of 20% users',
+                        type:'pie',
+                        radius : [20, 110],
+                        center : ['25%', 200],
+                        data:[
+                            {value:persondata[0], name:'followers of 20% users'},
+                            {value:persondata[1], name:'followers of 80% users'}
+                        ]
+                    },
+                    {
+                        name:'Long tail test: users who have >0 followers',
+                        type:'pie',
+                        radius : [20, 110],
+                        center : ['75%', 200],
+                        data:[
+                            {value:persondata[2], name:'have >0 followers'},
+                            {value:persondata[3], name:'have 0 followers'}
+                        ]
+                    }
+                ]
+            };
+            twenty.hideLoading();
+            twenty.setOption(option);
+        }
+    });
+
+    $.ajax({
+        type:"GET",
+        url:"/user/statistic/followerLong",
+        success:function (persondata) {
+            $('#gra-followerLong').highcharts({
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'Follower distribution'
+                },
+                subtitle: {
+                    text: 'Source: github.com'
+                },
+                xAxis: {
+                    labels: {
+                        formatter: function() {
+                            return this.value; // clean, unformatted number for year
+                        }
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Follower number'
+                    },
+                    labels: {
+                        formatter: function() {
+                            return this.value;
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+                },
+                plotOptions: {
+                    area: {
+                        pointStart: 1,
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 1,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Github users',
+                    data: persondata
+                }]
+            });
+        }
+    });
 });
 
 /**
