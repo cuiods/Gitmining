@@ -86,7 +86,7 @@ public class RepoControllerTest {
 
     @Test
     public void getRepoInfo() throws Exception {
-
+        mockMvc.perform(get("/repo/lepture/yue.css/basic")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test

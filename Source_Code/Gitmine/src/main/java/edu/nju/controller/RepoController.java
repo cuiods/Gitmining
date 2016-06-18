@@ -1,6 +1,8 @@
 package edu.nju.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.nju.common.Const;
 import edu.nju.common.SortType;
 import edu.nju.common.SortTypeBuilder;
@@ -14,6 +16,10 @@ import edu.nju.model.service.LoginModelService;
 import edu.nju.model.service.RepoModelService;
 import edu.nju.model.service.RepoStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +43,8 @@ public class RepoController {
 
     private RepoModelService repoModelImpl;
 
+    private ObjectMapper objectMapper;
+
     @Resource
     private RepoStatsService repoStatsImpl;
 
@@ -47,6 +55,7 @@ public class RepoController {
     public RepoController(RepoModelService repoModelImpl){
         this.repoModelImpl = repoModelImpl;
         this.totalPage = repoModelImpl.getTotalPage();
+        this.objectMapper = new ObjectMapper();
     }
 
     @RequestMapping(value = "/recommend")
@@ -143,11 +152,11 @@ public class RepoController {
     }
 
 
-    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{ownername:.+}/{reponame:.+}/basic", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
     @ResponseBody
-    public Map<String, Object> getRepoInfo(@PathVariable String ownername,
-                                           @PathVariable String reponame,
-                                           HttpSession session) {
+    public Map getRepoInfo(@PathVariable String ownername,
+                                      @PathVariable String reponame,
+                                      HttpSession session) {
         RepoVO basicInfo = repoModelImpl.getRepoBasicInfo(ownername, reponame);
         List<SimpleRepoVO> relatedRepo = repoModelImpl.getRelatedRepo(ownername, reponame);
         if (session.getAttribute("webUsername") != null){
@@ -170,6 +179,16 @@ public class RepoController {
         repoDetailInfo.put("radarChart", radarChart);
         repoDetailInfo.put("relatedRepo", relatedRepo);
 
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        String jsonStr = "{}";
+//        try {
+//            jsonStr = objectMapper.writeValueAsString(repoDetailInfo);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ResponseEntity entity = new ResponseEntity<String>(jsonStr, headers, HttpStatus.OK);
         return repoDetailInfo;
     }
 
