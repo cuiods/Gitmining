@@ -4,6 +4,7 @@
 
 var locationPort = 'http://localhost';
 var nowUserList;
+var list = null;
 var UserList={
     init:function(){
         this.gridsFather = $("#listStart");
@@ -47,20 +48,23 @@ var UserList={
 
 $(document).ready(
     function () {
+        list = $('#listStart');
         $().UItoTop({ easingType: 'easeOutQuart' });
         UserList.init();
         var url = "/user/list"+"?pageNum=1";
         $.get(url,function (object) {
 
-            // $('#listStart').showLoading();
+            $('#listStart').showLoading();
             UserList.updateData(object.userList);
-            // $('#listStart').hideLoading();
+            $('#listStart').hideLoading();
             $.jqPaginator('#pagination1', {
                 totalPages: object.totalPage,
                 visiblePages: 8,
                 currentPage: 1,
                 onPageChange: function (current) {
+                    $('#listStart').showLoading();
                     jumpPage(current);
+                    $('#listStart').hideLoading();
                 }
 
             });
@@ -77,7 +81,9 @@ $(document).ready(
             type:'GET',
             url:'/user/recommend',
             success:function(recList){
+                list.showLoading();
                 RecList.updateList(recList);
+                list.hideLoading();
             }
         })
 
@@ -113,7 +119,9 @@ function sort(obj){
     }
     // alert("what is wrong");
 
+    list.showLoading();
     search(true);
+    list.hideLoading();
 }
 
 //used to ensure which sortType is choosed
@@ -159,7 +167,9 @@ function search(keyChange){
                 visiblePages: 8,
                 currentPage: 1,
                 onPageChange: function (current) {
+                    list.showLoading();
                     jumpSearchPage(current);
+                    list.hideLoading();
                 }
 
             });
