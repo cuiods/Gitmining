@@ -28,6 +28,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
+            $('#general').css('background','url(../../images/sta_general.jpg) no-repeat 0px 0px');
+            $('#language').css('background','url(../../images/sta_language.jpg) no-repeat 0px 0px');
+            $('#person').css('background','url(../../images/sta_person.jpg) no-repeat 0px 0px');
+            $('#field').css('background','url(../../images/sta_field1.jpg) no-repeat 0px 0px');
+            $('#regression').css('background','url(../../images/sta_regression.jpg) no-repeat 0px 0px');
             $(".scroll").click(function(event){
                 event.preventDefault();
                 $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
@@ -98,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- header-section-ends -->
 
-<div class="testimonials">
+<div class="testimonials" id="general">
     <div class="container">
         <div class="testimonial-info">
             <h3><a href="/html/repository/repo_general.html">General</a></h3>
@@ -112,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 
-<div class="testimonials">
+<div class="testimonials" id="language">
     <div class="container">
         <div class="testimonial-info">
             <h3><a href="/html/repository/repo_language.html">Language</a></h3>
@@ -126,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 
-<div class="testimonials">
+<div class="testimonials" id="person">
     <div class="container">
         <div class="testimonial-info">
             <h3><a href="/html/repository/repo_person.html">Person</a></h3>
@@ -140,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 
-<div class="testimonials">
+<div class="testimonials" id="field">
     <div class="container">
         <div class="testimonial-info">
             <h3><a href="/html/repository/repo_field.html">Field</a></h3>
@@ -154,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 
-<div class="testimonials">
+<div class="testimonials" id="regression">
     <div class="container">
         <div class="testimonial-info">
             <h3><a href="/html/repository/repo_regression.html">Regression</a></h3>
