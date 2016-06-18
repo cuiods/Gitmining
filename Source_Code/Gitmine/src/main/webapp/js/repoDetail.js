@@ -51,7 +51,7 @@ $(document).ready(
                         rate_chart.setOption(option);
                     }
                 });
-                var url = location_port+"/repo/"+params;
+                var url = location_port+"/repo/"+params+"/basic";
                 var radar_repo =echarts.init(document.getElementById("repoRadar"));
                 radar_repo.showLoading();
                 $.get(url,function (object) {
