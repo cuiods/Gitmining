@@ -91,8 +91,9 @@ $(document).ready(function() {
 	$('#personal').click(function(){
 		if($('#login-href-text').text()=='Login'){
 			$('#myModal').modal();
+			// $('personal').attr('href','');
 		}else{
-			$('#personal').attr('href','html/personal.html');
+			$('#personal').attr('href','/html/html/personal.html');
 		}
 	})
 
@@ -136,10 +137,14 @@ $(document).ready(function() {
 			url: "/login/register",
 			data: { username:$("#user").val(),password:$("#passwd").val(),email:$("#email_input").val()}, <!--要传递的数据--> 			<!--接受数据的格式-->
 			success: function(result) {
-				alert("succeed! please login again !");
-				console.log("hhhhhh");
-				$('#myModal').modal('hide');
-				$("#interestModal").modal();
+				if(result){
+
+					$('#interestModal').modal();
+					$('#myModal').modal('hide');
+					console.log('ajax call here');
+				}else{
+					alert("please try again!");
+				}
 			},
 			error: function () {
 				alert("unknown error.");
@@ -183,7 +188,7 @@ $(document).ready(function() {
 			url:'/login/logout',
 			success:function(result){
 				if(result){
-					alert("out!");
+					$('#login-href-text').text('Login');
 				}
 			}
 		})
@@ -235,8 +240,8 @@ function initInterestLabel(){
 
 	$.each(interestLabel,function(key,value){
 		if(i==0){
-			interestLabel[key] = $('#login-href').text();
-			console.log($('#login-href').text());
+			interestLabel[key] = $('#login-href-text').text();
+			console.log($('#login-href-text').text());
 			i++;
 		}else {
 			interestLabel[key] = 0;
@@ -251,6 +256,7 @@ function initInterestLabel(){
 		}
 
 	})
+	console.log('init interest modal end !');
 };
 
 $(function() {
