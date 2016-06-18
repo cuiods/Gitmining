@@ -19,6 +19,7 @@ public class LocationGetter {
     private static final String[] keys = {
             "AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-"
     };
+    private static final int maxResults=1;
     private static final int LIMIT = 2500;
     public static int getTimes(){
         return keys.length*LIMIT;
@@ -32,7 +33,11 @@ public class LocationGetter {
     private static String _getURL(String location){
 
         try{
-            String urlEncode =  geocodeUrl+"&locality="+ URLEncoder.encode(location, "UTF-8")+"&key="+_getKey();
+            String urlEncode =
+                    geocodeUrl
+                            +"&locality=" + URLEncoder.encode(location, "UTF-8")
+                            +"&key="+_getKey()
+                            +"&maxResults="+maxResults;
             return urlEncode;
         }catch (UnsupportedEncodingException e){
             e.printStackTrace();
@@ -43,6 +48,9 @@ public class LocationGetter {
     public static UserLocationEntity geoCode(Object name, Object location) {
         UserLocationEntity userLocationEntity = new UserLocationEntity();
         URL url;
+        if(location.toString().trim().equals("")){
+            return null;
+        }
         try{
             url = new URL(_getURL(location.toString()));
         }catch (IOException e){
@@ -72,16 +80,21 @@ public class LocationGetter {
         }
 
 
-        JsonNode resource = resources.get(0);
-        userLocationEntity.setCountry(resource.get("address").get("countryRegion").asText());
-        userLocationEntity.setLocation(resource.get("name").asText());
+        try{
+            JsonNode resource = resources.get(0);
+            userLocationEntity.setCountry(resource.get("address").get("countryRegion").asText());
+            userLocationEntity.setLocation(resource.get("name").asText());
 
-        userLocationEntity.setLogin(name.toString());
+            userLocationEntity.setLogin(name.toString());
 
-        JsonNode coordinates = resource.get("point").get("coordinates");
+            JsonNode coordinates = resource.get("point").get("coordinates");
 
-        userLocationEntity.setLatitude(coordinates.get(1).asDouble());
-        userLocationEntity.setLongitude(coordinates.get(0).asDouble());
-        return userLocationEntity;
+            userLocationEntity.setLatitude(coordinates.get(0).asDouble());
+            userLocationEntity.setLongitude(coordinates.get(1).asDouble());
+            return userLocationEntity;
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -7,7 +7,7 @@
 var userInfoData = undefined;
 function loadMapScenario(){
     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        credentials: 'AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-'
+        credentials: 'Ak84CuIJYo828Ii3n714qYMPp6T1PDOGd2mVCqGZyle9KKLtytu7B_D8atBRtRoj'
     });
     Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
 
@@ -17,6 +17,7 @@ function loadMapScenario(){
         requestOptions.bounds = map.getBounds();
         requestOptions.where = currentLooation==undefined?"beijing":currentLooation;
         requestOptions.callback = function (answer, userData) {
+            console.log(answer);
             map.setView({ bounds: answer.results[0].bestView });
             map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
 

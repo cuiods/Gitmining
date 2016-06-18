@@ -4,6 +4,8 @@ import edu.nju.dao.service.LocationDaoService;
 import edu.nju.entity.UserLocationEntity;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 /**
  * Created by darxan on 2016/6/16.
  */
+@Service
 public class LocationCrawlLauncher {
     @Resource
     private LocationDaoService locationDaoService;

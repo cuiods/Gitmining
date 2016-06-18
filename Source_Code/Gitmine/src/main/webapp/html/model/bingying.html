@@ -9,42 +9,24 @@
 
 <div id='myMap' style='width: 100vw; height: 100vh;'></div>
 <script type='text/javascript'>
-
     function loadMapScenario() {
         var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-            credentials: 'AsBW-ZxtTk3KvGxUQg7F6s7rom3FLdPcwZQnm54SjtxURGXQ2HK5dHWUYnQabCn-'
+            credentials: 'Ak84CuIJYo828Ii3n714qYMPp6T1PDOGd2mVCqGZyle9KKLtytu7B_D8atBRtRoj'
         });
         Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
             var searchManager = new Microsoft.Maps.Search.SearchManager(map);
             var requestOptions = new Microsoft.Maps.Search.GeocodeRequestOptions();
             requestOptions.bounds = map.getBounds();
-            requestOptions.where = 'hangzhou';
+            requestOptions.where = 'Seattle';
             requestOptions.callback = function (answer, userData) {
                 map.setView({ bounds: answer.results[0].bestView });
-                console.log(answer.results[0].location);
                 map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
-
-                var pushpin = new Microsoft.Maps.Pushpin(
-                        new Microsoft.Maps.Location(32.049781799316406,118.76598358154297),
-                        { text: 'U', title: 'daixinyan' }
-                        );
-                map.entities.push(pushpin);
-
-
-                Microsoft.Maps.Events.addHandler(
-                        pushpin,
-                        'click',
-                        function (args) {
-                           console.log(args.target.entity.title);
-
-                        });
             };
             searchManager.geocode(requestOptions);
         });
 
-
     }
 </script>
-<script type='text/javascript' src='../../plugin/ms/map.js' async defer></script>
+<script type='text/javascript' src='https://cn.bing.com/mapspreview/sdk/mapcontrol?branch=release&callback=loadMapScenario' async defer></script>
 </body>
 </html>
