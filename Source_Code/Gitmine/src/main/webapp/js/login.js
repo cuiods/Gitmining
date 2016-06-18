@@ -82,6 +82,20 @@ $(document).ready(function() {
 		}
 	});
 
+	$('#login-href').click(function(){
+		if($('#login-href-text').text()=='Login'){
+			$('#myModal').modal();
+		}
+	})
+
+	$('#personal').click(function(){
+		if($('#login-href-text').text()=='Login'){
+			$('#myModal').modal();
+		}else{
+			$('#personal').attr('href','html/personal.html');
+		}
+	})
+
 	$('#reg').click(function() {
 
 		if ($('#user').val() == "") {
@@ -162,6 +176,18 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$('#login_out').click(function(){
+		$.ajax({
+			type:'GET',
+			url:'/login/logout',
+			success:function(result){
+				if(result){
+					alert("out!");
+				}
+			}
+		})
+	})
 
 
 	//for interest labels
