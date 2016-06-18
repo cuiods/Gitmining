@@ -862,9 +862,13 @@
         if (obj) {
             if (obj !== highlighted) {
                 graph.node.classed('inactive', function(d) {
-                    return (obj !== d
-                    && d.depends.indexOf(obj.name) == -1
-                    && d.dependedOnBy.indexOf(obj.name) == -1);
+                    try{
+                        return (obj !== d
+                        && d.depends.indexOf(obj.name) == -1
+                        && d.dependedOnBy.indexOf(obj.name) == -1);
+                    }catch (e){
+                        return false;
+                    }
                 });
                 graph.line.classed('inactive', function(d) {
                     return (obj !== d.source && obj !== d.target);

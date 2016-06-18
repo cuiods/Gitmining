@@ -78,6 +78,7 @@ function setBasicInfo(basicInfo) {
 
     descriptions.find("#reponame").text(basicInfo.reponame);
     descriptions.find("#ownerName").text(basicInfo.ownerName);
+    descriptions.find("#ownerName").attr("href","userDetail.html?userName="+basicInfo.ownerName);
     descriptions.find("#description").text(basicInfo.description);
     descriptions.find("#language").text(basicInfo.language);
     descriptions.find("#createAt").text(basicInfo.createAt);
@@ -493,4 +494,8 @@ function punchCard(params) {
 
 function wrongUrl() {
     alert("wrong url");
+}
+
+function formatter(int,length) {
+    var string = int;
 }
