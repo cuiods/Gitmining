@@ -528,7 +528,8 @@ $(document).ready(
         var languageURL = "/repo/statistic/language";
         $.get(languageURL,function (simplechart) {
             console.log(simplechart);
-            reGenerateLabels(simplechart.field,'language','.radio-toolbar-language'); 
+            reGenerateLabels(simplechart.field,'language','.radio-toolbar-language');
+            addOnChangeListener();
         });
 
         RepoList.init();
