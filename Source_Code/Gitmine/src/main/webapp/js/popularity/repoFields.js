@@ -12,6 +12,7 @@ $(document).ready(function () {
                 title: [
                     {
                         text: 'Repository number of some popular fields',
+                        subtext:'',
                         left: 'center',
                     }
                 ],
@@ -154,10 +155,10 @@ $(document).ready(function () {
         url:"/popularity/fieldCreate",
         success:function (stardata) {
             option = {
-                // title: {
-                //     text: 'Number of Repository Created with Different Fields',
-                //     left: 'center'
-                // },
+                title: {
+                    subtext: 'Number of Repository Created with Different Fields: repositories created in mainly language since 2007',
+                    left: 'center'
+                },
                 tooltip: {
                     trigger: 'axis'
                 },

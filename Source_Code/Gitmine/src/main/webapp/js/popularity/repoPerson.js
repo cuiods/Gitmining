@@ -266,7 +266,7 @@ $(document).ready(function () {
                         }
                     },
                     title: {
-                        subtext: 'Data from Github'
+                        subtext: 'x: the count of repositories\'s star;     y: the sum of contributors of these repositories in a certain range.'
                     },
                     tooltip: {},
                     legend: {
