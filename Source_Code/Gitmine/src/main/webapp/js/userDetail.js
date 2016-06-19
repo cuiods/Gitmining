@@ -6,18 +6,17 @@
 var isMapEverInited =false;
 var userInfoData = undefined;
 function loadMapScenario(){
-    
+    if(userInfoData==undefined){
+        return;
+    }
     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
         credentials: 'Ak84CuIJYo828Ii3n714qYMPp6T1PDOGd2mVCqGZyle9KKLtytu7B_D8atBRtRoj'
     });
     Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-
-        if(userInfoData==undefined){
-            return;
-        }
+        
         var currentLooation = userInfoData.basicInfo.location;
         if(currentLooation=="" || currentLooation==null || currentLooation==undefined){
-            currentLooation = "nanjing";
+            return;
         }
         var searchManager = new Microsoft.Maps.Search.SearchManager(map);
         var requestOptions = new Microsoft.Maps.Search.GeocodeRequestOptions();
