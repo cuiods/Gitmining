@@ -8,7 +8,7 @@ $(document).ready(
         
         var fullName = location.search;
         var index = location.search.indexOf("?");
-        $('#loading').showLoading();
+        
         if(index==-1){
             wrongUrl();
         }else{
@@ -26,7 +26,7 @@ $(document).ready(
                     url:"/popularity/rate",
                     data: { repoOwner:names[0],repoName:names[1]},
                     success:function (rateData) {
-                        $('#loading').hideLoading();
+                        
                         rateData = Math.floor(rateData * 100) / 100
                         option = {
                             tooltip : {
