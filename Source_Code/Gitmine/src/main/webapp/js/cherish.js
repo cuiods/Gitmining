@@ -265,6 +265,6 @@ function unIdCherish(objJQ,data,unStarUrl,starUrl){
 };
 
 function userlogin(){
-    alert("please login in !");
+    $('#myModal').modal();
 }
 

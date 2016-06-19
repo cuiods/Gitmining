@@ -139,8 +139,8 @@ $(document).ready(function() {
 			success: function(result) {
 				if(result){
 					$('#myModal').modal('hide');
-					$('#interestModal').modal();
 					$('#login-href-text').text($('#user').val());
+					$('#interestModal').modal();
 				}else{
 					alert("please try again!");
 				}
@@ -187,7 +187,7 @@ $(document).ready(function() {
 			url:'/login/logout',
 			success:function(result){
 				if(result){
-					$('#login-href-text').text('Login');
+					location.href = "";
 				}
 			}
 		})

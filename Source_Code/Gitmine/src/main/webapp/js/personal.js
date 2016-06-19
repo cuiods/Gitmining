@@ -14,7 +14,7 @@ $(document).ready(
                 $('#personalName').text(result);
             },
             error:function(){
-                alert("wrong!");
+                console.log("wrong!");
             }
         });
 
@@ -30,7 +30,7 @@ $(document).ready(
                 console.log('repoPage is '+repoPage);
             },
             error:function(){
-                alert('get repoPage wrong!');
+                console.log('get repoPage wrong!');
             }
         });
         $.ajax({
@@ -41,7 +41,7 @@ $(document).ready(
                 console.log('userPage is '+userPage);
             },
             error:function(){
-                alert('get userPage wrong!');
+                console.log('get userPage wrong!');
             }
         })
 
@@ -65,7 +65,7 @@ $(document).ready(
                 });
             },
             error:function(){
-                alert('get repoList wrong!');
+                console.log('get repoList wrong!');
             }
         });
 
@@ -88,7 +88,7 @@ $(document).ready(
                 });
             },
             error:function(){
-                alert('get userList wrong!');
+                console.log('get userList wrong!');
             }
         })
     }
@@ -104,7 +104,7 @@ function jumpRepoPage(current){
             RepoList.updateList(repoList);
         },
         error:function(){
-            alert('jumpPage get repos wrong!');
+            console.log('jumpPage get repos wrong!');
         }
     })
 };
@@ -118,7 +118,7 @@ function jumpUserPage(current){
             UserList.updateList(userList);
         },
         error:function(){
-            alert('jumpPage get users wrong!');
+            console.log('jumpPage get users wrong!');
         }
     })
 };
@@ -216,7 +216,7 @@ function unCherishRepo(obj,owner_name,repo_name){
                         }
                     })
                 }else{
-                    alert("Do you login?");
+                    console.log("Do you login?");
                 }
             }
         })
@@ -253,7 +253,7 @@ function unCherishUser(obj,user_name){
                         }
                     })
                 }else{
-                    alert("Do you really login ?");
+                    console.log("Do you really login ?");
                 }
             }
         })
