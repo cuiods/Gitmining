@@ -179,7 +179,7 @@ $(document).ready(function () {
         success:function (yeardata) {
             option = {
                 title: {
-                    text: '',
+                    subtext: 'Number of Repository Created with Different language: : repositories created in mainly language since 2008',
                     x: 'center'
                 },
                 tooltip : {
@@ -357,7 +357,7 @@ $(document).ready(function () {
                         }
                     },
                     title: {
-                        subtext: 'Data from Github'
+                        subtext: 'Data from Github: click to show number of repositories group by language in a certain year'
                     },
                     tooltip: {},
                     legend: {
