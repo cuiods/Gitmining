@@ -37,7 +37,7 @@ $(document).ready(function () {
             option = {
                 title : {
                     text: 'Repository create time',
-                    subtext: 'source from Github',
+                    subtext: 'source from Github：show the number of repositories created each year (since 2007)',
                     x:'center'
                 },
                 tooltip : {
@@ -93,7 +93,7 @@ $(document).ready(function () {
             option = {
                 title : {
                     text: 'Repository size',
-                    subtext: 'source from Github'
+                    subtext: 'source from Github:show the number of repositories group by repositories\'s  size within the certain range'
                 },
                 tooltip : {
                     trigger: 'axis'
@@ -156,7 +156,7 @@ $(document).ready(function () {
             option = {
                 title : {
                     text: 'Repository Language',
-                    subtext: 'source from Github',
+                    subtext: 'source from Github:show the number of repositories group by repositories\' language',
                     x:'center'
                 },
                 tooltip : {
@@ -234,7 +234,7 @@ $(document).ready(function () {
             option = {
                 title : {
                     text: 'Repository star',
-                    subtext: 'source from Github'
+                    subtext: 'source from Github:show the number of repositories group by repositories\'s count of star'
                 },
                 tooltip : {
                     trigger: 'axis'
@@ -297,7 +297,7 @@ $(document).ready(function () {
             option = {
                 title : {
                     text: 'Repository fork',
-                    subtext: 'source from Github'
+                    subtext: 'source from Github:show the number of repositories group by repositories\'s count of fork'
                 },
                 tooltip : {
                     trigger: 'axis'
