@@ -31,6 +31,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <script type="text/javascript" src="../../js/move-top.js"></script>
     <script type="text/javascript" src="../../js/easing.js"></script>
+
+    <!--login start-->
+    <link rel="stylesheet" href="../../css/registerLabel.css">
+    <script src="../../js/jquery.json.js"></script>
+    <script src="../../js/login.js"></script>
+    <link href="../../css/login.css" rel="stylesheet"/>
+    <!--login end-->
+
     <!--/script-->
     <script type="text/javascript">
         jQuery(document).ready(function($) {
@@ -69,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--</a>-->
                 <ul id="sdt_menu" class="sdt_menu">
                     <li>
-                        <a id="login-href" data-toggle="modal" href="#myModal">
+                        <a id="login-href" >
                             <img src="/images/2.jpg" alt=""/>
                             <span class="sdt_active"></span>
 						<span class="sdt_wrap">
@@ -77,8 +85,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</span>
                         </a>
                         <div class="sdt_box">
-                            <a href="html/personal.html">Info</a>
-                            <a href="#">Log Out</a>
+                            <a id="personal">Info</a>
+                            <a id="login_out">Log Out</a>
                         </div>
                     </li>
                 </ul>
@@ -280,6 +288,33 @@ margin-right: auto;"></div>
                     <!--注册end-->
                 </div>
             </div>
+
+            <!-- interestModal -->
+
+            <div class="modal fade" id="interestModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title" >Please Check on Your Interest</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="radio-toolbar radio-toolbar-filter" id="interestLabel" isMe="crazy">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="finishInterest" class="btn btn-primary" data-dismiss="modal" style="color:#fff">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--interestModal ends-->
             <!-- footer-section -->
             <script type="text/javascript">
                 $(document).ready(function() {

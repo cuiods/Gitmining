@@ -117,7 +117,7 @@ $(document).ready(function() {
                 }
             }
             option = {
-                backgroundColor: '#161627',
+                backgroundColor: '#000000',
                 tooltip:{
 
                 },
@@ -188,7 +188,7 @@ $(document).ready(function() {
                     }
                 )
             })
-            drawLanguageChart(language,dataArray);
+            drawLanguageChart(language,dataArray,chart.field);
 
 
             if(!isMapEverInited){
@@ -251,65 +251,44 @@ function getQueryString(name) {
     if (r != null) return unescape(r[2]); return null;
 }
 
-function drawLanguageChart(obj,data){
+function drawLanguageChart(obj,data,nameList){
     var languageChart = echarts.init(obj);
+    languageChart.showLoading();
     option = {
-        backgroundColor: '#2c343c',
-
-        title: {
-            text: '',
-            left: 'center',
-            top: 20,
-            textStyle: {
-                color: '#ccc'
-            }
-        },
-
-        tooltip : {
+        tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
         },
-
-        visualMap: {
-            show: false,
-            min: 80,
-            max: 600,
-            inRange: {
-                colorLightness: [0, 1]
-            }
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:nameList
         },
-        series : [
+        series: [
             {
-                name:'language using',
+                name:'Language Chart',
                 type:'pie',
-                radius : '55%',
-                center: ['50%', '50%'],
-                data:data.sort(function (a, b) { return a.value - b.value}),
-                roseType: 'angle',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
                 label: {
                     normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
                         textStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            fontSize: '30',
+                            fontWeight: 'bold'
                         }
                     }
                 },
                 labelLine: {
                     normal: {
-                        lineStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
-                        },
-                        smooth: 0.2,
-                        length: 10,
-                        length2: 20
+                        show: false
                     }
                 },
-                itemStyle: {
-                    normal: {
-                        color: '#c23531',
-                        shadowBlur: 200,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
+                data:data
             }
         ]
     };
