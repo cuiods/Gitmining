@@ -84,6 +84,7 @@ public class LocationDaoImpl implements LocationDaoService {
         Query query = session.createQuery("from UserLocationEntity where login = :log");
         query.setString("log",login);
         List<UserLocationEntity> list = query.list();
+        session.close();
         if (list.size() > 0){
             return list.get(0);
         }
