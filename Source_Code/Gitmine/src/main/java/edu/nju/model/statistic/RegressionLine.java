@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * File        : DataPoint.java
  * @author cuihao
- * Description : Java实现一元线性回归的算法，回归线实现类，(可实现统计指标的预测)
+ * Description : 
  */
 public class RegressionLine {
     /** sum of x */
@@ -263,10 +263,9 @@ public class RegressionLine {
     }
 
     /**
-     * 返回误差
+     * 
      */
     public double getR() {
-        // 遍历这个list并计算分母
         for (int i = 0; i < pn - 1; i++) {
             float Yi = (float) Integer.parseInt(listY.get(i).toString());
             float Y = at(Integer.parseInt(listX.get(i).toString()));
@@ -290,7 +289,6 @@ public class RegressionLine {
         return round(E, 4);
     }
 
-    // 用于实现精确的四舍五入
     public double round(double v, int scale) {
 
         if (scale < 0) {

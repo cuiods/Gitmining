@@ -3,7 +3,7 @@ package edu.nju.model.statistic;
 /**
  * File        : DataPoint.java
  * @author cuihao
- * Description : Java实现一元线性回归的算法，座标点实体类，(可实现统计指标的预测)
+ * Description : 
  */
 public class DataPoint {
     /** the x value */
