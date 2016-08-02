@@ -11,6 +11,6 @@
 
     <context:component-scan base-package="edu.nju"/>
 
-    <import resource="classpath:spring-hibernate.xml"></import>
+    <import resource="classpath:spring-hibernate.xml"/>
 
 </beans>
