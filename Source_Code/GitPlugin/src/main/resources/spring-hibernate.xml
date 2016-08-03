@@ -49,30 +49,15 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>edu.nju.entity.TblCollabrator</value>
-                <value>edu.nju.entity.TblCommit</value>
-                <value>edu.nju.entity.TblCommitFile</value>
-                <value>edu.nju.entity.TblContributor</value>
-                <value>edu.nju.entity.TblRegister</value>
-                <value>edu.nju.entity.TblRepo</value>
-                <value>edu.nju.entity.TblSubscriber</value>
-                <value>edu.nju.entity.TblUser</value>
-                <value>edu.nju.entity.TblFollow</value>
-                <value>edu.nju.entity.RegisterLabel</value>
-                <value>edu.nju.entity.RepoLabel</value>
-                <value>edu.nju.entity.UserLabel</value>
-                <value>edu.nju.entity.SecUserEntity</value>
-                <value>edu.nju.entity.SecRepoEntity</value>
                 <value>edu.nju.entity.SecContributorEntity</value>
-                <value>edu.nju.entity.SecSubscriberEntity</value>
-                <value>edu.nju.entity.SecStarEntity</value>
-                <value>edu.nju.entity.SecRepoLabelEntity</value>
                 <value>edu.nju.entity.SecRegisterLabelEntity</value>
-                <value>edu.nju.entity.RegisterStarRepoEntity</value>
-                <value>edu.nju.entity.RegisterStarUserEntity</value>
+                <value>edu.nju.entity.SecRepoEntity</value>
+                <value>edu.nju.entity.SecRepoLabelEntity</value>
+                <value>edu.nju.entity.SecStarEntity</value>
+                <value>edu.nju.entity.SecSubscriberEntity</value>
+                <value>edu.nju.entity.SecUserEntity</value>
                 <value>edu.nju.entity.UserCountryEntity</value>
                 <value>edu.nju.entity.UserLocationEntity</value>
-                <value>edu.nju.entity.StaData</value>
             </list>
         </property>
     </bean>

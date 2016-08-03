@@ -10,8 +10,8 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -22,6 +22,16 @@
           <file>file://$MODULE_DIR$/src/main/resources/springmvc-servlet.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/META-INF/applicationContext.xml</file>
         </fileset>
+      </configuration>
+    </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="a.xml" value="df26fc6c-db7b-4774-85ec-f3b6a727e7f0" />
+          <unit-entry name="sessionFactory" value="df26fc6c-db7b-4774-85ec-f3b6a727e7f0" />
+        </datasource-map>
+        <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/spring-hibernate.xml" />
       </configuration>
     </facet>
   </component>
