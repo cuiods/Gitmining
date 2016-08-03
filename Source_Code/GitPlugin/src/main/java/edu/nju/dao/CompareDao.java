@@ -7,4 +7,5 @@ public interface CompareDao {
     long rangeOfWatch(long num);
     long rangeOfStar(long num);
     long rangeOfFork(long num);
+    long sumRepo();
 }
