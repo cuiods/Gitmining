@@ -36,6 +36,16 @@ public class CompareDaoImplTest extends TestCase {
     }
 
     @Test
+    public void peopleFollower() throws Exception {
+        System.out.println("=======follower===="+compareDao.peopleFollower("007lva","crystal"));
+    }
+
+    @Test
+    public void rangeOfFollwer() throws Exception {
+        System.out.println("=======follower_range==="+compareDao.rangeOfFollwer(compareDao.peopleFollower("007lva","crystal")));
+    }
+
+    @Test
     public void testSumRepo() throws Exception {
         System.out.println("=======sum========"+compareDao.sumRepo());
     }

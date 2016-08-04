@@ -38,7 +38,6 @@ public class CompareServiceImplTest {
 
     @Test
     public void comparePeople() throws Exception {
-
     }
 
 }

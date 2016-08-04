@@ -62,7 +62,7 @@ public class CompareController {
      */
     @RequestMapping(value = "/people", method = RequestMethod.GET)
     @ResponseBody
-    public PeopleOfRepo comparePeople(@RequestParam("owner")String owner, @RequestParam("name")String name) {
+    public double comparePeople(@RequestParam("owner")String owner, @RequestParam("name")String name) {
         return compareService.comparePeople(owner,name);
     }
 
