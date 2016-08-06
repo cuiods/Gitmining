@@ -1,6 +1,7 @@
 /**
  * Created by Harry on 2016/8/5.
  */
+
 function addPopupToPage() {
     var repohead = $(".repohead-details-container");
     //this is not a repository!!!
@@ -15,10 +16,13 @@ function addPopupToPage() {
         var fork = $(".repohead-details-container ul.pagehead-actions li:nth-child(3)");
         watch.hover(
             function (e) {
+                console.log("pageX " + e.pageX);
+                console.log("pagey " + e.pageY);
+
                 $("<div class='popup' id='watch_tip'> <div>Hello guys !</div> <svg height='50' width='100'> <path d='M0 50 L40 0 L65 0 Z' /> Sorry, your browser does not support inline SVG. </svg> </div>")
-                    .css("top", e.pageX + 20)
-                    .css("left", e.pageY + 10)
-                    .appendTo(watch);
+                    .css("top", e.pageY + 20)
+                    .css("left", e.pageX + 10)
+                    .appendTo("body");
             },
             function () {
                 $("#watch_tip").remove();
@@ -27,9 +31,9 @@ function addPopupToPage() {
         star.hover(
             function (e) {
                 $("<div class='popup' id='star_tip'> <div>Hello guys !</div> <svg height='50' width='100'> <path d='M0 50 L40 0 L65 0 Z' /> Sorry, your browser does not support inline SVG. </svg> </div>")
-                    .css("top", e.pageX + 20)
-                    .css("left", e.pageY + 10)
-                    .appendTo(star);
+                    .css("top", e.pageY + 20)
+                    .css("left", e.pageX + 10)
+                    .appendTo("body");
             },
             function () {
                 $("#star_tip").remove();
@@ -38,9 +42,9 @@ function addPopupToPage() {
         fork.hover(
             function (e) {
                 $("<div class='popup' id='fork_tip'> <div>Hello guys !</div> <svg height='50' width='100'> <path d='M0 50 L40 0 L65 0 Z' /> Sorry, your browser does not support inline SVG. </svg> </div>")
-                    .css("top", e.pageX + 20)
-                    .css("left", e.pageY + 10)
-                    .appendTo(fork);
+                    .css("top", e.pageY + 20)
+                    .css("left", e.pageX + 10)
+                    .appendTo("body");
             },
             function () {
                 $("#fork_tip").remove();
