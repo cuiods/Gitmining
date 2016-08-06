@@ -1,10 +1,35 @@
 package edu.nju.controller;
 
+import edu.nju.service.InfoService;
+import edu.nju.vo.Comment;
+import edu.nju.vo.News;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
 
 /**
- * Created by cuihao on 2016/8/2.
+ * info controller including comments and news of a repository
+ * @author cuihao
  */
 @Controller
+@RequestMapping("/info")
 public class InfoController {
+
+    @Resource
+    private InfoService infoService;
+
+    @RequestMapping(value = "/comments", method = RequestMethod.GET)
+    @ResponseBody
+    public Comment getCommentByName(String owner, String name) {
+        return infoService.getCommentsByName(owner, name);
+    }
+
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    @ResponseBody
+    public News getNewsByName(String owner, String name) {
+        return infoService.getNewsByName(owner, name);
+    }
 }
