@@ -1,6 +1,7 @@
 .popup{
     position:absolute;
     padding: .5em;
+    border-radius:13px;
     /*left:50vw;*/
     /*margin-left:35px;*/
     /*top:50vh;*/
@@ -13,13 +14,23 @@
 
 .popup div
 {
-    width:120px;
-    font-size:20px;
-    padding:50px;
-    background-color:black;
-    border-radius:40px;
-    color:white;
+    width:250px;
+    font-size:15px;
+    padding:30px;
+    background-color: aquamarine;
+    color:blue;
     text-align:center;
+}
+
+.loader{
+    margin: 0 0 2em;
+    height: 100px;
+    width: 20%;
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /*.repohead-details-container ul li:nth-child(1):hover ~#watch_tip*/
