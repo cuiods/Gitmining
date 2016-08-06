@@ -1,0 +1,43 @@
+.popup{
+    position:absolute;
+    left:50vw;
+    margin-left:35px;
+    top:50vh;
+    margin-top:-210px;
+    opacity:1;
+    transition:all 1s;
+    -webkit-transition:all 1s;
+}
+
+
+.popup div
+{
+    width:120px;
+    font-size:20px;
+    padding:50px;
+    background-color:black;
+    border-radius:40px;
+    color:white;
+    text-align:center;
+}
+
+.repohead-details-container ul li:nth-child(1):hover ~#watch_tip
+{
+    margin-left:45px;
+    margin-top:-220px;
+    opacity:1;
+}
+
+.repohead-details-container ul li:nth-child(2):hover ~#star_tip
+{
+    margin-left:45px;
+    margin-top:-220px;
+    opacity:1;
+}
+
+.repohead-details-container ul li:nth-child(3):hover ~#fork_tip
+{
+    margin-left:45px;
+    margin-top:-220px;
+    opacity:1;
+}
