@@ -6,6 +6,7 @@ import edu.nju.vo.News;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -23,13 +24,13 @@ public class InfoController {
 
     @RequestMapping(value = "/comments", method = RequestMethod.GET)
     @ResponseBody
-    public Comment getCommentByName(String owner, String name) {
+    public Comment getCommentByName(@RequestParam("owner") String owner, @RequestParam("name") String name) {
         return infoService.getCommentsByName(owner, name);
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     @ResponseBody
-    public News getNewsByName(String owner, String name) {
+    public News getNewsByName(@RequestParam("owner") String owner, @RequestParam("owner") String name) {
         return infoService.getNewsByName(owner, name);
     }
 }
