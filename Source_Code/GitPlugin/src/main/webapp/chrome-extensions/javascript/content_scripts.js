@@ -55,13 +55,7 @@ function loadCompareData() {
     });
 }
 
-function listen() {
-    addPopupToPage();
-    loadCompareData();
-}
-
 $(function () {
     addPopupToPage();
     loadCompareData();
-
 });

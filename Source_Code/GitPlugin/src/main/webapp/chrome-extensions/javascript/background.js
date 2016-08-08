@@ -67,3 +67,26 @@ chrome.runtime.onConnect.addListener(function (port) {
 
     });
 });
+
+chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
+    console.log("prepare to reinsert content script");
+    chrome.tabs.executeScript(
+        details.tabId,
+        {
+            file: "javascript/content_scripts.js"
+        },
+        function () {
+            console.log("reinsert content script success!");
+        }
+    );
+    chrome.tabs.insertCSS(
+        details.tabId,
+        {
+            file: "css/popup_window.css"
+        },
+        function () {
+            console.log("reinsert css success!");
+        }
+    );
+});
+
