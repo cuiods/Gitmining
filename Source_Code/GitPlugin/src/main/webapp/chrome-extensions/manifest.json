@@ -22,7 +22,10 @@
   "author": "Coding Fairy",
 
   "background": {
-    "scripts": ["javascript/background.js"],
+    "scripts": [
+      "javascript/background.js",
+      "javascript/jquery-3.1.0.min.js"
+    ],
     "persistent": false
   },
 
@@ -72,10 +75,11 @@
         "https://github.com/search/*"
       ],
       "css": ["css/popup_window.css"],
-      "js": ["javascript/jquery-3.1.0.min.js", "javascript/content_scripts.js"]
+      "js": ["javascript/jquery-3.1.0.min.js", "javascript/content_scripts.js"],
+      "run_at": "document_start"
     }
   ],
   "permissions": [
-    "tabs", "https://github.com/*"
+    "tabs", "https://github.com/*", "http://127.0.0.1/*"
   ]
 }
