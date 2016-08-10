@@ -32,7 +32,7 @@ public class InfoDaoImpl implements InfoDao {
     }
 
     @Override
-    public List<CommentsEntity> getCommentsByName(String owner, String name) {
+    public List<CommentsEntity> getCommentsByName(String owner, String name, int size, int page) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select id from SecRepoEntity where owner=:owner and name=:name ");
         query.setString("owner",owner);
@@ -40,6 +40,8 @@ public class InfoDaoImpl implements InfoDao {
         long id = (Long) query.list().get(0);
         Query query1 = session.createQuery("from CommentsEntity where repoId=:id");
         query1.setParameter("id",id);
+        query1.setMaxResults(size);
+        query1.setFirstResult((page-1)*size);
         List<CommentsEntity> entities = query1.list();
         if (entities==null) {
             entities = new ArrayList<CommentsEntity>();
@@ -49,7 +51,7 @@ public class InfoDaoImpl implements InfoDao {
     }
 
     @Override
-    public List<NewsEntity> getNewsByName(String owner, String name) {
+    public List<NewsEntity> getNewsByName(String owner, String name, int size, int page) {
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select id from SecRepoEntity where owner=:owner and name=:name ");
         query.setString("owner",owner);
@@ -57,6 +59,8 @@ public class InfoDaoImpl implements InfoDao {
         long id = (Long) query.list().get(0);
         Query query1 = session.createQuery("from NewsEntity where repoId=:id");
         query1.setParameter("id",id);
+        query1.setMaxResults(size);
+        query1.setFirstResult((page-1)*size);
         List<NewsEntity> entities = query1.list();
         if (entities==null) {
             entities = new ArrayList<NewsEntity>();

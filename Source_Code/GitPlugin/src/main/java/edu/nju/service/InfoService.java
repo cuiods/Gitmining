@@ -9,6 +9,6 @@ import java.util.List;
  * get comments and news
  */
 public interface InfoService {
-    Comment getCommentsByName(String owner, String name);
-    News getNewsByName(String owner, String name);
+    Comment getCommentsByName(String owner, String name,int size, int page);
+    News getNewsByName(String owner, String name, int size, int page);
 }

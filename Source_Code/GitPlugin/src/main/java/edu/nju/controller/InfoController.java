@@ -24,13 +24,15 @@ public class InfoController {
 
     @RequestMapping(value = "/comments", method = RequestMethod.GET)
     @ResponseBody
-    public Comment getCommentByName(@RequestParam("owner") String owner, @RequestParam("name") String name) {
-        return infoService.getCommentsByName(owner, name);
+    public Comment getCommentByName(@RequestParam("owner") String owner, @RequestParam("name") String name,
+                                    @RequestParam("size") int pageSize, @RequestParam("page")int pageNum) {
+        return infoService.getCommentsByName(owner, name, pageSize, pageNum);
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     @ResponseBody
-    public News getNewsByName(@RequestParam("owner") String owner, @RequestParam("owner") String name) {
-        return infoService.getNewsByName(owner, name);
+    public News getNewsByName(@RequestParam("owner") String owner, @RequestParam("owner") String name,
+                              @RequestParam("size") int pageSize, @RequestParam("page")int pageNum) {
+        return infoService.getNewsByName(owner, name, pageSize, pageNum);
     }
 }

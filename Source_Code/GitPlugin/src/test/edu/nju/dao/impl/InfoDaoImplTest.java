@@ -26,7 +26,7 @@ public class InfoDaoImplTest {
 
     @Test
     public void getCommentsByName() throws Exception {
-        System.out.println(infoDao.getCommentsByName("benalavi","cookbooks"));
+        System.out.println(infoDao.getCommentsByName("benalavi","cookbooks",10,1));
     }
 
     @Test

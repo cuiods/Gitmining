@@ -23,8 +23,8 @@ public class InfoServiceImpl implements InfoService {
     private InfoDao infoDao;
 
     @Override
-    public Comment getCommentsByName(String owner, String name) {
-        List<CommentsEntity> entities = infoDao.getCommentsByName(owner, name);
+    public Comment getCommentsByName(String owner, String name, int size, int page) {
+        List<CommentsEntity> entities = infoDao.getCommentsByName(owner, name, size, page);
         Comment comment = new Comment();
         comment.setName(name);
         comment.setOwner(owner);
@@ -33,8 +33,8 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public News getNewsByName(String owner, String name) {
-        List<NewsEntity> entities = infoDao.getNewsByName(owner, name);
+    public News getNewsByName(String owner, String name, int size, int page) {
+        List<NewsEntity> entities = infoDao.getNewsByName(owner, name, size, page);
         News news = new News();
         news.setName(name);
         news.setOwner(owner);

@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface InfoDao {
     long getRepoId(String owner, String name);
-    List<CommentsEntity> getCommentsByName(String owner, String name);
-    List<NewsEntity> getNewsByName(String owner, String name);
+    List<CommentsEntity> getCommentsByName(String owner, String name, int size, int page);
+    List<NewsEntity> getNewsByName(String owner, String name, int size, int page);
 }
