@@ -32,12 +32,11 @@ public class MeaningServiceImplTest {
 
     @Test
     public void commonComments() throws Exception {
-
     }
 
     @Test
     public void positiveComments() throws Exception {
-
+        System.out.println(meaningService.positiveComments("benalavi","cookbooks"));
     }
 
 }
