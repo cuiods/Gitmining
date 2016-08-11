@@ -27,7 +27,7 @@ public class MeaningServiceImplTest {
 
     @Test
     public void positiveNews() throws Exception {
-
+        System.out.println(meaningService.positiveNews("mojombo","grit"));
     }
 
     @Test

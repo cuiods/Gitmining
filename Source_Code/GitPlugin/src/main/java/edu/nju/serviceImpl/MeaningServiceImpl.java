@@ -31,6 +31,9 @@ public class MeaningServiceImpl implements MeaningService {
     @Value("#{configProperties['api_keyword']}")
     private String KEYWORD_URL;
 
+    @Value("#{configProperties['api_sentiment']}")
+    private String SENTIMENT_URL;
+
     @Value("#{configProperties['token1']}")
     private String token1;
 
@@ -42,25 +45,36 @@ public class MeaningServiceImpl implements MeaningService {
             java.io.IOException{
         List<NewsEntity> newsEntities = infoDao.getNewsByName(owner,name,100,1);
         List<String> result = new ArrayList<String>();
-        System.out.println("====="+KEYWORD_URL);
-        System.out.println("====="+token1);
         for (NewsEntity newsEntity : newsEntities) {
             String body = newsEntity.getSummary();
             HttpResponse<JsonNode> jsonResponse = Unirest.post(KEYWORD_URL)
                     .header("Content-Type","application/json")
                     .header("Accept", "application/json")
-                    .header("X-Token", "5eAu0EgH.8707.udaT47PYgvMq")
-                    .header("top_k","10")
+                    .header("X-Token", token1)
                     .body("\""+body+"\"")
                     .asJson();
             result.add(jsonResponse.getBody().toString());
         }
+        Unirest.shutdown();
         return result;
     }
 
     @Override
     public double positiveNews(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
+        List<NewsEntity> newsEntities = infoDao.getNewsByName(owner, name, 100, 1);
+        List<String> strText = new ArrayList<String>(newsEntities.size());
+        double sum = 0;
+        for (NewsEntity newsEntity: newsEntities) {
+            strText.add(newsEntity.getSummary());
+        }
+        String body = new JSONArray(strText.toArray()).toString();
+        HttpResponse<JsonNode> jsonResponse = Unirest.post(SENTIMENT_URL)
+                .header("Accept", "application/json")
+                .header("X-Token", token1)
+                .body(body)
+                .asJson();
+        System.out.println("===="+jsonResponse.getBody());
         return 0;
     }
 
