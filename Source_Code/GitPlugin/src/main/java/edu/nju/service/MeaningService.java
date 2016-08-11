@@ -14,6 +14,6 @@ import java.util.Map;
 public interface MeaningService {
     List<String> keywordsOfNews(String owner,String name) throws UnirestException, IOException;
     double positiveNews(String owner,String name) throws UnirestException, IOException;
-    Map<String, Long> commonComments(String owner,String name) throws UnirestException, IOException;
+    Map<String, List> commonComments(String owner,String name) throws UnirestException, IOException;
     double positiveComments(String owner,String name) throws UnirestException, IOException;
 }

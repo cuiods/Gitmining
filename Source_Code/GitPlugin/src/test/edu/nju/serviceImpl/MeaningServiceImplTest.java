@@ -32,6 +32,7 @@ public class MeaningServiceImplTest {
 
     @Test
     public void commonComments() throws Exception {
+        System.out.println(meaningService.commonComments("benalavi","cookbooks"));
     }
 
     @Test
