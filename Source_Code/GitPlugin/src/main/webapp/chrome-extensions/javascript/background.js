@@ -14,6 +14,7 @@ function compareWatch(watchCount, port) {
             data: {num: watchCount},
             success: function (ratio) {
                 port.postMessage({
+                    theme: "back_compare",
                     dataType: "watch",
                     ratio: ratio
                 });
@@ -29,6 +30,7 @@ function compareStar(starCount, port) {
         data: {num: starCount},
         success: function (ratio) {
             port.postMessage({
+                theme: "back_compare",
                 dataType: "star",
                 ratio: ratio
             });
@@ -43,6 +45,7 @@ function compareFork(forkCount, port) {
         data: {num: forkCount},
         success: function (ratio) {
             port.postMessage({
+                theme: "back_compare",
                 dataType: "fork",
                 ratio: ratio
             });
@@ -82,7 +85,7 @@ chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
     chrome.tabs.insertCSS(
         details.tabId,
         {
-            file: "css/popup_window.css"
+            file: "css/tip_window.css"
         },
         function () {
             console.log("reinsert css success!");
