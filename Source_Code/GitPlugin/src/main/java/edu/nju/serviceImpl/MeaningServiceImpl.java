@@ -80,7 +80,7 @@ public class MeaningServiceImpl implements MeaningService {
                 }
             }
         }
-        Unirest.shutdown();
+        //Unirest.shutdown();
         return result;
     }
 
@@ -104,7 +104,7 @@ public class MeaningServiceImpl implements MeaningService {
             JSONArray temp = array.getJSONArray(i);
             sum += temp.getDouble(0);
         }
-        Unirest.shutdown();
+        //Unirest.shutdown();
         return sum/array.length();
     }
 
@@ -138,7 +138,7 @@ public class MeaningServiceImpl implements MeaningService {
             JSONArray temp = array.getJSONArray(i);
             sum += temp.getDouble(0);
         }
-        Unirest.shutdown();
+        //Unirest.shutdown();
         return sum/array.length();
     }
 

@@ -23,6 +23,8 @@ public class MeaningServiceImplTest {
     @Test
     public void keywordsOfNews() throws Exception {
         System.out.println(meaningService.keywordsOfNews("mojombo","grit"));
+        System.out.println(meaningService.keywordsOfNews("mojombo","grit"));
+        System.out.println(meaningService.keywordsOfNews("mojombo","grit"));
     }
 
     @Test
