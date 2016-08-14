@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
     <title>popup</title>
     <script src="../javascript/jquery-3.1.0.min.js"></script>
     <script src="../javascript/popup.js"></script>
     <script src="../javascript/background.js"></script>
+    <link rel="stylesheet" href="../css/popup.css">
 </head>
 <body>
     <section class="notify">
-        <h3>new notifications</h3>
+        <h1>New notifications</h1>
+        <div class="notify-prompt prompt">No new notifications</div>
     </section>
 
     <section class="news">
-        <h3>news about current repository</h3>
-        <div class="news-prompt">No news for current repository!</div>
-        <ul class="news-list">
-
-        </ul>
+        <h1>News about current repository</h1>
+        <div class="news-prompt prompt">No news for current repository!</div>
+        <ul class="news-list"></ul>
     </section>
 
     <section class="comments">
-        <h3>comments about current repository</h3>
-        <div class="comments-prompt">No comments for current repository!</div>
-        <ul class="comments-list">
-
-        </ul>
+        <h1>Comments about current repository</h1>
+        <div class="comments-prompt prompt">No comments for current repository!</div>
+        <ul class="comments-list"></ul>
     </section>
 </body>
 </html>

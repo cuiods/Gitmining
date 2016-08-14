@@ -6,7 +6,7 @@
     font-family: 'Adobe Garamond Pro', serif;
     position:absolute;
     padding: .5em;
-    background-color: #b3e6ff;
+    background-color: #e6f2ff;
     border-radius:13px;
     top: 4em;
     left: -12em;
@@ -44,13 +44,12 @@
 }
 
 .loader{
-    margin: 0 0 2em;
+    margin: 0 0 1em;
     height: 100px;
     color: coral;
     width: 20%;
     text-align: center;
     padding: 1em;
-    margin: 0 auto 1em;
     display: inline-block;
     vertical-align: top;
 }
