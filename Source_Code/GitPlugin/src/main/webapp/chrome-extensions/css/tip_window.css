@@ -3,19 +3,16 @@
 }
 
 .popup{
+    font-family: 'Adobe Garamond Pro', serif;
     position:absolute;
     padding: .5em;
-    background-color: aquamarine;
+    background-color: #b3e6ff;
     border-radius:13px;
-    top: 2em;
-    left: -5em;
-    /*left:50vw;*/
-    /*margin-left:35px;*/
-    /*top:50vh;*/
-    /*margin-top:-210px;*/
+    top: 4em;
+    left: -12em;
     opacity:0;
-    transition:all 1s;
-    -webkit-transition:all 1s;
+    transition:all .5s;
+    -webkit-transition:all .5s;
 }
 
 .pagehead-actions>li:nth-child(1)>form:hover ~.popup#watch_tip {
@@ -30,18 +27,26 @@
     opacity: 1;
 }
 
-.popup div
+.popup>.tip_prompt
 {
-    width:180px;
-    font-size:40px;
-    padding:30px;
-    color:blue;
+    width:330px;
+    font-size:30px;
+    /*padding:10px;*/
+    color:#4d88ff;
     text-align:center;
+}
+
+.popup>.loading_area
+{
+    font-size: 50px;
+    color: coral;
+    text-align: center;
 }
 
 .loader{
     margin: 0 0 2em;
     height: 100px;
+    color: coral;
     width: 20%;
     text-align: center;
     padding: 1em;
