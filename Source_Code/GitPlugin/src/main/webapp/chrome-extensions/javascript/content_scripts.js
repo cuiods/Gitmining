@@ -22,18 +22,18 @@ function addPopupToPage() {
         var watch = lis[0];
         var star = lis[1];
         var fork = lis[2];
-        $(watch).append("<div class='popup' id='watch_tip'> <div class='tip_prompt'>watch count beat :</div>"+getLoadSvg()+"</div>");
-        $(star).append("<div class='popup' id='star_tip'> <div class='tip_prompt'>star count beat :</div>"+getLoadSvg()+"</div>");
-        $(fork).append("<div class='popup' id='fork_tip'> <div class='tip_prompt'>fork count beat :</div>"+getLoadSvg()+"</div>");
+        $(watch).append("<div class='popup' id='watch_tip'> <div class='tip_prompt'>watch count beats :</div>"+getLoadSvg()+"</div>");
+        $(star).append("<div class='popup' id='star_tip'> <div class='tip_prompt'>star count beats :</div>"+getLoadSvg()+"</div>");
+        $(fork).append("<div class='popup' id='fork_tip'> <div class='tip_prompt'>fork count beats :</div>"+getLoadSvg()+"</div>");
 
     }
 }
 
 
 function loadCompareData() {
-    var watchCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(1) > form > div.select-menu.js-menu-container.js-select-menu > a.social-count.js-social-count")[0].innerHTML.trim();
-    var starCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(2) > div > form.unstarred > a")[0].innerHTML.trim();
-    var forkCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(3) > a")[0].innerHTML.trim();
+    var watchCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(1) > form > div.select-menu.js-menu-container.js-select-menu > a.social-count.js-social-count")[0].innerHTML.trim().replace(',', '');
+    var starCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(2) > div > form.unstarred > a")[0].innerHTML.trim().replace(',', '');
+    var forkCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(3) > a")[0].innerHTML.trim().replace(',', '');
 
     var port = chrome.runtime.connect({name: ownerName+"/"+repoName});
     port.onMessage.addListener(function (msg) {

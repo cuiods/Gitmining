@@ -38,7 +38,7 @@ public class InfoDaoImpl implements InfoDao {
         query.setString("owner",owner);
         query.setString("name",name);
         long id = (Long) query.list().get(0);
-        Query query1 = session.createQuery("from CommentsEntity where repoId=:id");
+        Query query1 = session.createQuery("from CommentsEntity where repoId=:id and comment <> '' ");
         query1.setParameter("id",id);
         query1.setMaxResults(size);
         query1.setFirstResult((page-1)*size);
