@@ -27,6 +27,10 @@
     opacity: 1;
 }
 
+.pagehead-actions>li:nth-child(3)>a:hover ~.popup#fork_tip {
+    opacity: 1;
+}
+
 .popup>.tip_prompt
 {
     width:330px;

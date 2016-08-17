@@ -100,7 +100,7 @@ $(function () {
         var tabId = tabs[0].id;
         console.log("tabs.query success");
         console.log(url);
-        if (new RegExp(/github.com\/[\w\-]+\/[\w\-]+/, "i").test(url)){
+        if (new RegExp(/https:\/\/github.com\/[\w\-]+\/[\w\-]+/, "i").test(url)){
             console.log("match url");
             var port = chrome.tabs.connect(tabId, {name: "query owner and reponame"});
             port.onDisconnect.addListener(function (event) {

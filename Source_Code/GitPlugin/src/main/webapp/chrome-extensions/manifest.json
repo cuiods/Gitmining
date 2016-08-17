@@ -79,6 +79,6 @@
     }
   ],
   "permissions": [
-    "tabs", "https://github.com/*", "http://127.0.0.1/*", "webNavigation"
+    "tabs", "https://github.com/*", "http://127.0.0.1/*"
   ]
 }

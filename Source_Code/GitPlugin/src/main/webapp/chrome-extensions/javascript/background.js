@@ -71,25 +71,35 @@ chrome.runtime.onConnect.addListener(function (port) {
     });
 });
 
-chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
-    console.log("prepare to reinsert content script");
-    chrome.tabs.executeScript(
-        details.tabId,
-        {
-            file: "javascript/content_scripts.js"
-        },
-        function () {
-            console.log("reinsert content script success!");
-        }
-    );
-    chrome.tabs.insertCSS(
-        details.tabId,
-        {
-            file: "css/tip_window.css"
-        },
-        function () {
-            console.log("reinsert css success!");
-        }
-    );
+chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
+    if ( (info.status == "complete") ) {
+        console.log("test tabs.onUpdated");
+        chrome.tabs.sendMessage(
+            tabId,
+            {theme: "reinsert tip window"}
+        );
+    }
 });
+
+// chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
+//     console.log("prepare to reinsert content script");
+//     chrome.tabs.executeScript(
+//         details.tabId,
+//         {
+//             file: "javascript/content_scripts.js"
+//         },
+//         function () {
+//             console.log("reinsert content script success!");
+//         }
+//     );
+//     chrome.tabs.insertCSS(
+//         details.tabId,
+//         {
+//             file: "css/tip_window.css"
+//         },
+//         function () {
+//             console.log("reinsert css success!");
+//         }
+//     );
+// });
 
