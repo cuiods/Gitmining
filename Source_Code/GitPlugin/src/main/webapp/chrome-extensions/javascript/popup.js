@@ -17,7 +17,7 @@ function setNewsMotion(owner, name) {
         },
         success: function (number) {
             console.log("success");
-            $(".news>.positive-index>.index-value").text(number);
+            $("#news-index>.index-value").text(number);
         }
     });
 }
@@ -35,11 +35,11 @@ function setNews(owner, name) {
             success: function (news) {
                 var entityList = news.entities;
                 if (entityList.length > 0) {
-                    $(".news-prompt").remove();
-                    $(".news-list").before("<div class='positive-index'>Positive index: <span class='index-value'>loading...</span></div>");
+                    $("#news-prompt").remove();
+                    $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
                     for (var i=0;i<entityList.length;i++){
                         var entity = entityList[i];
-                        $(".news-list").append("<li class='news-item'><a href='"+entity.sourceUrl+"' rel='external' target='_blank'>"+entity.summary+"</a></li>");
+                        $("#news-list").append("<a class='list-group-item' href='"+entity.sourceUrl+"' rel='external' target='_blank'>"+entity.summary+"</a>");
                     }
                     //set the positive number of news
                     setNewsMotion(owner, name);
@@ -58,7 +58,7 @@ function setCommentMotion(owner, name) {
             name: name
         },
         success: function (number) {
-            $(".comments>.positive-index>.index-value").text(number);
+            $("#comments-index>.index-value").text(number);
         }
     });
 }
@@ -77,11 +77,11 @@ function setComments(owner, name) {
                 var commentList = comments.entities;
                 if (commentList.length > 0) {
                     console.log("comment legth: "+commentList.length);
-                    $(".comments-prompt").remove();
-                    $(".comments-list").before("<div class='positive-index'>Positive index: <span class='index-value'>  loading...</span></div>");
+                    $("#comments-prompt").remove();
+                    $("#comments-list").before("<div class='positive-index' id='comments-index'>Positive index: <span class='index-value'>  loading...</span></div>");
                     for (var i=0;i<commentList.length;i++) {
                         var entity = commentList[i];
-                        $(".comments-list").append("<li class='comment-item'>"+entity.comment+"</li>");
+                        $("#comments-list").append("<li class='list-group-item'>"+entity.comment+"</li>");
                     }
                     setCommentMotion(owner, name);
                 }

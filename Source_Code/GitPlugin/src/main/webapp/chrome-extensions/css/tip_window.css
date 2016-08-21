@@ -15,11 +15,11 @@
     -webkit-transition:all .5s;
 }
 
-.pagehead-actions>li:nth-child(1)>form:hover ~.popup#watch_tip {
+.pagehead-actions>li:nth-child(1) a:hover ~.popup#watch_tip {
     opacity: 1;
 }
 
-.pagehead-actions>li:nth-child(2)>.starring-container:hover ~.popup#star_tip {
+.pagehead-actions>li:nth-child(2)>:hover ~.popup#star_tip {
     opacity: 1;
 }
 

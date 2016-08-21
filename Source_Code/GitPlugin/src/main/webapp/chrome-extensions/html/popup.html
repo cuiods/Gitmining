@@ -2,27 +2,91 @@
 <html lang="en">
     <meta charset="UTF-8">
     <title>popup</title>
-    <script src="../javascript/jquery-3.1.0.min.js"></script>
-    <script src="../javascript/popup.js"></script>
-    <script src="../javascript/background.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/popup.css">
+    <script src="../javascript/jquery-3.1.0.min.js"></script>
+    <script src="../javascript/bootstrap.min.js"></script>
+    <script src="../javascript/background.js"></script>
+    <script src="../javascript/popup.js"></script>
 </head>
 <body>
-    <section class="notify">
-        <h1>New notifications</h1>
-        <div class="notify-prompt prompt">No new notifications</div>
-    </section>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    New notifications
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <div class="prompt">No notifications</div>
+                <div class="list-group" id="notification-list"></div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    News about this repository
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+                <div class="prompt" id="news-prompt">No news</div>
+                <div class="list-group" id="news-list"></div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Comments about this repository
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+                <div class="prompt" id="comments-prompt">No comments</div>
+                <ul class="list-group" id="comments-list"></ul>
+            </div>
+        </div>
+    </div>
 
-    <section class="news">
-        <h1>News about current repository</h1>
-        <div class="news-prompt prompt">No news for current repository!</div>
-        <ul class="news-list"></ul>
-    </section>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFour">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    Recommend repositories
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+            <div class="panel-body">
+                <div class="prompt">No recommendations</div>
+                <div class="list-group" id="recommend-list"></div>
+            </div>
+        </div>
+    </div>
 
-    <section class="comments">
-        <h1>Comments about current repository</h1>
-        <div class="comments-prompt prompt">No comments for current repository!</div>
-        <ul class="comments-list"></ul>
-    </section>
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingFive">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                    Analysis Graphs
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+            <div class="panel-body">
+                charts to be put here!!!!!!!!!!!!!!!!!!!!!!!!
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

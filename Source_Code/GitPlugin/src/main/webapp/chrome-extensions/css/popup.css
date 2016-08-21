@@ -1,33 +1,36 @@
 html
 {
-    background-color: #f3ffe6;
-}
-
-section
-{
-    font-size: 16px;
-    font-family: 'Adobe Hebrew', serif;
     width: 40em;
+    box-sizing: border-box;
 }
 
-li
-{
-    font-family: 'Adobe Caslon Pro', serif;
-    margin: 10px 10px 10px 0px;
-}
+#news-list
 
-h1
-{
-    font-size: 25px;
-}
+/*section*/
+/*{*/
+    /*font-size: 16px;*/
+    /*font-family: 'Adobe Hebrew', serif;*/
+    /*width: 40em;*/
+/*}*/
 
-.prompt
-{
-    padding-left: 40px;
-    color: #a8a8a8;
-}
+/*li*/
+/*{*/
+    /*font-family: 'Adobe Caslon Pro', serif;*/
+    /*margin: 10px 10px 10px 0px;*/
+/*}*/
 
-.positive-index {
-    padding-left: 20px;
-    font-size: 20px;
-}
+/*h1*/
+/*{*/
+    /*font-size: 25px;*/
+/*}*/
+
+/*.prompt*/
+/*{*/
+    /*padding-left: 40px;*/
+    /*color: #a8a8a8;*/
+/*}*/
+
+/*.positive-index {*/
+    /*padding-left: 20px;*/
+    /*font-size: 20px;*/
+/*}*/

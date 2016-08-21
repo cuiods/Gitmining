@@ -35,9 +35,9 @@ function addPopupToPage() {
 
 
 function loadCompareData() {
-    var watchCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(1) > form > div.select-menu.js-menu-container.js-select-menu > a.social-count.js-social-count")[0].innerHTML.trim().replace(',', '');
-    var starCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(2) > div > form.unstarred > a")[0].innerHTML.trim().replace(',', '');
-    var forkCount = $("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(3) > a")[0].innerHTML.trim().replace(',', '');
+    var watchCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(1) > form > div.select-menu.js-menu-container.js-select-menu > a.social-count").html()).replace(',', '');
+    var starCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(2) > a.social-count").html()).replace(',', '');
+    var forkCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(3) > a.social-count").html()).replace(',', '');
 
     var port = chrome.runtime.connect({name: ownerName+"/"+repoName});
     port.onMessage.addListener(function (msg) {
