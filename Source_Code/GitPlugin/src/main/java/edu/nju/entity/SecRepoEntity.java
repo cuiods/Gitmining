@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by cuihao on 2016/8/3.
+ * Created by cuihao on 2016/8/29.
  */
 @Entity
 @Table(name = "sec_repo", schema = "gitmining", catalog = "")
@@ -22,9 +22,8 @@ public class SecRepoEntity {
     private Timestamp createAt;
     private Timestamp updateAt;
     private String activityJson;
-    private String puchJson;
-    private String weeklyJson;
     private String punchJson;
+    private String weeklyJson;
 
     @Id
     @Column(name = "id")
@@ -146,6 +145,36 @@ public class SecRepoEntity {
         this.updateAt = updateAt;
     }
 
+    @Basic
+    @Column(name = "activity_json")
+    public String getActivityJson() {
+        return activityJson;
+    }
+
+    public void setActivityJson(String activityJson) {
+        this.activityJson = activityJson;
+    }
+
+    @Basic
+    @Column(name = "punch_json")
+    public String getPunchJson() {
+        return punchJson;
+    }
+
+    public void setPunchJson(String punchJson) {
+        this.punchJson = punchJson;
+    }
+
+    @Basic
+    @Column(name = "weekly_json")
+    public String getWeeklyJson() {
+        return weeklyJson;
+    }
+
+    public void setWeeklyJson(String weeklyJson) {
+        this.weeklyJson = weeklyJson;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -166,6 +195,9 @@ public class SecRepoEntity {
         if (forkCount != null ? !forkCount.equals(that.forkCount) : that.forkCount != null) return false;
         if (createAt != null ? !createAt.equals(that.createAt) : that.createAt != null) return false;
         if (updateAt != null ? !updateAt.equals(that.updateAt) : that.updateAt != null) return false;
+        if (activityJson != null ? !activityJson.equals(that.activityJson) : that.activityJson != null) return false;
+        if (punchJson != null ? !punchJson.equals(that.punchJson) : that.punchJson != null) return false;
+        if (weeklyJson != null ? !weeklyJson.equals(that.weeklyJson) : that.weeklyJson != null) return false;
 
         return true;
     }
@@ -184,46 +216,9 @@ public class SecRepoEntity {
         result = 31 * result + (forkCount != null ? forkCount.hashCode() : 0);
         result = 31 * result + (createAt != null ? createAt.hashCode() : 0);
         result = 31 * result + (updateAt != null ? updateAt.hashCode() : 0);
+        result = 31 * result + (activityJson != null ? activityJson.hashCode() : 0);
+        result = 31 * result + (punchJson != null ? punchJson.hashCode() : 0);
+        result = 31 * result + (weeklyJson != null ? weeklyJson.hashCode() : 0);
         return result;
-    }
-
-    @Basic
-    @Column(name = "activity_json")
-    public String getActivityJson() {
-        return activityJson;
-    }
-
-    public void setActivityJson(String activityJson) {
-        this.activityJson = activityJson;
-    }
-
-    @Basic
-    @Column(name = "puch_json")
-    public String getPuchJson() {
-        return puchJson;
-    }
-
-    public void setPuchJson(String puchJson) {
-        this.puchJson = puchJson;
-    }
-
-    @Basic
-    @Column(name = "weekly_json")
-    public String getWeeklyJson() {
-        return weeklyJson;
-    }
-
-    public void setWeeklyJson(String weeklyJson) {
-        this.weeklyJson = weeklyJson;
-    }
-
-    @Basic
-    @Column(name = "punch_json")
-    public String getPunchJson() {
-        return punchJson;
-    }
-
-    public void setPunchJson(String punchJson) {
-        this.punchJson = punchJson;
     }
 }

@@ -60,7 +60,7 @@ public class GithubReader {
                         .header("Accept","application/vnd.github.v3+json")
                         .asString();
                 if (commentStatusResponse.getStatus()!=202) break;
-                Thread.sleep(2500);
+                Thread.sleep((i+1)*1000);
             }
             String result = commentStatusResponse.getBody();
             Session session = sessionFactory.openSession();
@@ -92,7 +92,7 @@ public class GithubReader {
                         .header("Accept","application/vnd.github.v3+json")
                         .asString();
                 if (commentStatusResponse.getStatus()!=202) break;
-                Thread.sleep(2500);
+                Thread.sleep((i+1)*1000);
             }
             String result = commentStatusResponse.getBody();
             Session session = sessionFactory.openSession();
@@ -124,7 +124,7 @@ public class GithubReader {
                         .header("Accept","application/vnd.github.v3+json")
                         .asString();
                 if (commentStatusResponse.getStatus()!=202) break;
-                Thread.sleep(2500);
+                Thread.sleep((i+1)*1000);
             }
             String result = commentStatusResponse.getBody();
             Session session = sessionFactory.openSession();
