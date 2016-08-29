@@ -2,11 +2,50 @@
 /**
  * Created by Harry on 2016/8/9.
  */
-function setNotify(owner, name) {
-    var id = owner+"/"+name;
-    chrome.storage.local.get(id, function (items) {
-        //todo
+function setNotify() {
+    chrome.storage.local.get(null, function (items) {
+        if ((items!=null)&&(!jQuery.isEmptyObject(items))) {
+            for (var itemKey in items) {
+                var itemBody = items[itemKey];
+                if (itemBody.isUpdate == true) {
+                    $("#nofity-prompt").remove();
+                    $("#notification-list").append('<a class="list-group-item notify-item" href="#"> New news about '+itemKey+'</a>');
+                    $(".notify-item:last").data("repoId", itemKey);
+                }
+            }
+            //todo add on click listener
+            console.log("prepare to add click handler");
+            $(".notify-item").click(function () {
+                removeNotify($(this).data("repoId"));
+            });
+        }
     });
+}
+
+function removeNotify(itemKey) {
+    console.log("enter remove notify");
+    console.log(itemKey);
+    var itemBody = {
+        isUpdate: false,
+        time: new Date().getTime()
+    };
+    var obj = {};
+    obj[itemKey] = itemBody;
+    chrome.storage.local.set(obj);
+    var newsNumStr = chrome.browserAction.getBadgeText({}, function (result) {
+        var newsNum = 1;
+        if ((newsNumStr!=null)&&(newsNumStr.length>0)){
+            newsNum = parseInt(newsNumStr);
+        }
+        newsNum = newsNum-1;
+        var newsNumStr = "";
+        if (newsNum > 0 ){
+            newsNumStr = newsNum.toString();
+        }
+        chrome.browserAction.setBadgeText({
+            text: newsNumStr});
+    });
+    return true;
 }
 
 function setNewsMotion(owner, name) {
@@ -40,12 +79,13 @@ function setNews(owner, name) {
                 if (entityList.length > 0) {
                     $("#news-prompt").remove();
                     $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
-                    for (var i=0;i<entityList.length;i++){
-                        var entity = entityList[i];
-                        $("#news-list").append("<a class='list-group-item' href='"+entity.sourceUrl+"' rel='external' target='_blank'>"+entity.summary+"</a>");
-                    }
                     //set the positive number of news
                     setNewsMotion(owner, name);
+                    for (var i=0;i<entityList.length;i++){
+                        var entity = entityList[i];
+                        $("#news-list").append("<a class='list-group-item' href='http://www.oschina.net/news/"+entity.id+"' rel='external' target='_blank'>"+entity.title+"</a>");
+                    }
+
                 }
             }
         }
@@ -82,11 +122,11 @@ function setComments(owner, name) {
                     console.log("comment legth: "+commentList.length);
                     $("#comments-prompt").remove();
                     $("#comments-list").before("<div class='positive-index' id='comments-index'>Positive index: <span class='index-value'>  loading...</span></div>");
+                    setCommentMotion(owner, name);
                     for (var i=0;i<commentList.length;i++) {
                         var entity = commentList[i];
                         $("#comments-list").append("<li class='list-group-item'>"+entity.comment+"</li>");
                     }
-                    setCommentMotion(owner, name);
                 }
             }
         }
@@ -95,6 +135,8 @@ function setComments(owner, name) {
 
 $(function () {
     //console.log("popup.js load");
+    setNotify();
+
     chrome.tabs.query({
         active: true,
         currentWindow: true
