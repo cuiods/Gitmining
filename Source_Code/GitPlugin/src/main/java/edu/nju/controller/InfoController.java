@@ -33,8 +33,15 @@ public class InfoController {
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     @ResponseBody
     public News getNewsByName(@RequestParam("owner") String owner, @RequestParam("name") String name,
-                              @RequestParam(value = "size", required = false, defaultValue = "5") int pageSize,
+                              @RequestParam(value = "size", required = false, defaultValue = "32767") int pageSize,
                               @RequestParam("page")int pageNum) {
         return infoService.getNewsByName(owner, name, pageSize, pageNum);
+    }
+
+    @RequestMapping(value = "newstime", method = RequestMethod.GET)
+    @ResponseBody
+    public long getLastNewsTime(@RequestParam String owner,
+                                @RequestParam String name){
+        return infoService.getLastNewsTime(owner, name);
     }
 }

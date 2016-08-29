@@ -8,6 +8,7 @@ import com.sun.org.apache.bcel.internal.generic.PUSH;
 import edu.nju.dao.InfoDao;
 import edu.nju.entity.CommentsEntity;
 import edu.nju.entity.NewsEntity;
+import edu.nju.entity.NewsOsEntity;
 import edu.nju.service.MeaningService;
 import edu.nju.service.TokenService;
 import org.json.JSONArray;
@@ -62,9 +63,9 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public List<String> keywordsOfNews(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<NewsEntity> newsEntities = infoDao.getNewsByName(owner,name,100,1);
+        List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner,name,100,1);
         List<String> result = new ArrayList<String>();
-        for (NewsEntity newsEntity : newsEntities) {
+        for (NewsOsEntity newsEntity : newsEntities) {
             String body = newsEntity.getSummary();
             HttpResponse<JsonNode> jsonResponse = Unirest.post(KEYWORD_URL)
                     .header("Content-Type","application/json")
@@ -87,10 +88,10 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public double positiveNews(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<NewsEntity> newsEntities = infoDao.getNewsByName(owner, name, 100, 1);
+        List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner, name, 100, 1);
         List<String> strText = new ArrayList<String>(newsEntities.size());
         double sum = 0;
-        for (NewsEntity newsEntity: newsEntities) {
+        for (NewsOsEntity newsEntity: newsEntities) {
             strText.add(newsEntity.getSummary());
         }
         String body = new JSONArray(strText.toArray()).toString();

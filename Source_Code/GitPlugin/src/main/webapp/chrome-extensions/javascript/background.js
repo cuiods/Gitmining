@@ -53,6 +53,45 @@ function compareFork(forkCount, port) {
     });
 }
 
+function queryNewNews() {
+    chrome.storage.local.get(null, function (items) {
+        // console.log(items);
+        for (var itemKey in items) {
+            var itemBody = items[itemKey];
+            if (!itemBody.isUpdate) {
+                var arr = itemKey.split("/");
+                var owner = arr[0];
+                var name = arr[1];
+                $.ajax({
+                    type: "GET",
+                    url: getServerIP()+"/info/newstime",
+                    data: {owner: owner, name: name},
+                    success: function (lastTime) {
+                        if (lastTime > itemBody.time) {
+                            itemBody.isUpdate = true;
+                            var obj = {};
+                            obj[itemKey] = itemBody;
+                            chrome.storage.local.set(obj);
+                            var newsNumStr = chrome.browserAction.getBadgeText({}, function (result) {
+                                var newsNum = 0;
+                                if ((newsNumStr!=null)&&(newsNumStr.length>0)){
+                                    newsNum = parseInt(newsNumStr);
+                                }
+                                newsNum = newsNum+1;
+                                chrome.browserAction.setBadgeText({
+                                    text: newsNum.toString()});
+                            });
+                        }
+                        else {
+                            console.log("item time less than ..."+lastTime);
+                        }
+                    }
+                });
+            }
+        }
+    })
+}
+
 //建立一个缓冲区用于存储一些运算得到的ratio，避免重复计算
 //todo
 
@@ -78,6 +117,20 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
             tabId,
             {theme: "reinsert tip window"}
         );
+    }
+});
+
+// console.log("set alarm start");
+chrome.alarms.create("gitplugin_alarm", {
+    delayInMinutes: 0.5,
+    periodInMinutes: 30
+});
+// console.log("set alarm end");
+
+chrome.alarms.onAlarm.addListener(function (alarm) {
+    // console.log("catch alarm event");
+    if (alarm.name == "gitplugin_alarm") {
+        queryNewNews();
     }
 });
 

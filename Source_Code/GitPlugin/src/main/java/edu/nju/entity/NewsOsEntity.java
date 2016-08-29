@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by cuihao on 2016/8/29.
+ * Created by Harry on 2016/8/29.
  */
 @Entity
 @Table(name = "news_os", schema = "gitmining", catalog = "")

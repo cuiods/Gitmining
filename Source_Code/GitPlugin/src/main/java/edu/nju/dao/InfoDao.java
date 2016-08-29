@@ -2,6 +2,7 @@ package edu.nju.dao;
 
 import edu.nju.entity.CommentsEntity;
 import edu.nju.entity.NewsEntity;
+import edu.nju.entity.NewsOsEntity;
 
 import java.util.List;
 
@@ -10,7 +11,10 @@ import java.util.List;
  * @author cuihao
  */
 public interface InfoDao {
-    long getRepoId(String owner, String name);
+
     List<CommentsEntity> getCommentsByName(String owner, String name, int size, int page);
-    List<NewsEntity> getNewsByName(String owner, String name, int size, int page);
+
+    List<NewsOsEntity> getNewsByName(String owner, String name, int size, int page);
+
+    long getLastNewsTime(String owner, String name);
 }
