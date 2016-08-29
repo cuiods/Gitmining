@@ -60,6 +60,7 @@
                 <value>edu.nju.entity.UserLocationEntity</value>
                 <value>edu.nju.entity.CommentsEntity</value>
                 <value>edu.nju.entity.NewsEntity</value>
+                <value>edu.nju.entity.NewsOsEntity</value>
             </list>
         </property>
     </bean>

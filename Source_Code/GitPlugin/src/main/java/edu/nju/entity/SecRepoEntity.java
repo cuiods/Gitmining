@@ -21,6 +21,10 @@ public class SecRepoEntity {
     private Integer forkCount;
     private Timestamp createAt;
     private Timestamp updateAt;
+    private String activityJson;
+    private String puchJson;
+    private String weeklyJson;
+    private String punchJson;
 
     @Id
     @Column(name = "id")
@@ -181,5 +185,45 @@ public class SecRepoEntity {
         result = 31 * result + (createAt != null ? createAt.hashCode() : 0);
         result = 31 * result + (updateAt != null ? updateAt.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "activity_json")
+    public String getActivityJson() {
+        return activityJson;
+    }
+
+    public void setActivityJson(String activityJson) {
+        this.activityJson = activityJson;
+    }
+
+    @Basic
+    @Column(name = "puch_json")
+    public String getPuchJson() {
+        return puchJson;
+    }
+
+    public void setPuchJson(String puchJson) {
+        this.puchJson = puchJson;
+    }
+
+    @Basic
+    @Column(name = "weekly_json")
+    public String getWeeklyJson() {
+        return weeklyJson;
+    }
+
+    public void setWeeklyJson(String weeklyJson) {
+        this.weeklyJson = weeklyJson;
+    }
+
+    @Basic
+    @Column(name = "punch_json")
+    public String getPunchJson() {
+        return punchJson;
+    }
+
+    public void setPunchJson(String punchJson) {
+        this.punchJson = punchJson;
     }
 }
