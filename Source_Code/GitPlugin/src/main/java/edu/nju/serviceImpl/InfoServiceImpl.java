@@ -3,6 +3,7 @@ package edu.nju.serviceImpl;
 import edu.nju.dao.InfoDao;
 import edu.nju.entity.CommentsEntity;
 import edu.nju.entity.NewsEntity;
+import edu.nju.entity.NewsOsEntity;
 import edu.nju.service.InfoService;
 import edu.nju.vo.Comment;
 import edu.nju.vo.News;
@@ -34,11 +35,16 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public News getNewsByName(String owner, String name, int size, int page) {
-        List<NewsEntity> entities = infoDao.getNewsByName(owner, name, size, page);
+        List<NewsOsEntity> entities = infoDao.getNewsByName(owner, name, size, page);
         News news = new News();
         news.setName(name);
         news.setOwner(owner);
         news.setEntities(entities);
         return news;
+    }
+
+    @Override
+    public long getLastNewsTime(String owner, String name) {
+        return infoDao.getLastNewsTime(owner, name);
     }
 }

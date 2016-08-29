@@ -75,10 +75,10 @@
         "https://github.com/search/*"
       ],
       "css": ["css/tip_window.css"],
-      "js": ["javascript/jquery-3.1.0.min.js", "javascript/content_scripts.js"]
+      "js": ["javascript/jquery-3.1.0.min.js", "javascript/bootstrap.min.js", "javascript/content_scripts.js"]
     }
   ],
   "permissions": [
-    "tabs", "https://github.com/*", "http://127.0.0.1/*"
+    "tabs", "storage", "alarms", "https://github.com/*", "http://127.0.0.1/*"
   ]
 }

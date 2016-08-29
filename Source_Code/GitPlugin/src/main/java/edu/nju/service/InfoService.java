@@ -10,5 +10,8 @@ import java.util.List;
  */
 public interface InfoService {
     Comment getCommentsByName(String owner, String name,int size, int page);
+
     News getNewsByName(String owner, String name, int size, int page);
+
+    long getLastNewsTime(String owner, String name);
 }

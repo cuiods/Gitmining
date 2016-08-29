@@ -1,6 +1,7 @@
 package edu.nju.vo;
 
 import edu.nju.entity.NewsEntity;
+import edu.nju.entity.NewsOsEntity;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class News {
     private String owner;
     private String name;
-    private List<NewsEntity> entities;
+    private List<NewsOsEntity> entities;
 
     public String getOwner() {
         return owner;
@@ -29,11 +30,11 @@ public class News {
         this.name = name;
     }
 
-    public List<NewsEntity> getEntities() {
+    public List<NewsOsEntity> getEntities() {
         return entities;
     }
 
-    public void setEntities(List<NewsEntity> entities) {
+    public void setEntities(List<NewsOsEntity> entities) {
         this.entities = entities;
     }
 }

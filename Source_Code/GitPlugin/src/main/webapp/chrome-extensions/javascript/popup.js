@@ -2,8 +2,11 @@
 /**
  * Created by Harry on 2016/8/9.
  */
-function setNotify() {
-    
+function setNotify(owner, name) {
+    var id = owner+"/"+name;
+    chrome.storage.local.get(id, function (items) {
+        //todo
+    });
 }
 
 function setNewsMotion(owner, name) {

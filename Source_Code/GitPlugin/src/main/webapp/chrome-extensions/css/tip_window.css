@@ -15,7 +15,7 @@
     -webkit-transition:all .5s;
 }
 
-.pagehead-actions>li:nth-child(1) a:hover ~.popup#watch_tip {
+.pagehead-actions>li:nth-child(1)>form:hover ~.popup#watch_tip {
     opacity: 1;
 }
 
@@ -56,5 +56,10 @@
     padding: 1em;
     display: inline-block;
     vertical-align: top;
+}
+
+#subscribe-btn{
+    padding: 3px 10px 3px 10px;
+    font-size: 12px;
 }
 
