@@ -25,7 +25,7 @@ public class InfoController {
     @RequestMapping(value = "/comments", method = RequestMethod.GET)
     @ResponseBody
     public Comment getCommentByName(@RequestParam("owner") String owner, @RequestParam("name") String name,
-                                    @RequestParam(value = "size", required = false, defaultValue = "5") int pageSize,
+                                    @RequestParam(value = "size", required = false, defaultValue = "10") int pageSize,
                                     @RequestParam("page")int pageNum) {
         return infoService.getCommentsByName(owner, name, pageSize, pageNum);
     }
@@ -33,7 +33,7 @@ public class InfoController {
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     @ResponseBody
     public News getNewsByName(@RequestParam("owner") String owner, @RequestParam("name") String name,
-                              @RequestParam(value = "size", required = false, defaultValue = "32767") int pageSize,
+                              @RequestParam(value = "size", required = false, defaultValue = "10") int pageSize,
                               @RequestParam("page")int pageNum) {
         return infoService.getNewsByName(owner, name, pageSize, pageNum);
     }

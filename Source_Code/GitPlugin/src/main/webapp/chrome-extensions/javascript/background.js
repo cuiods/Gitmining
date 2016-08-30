@@ -54,6 +54,7 @@ function compareFork(forkCount, port) {
 }
 
 function queryNewNews() {
+    // var unReadCount = 0;
     chrome.storage.local.get(null, function (items) {
         // console.log(items);
         for (var itemKey in items) {
@@ -121,8 +122,9 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 });
 
 // console.log("set alarm start");
+//todo set delayInMinutes to 1 min
 chrome.alarms.create("gitplugin_alarm", {
-    delayInMinutes: 0.5,
+    delayInMinutes: 0.3,
     periodInMinutes: 30
 });
 // console.log("set alarm end");
@@ -133,6 +135,11 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
         queryNewNews();
     }
 });
+
+// chrome.storage.local.get("firebug/firebug", function (items) {
+//     console.log("get firebug/firebug");
+//     console.log(items);
+// })
 
 // chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
 //     console.log("prepare to reinsert content script");
