@@ -28,7 +28,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="a.xml" value="df26fc6c-db7b-4774-85ec-f3b6a727e7f0" />
-          <unit-entry name="sessionFactory" value="df26fc6c-db7b-4774-85ec-f3b6a727e7f0" />
+          <unit-entry name="sessionFactory" value="c56d7f76-4dec-4048-9bdd-3725dacb4d42" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/spring-hibernate.xml" />
@@ -39,7 +39,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="NewPersistenceUnit" value="df26fc6c-db7b-4774-85ec-f3b6a727e7f0" />
+          <factory-entry name="NewPersistenceUnit" value="52960158-6998-47e4-99ea-3cb1f64165d7" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/META-INF/persistence.xml" />
       </configuration>

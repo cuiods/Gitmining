@@ -33,18 +33,31 @@ public class DataLogic {
         return secRepoEntity;
     }
 
-    public void startLogic(long start, long end) {
-        for (long i = start; i < end; i++) {
-            long total = end-start;
-            SecRepoEntity secRepoEntity = getRepo(i);
+    public void startLogic(int start, int max) {
+        List<SecRepoEntity> entities = getRepos(start,max);
+        int i = 0;
+        for (SecRepoEntity secRepoEntity:entities) {
+            int total = max;
             if (secRepoEntity!=null) {
                 githubReader.updateActivity(secRepoEntity.getOwner(),secRepoEntity.getName());
                 githubReader.updateWeekly(secRepoEntity.getOwner(),secRepoEntity.getName());
                 githubReader.updatePunch(secRepoEntity.getOwner(),secRepoEntity.getName());
             }
+            i++;
             if (i%10==total%10) {
                 System.out.println("Complete:"+i*1.0/total);
             }
         }
+    }
+
+    private List<SecRepoEntity> getRepos(int start, int max) {
+        Session session = sessionFactory.openSession();
+        List<SecRepoEntity> entities = null;
+        Query query = session.createQuery("from SecRepoEntity ");
+        query.setFirstResult(start);
+        query.setMaxResults(max);
+        entities = query.list();
+        session.close();
+        return entities;
     }
 }

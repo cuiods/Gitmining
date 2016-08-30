@@ -22,7 +22,7 @@ public class DataLogicTest {
 
     @Test
     public void startLogic() throws Exception {
-        dataLogic.startLogic(0,100);
+        dataLogic.startLogic(150,500);
     }
 
 }
