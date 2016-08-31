@@ -2,6 +2,7 @@ package edu.nju.serviceImpl;
 
 import edu.nju.dao.InfoDao;
 import edu.nju.entity.CommentsEntity;
+import edu.nju.entity.CommentsOsEntity;
 import edu.nju.entity.NewsEntity;
 import edu.nju.entity.NewsOsEntity;
 import edu.nju.service.InfoService;
@@ -25,7 +26,7 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public Comment getCommentsByName(String owner, String name, int size, int page) {
-        List<CommentsEntity> entities = infoDao.getCommentsByName(owner, name, size, page);
+        List<CommentsOsEntity> entities = infoDao.getCommentsByName(name, size, page);
         Comment comment = new Comment();
         comment.setName(name);
         comment.setOwner(owner);

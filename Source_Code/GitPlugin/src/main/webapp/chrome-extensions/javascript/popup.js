@@ -46,6 +46,9 @@ function removeNotify(itemKey) {
             text: newsNumStr});
     });
     //todo open new tab
+    chrome.tabs.create({url: "https://github.com/"+itemKey}, function (tab) {
+        console.log("new tab is created");
+    })
 }
 
 function setNewsMotion(owner, name) {

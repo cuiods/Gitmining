@@ -1,6 +1,7 @@
 package edu.nju.vo;
 
 import edu.nju.entity.CommentsEntity;
+import edu.nju.entity.CommentsOsEntity;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class Comment {
     private String owner;
     private String name;
-    private List<CommentsEntity> entities;
+    private List<CommentsOsEntity> entities;
 
     public String getOwner() {
         return owner;
@@ -29,11 +30,11 @@ public class Comment {
         this.name = name;
     }
 
-    public List<CommentsEntity> getEntities() {
+    public List<CommentsOsEntity> getEntities() {
         return entities;
     }
 
-    public void setEntities(List<CommentsEntity> entities) {
+    public void setEntities(List<CommentsOsEntity> entities) {
         this.entities = entities;
     }
 }

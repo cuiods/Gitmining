@@ -125,7 +125,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
 //todo set delayInMinutes to 1 min
 chrome.alarms.create("gitplugin_alarm", {
     delayInMinutes: 0.3,
-    periodInMinutes: 30
+    periodInMinutes: 3
 });
 // console.log("set alarm end");
 

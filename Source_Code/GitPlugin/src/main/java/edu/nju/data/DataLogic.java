@@ -55,7 +55,8 @@ public class DataLogic {
                     BufferedWriter bw = new BufferedWriter(writer);
                     out = new PrintWriter(bw);
                     //out.println("Complete: "+i*1.0/total);
-                    out.println("Now at: "+(i+start));
+                    out.println("Now at: "+(i+start-1));
+                    System.out.println("===================Now at: "+(i+start-1));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

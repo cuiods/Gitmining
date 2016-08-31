@@ -2,6 +2,7 @@ package edu.nju.dao.impl;
 
 import edu.nju.dao.InfoDao;
 import edu.nju.entity.CommentsEntity;
+import edu.nju.entity.CommentsOsEntity;
 import edu.nju.entity.NewsEntity;
 import edu.nju.entity.NewsOsEntity;
 import org.hibernate.Query;
@@ -25,20 +26,13 @@ public class InfoDaoImpl implements InfoDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public List<CommentsEntity> getCommentsByName(String owner, String name, int size, int page) {
+    public List<CommentsOsEntity> getCommentsByName(String repoName, int size, int page) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select id from SecRepoEntity where owner=:owner and name=:name ");
-        query.setString("owner",owner);
-        query.setString("name",name);
-        long id = (Long) query.list().get(0);
-        Query query1 = session.createQuery("from CommentsEntity where repoId=:id and comment <> '' ");
-        query1.setParameter("id",id);
-        query1.setMaxResults(size);
-        query1.setFirstResult((page-1)*size);
-        List<CommentsEntity> entities = query1.list();
-        if (entities==null) {
-            entities = new ArrayList<CommentsEntity>();
-        }
+        Query query = session.createQuery("from CommentsOsEntity where pName = :name");
+        query.setString("name",repoName);
+        query.setFirstResult((page-1)*size);
+        query.setMaxResults(size);
+        List<CommentsOsEntity> entities = query.list();
         session.close();
         return entities;
     }

@@ -7,6 +7,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 import edu.nju.dao.InfoDao;
 import edu.nju.entity.CommentsEntity;
+import edu.nju.entity.CommentsOsEntity;
 import edu.nju.entity.NewsEntity;
 import edu.nju.entity.NewsOsEntity;
 import edu.nju.service.MeaningService;
@@ -112,7 +113,7 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public Map<String, List> commonComments(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<CommentsEntity> commentsEntities = infoDao.getCommentsByName(owner, name, 100, 1);
+        List<CommentsOsEntity> commentsEntities = infoDao.getCommentsByName(name, 100, 1);
         if (commentsEntities.size()<=1) {
             return new HashMap<String, List>();
         }
@@ -122,10 +123,10 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public double positiveComments(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<CommentsEntity> commentsEntities = infoDao.getCommentsByName(owner, name, 100, 1);
+        List<CommentsOsEntity> commentsEntities = infoDao.getCommentsByName(name, 100, 1);
         List<String> strText = new ArrayList<String>(commentsEntities.size());
         double sum = 0;
-        for (CommentsEntity commentsEntity: commentsEntities) {
+        for (CommentsOsEntity commentsEntity: commentsEntities) {
             strText.add(commentsEntity.getComment());
         }
         String body = new JSONArray(strText.toArray()).toString();
@@ -151,7 +152,7 @@ public class MeaningServiceImpl implements MeaningService {
 
         private String token;
 
-        private List<CommentsEntity> entities;
+        private List<CommentsOsEntity> entities;
 
         private long task_id;
 
@@ -165,10 +166,10 @@ public class MeaningServiceImpl implements MeaningService {
 
         private String CLEAR_URL;
 
-        ClusterTask(String token, List<CommentsEntity> entities) {
+        ClusterTask(String token, List<CommentsOsEntity> entities) {
             this.token = token;
             this.entities = entities;
-            task_id = entities.get(0).getRepoId();
+            task_id = entities.get(0).getId();
             PUSH_URL = COMMENT_PUSH_URL + task_id;
             ANALYSIS_URL = COMMENT_ANALYSIS_URL + task_id;
             STATUS_URL = COMMENT_STATUS_URL + task_id;
@@ -217,9 +218,9 @@ public class MeaningServiceImpl implements MeaningService {
             return resultMap;
         }
 
-        private boolean uploadData(List<CommentsEntity> entities) throws UnirestException {
+        private boolean uploadData(List<CommentsOsEntity> entities) throws UnirestException {
             JSONArray jsonArray = new JSONArray();
-            for(CommentsEntity entity: entities) {
+            for(CommentsOsEntity entity: entities) {
                 JSONObject object = new JSONObject();
                 object.put("_id", entity.getId());
                 object.put("text", entity.getComment());

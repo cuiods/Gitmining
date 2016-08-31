@@ -1,6 +1,7 @@
 package edu.nju.dao;
 
 import edu.nju.entity.CommentsEntity;
+import edu.nju.entity.CommentsOsEntity;
 import edu.nju.entity.NewsEntity;
 import edu.nju.entity.NewsOsEntity;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface InfoDao {
 
-    List<CommentsEntity> getCommentsByName(String owner, String name, int size, int page);
+    List<CommentsOsEntity> getCommentsByName(String repoName, int size, int page);
 
     List<NewsOsEntity> getNewsByName(String owner, String name, int size, int page);
 
