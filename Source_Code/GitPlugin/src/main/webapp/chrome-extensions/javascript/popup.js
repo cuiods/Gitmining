@@ -136,6 +136,71 @@ function setComments(owner, name) {
     );
 }
 
+function getAuth() {
+    return '?client_id=a933b93042f032033396&client_secret=39ce7e6532fed6803bcb4ca56b4b66779a89c8b7';
+}
+
+function setLanguageChart(owner, repo) {
+    console.log("enter set language chart");
+    var chart = {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    };
+    var title = {
+        text: 'language usage of this repository'
+    };
+    var tooltip = {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    };
+    var plotOptions = {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    };
+
+    var giturl = 'https://api.github.com/repos/'+owner+'/'+repo+'/languages'+getAuth();
+    $.ajax({
+        type: "GET",
+        url: giturl,
+        data: {},
+        success: function (languageObj) {
+
+            var dataArr = [];
+            for (var key in languageObj) {
+                dataArr.push({
+                    name: key.toString(),
+                    y: languageObj[key]
+                });
+            }
+
+            var series = [
+                {
+                    name: 'language',
+                    colorByPoint: true,
+                    data: dataArr
+                }
+            ];
+            $("#language-chart").highcharts({
+                chart: chart,
+                title: title,
+                tooltip: tooltip,
+                series: series,
+                plotOptions: plotOptions
+            });
+        }
+        
+    });
+
+
+}
+
 $(function () {
     //console.log("popup.js load");
     setNotify();
@@ -164,6 +229,7 @@ $(function () {
                     var reponame = msg.name;
                     setNews(owner, reponame);
                     setComments(owner, reponame);
+                    setLanguageChart(owner, reponame);
                 }
                 else {
                     //todo
