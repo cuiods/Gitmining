@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class DataLogic {
     public void startLogic(int start, int max) {
         List<SecRepoEntity> entities = getRepos(start,max);
         int i = 0;
+        File file = new File("output.txt");
         for (SecRepoEntity secRepoEntity:entities) {
             int total = max;
             if (secRepoEntity!=null) {
@@ -45,7 +47,39 @@ public class DataLogic {
             }
             i++;
             if (i%10==total%10) {
-                System.out.println("Complete:"+i*1.0/total);
+//            if (true) {
+//                System.out.println("Complete:"+i*1.0/total);
+                PrintWriter out = null;
+                try{
+                    FileWriter writer = new FileWriter(file, true);
+                    BufferedWriter bw = new BufferedWriter(writer);
+                    out = new PrintWriter(bw);
+                    //out.println("Complete: "+i*1.0/total);
+                    out.println("Now at: "+(i+start));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    if (out!=null){
+                        out.close();
+                    }
+                }
+            }
+        }
+        PrintWriter out = null;
+        try{
+            FileWriter writer = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(writer);
+            out = new PrintWriter(bw);
+            //out.println("Complete: "+i*1.0/total);
+            int to = start+max;
+            out.println("from "+start+" to "+to+" is completed!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (out!=null){
+                out.close();
             }
         }
     }

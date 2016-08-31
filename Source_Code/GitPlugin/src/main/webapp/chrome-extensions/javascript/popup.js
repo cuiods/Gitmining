@@ -45,7 +45,7 @@ function removeNotify(itemKey) {
         chrome.browserAction.setBadgeText({
             text: newsNumStr});
     });
-    return true;
+    //todo open new tab
 }
 
 function setNewsMotion(owner, name) {
