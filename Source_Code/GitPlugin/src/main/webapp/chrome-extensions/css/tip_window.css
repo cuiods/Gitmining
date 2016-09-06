@@ -3,13 +3,17 @@
 }
 
 .popup{
-    font-family: 'Adobe Garamond Pro', serif;
+    /*font-family: 'Adobe Garamond Pro', serif;*/
     position:absolute;
     padding: .5em;
-    background-color: #e6f2ff;
-    border-radius:13px;
-    top: 4em;
-    left: -12em;
+    /*background-color: #e6f2ff;*/
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    top: 3em;
+    left: -3em;
     opacity:0;
     transition:all .5s;
     -webkit-transition:all .5s;
@@ -33,26 +37,28 @@
 
 .popup>.tip_prompt
 {
-    width:330px;
-    font-size:30px;
+    text-decoration: none;
+    width:150px;
+    font-size:16px;
+    font-weight:600;
     /*padding:10px;*/
-    color:#4d88ff;
+    color:#333;
     text-align:center;
 }
 
 .popup>.loading_area
 {
-    font-size: 50px;
-    color: coral;
+    font-size: 20px;
+    color: rgb(53,150,227);
     text-align: center;
 }
 
 .loader{
-    margin: 0 0 1em;
-    height: 100px;
-    color: coral;
+    margin: -30px 10px 10px -50px;
+    height:20px;
+    color: rgb(53,150,227);
     width: 20%;
-    text-align: center;
+    /*text-align: center;*/
     padding: 1em;
     display: inline-block;
     vertical-align: top;
@@ -61,5 +67,7 @@
 #subscribe-btn{
     padding: 3px 10px 3px 10px;
     font-size: 12px;
+    /*background-color:#569e3d;*/
+    /*border-color: #4a993e;*/
 }
 
