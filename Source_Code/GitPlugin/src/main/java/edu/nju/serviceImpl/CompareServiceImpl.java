@@ -38,7 +38,9 @@ public class CompareServiceImpl implements CompareService {
     }
 
     public double comparePeople(String owner, String name) {
-        return compareDao.rangeOfFollwer(compareDao.peopleFollower(owner, name));
+        long sum = compareDao.sumRepo();
+        long num = compareDao.rangeOfFollwer(compareDao.peopleFollower(owner, name));
+        return twoDigits(num * 1.0 / sum * 100);
     }
 
     private double twoDigits(double number) {

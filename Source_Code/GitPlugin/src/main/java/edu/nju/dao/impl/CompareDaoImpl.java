@@ -56,12 +56,9 @@ public class CompareDaoImpl implements CompareDao {
     @Override
     public long rangeOfFollwer(double num) {
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("SELECT COUNT(*) FROM sec_repo AS Repo " +
-                "LEFT JOIN sec_contributor AS Contri ON Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name " +
-                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor " +
-                "GROUP BY Repo.owner, Repo.name HAVING SUM(U.followers * Contri.contributions) > :num ");
-        query.setParameter("num",num);
-        long result = ((BigInteger) query.list().get(0)).longValue();
+        Query query = session.createQuery("select count(*) from SecRepoEntity where weightFollower <= :number ");
+        query.setDouble("number",num);
+        long result = (Long) query.list().get(0);
         session.close();
         return result;
     }
@@ -69,13 +66,11 @@ public class CompareDaoImpl implements CompareDao {
     @Override
     public double peopleFollower(String owner, String name) {
         Session session = sessionFactory.openSession();
-        Query query = session.createSQLQuery("SELECT SUM(U.followers * Contri.contributions) FROM sec_repo AS Repo " +
-                "LEFT JOIN sec_contributor AS Contri ON Repo.owner = Contri.repo_owner AND Repo.name = Contri.repo_name " +
-                "LEFT JOIN sec_user AS U ON U.login = Contri.contributor WHERE Repo.owner =:owner AND Repo.name =:name ");
+        double result = 0;
+        Query query = session.createQuery("select weightFollower from SecRepoEntity where owner=:owner and name=:name ");
         query.setString("owner",owner);
         query.setString("name",name);
-        double result = ((BigDecimal)query.list().get(0)).doubleValue();
-        session.close();
+        result = (Double) query.list().get(0);
         return result;
     }
 
