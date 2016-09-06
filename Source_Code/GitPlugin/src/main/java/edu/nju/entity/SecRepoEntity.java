@@ -3,9 +3,6 @@ package edu.nju.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-/**
- * Created by cuihao on 2016/8/29.
- */
 @Entity
 @Table(name = "sec_repo", schema = "gitmining", catalog = "")
 public class SecRepoEntity {
@@ -24,6 +21,9 @@ public class SecRepoEntity {
     private String activityJson;
     private String punchJson;
     private String weeklyJson;
+    private Integer sumFollower;
+    private Double avgFollower;
+    private Double weightFollower;
 
     @Id
     @Column(name = "id")
@@ -175,6 +175,36 @@ public class SecRepoEntity {
         this.weeklyJson = weeklyJson;
     }
 
+    @Basic
+    @Column(name = "sum_follower")
+    public Integer getSumFollower() {
+        return sumFollower;
+    }
+
+    public void setSumFollower(Integer sumFollower) {
+        this.sumFollower = sumFollower;
+    }
+
+    @Basic
+    @Column(name = "avg_follower")
+    public Double getAvgFollower() {
+        return avgFollower;
+    }
+
+    public void setAvgFollower(Double avgFollower) {
+        this.avgFollower = avgFollower;
+    }
+
+    @Basic
+    @Column(name = "weight_follower")
+    public Double getWeightFollower() {
+        return weightFollower;
+    }
+
+    public void setWeightFollower(Double weightFollower) {
+        this.weightFollower = weightFollower;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -198,6 +228,10 @@ public class SecRepoEntity {
         if (activityJson != null ? !activityJson.equals(that.activityJson) : that.activityJson != null) return false;
         if (punchJson != null ? !punchJson.equals(that.punchJson) : that.punchJson != null) return false;
         if (weeklyJson != null ? !weeklyJson.equals(that.weeklyJson) : that.weeklyJson != null) return false;
+        if (sumFollower != null ? !sumFollower.equals(that.sumFollower) : that.sumFollower != null) return false;
+        if (avgFollower != null ? !avgFollower.equals(that.avgFollower) : that.avgFollower != null) return false;
+        if (weightFollower != null ? !weightFollower.equals(that.weightFollower) : that.weightFollower != null)
+            return false;
 
         return true;
     }
@@ -219,6 +253,9 @@ public class SecRepoEntity {
         result = 31 * result + (activityJson != null ? activityJson.hashCode() : 0);
         result = 31 * result + (punchJson != null ? punchJson.hashCode() : 0);
         result = 31 * result + (weeklyJson != null ? weeklyJson.hashCode() : 0);
+        result = 31 * result + (sumFollower != null ? sumFollower.hashCode() : 0);
+        result = 31 * result + (avgFollower != null ? avgFollower.hashCode() : 0);
+        result = 31 * result + (weightFollower != null ? weightFollower.hashCode() : 0);
         return result;
     }
 }
