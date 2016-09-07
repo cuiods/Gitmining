@@ -63,6 +63,9 @@ function setNewsMotion(owner, name) {
         success: function (number) {
             console.log("success");
             $("#news-index>.index-value").text(number);
+            $("#width-percent").css("width", number*100*100%+"");
+            $("#positivity").text(number);
+            console.log("width:"+number*100*100%+"");
         }
     });
 }
@@ -83,6 +86,7 @@ function setNews(owner, name) {
                     $("#news-prompt").remove();
                     $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
                     //set the positive number of news
+                    $("#news-list").before("<div class='rate-graph' ><div class='graph-scroller' style='background:url(../images/scorebar.png)'><span id = 'width-percent'><em id='positivity'>4.5</em></span></div><ol class='graph-desc'><li>很弱</li><li>较弱</li><li>中等</li><li>较好</li><li>非常好</li></ol></div>");
                     setNewsMotion(owner, name);
                     for (var i=0;i<entityList.length;i++){
                         var entity = entityList[i];
