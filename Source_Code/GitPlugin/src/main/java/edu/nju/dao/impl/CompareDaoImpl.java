@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * compare dao impl
@@ -70,7 +71,11 @@ public class CompareDaoImpl implements CompareDao {
         Query query = session.createQuery("select weightFollower from SecRepoEntity where owner=:owner and name=:name ");
         query.setString("owner",owner);
         query.setString("name",name);
-        result = (Double) query.list().get(0);
+        List list = query.list();
+        session.close();
+        if (list.size()>0){
+            result = (Double) list.get(0);
+        }
         return result;
     }
 
