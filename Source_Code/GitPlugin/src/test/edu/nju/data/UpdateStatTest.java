@@ -21,7 +21,7 @@ public class UpdateStatTest {
 
     @Test
     public void updateStat() throws Exception {
-        updateStat.updateStat(20000,10000);
+        //updateStat.updateStat(80000,20000);
     }
 
 }
