@@ -48,13 +48,14 @@
 
 .popup>.loading_area
 {
-    font-size: 20px;
+    font-size:24px;
+    font-weight:400;
     color: rgb(53,150,227);
     text-align: center;
 }
 
 .loader{
-    margin: -30px 10px 10px -50px;
+    margin: 0 1em 1em 0em;
     height:20px;
     color: rgb(53,150,227);
     width: 20%;
