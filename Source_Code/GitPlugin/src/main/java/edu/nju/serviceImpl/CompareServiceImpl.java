@@ -16,29 +16,43 @@ import java.text.DecimalFormat;
 @Service
 public class CompareServiceImpl implements CompareService {
 
+    private long sum = -1;
+
     @Resource
     private CompareDao compareDao;
 
     public double compareWatch(long watch) {
-        long sum = compareDao.sumRepo();
+//        long sum = compareDao.sumRepo();
+        if (sum<0) {
+            sum = compareDao.sumRepo();
+        }
         long num = compareDao.rangeOfWatch(watch);
         return twoDigits(num * 1.0 / sum * 100);
     }
 
     public double compareStar(long star) {
-        long sum = compareDao.sumRepo();
+//        long sum = compareDao.sumRepo();
+        if (sum<0) {
+            sum = compareDao.sumRepo();
+        }
         long num = compareDao.rangeOfStar(star);
         return twoDigits(num * 1.0 / sum * 100);
     }
 
     public double compareFork(long fork) {
-        long sum = compareDao.sumRepo();
+//        long sum = compareDao.sumRepo();
+        if (sum<0) {
+            sum = compareDao.sumRepo();
+        }
         long num = compareDao.rangeOfFork(fork);
         return twoDigits(num * 1.0 / sum * 100);
     }
 
     public double comparePeople(String owner, String name) {
-        long sum = compareDao.sumRepo();
+//        long sum = compareDao.sumRepo();
+        if (sum<0) {
+            sum = compareDao.sumRepo();
+        }
         long num = compareDao.rangeOfFollwer(compareDao.peopleFollower(owner, name));
         return twoDigits(num * 1.0 / sum * 100);
     }

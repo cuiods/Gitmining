@@ -28,8 +28,26 @@ public class ARFFGeneratorTest {
 
     @Test
     public void generateArffFile() throws Exception {
-        Instances instances = arffGenerator.generatePopularInstanceFromDB(0,10);
-        arffGenerator.generateArffFile(instances);
+        Instances instances = arffGenerator.generatePopularInstanceFromDB(1000,10);
+        arffGenerator.generateArffFile(instances,"repo_test.arff");
+    }
+
+    @Test
+    public void genetateActivityInstanceFromDB() throws Exception {
+        Instances instances = arffGenerator.genetateActivityInstanceFromDB(0,10);
+        System.out.println("+++++activity+++++\n"+instances.toString());
+    }
+
+    @Test
+    public void generatePunchInstanceFromDB() throws Exception {
+        Instances instances = arffGenerator.generatePunchInstanceFromDB(0,110);
+        System.out.println("++++++punch+++++\n"+instances.toString());
+    }
+
+    @Test
+    public void generateOwnerInstanceFromDB() throws Exception {
+        Instances instances = arffGenerator.generateOwnerInstanceFromDB(0,10);
+        System.out.println("++++++owner+++++\n"+instances.toString());
     }
 
 }

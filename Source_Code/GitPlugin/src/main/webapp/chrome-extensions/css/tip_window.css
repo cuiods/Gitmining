@@ -14,25 +14,25 @@
     box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     top: 3em;
     left: -3em;
-    opacity:0;
-    transition:all .5s;
-    -webkit-transition:all .5s;
+    visibility:hidden;
+    /*transition:all .5s;*/
+    /*-webkit-transition:all .5s;*/
 }
 
 .pagehead-actions>li:nth-child(1)>form:hover ~.popup#watch_tip {
-    opacity: 1;
+    visibility: visible;
 }
 
 .pagehead-actions>li:nth-child(2)>:hover ~.popup#star_tip {
-    opacity: 1;
+    visibility: visible;
 }
 
 .pagehead-actions>li:nth-child(3)>form:hover ~.popup#fork_tip {
-    opacity: 1;
+    visibility: visible;
 }
 
 .pagehead-actions>li:nth-child(3)>a:hover ~.popup#fork_tip {
-    opacity: 1;
+    visibility: visible;
 }
 
 .popup>.tip_prompt
