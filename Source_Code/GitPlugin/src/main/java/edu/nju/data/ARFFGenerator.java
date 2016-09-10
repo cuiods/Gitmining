@@ -48,6 +48,70 @@ public class ARFFGenerator {
 
     /**
      * generate instances from database
+     * === Run information ===
+
+     Scheme:       weka.classifiers.functions.MultilayerPerceptron -L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a -R
+     Relation:     repo_popular
+     Instances:    45723
+     Attributes:   6
+     fork
+     size
+     sum
+     avg
+     weight
+     star
+     Test mode:    10-fold cross-validation
+
+     === Classifier model (full training set) ===
+
+     Linear Node 0
+     Inputs    Weights
+     Threshold    -1.1123887947275672
+     Node 1    0.6596485082393743
+     Node 2    2.451730279313244
+     Node 3    1.6151656848854097
+     Sigmoid Node 1
+     Inputs    Weights
+     Threshold    25.839806193924616
+     Attrib fork    52.71725971820234
+     Attrib size    -3.0552344347469726
+     Attrib sum    -58.753921720365454
+     Attrib avg    -122.22118288659625
+     Attrib weight    160.37098347026202
+     Sigmoid Node 2
+     Inputs    Weights
+     Threshold    -5.482052699953215
+     Attrib fork    0.5846582881884442
+     Attrib size    -0.7869252790178127
+     Attrib sum    -1.1953236693005755
+     Attrib avg    2.142161391070926
+     Attrib weight    -1.3459363732147966
+     Sigmoid Node 3
+     Inputs    Weights
+     Threshold    24.733163682062397
+     Attrib fork    51.05651559222434
+     Attrib size    -24.5627383596819
+     Attrib sum    0.8719819728449698
+     Attrib avg    2.133501000425092
+     Attrib weight    -1.5291055608296875
+     Class
+     Input
+     Node 0
+
+
+     Time taken to build model: 14.71 seconds
+
+     === Cross-validation ===
+     === Summary ===
+
+     Correlation coefficient                  0.2692
+     Mean absolute error                      0.1448
+     Root mean squared error                  0.2713
+     Relative absolute error                 97.7075 %
+     Root relative squared error             99.6564 %
+     Total Number of Instances            45723
+
+
      * @param start first index of repos
      * @param max max number of repos
      * @return instances
@@ -100,6 +164,7 @@ public class ARFFGenerator {
         attributes.add(new Attribute("sum"));
         attributes.add(new Attribute("avg"));
         attributes.add(new Attribute("weight"));
+        attributes.add(new Attribute("star"));
         //set instances
         Instances instances = new Instances("repo_popular",attributes,0);
         instances.setClassIndex(instances.numAttributes() - 1);
@@ -111,6 +176,7 @@ public class ARFFGenerator {
             instance.setValue(2,secRepoEntity.getSumFollower());
             instance.setValue(3,secRepoEntity.getAvgFollower());
             instance.setValue(4,secRepoEntity.getWeightFollower());
+            instance.setValue(5,secRepoEntity.getStarCount()>50?1:0);
             instances.add(instance);
         }
         return instances;

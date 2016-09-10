@@ -28,8 +28,8 @@ public class ARFFGeneratorTest {
 
     @Test
     public void generateArffFile() throws Exception {
-        Instances instances = arffGenerator.genetateActivityInstanceFromDB(0,100000);
-        arffGenerator.generateArffFile(instances,"/wekaFile/repo_activity.arff");
+        Instances instances = arffGenerator.generatePunchInstanceFromDB(0,100000);
+        arffGenerator.generateArffFile(instances,"/wekaFile/repo_punch.arff");
     }
 
     @Test
