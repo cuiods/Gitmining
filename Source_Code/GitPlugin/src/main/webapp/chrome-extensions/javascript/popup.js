@@ -117,7 +117,10 @@ function setCommentMotion(owner, name) {
             name: name
         },
         success: function (number) {
-            $("#comments-index>.index-value").text(number);
+            positivePercent = number.toFixed(4)*100+""+"%";
+            padLeft = number*350;
+            $("#comment_positivity").css("padding-left",padLeft+""+"px");
+            $("#comment_positivity").text(positivePercent);
         }
     });
 }
@@ -137,7 +140,7 @@ function setComments(owner, name) {
                 if (commentList.length > 0) {
                     console.log("comment legth: "+commentList.length);
                     $("#comments-prompt").remove();
-                    $("#comments-list").before("<div class='positive-index' id='comments-index'>Positive index: <span class='index-value'>  loading...</span></div>");
+                    $("#comments-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='comment_positivity' >65.00%</em></div><ul class='graph-desc'><li>很弱</li><li>较弱</li><li>中等</li><li>较好</li><li>非常好</li></ul><br><br></div>");
                     setCommentMotion(owner, name);
                     for (var i=0;i<commentList.length;i++) {
                         var entity = commentList[i];
