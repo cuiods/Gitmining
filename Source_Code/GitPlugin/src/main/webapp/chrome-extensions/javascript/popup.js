@@ -62,10 +62,17 @@ function setNewsMotion(owner, name) {
         },
         success: function (number) {
             console.log("success");
-            $("#news-index>.index-value").text(number);
-            $("#width-percent").css("width", number*100*100%+"");
-            $("#positivity").text(number);
-            console.log("width:"+number*100*100%+"");
+            console.log(number);
+            // $("#news-index>.index-value").text(number);
+            positivePercent = number.toFixed(4)*100+""+"%";
+            padLeft = number*350;
+            $("#positivity").css("padding-left",padLeft+""+"px");
+            $("#positivity").text(positivePercent);
+            console.log(positivePercent);
+        },
+        error:function (){
+            $("#positivity").css("padding-left",0.65*350+""+"px");
+            console.log("positivity get wrong!");
         }
     });
 }
@@ -84,9 +91,11 @@ function setNews(owner, name) {
                 var entityList = news.entities;
                 if (entityList.length > 0) {
                     $("#news-prompt").remove();
-                    $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
+                    // $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
                     //set the positive number of news
-                    $("#news-list").before("<div class='rate-graph' ><div class='graph-scroller' style='background:url(../images/scorebar.png)'><span id = 'width-percent'><em id='positivity'>4.5</em></span></div><ol class='graph-desc'><li>很弱</li><li>较弱</li><li>中等</li><li>较好</li><li>非常好</li></ol></div>");
+
+                    $("#news-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='positivity' >65.00%</em></div><ul class='graph-desc'><li>很弱</li><li>较弱</li><li>中等</li><li>较好</li><li>非常好</li></ul><br><br></div>");
+
                     setNewsMotion(owner, name);
                     for (var i=0;i<entityList.length;i++){
                         var entity = entityList[i];

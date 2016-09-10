@@ -4,12 +4,44 @@ html
     box-sizing: border-box;
 }
 
-.graph-desc li {
-    float: left;
-    width: 80px;
-    text-align: center;
-    color: grey;
+.rate-graph{
+    padding-top: 1px;
 }
+.rate-graph > span{
+    float:left;
+    font-size: 15px;
+    font-weight: 500;
+}
+.rate-graph > .graph-scroller{
+    float:right;
+    width: 350px;
+    text-align:left;
+    position:relative;
+}
+.graph-scroller, .graph-scroller em{
+    background:url(../images/scorebar.png)no-repeat;
+}
+.graph-scroller em{
+    height:13px;
+    font-weight:300;
+    position:relative;
+    padding-top:2px;
+}
+
+
+.graph-desc{
+    padding-left:50px;
+    list-style:none;
+}
+.graph-desc li{
+    float: left;
+    width: 77px;
+    text-align: right;
+    color: grey;
+    dislay:list-item;
+}
+
+
 
 /*section*/
 /*{*/
