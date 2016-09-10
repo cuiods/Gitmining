@@ -20,9 +20,12 @@ public class TokenServiceImpl implements TokenService {
     @Value("#{configProperties['token3']}")
     private String token3;
 
+    @Value("#{configProperties['token4']}")
+    private String token4;
+
     @Override
     public String getApiToken() {
-        String[] tokens = new String[]{token1, token2, token3};
+        String[] tokens = new String[]{token1, token2, token3, token4};
         double random = Math.random()*tokens.length;
         return tokens[(int)random];
     }

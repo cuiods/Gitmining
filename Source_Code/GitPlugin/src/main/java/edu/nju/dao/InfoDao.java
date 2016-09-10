@@ -1,9 +1,6 @@
 package edu.nju.dao;
 
-import edu.nju.entity.CommentsEntity;
-import edu.nju.entity.CommentsOsEntity;
-import edu.nju.entity.NewsEntity;
-import edu.nju.entity.NewsOsEntity;
+import edu.nju.entity.*;
 
 import java.util.List;
 
@@ -18,4 +15,6 @@ public interface InfoDao {
     List<NewsOsEntity> getNewsByName(String owner, String name, int size, int page);
 
     long getLastNewsTime(String owner, String name);
+
+    SecRepoEntity getRepoByName(String owner, String name);
 }

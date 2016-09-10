@@ -1,10 +1,7 @@
 package edu.nju.dao.impl;
 
 import edu.nju.dao.InfoDao;
-import edu.nju.entity.CommentsEntity;
-import edu.nju.entity.CommentsOsEntity;
-import edu.nju.entity.NewsEntity;
-import edu.nju.entity.NewsOsEntity;
+import edu.nju.entity.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -67,5 +64,13 @@ public class InfoDaoImpl implements InfoDao {
         else {
             return times.get(0).getTime();
         }
+    }
+
+    @Override
+    public SecRepoEntity getRepoByName(String owner, String name) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from SecRepoEntity where owner=:owner and name=:name ");
+        session.close();
+        return null;
     }
 }
