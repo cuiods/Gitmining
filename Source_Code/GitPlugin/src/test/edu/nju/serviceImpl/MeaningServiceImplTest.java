@@ -29,7 +29,7 @@ public class MeaningServiceImplTest {
 
     @Test
     public void positiveNews() throws Exception {
-        System.out.println(meaningService.positiveNews("mojombo","grit"));
+        System.out.println(meaningService.positiveNews("firebug","firebug"));
     }
 
     @Test

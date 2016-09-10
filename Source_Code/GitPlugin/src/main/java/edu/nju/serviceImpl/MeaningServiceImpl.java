@@ -89,7 +89,7 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public double positiveNews(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner, name, 100, 1);
+        List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner, name, 10, 1);
         List<String> strText = new ArrayList<String>(newsEntities.size());
         double sum = 0;
         for (NewsOsEntity newsEntity: newsEntities) {
@@ -102,6 +102,7 @@ public class MeaningServiceImpl implements MeaningService {
                 .body(body)
                 .asJson();
         JSONArray array = jsonResponse.getBody().getArray();
+        System.out.println(array);
         for (int i = 0; i < array.length(); i++) {
             JSONArray temp = array.getJSONArray(i);
             sum += temp.getDouble(0);
@@ -123,7 +124,7 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public double positiveComments(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<CommentsOsEntity> commentsEntities = infoDao.getCommentsByName(name, 100, 1);
+        List<CommentsOsEntity> commentsEntities = infoDao.getCommentsByName(name, 10, 1);
         List<String> strText = new ArrayList<String>(commentsEntities.size());
         double sum = 0;
         for (CommentsOsEntity commentsEntity: commentsEntities) {

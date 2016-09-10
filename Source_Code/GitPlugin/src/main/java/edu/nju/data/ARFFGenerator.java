@@ -551,7 +551,7 @@ public class ARFFGenerator {
      * @return {@link Instances}
      */
     public Instances generatePunchInstanceFromDB(int start, int max) {
-        return generateActivityInstance(getFullRepoEntities(start, max));
+        return generatePunchInstance(getFullRepoEntities(start, max));
     }
 
     /**
