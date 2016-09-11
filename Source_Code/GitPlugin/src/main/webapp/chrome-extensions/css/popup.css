@@ -61,10 +61,11 @@ html
 
 .pageButton:disabled{
     opacity: 0.6;
+    cursor:not-allowed;
 }
 
 
-.pageButton:hover,.pageButton:active,.pageButton:after{
+.pageButton:hover{
     background-color: #569e3d;
     border:0px;
 }

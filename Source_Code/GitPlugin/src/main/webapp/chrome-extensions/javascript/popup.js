@@ -136,7 +136,8 @@ function setNews(owner, name) {
 
 function setNewsChange(owner,name,currentPage){
     if(currentPage == 1){
-        $("#newsLast").setAttribute("disabled","disabled");
+        $("#newsLast").attr("disabled","disabled");
+        // $("#newsLast").css("opacity","0.6");
     }else{
         $("#newsLast").removeAttr("disabled");
     }
@@ -166,7 +167,8 @@ function setNewsChange(owner,name,currentPage){
                         $("#newsNext").removeAttr("disabled");
                         setNewsPageButton(owner,name,currentPage);
                     }else{
-                        $("#newsNext").setAttribute("disabled","disabled");
+                        $("#newsNext").attr("disabled","disabled");
+                        // $("#newsNext").css("opacity","0.6");
                     }
 
 
@@ -179,14 +181,65 @@ function setNewsChange(owner,name,currentPage){
 function setNewsPageButton(owner,name,currentPage){
     $("#newsLast").unbind("click").click(function(){
         var pageNo = currentPage-1;
+        console.log("lastClicked,now is :"+pageNo);
         $("#pageNoNews").text(pageNo);
         setNewsChange(owner,name,pageNo);
     });
     $("#newsNext").unbind("click").click(function(){
         var pageNo = currentPage + 1;
+        console.log("nextClicked,now is :"+pageNo);
         $("#pageNoNews").text(pageNo);
         setNewsChange(owner,name,pageNo);
     })
+}
+
+function setCommentButton(owner,name,currentPage){
+    $("#commentLast").unbind("click").click(function(){
+        var pageNo = currentPage-1;
+        $("#pageNoComment").text(pageNo);
+        setCommentsChange(owner,name,pageNo);
+    });
+    $("#commentNext").unbind("click").click(function(){
+        var pageNo = currentPage + 1;
+        $("#pageNoComment").text(pageNo);
+        setCommentsChange(owner,name,pageNo);
+    })
+}
+
+function setCommentsChange(owner,name,currentPage){
+    if(currentPage ==1 ){
+        $("#commentLast").attr("disabled","disabled");
+    }else{
+        $("#commentLast").removeAttr("disabled");
+    }
+    $.ajax(
+        {
+            type:"GET",
+            url:getServerIP()+"/info/comments",
+            data:{
+                owner:owner,
+                name:name,
+                page:currentPage,
+            },
+            success:function(comments){
+                var commentsList = comments.entities;
+                if(commentsList.length>0){
+                    $("#comments-list").remove();
+                    $("#comment-button").before('<ul class="list-group" id="comments-list"></ul>');
+                    for (var i=0;i<commentsList.length;i++) {
+                        var entity = commentsList[i];
+                        $("#comments-list").append("<li class='list-group-item'>"+entity.comment+"</li>");
+                    }
+                    if(commentsList.length==10){
+                        $("#commentNext").removeAttr("disabled");
+                    }else{
+                        $("#commentNext").attr("disabled","disabled");
+                    }
+                }
+            }
+
+        }
+    )
 }
 function setCommentMotion(owner, name) {
     $.ajax({
@@ -226,6 +279,11 @@ function setComments(owner, name) {
                         var entity = commentList[i];
                         $("#comments-list").append("<li class='list-group-item'>"+entity.comment+"</li>");
                     }
+                    $("#pageNoComment").text(1);
+                    if(commentList.length == 10){
+                        $("#commentNext").removeAttr("disabled");
+                    }
+                    setCommentButton(owner,name,1);
                 }
             }
         }

@@ -21,7 +21,7 @@
                 </span>
             </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 <div class="prompt" id="nofity-prompt">
                     No notifications
@@ -65,10 +65,10 @@
             <div class="panel-body">
                 <div class="prompt" id="comments-prompt">No comments</div>
                 <ul class="list-group" id="comments-list"></ul>
-                <div style="float:right">
-                    <button type="button" class="pageButton" disabled="disabled">Last</button>
+                <div style="float:right" id="comment-button">
+                    <button type="button" class="pageButton" id="commentLast" disabled="disabled">Last</button>
                     <label class="pageNoStyle" id="pageNoComment">0</label>
-                    <button type="button" class="pageButton" disabled="disabled">Next</button>
+                    <button type="button" class="pageButton" id="commentNext" disabled="disabled">Next</button>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
                 </span>
             </h4>
         </div>
-        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+        <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
             <div class="panel-body">
                 <figure>
                     <div class="highchart-pos" id="language-chart">
