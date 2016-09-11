@@ -94,7 +94,7 @@ function setNews(owner, name) {
                     // $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
                     //set the positive number of news
 
-                    $("#news-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='positivity' >65.00%</em></div><ul class='graph-desc'><li>很弱</li><li>较弱</li><li>中等</li><li>较好</li><li>非常好</li></ul><br><br></div>");
+                    $("#news-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='positivity' >65.00%</em></div><ul class='graph-desc'><li>worse</li><li>weak</li><li>middle</li><li>good</li><li>best</li></ul><br><br></div>");
 
                     setNewsMotion(owner, name);
                     for (var i=0;i<entityList.length;i++){
@@ -102,12 +102,74 @@ function setNews(owner, name) {
                         $("#news-list").append("<a class='list-group-item' href='http://www.oschina.net/news/"+entity.id+"' rel='external' target='_blank'>"+entity.title+"</a>");
                     }
 
+                    $("#pageNoNews").text("1");
+                    if(entityList.length == 10){
+                        $("#newsNext").removeAttr("disabled");
+                    }
+
+                    console.log($("#pageNoNews").var+" "+entityList.length);
+
+                    setNewsPageButton(owner,name,1);
                 }
             }
         }
     );
 }
 
+function setNewsChange(owner,name,currentPage){
+    if(currentPage == 1){
+        $("#newsLast").setAttribute("disabled","disabled");
+    }else{
+        $("#newsLast").removeAttr("disabled");
+    }
+    $.ajax(
+        {
+            type:"GET",
+            url:getServerIP()+"/info/news",
+            data:{
+                owner:owner,
+                name:name,
+                page:currentPage
+            },
+            success:function(news){
+                var entityList = news.entities;
+
+                console.log("pageNow: "+ currentPage + " "+entityList.length);
+                if(entityList.length>0){
+                    $("#news-list").remove();
+                    $("#news-button").before('<div class="list-group" id="news-list"></div>');
+                    for (var i=0;i<entityList.length;i++){
+                        var entity = entityList[i];
+                        $("#news-list").append("<a class='list-group-item news-item' href='http://www.oschina.net/news/"+entity.id+"' rel='external' target='_blank'>"+entity.title+"</a>");
+                    }
+
+
+                    if(entityList.length==10){
+                        $("#newsNext").removeAttr("disabled");
+                        setNewsPageButton(owner,name,currentPage);
+                    }else{
+                        $("#newsNext").setAttribute("disabled","disabled");
+                    }
+
+
+                }
+            }
+        }
+    )
+}
+
+function setNewsPageButton(owner,name,currentPage){
+    $("#newsLast").unbind("click").click(function(){
+        var pageNo = currentPage-1;
+        $("#pageNoNews").text(pageNo);
+        setNewsChange(owner,name,pageNo);
+    });
+    $("#newsNext").unbind("click").click(function(){
+        var pageNo = currentPage + 1;
+        $("#pageNoNews").text(pageNo);
+        setNewsChange(owner,name,pageNo);
+    })
+}
 function setCommentMotion(owner, name) {
     $.ajax({
         type: "GET",
@@ -217,6 +279,8 @@ function setLanguageChart(owner, repo) {
 
 }
 
+
+
 $(function () {
     //console.log("popup.js load");
     setNotify();
@@ -260,3 +324,4 @@ $(function () {
         }
     });
 });
+
