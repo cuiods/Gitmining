@@ -3,7 +3,7 @@ html
     width: 40em;
     box-sizing: border-box;
 }
-
+/*the scorebar*/
 .rate-graph{
     padding-top: 1px;
 }
@@ -41,7 +41,10 @@ html
     dislay:list-item;
 }
 
-
+/*the title icon*/
+.titleIcon{
+    width: 24px;
+}
 
 /*section*/
 /*{*/
