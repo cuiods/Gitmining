@@ -34,6 +34,8 @@ public class GithubReader {
 
     private final String repoUrl = "https://api.github.com/repos";
 
+    private final String userUrl = "https://api.github.com/users";
+
     private String getAuth(){
         return auth[(auth_count++)%auth.length];
     }
@@ -48,6 +50,18 @@ public class GithubReader {
 
     private String getPunchUrl(String owner, String name) {
         return repoUrl+"/"+owner+"/"+name+"/stats/punch_card"+getAuth();
+    }
+
+    public String getFollowerUrl(String owner, String name) {
+        return repoUrl+"/"+owner+"/"+name+"/contributors"+getAuth();
+    }
+
+    public String getRepoDetailUrl(String owner, String name) {
+        return repoUrl+"/"+owner+"/"+name+getAuth();
+    }
+
+    public String getUserUrl(String name) {
+        return userUrl+"/"+name+getAuth();
     }
 
     public boolean updateActivity(String owner,String name) {
