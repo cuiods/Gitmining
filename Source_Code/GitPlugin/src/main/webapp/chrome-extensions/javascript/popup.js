@@ -93,6 +93,24 @@ function setNews(owner, name) {
                     $("#news-prompt").remove();
                     // $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
                     //set the positive number of news
+                    $.ajax(
+                        {
+                            type: "GET",
+                            url: getServerIP()+"/meaning/news/keyword",
+                            data: {
+                                owner: owner,
+                                name: name
+                            },
+                            success: function (keywords) {
+                                console.log("get news keywords success!!!!!!!!!!!");
+                                var html = "Keywords:    ";
+                                for (var i = 0; i<keywords.length;i++){
+                                    html = html+"<span class='label label-info'>"+keywords[i]+"</span>";
+                                }
+                                $("#news-tag").html(html);
+                            }
+                        }
+                    );
 
                     $("#news-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='positivity' >65.00%</em></div><ul class='graph-desc'><li>worse</li><li>weak</li><li>middle</li><li>good</li><li>best</li></ul><br><br></div>");
 

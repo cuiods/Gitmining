@@ -37,7 +37,7 @@ public class InfoDaoImpl implements InfoDao {
     @Override
     public List<NewsOsEntity> getNewsByName(String owner, String name, int size, int page) {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from NewsOsEntity where repoOwner = :owner and repoName = :name order by time desc ");
+        Query query = session.createQuery("from NewsOsEntity where repoOwner = :owner and repoName = :name order by time desc, id desc ");
         query.setString("owner",owner);
         query.setString("name",name);
         query.setFirstResult((page-1)*size);

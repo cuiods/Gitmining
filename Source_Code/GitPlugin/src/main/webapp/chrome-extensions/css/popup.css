@@ -78,6 +78,14 @@ html
     font-size:13px;
     font-weight:500;
 }
+
+.tag {
+    margin-bottom: .5em;
+}
+
+.label-info {
+    margin-left: 1em;
+}
 /*section*/
 /*{*/
     /*font-size: 16px;*/

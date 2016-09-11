@@ -12,6 +12,7 @@ import edu.nju.entity.NewsEntity;
 import edu.nju.entity.NewsOsEntity;
 import edu.nju.service.MeaningService;
 import edu.nju.service.TokenService;
+import edu.nju.utils.StringIntegerComparator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,10 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * impl of analysis of news and comments.
@@ -64,8 +62,11 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public List<String> keywordsOfNews(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
+//        System.out.println("select 100 news from database start!");
         List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner,name,100,1);
+//        System.out.println("select 100 news from database complete!");
         List<String> result = new ArrayList<String>();
+        HashMap<String, Integer> keywordsRank = new HashMap<>();
         for (NewsOsEntity newsEntity : newsEntities) {
             String body = newsEntity.getSummary();
             HttpResponse<JsonNode> jsonResponse = Unirest.post(KEYWORD_URL)
@@ -78,11 +79,26 @@ public class MeaningServiceImpl implements MeaningService {
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONArray temp = jsonArray.getJSONArray(i);
                 if ((Double)temp.get(0)>0.3) {
-                    result.add(temp.getString(1));
+//                    result.add(temp.getString(1));
+                    String keyword = temp.getString(1);
+                    Integer rank = null;
+                    if ((rank = keywordsRank.get(keyword))!=null){
+                        keywordsRank.put(keyword, rank+1);
+                    }
+                    else {
+                        keywordsRank.put(keyword, 1);
+                    }
                 }
             }
         }
         //Unirest.shutdown();
+        List<Map.Entry<String, Integer>> list = new ArrayList(keywordsRank.entrySet());
+        Collections.sort(list, new StringIntegerComparator());
+        for (int i = 0; i < 5; i++) {
+            if (i<list.size()){
+                result.add(list.get(i).getKey());
+            }
+        }
         return result;
     }
 
