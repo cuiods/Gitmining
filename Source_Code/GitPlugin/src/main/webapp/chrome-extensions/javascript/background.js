@@ -7,6 +7,30 @@ function getServerIP() {
 }
 
 function compareWatch(watchCount, port) {
+
+    chrome.storage.local.get("watch_compare", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var compare_obj = items["watch_compare"];
+            var ratio = compare_obj[watchCount.toString()];
+            if (ratio!=null){
+                port.postMessage({
+                    theme: "back_compare",
+                    dataType: "watch",
+                    ratio: ratio
+                });
+            }
+            else {
+                queryWatch(watchCount, port);
+            }
+        }
+        else {
+            queryWatch(watchCount, port);
+        }
+    });
+
+}
+
+function queryWatch(watchCount, port) {
     $.ajax(
         {
             type: "GET",
@@ -18,44 +42,128 @@ function compareWatch(watchCount, port) {
                     dataType: "watch",
                     ratio: ratio
                 });
+                chrome.storage.local.get("watch_compare", function (items) {
+                    var compare_obj;
+                    if (jQuery.isEmptyObject(items)){
+                        compare_obj = {};
+                    }
+                    else {
+                        compare_obj = items["watch_compare"];
+                    }
+                    compare_obj[watchCount.toString()] = ratio;
+                    var obj = {"watch_compare": compare_obj};
+                    chrome.storage.local.set(obj);
+                });
             }
         }
     );
 }
 
 function compareStar(starCount, port) {
-    $.ajax({
-        type: "GET",
-        url: getServerIP()+"/compare/star",
-        data: {num: starCount},
-        success: function (ratio) {
-            port.postMessage({
-                theme: "back_compare",
-                dataType: "star",
-                ratio: ratio
-            });
+    chrome.storage.local.get("star_compare", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var compare_obj = items["star_compare"];
+            var ratio = compare_obj[starCount.toString()];
+            if (ratio!=null){
+                port.postMessage({
+                    theme: "back_compare",
+                    dataType: "star",
+                    ratio: ratio
+                });
+            }
+            else {
+                queryStar(starCount, port);
+            }
+        }
+        else {
+            queryStar(starCount, port);
         }
     });
 }
 
+function queryStar(starCount, port) {
+    $.ajax(
+        {
+            type: "GET",
+            url: getServerIP()+"/compare/star",
+            data: {num: starCount},
+            success: function (ratio) {
+                port.postMessage({
+                    theme: "back_compare",
+                    dataType: "star",
+                    ratio: ratio
+                });
+                chrome.storage.local.get("star_compare", function (items) {
+                    var compare_obj;
+                    if (jQuery.isEmptyObject(items)){
+                        compare_obj = {};
+                    }
+                    else {
+                        compare_obj = items["star_compare"];
+                    }
+                    compare_obj[starCount.toString()] = ratio;
+                    var obj = {"star_compare": compare_obj};
+                    chrome.storage.local.set(obj);
+                });
+            }
+        }
+    );
+}
+
 function compareFork(forkCount, port) {
-    $.ajax({
-        type: "GET",
-        url: getServerIP()+"/compare/watch",
-        data: {num: forkCount},
-        success: function (ratio) {
-            port.postMessage({
-                theme: "back_compare",
-                dataType: "fork",
-                ratio: ratio
-            });
+    chrome.storage.local.get("fork_compare", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var compare_obj = items["fork_compare"];
+            var ratio = compare_obj[forkCount.toString()];
+            if (ratio!=null){
+                port.postMessage({
+                    theme: "back_compare",
+                    dataType: "fork",
+                    ratio: ratio
+                });
+            }
+            else {
+                queryFork(forkCount, port);
+            }
+        }
+        else {
+            queryFork(forkCount, port);
         }
     });
+}
+
+function queryFork(forkCount, port) {
+    $.ajax(
+        {
+            type: "GET",
+            url: getServerIP()+"/compare/fork",
+            data: {num: forkCount},
+            success: function (ratio) {
+                port.postMessage({
+                    theme: "back_compare",
+                    dataType: "fork",
+                    ratio: ratio
+                });
+                chrome.storage.local.get("fork_compare", function (items) {
+                    var compare_obj;
+                    if (jQuery.isEmptyObject(items)){
+                        compare_obj = {};
+                    }
+                    else {
+                        compare_obj = items["fork_compare"];
+                    }
+                    compare_obj[forkCount.toString()] = ratio;
+                    var obj = {"fork_compare": compare_obj};
+                    chrome.storage.local.set(obj);
+                });
+            }
+        }
+    );
 }
 
 function queryNewNews() {
     // var unReadCount = 0;
-    chrome.storage.local.get(null, function (items) {
+    chrome.storage.sync.get(null, function (items) {
         // console.log(items);
         for (var itemKey in items) {
             var itemBody = items[itemKey];
@@ -72,7 +180,7 @@ function queryNewNews() {
                             itemBody.isUpdate = true;
                             var obj = {};
                             obj[itemKey] = itemBody;
-                            chrome.storage.local.set(obj);
+                            chrome.storage.sync.set(obj);
                             var newsNumStr = chrome.browserAction.getBadgeText({}, function (result) {
                                 var newsNum = 0;
                                 if ((newsNumStr!=null)&&(newsNumStr.length>0)){
@@ -136,7 +244,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
     }
 });
 
-// chrome.storage.local.get("firebug/firebug", function (items) {
+// chrome.storage.sync.get("firebug/firebug", function (items) {
 //     console.log("get firebug/firebug");
 //     console.log(items);
 // })

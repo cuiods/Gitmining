@@ -91,19 +91,19 @@ function addSubscribe() {
         isUpdate: false
     };
     obj[id] = inf;
-    chrome.storage.local.set(obj);
+    chrome.storage.sync.set(obj);
     //console.log(obj);
 }
 
 function removeSubscribe() {
     console.log("enter remove subscribe");
-    chrome.storage.local.remove(ownerName+"/"+repoName);
+    chrome.storage.sync.remove(ownerName+"/"+repoName);
 }
 
 function isSubscribe() {
     console.log("enter isSubscribe");
     var id = ownerName+"/"+repoName;
-    chrome.storage.local.get(id, function (item) {
+    chrome.storage.sync.get(id, function (item) {
         //console.log(item);
         if (!jQuery.isEmptyObject(item)) {
             //is subscribed

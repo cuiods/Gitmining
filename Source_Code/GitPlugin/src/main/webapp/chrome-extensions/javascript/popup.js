@@ -3,7 +3,7 @@
  * Created by Harry on 2016/8/9.
  */
 function setNotify() {
-    chrome.storage.local.get(null, function (items) {
+    chrome.storage.sync.get(null, function (items) {
         if ((items!=null)&&(!jQuery.isEmptyObject(items))) {
             for (var itemKey in items) {
                 var itemBody = items[itemKey];
@@ -31,7 +31,7 @@ function removeNotify(itemKey) {
     };
     var obj = {};
     obj[itemKey] = itemBody;
-    chrome.storage.local.set(obj);
+    chrome.storage.sync.set(obj);
     var newsNumStr = chrome.browserAction.getBadgeText({}, function (result) {
         var newsNum = 1;
         if ((newsNumStr!=null)&&(newsNumStr.length>0)){
@@ -45,14 +45,12 @@ function removeNotify(itemKey) {
         chrome.browserAction.setBadgeText({
             text: newsNumStr});
     });
-    //todo open new tab
     chrome.tabs.create({url: "https://github.com/"+itemKey}, function (tab) {
         console.log("new tab is created");
     })
 }
 
-function setNewsMotion(owner, name) {
-    console.log("enter news set motion");
+function queryNewsMotion(owner, name) {
     $.ajax({
         type: "GET",
         url: getServerIP()+"/meaning/news/motion",
@@ -61,20 +59,119 @@ function setNewsMotion(owner, name) {
             name: name
         },
         success: function (number) {
-            console.log("success");
-            console.log(number);
+            // console.log("success");
+            // console.log(number);
             // $("#news-index>.index-value").text(number);
-            positivePercent = number.toFixed(4)*100+""+"%";
-            padLeft = number*350;
+            var positivePercent = number.toFixed(4)*100+""+"%";
+            var padLeft = number*350;
             $("#positivity").css("padding-left",padLeft+""+"px");
             $("#positivity").text(positivePercent);
-            console.log(positivePercent);
+            // console.log(positivePercent);
+
+            chrome.storage.local.get("news_motion", function (items) {
+                var motion_obj;
+                if (jQuery.isEmptyObject(items)){
+                    motion_obj = {};
+                }
+                else {
+                    motion_obj = items["news_motion"];
+                }
+                var id = owner+"/"+name;
+                motion_obj[id] = number;
+                var obj = {"news_motion": motion_obj};
+                chrome.storage.local.set(obj);
+            });
         },
         error:function (){
             $("#positivity").css("padding-left",0.65*350+""+"px");
             console.log("positivity get wrong!");
         }
     });
+}
+
+function setNewsMotion(owner, name) {
+    console.log("enter news set motion");
+
+    chrome.storage.local.get("news_motion", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var motion_map = items["news_motion"];
+            var key = owner+"/"+name;
+            var motion_val = motion_map[key];
+            if (motion_val!=null){
+                // console.log("motion_val is: ");
+                // console.log(motion_val);
+                var positivePercent = motion_val.toFixed(4)*100+""+"%";
+                var padLeft = motion_val*350;
+                $("#positivity").css("padding-left",padLeft+""+"px");
+                $("#positivity").text(positivePercent);
+            }
+            else {
+                queryNewsMotion(owner, name);
+            }
+        }
+        else {
+            queryNewsMotion(owner, name);
+        }
+    });
+
+}
+
+function setNewsKeyword(owner, name) {
+    chrome.storage.local.get("news_keyword", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var keyword_obj = items["news_keyword"];
+            var id = owner+"/"+name;
+            var keyword_arr = keyword_obj[id];
+            if (keyword_arr!=null && keyword_arr.length>0){
+                var html = "Keywords:    ";
+                for (var i = 0; i<keyword_arr.length;i++){
+                    html = html+"<span class='label label-info'>"+keyword_arr[i]+"</span>";
+                }
+                $("#news-tag").html(html);
+            }
+            else {
+                queryNewsKeyword(owner, name);
+            }
+        }
+        else{
+            queryNewsKeyword(owner, name);
+        }
+    });
+}
+
+function queryNewsKeyword(owner, name) {
+    $.ajax(
+        {
+            type: "GET",
+            url: getServerIP()+"/meaning/news/keyword",
+            data: {
+                owner: owner,
+                name: name
+            },
+            success: function (keywords) {
+                // console.log("get news keywords success!!!!!!!!!!!");
+                var html = "Keywords:    ";
+                for (var i = 0; i<keywords.length;i++){
+                    html = html+"<span class='label label-info'>"+keywords[i]+"</span>";
+                }
+                $("#news-tag").html(html);
+
+                chrome.storage.local.get("news_keyword", function (items) {
+                    var keyword_obj;
+                    if (jQuery.isEmptyObject(items)){
+                        keyword_obj = {};
+                    }
+                    else{
+                        keyword_obj = items["news_keyword"];
+                    }
+                    var id = owner+"/"+name;
+                    keyword_obj[id] = keywords;
+                    var obj = {"news_keyword": keyword_obj};
+                    chrome.storage.local.set(obj);
+                });
+            }
+        }
+    );
 }
 
 function setNews(owner, name) {
@@ -93,24 +190,7 @@ function setNews(owner, name) {
                     $("#news-prompt").remove();
                     // $("#news-list").before("<div class='positive-index' id='news-index'>Positive index: <span class='index-value'>loading...</span></div>");
                     //set the positive number of news
-                    $.ajax(
-                        {
-                            type: "GET",
-                            url: getServerIP()+"/meaning/news/keyword",
-                            data: {
-                                owner: owner,
-                                name: name
-                            },
-                            success: function (keywords) {
-                                console.log("get news keywords success!!!!!!!!!!!");
-                                var html = "Keywords:    ";
-                                for (var i = 0; i<keywords.length;i++){
-                                    html = html+"<span class='label label-info'>"+keywords[i]+"</span>";
-                                }
-                                $("#news-tag").html(html);
-                            }
-                        }
-                    );
+                    setNewsKeyword(owner, name);
 
                     $("#news-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='positivity' >65.00%</em></div><ul class='graph-desc'><li>worse</li><li>weak</li><li>middle</li><li>good</li><li>best</li></ul><br><br></div>");
 
@@ -136,8 +216,7 @@ function setNews(owner, name) {
 
 function setNewsChange(owner,name,currentPage){
     if(currentPage == 1){
-        $("#newsLast").attr("disabled","disabled");
-        // $("#newsLast").css("opacity","0.6");
+        $("#newsLast").setAttribute("disabled","disabled");
     }else{
         $("#newsLast").removeAttr("disabled");
     }
@@ -168,7 +247,6 @@ function setNewsChange(owner,name,currentPage){
                         setNewsPageButton(owner,name,currentPage);
                     }else{
                         $("#newsNext").attr("disabled","disabled");
-                        // $("#newsNext").css("opacity","0.6");
                     }
 
 
@@ -241,7 +319,8 @@ function setCommentsChange(owner,name,currentPage){
         }
     )
 }
-function setCommentMotion(owner, name) {
+
+function queryCommentMotion(owner, name) {
     $.ajax({
         type: "GET",
         url: getServerIP()+"/meaning/comment/motion",
@@ -250,12 +329,51 @@ function setCommentMotion(owner, name) {
             name: name
         },
         success: function (number) {
-            positivePercent = number.toFixed(4)*100+""+"%";
-            padLeft = number*350;
+            var positivePercent = number.toFixed(4)*100+""+"%";
+            var padLeft = number*350;
             $("#comment_positivity").css("padding-left",padLeft+""+"px");
             $("#comment_positivity").text(positivePercent);
+
+            chrome.storage.local.get("comment_motion", function (items) {
+                var motion_obj;
+                if (jQuery.isEmptyObject(items)){
+                    motion_obj = {};
+                }
+                else {
+                    motion_obj = items["comment_motion"];
+                }
+                var id = owner+"/"+name;
+                motion_obj[id] = number;
+                var obj = {"comment_motion": motion_obj};
+                chrome.storage.local.set(obj);
+            });
         }
     });
+}
+
+function setCommentMotion(owner, name) {
+
+    chrome.storage.local.get("comment_motion", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var motion_map = items["comment_motion"];
+            var id = owner+"/"+name;
+            var motion_val = motion_map[id];
+            if (motion_val!=null){
+                var positivePercent = motion_val.toFixed(4)*100+""+"%";
+                var padLeft = motion_val*350;
+                $("#comment_positivity").css("padding-left",padLeft+""+"px");
+                $("#comment_positivity").text(positivePercent);
+            }
+            else {
+                queryCommentMotion(owner, name);
+            }
+        }
+        else {
+            queryCommentMotion(owner, name);
+        }
+    });
+
+
 }
 
 function setComments(owner, name) {
