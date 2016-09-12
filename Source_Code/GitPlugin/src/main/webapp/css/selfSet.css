@@ -1,0 +1,44 @@
+.home-image{
+    padding-left:80px;
+}
+
+#features{
+    background: #f7f7f7;
+    padding-top: 96px;
+    padding-bottom: 120px;
+}
+
+#pricing{
+    backgound:#fff;
+}
+
+#graphs {
+    background: #fff;
+    padding-top: 96px;
+    padding-bottom: 78px;
+    overflow: hidden;
+}
+#graphs .feature {
+    margin-top: 30px;
+    margin-bottom: 54px;
+}
+#graphs .right {
+    padding-left: 32px;
+    float: right;
+}
+#graphs .left {
+    padding-right: 32px;
+    float: left;
+}
+#graphs h3 {
+    font: 16px/24px 'montserrat-bold', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #222;
+}
+
+
+.watch-img{
+    width:531px;
+    height:127px;
+}
