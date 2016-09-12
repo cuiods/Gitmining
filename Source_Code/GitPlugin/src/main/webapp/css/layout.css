@@ -43,7 +43,8 @@ body { background: #181d21; }
 /* for css animations */
 .show { opacity: 1; }
 .js #mc_embed_signup input[type="email"],
-.js #mc_embed_signup input[type="submit"] {
+.js #mc_embed_signup input[type="submit"],
+.js #mc_embed_signup input[type="button"]{
    opacity: 0;
 }
 
@@ -277,7 +278,7 @@ ul#nav li.current a { color: #fff; }
 /*----------------------------------------------*/
 
 #pricing {
-	background: #F7F7F7;
+	background: #fff;
    padding-top: 107px;
    padding-bottom: 77px;   
    border-top: 1px solid #F0F0F0;
@@ -699,7 +700,7 @@ ul.features li:nth-child(even) { }
 #mc_embed_signup:after {
     clear: both;
 }
-#mc_embed_signup input[type="submit"] {
+#mc_embed_signup input[type="submit"],#mc_embed_signup input[type="button"] {
    float: right;
    height: 60px;
    margin: 0;
@@ -708,7 +709,8 @@ ul.features li:nth-child(even) { }
    line-height: 60px;
    width: 47%;  
 }
-#mc_embed_signup input[type="email"] {
+
+#mc_embed_signup input[type="email"],#mc_embed_signup input[type="button"] {
    display: inline;
    float: left;
    height: 60px;
