@@ -88,11 +88,20 @@ html
     margin-left: 1em;
 }
 
-#popularity-chart, #people-chart {
-    width: 400px;
-    height: 300px;
-    /*float: left;*/
+.highchart-pos {
+    width: 480px;
+    height: 400px;
 }
+
+.loading_area {
+    text-align: center;
+    padding-top: 183px;
+}
+/*#popularity-chart, #people-chart {*/
+    /*width: 210px;*/
+    /*height: 180px;*/
+    /*float: left;*/
+/*}*/
 /*section*/
 /*{*/
     /*font-size: 16px;*/

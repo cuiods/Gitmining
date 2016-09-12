@@ -201,8 +201,14 @@ function queryNewNews() {
     })
 }
 
-//建立一个缓冲区用于存储一些运算得到的ratio，避免重复计算
-//todo
+function check_storage() {
+    chrome.storage.local.getBytesInUse(null, function (bytesInUse) {
+        console.log("------------check storage---------------------");
+        if (bytesInUse > 5220000) {
+            chrome.storage.local.clear();
+        }
+    });
+}
 
 //监听来自content scripts的连接请求
 chrome.runtime.onConnect.addListener(function (port) {
@@ -229,18 +235,17 @@ chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
     }
 });
 
-// console.log("set alarm start");
-//todo set delayInMinutes to 1 min
-chrome.alarms.create("gitplugin_alarm", {
-    delayInMinutes: 0.3,
+chrome.alarms.create("notification_alarm", {
+    delayInMinutes: 1,
     periodInMinutes: 3
 });
-// console.log("set alarm end");
+
 
 chrome.alarms.onAlarm.addListener(function (alarm) {
     // console.log("catch alarm event");
-    if (alarm.name == "gitplugin_alarm") {
+    if (alarm.name == "notification_alarm") {
         queryNewNews();
+        check_storage();
     }
 });
 
