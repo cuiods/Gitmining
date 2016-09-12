@@ -81,6 +81,8 @@
    #subscribe h1 { margin-bottom: 18px; }
    #mc_embed_signup input[type="submit"] { width: 46%; }
    #mc_embed_signup input[type="email"] { width: 46%; }
+   /*added*/
+   #mc_embed_signup input[type="button"] { width: 46%; }
 
    /* Footer
    ------------------------------------------------------------------- */
@@ -269,7 +271,8 @@
    ------------------------------------------------------------------- */
    #mc_embed_signup { width: 90%; }
    #mc_embed_signup input[type="submit"], 
-   #mc_embed_signup input[type="email"] { 
+   #mc_embed_signup input[type="email"],
+   #mc_embed_signup input[type="button"]{ /*added*/
       width: 100%;
       text-align: center; 
       margin-bottom: 30px;

@@ -30,435 +30,428 @@
 
    <!-- Favicons
 	================================================== -->
-	<link rel="shortcut icon" href="favicon.png" >
+	<link rel="shortcut icon" href="../favicon.png" >
 
 </head>
 
 <body>
 
-   <div id="preloader">
-      <div id="status">
-         <img src="../images/preloader.gif" height="64" width="64" alt="">
-      </div>
+<div id="preloader">
+   <div id="status">
+      <img src="../images/preloader.gif" height="64" width="64" alt="">
+   </div>
+</div>
+
+<!-- Header
+================================================== -->
+<header>
+
+   <div class="logo">
+      <a class="smoothscroll" href="#hero"><img alt="" src="../images/logo.png"></a>
    </div>
 
-   <!-- Header
-   ================================================== -->
-   <header>
+   <nav id="nav-wrap">
 
-      <div class="logo">
-         <a class="smoothscroll" href="#hero"><img alt="" src="../images/logo.png"></a>
+      <a class="mobile-btn" href="#nav-wrap" title="Show navigation" >Show Menu</a>
+      <a class="mobile-btn" href="#" title="Hide navigation">Hide Menu</a>
+
+      <ul id="nav" class="nav">
+         <li><a class="smoothscroll" href="#features">总体概览</a></li>
+         <li><a class="smoothscroll" href="#pricing">新闻评价</a></li>
+         <li><a class="smoothscroll" href="#screenshots">项目推荐</a></li>
+         <li><a class="smoothscroll" href="#graphs">图表分析</a></li>
+         <li><a class="smoothscroll" href="#subscribe">Gitmining</a></li>
+         <li><a class="smoothscroll" href="#testimonials">关于我们</a></li>
+
+      </ul> <!-- end #nav -->
+
+   </nav> <!-- end #nav-wrap -->
+
+   <ul class="header-social">
+      <!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+      <!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+      <!--<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+   </ul>
+
+</header> <!-- Header End -->
+
+
+<!-- Homepage Hero
+================================================== -->
+<section id="hero">
+
+   <div class="row">
+
+      <div class="twelve columns">
+
+         <div class="hero-text">
+            <h1 class="responsive-headline">更方便、更快捷、更深入帮助您分析Github的开源项目</h1>
+
+            <p>GitPlugin, 一款简易方便的google浏览器插件，在每一个github的开源仓库页面，我们帮您分析该仓库的各种参数，判断该仓库在github所有开源项目中所处的地位，并伴有各类分析图表，简明清晰地展示分析数据，让您更快速地了解该仓库，并为您推荐符合喜好的仓库。我们致力于实现开源项目的最高效推广，致力于让每一位代码爱好者找到适合自己的仓库</p>
+         </div>
+
+         <div class="buttons">
+            <a class="button trial" href="GitPlugin.rar" target="_self" id="download">Free Trial</a>
+            <a class="button learn-more smoothscroll" href="#features">Learn More</a>
+         </div>
+
+         <div class="hero-image">
+            <img src="../images/extension.png" class="home-image" alt="" />
+         </div>
+
       </div>
 
-      <nav id="nav-wrap">         
-         
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation" >Show Menu</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide Menu</a>         
+   </div>
 
-         <ul id="nav" class="nav">
-            <li><a class="smoothscroll" href="#features">比较</a></li>
-	         <li><a class="smoothscroll" href="#pricing">展示</a></li>
-            <li><a class="smoothscroll" href="#screenshots">跟踪</a></li>
-            <li><a class="smoothscroll" href="#testimonials">预测</a></li>
-            <li><a class="smoothscroll" href="#subscribe">Gitmine</a></li>
-         </ul> <!-- end #nav -->
-
-      </nav> <!-- end #nav-wrap -->
-
-      <ul class="header-social">
-         <!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
-         <!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
-         <!--<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
-      </ul>
-
-   </header> <!-- Header End -->
+</section> <!-- Homepage Hero end -->
 
 
-   <!-- Homepage Hero
-   ================================================== -->
-   <section id="hero">
+<!--!&#45;&#45; Features Section-->
+<!--================================================== &ndash;&gt;-->
+<section id='features'>
 
-	   <div class="row">
+   <div class="row feature design">
 
-		   <div class="twelve columns">
-
-			   <div class="hero-text">
-				   <h1 class="responsive-headline">更方便、更快捷、更深入帮助您分析Github的开源项目</h1>
-
-				   <p>GitPlugin, 一款简易方便的google浏览器插件，愈加方便地帮助您找到感兴趣的项目，深入分析与合理预测结合，
-                   我们致力于您的满意</p>
-			   </div>
-
-            <div class="buttons">
-               <a class="button trial" href="http://gitming.net:30002/">Free Trial</a>
-               <a class="button learn-more smoothscroll" href="#features">Learn More</a>
-            </div>
-
-            <div class="hero-image">
-               <img src="../images/hero-image.png" alt="" />
-            </div>
-
-		   </div>
-
-	   </div>
-
-   </section> <!-- Homepage Hero end -->
-
-
-   <!-- Features Section
-   ================================================== -->
-   <section id='features'>
-
-      <div class="row feature design">
-
-         <!--<div class="six columns right">-->
+      <div class="five columns right">
          <div class="row section-head">
-            <h1>全局数据比较</h1>
+            <h1>watch数、star数、fork数全局比较, subscribe跟踪项目进行</h1>
 
-            <p>项目的star数量，fork数量，watch数量在全体项目中所处的等级，并对
-               贡献者知名度进行整体评估
+            <p>对于每一个用户打开的仓库，计算其在整体数据中的地位，
+               让用户对于该仓库所处水平有一个整体感知。提供subscribe选择，
+               用户订阅后，利用cookies存储，跟踪项目进展动态
             </p>
          </div>
-         <!--</div>-->
-
-         <!--<div class="six columns feature-media left">-->
-         <!--<img src="images/feature-image-3.png" alt="" />-->
-      <!--</div>-->
-
       </div>
 
-
-   </section> <!-- Homepage Hero end -->
-
-
-    <!-- Pricing Section
-   ================================================== -->
-   <section id="pricing">
-
-      <div class="row section-head">
-
-         <h1>新闻与评价</h1>
-
-         <p>展示项目相关的新闻与评价，包括新闻关键词和评价关键词，
-            以及计算和显示该新闻或评价的正面和负面指数
-         </p>
-
+      <div class="seven column feature-media left " style="background:rgb(150,150,150)">
+         <img src="../images/watch.png" alt="" style="padding-top:8px" class="watch-img"/>
+         <img src="../images/star.png" alt="" class="watch-img"/>
+         <img src="../images/fork.png" alt="" class="watch-img"/>
       </div>
 
-      <div class="row">
+   </div>
 
-         <div class="pricing-tables bgrid-quarters s-bgrid-halves">
+   <div class="row feature responsive">
 
+      <div class="six columns left">
+         <div class="row section-head">
+            <h1>通知、仓库新闻、码友评论、仓库推荐、图表分析</h1>
+
+            <p>
+               插件弹出框的五大组成部分，包括用户订阅仓库后，仓库更新的通知、有关该仓库
+               在各个开源社区的版本发布或者讨论新闻、该仓库收到的评论、根据该仓库对用户
+               进行相关项目推荐、对该仓库的数据分析图表。
+            </p>
          </div>
-
       </div>
 
-   </section> <!-- Pricing End -->
-
-
-
-   <!-- Screenshots
-   ================================================== -->
-   <section id="screenshots">
-
-      <div class="row section-head">
-
-         <h1>跟踪项目动态</h1>
-
-         <p>用户登陆后，对用户关注的项目进行跟踪，
-            实时更新用户所见的该项目的信息与分析
-         </p>
-
+      <div class="six columns feature-media right" style="background: rgb(150,150,150)">
+         <img src="../images/wholly.png" style="padding-top:5px;width:507px;height:396px" alt="" />
       </div>
 
-      <!--<div class="row">-->
-
-         <!--<div class="twelve columns">-->
-
-            <!--&lt;!&ndash; screenshots-wrapper &ndash;&gt;-->
-            <!--<div id="screenshots-wrapper" class="bgrid-quarters s-bgrid-thirds cf">-->
-
-          	   <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-line-icons.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/line-icons.jpg" alt="Line Icons">-->
-                        <!--<div class="overlay"></div> -->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-hipster.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/hipster.jpg" alt="Hipster">-->
-                        <!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-authentic-vintage.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/authentic-vintage.jpg" alt="Authentic Vintage">                        -->
-                        <!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-spot-uv-logo.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/spot-uv-logo.jpg" alt="Spot UV Logo">-->
-                        <!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-tshirt-mockup.jpg" data-imagelightbox="a" >-->
-                     	<!--<img src="images/screenshots/tshirt-mockup.jpg" alt="TShirt Mockup">-->
-                       	<!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-abstract-vector.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/abstract-vector.jpg" alt="Abstract Vector">-->
-                        <!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-embossed-paper.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/embossed-paper.jpg" alt="Embossed Paper">                        -->
-                        <!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div> &lt;!&ndash; item end &ndash;&gt;-->
-
-               <!--<div class="columns item">-->
-                  <!--<div class="item-wrap">-->
-
-                     <!--<a href="images/screenshots/big/b-judah.jpg" data-imagelightbox="a" >-->
-                        <!--<img src="images/screenshots/judah.jpg" alt="Judah">-->
-                        <!--<div class="overlay"></div>-->
-                        <!--<div class="link-icon"><i class="icon-plus"></i></div>-->
-                     <!--</a>-->
-
-                  <!--</div>-->
-          		<!--</div>  &lt;!&ndash; item end &ndash;&gt;-->
-
-            <!--</div> &lt;!&ndash; portfolio-wrapper end &ndash;&gt;-->
-
-         <!--</div> &lt;!&ndash; twelve columns end &ndash;&gt;-->
-
-      <!--</div>  &lt;!&ndash; end row &ndash;&gt;-->
-
-   </section> <!-- Screenshots End -->
+   </div>
 
 
-   <!-- Testimonials Section
-   ================================================== -->
-   <section id="testimonials">
 
-      <div class="row content">
-
-         <span><i class="quote-left fa fa-quote-left"></i></span>
-
-         <div class="text-container">
-
-            <div class="twelve columns">
-
-               <h1>预测流行度</h1>
-
-            </div>
-
-            <div class="twelve columns flex-container">
-
-               <div class="flexslider">
-
-                  <ul class="slides">
-
-                     <li>
-                        <blockquote>
-                           <p>利用已有的数据进行参数分析与评估
-                           </p>
-                           <cite>Cuiods</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-
-                     <li>
-                        <blockquote>
-                           <p>预测目标项目的流行度
-                           </p>
-                           <cite>Harry&Daixb</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
+</section> <!-- Homepage Hero end -->
 
 
-                  </ul>
+<!-- Pricing Section
+================================================== -->
+<section id="pricing">
 
-               </div> <!-- div.flexslider ends -->
+   <div class="row section-head">
 
-            </div> <!-- div.flex-container ends -->
+      <h1>新闻与评价</h1>
 
-         </div>  <!-- text-container ends -->
+      <p>展示项目相关的新闻与评价，包括新闻关键词，
+         并利用bosonnlp提供的API进行情感分析，计算新闻和评论的积极因子
+      </p>
 
-         <span><i class="quote-right fa fa-quote-right"></i></span>
+   </div>
 
-      </div> <!-- row ends -->
+   <div class="row feature responsive">
 
-   </section> <!-- Testimonials Section End-->
+      <div class="five columns feature-media left" style="background: rgb(150,150,150)">
+         <img src="../images/news.png" style="padding-top:5px" alt="" style="width:510px;height:482px"/>
+      </div>
+
+      <div class="five columns feature-media right" style="background: rgb(150,150,150)">
+         <img src="../images/comments.png" style="padding-top:5px" alt="" style="width:510px;height:482px"/>
+      </div>
+
+   </div>
+
+</section> <!-- Pricing End -->
 
 
-   <!-- Subscribe
-   ================================================== -->
-   <section id="subscribe">
 
-      <div class="row section-head">
+<!-- Screenshots
+================================================== -->
+<section id="screenshots">
 
-         <div class="twelve columns">
+   <div class="row section-head">
 
-            <h1>Gitming</h1>
+      <h1>项目推荐</h1>
 
-            <p>显示项目和用户之间的关联，
-               显示与所浏览的项目相关的项目，
-               根据用户的喜好进行项目推荐</p>
+      <p>对用户订阅的仓库进行机器学习和数据挖掘，在github的全部仓库中挑选
+         最适合该用户、该用户最可能感兴趣的仓库进行推荐
+      </p>
 
+   </div>
+
+
+</section> <!-- Screenshots End -->
+
+<section id='graphs'>
+   <div class="row section-head">
+
+      <h1>图表分析</h1>
+
+   </div>
+
+   <div class="row feature design">
+
+      <div class="six columns right">
+         <div class="row section-head">
+            <h1>watch数、star数、fork数全局比较, subscribe跟踪项目进行</h1>
+
+            <p>对于每一个用户打开的仓库，计算其在整体数据中的地位，
+               让用户对于该仓库所处水平有一个整体感知。提供subscribe选择，
+               用户订阅后，利用cookies存储，跟踪项目进展动态
+            </p>
          </div>
+      </div>
+
+      <div class="six columns feature-media left" style="background:rgb(150,150,150)">
+         <img src="../images/language.png" alt="" style="padding-top:5px;width:482px;height:428px"/>
+      </div>
+
+   </div>
+
+   <div class="row feature responsive">
+
+      <div class="six columns left">
+         <div class="row section-head">
+            <h1>通知、仓库新闻、码友评论、仓库推荐、图表分析</h1>
+
+            <p>
+               插件弹出框的五大组成部分，包括用户订阅仓库后，仓库更新的通知、有关该仓库
+               在各个开源社区的版本发布或者讨论新闻、该仓库收到的评论、根据该仓库对用户
+               进行相关项目推荐、对该仓库的数据分析图表。
+            </p>
+         </div>
+      </div>
+
+      <div class="six columns feature-media right" style="background: rgb(150,150,150)">
+         <img src="../images/language.png" style="padding-top:5px;width:482px;height:428px" alt="" />
+      </div>
+
+   </div>
+
+
+
+</section> <!-- Homepage Hero end -->
+
+<!-- Subscribe
+================================================== -->
+<section id="subscribe">
+
+   <div class="row section-head">
+
+      <div class="twelve columns">
+
+         <h1>Gitming</h1>
+
+         <p>显示项目和用户之间的关联，
+            显示与所浏览的项目相关的项目，
+            根据用户的喜好进行项目推荐</p>
 
       </div>
 
-      <div class="row">
+   </div>
 
-         <div class="twelve columns">
+   <div class="row">
+
+      <div class="twelve columns">
 
          <!-- Begin MailChimp Signup Form -->
 
-            <div id="mc_embed_signup">
-               <!--<form action="http://facebook.us8.list-manage.com/subscribe/post?u=cdb7b577e41181934ed6a6a44&amp;id=e65110b38d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>-->
-                  
-                  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="just look" required>
-                   <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                   <!--<div style="position: absolute; left: -5000px;"><input type="text" name="b_cdb7b577e41181934ed6a6a44_e65110b38d" value=""></div>-->
-                  <div class="clear"><input type="submit" value="no click" name="subscribe" id="mc-embedded-subscribe" href="http://gitming.net:30002/" class="button"></div>
-               
-            <!--</form>-->
-            </div>
+         <!--<div id="mc_embed_signup">-->
 
-            <p><small><a href="http://gitming.net:30002/">Go to the gitming website</a></small></p>
+         <!--<input type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="just look" disabled="disabled" >-->
+         <!---->
+         <!--<div class="clear">-->
+         <!--<input type="submit" value="no click" name="subscribe" id="mc-embedded-subscribe"  class="button">-->
+         <!--</div>-->
 
-         </div>
+         <!---->
+         <!--</div>-->
+
+         <p><small><a href="http://139.129.48.182:8080/">Go to the gitmining website</a></small></p>
 
       </div>
 
-   </section>  <!-- Subscribe Section End-->
+   </div>
 
+</section>  <!-- Subscribe Section End-->
 
-   <!-- Footer
-   ================================================== -->
-   <footer>
+<!-- Testimonials Section
+================================================== -->
+<section id="testimonials">
 
-      <div class="row">         
+   <div class="row content">
 
-         <div class="six columns info">
+      <span><i class="quote-left fa fa-quote-left"></i></span>
 
-            <div class="footer-logo">
-               <a href="#">
-                  <img src="../images/footer-logo.png" alt="" />
-               </a>
-            </div>
+      <div class="text-container">
 
-            <p>Coding Fairy. We just try to do better for you.
-            </p>
+         <div class="twelve columns">
+
+            <h1>关于我们</h1>
 
          </div>
 
-         <div class="six columns right-cols">
+         <div class="twelve columns flex-container">
 
-            <div class="row">
+            <div class="flexslider">
 
-               <div class="columns">
-                  <h3 class="address">Come Visit</h3>
-                  <p>
+               <ul class="slides">
+
+                  <li>
+                     <blockquote>
+                        <p>我是一只呆萌程序员，我就爱写代码
+                        </p>
+                        <cite>Cuiods</cite>
+                     </blockquote>
+                  </li> <!-- slide ends -->
+
+                  <li>
+                     <blockquote>
+                        <p>我是一只很瘦的程序员，我爱写数据
+                        </p>
+                        <cite>Harry</cite>
+                     </blockquote>
+                  </li> <!-- slide ends -->
+
+                  <li>
+                     <blockquote>
+                        <p>虽然我现在不在这儿，但我的心和队友在一起
+                        </p>
+                        <cite>Dxy</cite>
+                     </blockquote>
+                  </li> <!-- slide ends -->
+
+                  <li>
+                     <blockquote>
+                        <p>一只正在修炼的程序员，我是来搞笑的
+                        </p>
+                        <cite>Yyy</cite>
+                     </blockquote>
+                  </li> <!-- slide ends -->
+
+
+               </ul>
+
+            </div> <!-- div.flexslider ends -->
+
+         </div> <!-- div.flex-container ends -->
+
+      </div>  <!-- text-container ends -->
+
+      <span><i class="quote-right fa fa-quote-right"></i></span>
+
+   </div> <!-- row ends -->
+
+</section> <!-- Testimonials Section End-->
+
+
+
+
+<!-- Footer
+================================================== -->
+<footer>
+
+   <div class="row">
+
+      <div class="six columns info">
+
+         <div class="footer-logo">
+            <a href="#">
+               <img src="../images/footer-logo.png" alt="" />
+            </a>
+         </div>
+
+         <p>Coding Fairy. We just try to do better for you.
+         </p>
+
+      </div>
+
+      <div class="six columns right-cols">
+
+         <div class="row">
+
+            <div class="columns">
+               <h3 class="address">Come Visit</h3>
+               <p>
                   1600 Amphitheatre Parkway<br>
                   Mountain View, CA<br>
                   94043 US
-                  </p>
-               </div>
+               </p>
+            </div>
 
-               <div class="columns">
-                  <h3 class="social">socialize</h3>
-                  <ul>
-                     <li><a href="#">Facebook</a></li>
-                     <li><a href="#">Twitter</a></li>
-                     <li><a href="#">GooglePlus</a></li>
-                  </ul>
-               </div>
+            <div class="columns">
+               <h3 class="social">socialize</h3>
+               <ul>
+                  <li><a href="#">Facebook</a></li>
+                  <li><a href="#">Twitter</a></li>
+                  <li><a href="#">GooglePlus</a></li>
+               </ul>
+            </div>
 
-               <div class="columns last">
-                  <h3 class="contact">Contact Us</h3>
-                  <ul>
-                    <li><a href="tel:6473438234">647.343.8234</a></li>
-                    <li><a href="tel:1234567890">123.456.7890</a></li>
-                    <li><a href="mailto:someone@woo.com">someone@woosite.com</a></li>
-                  </ul>
-               </div>
+            <div class="columns last">
+               <h3 class="contact">Contact Us</h3>
+               <ul>
+                  <li><a href="tel:6473438234">647.343.8234</a></li>
+                  <li><a href="tel:1234567890">123.456.7890</a></li>
+                  <li><a href="mailto:someone@woo.com">someone@woosite.com</a></li>
+               </ul>
+            </div>
 
-            </div> <!-- Nested Row End -->
+         </div> <!-- Nested Row End -->
 
-         </div>
-
-         <p class="copyright"> <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></p>
-
-         <div id="go-top">
-            <a class="smoothscroll" title="Back to Top" href="#hero"><i class="icon-up-open"></i></a>
-         </div>
-
-      </div> <!-- Row End -->
-
-   </footer> <!-- Footer End-->
+      </div>
 
 
-   <!-- Java Script
-   ================================================== -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="../js/jquery-1.10.2.min.js"><\/script>')</script>
-   <script type="text/javascript" src="../js/jquery-migrate-1.2.1.min.js"></script>
+      <div id="go-top">
+         <a class="smoothscroll" title="Back to Top" href="#hero"><i class="icon-up-open"></i></a>
+      </div>
 
-   <script src="../js/jquery.flexslider.js"></script>
-   <script src="../js/waypoints.js"></script>
-   <script src="../js/jquery.fittext.js"></script>
-   <script src="../js/jquery.fitvids.js"></script>
-   <script src="../js/imagelightbox.js"></script>
-   <script src="../js/jquery.prettyPhoto.js"></script>
-   <script src="../js/main.js"></script>
+   </div> <!-- Row End -->
+
+</footer> <!-- Footer End-->
+
+
+<!-- Java Script
+================================================== -->
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+<script type="text/javascript" src="/js/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="../js/jquery.flexslider.js"></script>
+<script src="../js/waypoints.js"></script>
+<script src="../js/jquery.fittext.js"></script>
+<script src="../js/jquery.fitvids.js"></script>
+<script src="../js/imagelightbox.js"></script>
+<script src="../js/jquery.prettyPhoto.js"></script>
+<script src="../js/main.js"></script>
+
+<script type="text/javascript">
+   //      $("#download").unbind("click").click(function(){
+   //         window.open("favicon.png");
+   //         window.location.reload();
+   //      });
+</script>
 
 </body>
 
