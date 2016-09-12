@@ -87,6 +87,12 @@ html
 .label-info {
     margin-left: 1em;
 }
+
+#popularity-chart, #people-chart {
+    width: 400px;
+    height: 300px;
+    /*float: left;*/
+}
 /*section*/
 /*{*/
     /*font-size: 16px;*/

@@ -469,11 +469,266 @@ function setLanguageChart(owner, repo) {
         }
         
     });
+}
 
+function setPeoplePopularChart() {
+    console.log("====================================================");
+    var gaugeOptions = {
+
+        chart: {
+            type: 'solidgauge'
+        },
+
+        title: null,
+
+        pane: {
+            center: ['50%', '85%'],
+            size: '140%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+
+        tooltip: {
+            enabled: false
+        },
+
+        // the value axis
+        yAxis: {
+            stops: [
+                [0.1, '#55BF3B'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#DF5353'] // red
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickAmount: 2,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            }
+        }
+    };
+
+    // The speed gauge
+    $('#popularity-chart').highcharts(Highcharts.merge(gaugeOptions, {
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: 'Popularity'
+            }
+        },
+
+        credits: {
+            enabled: false
+        },
+
+        series: [{
+            name: 'Popularity',
+            data: [0],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                '<span style="font-size:12px;color:silver">%</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' %'
+            }
+        }]
+
+    }));
+
+    console.log("----------------------------------------------------------------------");
+
+    // The RPM gauge
+    $('#people-chart').highcharts(Highcharts.merge(gaugeOptions, {
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: 'Contributor Rank'
+            }
+        },
+
+        series: [{
+            name: 'Contributor Rank',
+            data: [0],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                '<span style="font-size:12px;color:silver">%</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' %'
+            }
+        }]
+
+    }));
 
 }
 
+function loadPopularAndPeople(owner, name) {
+    var id = owner+"/"+name;
+    chrome.storage.local.get("popular", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var popular_obj = items["popular"];
+            var popular_val = popular_obj[id];
+            if (popular_val){
+                console.log("exist popular!!!!!!!!!========================");
+                setPopulrData(popular_val);
+            }
+            else{
+                queryPopular(owner, name);
+            }
+        }
+        else{
+            queryPopular(owner, name);
+        }
 
+    });
+
+    chrome.storage.local.get("contributor", function (items) {
+        if (!jQuery.isEmptyObject(items)){
+            var contri_obj = items["contributor"];
+            var contri_val = contri_obj[id];
+            if (contri_val){
+                console.log("contributor exist!===================================");
+                setContriData(contri_val);
+            }
+            else{
+                queryContributor(owner, name);
+            }
+        }
+        else{
+            queryContributor(owner, name);
+        }
+    });
+}
+
+function queryContributor(owner, name) {
+    console.log("query contributor!========================");
+    $.ajax({
+        type: "GET",
+        url: getServerIP()+"/compare/people",
+        data: {
+            owner: owner,
+            name: name
+        },
+        success: function (number) {
+            setContriData(number);
+
+            chrome.storage.local.get("contributor", function (items) {
+                var contri_obj;
+                if (jQuery.isEmptyObject(items)){
+                    contri_obj = {};
+                }
+                else {
+                    contri_obj = items["contributor"];
+                }
+                var id = owner+"/"+name;
+                contri_obj[id] = number;
+                var obj = {"contributor": contri_obj};
+                chrome.storage.local.set(obj);
+            });
+        },
+        error:function (){
+            console.log("compare people get wrong!");
+        }
+    });
+}
+
+function setContriData(value) {
+    var chart = $('#people-chart').highcharts(),
+        point,
+        newVal,
+        inc;
+
+    if (chart) {
+        point = chart.series[0].points[0];
+        newVal = value;
+
+        if (newVal < 0){
+            newVal = 0;
+        }
+        if (newVal > 100){
+            newVal = 100;
+        }
+
+        point.update(newVal);
+    }
+}
+
+function queryPopular(owner, name) {
+    console.log("query popualr!===================");
+    $.ajax({
+        type: "GET",
+        url: getServerIP()+"/analyse/popular",
+        data: {
+            owner: owner,
+            name: name
+        },
+        success: function (number) {
+            setPopulrData(number*100);
+
+            chrome.storage.local.get("popular", function (items) {
+                var popular_obj;
+                if (jQuery.isEmptyObject(items)){
+                    popular_obj = {};
+                }
+                else {
+                    popular_obj = items["popular"];
+                }
+                var id = owner+"/"+name;
+                popular_obj[id] = number*100;
+                var obj = {"popular": popular_obj};
+                chrome.storage.local.set(obj);
+            });
+        },
+        error:function (){
+            console.log("popular get wrong!");
+        }
+    });
+}
+
+function setPopulrData(value) {
+    var chart = $('#popularity-chart').highcharts(),
+        point,
+        newVal,
+        inc;
+
+    if (chart) {
+        point = chart.series[0].points[0];
+        newVal = value;
+
+        if (newVal < 0){
+            newVal = 0;
+        }
+        if (newVal > 100){
+            newVal = 100;
+        }
+
+        point.update(newVal);
+    }
+
+}
 
 $(function () {
     //console.log("popup.js load");
@@ -504,6 +759,8 @@ $(function () {
                     setNews(owner, reponame);
                     setComments(owner, reponame);
                     setLanguageChart(owner, reponame);
+                    setPeoplePopularChart();
+                    loadPopularAndPeople(owner, reponame);
                 }
                 else {
                     //todo
