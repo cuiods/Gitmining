@@ -25,7 +25,7 @@ function addPopupToPage() {
     }
     //the page is a github repository
     else {
-        console.log("find a github repository!");
+        //console.log("find a github repository!");
         var lis = $(".repohead-details-container ul.pagehead-actions li");
         var watch = lis[0];
         var star = lis[1];
@@ -43,11 +43,11 @@ function loadCompareData() {
     var starCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(2) > div.js-toggler-container.js-social-container.starring-container > form > a").html()).replace(',', '');
     var forkCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(3) > a.social-count").html()).replace(',', '');
 
-    console.log("starCount is: " + starCount);
+    //console.log("starCount is: " + starCount);
 
     var port = chrome.runtime.connect({name: ownerName+"/"+repoName});
     port.onMessage.addListener(function (msg) {
-        //console.log("back msg: "+msg.ratio);
+        ////console.log("back msg: "+msg.ratio);
         if (msg.theme == "back_compare") {
             if (msg.dataType == "watch"){
                 watch_ratio = msg.ratio;
@@ -82,7 +82,7 @@ function loadCompareData() {
 }
 
 function addSubscribe() {
-    console.log("enter add subscribe");
+    //console.log("enter add subscribe");
     var timeNow = new Date();
     var id = ownerName+"/"+repoName;
     var obj = {};
@@ -92,22 +92,22 @@ function addSubscribe() {
     };
     obj[id] = inf;
     chrome.storage.sync.set(obj);
-    //console.log(obj);
+    ////console.log(obj);
 }
 
 function removeSubscribe() {
-    console.log("enter remove subscribe");
+    //console.log("enter remove subscribe");
     chrome.storage.sync.remove(ownerName+"/"+repoName);
 }
 
 function isSubscribe() {
-    console.log("enter isSubscribe");
+    //console.log("enter isSubscribe");
     var id = ownerName+"/"+repoName;
     chrome.storage.sync.get(id, function (item) {
-        //console.log(item);
+        ////console.log(item);
         if (!jQuery.isEmptyObject(item)) {
             //is subscribed
-            console.log("prepare to change subscribe state");
+            //console.log("prepare to change subscribe state");
             $("#subscribe-btn").html('Unsubscribe');
         }
     });
@@ -121,7 +121,7 @@ function addSubscribeBtn() {
     isSubscribe();
 
     $("#subscribe-btn").on("click", function () {
-        //console.log("click the subscribe button");
+        ////console.log("click the subscribe button");
         if ($(this).text() == "Subscribe") {
             $(this).html('Unsubscribe');
             addSubscribe();
@@ -137,8 +137,8 @@ function addSubscribeBtn() {
 
 
 chrome.runtime.onConnect.addListener(function (port) {
-    console.log("port " + port.name + " connect to content script.");
-    console.log("the sender url is: " + port.sender.url);
+    //console.log("port " + port.name + " connect to content script.");
+    //console.log("the sender url is: " + port.sender.url);
     port.onMessage.addListener(function (msg) { //msg is a json
 
         if (msg.theme == "query_owner_and_repo") {
@@ -153,8 +153,8 @@ chrome.runtime.onConnect.addListener(function (port) {
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    console.log("get message");
-    console.log(message.theme);
+    //console.log("get message");
+    //console.log(message.theme);
     if (message.theme == "reinsert tip window"){
         $(".popup").remove();
         $("#subscribe-btn-li").remove();
