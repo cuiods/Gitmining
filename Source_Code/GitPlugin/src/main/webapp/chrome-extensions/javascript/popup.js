@@ -14,7 +14,7 @@ function setNotify() {
                 }
             }
             //todo add on click listener
-            console.log("prepare to add click handler");
+            //console.log("prepare to add click handler");
             $(".notify-item").click(function () {
                 removeNotify($(this).data("repoId"));
             });
@@ -23,8 +23,8 @@ function setNotify() {
 }
 
 function removeNotify(itemKey) {
-    console.log("enter remove notify");
-    console.log(itemKey);
+    //console.log("enter remove notify");
+    //console.log(itemKey);
     var itemBody = {
         isUpdate: false,
         time: new Date().getTime()
@@ -46,7 +46,7 @@ function removeNotify(itemKey) {
             text: newsNumStr});
     });
     chrome.tabs.create({url: "https://github.com/"+itemKey}, function (tab) {
-        console.log("new tab is created");
+        //console.log("new tab is created");
     })
 }
 
@@ -59,14 +59,14 @@ function queryNewsMotion(owner, name) {
             name: name
         },
         success: function (number) {
-            // console.log("success");
-            // console.log(number);
+            // //console.log("success");
+            // //console.log(number);
             // $("#news-index>.index-value").text(number);
             var positivePercent = number.toFixed(4)*100+""+"%";
             var padLeft = number*350;
             $("#positivity").css("padding-left",padLeft+""+"px");
             $("#positivity").text(positivePercent);
-            // console.log(positivePercent);
+            // //console.log(positivePercent);
 
             chrome.storage.local.get("news_motion", function (items) {
                 var motion_obj;
@@ -84,13 +84,13 @@ function queryNewsMotion(owner, name) {
         },
         error:function (){
             $("#positivity").css("padding-left",0.65*350+""+"px");
-            console.log("positivity get wrong!");
+            //console.log("positivity get wrong!");
         }
     });
 }
 
 function setNewsMotion(owner, name) {
-    console.log("enter news set motion");
+    //console.log("enter news set motion");
 
     chrome.storage.local.get("news_motion", function (items) {
         if (!jQuery.isEmptyObject(items)){
@@ -98,8 +98,8 @@ function setNewsMotion(owner, name) {
             var key = owner+"/"+name;
             var motion_val = motion_map[key];
             if (motion_val!=null){
-                // console.log("motion_val is: ");
-                // console.log(motion_val);
+                // //console.log("motion_val is: ");
+                // //console.log(motion_val);
                 var positivePercent = motion_val.toFixed(4)*100+""+"%";
                 var padLeft = motion_val*350;
                 $("#positivity").css("padding-left",padLeft+""+"px");
@@ -149,7 +149,7 @@ function queryNewsKeyword(owner, name) {
                 name: name
             },
             success: function (keywords) {
-                // console.log("get news keywords success!!!!!!!!!!!");
+                // //console.log("get news keywords success!!!!!!!!!!!");
                 var html = "Keywords:    ";
                 for (var i = 0; i<keywords.length;i++){
                     html = html+"<span class='label label-info'>"+keywords[i]+"</span>";
@@ -205,7 +205,7 @@ function setNews(owner, name) {
                         $("#newsNext").removeAttr("disabled");
                     }
 
-                    console.log($("#pageNoNews").var+" "+entityList.length);
+                    //console.log($("#pageNoNews").var+" "+entityList.length);
 
                     setNewsPageButton(owner,name,1);
                 }
@@ -232,7 +232,7 @@ function setNewsChange(owner,name,currentPage){
             success:function(news){
                 var entityList = news.entities;
 
-                console.log("pageNow: "+ currentPage + " "+entityList.length);
+                //console.log("pageNow: "+ currentPage + " "+entityList.length);
                 if(entityList.length>0){
                     $("#news-list").remove();
                     $("#news-button").before('<div class="list-group" id="news-list"></div>');
@@ -259,13 +259,13 @@ function setNewsChange(owner,name,currentPage){
 function setNewsPageButton(owner,name,currentPage){
     $("#newsLast").unbind("click").click(function(){
         var pageNo = currentPage-1;
-        console.log("lastClicked,now is :"+pageNo);
+        //console.log("lastClicked,now is :"+pageNo);
         $("#pageNoNews").text(pageNo);
         setNewsChange(owner,name,pageNo);
     });
     $("#newsNext").unbind("click").click(function(){
         var pageNo = currentPage + 1;
-        console.log("nextClicked,now is :"+pageNo);
+        //console.log("nextClicked,now is :"+pageNo);
         $("#pageNoNews").text(pageNo);
         setNewsChange(owner,name,pageNo);
     })
@@ -363,7 +363,7 @@ function setCommentMotion(owner, name) {
                 var padLeft = motion_val*350;
                 $("#comment_positivity").css("padding-left",padLeft+""+"px");
                 $("#comment_positivity").text(positivePercent);
-                console.log("positivity: "+positivePercent+" "+motion_val);
+                //console.log("positivity: "+positivePercent+" "+motion_val);
             }
             else {
                 queryCommentMotion(owner, name);
@@ -390,7 +390,7 @@ function setComments(owner, name) {
             success: function (comments) {
                 var commentList = comments.entities;
                 if (commentList.length > 0) {
-                    console.log("comment legth: "+commentList.length);
+                    //console.log("comment legth: "+commentList.length);
                     $("#comments-prompt").remove();
                     $("#comments-list").before("<div class='rate-graph' ><span>Positivity:</span><div class='graph-scroller'><em id='comment_positivity' >65.00%</em></div><ul class='graph-desc'><li>worse</li><li>weak</li><li>middle</li><li>good</li><li>best</li></ul><br><br></div>");
                     setCommentMotion(owner, name);
@@ -414,7 +414,7 @@ function getAuth() {
 }
 
 function setLanguageChart(owner, repo) {
-    console.log("enter set language chart");
+    //console.log("enter set language chart");
     var chart = {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -475,8 +475,7 @@ function setLanguageChart(owner, repo) {
 }
 
 function setPeoplePopularChart(popularVal, contriVal) {
-    console.log("-=-=-=-==-=-=-=-=-=-=poppularval and contrival");
-    console.log(popularVal, contriVal);
+
     $("#popular-loader").remove();
     Highcharts.chart('popular_contributor', {
 
@@ -596,25 +595,27 @@ function setPeoplePopularChart(popularVal, contriVal) {
 
 }
 
+var popular_val;
+var contri_val;
+
 function loadPopularAndPeople(owner, name) {
     var id = owner+"/"+name;
-    var popular_val;
-    var contri_val;
+
     chrome.storage.local.get("popular", function (items) {
         if (!jQuery.isEmptyObject(items)){
             var popular_obj = items["popular"];
             popular_val = popular_obj[id];
             if (popular_val){
-                // console.log("exist popular!!!!!!!!!========================");
+                // //console.log("exist popular!!!!!!!!!========================");
                 //setPopulrData(popular_val);
                 //do nothing
             }
             else{
-                popular_val = queryPopular(owner, name);
+                queryPopular(owner, name);
             }
         }
         else{
-            popular_val = queryPopular(owner, name);
+            queryPopular(owner, name);
         }
 
     });
@@ -624,23 +625,23 @@ function loadPopularAndPeople(owner, name) {
             var contri_obj = items["contributor"];
             contri_val = contri_obj[id];
             if (contri_val){
-                // console.log("contributor exist!===================================");
+                // //console.log("contributor exist!===================================");
                 // setContriData(contri_val);
                 //do nothing
             }
             else{
-                contri_val = queryContributor(owner, name);
+                queryContributor(owner, name);
             }
         }
         else{
-            contri_val = queryContributor(owner, name);
+            queryContributor(owner, name);
         }
     });
 
     var intVal = setInterval(function () {
         if (popular_val && contri_val){
-            console.log("enter if for two vals");
-            console.log(popular_val, contri_val);
+            //console.log("enter if for two vals");
+            //console.log(popular_val, contri_val);
             setPeoplePopularChart(popular_val, contri_val);
             stopInt(intVal);
         }
@@ -652,8 +653,7 @@ function stopInt(intVal) {
 }
 
 function queryContributor(owner, name) {
-    // console.log("query contributor!========================");
-    var returnvalue;
+    // //console.log("query contributor!========================");
     $.ajax({
         type: "GET",
         url: getServerIP()+"/compare/people",
@@ -661,10 +661,10 @@ function queryContributor(owner, name) {
             owner: owner,
             name: name
         },
-        async: false,
+        // async: false,
         success: function (number) {
             // setContriData(number);
-            returnvalue = number;
+            contri_val = number;
             chrome.storage.local.get("contributor", function (items) {
                 var contri_obj;
                 if (jQuery.isEmptyObject(items)){
@@ -680,15 +680,13 @@ function queryContributor(owner, name) {
             });
         },
         error:function (){
-            console.log("compare people get wrong!");
+            //console.log("compare people get wrong!");
         }
     });
-    return returnvalue;
 }
 
 function queryPopular(owner, name) {
-    // console.log("query popular!===================");
-    var returnvalue;
+    //console.log("query popular!===================");
     $.ajax({
         type: "GET",
         url: getServerIP()+"/analyse/popular",
@@ -696,9 +694,9 @@ function queryPopular(owner, name) {
             owner: owner,
             name: name
         },
-        async: false,
+        // async: false,
         success: function (number) {
-            returnvalue = number*100;
+            popular_val = number*100;
             chrome.storage.local.get("popular", function (items) {
                 var popular_obj;
                 if (jQuery.isEmptyObject(items)){
@@ -714,14 +712,13 @@ function queryPopular(owner, name) {
             });
         },
         error:function (){
-            console.log("popular get wrong!");
+            //console.log("popular get wrong!");
         }
     });
-    return returnvalue;
 }
 
 $(function () {
-    //console.log("popup.js load");
+    ////console.log("popup.js load");
     setNotify();
 
     chrome.tabs.query({
@@ -730,20 +727,20 @@ $(function () {
     }, function (tabs) {
         var url = tabs[0].url;
         var tabId = tabs[0].id;
-        console.log("tabs.query success");
-        console.log(url);
+        //console.log("tabs.query success");
+        //console.log(url);
         if (new RegExp(/https:\/\/github.com\/[\w\-]+\/[\w\-]+/, "i").test(url)){
-            console.log("match url");
+            //console.log("match url");
             var port = chrome.tabs.connect(tabId, {name: "query owner and reponame"});
             port.onDisconnect.addListener(function (event) {
                 //the other side doesn't listener for the onConnection
-                console.log("onDisconnect: "+event);
+                //console.log("onDisconnect: "+event);
                 //todo
 
             });
             port.onMessage.addListener(function (msg) {
                 if (msg.theme == "back_owner_and_repo") {
-                    console.log("owner and reponame is back");
+                    //console.log("owner and reponame is back");
                     var owner = msg.owner;
                     var reponame = msg.name;
                     setNews(owner, reponame);
@@ -752,7 +749,7 @@ $(function () {
                     loadPopularAndPeople(owner, reponame);
                 }
                 else {
-                    //todo
+
                 }
             });
             port.postMessage({
@@ -760,7 +757,7 @@ $(function () {
             });
         }
         else {
-            console.log("not match url");
+            //console.log("not match url");
             $(".loading_area").remove();
         }
     });

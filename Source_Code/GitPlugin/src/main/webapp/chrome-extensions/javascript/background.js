@@ -3,7 +3,8 @@
  */
 
 function getServerIP() {
-    return "http://127.0.0.1";
+    return "http://114.55.91.100:30002";
+    // return "http://127.0.0.1";
 }
 
 function compareWatch(watchCount, port) {
@@ -76,7 +77,9 @@ function compareStar(starCount, port) {
             }
         }
         else {
+            //console.log("start query star======================");
             queryStar(starCount, port);
+            //console.log("end query star======================");
         }
     });
 }
@@ -164,7 +167,7 @@ function queryFork(forkCount, port) {
 function queryNewNews() {
     // var unReadCount = 0;
     chrome.storage.sync.get(null, function (items) {
-        // console.log(items);
+        // //console.log(items);
         for (var itemKey in items) {
             var itemBody = items[itemKey];
             if (!itemBody.isUpdate) {
@@ -192,7 +195,7 @@ function queryNewNews() {
                             });
                         }
                         else {
-                            console.log("item time less than ..."+lastTime);
+                            //console.log("item time less than ..."+lastTime);
                         }
                     }
                 });
@@ -203,7 +206,7 @@ function queryNewNews() {
 
 function check_storage() {
     chrome.storage.local.getBytesInUse(null, function (bytesInUse) {
-        console.log("------------check storage---------------------");
+        //console.log("------------check storage---------------------");
         if (bytesInUse > 5220000) {
             chrome.storage.local.clear();
         }
@@ -212,8 +215,8 @@ function check_storage() {
 
 //监听来自content scripts的连接请求
 chrome.runtime.onConnect.addListener(function (port) {
-    console.log("port " + port.name + " connet to background.");
-    console.log("the sender url is: " + port.sender.url);
+    //console.log("port " + port.name + " connet to background.");
+    //console.log("the sender url is: " + port.sender.url);
     port.onMessage.addListener(function (msg) { //msg is a json
 
         if (msg.theme == "compare") {
@@ -227,7 +230,7 @@ chrome.runtime.onConnect.addListener(function (port) {
 
 chrome.tabs.onUpdated.addListener(function (tabId, info, tab) {
     if ( (info.status == "complete") ) {
-        console.log("test tabs.onUpdated");
+        //console.log("test tabs.onUpdated");
         chrome.tabs.sendMessage(
             tabId,
             {theme: "reinsert tip window"}
@@ -242,7 +245,7 @@ chrome.alarms.create("notification_alarm", {
 
 
 chrome.alarms.onAlarm.addListener(function (alarm) {
-    // console.log("catch alarm event");
+    // //console.log("catch alarm event");
     if (alarm.name == "notification_alarm") {
         queryNewNews();
         check_storage();
@@ -250,19 +253,19 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 });
 
 // chrome.storage.sync.get("firebug/firebug", function (items) {
-//     console.log("get firebug/firebug");
-//     console.log(items);
+//     //console.log("get firebug/firebug");
+//     //console.log(items);
 // })
 
 // chrome.webNavigation.onHistoryStateUpdated.addListener(function (details) {
-//     console.log("prepare to reinsert content script");
+//     //console.log("prepare to reinsert content script");
 //     chrome.tabs.executeScript(
 //         details.tabId,
 //         {
 //             file: "javascript/content_scripts.js"
 //         },
 //         function () {
-//             console.log("reinsert content script success!");
+//             //console.log("reinsert content script success!");
 //         }
 //     );
 //     chrome.tabs.insertCSS(
@@ -271,7 +274,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 //             file: "css/tip_window.css"
 //         },
 //         function () {
-//             console.log("reinsert css success!");
+//             //console.log("reinsert css success!");
 //         }
 //     );
 // });

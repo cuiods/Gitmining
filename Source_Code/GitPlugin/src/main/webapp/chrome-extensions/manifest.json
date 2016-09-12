@@ -79,6 +79,6 @@
     }
   ],
   "permissions": [
-    "tabs", "storage", "alarms", "https://github.com/*", "http://127.0.0.1/*"
+    "tabs", "storage", "alarms", "https://github.com/*", "http://114.55.91.100:30002/*"
   ]
 }
