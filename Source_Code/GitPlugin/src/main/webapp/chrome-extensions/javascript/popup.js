@@ -363,6 +363,7 @@ function setCommentMotion(owner, name) {
                 var padLeft = motion_val*350;
                 $("#comment_positivity").css("padding-left",padLeft+""+"px");
                 $("#comment_positivity").text(positivePercent);
+                console.log("positivity: "+positivePercent+" "+motion_val);
             }
             else {
                 queryCommentMotion(owner, name);
