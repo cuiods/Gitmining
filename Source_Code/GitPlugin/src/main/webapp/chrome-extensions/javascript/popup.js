@@ -445,6 +445,8 @@ function setLanguageChart(owner, repo) {
         data: {},
         success: function (languageObj) {
 
+            $("#language-loader").remove();
+
             var dataArr = [];
             for (var key in languageObj) {
                 dataArr.push({
@@ -472,136 +474,147 @@ function setLanguageChart(owner, repo) {
     });
 }
 
-function setPeoplePopularChart() {
-    console.log("====================================================");
-    var gaugeOptions = {
+function setPeoplePopularChart(popularVal, contriVal) {
+    console.log("-=-=-=-==-=-=-=-=-=-=poppularval and contrival");
+    console.log(popularVal, contriVal);
+    $("#popular-loader").remove();
+    Highcharts.chart('popular_contributor', {
 
-        chart: {
-            type: 'solidgauge'
-        },
-
-        title: null,
-
-        pane: {
-            center: ['50%', '85%'],
-            size: '140%',
-            startAngle: -90,
-            endAngle: 90,
-            background: {
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                innerRadius: '60%',
-                outerRadius: '100%',
-                shape: 'arc'
-            }
-        },
-
-        tooltip: {
-            enabled: false
-        },
-
-        // the value axis
-        yAxis: {
-            stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
-                [0.9, '#DF5353'] // red
-            ],
-            lineWidth: 0,
-            minorTickInterval: null,
-            tickAmount: 2,
-            title: {
-                y: -70
+            chart: {
+                type: 'solidgauge',
+                marginTop: 50
             },
-            labels: {
-                y: 16
-            }
-        },
 
-        plotOptions: {
-            solidgauge: {
-                dataLabels: {
-                    y: 5,
-                    borderWidth: 0,
-                    useHTML: true
+            title: {
+                text: 'Popularity & Contributor Rank',
+                style: {
+                    fontSize: '18px'
                 }
-            }
-        }
-    };
-
-    // The speed gauge
-    $('#popularity-chart').highcharts(Highcharts.merge(gaugeOptions, {
-        yAxis: {
-            min: 0,
-            max: 100,
-            title: {
-                text: 'Popularity'
-            }
-        },
-
-        credits: {
-            enabled: false
-        },
-
-        series: [{
-            name: 'Popularity',
-            data: [0],
-            dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                '<span style="font-size:12px;color:silver">%</span></div>'
             },
+
             tooltip: {
-                valueSuffix: ' %'
-            }
-        }]
+                borderWidth: 0,
+                backgroundColor: 'none',
+                shadow: false,
+                style: {
+                    fontSize: '16px'
+                },
+                pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
+                positioner: function (labelWidth) {
+                    return {
+                        x: 240 - labelWidth / 2,
+                        y: 190
+                    };
+                }
+            },
 
-    }));
+            pane: {
+                startAngle: 0,
+                endAngle: 360,
+                background: [{ // Track for Move
+                    outerRadius: '112%',
+                    innerRadius: '88%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.3).get(),
+                    borderWidth: 0
+                }, { // Track for Exercise
+                    outerRadius: '87%',
+                    innerRadius: '63%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2]).setOpacity(0.3).get(),
+                    borderWidth: 0
+                }]
+            },
 
-    console.log("----------------------------------------------------------------------");
+            yAxis: {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+            },
 
-    // The RPM gauge
-    $('#people-chart').highcharts(Highcharts.merge(gaugeOptions, {
-        yAxis: {
-            min: 0,
-            max: 100,
-            title: {
-                text: 'Contributor Rank'
-            }
+            plotOptions: {
+                solidgauge: {
+                    borderWidth: '34px',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    linecap: 'round',
+                    stickyTracking: false
+                }
+            },
+
+            series: [{
+                name: 'Popularity',
+                borderColor: Highcharts.getOptions().colors[0],
+                data: [{
+                    color: Highcharts.getOptions().colors[0],
+                    radius: '100%',
+                    innerRadius: '100%',
+                    y: popularVal
+                }]
+            }, {
+                name: 'Contributor Rank',
+                borderColor: Highcharts.getOptions().colors[2],
+                data: [{
+                    color: Highcharts.getOptions().colors[2],
+                    radius: '75%',
+                    innerRadius: '75%',
+                    y: contriVal
+                }]
+            }]
         },
 
-        series: [{
-            name: 'Contributor Rank',
-            data: [0],
-            dataLabels: {
-                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
-                '<span style="font-size:12px;color:silver">%</span></div>'
-            },
-            tooltip: {
-                valueSuffix: ' %'
-            }
-        }]
+        /**
+         * In the chart load callback, add icons on top of the circular shapes
+         */
+        function callback() {
 
-    }));
+            // Move icon
+            this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+                .attr({
+                    'stroke': '#303030',
+                    'stroke-linecap': 'round',
+                    'stroke-linejoin': 'round',
+                    'stroke-width': 2,
+                    'zIndex': 10
+                })
+                .translate(190, 26)
+                .add(this.series[1].group);
+
+            // Exercise icon
+            this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8, 'M', 8, -8, 'L', 16, 0, 8, 8])
+                .attr({
+                    'stroke': '#303030',
+                    'stroke-linecap': 'round',
+                    'stroke-linejoin': 'round',
+                    'stroke-width': 2,
+                    'zIndex': 10
+                })
+                .translate(190, 61)
+                .add(this.series[1].group);
+
+        });
 
 }
 
 function loadPopularAndPeople(owner, name) {
     var id = owner+"/"+name;
+    var popular_val;
+    var contri_val;
     chrome.storage.local.get("popular", function (items) {
         if (!jQuery.isEmptyObject(items)){
             var popular_obj = items["popular"];
-            var popular_val = popular_obj[id];
+            popular_val = popular_obj[id];
             if (popular_val){
-                console.log("exist popular!!!!!!!!!========================");
-                setPopulrData(popular_val);
+                // console.log("exist popular!!!!!!!!!========================");
+                //setPopulrData(popular_val);
+                //do nothing
             }
             else{
-                queryPopular(owner, name);
+                popular_val = queryPopular(owner, name);
             }
         }
         else{
-            queryPopular(owner, name);
+            popular_val = queryPopular(owner, name);
         }
 
     });
@@ -609,23 +622,38 @@ function loadPopularAndPeople(owner, name) {
     chrome.storage.local.get("contributor", function (items) {
         if (!jQuery.isEmptyObject(items)){
             var contri_obj = items["contributor"];
-            var contri_val = contri_obj[id];
+            contri_val = contri_obj[id];
             if (contri_val){
-                console.log("contributor exist!===================================");
-                setContriData(contri_val);
+                // console.log("contributor exist!===================================");
+                // setContriData(contri_val);
+                //do nothing
             }
             else{
-                queryContributor(owner, name);
+                contri_val = queryContributor(owner, name);
             }
         }
         else{
-            queryContributor(owner, name);
+            contri_val = queryContributor(owner, name);
         }
     });
+
+    var intVal = setInterval(function () {
+        if (popular_val && contri_val){
+            console.log("enter if for two vals");
+            console.log(popular_val, contri_val);
+            setPeoplePopularChart(popular_val, contri_val);
+            stopInt(intVal);
+        }
+    }, 1000);
+}
+
+function stopInt(intVal) {
+    clearInterval(intVal);
 }
 
 function queryContributor(owner, name) {
-    console.log("query contributor!========================");
+    // console.log("query contributor!========================");
+    var returnvalue;
     $.ajax({
         type: "GET",
         url: getServerIP()+"/compare/people",
@@ -633,9 +661,10 @@ function queryContributor(owner, name) {
             owner: owner,
             name: name
         },
+        async: false,
         success: function (number) {
-            setContriData(number);
-
+            // setContriData(number);
+            returnvalue = number;
             chrome.storage.local.get("contributor", function (items) {
                 var contri_obj;
                 if (jQuery.isEmptyObject(items)){
@@ -654,31 +683,12 @@ function queryContributor(owner, name) {
             console.log("compare people get wrong!");
         }
     });
-}
-
-function setContriData(value) {
-    var chart = $('#people-chart').highcharts(),
-        point,
-        newVal,
-        inc;
-
-    if (chart) {
-        point = chart.series[0].points[0];
-        newVal = value;
-
-        if (newVal < 0){
-            newVal = 0;
-        }
-        if (newVal > 100){
-            newVal = 100;
-        }
-
-        point.update(newVal);
-    }
+    return returnvalue;
 }
 
 function queryPopular(owner, name) {
-    console.log("query popualr!===================");
+    // console.log("query popular!===================");
+    var returnvalue;
     $.ajax({
         type: "GET",
         url: getServerIP()+"/analyse/popular",
@@ -686,9 +696,9 @@ function queryPopular(owner, name) {
             owner: owner,
             name: name
         },
+        async: false,
         success: function (number) {
-            setPopulrData(number*100);
-
+            returnvalue = number*100;
             chrome.storage.local.get("popular", function (items) {
                 var popular_obj;
                 if (jQuery.isEmptyObject(items)){
@@ -707,28 +717,7 @@ function queryPopular(owner, name) {
             console.log("popular get wrong!");
         }
     });
-}
-
-function setPopulrData(value) {
-    var chart = $('#popularity-chart').highcharts(),
-        point,
-        newVal,
-        inc;
-
-    if (chart) {
-        point = chart.series[0].points[0];
-        newVal = value;
-
-        if (newVal < 0){
-            newVal = 0;
-        }
-        if (newVal > 100){
-            newVal = 100;
-        }
-
-        point.update(newVal);
-    }
-
+    return returnvalue;
 }
 
 $(function () {
@@ -760,7 +749,6 @@ $(function () {
                     setNews(owner, reponame);
                     setComments(owner, reponame);
                     setLanguageChart(owner, reponame);
-                    setPeoplePopularChart();
                     loadPopularAndPeople(owner, reponame);
                 }
                 else {
@@ -773,6 +761,7 @@ $(function () {
         }
         else {
             console.log("not match url");
+            $(".loading_area").remove();
         }
     });
 });
