@@ -3,6 +3,7 @@
  */
 
 function getServerIP() {
+    // return "http://114.55.91.100:30002";
     return "http://127.0.0.1";
 }
 
@@ -76,7 +77,9 @@ function compareStar(starCount, port) {
             }
         }
         else {
+            console.log("start query star======================");
             queryStar(starCount, port);
+            console.log("end query star======================");
         }
     });
 }

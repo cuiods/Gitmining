@@ -475,8 +475,7 @@ function setLanguageChart(owner, repo) {
 }
 
 function setPeoplePopularChart(popularVal, contriVal) {
-    console.log("-=-=-=-==-=-=-=-=-=-=poppularval and contrival");
-    console.log(popularVal, contriVal);
+
     $("#popular-loader").remove();
     Highcharts.chart('popular_contributor', {
 
@@ -596,10 +595,12 @@ function setPeoplePopularChart(popularVal, contriVal) {
 
 }
 
+var popular_val;
+var contri_val;
+
 function loadPopularAndPeople(owner, name) {
     var id = owner+"/"+name;
-    var popular_val;
-    var contri_val;
+
     chrome.storage.local.get("popular", function (items) {
         if (!jQuery.isEmptyObject(items)){
             var popular_obj = items["popular"];
@@ -610,11 +611,11 @@ function loadPopularAndPeople(owner, name) {
                 //do nothing
             }
             else{
-                popular_val = queryPopular(owner, name);
+                queryPopular(owner, name);
             }
         }
         else{
-            popular_val = queryPopular(owner, name);
+            queryPopular(owner, name);
         }
 
     });
@@ -629,11 +630,11 @@ function loadPopularAndPeople(owner, name) {
                 //do nothing
             }
             else{
-                contri_val = queryContributor(owner, name);
+                queryContributor(owner, name);
             }
         }
         else{
-            contri_val = queryContributor(owner, name);
+            queryContributor(owner, name);
         }
     });
 
@@ -653,7 +654,6 @@ function stopInt(intVal) {
 
 function queryContributor(owner, name) {
     // console.log("query contributor!========================");
-    var returnvalue;
     $.ajax({
         type: "GET",
         url: getServerIP()+"/compare/people",
@@ -661,10 +661,10 @@ function queryContributor(owner, name) {
             owner: owner,
             name: name
         },
-        async: false,
+        // async: false,
         success: function (number) {
             // setContriData(number);
-            returnvalue = number;
+            contri_val = number;
             chrome.storage.local.get("contributor", function (items) {
                 var contri_obj;
                 if (jQuery.isEmptyObject(items)){
@@ -683,12 +683,10 @@ function queryContributor(owner, name) {
             console.log("compare people get wrong!");
         }
     });
-    return returnvalue;
 }
 
 function queryPopular(owner, name) {
-    // console.log("query popular!===================");
-    var returnvalue;
+    console.log("query popular!===================");
     $.ajax({
         type: "GET",
         url: getServerIP()+"/analyse/popular",
@@ -696,9 +694,9 @@ function queryPopular(owner, name) {
             owner: owner,
             name: name
         },
-        async: false,
+        // async: false,
         success: function (number) {
-            returnvalue = number*100;
+            popular_val = number*100;
             chrome.storage.local.get("popular", function (items) {
                 var popular_obj;
                 if (jQuery.isEmptyObject(items)){
@@ -717,7 +715,6 @@ function queryPopular(owner, name) {
             console.log("popular get wrong!");
         }
     });
-    return returnvalue;
 }
 
 $(function () {
@@ -752,7 +749,7 @@ $(function () {
                     loadPopularAndPeople(owner, reponame);
                 }
                 else {
-                    //todo
+
                 }
             });
             port.postMessage({
