@@ -216,7 +216,7 @@ function setNews(owner, name) {
 
 function setNewsChange(owner,name,currentPage){
     if(currentPage == 1){
-        $("#newsLast").setAttribute("disabled","disabled");
+        $("#newsLast").attr("disabled","disabled");
     }else{
         $("#newsLast").removeAttr("disabled");
     }
@@ -259,13 +259,13 @@ function setNewsChange(owner,name,currentPage){
 function setNewsPageButton(owner,name,currentPage){
     $("#newsLast").unbind("click").click(function(){
         var pageNo = currentPage-1;
-        //console.log("lastClicked,now is :"+pageNo);
+        console.log("lastClicked,now is :"+pageNo);
         $("#pageNoNews").text(pageNo);
         setNewsChange(owner,name,pageNo);
     });
     $("#newsNext").unbind("click").click(function(){
         var pageNo = currentPage + 1;
-        //console.log("nextClicked,now is :"+pageNo);
+        console.log("nextClicked,now is :"+pageNo);
         $("#pageNoNews").text(pageNo);
         setNewsChange(owner,name,pageNo);
     })
