@@ -19,7 +19,7 @@
     /*-webkit-transition:all .5s;*/
 }
 
-.pagehead-actions>li:nth-child(1)>form:hover ~.popup#watch_tip {
+.pagehead-actions>li:nth-child(1)>:hover ~.popup#watch_tip {
     visibility: visible;
 }
 

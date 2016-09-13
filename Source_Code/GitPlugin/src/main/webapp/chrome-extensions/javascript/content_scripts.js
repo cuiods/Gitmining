@@ -39,9 +39,9 @@ function addPopupToPage() {
 
 
 function loadCompareData() {
-    var watchCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(1) > form > div.select-menu.js-menu-container.js-select-menu > a.social-count").html()).replace(',', '');
-    var starCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(2) > div.js-toggler-container.js-social-container.starring-container > form > a").html()).replace(',', '');
-    var forkCount = $.trim($("#js-repo-pjax-container > div.pagehead.repohead.instapaper_ignore.readability-menu.experiment-repo-nav > div.container.repohead-details-container > ul > li:nth-child(3) > a.social-count").html()).replace(',', '');
+    var watchCount = $.trim($(".repohead-details-container > ul > li:nth-child(1) a.social-count").html()).replace(',', '');
+    var starCount = $.trim($(".repohead-details-container > ul > li:nth-child(2) a.social-count").html()).replace(',', '');
+    var forkCount = $.trim($(".repohead-details-container > ul > li:nth-child(3) a.social-count").html()).replace(',', '');
 
     //console.log("starCount is: " + starCount);
 
