@@ -63,7 +63,7 @@ public class MeaningServiceImpl implements MeaningService {
     public List<String> keywordsOfNews(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
 //        System.out.println("select 100 news from database start!");
-        List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner,name,100,1);
+        List<NewsOsEntity> newsEntities = infoDao.getNewsByName(owner,name,10,1);
 //        System.out.println("select 100 news from database complete!");
         List<String> result = new ArrayList<String>();
         HashMap<String, Integer> keywordsRank = new HashMap<>();
@@ -130,7 +130,7 @@ public class MeaningServiceImpl implements MeaningService {
     @Override
     public Map<String, List> commonComments(String owner, String name) throws JSONException, UnirestException,
             java.io.IOException{
-        List<CommentsOsEntity> commentsEntities = infoDao.getCommentsByName(name, 100, 1);
+        List<CommentsOsEntity> commentsEntities = infoDao.getCommentsByName(name, 50, 1);
         if (commentsEntities.size()<=1) {
             return new HashMap<String, List>();
         }
